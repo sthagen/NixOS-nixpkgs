@@ -427,6 +427,8 @@ in {
 
   ambee = callPackage ../development/python-modules/ambee { };
 
+  amberelectric = callPackage ../development/python-modules/amberelectric { };
+
   ambiclimate = callPackage ../development/python-modules/ambiclimate { };
 
   amcrest = callPackage ../development/python-modules/amcrest { };
@@ -1612,6 +1614,8 @@ in {
   ColanderAlchemy = callPackage ../development/python-modules/colanderalchemy { };
 
   colander = callPackage ../development/python-modules/colander { };
+
+  collections-extended = callPackage ../development/python-modules/collections-extended { };
 
   colorama = callPackage ../development/python-modules/colorama { };
 
@@ -2820,6 +2824,8 @@ in {
   freetype-py = callPackage ../development/python-modules/freetype-py { };
 
   freezegun = callPackage ../development/python-modules/freezegun { };
+
+  frigidaire = callPackage ../development/python-modules/frigidaire { };
 
   frilouz = callPackage ../development/python-modules/frilouz { };
 
@@ -5105,6 +5111,8 @@ in {
     # requires both the graphviz package and python package
     graphvizPkgs = pkgs.graphviz;
   };
+
+  obspy = callPackage ../development/python-modules/obspy { };
 
   oci = callPackage ../development/python-modules/oci { };
 
@@ -9173,6 +9181,8 @@ in {
   tubeup = callPackage ../development/python-modules/tubeup { };
 
   tumpa = callPackage ../development/python-modules/tumpa { };
+
+  tuya-iot-py-sdk = callPackage ../development/python-modules/tuya-iot-py-sdk { };
 
   tuyaha = callPackage ../development/python-modules/tuyaha { };
 
