@@ -43,14 +43,14 @@ in
 
 buildPythonPackage rec {
   pname = "angr";
-  version = "9.0.10055";
+  version = "9.0.10159";
   disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-egj24DBP2Bq2GMYOhZZPXmnobpbjxbD2V8MWwZpqhUg=";
+    sha256 = "sha256-j3SbKBoREeB4IJmXVm27K4C1FLcZwqFMFXQwWnMtE0g=";
   };
 
   propagatedBuildInputs = [
