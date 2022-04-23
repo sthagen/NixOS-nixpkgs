@@ -51,7 +51,7 @@ in {
     maintainers = [ patryk27 ];
   };
 
-  machine = { lib, ... }: {
+  nodes.machine = { lib, ... }: {
     virtualisation = {
       # Since we're testing `limits.cpu`, we've gotta have a known number of
       # cores to lean on
@@ -133,9 +133,5 @@ in {
         )
 
         machine.succeed("lxc delete -f test")
-
-    with subtest("Unless explicitly changed, lxd leans on iptables"):
-        machine.succeed("lsmod | grep ip_tables")
-        machine.fail("lsmod | grep nf_tables")
   '';
 })

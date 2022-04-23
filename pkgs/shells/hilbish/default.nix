@@ -2,34 +2,35 @@
 
 buildGoModule rec {
   pname = "hilbish";
-  version = "0.5.1";
+  version = "1.0.4";
 
   src = fetchFromGitHub {
     owner = "Rosettea";
     repo = "Hilbish";
     rev = "v${version}";
-    sha256 = "sha256-557Je9KeBpkZxVAxcjWAhybIJJYlzhtbnIyZh0rCRUc=";
+    sha256 = "sha256-JVAyE6iSfRres2YalQF3CWK5Jtn5HoW6p6RHVbwzoVQ=";
     fetchSubmodules = true;
   };
 
-  vendorSha256 = "sha256-8l+Kb1ADMLwv0Hf/ikok8eUcEEST07rhk8BjHxJI0lc=";
+  vendorSha256 = "sha256-Bmst1oJMuSXGvL8Syw6v2BqrbO5McHKkTufFs6iuxzs=";
 
-  buildInputs = [ readline ];
-
-  ldflags = [ "-s" "-w" ];
-
-  postPatch = ''
-    # in master vars.go is called vars_linux.go
-    substituteInPlace vars.go \
-      --replace "/usr/share" "${placeholder "out"}/share/"
-  '';
+  ldflags = [
+    "-s"
+    "-w"
+    "-X main.dataDir=${placeholder "out"}/share/hilbish"
+  ];
 
   postInstall = ''
     mkdir -p "$out/share/hilbish"
 
     cp .hilbishrc.lua $out/share/hilbish/
+    cp -r docs -t $out/share/hilbish
     cp -r libs -t $out/share/hilbish/
-    cp preload.lua $out/share/hilbish/
+    cp -r prelude/ $out/share/hilbish/
+
+    # segfaults and it's already been generated upstream
+    # we copy the docs over with the above cp command
+    rm $out/bin/docgen
   '';
 
   meta = with lib; {

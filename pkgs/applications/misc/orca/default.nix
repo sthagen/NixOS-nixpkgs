@@ -8,7 +8,6 @@
 , gettext
 , yelp-tools
 , itstool
-, libxmlxx3
 , python
 , pygobject3
 , gtk3
@@ -35,13 +34,13 @@
 
 buildPythonApplication rec {
   pname = "orca";
-  version = "40.0";
+  version = "42.0";
 
   format = "other";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "0hq0zdcn80ficpcffbk667907v6m7dih3dhyc7ss01mrj3iyw000";
+    sha256 = "LCUXmrQbJgsY8f+Jm+uv5olDi0nf/SEd78l2olCT9zo=";
   };
 
   patches = [
@@ -58,14 +57,13 @@ buildPythonApplication rec {
     autoreconfHook
     wrapGAppsHook
     pkg-config
-    libxmlxx3
     gettext
     yelp-tools
     itstool
     gobject-introspection
   ];
 
-  propagatedBuildInputs = [
+  pythonPath = [
     pygobject3
     pyatspi
     dbus-python

@@ -10,13 +10,13 @@
 
 buildPythonPackage rec {
   pname = "translatepy";
-  version = "2.1";
+  version = "2.2";
 
   src = fetchFromGitHub {
     owner = "Animenosekai";
     repo = "translate";
     rev = "v${version}";
-    sha256 = "0xj97s6zglvq2894wpq3xbjxgfkrfk2414vmcszap8h9j2zxz8gf";
+    sha256 = "rnt4nmDgQXSgzwNCcsZwbQn2bv83DFhL86kebeiSosc=";
   };
 
   propagatedBuildInputs = [
@@ -29,6 +29,7 @@ buildPythonPackage rec {
   checkInputs = [ pytestCheckHook ];
   disabledTestPaths = [
     # Requires network connection
+    "tests/test_translate.py"
     "tests/test_translators.py"
   ];
   pythonImportsCheck = [ "translatepy" ];
@@ -37,6 +38,6 @@ buildPythonPackage rec {
     description = "A module grouping multiple translation APIs";
     homepage = "https://github.com/Animenosekai/translate";
     license = with licenses; [ agpl3Only ];
-    maintainers = with maintainers; [ angustrau ];
+    maintainers = with maintainers; [ emilytrau ];
   };
 }

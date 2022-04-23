@@ -20,14 +20,17 @@
 
 buildPythonPackage rec {
   pname = "fs";
-  version = "2.4.13";
+  version = "2.4.15";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "caab4dc1561d63c92f36ee78976f6a4a01381830d8420ce34a78d4f1bb1dc95f";
+    sha256 = "sha256-sJ0CwxH0rdHm4rdXJMRQ6vz+7MkXV5IkyorSHazQoYI=";
   };
 
   buildInputs = [ glibcLocales ];
+
+  # strong cycle with paramaterized
+  doCheck = false;
   checkInputs = [ pyftpdlib mock psutil pytestCheckHook ];
   propagatedBuildInputs = [ six appdirs pytz ]
     ++ lib.optionals (!isPy3k) [ backports_os ]

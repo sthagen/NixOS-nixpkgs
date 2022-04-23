@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, options, pkgs, ... }:
 
 with lib;
 
-let cfg = config.services.subsonic; in {
+let
+  cfg = config.services.subsonic;
+  opt = options.services.subsonic;
+in {
   options = {
     services.subsonic = {
       enable = mkEnableOption "Subsonic daemon";
@@ -97,7 +100,7 @@ let cfg = config.services.subsonic; in {
         description = ''
           List of paths to transcoder executables that should be accessible
           from Subsonic. Symlinks will be created to each executable inside
-          ${cfg.home}/transcoders.
+          ''${config.${opt.home}}/transcoders.
         '';
       };
     };
@@ -109,7 +112,7 @@ let cfg = config.services.subsonic; in {
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       script = ''
-        ${pkgs.jre}/bin/java -Xmx${toString cfg.maxMemory}m \
+        ${pkgs.jre8}/bin/java -Xmx${toString cfg.maxMemory}m \
           -Dsubsonic.home=${cfg.home} \
           -Dsubsonic.host=${cfg.listenAddress} \
           -Dsubsonic.port=${toString cfg.port} \

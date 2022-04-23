@@ -1,15 +1,25 @@
-{ lib, stdenv, fetchurl, fixDarwinDylibNames, which }:
+{ lib, stdenv, fetchurl, fixDarwinDylibNames, which
+, enableShared ? !(stdenv.hostPlatform.isStatic)
+, enableStatic ? stdenv.hostPlatform.isStatic
+}:
 
 stdenv.mkDerivation rec {
   pname = "lowdown";
-  version = "0.9.0";
+  version = "0.11.1";
 
   outputs = [ "out" "lib" "dev" "man" ];
 
   src = fetchurl {
     url = "https://kristaps.bsd.lv/lowdown/snapshots/lowdown-${version}.tar.gz";
-    sha512 = "0v3l70c9mal67i369bk3q67qyn07kmclybcd5lj5ibdrrccq1jzsxn2sy39ziy77in7cygcb1lgf9vzacx9rscw94i6259fy0dpnf0h";
+    sha512 = "1l0055g8v0dygyxvk5rchp4sn1g2lakbf6hhq0wkj6nxkfpl43mkyc4vpb02r7v6iqfdwq4461dmdi78blsb3nj8b1gcjx75v7x9pa1";
   };
+
+  # Upstream always passes GNU-style "soname", but cctools expects "install_name".
+  # Whatever name is inserted will be replaced by fixDarwinDylibNames.
+  # https://github.com/kristapsdz/lowdown/issues/87
+  postPatch = lib.optionalString stdenv.isDarwin ''
+    substituteInPlace Makefile --replace soname install_name
+  '';
 
   nativeBuildInputs = [ which ]
     ++ lib.optionals stdenv.isDarwin [ fixDarwinDylibNames ];
@@ -27,12 +37,30 @@ stdenv.mkDerivation rec {
     runHook postConfigure
   '';
 
-  # Fix lib extension so that fixDarwinDylibNames detects it
-  postInstall = lib.optionalString stdenv.isDarwin ''
-    mv $lib/lib/liblowdown.{so,dylib}
-  '';
+  makeFlags = [
+    "bins" # prevents shared object from being built unnecessarily
+  ];
 
-  patches = lib.optional (!stdenv.hostPlatform.isStatic) ./shared.patch;
+  installTargets = [
+    "install"
+  ] ++ lib.optionals enableShared [
+    "install_shared"
+  ] ++ lib.optionals enableStatic [
+    "install_static"
+  ];
+
+  # Fix lib extension so that fixDarwinDylibNames detects it
+  # Symlink liblowdown.so to liblowdown.so.1 (or equivalent)
+  postInstall =
+    let
+      inherit (stdenv.hostPlatform.extensions) sharedLibrary;
+    in
+
+    lib.optionalString (enableShared && stdenv.isDarwin) ''
+      mv $lib/lib/liblowdown.{so.1,1.dylib}
+    '' + lib.optionalString enableShared ''
+      ln -s $lib/lib/liblowdown*${sharedLibrary}* $lib/lib/liblowdown${sharedLibrary}
+    '';
 
   doInstallCheck = stdenv.hostPlatform == stdenv.buildPlatform;
   installCheckPhase = ''

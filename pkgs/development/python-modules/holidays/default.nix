@@ -7,17 +7,18 @@
 , korean-lunar-calendar
 , pytestCheckHook
 , pythonOlder
-, six
 }:
 
 buildPythonPackage rec {
   pname = "holidays";
-  version = "0.11.3.1";
+  version = "0.13";
+  format = "setuptools";
+
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "4855afe0ebf428efbcf848477828b889f8515be7f4f15ae26682919369d92774";
+    sha256 = "sha256-xvfDq4ralIBnAtqTHZTTfNYbz6kstNOdNRtqnFIQZ1w=";
   };
 
   propagatedBuildInputs = [
@@ -25,18 +26,19 @@ buildPythonPackage rec {
     python-dateutil
     hijri-converter
     korean-lunar-calendar
-    six
   ];
 
   checkInputs = [
     pytestCheckHook
   ];
 
-  pythonImportsCheck = [ "holidays" ];
+  pythonImportsCheck = [
+    "holidays"
+  ];
 
   meta = with lib; {
-    homepage = "https://github.com/dr-prodigy/python-holidays";
     description = "Generate and work with holidays in Python";
+    homepage = "https://github.com/dr-prodigy/python-holidays";
     license = licenses.mit;
     maintainers = with maintainers; [ jluttine ];
   };

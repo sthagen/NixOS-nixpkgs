@@ -1,7 +1,7 @@
 { lib
 , buildPythonPackage
 , fetchFromGitHub
-, ruamel_yaml
+, ruamel-yaml
 , xmltodict
 , pygments
 , pytestCheckHook
@@ -10,17 +10,17 @@
 
 buildPythonPackage rec {
   pname = "jc";
-  version = "1.17.0";
+  version = "1.18.6";
   disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = "kellyjonbrazil";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-8GTRBoZuA/fsfVxCBpvNefWHuWLvN/L/BT31OFpslxA=";
+    sha256 = "sha256-yk6Rg9DwilG8OWmT7SF80eYRsRwDwJp+mx2Yv2Gg+ak=";
   };
 
-  propagatedBuildInputs = [ ruamel_yaml xmltodict pygments ];
+  propagatedBuildInputs = [ ruamel-yaml xmltodict pygments ];
 
   checkInputs = [ pytestCheckHook ];
 

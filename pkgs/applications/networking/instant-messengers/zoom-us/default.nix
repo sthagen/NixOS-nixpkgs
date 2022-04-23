@@ -28,11 +28,11 @@
 }:
 
 let
-  version = "5.8.0.16";
+  version = "5.9.6.2225";
   srcs = {
     x86_64-linux = fetchurl {
       url = "https://zoom.us/client/${version}/zoom_x86_64.pkg.tar.xz";
-      sha256 = "1axnh81bf3ab5gzxxqm172wpqlpfbj9a2h3cry3kyxzmrihzbwdm";
+      sha256 = "0rynpw2fjn9j75f34rk0rgqn9wzyzgzmwh1a3xcx7hqingv45k53";
     };
   };
 
@@ -104,7 +104,7 @@ stdenv.mkDerivation rec {
     # Clear Qt paths to prevent tripping over "foreign" Qt resources.
     # Clear Qt screen scaling settings to prevent over-scaling.
     makeWrapper $out/opt/zoom/ZoomLauncher $out/bin/zoom \
-      --run "cd $out/opt/zoom" \
+      --chdir "$out/opt/zoom" \
       --unset QML2_IMPORT_PATH \
       --unset QT_PLUGIN_PATH \
       --unset QT_SCREEN_SCALE_FACTORS \

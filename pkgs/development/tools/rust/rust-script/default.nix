@@ -2,19 +2,18 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "rust-script";
-  version = "0.17.0";
+  version = "0.20.0";
 
   src = fetchFromGitHub {
     owner = "fornwall";
     repo = pname;
     rev = "v${version}";
-    sha256 = "0jz8hlvl31c5h8whd6pnpmslw6w6alkxijd9lhgric1yypiym9x3";
+    sha256 = "sha256-WcvRkp57VyBB5gQgamFoR6wK1cRJ+3hQqixOBgeapJU=";
   };
 
-  cargoSha256 = "sha256-hg0QtxR1qm/x8G6HoN7xAyOwh9jiQvX2wWYjUR8YvMs=";
+  cargoSha256 = "sha256-qJIftByppOrT4g3sxmKRSLhxtpAW4eXWX0FhmMDJNu0=";
 
-  # TODO: switch to `cargoCheckType = "false"` after #138822 is merged
-  # tests only work in debug mode
+  # tests require network access
   doCheck = false;
 
   meta = with lib; {

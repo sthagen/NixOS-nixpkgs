@@ -6,10 +6,14 @@ with utils;
 let
 
   cfg = config.networking;
+  opt = options.networking;
   interfaces = attrValues cfg.interfaces;
   hasVirtuals = any (i: i.virtual) interfaces;
   hasSits = cfg.sits != { };
+  hasGres = cfg.greTunnels != { };
   hasBonds = cfg.bonds != { };
+  hasFous = cfg.fooOverUDP != { }
+    || filterAttrs (_: s: s.encapsulation != null) cfg.sits != { };
 
   slaves = concatMap (i: i.interfaces) (attrValues cfg.bonds)
     ++ concatMap (i: i.interfaces) (attrValues cfg.bridges)
@@ -99,6 +103,11 @@ let
         description = ''
           Other route options. See the symbol <literal>OPTIONS</literal>
           in the <literal>ip-route(8)</literal> manual page for the details.
+          You may also specify <literal>metric</literal>,
+          <literal>src</literal>, <literal>protocol</literal>,
+          <literal>scope</literal>, <literal>from</literal>
+          and <literal>table</literal>, which are technically
+          not route options, in the sense used in the manual.
         '';
       };
 
@@ -204,6 +213,14 @@ let
         type = with types; listOf (submodule (routeOpts 4));
         description = ''
           List of extra IPv4 static routes that will be assigned to the interface.
+          <warning><para>If the route type is the default <literal>unicast</literal>, then the scope
+          is set differently depending on the value of <option>networking.useNetworkd</option>:
+          the script-based backend sets it to <literal>link</literal>, while networkd sets
+          it to <literal>global</literal>.</para></warning>
+          If you want consistency between the two implementations,
+          set the scope of the route manually with
+          <literal>networking.interfaces.eth0.ipv4.routes = [{ options.scope = "global"; }]</literal>
+          for example.
         '';
       };
 
@@ -288,7 +305,7 @@ let
         enable = mkOption {
           type = types.bool;
           default = false;
-          description = "Wether to enable wol on this interface.";
+          description = "Whether to enable wol on this interface.";
         };
       };
     };
@@ -386,6 +403,15 @@ let
     </itemizedlist>
   '';
 
+  hostidFile = pkgs.runCommand "gen-hostid" { preferLocalBuild = true; } ''
+      hi="${cfg.hostId}"
+      ${if pkgs.stdenv.isBigEndian then ''
+        echo -ne "\x''${hi:0:2}\x''${hi:2:2}\x''${hi:4:2}\x''${hi:6:2}" > $out
+      '' else ''
+        echo -ne "\x''${hi:6:2}\x''${hi:4:2}\x''${hi:2:2}\x''${hi:0:2}" > $out
+      ''}
+    '';
+
 in
 
 {
@@ -415,7 +441,11 @@ in
         network node hostname (uname --nodename) the option
         boot.kernel.sysctl."kernel.hostname" can be used as a workaround (but
         the 64 character limit still applies).
+
+        WARNING: Do not use underscores (_) or you may run into unexpected issues.
       '';
+       # warning until the issues in https://github.com/NixOS/nixpkgs/pull/138978
+       # are resolved
     };
 
     networking.fqdn = mkOption {
@@ -823,6 +853,71 @@ in
       });
     };
 
+    networking.fooOverUDP = mkOption {
+      default = { };
+      example =
+        {
+          primary = { port = 9001; local = { address = "192.0.2.1"; dev = "eth0"; }; };
+          backup =  { port = 9002; };
+        };
+      description = ''
+        This option allows you to configure Foo Over UDP and Generic UDP Encapsulation
+        endpoints. See <citerefentry><refentrytitle>ip-fou</refentrytitle>
+        <manvolnum>8</manvolnum></citerefentry> for details.
+      '';
+      type = with types; attrsOf (submodule {
+        options = {
+          port = mkOption {
+            type = port;
+            description = ''
+              Local port of the encapsulation UDP socket.
+            '';
+          };
+
+          protocol = mkOption {
+            type = nullOr (ints.between 1 255);
+            default = null;
+            description = ''
+              Protocol number of the encapsulated packets. Specifying <literal>null</literal>
+              (the default) creates a GUE endpoint, specifying a protocol number will create
+              a FOU endpoint.
+            '';
+          };
+
+          local = mkOption {
+            type = nullOr (submodule {
+              options = {
+                address = mkOption {
+                  type = types.str;
+                  description = ''
+                    Local address to bind to. The address must be available when the FOU
+                    endpoint is created, using the scripted network setup this can be achieved
+                    either by setting <literal>dev</literal> or adding dependency information to
+                    <literal>systemd.services.&lt;name&gt;-fou-encap</literal>; it isn't supported
+                    when using networkd.
+                  '';
+                };
+
+                dev = mkOption {
+                  type = nullOr str;
+                  default = null;
+                  example = "eth0";
+                  description = ''
+                    Network device to bind to.
+                  '';
+                };
+              };
+            });
+            default = null;
+            example = { address = "203.0.113.22"; };
+            description = ''
+              Local address (and optionally device) to bind to using the given port.
+            '';
+          };
+        };
+      });
+    };
+
     networking.sits = mkOption {
       default = { };
       example = literalExpression ''
@@ -882,8 +977,127 @@ in
             '';
           };
 
+          encapsulation = with types; mkOption {
+            type = nullOr (submodule {
+              options = {
+                type = mkOption {
+                  type = enum [ "fou" "gue" ];
+                  description = ''
+                    Selects encapsulation type. See
+                    <citerefentry><refentrytitle>ip-link</refentrytitle>
+                    <manvolnum>8</manvolnum></citerefentry> for details.
+                  '';
+                };
+
+                port = mkOption {
+                  type = port;
+                  example = 9001;
+                  description = ''
+                    Destination port for encapsulated packets.
+                  '';
+                };
+
+                sourcePort = mkOption {
+                  type = nullOr types.port;
+                  default = null;
+                  example = 9002;
+                  description = ''
+                    Source port for encapsulated packets. Will be chosen automatically by
+                    the kernel if unset.
+                  '';
+                };
+              };
+            });
+            default = null;
+            example = { type = "fou"; port = 9001; };
+            description = ''
+              Configures encapsulation in UDP packets.
+            '';
+          };
+
         };
 
+      });
+    };
+
+    networking.greTunnels = mkOption {
+      default = { };
+      example = literalExpression ''
+        {
+          greBridge = {
+            remote = "10.0.0.1";
+            local = "10.0.0.22";
+            dev = "enp4s0f0";
+            type = "tap";
+            ttl = 255;
+          };
+          gre6Tunnel = {
+            remote = "fd7a:5634::1";
+            local = "fd7a:5634::2";
+            dev = "enp4s0f0";
+            type = "tun6";
+            ttl = 255;
+          };
+        }
+      '';
+      description = ''
+        This option allows you to define Generic Routing Encapsulation (GRE) tunnels.
+      '';
+      type = with types; attrsOf (submodule {
+        options = {
+
+          remote = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "10.0.0.1";
+            description = ''
+              The address of the remote endpoint to forward traffic over.
+            '';
+          };
+
+          local = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "10.0.0.22";
+            description = ''
+              The address of the local endpoint which the remote
+              side should send packets to.
+            '';
+          };
+
+          dev = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "enp4s0f0";
+            description = ''
+              The underlying network device on which the tunnel resides.
+            '';
+          };
+
+          ttl = mkOption {
+            type = types.nullOr types.int;
+            default = null;
+            example = 255;
+            description = ''
+              The time-to-live/hoplimit of the connection to the remote tunnel endpoint.
+            '';
+          };
+
+          type = mkOption {
+            type = with types; enum [ "tun" "tap" "tun6" "tap6" ];
+            default = "tap";
+            example = "tap";
+            apply = v: {
+              tun = "gre";
+              tap = "gretap";
+              tun6 = "ip6gre";
+              tap6 = "ip6gretap";
+            }.${v};
+            description = ''
+              Whether the tunnel routes layer 2 (tap) or layer 3 (tun) traffic.
+            '';
+          };
+        };
       });
     };
 
@@ -1060,6 +1274,9 @@ in
 
     networking.tempAddresses = mkOption {
       default = if cfg.enableIPv6 then "default" else "disabled";
+      defaultText = literalExpression ''
+        if ''${config.${opt.enableIPv6}} then "default" else "disabled"
+      '';
       type = types.enum (lib.attrNames tempaddrValues);
       description = ''
         Whether to enable IPv6 Privacy Extensions for interfaces not
@@ -1116,7 +1333,9 @@ in
     boot.kernelModules = [ ]
       ++ optional hasVirtuals "tun"
       ++ optional hasSits "sit"
-      ++ optional hasBonds "bonding";
+      ++ optional hasGres "gre"
+      ++ optional hasBonds "bonding"
+      ++ optional hasFous "fou";
 
     boot.extraModprobeConfig =
       # This setting is intentional as it prevents default bond devices
@@ -1127,6 +1346,8 @@ in
       "net.ipv4.conf.all.forwarding" = mkDefault (any (i: i.proxyARP) interfaces);
       "net.ipv6.conf.all.disable_ipv6" = mkDefault (!cfg.enableIPv6);
       "net.ipv6.conf.default.disable_ipv6" = mkDefault (!cfg.enableIPv6);
+      # networkmanager falls back to "/proc/sys/net/ipv6/conf/default/use_tempaddr"
+      "net.ipv6.conf.default.use_tempaddr" = tempaddrValues.${cfg.tempAddresses}.sysctl;
     } // listToAttrs (flip concatMap (filter (i: i.proxyARP) interfaces)
         (i: [(nameValuePair "net.ipv4.conf.${replaceChars ["."] ["/"] i.name}.proxy_arp" true)]))
       // listToAttrs (forEach interfaces
@@ -1135,20 +1356,11 @@ in
           val = tempaddrValues.${opt}.sysctl;
          in nameValuePair "net.ipv6.conf.${replaceChars ["."] ["/"] i.name}.use_tempaddr" val));
 
-    # Capabilities won't work unless we have at-least a 4.3 Linux
-    # kernel because we need the ambient capability
-    security.wrappers = if (versionAtLeast (getVersion config.boot.kernelPackages.kernel) "4.3") then {
+    security.wrappers = {
       ping = {
         owner = "root";
         group = "root";
         capabilities = "cap_net_raw+p";
-        source = "${pkgs.iputils.out}/bin/ping";
-      };
-    } else {
-      ping = {
-        setuid = true;
-        owner = "root";
-        group = "root";
         source = "${pkgs.iputils.out}/bin/ping";
       };
     };
@@ -1180,16 +1392,8 @@ in
         domainname "${cfg.domain}"
       '';
 
-    environment.etc.hostid = mkIf (cfg.hostId != null)
-      { source = pkgs.runCommand "gen-hostid" { preferLocalBuild = true; } ''
-          hi="${cfg.hostId}"
-          ${if pkgs.stdenv.isBigEndian then ''
-            echo -ne "\x''${hi:0:2}\x''${hi:2:2}\x''${hi:4:2}\x''${hi:6:2}" > $out
-          '' else ''
-            echo -ne "\x''${hi:6:2}\x''${hi:4:2}\x''${hi:2:2}\x''${hi:0:2}" > $out
-          ''}
-        '';
-      };
+    environment.etc.hostid = mkIf (cfg.hostId != null) { source = hostidFile; };
+    boot.initrd.systemd.contents."/etc/hostid" = mkIf (cfg.hostId != null) { source = hostidFile; };
 
     # static hostname configuration needed for hostnamectl and the
     # org.freedesktop.hostname1 dbus service (both provided by systemd)
@@ -1248,7 +1452,7 @@ in
           sysctl-value = tempaddrValues.${cfg.tempAddresses}.sysctl;
         in ''
           # enable and prefer IPv6 privacy addresses by default
-          ACTION=="add", SUBSYSTEM=="net", RUN+="${pkgs.bash}/bin/sh -c 'echo ${sysctl-value} > /proc/sys/net/ipv6/conf/%k/use_tempaddr'"
+          ACTION=="add", SUBSYSTEM=="net", RUN+="${pkgs.bash}/bin/sh -c 'echo ${sysctl-value} > /proc/sys/net/ipv6/conf/$name/use_tempaddr'"
         '';
       })
       (pkgs.writeTextFile rec {

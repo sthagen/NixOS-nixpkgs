@@ -1,5 +1,8 @@
+# shellcheck shell=bash
+__nixpkgs_setup_set_original=$-
 set -eu
 set -o pipefail
+shopt -s inherit_errexit
 
 if [[ -n "${BASH_VERSINFO-}" && "${BASH_VERSINFO-}" -lt 4 ]]; then
     echo "Detected Bash version that isn't supported by Nixpkgs (${BASH_VERSION})"
@@ -140,14 +143,14 @@ exitHandler() {
             echo "build failed with exit code $exitCode (ignored)"
             mkdir -p "$out/nix-support"
             printf "%s" "$exitCode" > "$out/nix-support/failed"
-            exit 0
+            return 0
         fi
 
     else
         runHook exitHook
     fi
 
-    exit "$exitCode"
+    return "$exitCode"
 }
 
 trap "exitHandler" EXIT
@@ -409,15 +412,14 @@ findInputs() {
     # The current package's host and target offset together
     # provide a <=-preserving homomorphism from the relative
     # offsets to current offset
-    local -i mapOffsetResult
     function mapOffset() {
         local -r inputOffset="$1"
+        local -n outputOffset="$2"
         if (( inputOffset <= 0 )); then
-            local -r outputOffset=$((inputOffset + hostOffset))
+            outputOffset=$((inputOffset + hostOffset))
         else
-            local -r outputOffset=$((inputOffset - 1 + targetOffset))
+            outputOffset=$((inputOffset - 1 + targetOffset))
         fi
-        mapOffsetResult="$outputOffset"
     }
 
     # Host offset relative to that of the package whose immediate
@@ -429,16 +431,16 @@ findInputs() {
 
         # Host offset relative to the package currently being
         # built---as absolute an offset as will be used.
-        mapOffset relHostOffset
-        local -i hostOffsetNext="$mapOffsetResult"
+        local hostOffsetNext
+        mapOffset "$relHostOffset" hostOffsetNext
 
         # Ensure we're in bounds relative to the package currently
         # being built.
-        [[ "${allPlatOffsets[*]}" = *"$hostOffsetNext"*  ]] || continue
+        (( -1 <= hostOffsetNext && hostOffsetNext <= 1 )) || continue
 
         # Target offset relative to the *host* offset of the package
         # whose immediate dependencies we are currently exploring.
-        local -i relTargetOffset
+        local relTargetOffset
         for relTargetOffset in "${allPlatOffsets[@]}"; do
             (( "$relHostOffset" <= "$relTargetOffset" )) || continue
 
@@ -448,12 +450,12 @@ findInputs() {
 
             # Target offset relative to the package currently being
             # built.
-            mapOffset relTargetOffset
-            local -i targetOffsetNext="$mapOffsetResult"
+            local targetOffsetNext
+            mapOffset "$relTargetOffset" targetOffsetNext
 
             # Once again, ensure we're in bounds relative to the
             # package currently being built.
-            [[ "${allPlatOffsets[*]}" = *"$targetOffsetNext"* ]] || continue
+            (( -1 <= hostOffsetNext && hostOffsetNext <= 1 )) || continue
 
             [[ -f "$pkg/nix-support/$file" ]] || continue
 
@@ -859,12 +861,12 @@ _defaultUnpack() {
         case "$fn" in
             *.tar.xz | *.tar.lzma | *.txz)
                 # Don't rely on tar knowing about .xz.
-                xz -d < "$fn" | tar xf -
+                xz -d < "$fn" | tar xf - --warning=no-timestamp
                 ;;
             *.tar | *.tar.* | *.tgz | *.tbz2 | *.tbz)
                 # GNU tar can automatically select the decompression method
                 # (info "(tar) gzip").
-                tar xf "$fn"
+                tar xf "$fn" --warning=no-timestamp
                 ;;
             *)
                 return 1
@@ -986,7 +988,18 @@ patchPhase() {
 
 
 fixLibtool() {
-    sed -i -e 's^eval sys_lib_.*search_path=.*^^' "$1"
+    local search_path
+    for flag in $NIX_LDFLAGS; do
+        case $flag in
+            -L*)
+                search_path+=" ${flag#-L}"
+                ;;
+        esac
+    done
+
+    sed -i "$1" \
+        -e "s^eval \(sys_lib_search_path=\).*^\1'$search_path'^" \
+        -e 's^eval sys_lib_.+search_path=.*^^'
 }
 
 
@@ -1292,6 +1305,23 @@ showPhaseHeader() {
 }
 
 
+showPhaseFooter() {
+    local phase="$1"
+    local startTime="$2"
+    local endTime="$3"
+    local delta=$(( endTime - startTime ))
+    (( $delta < 30 )) && return
+
+    local H=$((delta/3600))
+    local M=$((delta%3600/60))
+    local S=$((delta%60))
+    echo -n "$phase completed in "
+    (( $H > 0 )) && echo -n "$H hours "
+    (( $M > 0 )) && echo -n "$M minutes "
+    echo "$S seconds"
+}
+
+
 genericBuild() {
     if [ -f "${buildCommandPath:-}" ]; then
         source "$buildCommandPath"
@@ -1327,11 +1357,20 @@ genericBuild() {
         showPhaseHeader "$curPhase"
         dumpVars
 
+        local startTime=$(date +"%s")
+
         # Evaluate the variable named $curPhase if it exists, otherwise the
         # function named $curPhase.
         eval "${!curPhase:-$curPhase}"
 
+        local endTime=$(date +"%s")
+
+        showPhaseFooter "$curPhase" "$startTime" "$endTime"
+
         if [ "$curPhase" = unpackPhase ]; then
+            # make sure we can cd into the directory
+            [ -z "${sourceRoot}" ] || chmod +x "${sourceRoot}"
+
             cd "${sourceRoot:-.}"
         fi
     done
@@ -1350,5 +1389,7 @@ runHook userHook
 
 dumpVars
 
-# Disable nounset for nix-shell.
-set +u
+# Restore the original options for nix-shell
+[[ $__nixpkgs_setup_set_original == *e* ]] || set +e
+[[ $__nixpkgs_setup_set_original == *u* ]] || set +u
+unset -v __nixpkgs_setup_set_original

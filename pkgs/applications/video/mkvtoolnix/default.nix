@@ -47,13 +47,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "mkvtoolnix";
-  version = "61.0.0";
+  version = "66.0.0";
 
   src = fetchFromGitLab {
     owner = "mbunkus";
     repo = "mkvtoolnix";
     rev = "release-${version}";
-    sha256 = "04f18jr0a5m1sah8163m28b82w1ikjzmahqy67pbbpzg0mc6rqr4";
+    sha256 = "sha256-JTPayZhV3Z+o1v+TbHp9SGMAZk1oEzMdNhk67BYB75A=";
   };
 
   nativeBuildInputs = [
@@ -121,11 +121,6 @@ stdenv.mkDerivation rec {
   LDFLAGS = optional stdenv.cc.isClang "-lc++fs";
 
   dontWrapQtApps = true;
-
-  # Avoid Qt 5.12 problem on Big Sur: https://bugreports.qt.io/browse/QTBUG-87014
-  qtWrapperArgs = lib.optionals stdenv.isDarwin [
-    "--set QT_MAC_WANTS_LAYER 1"
-  ];
 
   postFixup = optionalString withGUI ''
     wrapQtApp $out/bin/mkvtoolnix-gui

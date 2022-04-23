@@ -1,7 +1,6 @@
 { buildPythonPackage
 , fetchPypi
 , pytest
-, six
 , tqdm
 , pyyaml
 , docopt
@@ -10,24 +9,25 @@
 , args
 , schema
 , responses
-, backports_csv
-, isPy3k
 , lib
 , glibcLocales
 , setuptools
+, urllib3
+, pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "internetarchive";
-  version = "2.1.0";
+  version = "3.0.0";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "72094f05df39bb1463f61f928f3a7fa0dd236cab185cb8b7e8eb6c85e09acdc4";
+    sha256 = "sha256-fRcqsT8p/tqXUpU2/9lAEF1IT8Cy5KK0+jKaeVwZshI=";
   };
 
   propagatedBuildInputs = [
-    six
     tqdm
     pyyaml
     docopt
@@ -36,7 +36,8 @@ buildPythonPackage rec {
     args
     schema
     setuptools
-  ] ++ lib.optionals (!isPy3k) [ backports_csv ];
+    urllib3
+  ];
 
   checkInputs = [ pytest responses glibcLocales ];
 

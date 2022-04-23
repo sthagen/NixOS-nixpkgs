@@ -15,25 +15,17 @@
 
 buildPythonPackage rec {
   pname = "intensity-normalization";
-  version = "2.0.2";
+  version = "2.2.3";
+  format = "setuptools";
+
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
-    inherit pname version;
-    sha256 = "f963e90671fec51d1b248862a9bcc4639c1d6d3b1dbc1ee34d042cb765d8730a";
+    pname = "intensity_normalization";
+    inherit version;
+    sha256 = "sha256-Yjd4hXmbT87xNKSqc6zkKNisOVhQzQAUZI5wBiI/UBk=";
   };
 
-  postPatch = ''
-    substituteInPlace setup.cfg --replace "pytest-runner" ""
-  '';
-
-  checkInputs = [ pytestCheckHook ];
-  pythonImportsCheck = [
-    "intensity_normalization"
-    "intensity_normalization.normalize"
-    "intensity_normalization.plot"
-    "intensity_normalization.util"
-  ];
   propagatedBuildInputs = [
     matplotlib
     nibabel
@@ -43,6 +35,22 @@ buildPythonPackage rec {
     scikit-learn
     scipy
     statsmodels
+  ];
+
+  checkInputs = [
+    pytestCheckHook
+  ];
+
+  postPatch = ''
+    substituteInPlace setup.cfg \
+      --replace "pytest-runner" ""
+  '';
+
+  pythonImportsCheck = [
+    "intensity_normalization"
+    "intensity_normalization.normalize"
+    "intensity_normalization.plot"
+    "intensity_normalization.util"
   ];
 
   meta = with lib; {

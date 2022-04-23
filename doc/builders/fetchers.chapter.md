@@ -6,7 +6,7 @@ When using Nix, you will frequently need to download source code and other files
 
 Because fixed output derivations are _identified_ by their hash, a common mistake is to update a fetcher's URL or a version parameter, without updating the hash. **This will cause the old contents to be used.** So remember to always invalidate the hash argument.
 
-For those who develop and maintain fetchers, a similar problem arises with changes to the implementation of a fetcher. These may cause a fixed output derivation to fail, but won't normally be caught by tests because the supposed output is already in the store or cache. For the purpose of testing, you can use a trick that is embodied by the [`invalidateFetcherByDrvHash`](#sec-pkgs-invalidateFetcherByDrvHash) function. It uses the derivation `name` to create a unique output path per fetcher implementation, defeating the caching precisely where it would be harmful.
+For those who develop and maintain fetchers, a similar problem arises with changes to the implementation of a fetcher. These may cause a fixed output derivation to fail, but won't normally be caught by tests because the supposed output is already in the store or cache. For the purpose of testing, you can use a trick that is embodied by the [`invalidateFetcherByDrvHash`](#tester-invalidateFetcherByDrvHash) function. It uses the derivation `name` to create a unique output path per fetcher implementation, defeating the caching precisely where it would be harmful.
 
 ## `fetchurl` and `fetchzip` {#fetchurl}
 
@@ -40,6 +40,24 @@ Used with Git. Expects `url` to a Git repo, `rev`, and `sha256`. `rev` in this c
 
 Additionally the following optional arguments can be given: `fetchSubmodules = true` makes `fetchgit` also fetch the submodules of a repository. If `deepClone` is set to true, the entire repository is cloned as opposing to just creating a shallow clone. `deepClone = true` also implies `leaveDotGit = true` which means that the `.git` directory of the clone won't be removed after checkout.
 
+If only parts of the repository are needed, `sparseCheckout` can be used. This will prevent git from fetching unnecessary blobs from server, see [git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) and [git clone --filter](https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---filterltfilter-specgt) for more infomation:
+
+```nix
+{ stdenv, fetchgit }:
+
+stdenv.mkDerivation {
+  name = "hello";
+  src = fetchgit {
+    url = "https://...";
+    sparseCheckout = ''
+      path/to/be/included
+      another/path
+    '';
+    sha256 = "0000000000000000000000000000000000000000000000000000";
+  };
+}
+```
+
 ## `fetchfossil` {#fetchfossil}
 
 Used with Fossil. Expects `url` to a Fossil archive, `rev`, and `sha256`.
@@ -53,6 +71,10 @@ Used with CVS. Expects `cvsRoot`, `tag`, and `sha256`.
 Used with Mercurial. Expects `url`, `rev`, and `sha256`.
 
 A number of fetcher functions wrap part of `fetchurl` and `fetchzip`. They are mainly convenience functions intended for commonly used destinations of source code in Nixpkgs. These wrapper fetchers are listed below.
+
+## `fetchFromGitea` {#fetchfromgitea}
+
+`fetchFromGitea` expects five arguments. `domain` is the gitea server name. `owner` is a string corresponding to the Gitea user or organization that controls this repository. `repo` corresponds to the name of the software repository. These are located at the top of every Gitea HTML page as `owner`/`repo`. `rev` corresponds to the Git commit hash or tag (e.g `v1.0`) that will be downloaded from Git. Finally, `sha256` corresponds to the hash of the extracted directory. Again, other hash algorithms are also available but `sha256` is currently preferred.
 
 ## `fetchFromGitHub` {#fetchfromgithub}
 
@@ -82,4 +104,11 @@ This is used with repo.or.cz repositories. The arguments expected are very simil
 
 ## `fetchFromSourcehut` {#fetchfromsourcehut}
 
-This is used with sourcehut repositories. The arguments expected are very similar to fetchFromGitHub above. Don't forget the tilde (~) in front of the user name!
+This is used with sourcehut repositories. Similar to `fetchFromGitHub` above,
+it expects `owner`, `repo`, `rev` and `sha256`, but don't forget the tilde (~)
+in front of the username! Expected arguments also include `vc` ("git" (default)
+or "hg"), `domain` and `fetchSubmodules`.
+
+If `fetchSubmodules` is `true`, `fetchFromSourcehut` uses `fetchgit`
+or `fetchhg` with `fetchSubmodules` or `fetchSubrepos` set to `true`,
+respectively. Otherwise the fetcher uses `fetchzip`.

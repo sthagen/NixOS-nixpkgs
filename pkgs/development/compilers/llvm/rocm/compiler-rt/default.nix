@@ -29,16 +29,9 @@ stdenv.mkDerivation rec {
 
   outputs = [ "out" "dev" ];
 
-  patches = [
-    ./compiler-rt-codesign.patch # Revert compiler-rt commit that makes codesign mandatory
-    (fetchpatch {
-      name = "libsanitizer-no-cyclades-rocm.patch";
-      url = "https://gist.github.com/lovesegfault/b255dcf2fa4e202411a6a04b61e6cc04/raw";
-      sha256 = "sha256-PMMSLr2zHuNDn1OWqumqHwB74ktJSHxhJWkqEKB7Z64=";
-      stripLen = 1;
-     })
-    ];
-
+  prePatch = ''
+    cd compiler-rt
+  '';
 
   # TSAN requires XPC on Darwin, which we have no public/free source files for. We can depend on the Apple frameworks
   # to get it, but they're unfree. Since LLVM is rather central to the stdenv, we patch out TSAN support so that Hydra

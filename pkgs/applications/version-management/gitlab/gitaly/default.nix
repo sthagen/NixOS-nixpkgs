@@ -1,7 +1,7 @@
 { lib, fetchFromGitLab, fetchFromGitHub, buildGoModule, ruby
 , bundlerEnv, pkg-config
 # libgit2 + dependencies
-, libgit2, openssl, zlib, pcre, http-parser }:
+, libgit2_1_3_0, openssl, zlib, pcre, http-parser }:
 
 let
   rubyEnv = bundlerEnv rec {
@@ -9,18 +9,9 @@ let
     inherit ruby;
     copyGemFiles = true;
     gemdir = ./.;
-    gemset =
-      let x = import (gemdir + "/gemset.nix");
-      in x // {
-        # grpc expects the AR environment variable to contain `ar rpc`. See the
-        # discussion in nixpkgs #63056.
-        grpc = x.grpc // {
-          patches = [ ../fix-grpc-ar.patch ];
-          dontBuild = false;
-        };
-      };
   };
-  version = "14.3.2";
+
+  version = "14.9.2";
   gitaly_package = "gitlab.com/gitlab-org/gitaly/v${lib.versions.major version}";
 in
 
@@ -32,10 +23,10 @@ buildGoModule {
     owner = "gitlab-org";
     repo = "gitaly";
     rev = "v${version}";
-    sha256 = "sha256-00Sgv1b3dwbN7ic//7NtrdiliunOnXRJ0GTQHYFjuqo=";
+    sha256 = "sha256-eEo+WZ2N/5bLfvwJCNf9qt+h/V5dIVqCjVJeomzw/Ps=";
   };
 
-  vendorSha256 = "sha256-9RhPQosen70E9t1iAoc2SeKs9pYMMpMqgXLekWfKNf8=";
+  vendorSha256 = "sha256-kEjgWA/Task23PScPYrqdDu3vdVR/FJl7OilUug/Bds=";
 
   passthru = {
     inherit rubyEnv;
@@ -45,12 +36,12 @@ buildGoModule {
 
   tags = [ "static,system_libgit2" ];
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ rubyEnv.wrappedRuby libgit2 openssl zlib pcre http-parser ];
+  buildInputs = [ rubyEnv.wrappedRuby libgit2_1_3_0 openssl zlib pcre http-parser ];
   doCheck = false;
 
   postInstall = ''
     mkdir -p $ruby
-    cp -rv $src/ruby/{bin,lib,proto,git-hooks} $ruby
+    cp -rv $src/ruby/{bin,lib,proto} $ruby
     mv $out/bin/gitaly-git2go $out/bin/gitaly-git2go-${version}
   '';
 
@@ -59,8 +50,8 @@ buildGoModule {
   meta = with lib; {
     homepage = "https://gitlab.com/gitlab-org/gitaly";
     description = "A Git RPC service for handling all the git calls made by GitLab";
-    platforms = platforms.linux;
-    maintainers = with maintainers; [ roblabla globin fpletz talyz ];
+    platforms = platforms.linux ++ [ "x86_64-darwin" ];
+    maintainers = with maintainers; [ roblabla globin fpletz talyz yayayayaka ];
     license = licenses.mit;
   };
 }

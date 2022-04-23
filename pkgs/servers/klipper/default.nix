@@ -6,20 +6,14 @@
 }:
 stdenv.mkDerivation rec {
   pname = "klipper";
-  version = "unstable-2021-09-03";
+  version = "unstable-2022-03-11";
 
   src = fetchFromGitHub {
     owner = "KevinOConnor";
     repo = "klipper";
-    rev = "c84956befe88daeeb9512acaa9fa82395665df16";
-    sha256 = "sha256-dHFIeA2RCoqC0ROYUUbSoLZ4frRWBJaNJWohpK8xN7I=";
+    rev = "e3beafbdb4f2ac3f889f81aec0cad5ec473c8612";
+    sha256 = "sha256-xZSZUJ2TNaUzfwEFpnzr5EPlOvILLyiQ/3K1iiup7kU=";
   };
-
-  # We have no LTO on i686 since commit 22284b0
-  postPatch = lib.optionalString stdenv.isi686 ''
-    substituteInPlace chelper/__init__.py \
-      --replace "-flto -fwhole-program " ""
-  '';
 
   sourceRoot = "source/klippy";
 
@@ -29,7 +23,7 @@ stdenv.mkDerivation rec {
   # NB: This is needed for the postBuild step
   nativeBuildInputs = [ (python2.withPackages ( p: with p; [ cffi ] )) ];
 
-  buildInputs = [ (python2.withPackages (p: with p; [ cffi pyserial greenlet jinja2 ])) ];
+  buildInputs = [ (python2.withPackages (p: with p; [ cffi pyserial greenlet jinja2 numpy ])) ];
 
   # we need to run this to prebuild the chelper.
   postBuild = "python2 ./chelper/__init__.py";
@@ -41,6 +35,11 @@ stdenv.mkDerivation rec {
     runHook preInstall
     mkdir -p $out/lib/klipper
     cp -r ./* $out/lib/klipper
+
+    # Moonraker expects `config_examples` and `docs` to be available
+    # under `klipper_path`
+    cp -r $src/docs $out/lib/docs
+    cp -r $src/config $out/lib/config
 
     chmod 755 $out/lib/klipper/klippy.py
     runHook postInstall

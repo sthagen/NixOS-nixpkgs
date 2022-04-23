@@ -10,14 +10,16 @@
 
 buildPythonPackage rec {
   pname = "pydeconz";
-  version = "84";
+  version = "87";
+  format = "setuptools";
+
   disabled = pythonOlder "3.7";
 
   src = fetchFromGitHub {
     owner = "Kane610";
     repo = "deconz";
     rev = "v${version}";
-    sha256 = "sha256-SVWz6r5UiAS7gCpkgN2Swy8dAon26XY9JZucV/eE0t8=";
+    sha256 = "sha256-scNTHbUL8TOhkUJyib4cgL8A4gZ73asmFLi8aGw3sX8=";
   };
 
   propagatedBuildInputs = [
@@ -30,7 +32,9 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
-  pythonImportsCheck = [ "pydeconz" ];
+  pythonImportsCheck = [
+    "pydeconz"
+  ];
 
   meta = with lib; {
     description = "Python library wrapping the Deconz REST API";

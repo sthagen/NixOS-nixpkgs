@@ -16,13 +16,14 @@
 
 buildPythonPackage rec {
   pname = "faraday-plugins";
-  version = "1.5.3";
+  version = "1.6.3";
+  format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "infobyte";
     repo = "faraday_plugins";
-    rev = "v${version}";
-    sha256 = "0nyywpsyw7akwdah75s9mz5nz11y1hbynp08pvqifwdw49crih02";
+    rev = "refs/tags/v${version}";
+    sha256 = "sha256-oynDX1miBvBmiN22ILQH1Q2y+PmWOfBunjZmVSnlvKk=";
   };
 
   propagatedBuildInputs = [
@@ -53,7 +54,9 @@ buildPythonPackage rec {
     "test_process_report_summary"
   ];
 
-  pythonImportsCheck = [ "faraday_plugins" ];
+  pythonImportsCheck = [
+    "faraday_plugins"
+  ];
 
   meta = with lib; {
     description = "Security tools report parsers for Faraday";

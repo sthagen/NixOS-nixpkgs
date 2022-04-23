@@ -10,17 +10,18 @@
 , installShellFiles
 , makeWrapper
 , fuse-overlayfs
+, dockerTools
 }:
 
 buildGoModule rec {
   pname = "skopeo";
-  version = "1.5.0";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     rev = "v${version}";
     owner = "containers";
     repo = "skopeo";
-    sha256 = "sha256-75zrOYiwlpHbEgmpJ9THYKbF4sL4Jp009/+Fw12Wvys=";
+    sha256 = "sha256-sbe16IcHkhsiBznsMKtG/xYJYJfJS6aZ34++QhkGTTc=";
   };
 
   outputs = [ "out" "man" ];
@@ -52,6 +53,10 @@ buildGoModule rec {
   '' + ''
     runHook postInstall
   '';
+
+  passthru.tests = {
+    inherit (dockerTools.examples) testNixFromDockerHub;
+  };
 
   meta = with lib; {
     description = "A command line utility for various operations on container images and image repositories";

@@ -3,7 +3,7 @@ let
   generic =
       # dependencies
       { stdenv, lib, fetchurl, makeWrapper
-      , glibc, zlib, readline, openssl, icu, systemd, libossp_uuid
+      , glibc, zlib, readline, openssl, icu, lz4, systemd, libossp_uuid
       , pkg-config, libxml2, tzdata
 
       # This is important to obtain a version of `libpq` that does not depend on systemd.
@@ -23,6 +23,7 @@ let
   let
     atLeast = lib.versionAtLeast version;
     icuEnabled = atLeast "10";
+    lz4Enabled = atLeast "14";
 
   in stdenv.mkDerivation rec {
     pname = "postgresql";
@@ -41,6 +42,7 @@ let
     buildInputs =
       [ zlib readline openssl libxml2 ]
       ++ lib.optionals icuEnabled [ icu ]
+      ++ lib.optionals lz4Enabled [ lz4 ]
       ++ lib.optionals enableSystemd [ systemd ]
       ++ lib.optionals gssSupport [ libkrb5 ]
       ++ lib.optionals (!stdenv.isDarwin) [ libossp_uuid ];
@@ -68,7 +70,9 @@ let
       (lib.optionalString enableSystemd "--with-systemd")
       (if stdenv.isDarwin then "--with-uuid=e2fs" else "--with-ossp-uuid")
     ] ++ lib.optionals icuEnabled [ "--with-icu" ]
-      ++ lib.optionals gssSupport [ "--with-gssapi" ];
+      ++ lib.optionals lz4Enabled [ "--with-lz4" ]
+      ++ lib.optionals gssSupport [ "--with-gssapi" ]
+      ++ lib.optionals stdenv.hostPlatform.isRiscV [ "--disable-spinlocks" ];
 
     patches =
       [ (if atLeast "9.4" then ./patches/disable-resolve_symlinks-94.patch else ./patches/disable-resolve_symlinks.patch)
@@ -159,7 +163,7 @@ let
       homepage    = "https://www.postgresql.org";
       description = "A powerful, open source object-relational database system";
       license     = licenses.postgresql;
-      maintainers = with maintainers; [ thoughtpolice danbst globin marsam ];
+      maintainers = with maintainers; [ thoughtpolice danbst globin marsam ivan ];
       platforms   = platforms.unix;
       knownVulnerabilities = optional (!atLeast "9.4")
         "PostgreSQL versions older than 9.4 are not maintained anymore!";
@@ -197,19 +201,10 @@ let
 
 in self: {
 
-  postgresql_9_6 = self.callPackage generic {
-    version = "9.6.23";
-    psqlSchema = "9.6";
-    sha256 = "1fa735lrmv2vrfiixg73nh024gxlagcbrssklvgwdf0s82cgfjd8";
-    this = self.postgresql_9_6;
-    thisAttr = "postgresql_9_6";
-    inherit self;
-  };
-
   postgresql_10 = self.callPackage generic {
-    version = "10.18";
+    version = "10.20";
     psqlSchema = "10.0"; # should be 10, but changing it is invasive
-    sha256 = "009qpb02bq0rx0aaw5ck70gk07xwparhfxvlfimgihw2vhp7qisp";
+    sha256 = "sha256-h94W1ZvP5C+mBcMSxZvl4pToo+astlXdetR8u5MKZZ8=";
     this = self.postgresql_10;
     thisAttr = "postgresql_10";
     inherit self;
@@ -217,36 +212,36 @@ in self: {
   };
 
   postgresql_11 = self.callPackage generic {
-    version = "11.13";
+    version = "11.15";
     psqlSchema = "11.1"; # should be 11, but changing it is invasive
-    sha256 = "0j5wnscnxa3sx8d39s55654df8aikmvkihfb0a02hrgmyygnihx0";
+    sha256 = "sha256-yPWOjr1PRWf0+boQMus+meAlHYfL4+VktIVZDjeoeeM=";
     this = self.postgresql_11;
     thisAttr = "postgresql_11";
     inherit self;
   };
 
   postgresql_12 = self.callPackage generic {
-    version = "12.8";
+    version = "12.10";
     psqlSchema = "12";
-    sha256 = "0an6v5bsp26d276wbdx76lsq6cq86hgi2fmkzwawnk63j3h02r72";
+    sha256 = "sha256-g90ZLmA0lRGSuahtwZzzcXqLghIOLxGgo2cjyCDSslc=";
     this = self.postgresql_12;
     thisAttr = "postgresql_12";
     inherit self;
   };
 
   postgresql_13 = self.callPackage generic {
-    version = "13.4";
+    version = "13.6";
     psqlSchema = "13";
-    sha256 = "1kf0gcsrl5n25rjlvkh87aywmn28kbwvakm5c7j1qpr4j01y34za";
+    sha256 = "sha256-uvx/o9nU2o/nG4TGO6i9/oCSk1wwwKqFwkssCFCPZ/w=";
     this = self.postgresql_13;
     thisAttr = "postgresql_13";
     inherit self;
   };
 
   postgresql_14 = self.callPackage generic {
-    version = "14.0";
+    version = "14.2";
     psqlSchema = "14";
-    sha256 = "08m14zcrcvc2i0xl10p0wgzycsmfmk27gny40a8mwdx74s8xfapf";
+    sha256 = "sha256-LPeLLkaJEvgQHWldtTQM8xPC6faKYS+3FCdSToyal3o=";
     this = self.postgresql_14;
     thisAttr = "postgresql_14";
     inherit self;

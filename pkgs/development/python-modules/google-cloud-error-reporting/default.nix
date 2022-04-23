@@ -8,21 +8,20 @@
 , mock
 , proto-plus
 , pytest-asyncio
+, pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "google-cloud-error-reporting";
-  version = "1.3.0";
+  version = "1.5.2";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "a5482a7b05ac3be13a3d96db32d158cb4cebf0ac35c82c3a27ee2fd9aa0dcc25";
+    hash = "sha256-wjRUPBZwyGP+2528vZ/x4EqiZwqH+9ZvK5rx4ISklHE=";
   };
-
-  postPatch = ''
-    substituteInPlace setup.py \
-      --replace 'google-cloud-logging>=1.14.0, <2.4' 'google-cloud-logging>=1.14.0'
-  '';
 
   propagatedBuildInputs = [
     google-cloud-logging

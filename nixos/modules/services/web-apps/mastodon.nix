@@ -9,6 +9,8 @@ let
     RAILS_ENV = "production";
     NODE_ENV = "production";
 
+    LD_PRELOAD = "${pkgs.jemalloc}/lib/libjemalloc.so";
+
     # mastodon-web concurrency.
     WEB_CONCURRENCY = toString cfg.webProcesses;
     MAX_THREADS = toString cfg.webThreads;
@@ -38,7 +40,7 @@ let
   // (if cfg.smtp.authenticate then { SMTP_LOGIN  = cfg.smtp.user; } else {})
   // cfg.extraConfig;
 
-  systemCallsList = [ "@clock" "@cpu-emulation" "@debug" "@keyring" "@module" "@mount" "@obsolete" "@raw-io" "@reboot" "@setuid" "@swap" ];
+  systemCallsList = [ "@cpu-emulation" "@debug" "@keyring" "@ipc" "@mount" "@obsolete" "@privileged" "@setuid" ];
 
   cfgService = {
     # User and group
@@ -50,6 +52,9 @@ let
     # Logs directory and mode
     LogsDirectory = "mastodon";
     LogsDirectoryMode = "0750";
+    # Proc filesystem
+    ProcSubset = "pid";
+    ProtectProc = "invisible";
     # Access write directories
     UMask = "0027";
     # Capabilities
@@ -74,6 +79,7 @@ let
     MemoryDenyWriteExecute = false;
     RestrictRealtime = true;
     RestrictSUIDSGID = true;
+    RemoveIPC = true;
     PrivateMounts = true;
     # System Call Filtering
     SystemCallArchitectures = "native";
@@ -88,6 +94,7 @@ let
 
   mastodonEnv = pkgs.writeShellScriptBin "mastodon-env" ''
     set -a
+    export RAILS_ROOT="${cfg.package}"
     source "${envFile}"
     source /var/lib/mastodon/.secrets_env
     eval -- "\$@"
@@ -116,7 +123,7 @@ in {
 
           Make sure that websockets are forwarded properly. You might want to set up caching
           of some requests. Take a look at mastodon's provided nginx configuration at
-          <code>https://github.com/tootsuite/mastodon/blob/master/dist/nginx.conf</code>.
+          <code>https://github.com/mastodon/mastodon/blob/master/dist/nginx.conf</code>.
         '';
         type = lib.types.bool;
         default = false;
@@ -344,7 +351,7 @@ in {
         authenticate = lib.mkOption {
           description = "Authenticate with the SMTP server using username and password.";
           type = lib.types.bool;
-          default = true;
+          default = false;
         };
 
         host = lib.mkOption {
@@ -464,7 +471,7 @@ in {
         Type = "oneshot";
         WorkingDirectory = cfg.package;
         # System Call Filtering
-        SystemCallFilter = "~" + lib.concatStringsSep " " (systemCallsList ++ [ "@resources" ]);
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " (systemCallsList ++ [ "@resources" ])) "@chown" "pipe" "pipe2" ];
       } // cfgService;
 
       after = [ "network.target" ];
@@ -491,7 +498,7 @@ in {
         EnvironmentFile = "/var/lib/mastodon/.secrets_env";
         WorkingDirectory = cfg.package;
         # System Call Filtering
-        SystemCallFilter = "~" + lib.concatStringsSep " " (systemCallsList ++ [ "@resources" ]);
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " (systemCallsList ++ [ "@resources" ])) "@chown" "pipe" "pipe2" ];
       } // cfgService;
       after = [ "mastodon-init-dirs.service" "network.target" ] ++ (if databaseActuallyCreateLocally then [ "postgresql.service" ] else []);
       wantedBy = [ "multi-user.target" ];
@@ -517,7 +524,7 @@ in {
         RuntimeDirectory = "mastodon-streaming";
         RuntimeDirectoryMode = "0750";
         # System Call Filtering
-        SystemCallFilter = "~" + lib.concatStringsSep " " (systemCallsList ++ [ "@privileged" "@resources" ]);
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " (systemCallsList ++ [ "@memlock" "@resources" ])) "pipe" "pipe2" ];
       } // cfgService;
     };
 
@@ -541,7 +548,7 @@ in {
         RuntimeDirectory = "mastodon-web";
         RuntimeDirectoryMode = "0750";
         # System Call Filtering
-        SystemCallFilter = "~" + lib.concatStringsSep " " (systemCallsList ++ [ "@resources" ]);
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " systemCallsList) "@chown" "pipe" "pipe2" ];
       } // cfgService;
       path = with pkgs; [ file imagemagick ffmpeg ];
     };
@@ -563,7 +570,7 @@ in {
         EnvironmentFile = "/var/lib/mastodon/.secrets_env";
         WorkingDirectory = cfg.package;
         # System Call Filtering
-        SystemCallFilter = "~" + lib.concatStringsSep " " systemCallsList;
+        SystemCallFilter = [ ("~" + lib.concatStringsSep " " systemCallsList) "@chown" "pipe" "pipe2" ];
       } // cfgService;
       path = with pkgs; [ file imagemagick ffmpeg ];
     };
@@ -596,6 +603,7 @@ in {
 
     services.postfix = lib.mkIf (cfg.smtp.createLocally && cfg.smtp.host == "127.0.0.1") {
       enable = true;
+      hostname = lib.mkDefault "${cfg.localDomain}";
     };
     services.redis = lib.mkIf (cfg.redis.createLocally && cfg.redis.host == "127.0.0.1") {
       enable = true;

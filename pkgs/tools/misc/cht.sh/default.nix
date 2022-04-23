@@ -10,15 +10,15 @@
 
 stdenv.mkDerivation {
   pname = "cht.sh";
-  version = "unstable-2021-04-25";
+  version = "unstable-2022-04-17";
 
   nativeBuildInputs = [ makeWrapper ];
 
   src = fetchFromGitHub {
     owner = "chubin";
     repo = "cheat.sh";
-    rev = "6d83c4d76c82a87cf6df436a5ab73e3b7c819e66";
-    sha256 = "dXLNPhkfbQIhFZixC674Fcegyo8+Um7E6cm56vMpCYI=";
+    rev = "7f769d6f3697541e55fd3ea9b71f190296529e48";
+    sha256 = "+V3q71neW9X0JPJHqvNGopvIJfUv0VD9GKkz7YqN6Eo=";
   };
 
   # Fix ".cht.sh-wrapped" in the help message

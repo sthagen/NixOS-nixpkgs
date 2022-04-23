@@ -9,54 +9,32 @@
 let
   python = python3.override {
     packageOverrides = self: super: {
-      aiofiles = super.aiofiles.overridePythonAttrs (oldAttrs: rec {
-        pname = "aiofiles";
-        version = "0.6.0";
-        src = fetchFromGitHub {
-          owner = "Tinche";
-          repo = pname;
-          rev = "v${version}";
-          sha256 = "0w23d88q65m06884pfcps661clr11w9wm701ihx6kfxjwga6fkzf";
-        };
-        doCheck = false;
-      });
-
-      ajsonrpc = super.ajsonrpc.overridePythonAttrs (oldAttrs: rec {
-        pname = "ajsonrpc";
-        version = "1.1.0";
+      semantic-version = super.semantic-version.overridePythonAttrs (oldAttrs: rec {
+        version = "2.9.0";
         src = fetchPypi {
-          inherit pname version;
-          sha256 = "sha256-CgHCtW0gxZho7ZavvEaODNc+KbFW4sAsHtM2Xk5Cuaw=";
-        };
-      });
-
-      click = super.click.overridePythonAttrs (oldAttrs: rec {
-        version = "7.1.2";
-        src = oldAttrs.src.override {
-          inherit version;
-          sha256 = "06kbzd6sjfkqan3miwj9wqyddfxc2b6hi7p5s4dvqjb3gif2bdfj";
+          pname = "semantic_version";
+          version = version;
+          sha256 = "1chjd8019wnwb5mnd4x4jw9f8nhzg0xnapsdznk0fpiyamrlixdb";
         };
       });
 
       starlette = super.starlette.overridePythonAttrs (oldAttrs: rec {
-        pname = "starlette";
-        version = "0.14.2";
+        version = "0.18.0";
         src = fetchFromGitHub {
           owner = "encode";
-          repo = pname;
+          repo = "starlette";
           rev = version;
-          sha256 = "sha256-Ki5jTEr5w6CrGK6F60E9uvdUlGx8pxdHMpxHvj9D4js=";
+          sha256 = "1dpj33cggjjvpd3qdf6hv04z5ckcn9f5dfn98p5a8hx262kgsr9p";
         };
-        doCheck = false;
       });
 
       uvicorn = super.uvicorn.overridePythonAttrs (oldAttrs: rec {
-        version = "0.13.2";
+        version = "0.17.0";
         src = fetchFromGitHub {
           owner = "encode";
           repo = "uvicorn";
           rev = version;
-          sha256 = "04zgmp9z46k72ay6cz7plga6d3w3a6x41anabm7ramp7jdqf6na9";
+          sha256 = "142x8skb1yfys6gndfaay2r240j56dkr006p49pw4y9i0v85kynp";
         };
       });
     };
@@ -67,6 +45,7 @@ with python.pkgs; buildPythonApplication rec {
   inherit version src;
 
   propagatedBuildInputs = [
+    aiofiles
     ajsonrpc
     bottle
     click
@@ -79,6 +58,7 @@ with python.pkgs; buildPythonApplication rec {
     pyserial
     requests
     semantic-version
+    spdx-license-list-data.json
     starlette
     tabulate
     uvicorn
@@ -170,16 +150,17 @@ with python.pkgs; buildPythonApplication rec {
 
   postPatch = ''
     substitute platformio/package/manifest/schema.py platformio/package/manifest/schema.py \
-      --subst-var-by SPDX_LICENSE_LIST_DATA '${spdx-license-list-data}'
+      --subst-var-by SPDX_LICENSE_LIST_DATA '${spdx-license-list-data.json}'
 
     substituteInPlace setup.py \
-      --replace "zeroconf==0.28.*" "zeroconf"
+      --replace "wsproto==1.0.*" "wsproto" \
+      --replace "zeroconf==0.38.*" "zeroconf"
   '';
 
   meta = with lib; {
     broken = stdenv.isAarch64;
     description = "An open source ecosystem for IoT development";
-    homepage = "http://platformio.org";
+    homepage = "https://platformio.org";
     license = licenses.asl20;
     maintainers = with maintainers; [ mog makefu ];
   };

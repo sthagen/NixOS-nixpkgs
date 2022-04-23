@@ -26,6 +26,7 @@ let
     take
     ;
   inherit (lib.attrsets)
+    attrByPath
     optionalAttrs
     ;
   inherit (lib.strings)
@@ -74,12 +75,10 @@ rec {
     apply ? null,
     # Whether the option is for NixOS developers only.
     internal ? null,
-    # Whether the option shows up in the manual.
+    # Whether the option shows up in the manual. Default: true. Use false to hide the option and any sub-options from submodules. Use "shallow" to hide only sub-options.
     visible ? null,
     # Whether the option can be set only once
     readOnly ? null,
-    # Deprecated, used by types.optionSet.
-    options ? null
     } @ attrs:
     attrs // { _type = "option"; };
 
@@ -98,6 +97,49 @@ rec {
     description = "Whether to enable ${name}.";
     type = lib.types.bool;
   };
+
+  /* Creates an Option attribute set for an option that specifies the
+     package a module should use for some purpose.
+
+     Type: mkPackageOption :: pkgs -> string -> { default :: [string], example :: null | string | [string] } -> option
+
+     The package is specified as a list of strings representing its attribute path in nixpkgs.
+
+     Because of this, you need to pass nixpkgs itself as the first argument.
+
+     The second argument is the name of the option, used in the description "The <name> package to use.".
+
+     You can also pass an example value, either a literal string or a package's attribute path.
+
+     You can omit the default path if the name of the option is also attribute path in nixpkgs.
+
+     Example:
+       mkPackageOption pkgs "hello" { }
+       => { _type = "option"; default = «derivation /nix/store/3r2vg51hlxj3cx5vscp0vkv60bqxkaq0-hello-2.10.drv»; defaultText = { ... }; description = "The hello package to use."; type = { ... }; }
+
+     Example:
+       mkPackageOption pkgs "GHC" {
+         default = [ "ghc" ];
+         example = "pkgs.haskell.package.ghc922.ghc.withPackages (hkgs: [ hkgs.primes ])";
+       }
+       => { _type = "option"; default = «derivation /nix/store/jxx55cxsjrf8kyh3fp2ya17q99w7541r-ghc-8.10.7.drv»; defaultText = { ... }; description = "The GHC package to use."; example = { ... }; type = { ... }; }
+  */
+  mkPackageOption =
+    # Package set (a specific version of nixpkgs)
+    pkgs:
+      # Name for the package, shown in option description
+      name:
+      { default ? [ name ], example ? null }:
+      let default' = if !isList default then [ default ] else default;
+      in mkOption {
+        type = lib.types.package;
+        description = "The ${name} package to use.";
+        default = attrByPath default'
+          (throw "${concatStringsSep "." default'} cannot be found in pkgs") pkgs;
+        defaultText = literalExpression ("pkgs." + concatStringsSep "." default');
+        ${if example != null then "example" else null} = literalExpression
+          (if isList example then "pkgs." + concatStringsSep "." example else example);
+      };
 
   /* This option accepts anything, but it does not produce any result.
 
@@ -128,11 +170,13 @@ rec {
     else if all isInt list && all (x: x == head list) list then head list
     else throw "Cannot merge definitions of `${showOption loc}'. Definition values:${showDefs defs}";
 
-  mergeOneOption = loc: defs:
-    if defs == [] then abort "This case should never happen."
-    else if length defs != 1 then
-      throw "The unique option `${showOption loc}' is defined multiple times. Definition values:${showDefs defs}"
-    else (head defs).value;
+  mergeOneOption = mergeUniqueOption { message = ""; };
+
+  mergeUniqueOption = { message }: loc: defs:
+    if length defs == 1
+    then (head defs).value
+    else assert length defs > 1;
+      throw "The option `${showOption loc}' is defined multiple times.\n${message}\nDefinition values:${showDefs defs}";
 
   /* "Merge" option definitions by checking that they all have the same value. */
   mergeEqualOption = loc: defs:
@@ -177,12 +221,15 @@ rec {
         docOption = rec {
           loc = opt.loc;
           name = showOption opt.loc;
-          description = opt.description or (lib.warn "Option `${name}' has no description." "This option has no description.");
+          description = opt.description or null;
           declarations = filter (x: x != unknownModule) opt.declarations;
           internal = opt.internal or false;
-          visible = opt.visible or true;
+          visible =
+            if (opt?visible && opt.visible == "shallow")
+            then true
+            else opt.visible or true;
           readOnly = opt.readOnly or false;
-          type = opt.type.description or null;
+          type = opt.type.description or "unspecified";
         }
         // optionalAttrs (opt ? example) { example = scrubOptionValue opt.example; }
         // optionalAttrs (opt ? default) { default = scrubOptionValue opt.default; }
@@ -192,8 +239,9 @@ rec {
         subOptions =
           let ss = opt.type.getSubOptions opt.loc;
           in if ss != {} then optionAttrSetToDocList' opt.loc ss else [];
+        subOptionsVisible = docOption.visible && opt.visible or null != "shallow";
       in
-        [ docOption ] ++ optionals docOption.visible subOptions) (collect isOption options);
+        [ docOption ] ++ optionals subOptionsVisible subOptions) (collect isOption options);
 
 
   /* This function recursively removes all derivation attributes from

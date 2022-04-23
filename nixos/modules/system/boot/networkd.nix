@@ -1,14 +1,44 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, utils, ... }:
 
+with utils.systemdUtils.unitOptions;
+with utils.systemdUtils.lib;
 with lib;
-with import ./systemd-unit-options.nix { inherit config lib; };
-with import ./systemd-lib.nix { inherit config lib pkgs; };
 
 let
 
   cfg = config.systemd.network;
 
   check = {
+
+    global = {
+      sectionNetwork = checkUnitConfig "Network" [
+        (assertOnlyFields [
+          "SpeedMeter"
+          "SpeedMeterIntervalSec"
+          "ManageForeignRoutingPolicyRules"
+          "ManageForeignRoutes"
+          "RouteTable"
+        ])
+        (assertValueOneOf "SpeedMeter" boolValues)
+        (assertInt "SpeedMeterIntervalSec")
+        (assertValueOneOf "ManageForeignRoutingPolicyRules" boolValues)
+        (assertValueOneOf "ManageForeignRoutes" boolValues)
+      ];
+
+      sectionDHCPv4 = checkUnitConfig "DHCPv4" [
+        (assertOnlyFields [
+          "DUIDType"
+          "DUIDRawData"
+        ])
+      ];
+
+      sectionDHCPv6 = checkUnitConfig "DHCPv6" [
+        (assertOnlyFields [
+          "DUIDType"
+          "DUIDRawData"
+        ])
+      ];
+    };
 
     link = {
 
@@ -131,6 +161,7 @@ let
           "fou"
           "xfrm"
           "ifb"
+          "batadv"
         ])
         (assertByteFormat "MTUBytes")
         (assertMacAddress "MACAddress")
@@ -250,6 +281,16 @@ let
         (assertRange "ERSPANIndex" 1 1048575)
       ];
 
+      sectionFooOverUDP = checkUnitConfig "FooOverUDP" [
+        (assertOnlyFields [
+          "Port"
+          "Encapsulation"
+          "Protocol"
+        ])
+        (assertPort "Port")
+        (assertValueOneOf "Encapsulation" ["FooOverUDP" "GenericUDPEncapsulation"])
+      ];
+
       sectionPeer = checkUnitConfig "Peer" [
         (assertOnlyFields [
           "Name"
@@ -270,6 +311,8 @@ let
           "PrivateKeyFile"
           "ListenPort"
           "FirewallMark"
+          "RouteTable"
+          "RouteMetric"
         ])
         (assertInt "FirewallMark")
         (assertRange "FirewallMark" 1 4294967295)
@@ -285,6 +328,8 @@ let
           "AllowedIPs"
           "Endpoint"
           "PersistentKeepalive"
+          "RouteTable"
+          "RouteMetric"
         ])
         (assertInt "PersistentKeepalive")
         (assertRange "PersistentKeepalive" 0 65535)
@@ -370,6 +415,29 @@ let
         ])
         (assertInt "Table")
         (assertMinimum "Table" 0)
+      ];
+
+      sectionBatmanAdvanced = checkUnitConfig "BatmanAdvanced" [
+        (assertOnlyFields [
+          "GatewayMode"
+          "Aggregation"
+          "BridgeLoopAvoidance"
+          "DistributedArpTable"
+          "Fragmentation"
+          "HopPenalty"
+          "OriginatorIntervalSec"
+          "GatewayBandwithDown"
+          "GatewayBandwithUp"
+          "RoutingAlgorithm"
+        ])
+        (assertValueOneOf "GatewayMode" ["off" "client" "server"])
+        (assertValueOneOf "Aggregation" boolValues)
+        (assertValueOneOf "BridgeLoopAvoidance" boolValues)
+        (assertValueOneOf "DistributedArpTable" boolValues)
+        (assertValueOneOf "Fragmentation" boolValues)
+        (assertInt "HopPenalty")
+        (assertRange "HopPenalty" 0 255)
+        (assertValueOneOf "RoutingAlgorithm" ["batman-v" "batman-iv"])
       ];
     };
 
@@ -463,6 +531,7 @@ let
           "IgnoreCarrierLoss"
           "Xfrm"
           "KeepConfiguration"
+          "BatmanAdvanced"
         ])
         # Note: For DHCP the values both, none, v4, v6 are deprecated
         (assertValueOneOf "DHCP" ["yes" "no" "ipv4" "ipv6"])
@@ -478,7 +547,7 @@ let
         (assertValueOneOf "EmitLLDP" (boolValues ++ ["nearest-bridge" "non-tpmr-bridge" "customer-bridge"]))
         (assertValueOneOf "DNSDefaultRoute" boolValues)
         (assertValueOneOf "IPForward" (boolValues ++ ["ipv4" "ipv6"]))
-        (assertValueOneOf "IPMasquerade" boolValues)
+        (assertValueOneOf "IPMasquerade" (boolValues ++ ["ipv4" "ipv6" "both"]))
         (assertValueOneOf "IPv6PrivacyExtensions" (boolValues ++ ["prefer-public" "kernel"]))
         (assertValueOneOf "IPv6AcceptRA" boolValues)
         (assertInt "IPv6DuplicateAddressDetection")
@@ -537,6 +606,7 @@ let
           "Family"
           "User"
           "SuppressPrefixLength"
+          "Type"
         ])
         (assertInt "TypeOfService")
         (assertRange "TypeOfService" 0 255)
@@ -549,6 +619,7 @@ let
         (assertValueOneOf "Family" ["ipv4" "ipv6" "both"])
         (assertInt "SuppressPrefixLength")
         (assertRange "SuppressPrefixLength" 0 128)
+        (assertValueOneOf "Type" ["blackhole" "unreachable" "prohibit"])
       ];
 
       sectionRoute = checkUnitConfig "Route" [
@@ -786,6 +857,16 @@ let
         (assertValueOneOf "OnLink" boolValues)
       ];
 
+      sectionDHCPServerStaticLease = checkUnitConfig "DHCPServerStaticLease" [
+        (assertOnlyFields [
+          "MACAddress"
+          "Address"
+        ])
+        (assertHasField "MACAddress")
+        (assertHasField "Address")
+        (assertMacAddress "MACAddress")
+      ];
+
     };
   };
 
@@ -817,6 +898,44 @@ let
       default = "";
       type = types.lines;
       description = "Extra configuration append to unit";
+    };
+  };
+
+  networkdOptions = {
+    networkConfig = mkOption {
+      default = {};
+      example = { SpeedMeter = true; ManageForeignRoutingPolicyRules = false; };
+      type = types.addCheck (types.attrsOf unitOption) check.global.sectionNetwork;
+      description = ''
+        Each attribute in this set specifies an option in the
+        <literal>[Network]</literal> section of the networkd config.
+        See <citerefentry><refentrytitle>networkd.conf</refentrytitle>
+        <manvolnum>5</manvolnum></citerefentry> for details.
+      '';
+    };
+
+    dhcpV4Config = mkOption {
+      default = {};
+      example = { DUIDType = "vendor"; };
+      type = types.addCheck (types.attrsOf unitOption) check.global.sectionDHCPv4;
+      description = ''
+        Each attribute in this set specifies an option in the
+        <literal>[DHCPv4]</literal> section of the networkd config.
+        See <citerefentry><refentrytitle>networkd.conf</refentrytitle>
+        <manvolnum>5</manvolnum></citerefentry> for details.
+      '';
+    };
+
+    dhcpV6Config = mkOption {
+      default = {};
+      example = { DUIDType = "vendor"; };
+      type = types.addCheck (types.attrsOf unitOption) check.global.sectionDHCPv6;
+      description = ''
+        Each attribute in this set specifies an option in the
+        <literal>[DHCPv6]</literal> section of the networkd config.
+        See <citerefentry><refentrytitle>networkd.conf</refentrytitle>
+        <manvolnum>5</manvolnum></citerefentry> for details.
+      '';
     };
   };
 
@@ -914,6 +1033,18 @@ let
       description = ''
         Each attribute in this set specifies an option in the
         <literal>[Tunnel]</literal> section of the unit.  See
+        <citerefentry><refentrytitle>systemd.netdev</refentrytitle>
+        <manvolnum>5</manvolnum></citerefentry> for details.
+      '';
+    };
+
+    fooOverUDPConfig = mkOption {
+      default = { };
+      example = { Port = 9001; };
+      type = types.addCheck (types.attrsOf unitOption) check.netdev.sectionFooOverUDP;
+      description = ''
+        Each attribute in this set specifies an option in the
+        <literal>[FooOverUDP]</literal> section of the unit.  See
         <citerefentry><refentrytitle>systemd.netdev</refentrytitle>
         <manvolnum>5</manvolnum></citerefentry> for details.
       '';
@@ -1034,6 +1165,21 @@ let
       '';
     };
 
+    batmanAdvancedConfig = mkOption {
+      default = {};
+      example = {
+        GatewayMode = "server";
+        RoutingAlgorithm = "batman-v";
+      };
+      type = types.addCheck (types.attrsOf unitOption) check.netdev.sectionBatmanAdvanced;
+      description = ''
+        Each attribute in this set specifies an option in the
+        <literal>[BatmanAdvanced]</literal> section of the unit. See
+        <citerefentry><refentrytitle>systemd.netdev</refentrytitle>
+        <manvolnum>5</manvolnum></citerefentry> for details.
+      '';
+    };
+
   };
 
   addressOptions = {
@@ -1094,6 +1240,25 @@ let
           <literal>[IPv6Prefix]</literal> section of the unit.  See
           <citerefentry><refentrytitle>systemd.network</refentrytitle>
           <manvolnum>5</manvolnum></citerefentry> for details.
+        '';
+      };
+    };
+  };
+
+  dhcpServerStaticLeaseOptions = {
+    options = {
+      dhcpServerStaticLeaseConfig = mkOption {
+        default = {};
+        example = { MACAddress = "65:43:4a:5b:d8:5f"; Address = "192.168.1.42"; };
+        type = types.addCheck (types.attrsOf unitOption) check.network.sectionDHCPServerStaticLease;
+        description = ''
+          Each attribute in this set specifies an option in the
+          <literal>[DHCPServerStaticLease]</literal> section of the unit.  See
+          <citerefentry><refentrytitle>systemd.network</refentrytitle>
+          <manvolnum>5</manvolnum></citerefentry> for details.
+
+          Make sure to configure the corresponding client interface to use
+          <literal>ClientIdentifier=mac</literal>.
         '';
       };
     };
@@ -1206,6 +1371,17 @@ let
       description = ''
         Each attribute in this set specifies an option in the
         <literal>[IPv6SendRA]</literal> section of the unit.  See
+        <citerefentry><refentrytitle>systemd.network</refentrytitle>
+        <manvolnum>5</manvolnum></citerefentry> for details.
+      '';
+    };
+
+    dhcpServerStaticLeases = mkOption {
+      default = [];
+      example = [ { MACAddress = "65:43:4a:5b:d8:5f"; Address = "192.168.1.42"; } ];
+      type = with types; listOf (submodule dhcpServerStaticLeaseOptions);
+      description = ''
+        A list of DHCPServerStaticLease sections to be added to the unit.  See
         <citerefentry><refentrytitle>systemd.network</refentrytitle>
         <manvolnum>5</manvolnum></citerefentry> for details.
       '';
@@ -1411,6 +1587,39 @@ let
     };
   };
 
+  networkdConfig = { config, ... }: {
+    options = {
+      routeTables = mkOption {
+        default = {};
+        example = { foo = 27; };
+        type = with types; attrsOf int;
+        description = ''
+          Defines route table names as an attrset of name to number.
+          See <citerefentry><refentrytitle>networkd.conf</refentrytitle>
+          <manvolnum>5</manvolnum></citerefentry> for details.
+        '';
+      };
+
+      addRouteTablesToIPRoute2 = mkOption {
+        default = true;
+        example = false;
+        type = types.bool;
+        description = ''
+          If true and routeTables are set, then the specified route tables
+          will also be installed into /etc/iproute2/rt_tables.
+        '';
+      };
+    };
+
+    config = {
+      networkConfig = optionalAttrs (config.routeTables != { }) {
+        RouteTable = mapAttrsToList
+          (name: number: "${name}:${toString number}")
+          config.routeTables;
+      };
+    };
+  };
+
   commonMatchText = def: optionalString (def.matchConfig != { }) ''
     [Match]
     ${attrsToSection def.matchConfig}
@@ -1449,6 +1658,10 @@ let
           [Tunnel]
           ${attrsToSection def.tunnelConfig}
         ''
+        + optionalString (def.fooOverUDPConfig != { }) ''
+          [FooOverUDP]
+          ${attrsToSection def.fooOverUDPConfig}
+        ''
         + optionalString (def.peerConfig != { }) ''
           [Peer]
           ${attrsToSection def.peerConfig}
@@ -1481,8 +1694,26 @@ let
           [VRF]
           ${attrsToSection def.vrfConfig}
         ''
+        + optionalString (def.batmanAdvancedConfig != { }) ''
+          [BatmanAdvanced]
+          ${attrsToSection def.batmanAdvancedConfig}
+        ''
         + def.extraConfig;
     };
+
+  renderConfig = def:
+    { text = ''
+        [Network]
+        ${attrsToSection def.networkConfig}
+      ''
+      + optionalString (def.dhcpV4Config != { }) ''
+        [DHCPv4]
+        ${attrsToSection def.dhcpV4Config}
+      ''
+      + optionalString (def.dhcpV6Config != { }) ''
+        [DHCPv6]
+        ${attrsToSection def.dhcpV6Config}
+      ''; };
 
   networkToUnit = name: def:
     { inherit (def) enable;
@@ -1574,6 +1805,10 @@ let
           [IPv6Prefix]
           ${attrsToSection x.ipv6PrefixConfig}
         '')
+        + flip concatMapStrings def.dhcpServerStaticLeases (x: ''
+          [DHCPServerStaticLease]
+          ${attrsToSection x.dhcpServerStaticLeaseConfig}
+        '')
         + def.extraConfig;
     };
 
@@ -1612,6 +1847,12 @@ in
       description = "Definition of systemd networks.";
     };
 
+    systemd.network.config = mkOption {
+      default = {};
+      type = with types; submodule [ { options = networkdOptions; } networkdConfig ];
+      description = "Definition of global systemd network config.";
+    };
+
     systemd.network.units = mkOption {
       description = "Definition of networkd units.";
       default = {};
@@ -1625,6 +1866,48 @@ in
         }));
     };
 
+    systemd.network.wait-online = {
+      anyInterface = mkOption {
+        description = ''
+          Whether to consider the network online when any interface is online, as opposed to all of them.
+          This is useful on portable machines with a wired and a wireless interface, for example.
+        '';
+        type = types.bool;
+        default = false;
+      };
+
+      ignoredInterfaces = mkOption {
+        description = ''
+          Network interfaces to be ignored when deciding if the system is online.
+        '';
+        type = with types; listOf str;
+        default = [];
+        example = [ "wg0" ];
+      };
+
+      timeout = mkOption {
+        description = ''
+          Time to wait for the network to come online, in seconds. Set to 0 to disable.
+        '';
+        type = types.ints.unsigned;
+        default = 120;
+        example = 0;
+      };
+
+      extraArgs = mkOption {
+        description = ''
+          Extra command-line arguments to pass to systemd-networkd-wait-online.
+          These also affect per-interface <literal>systemd-network-wait-online@</literal> services.
+
+          See <link xlink:href="https://www.freedesktop.org/software/systemd/man/systemd-networkd-wait-online.service.html">
+          <citerefentry><refentrytitle>systemd-networkd-wait-online.service</refentrytitle><manvolnum>8</manvolnum>
+          </citerefentry></link> for all available options.
+        '';
+        type = with types; listOf str;
+        default = [];
+      };
+    };
+
   };
 
   config = mkMerge [
@@ -1633,6 +1916,11 @@ in
     {
       systemd.network.units = mapAttrs' (n: v: nameValuePair "${n}.link" (linkToUnit n v)) cfg.links;
       environment.etc = unitFiles;
+
+      systemd.network.wait-online.extraArgs =
+        [ "--timeout=${toString cfg.wait-online.timeout}" ]
+        ++ optional cfg.wait-online.anyInterface "--any"
+        ++ map (i: "--ignore=${i}") cfg.wait-online.ignoredInterfaces;
     }
 
     (mkIf config.systemd.network.enable {
@@ -1656,11 +1944,17 @@ in
       systemd.services.systemd-networkd = {
         wantedBy = [ "multi-user.target" ];
         aliases = [ "dbus-org.freedesktop.network1.service" ];
-        restartTriggers = map (x: x.source) (attrValues unitFiles);
+        restartTriggers = map (x: x.source) (attrValues unitFiles) ++ [
+          config.environment.etc."systemd/networkd.conf".source
+        ];
       };
 
       systemd.services.systemd-networkd-wait-online = {
         wantedBy = [ "network-online.target" ];
+        serviceConfig.ExecStart = [
+          ""
+          "${config.systemd.package}/lib/systemd/systemd-networkd-wait-online ${utils.escapeSystemdExecArgs cfg.wait-online.extraArgs}"
+        ];
       };
 
       systemd.services."systemd-network-wait-online@" = {
@@ -1671,8 +1965,19 @@ in
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
-          ExecStart = "${config.systemd.package}/lib/systemd/systemd-networkd-wait-online -i %I";
+          ExecStart = "${config.systemd.package}/lib/systemd/systemd-networkd-wait-online -i %I ${utils.escapeSystemdExecArgs cfg.wait-online.extraArgs}";
         };
+      };
+
+      environment.etc."systemd/networkd.conf" = renderConfig cfg.config;
+
+      networking.iproute2 = mkIf (cfg.config.addRouteTablesToIPRoute2 && cfg.config.routeTables != { }) {
+        enable = mkDefault true;
+        rttablesExtraConfig = ''
+
+          # Extra tables defined in NixOS systemd.networkd.config.routeTables.
+          ${concatStringsSep "\n" (mapAttrsToList (name: number: "${toString number} ${name}") cfg.config.routeTables)}
+        '';
       };
 
       services.resolved.enable = mkDefault true;

@@ -2,13 +2,14 @@
 
 let
   # having the full version string here makes it easier to update
-  modDirVersion = "5.14.8-zen1";
+  modDirVersion = "5.17.2-zen3";
   parts = lib.splitString "-" modDirVersion;
   version = lib.elemAt parts 0;
   suffix = lib.elemAt parts 1;
 
   numbers = lib.splitString "." version;
   branch = "${lib.elemAt numbers 0}.${lib.elemAt numbers 1}";
+  rev = if ((lib.elemAt numbers 2) == "0") then "v${branch}-${suffix}" else "v${modDirVersion}";
 in
 
 buildLinux (args // {
@@ -18,8 +19,8 @@ buildLinux (args // {
   src = fetchFromGitHub {
     owner = "zen-kernel";
     repo = "zen-kernel";
-    rev = "v${modDirVersion}";
-    sha256 = "sha256-hquMBDjP4fBMNdjxxnJJKx/oVNd2DwBPmVpZQeEQvHQ=";
+    inherit rev;
+    sha256 = "sha256-q6Cc3wQHDXzyt2hx3+CS8N74myC6ra/Y+8IHQxTkoLo=";
   };
 
   structuredExtraConfig = with lib.kernel; {

@@ -16,13 +16,13 @@ in
 
 stdenv.mkDerivation rec {
   pname = "imagemagick";
-  version = "6.9.12-19";
+  version = "6.9.12-26";
 
   src = fetchFromGitHub {
     owner = "ImageMagick";
     repo = "ImageMagick6";
     rev = version;
-    sha256 = "sha256-8KofT9aNd8SXL0YBQ0RUOTccVxQNacvJL1uYPZiSPkY=";
+    sha256 = "sha256-oNorY/93jk1v5BS1T3wqctXuzV4o8JlyZtHnsNYmO4U=";
   };
 
   outputs = [ "out" "dev" "doc" ]; # bin/ isn't really big
@@ -83,7 +83,7 @@ stdenv.mkDerivation rec {
     changelog = "https://legacy.imagemagick.org/script/changelog.php";
     description = "A software suite to create, edit, compose, or convert bitmap images";
     platforms = platforms.linux ++ platforms.darwin;
-    maintainers = with maintainers; [ erictapen ];
+    maintainers = with maintainers; [ ];
     license = licenses.asl20;
   };
 }

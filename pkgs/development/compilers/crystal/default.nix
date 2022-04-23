@@ -25,11 +25,6 @@
 , zlib
 }:
 
-# We need multiple binaries as a given binary isn't always able to build
-# (even slightly) older or newer versions.
-# - 0.26.1 can build 0.25.x and 0.26.x but not 0.27.x
-# - 0.27.2 can build 0.27.x but not 0.25.x, 0.26.x and 0.29.x
-#
 # We need to keep around at least the latest version released with a stable
 # NixOS
 let
@@ -37,11 +32,20 @@ let
     x86_64-linux = "linux-x86_64";
     i686-linux = "linux-i686";
     x86_64-darwin = "darwin-x86_64";
+    aarch64-darwin = "darwin-universal";
+    aarch64-linux = "linux-aarch64";
   };
 
   arch = archs.${stdenv.system} or (throw "system ${stdenv.system} not supported");
+  isAarch64Darwin = stdenv.system == "aarch64-darwin";
 
   checkInputs = [ git gmp openssl readline libxml2 libyaml ];
+
+  binaryUrl = version: rel:
+    if arch == archs.aarch64-linux then
+      "https://dev.alpinelinux.org/archive/crystal/crystal-${version}-aarch64-alpine-linux-musl.tar.gz"
+    else
+      "https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-${toString rel}-${arch}.tar.gz";
 
   genericBinary = { version, sha256s, rel ? 1 }:
     stdenv.mkDerivation rec {
@@ -49,7 +53,7 @@ let
       inherit version;
 
       src = fetchurl {
-        url = "https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-${toString rel}-${arch}.tar.gz";
+        url = binaryUrl version rel;
         sha256 = sha256s.${stdenv.system};
       };
 
@@ -58,6 +62,8 @@ let
         tar --strip-components=1 -C $out -xf ${src}
         patchShebangs $out/bin/crystal
       '';
+
+      meta.broken = lib.versionOlder version "1.2.0" && isAarch64Darwin;
     };
 
   commonBuildInputs = extraBuildInputs: [
@@ -211,7 +217,8 @@ let
         homepage = "https://crystal-lang.org/";
         license = licenses.asl20;
         maintainers = with maintainers; [ david50407 fabianhjr manveru peterhoeg ];
-        platforms = builtins.attrNames archs;
+        platforms = let archNames = builtins.attrNames archs; in
+          if (lib.versionOlder version "1.2.0") then remove "aarch64-darwin" archNames else archNames;
         broken = lib.versionOlder version "0.36.1" && stdenv.isDarwin;
       };
     })
@@ -219,28 +226,40 @@ let
 
 in
 rec {
-  binaryCrystal_0_36 = genericBinary {
-    version = "0.36.1";
+  binaryCrystal_1_0 = genericBinary {
+    version = "1.0.0";
     sha256s = {
-      x86_64-linux = "065vzq34g7hgzl2mrzy9gwwsfikc78nj7xxsbrk67r6rz0a7bk1q";
-      i686-linux = "18m4b1lnd682i5ygbg6cljqjny60nn2mlrzrk765h2ip6fljqbm1";
-      x86_64-darwin = "0xggayk92zh64pb5sz77n12hkcd1hg8kw90z7gb18594q551sf1v";
+      x86_64-linux = "1949argajiyqyq09824yj3wjyv88gd8wbf20xh895saqfykiq880";
+      i686-linux = "0w0f4fwr2ijhx59i7ppicbh05hfmq7vffmgl7lal6im945m29vch";
+      x86_64-darwin = "01n0rf8zh551vv8wq3h0ifnsai0fz9a77yq87xx81y9dscl9h099";
+      aarch64-linux = "0sns7l4q3z82qi3dc2r4p63f4s8hvifqzgq56ykwyrvawynjhd53";
     };
   };
 
-  crystal_0_36 = generic {
-    version = "0.36.1";
-    sha256 = "sha256-5rjrvwZKM4lHpmxLyUVbi0Zw98xT+iJKonxwfUwS/Wk=";
-    binary = binaryCrystal_0_36;
+  binaryCrystal_1_2 = genericBinary {
+    version = "1.2.0";
+    sha256s = {
+      aarch64-darwin = "1hrs8cpjxdkcf8mr9qgzilwbg6bakq87sd4yydfsk2f4pqd6g7nf";
+    };
   };
 
   crystal_1_0 = generic {
     version = "1.0.0";
     sha256 = "sha256-RI+a3w6Rr+uc5jRf7xw0tOenR+q6qii/ewWfID6dbQ8=";
-    binary = crystal_0_36;
+    binary = binaryCrystal_1_0;
   };
 
-  crystal = crystal_1_0;
+  crystal_1_1 = generic {
+    version = "1.1.1";
+    sha256 = "sha256-hhhT3reia8acZiPsflwfuD638Ll2JiXwMfES1TyGyNQ=";
+    binary = crystal_1_0;
+  };
 
-  crystal2nix = callPackage ./crystal2nix.nix { };
+  crystal_1_2 = generic {
+    version = "1.2.2";
+    sha256 = "sha256-nyOXhsutVBRdtJlJHe2dALl//BUXD1JeeQPgHU4SwiU=";
+    binary = if isAarch64Darwin then binaryCrystal_1_2 else crystal_1_1;
+  };
+
+  crystal = crystal_1_2;
 }

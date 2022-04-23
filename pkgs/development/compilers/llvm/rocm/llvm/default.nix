@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , writeScript
 , cmake
+, ninja
 , python3
 , libxml2
 , libffi
@@ -11,7 +12,7 @@
 , zlib
 , debugVersion ? false
 , enableManpages ? false
-, enableSharedLibraries ? !stdenv.hostPlatform.isStatic
+, enableSharedLibraries ? false
 
 , version
 , src
@@ -30,7 +31,7 @@ in stdenv.mkDerivation rec {
   outputs = [ "out" "python" ]
     ++ lib.optional enableSharedLibraries "lib";
 
-  nativeBuildInputs = [ cmake python3 ];
+  nativeBuildInputs = [ cmake ninja python3 ];
 
   buildInputs = [ libxml2 libffi ];
 
@@ -59,6 +60,8 @@ in stdenv.mkDerivation rec {
   ];
 
   postPatch = ''
+    patchShebangs lib/OffloadArch/make_generated_offload_arch_h.sh
+  '' + lib.optionalString enableSharedLibraries ''
     substitute '${./outputs.patch}' ./outputs.patch --subst-var lib
     patch -p1 < ./outputs.patch
   '';
@@ -74,7 +77,7 @@ in stdenv.mkDerivation rec {
   '';
 
   preCheck = ''
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH''${LD_LIBRARY_PATH:+:}$PWD/lib
   '';
 
   postInstall = ''

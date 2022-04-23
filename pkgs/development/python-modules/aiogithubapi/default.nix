@@ -5,6 +5,7 @@
 , backoff
 , buildPythonPackage
 , fetchFromGitHub
+, poetry-core
 , pytest-asyncio
 , pytestCheckHook
 , pythonOlder
@@ -12,7 +13,8 @@
 
 buildPythonPackage rec {
   pname = "aiogithubapi";
-  version = "21.8.1";
+  version = "22.3.1";
+  format = "pyproject";
 
   disabled = pythonOlder "3.8";
 
@@ -20,15 +22,12 @@ buildPythonPackage rec {
     owner = "ludeeus";
     repo = pname;
     rev = version;
-    sha256 = "1l59bb956gymi2dkgg88mr0nc80wqvw2dv69qf4f1xr3jxy03qa2";
+    hash = "sha256-5gKANZtDhIoyfyLdS15JDWTxHBFkaHDUlbVVhRs7MSE=";
   };
 
-  postPatch = ''
-    # Upstream is releasing with the help of a CI to PyPI, GitHub releases
-    # are not in their focus
-    substituteInPlace setup.py \
-      --replace 'version="main",' 'version="${version}",'
-  '';
+  nativeBuildInputs = [
+    poetry-core
+  ];
 
   propagatedBuildInputs = [
     aiohttp
@@ -42,7 +41,16 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
-  pythonImportsCheck = [ "aiogithubapi" ];
+  postPatch = ''
+    # Upstream is releasing with the help of a CI to PyPI, GitHub releases
+    # are not in their focus
+    substituteInPlace pyproject.toml \
+      --replace 'version="main",' 'version="${version}",'
+  '';
+
+  pythonImportsCheck = [
+    "aiogithubapi"
+  ];
 
   meta = with lib; {
     description = "Python client for the GitHub API";

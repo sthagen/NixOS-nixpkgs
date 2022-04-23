@@ -32,34 +32,25 @@ let newPython = python3.override {
         "test_ec_verify_should_return_false_if_signature_invalid"
       ];
     });
-    # conan needs jinja2<3
-    jinja2 = super.jinja2.overridePythonAttrs (oldAttrs: rec {
-      version = "2.11.3";
+    distro = super.distro.overridePythonAttrs (oldAttrs: rec {
+      version = "1.5.0";
       src = oldAttrs.src.override {
         inherit version;
-        sha256 = "a6d58433de0ae800347cab1fa3043cebbabe8baa9d29e668f1c768cb87a333c6";
-      };
-    });
-    # old jinja2 needs old markupsafe
-    markupsafe = super.markupsafe.overridePythonAttrs (oldAttrs: rec {
-      version = "1.1.1";
-      src = oldAttrs.src.override {
-        inherit version;
-        sha256 = "29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b";
+        sha256 = "14nz51cqlnxmgfqqilxyvjwwa5xfivdvlm0d0b1qzgcgwdm7an0f";
       };
     });
   };
 };
 
 in newPython.pkgs.buildPythonApplication rec {
-  version = "1.40.0";
+  version = "1.47.0";
   pname = "conan";
 
   src = fetchFromGitHub {
     owner = "conan-io";
     repo = "conan";
     rev = version;
-    sha256 = "1sb4w4wahasrwxkag1g79f135601sca6iafv4r4836f2vi48ka2d";
+    sha256 = "1zs2xb22rsy5fsc0fd7c95vrx1mfz7vasyg1lqkzyfimvn5zah6n";
   };
 
   propagatedBuildInputs = with newPython.pkgs; [
@@ -98,6 +89,10 @@ in newPython.pkgs.buildPythonApplication rec {
   # TODO: reenable tests now that we fetch tests w/ the source from GitHub.
   # Not enabled right now due to time constraints/failing tests that I didn't have time to track down
   doCheck = false;
+
+  postPatch = ''
+    substituteInPlace conans/requirements.txt --replace 'PyYAML>=3.11, <6.0' 'PyYAML>=3.11'
+  '';
 
   meta = with lib; {
     homepage = "https://conan.io";

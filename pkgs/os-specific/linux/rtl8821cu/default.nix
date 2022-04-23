@@ -2,19 +2,19 @@
 
 stdenv.mkDerivation rec {
   pname = "rtl8821cu";
-  version = "${kernel.version}-unstable-2021-05-19";
+  version = "${kernel.version}-unstable-2022-03-08";
 
   src = fetchFromGitHub {
     owner = "morrownr";
-    repo = "8821cu";
-    rev = "2430c354c9b15fa6193a263c99ce57211d50c66f";
-    sha256 = "sha256-PkrpwebZYh/hBukqDQf6pxfbkVyA+CpYtte5pmzgLtw=";
+    repo = "8821cu-20210118";
+    rev = "4bdd7c8668562e43564cd5d786055633e591ad4d";
+    sha256 = "sha256-dfvDpjsra/nHwIGywOkZICTEP/Ex7ooH4zzkXqAaDkI=";
   };
 
   hardeningDisable = [ "pic" ];
 
-  nativeBuildInputs = [ bc ];
-  buildInputs = kernel.moduleBuildDependencies;
+  nativeBuildInputs = [ bc ] ++ kernel.moduleBuildDependencies;
+  makeFlags = kernel.makeFlags;
 
   prePatch = ''
     substituteInPlace ./Makefile \

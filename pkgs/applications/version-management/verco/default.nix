@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "verco";
-  version = "6.5.5";
+  version = "6.8.0";
 
   src = fetchFromGitHub {
     owner = "vamolessa";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-n+GGiu/xGGGC6FQPoASok87bCG0MFVIf6l6nt1lvw8A=";
+    sha256 = "sha256-E1kqJLnTLPu38zvDGaPHiKSW/yKormbx5N1CBSzQxgc=";
   };
 
-  cargoSha256 = "sha256-lNtR4N+bFFCr3Ct99DJCbtDeKxTzT7ZjvAWixbQm3jg=";
+  cargoSha256 = "sha256-9342LAChCv61kxTJoeOy7EdafMfR10s8dtkc2pTgXT0=";
 
   meta = with lib; {
     description = "A simple Git/Mercurial/PlasticSCM tui client based on keyboard shortcuts";

@@ -1,8 +1,8 @@
-{ lib, stdenv
+{ lib
+, stdenv
 , fetchFromGitHub
 , fetchpatch
 , nix-update-script
-, pantheon
 , pkg-config
 , meson
 , ninja
@@ -17,7 +17,6 @@
 , libgdata
 , sqlite
 , granite
-, elementary-icon-theme
 , evolution-data-server
 , appstream
 , wrapGAppsHook
@@ -26,27 +25,22 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-mail";
-  version = "6.2.0";
-
-  repoName = "mail";
+  version = "6.4.0";
 
   src = fetchFromGitHub {
     owner = "elementary";
-    repo = repoName;
+    repo = "mail";
     rev = version;
-    sha256 = "1ab620zhwqqjq1bs1alvpcw9jmdxjij0ywczvwbg8gqvcsc80lkn";
-  };
-
-  passthru = {
-    updateScript = nix-update-script {
-      attrPath = "pantheon.${pname}";
-    };
+    sha256 = "sha256-ooqVNMgeAqGlFcfachPPfhSiKTEEcNGv5oWdM7VLWOc=";
   };
 
   patches = [
-    # The app stuck when loading gravatar, temporarily reverts part
-    # of https://github.com/elementary/mail/pull/600 to fix this
-    ./revert-fix-warning.patch
+    # Fix build with vala 0.56
+    # https://github.com/elementary/mail/pull/765
+    (fetchpatch {
+      url = "https://github.com/elementary/mail/commit/c3aa61d226f49147d7685cc00013469ff4df369a.patch";
+      sha256 = "sha256-OxNBGIC1hrEaFSufQ59Wb0AMfdzqPt6diL4g3hbL/Ig=";
+    })
   ];
 
   nativeBuildInputs = [
@@ -62,7 +56,6 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    elementary-icon-theme
     evolution-data-server
     folks
     granite
@@ -79,11 +72,18 @@ stdenv.mkDerivation rec {
     patchShebangs meson/post_install.py
   '';
 
+  passthru = {
+    updateScript = nix-update-script {
+      attrPath = "pantheon.${pname}";
+    };
+  };
+
   meta = with lib; {
     description = "Mail app designed for elementary OS";
     homepage = "https://github.com/elementary/mail";
     license = licenses.gpl3Plus;
     platforms = platforms.linux;
     maintainers = with maintainers; [ ethancedwards8 ] ++ teams.pantheon.members;
+    mainProgram = "io.elementary.mail";
   };
 }

@@ -4,15 +4,15 @@
 
 buildDunePackage rec {
   pname = "iter";
-  version = "1.2.1";
+  version = "1.4";
 
   useDune2 = true;
 
   src = fetchFromGitHub {
     owner = "c-cube";
     repo = pname;
-    rev = version;
-    sha256 = "0j2sg50byn0ppmf6l36ksip7zx1d3gv7sc4hbbxs2rmx39jr7vxh";
+    rev = "v${version}";
+    sha256 = "sha256-Kk92GM7IVXOSVBkeN6wj67Q3UGCyuOOVi2umpn1AZTo=";
   };
 
   buildInputs = [ dune-configurator ];

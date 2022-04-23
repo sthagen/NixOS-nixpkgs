@@ -5,6 +5,7 @@
 , isPy37
 , isPy38
 , isPy39
+, isPy310
 , patchelf
 , pillow
 , python
@@ -15,7 +16,7 @@ let
   pyVerNoDot = builtins.replaceStrings [ "." ] [ "" ] python.pythonVersion;
   srcs = import ./binary-hashes.nix version;
   unsupported = throw "Unsupported system";
-  version = "0.10.1";
+  version = "0.12.0";
 in buildPythonPackage {
   inherit version;
 
@@ -25,7 +26,7 @@ in buildPythonPackage {
 
   src = fetchurl srcs."${stdenv.system}-${pyVerNoDot}" or unsupported;
 
-  disabled = !(isPy37 || isPy38 || isPy39);
+  disabled = !(isPy37 || isPy38 || isPy39 || isPy310);
 
   nativeBuildInputs = [
     patchelf
@@ -35,6 +36,9 @@ in buildPythonPackage {
     pillow
     pytorch-bin
   ];
+
+  # The wheel-binary is not stripped to avoid the error of `ImportError: libtorch_cuda_cpp.so: ELF load command address/offset not properly aligned.`.
+  dontStrip = true;
 
   pythonImportsCheck = [ "torchvision" ];
 
@@ -52,6 +56,9 @@ in buildPythonPackage {
     description = "PyTorch vision library";
     homepage = "https://pytorch.org/";
     changelog = "https://github.com/pytorch/vision/releases/tag/v${version}";
+    # Includes CUDA and Intel MKL, but redistributions of the binary are not limited.
+    # https://docs.nvidia.com/cuda/eula/index.html
+    # https://www.intel.com/content/www/us/en/developer/articles/license/onemkl-license-faq.html
     license = licenses.bsd3;
     platforms = platforms.linux;
     maintainers = with maintainers; [ junjihashimoto ];

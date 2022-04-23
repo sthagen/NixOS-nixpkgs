@@ -5,13 +5,14 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "wapiti";
-  version = "3.0.5";
+  version = "3.1.1";
+  format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "wapiti-scanner";
     repo = pname;
     rev = version;
-    sha256 = "0663hzpmn6p5xh65d2gk4yk2zh992lfd9lhdwwabhpv3n85nza75";
+    sha256 = "1xyvyan5gz7fz8wa2fbgvma59pr79arqra2gvx861szn2njkf272";
   };
 
   nativeBuildInputs = with python3.pkgs; [
@@ -19,19 +20,29 @@ python3.pkgs.buildPythonApplication rec {
   ];
 
   propagatedBuildInputs = with python3.pkgs; [
+    aiocache
+    aiosqlite
     beautifulsoup4
+    brotli
     browser-cookie3
     cryptography
-    Mako
-    markupsafe
-    pysocks
+    dnspython
+    httpcore
     httpx
     httpx-ntlm
     httpx-socks
+    humanize
+    loguru
+    Mako
+    markupsafe
+    pysocks
     six
+    sqlalchemy
     tld
     yaswfp
-  ] ++ lib.optionals (python3.pythonOlder "3.8") [ importlib-metadata ];
+  ] ++ lib.optionals (python3.pythonOlder "3.8") [
+    importlib-metadata
+  ];
 
   checkInputs = with python3.pkgs; [
     respx
@@ -42,9 +53,10 @@ python3.pkgs.buildPythonApplication rec {
   postPatch = ''
     # Ignore pinned versions
     substituteInPlace setup.py \
-      --replace "==" ">="
+      --replace "httpx-socks[asyncio] == 0.6.0" "httpx-socks[asyncio]"
+    sed -i -e "s/==[0-9.]*//;s/>=[0-9.]*//" setup.py
     substituteInPlace setup.cfg \
-      --replace " --cov" ""
+      --replace " --cov --cov-report=xml" ""
   '';
 
   preCheck = ''
@@ -87,12 +99,15 @@ python3.pkgs.buildPythonApplication rec {
     "test_request_object"
     "test_script"
     "test_ssrf"
+    "test_merge_with_and_without_redirection"
     "test_tag_name_escape"
     "test_timeout"
     "test_title_false_positive"
     "test_title_positive"
     "test_true_positive_request_count"
+    "test_unregistered_cname"
     "test_url_detection"
+    "test_verify_dns"
     "test_warning"
     "test_whole"
     "test_xss_inside_tag_input"
@@ -104,11 +119,18 @@ python3.pkgs.buildPythonApplication rec {
     # Requires a PHP installation
     "test_timesql"
     "test_cookies"
-    # E           TypeError: Expected bytes or bytes-like object got: <class 'str'>
+    "test_redirect"
+    # TypeError: Expected bytes or bytes-like object got: <class 'str'>
     "test_persister_upload"
   ];
+  disabledTestPaths = [
+    # requires sslyze
+    "tests/attack/test_mod_ssl.py"
+  ];
 
-  pythonImportsCheck = [ "wapitiCore" ];
+  pythonImportsCheck = [
+    "wapitiCore"
+  ];
 
   meta = with lib; {
     description = "Web application vulnerability scanner";

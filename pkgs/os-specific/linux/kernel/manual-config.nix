@@ -19,6 +19,8 @@ in {
   stdenv,
   # The kernel version
   version,
+  # Position of the Linux build expression
+  pos ? null,
   # Additional kernel make flags
   extraMakeFlags ? [],
   # The version of the kernel module directory
@@ -54,7 +56,8 @@ let
     hasAttr getAttr optional optionals optionalString optionalAttrs maintainers platforms;
 
   # Dependencies that are required to build kernel modules
-  moduleBuildDependencies = optional (lib.versionAtLeast version "4.14") libelf;
+  moduleBuildDependencies = [ perl ] ++ optional (lib.versionAtLeast version "4.14") libelf;
+
 
   installkernel = writeTextFile { name = "installkernel"; executable=true; text = ''
     #!${stdenv.shell} -e
@@ -88,17 +91,20 @@ let
 
       isModular = config.isYes "MODULES";
 
+      buildDTBs = kernelConf.DTB or false;
+
       installsFirmware = (config.isEnabled "FW_LOADER") &&
         (isModular || (config.isDisabled "FIRMWARE_IN_KERNEL")) &&
         (lib.versionOlder version "4.14");
     in (optionalAttrs isModular { outputs = [ "out" "dev" ]; }) // {
-      passthru = {
+      passthru = rec {
         inherit version modDirVersion config kernelPatches configfile
           moduleBuildDependencies stdenv;
         inherit isZen isHardened isLibre;
         isXen = lib.warn "The isXen attribute is deprecated. All Nixpkgs kernels that support it now have Xen enabled." true;
-        kernelOlder = lib.versionOlder version;
-        kernelAtLeast = lib.versionAtLeast version;
+        baseVersion = lib.head (lib.splitString "-rc" version);
+        kernelOlder = lib.versionOlder baseVersion;
+        kernelAtLeast = lib.versionAtLeast baseVersion;
       };
 
       inherit src;
@@ -123,7 +129,11 @@ let
         # See also https://kernelnewbies.org/BuildId
         sed -i Makefile -e 's|--build-id=[^ ]*|--build-id=none|'
 
-        patchShebangs scripts
+        # Some linux-hardened patches now remove certain files in the scripts directory, so we cannot
+        # patch all scripts until after patches are applied.
+        # However, scripts/ld-version.sh is still ran when generating a configfile for a kernel, so it needs
+        # to be patched prior to patchPhase
+        patchShebangs scripts/ld-version.sh
       '';
 
       postPatch = ''
@@ -137,6 +147,8 @@ let
             --replace NIXOS_RANDSTRUCT_SEED \
             $(echo ${randstructSeed}${src} ${configfile} | sha256sum | cut -d ' ' -f 1 | tr -d '\n')
         fi
+
+        patchShebangs scripts
       '';
 
       configurePhase = ''
@@ -175,15 +187,16 @@ let
         "KBUILD_BUILD_VERSION=1-NixOS"
         kernelConf.target
         "vmlinux"  # for "perf" and things like that
-      ]
-      ++ optional isModular "modules"
+      ] ++ optional isModular "modules"
+        ++ optional buildDTBs "dtbs"
       ++ extraMakeFlags;
 
       installFlags = [
         "INSTALLKERNEL=${installkernel}"
         "INSTALL_PATH=$(out)"
       ] ++ (optional isModular "INSTALL_MOD_PATH=$(out)")
-      ++ optional installsFirmware "INSTALL_FW_PATH=$(out)/lib/firmware";
+      ++ optional installsFirmware "INSTALL_FW_PATH=$(out)/lib/firmware"
+      ++ optionals buildDTBs ["dtbs_install" "INSTALL_DTBS_PATH=$(out)/dtbs"];
 
       preInstall = ''
         installFlagsArray+=("-j$NIX_BUILD_CORES")
@@ -199,9 +212,7 @@ let
 
       postInstall = (optionalString installsFirmware ''
         mkdir -p $out/lib/firmware
-      '') + (if (kernelConf.DTB or false) then ''
-        make $makeFlags "''${makeFlagsArray[@]}" dtbs dtbs_install INSTALL_DTBS_PATH=$out/dtbs
-      '' else "") + (if isModular then ''
+      '') + (if isModular then ''
         mkdir -p $dev
         cp vmlinux $dev/
         if [ -z "''${dontStrip-}" ]; then
@@ -290,8 +301,7 @@ let
             + ")");
         license = lib.licenses.gpl2Only;
         homepage = "https://www.kernel.org/";
-        repositories.git = "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git";
-        maintainers = [
+        maintainers = lib.teams.linux-kernel.members ++ [
           maintainers.thoughtpolice
         ];
         platforms = platforms.linux;
@@ -331,4 +341,4 @@ stdenv.mkDerivation ((drvAttrs config stdenv.hostPlatform.linux-kernel kernelPat
   ] ++ extraMakeFlags;
 
   karch = stdenv.hostPlatform.linuxArch;
-})
+} // (optionalAttrs (pos != null) { inherit pos; }))

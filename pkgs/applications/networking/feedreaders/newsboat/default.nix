@@ -3,16 +3,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "newsboat";
-  version = "2.24";
+  version = "2.27";
 
   src = fetchFromGitHub {
     owner = "newsboat";
     repo = "newsboat";
     rev = "r${version}";
-    sha256 = "0qb10w7pn9hiczjjpc0xanmc83p22ngcqcrkjwji5rl0sh8v9ii4";
+    hash = "sha256-cHUI95Zrwzg242BM8/roA40sAxijFw6go6BbQNZSzRw=";
   };
 
-  cargoSha256 = "0vhr8qyw4f3lc208mgl1m3z42igkbwly6wcv7g7jrq3c6dcwyhjn";
+  cargoHash = "sha256-YZpaPfExKNLHWHmnCery4fGAJmOhpK3umuO343qe0Zo=";
 
   # TODO: Check if that's still needed
   postPatch = lib.optionalString stdenv.isDarwin ''
@@ -33,9 +33,6 @@ rustPlatform.buildRustPackage rec {
   postBuild = ''
     make prefix="$out"
   '';
-
-  # TODO: Check if that's still needed
-  NIX_CFLAGS_COMPILE = lib.optionalString stdenv.isDarwin " -Wno-error=format-security";
 
   # https://github.com/NixOS/nixpkgs/pull/98471#issuecomment-703100014 . We set
   # these for all platforms, since upstream's gettext crate behavior might

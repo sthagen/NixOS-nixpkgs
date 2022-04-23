@@ -12,11 +12,11 @@
 
 stdenv.mkDerivation rec {
   pname = "starsector";
-  version = "0.95a-RC15";
+  version = "0.95.1a-RC5";
 
   src = fetchzip {
     url = "https://s3.amazonaws.com/fractalsoftworks/starsector/starsector_linux-${version}.zip";
-    sha256 = "sha256-/5ij/079aOad7otXSFFcmVmiYQnMX/0RXGOr1j0rkGY=";
+    sha256 = "sha256-V8/WQPvPIrF3Tg7JVO+GfeYqWhkWWrnHSVcFXGQqDAA=";
   };
 
   nativeBuildInputs = [
@@ -38,7 +38,7 @@ stdenv.mkDerivation rec {
       comment = meta.description;
       genericName = "starsector";
       desktopName = "Starsector";
-      categories = "Game;";
+      categories = [ "Game" ];
     })
   ];
 
@@ -57,7 +57,8 @@ stdenv.mkDerivation rec {
     wrapProgram $out/starsector.sh \
       --prefix PATH : ${lib.makeBinPath [ openjdk ]} \
       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath buildInputs} \
-      --run 'mkdir -p ''${XDG_DATA_HOME:-~/.local/share}/starsector; cd '"$out"
+      --run 'mkdir -p ''${XDG_DATA_HOME:-~/.local/share}/starsector' \
+      --chdir "$out"
     ln -s $out/starsector.sh $out/bin/starsector
 
     runHook postInstall

@@ -7,7 +7,6 @@
 , makeWrapper
 , openresolv
 , procps
-, wireguard-go
 }:
 
 stdenv.mkDerivation rec {
@@ -40,10 +39,6 @@ stdenv.mkDerivation rec {
     for f in $out/bin/*; do
       wrapProgram $f --prefix PATH : ${lib.makeBinPath [ procps iproute2 iptables openresolv ]}
     done
-  '' + lib.optionalString stdenv.isDarwin ''
-    for f in $out/bin/*; do
-      wrapProgram $f --prefix PATH : ${wireguard-go}/bin
-    done
   '';
 
   passthru = {
@@ -63,7 +58,7 @@ stdenv.mkDerivation rec {
     downloadPage = "https://git.zx2c4.com/wireguard-tools/refs/";
     homepage = "https://www.wireguard.com/";
     license = licenses.gpl2;
-    maintainers = with maintainers; [ elseym ericsagnes mic92 zx2c4 globin ma27 d-xo ];
+    maintainers = with maintainers; [ elseym ericsagnes zx2c4 globin ma27 d-xo ];
     platforms = platforms.unix;
   };
 }

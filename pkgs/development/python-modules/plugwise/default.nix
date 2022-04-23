@@ -19,14 +19,20 @@
 
 buildPythonPackage rec {
   pname = "plugwise";
-  version = "0.14.5";
+  version = "0.17.7";
+  format = "setuptools";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = "python-plugwise";
-    rev = "v${version}";
-    sha256 = "1kwks87raxs04dvnpmpn8l1cbzg5yb5nyinaqzxdsc6al83isbik";
+    rev = "refs/tags/v${version}";
+    sha256 = "sha256-PZoxI7s3LTb60oXFfsOi5mCaLOKzq6ed2yFKap0Q1Ng=";
   };
+
+  postPatch = ''
+    substituteInPlace setup.py \
+      --replace "aiohttp==3.8.0" "aiohttp>=3.8.0"
+  '';
 
   propagatedBuildInputs = [
     aiohttp

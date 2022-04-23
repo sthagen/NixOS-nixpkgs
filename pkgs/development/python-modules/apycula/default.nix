@@ -12,17 +12,20 @@
 
 buildPythonPackage rec {
   pname = "apycula";
-  version = "0.0.1a9";
+  version = "0.3.1";
+  format = "setuptools";
 
   disabled = pythonOlder "3.8";
 
   src = fetchPypi {
     inherit version;
     pname = "Apycula";
-    sha256 = "01shkaxakisgg253jdwjkd81vnjgfws3gi2wyrdxmkcg95wphk5y";
+    hash = "sha256-RoWZt2Ox0XjJ6vmuCCcNCTMfwZnwJ6fSx71fmipmu2c=";
   };
 
-  nativeBuildInputs = [ setuptools-scm ];
+  nativeBuildInputs = [
+    setuptools-scm
+  ];
 
   propagatedBuildInputs = [
     numpy
@@ -35,7 +38,9 @@ buildPythonPackage rec {
   # tests require a physical FPGA
   doCheck = false;
 
-  pythonImportsCheck = [ "apycula" ];
+  pythonImportsCheck = [
+    "apycula"
+  ];
 
   meta = with lib; {
     description = "Open Source tools for Gowin FPGAs";

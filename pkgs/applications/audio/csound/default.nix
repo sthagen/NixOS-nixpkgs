@@ -14,10 +14,7 @@
 
 stdenv.mkDerivation rec {
   pname = "csound";
-  # When updating, please check if https://github.com/csound/csound/issues/1078
-  # has been fixed in the new version so we can use the normal fluidsynth
-  # version and remove fluidsynth 1.x from nixpkgs again.
-  version = "6.16.2";
+  version = "6.17.0";
 
   hardeningDisable = [ "format" ];
 
@@ -25,7 +22,7 @@ stdenv.mkDerivation rec {
     owner = "csound";
     repo = "csound";
     rev = version;
-    sha256 = "sha256-1rcS3kOspU9ACx45yB8betph4G0hso1OSJQRiabX6tE=";
+    sha256 = "sha256-O19jm3JxHg4TcQzWQZu1uFjfYN2FR41fCRq5YGnTGD0=";
   };
 
   cmakeFlags = [ "-DBUILD_CSOUND_AC=0" ] # fails to find Score.hpp
@@ -40,8 +37,8 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Sound design, audio synthesis, and signal processing system, providing facilities for music composition and performance on all major operating systems and platforms";
-    homepage = "http://www.csounds.com/";
-    license = licenses.gpl2;
+    homepage = "https://csound.com/";
+    license = licenses.lgpl21Plus;
     maintainers = [maintainers.marcweber];
     platforms = platforms.linux;
   };

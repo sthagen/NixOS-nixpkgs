@@ -1,16 +1,17 @@
-{ lib, stdenv
+{ lib
+, stdenv
 , meson
 , ninja
 , gettext
 , fetchurl
+, fetchpatch
 , pkg-config
 , gtk3
 , glib
 , icu
 , wrapGAppsHook
 , gnome
-, pantheon
-, libportal
+, libportal-gtk3
 , libxml2
 , libxslt
 , itstool
@@ -39,17 +40,23 @@
 
 stdenv.mkDerivation rec {
   pname = "epiphany";
-  version = "41.0";
+  version = "42.2";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "s50YJUkllbC3TF1qZoaoV/lBnfpMAvgBPCl7yHDibdA=";
+    sha256 = "ksAs+IbRDSzP9d5ljhpCDqsx0gu1DnRtQw6VNbSFGS0=";
   };
 
   patches = lib.optionals withPantheon [
+    # Pantheon specific patches for epiphany
     # https://github.com/elementary/browser
-    ./dark-style.patch
-    ./navigation-buttons.patch
+    #
+    # Patch to unlink nav buttons
+    # https://github.com/elementary/browser/pull/18
+    (fetchpatch {
+      url = "https://raw.githubusercontent.com/elementary/browser/cc17559a7ac6effe593712b4f3d0bbefde6e3b62/navigation-buttons.patch";
+      sha256 = "sha256-G1/JUjn/8DyO9sgL/5Kq205KbTOs4EMi4Vf3cJ8FHXU=";
+    })
   ];
 
   nativeBuildInputs = [
@@ -72,7 +79,6 @@ stdenv.mkDerivation rec {
     glib
     glib-networking
     gnome-desktop
-    gnome.adwaita-icon-theme
     gst_all_1.gst-libav
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-base
@@ -85,7 +91,7 @@ stdenv.mkDerivation rec {
     json-glib
     libdazzle
     libhandy
-    libportal
+    libportal-gtk3
     libnotify
     libarchive
     libsecret
@@ -95,7 +101,7 @@ stdenv.mkDerivation rec {
     p11-kit
     sqlite
     webkitgtk
-  ] ++ lib.optional withPantheon pantheon.granite;
+  ];
 
   # Tests need an X display
   mesonFlags = [

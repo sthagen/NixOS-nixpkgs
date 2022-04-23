@@ -18,13 +18,13 @@
 
 buildPythonPackage rec {
   pname = "cmd2";
-  version = "2.1.2";
+  version = "2.4.0";
 
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "25dbb2e9847aaa686a8a21e84e3d101db8b79f5cb992e044fc54210ab8c0ad41";
+    sha256 = "sha256-CQkJq2yOzuQIE87HWeYd1ucMgiehqOlggvXysNOUvHc=";
   };
 
   LC_ALL = "en_US.UTF-8";

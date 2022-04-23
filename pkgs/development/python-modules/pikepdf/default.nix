@@ -2,12 +2,13 @@
 , attrs
 , buildPythonPackage
 , defusedxml
-, fetchPypi
+, fetchFromGitHub
 , hypothesis
-, isPy3k
+, pythonOlder
 , jbig2dec
 , lxml
 , mupdf
+, packaging
 , pillow
 , psutil
 , pybind11
@@ -24,12 +25,22 @@
 
 buildPythonPackage rec {
   pname = "pikepdf";
-  version = "3.2.0";
-  disabled = ! isPy3k;
+  version = "5.1.1";
+  format = "setuptools";
 
-  src = fetchPypi {
-    inherit pname version;
-    sha256 = "a0582f00440668c07edb8403e82724961c7812c8e6c30655e34825b2645f15cd";
+  disabled = pythonOlder "3.7";
+
+  src = fetchFromGitHub {
+    owner = "pikepdf";
+    repo = "pikepdf";
+    rev = "v${version}";
+    # The content of .git_archival.txt is substituted upon tarball creation,
+    # which creates indeterminism if master no longer points to the tag.
+    # See https://github.com/jbarlow83/OCRmyPDF/issues/841
+    extraPostFetch = ''
+      rm "$out/.git_archival.txt"
+    '';
+    hash = "sha256-LgF46DGVWNuUN2KGdfOGSokf4reDx55ay3gP2LO+4dY=";
   };
 
   patches = [
@@ -39,6 +50,8 @@ buildPythonPackage rec {
       mudraw = "${lib.getBin mupdf}/bin/mudraw";
     })
   ];
+
+  SETUPTOOLS_SCM_PRETEND_VERSION = version;
 
   buildInputs = [
     pybind11
@@ -63,8 +76,13 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     defusedxml
     lxml
+    packaging
     pillow
     setuptools
+  ];
+
+  disabledTests = [
+    "test_image_palette" # https://github.com/pikepdf/pikepdf/issues/328
   ];
 
   pythonImportsCheck = [ "pikepdf" ];

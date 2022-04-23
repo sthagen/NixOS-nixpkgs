@@ -36,7 +36,7 @@ in
 
     boot.kernelPackages = mkOption {
       default = pkgs.linuxPackages;
-      type = types.unspecified // { merge = mergeEqualOption; };
+      type = types.raw;
       apply = kernelPackages: kernelPackages.extend (self: super: {
         kernel = super.kernel.override (originalArgs: {
           inherit randstructSeed;
@@ -83,7 +83,10 @@ in
     };
 
     boot.kernelParams = mkOption {
-      type = types.listOf types.str;
+      type = types.listOf (types.strMatching ''([^"[:space:]]|"[^"]*")+'' // {
+        name = "kernelParam";
+        description = "string, with spaces inside double quotes";
+      });
       default = [ ];
       description = "Parameters added to the kernel command line.";
     };
@@ -238,9 +241,9 @@ in
             "xhci_pci"
             "usbhid"
             "hid_generic" "hid_lenovo" "hid_apple" "hid_roccat"
-            "hid_logitech_hidpp" "hid_logitech_dj" "hid_microsoft"
+            "hid_logitech_hidpp" "hid_logitech_dj" "hid_microsoft" "hid_cherry"
 
-          ] ++ optionals (pkgs.stdenv.isi686 || pkgs.stdenv.isx86_64) [
+          ] ++ optionals pkgs.stdenv.hostPlatform.isx86 [
             # Misc. x86 keyboard stuff.
             "pcips2" "atkbd" "i8042"
 

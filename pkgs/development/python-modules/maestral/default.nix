@@ -3,22 +3,38 @@
 , fetchFromGitHub
 , pythonOlder
 , python
-, click, desktop-notifier, dropbox, fasteners, keyring, keyrings-alt, packaging, pathspec, Pyro5, requests, setuptools, sdnotify, survey, watchdog
+, click
+, desktop-notifier
+, dropbox
+, fasteners
+, keyring
+, keyrings-alt
+, packaging
+, pathspec
+, Pyro5
+, requests
+, setuptools
+, sdnotify
+, survey
+, watchdog
 , importlib-metadata
 , pytestCheckHook
+, nixosTests
 }:
 
 buildPythonPackage rec {
   pname = "maestral";
-  version = "1.5.0";
+  version = "1.5.3";
   disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = "SamSchott";
     repo = "maestral";
     rev = "v${version}";
-    sha256 = "sha256-OMqCwJTsg4RMK138cKDYz+iQV0HvelGTZfE4m+UkSzE=";
+    sha256 = "sha256-Uo3vcYez2qSq162SSKjoCkwygwR5awzDceIq8/h3dao=";
   };
+
+  format = "pyproject";
 
   propagatedBuildInputs = [
     click
@@ -63,6 +79,8 @@ buildPythonPackage rec {
   ];
 
   pythonImportsCheck = [ "maestral" ];
+
+  passthru.tests.maestral = nixosTests.maestral;
 
   meta = with lib; {
     description = "Open-source Dropbox client for macOS and Linux";

@@ -3,14 +3,14 @@
 , buildPythonPackage
 , fetchFromGitHub
 , iso4217
-, pytestCheckHook
+, pytest-asyncio
 , pythonOlder
 , pytz
 }:
 
 buildPythonPackage rec {
   pname = "pyefergy";
-  version = "0.1.0";
+  version = "22.1.1";
   format = "setuptools";
 
   disabled = pythonOlder "3.8";
@@ -19,7 +19,7 @@ buildPythonPackage rec {
     owner = "tkdrob";
     repo = pname;
     rev = version;
-    sha256 = "0nm7dc5q4wvdpqxpirlc4nwm68lf3n2df6j5yy4m8wr294yb7a1k";
+    hash = "sha256-AdoM+PcVoajxhnEfkyN9UuNufChu8XGmZDLNC3mjrps=";
   };
 
   propagatedBuildInputs = [
@@ -28,10 +28,12 @@ buildPythonPackage rec {
     pytz
   ];
 
-  # Project has no tests
-  doCheck = false;
+  # Tests require network access
+  doCheck  =false;
 
-  pythonImportsCheck = [ "pyefergy" ];
+  pythonImportsCheck = [
+    "pyefergy"
+  ];
 
   meta = with lib; {
     description = "Python API library for Efergy energy meters";

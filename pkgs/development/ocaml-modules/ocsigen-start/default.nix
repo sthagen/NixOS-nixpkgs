@@ -1,15 +1,17 @@
 { stdenv, lib, fetchFromGitHub, ocaml, findlib, ocsigen-toolkit, pgocaml_ppx, safepass, yojson
-, cohttp-lwt-unix
+, cohttp-lwt-unix, eliom
 , resource-pooling
 , ocamlnet
 }:
 
 stdenv.mkDerivation rec {
-  name = "ocaml${ocaml.version}-ocsigen-start-${version}";
-  version = "4.3.0";
+  pname = "ocaml${ocaml.version}-ocsigen-start";
+  version = "4.5.0";
 
-  buildInputs = [ ocaml findlib ];
+  nativeBuildInputs = [ ocaml findlib eliom ];
   propagatedBuildInputs = [ pgocaml_ppx safepass ocsigen-toolkit yojson resource-pooling cohttp-lwt-unix ocamlnet ];
+
+  strictDeps = true;
 
   patches = [ ./templates-dir.patch ];
 
@@ -17,7 +19,7 @@ stdenv.mkDerivation rec {
     owner = "ocsigen";
     repo = "ocsigen-start";
     rev = version;
-    sha256 = "0lkl59dwzyqq2lyr46fyjr27ms0fp9h59xfsn37faaavdd7v0h98";
+    sha256 = "sha256:1n94r8rbkzxbgcz5w135n6f2cwpc91bdvf7yslcdq4cn713rncmq";
   };
 
   preInstall = ''

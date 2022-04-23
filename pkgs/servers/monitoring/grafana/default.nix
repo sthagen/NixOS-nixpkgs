@@ -1,38 +1,39 @@
-{ lib, buildGoModule, fetchurl, fetchFromGitHub, nixosTests, tzdata }:
+{ lib, buildGoModule, fetchurl, fetchFromGitHub, nixosTests, tzdata, wire }:
 
 buildGoModule rec {
   pname = "grafana";
-  version = "8.1.6";
+  version = "8.4.7";
 
-  excludedPackages = "\\(alert_webhook_listener\\|clean-swagger\\|release_publisher\\|slow_proxy\\|slow_proxy_mac\\|macaron\\)";
+  excludedPackages = [ "alert_webhook_listener" "clean-swagger" "release_publisher" "slow_proxy" "slow_proxy_mac" "macaron" ];
 
   src = fetchFromGitHub {
     rev = "v${version}";
     owner = "grafana";
     repo = "grafana";
-    sha256 = "sha256-PUVRFa3b+O2lY6q3vO+rLUcC+fx80iB78tt60f6Vugk=";
+    sha256 = "sha256-8owcfWTiXhejFc5P0AM6POXBXuAABn4M/uX9X68Zn8k=";
   };
 
   srcStatic = fetchurl {
     url = "https://dl.grafana.com/oss/release/grafana-${version}.linux-amd64.tar.gz";
-    sha256 = "sha256-So9xzet9kPkjcDwNts3iXlCd+u2uiXTo0LVcLc8toyk=";
+    sha256 = "1wi28v1xhav8p2jqkf2gmk1accfcf1w0d6h312d4pns6pkhdabxv";
   };
 
-  vendorSha256 = "sha256-dn4sliRp58oZALZ8Iu7kE83ntkcMIU84Xr5WoeXlhCI=";
+  vendorSha256 = "sha256-7ZeOncdiA/0Awg+olJvsLneLQH4zBQka4M81jsxwUdE=";
+
+  nativeBuildInputs = [ wire ];
 
   preBuild = ''
+    # Generate DI code that's required to compile the package.
+    # From https://github.com/grafana/grafana/blob/v8.2.3/Makefile#L33-L35
+    wire gen -tags oss ./pkg/server
+    wire gen -tags oss ./pkg/cmd/grafana-cli/runner
+
     # The testcase makes an API call against grafana.com:
     #
-    # --- Expected
-    # +++ Actual
-    # @@ -1,4 +1,4 @@
-    #  (map[string]interface {}) (len=2) {
-    # - (string) (len=5) "error": (string) (len=16) "plugin not found",
-    # - (string) (len=7) "message": (string) (len=16) "Plugin not found"
-    # + (string) (len=5) "error": (string) (len=171) "Failed to send request: Get \"https://grafana.com/api/plugins/repo/test\": dial tcp: lookup grafana.com on [::1]:53: read udp [::1]:48019->[::1]:53: read: connection refused",
-    # + (string) (len=7) "message": (string) (len=24) "Failed to install plugin"
-    #  }
-    sed -i -e '/func TestPluginInstallAccess/a t.Skip();' pkg/tests/api/plugins/api_install_test.go
+    # [...]
+    # grafana> t=2021-12-02T14:24:58+0000 lvl=dbug msg="Failed to get latest.json repo from github.com" logger=update.checker error="Get \"https://raw.githubusercontent.com/grafana/grafana/main/latest.json\": dial tcp: lookup raw.githubusercontent.com on [::1]:53: read udp [::1]:36391->[::1]:53: read: connection refused"
+    # grafana> t=2021-12-02T14:24:58+0000 lvl=dbug msg="Failed to get plugins repo from grafana.com" logger=plugin.manager error="Get \"https://grafana.com/api/plugins/versioncheck?slugIn=&grafanaVersion=\": dial tcp: lookup grafana.com on [::1]:53: read udp [::1]:41796->[::1]:53: read: connection refused"
+    sed -i -e '/Request is not forbidden if from an admin/a t.Skip();' pkg/tests/api/plugins/api_plugins_test.go
 
     # Skip a flaky test (https://github.com/NixOS/nixpkgs/pull/126928#issuecomment-861424128)
     sed -i -e '/it should change folder successfully and return correct result/{N;s/$/\nt.Skip();/}'\
@@ -61,9 +62,14 @@ buildGoModule rec {
     tar -xvf $srcStatic
     mkdir -p $out/share/grafana
     mv grafana-*/{public,conf,tools} $out/share/grafana/
+
+    cp ./conf/defaults.ini $out/share/grafana/conf/
   '';
 
-  passthru.tests = { inherit (nixosTests) grafana; };
+  passthru = {
+    tests = { inherit (nixosTests) grafana; };
+    updateScript = ./update.sh;
+  };
 
   meta = with lib; {
     description = "Gorgeous metric viz, dashboards & editors for Graphite, InfluxDB & OpenTSDB";

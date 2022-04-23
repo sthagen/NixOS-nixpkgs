@@ -45,21 +45,35 @@ in
 
 stdenv.mkDerivation rec {
   pname = "glib";
-  version = "2.70.0";
+  version = "2.72.0";
 
   src = fetchurl {
     url = "mirror://gnome/sources/glib/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "0hh7hk02fkm1bn48k4z8f3kgv9qbni5z22gizd567fn527w7s390";
+    sha256 = "177w1MTnpi4I77jl8lKgE1cAe5WIqH/ytGOjhXAR950=";
   };
 
   patches = optionals stdenv.isDarwin [
     ./darwin-compilation.patch
-    ./link-with-coreservices.patch
+
+    # Fix Inkscape compilation with clang++
+    # https://gitlab.gnome.org/GNOME/glib/-/issues/2625
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/97d39b745ff1f621424f68a41ce0a7c5bb554c87.patch";
+      sha256 = "wftuyf3ExFfrISngCQpEUpIGfHCCLXeYv/PEb/TE6a8=";
+      revert = true;
+    })
   ] ++ optionals stdenv.hostPlatform.isMusl [
     ./quark_init_on_demand.patch
     ./gobject_init_on_demand.patch
   ] ++ [
+    ./glib-appinfo-watch.patch
     ./schema-override-variable.patch
+
+    # Add support for the GNOME’s default terminal emulator.
+    # https://gitlab.gnome.org/GNOME/glib/-/issues/2618
+    ./gnome-console-support.patch
+    # Do the same for Pantheon’s terminal emulator.
+    ./elementary-terminal-support.patch
 
     # GLib contains many binaries used for different purposes;
     # we will install them to different outputs:
@@ -92,6 +106,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     libelf setupHook pcre
+  ] ++ optionals (!stdenv.hostPlatform.isWindows) [
     bash gnum4 # install glib-gettextize and m4 macros for other apps to use
   ] ++ optionals stdenv.isLinux [
     libselinux
@@ -114,7 +129,10 @@ stdenv.mkDerivation rec {
   strictDeps = true;
 
   nativeBuildInputs = [
-    meson ninja pkg-config perl python3 gettext gtk-doc docbook_xsl docbook_xml_dtd_45 libxml2
+    (buildPackages.meson.override {
+      withDarwinFrameworksGtkDocPatch = stdenv.isDarwin;
+    })
+    ninja pkg-config perl python3 gettext gtk-doc docbook_xsl docbook_xml_dtd_45 libxml2
   ];
 
   propagatedBuildInputs = [ zlib libffi gettext libiconv ];
@@ -140,8 +158,11 @@ stdenv.mkDerivation rec {
     chmod +x docs/reference/gio/concat-files-helper.py
     patchShebangs docs/reference/gio/concat-files-helper.py
     patchShebangs glib/gen-unicode-tables.pl
-    patchShebangs tests/gen-casefold-txt.py
-    patchShebangs tests/gen-casemap-txt.py
+    patchShebangs glib/tests/gen-casefold-txt.py
+    patchShebangs glib/tests/gen-casemap-txt.py
+  '' + lib.optionalString stdenv.hostPlatform.isWindows ''
+    substituteInPlace gio/win32/meson.build \
+      --replace "libintl, " ""
   '';
 
   DETERMINISTIC_BUILD = 1;
@@ -190,10 +211,17 @@ stdenv.mkDerivation rec {
 
   passthru = rec {
     gioModuleDir = "lib/gio/modules";
-    makeSchemaPath = dir: name: "${dir}/share/gsettings-schemas/${name}/glib-2.0/schemas";
+
+    makeSchemaDataDirPath = dir: name: "${dir}/share/gsettings-schemas/${name}";
+    makeSchemaPath = dir: name: "${makeSchemaDataDirPath dir name}/glib-2.0/schemas";
     getSchemaPath = pkg: makeSchemaPath pkg pkg.name;
+    getSchemaDataDirPath = pkg: makeSchemaDataDirPath pkg pkg.name;
+
     inherit flattenInclude;
-    updateScript = gnome.updateScript { packageName = "glib"; };
+    updateScript = gnome.updateScript {
+      packageName = "glib";
+      versionPolicy = "odd-unstable";
+    };
   };
 
   meta = with lib; {

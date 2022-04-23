@@ -2,7 +2,6 @@
 , stdenv
 , substituteAll
 , fetchurl
-, fetchpatch
 , pkg-config
 , gettext
 , docbook-xsl-nons
@@ -24,7 +23,7 @@
 , gobject-introspection
 , fribidi
 , xorg
-, epoxy
+, libepoxy
 , libxkbcommon
 , libxml2
 , gmp
@@ -44,6 +43,7 @@
 , cups
 , AppKit
 , Cocoa
+, QuartzCore
 , broadwaySupport ? true
 }:
 
@@ -59,7 +59,7 @@ in
 
 stdenv.mkDerivation rec {
   pname = "gtk+3";
-  version = "3.24.30";
+  version = "3.24.33";
 
   outputs = [ "out" "dev" ] ++ lib.optional withGtkDoc "devdoc";
   outputBin = "dev";
@@ -71,7 +71,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "mirror://gnome/sources/gtk+/${lib.versions.majorMinor version}/gtk+-${version}.tar.xz";
-    sha256 = "sha256-unW//zIK0fTPvukrqBPsM2MizDxmDUBqrQFLBwh6O6k=";
+    sha256 = "sha256-WIsGUi4l0VeemJtvnYob2/L+E83gGgTpBP80aiJeeAE=";
   };
 
   patches = [
@@ -104,7 +104,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     libxkbcommon
-    epoxy
+    (libepoxy.override { inherit x11Support; })
     isocodes
   ] ++ lib.optionals stdenv.isDarwin [
     AppKit
@@ -133,6 +133,7 @@ stdenv.mkDerivation rec {
   ] ++ lib.optionals stdenv.isDarwin [
     # explicitly propagated, always needed
     Cocoa
+    QuartzCore
   ] ++ lib.optionals waylandSupport [
     libGL
     wayland
@@ -148,6 +149,8 @@ stdenv.mkDerivation rec {
     "-Dtests=false"
     "-Dtracker3=${lib.boolToString trackerSupport}"
     "-Dbroadway_backend=${lib.boolToString broadwaySupport}"
+    "-Dx11_backend=${lib.boolToString x11Support}"
+    "-Dquartz_backend=${lib.boolToString (stdenv.isDarwin && !x11Support)}"
   ];
 
   doCheck = false; # needs X11
@@ -159,6 +162,10 @@ stdenv.mkDerivation rec {
   NIX_CFLAGS_COMPILE = "-DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS";
 
   postPatch = ''
+    # See https://github.com/NixOS/nixpkgs/issues/132259
+    substituteInPlace meson.build \
+      --replace "x11_enabled = false" ""
+
     files=(
       build-aux/meson/post-install.py
       demos/gtk-demo/geninclude.py
@@ -202,6 +209,7 @@ stdenv.mkDerivation rec {
     updateScript = gnome.updateScript {
       packageName = "gtk+";
       attrPath = "gtk3";
+      freeze = true;
     };
   };
 

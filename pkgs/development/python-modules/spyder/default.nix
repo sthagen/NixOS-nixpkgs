@@ -1,5 +1,5 @@
 { lib, buildPythonPackage, fetchPypi, isPy27, makeDesktopItem, intervaltree,
-  jedi, pycodestyle, psutil, pyflakes, rope, numpy, scipy, matplotlib, pylint,
+  jedi, pycodestyle, psutil, rope, numpy, scipy, matplotlib, pylint,
   keyring, numpydoc, qtconsole, qtawesome, nbconvert, mccabe, pyopengl,
   cloudpickle, pygments, spyder-kernels, qtpy, pyzmq, chardet, qdarkstyle,
   watchdog, python-language-server, pyqtwebengine, atomicwrites, pyxdg,
@@ -8,13 +8,13 @@
 
 buildPythonPackage rec {
   pname = "spyder";
-  version = "5.1.1";
+  version = "5.3.0";
 
   disabled = isPy27;
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "6551acfd6fedfebd1f938ef67d3db415b33540f8377e7de3f4d4a2a11dd1b915";
+    sha256 = "sha256-ggCFvYUdUm5fVSpTZoN/OhNPJAQOyehwrQprYTzprbc=";
   };
 
   nativeBuildInputs = [ pyqtwebengine.wrapQtAppsHook ];
@@ -37,7 +37,7 @@ buildPythonPackage rec {
     comment = "Scientific Python Development Environment";
     desktopName = "Spyder";
     genericName = "Python IDE";
-    categories = "Development;IDE;";
+    categories = [ "Development" "IDE" ];
   };
 
   postPatch = ''

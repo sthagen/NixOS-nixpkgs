@@ -16,6 +16,7 @@
 , version
 , sha256
 , extraMeta ? { }
+, callPackage
 , ...
 }:
 
@@ -37,7 +38,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     inherit sha256;
-    url = "mirror://apache/cassandra/${version}/apache-${pname}-${version}-bin.tar.gz";
+    url = "mirror://apache/cassandra/${version}/apache-cassandra-${version}-bin.tar.gz";
   };
 
   nativeBuildInputs = [ makeWrapper coreutils ];
@@ -54,7 +55,6 @@ stdenv.mkDerivation rec {
        $out/LICENSE.txt \
        $out/NEWS.txt \
        $out/NOTICE.txt \
-       $out/javadoc \
        $out/share/doc/${pname}-${version}
 
     if [[ -d $out/doc ]]; then
@@ -114,10 +114,12 @@ stdenv.mkDerivation rec {
           assert test.testPackage.version == version;
           test;
       };
+
+    updateScript = callPackage ./update-script.nix { inherit generation; };
   };
 
   meta = with lib; {
-    homepage = "http://cassandra.apache.org/";
+    homepage = "https://cassandra.apache.org/";
     description = "A massively scalable open source NoSQL database";
     platforms = platforms.unix;
     license = licenses.asl20;

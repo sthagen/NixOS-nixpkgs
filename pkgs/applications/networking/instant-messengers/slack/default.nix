@@ -18,7 +18,6 @@
 , freetype
 , gdk-pixbuf
 , glib
-, gnome2
 , gtk3
 , libGL
 , libappindicator-gtk3
@@ -33,6 +32,7 @@
 , nspr
 , nss
 , pango
+, pipewire
 , systemd
 , xdg-utils
 , xorg
@@ -44,46 +44,45 @@ let
 
   pname = "slack";
 
-  x86_64-darwin-version = "4.20.0";
-  x86_64-darwin-sha256 = "1argl690i4dgz5ih02zg9v4zrlzm282wmibnc6p7xy5jisd5g79w";
+  x86_64-darwin-version = "4.25.0";
+  x86_64-darwin-sha256 = "1ffg003ic0jhkis9ai2873axwzqj9yvjab8212zwhvr3a23zzr5c";
 
-  x86_64-linux-version = "4.20.0";
-  x86_64-linux-sha256 = "1r8w8s3y74lh4klsmzq2d3f0h721b3a2b53nx8v7b0s6j8w0g0mh";
+  x86_64-linux-version = "4.25.1";
+  x86_64-linux-sha256 = "sha256-ndDVipgcLELRZ2siIAurq7umL62+g3yRL0U311DC8Ik=";
 
-  aarch64-darwin-version = "4.20.0";
-  aarch64-darwin-sha256 = "1argl690i4dgz5ih02zg9v4zrlzm282wmibnc6p7xy5jisd5g79w";
+  aarch64-darwin-version = "4.25.0";
+  aarch64-darwin-sha256 = "0s4c66bzi42y2r1c94r4ds5fyzzgvzkvrria0z45ysa47lnldp0f";
 
   version = {
     x86_64-darwin = x86_64-darwin-version;
-    aarch64-darwin = aarch64-darwin-version;
     x86_64-linux = x86_64-linux-version;
+    aarch64-darwin =  aarch64-darwin-version;
   }.${system} or throwSystem;
 
-  src =
-    let
-      base = "https://downloads.slack-edge.com";
-    in
-      {
-        x86_64-darwin = fetchurl {
-          url = "${base}/releases/macos/${version}/prod/x64/Slack-${version}-macOS.dmg";
-          sha256 = x86_64-darwin-sha256;
-        };
-        aarch64-darwin = fetchurl {
-          url = "${base}/releases/macos/${version}/prod/arm64/Slack-${version}-macOS.dmg";
-          sha256 = aarch64-darwin-sha256;
-        };
-        x86_64-linux = fetchurl {
-          url = "${base}/releases/linux/${version}/prod/x64/slack-desktop-${version}-amd64.deb";
-          sha256 = x86_64-linux-sha256;
-        };
-      }.${system} or throwSystem;
+
+  src = let
+    base = "https://downloads.slack-edge.com";
+  in {
+    x86_64-darwin = fetchurl {
+      url = "${base}/releases/macos/${version}/prod/x64/Slack-${version}-macOS.dmg";
+      sha256 = x86_64-darwin-sha256;
+    };
+    x86_64-linux = fetchurl {
+      url = "${base}/releases/linux/${version}/prod/x64/slack-desktop-${version}-amd64.deb";
+      sha256 = x86_64-linux-sha256;
+    };
+    aarch64-darwin = fetchurl {
+      url = "${base}/releases/macos/${version}/prod/arm64/Slack-${version}-macOS.dmg";
+      sha256 = aarch64-darwin-sha256;
+    };
+  }.${system} or throwSystem;
 
   meta = with lib; {
     description = "Desktop client for Slack";
     homepage = "https://slack.com";
     license = licenses.unfree;
-    maintainers = with maintainers; [ mmahut ];
-    platforms = [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin"];
+    maintainers = with maintainers; [ mmahut maxeaubrey ];
+    platforms = [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ];
   };
 
   linux = stdenv.mkDerivation rec {
@@ -105,7 +104,6 @@ let
       freetype
       gdk-pixbuf
       glib
-      gnome2.GConf
       gtk3
       libGL
       libappindicator-gtk3
@@ -119,6 +117,7 @@ let
       nspr
       nss
       pango
+      pipewire
       stdenv.cc.cc
       systemd
       xorg.libX11
@@ -168,7 +167,8 @@ let
       rm $out/bin/slack
       makeWrapper $out/lib/slack/slack $out/bin/slack \
         --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --prefix PATH : ${lib.makeBinPath [xdg-utils]}
+        --prefix PATH : ${lib.makeBinPath [xdg-utils]} \
+        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--enable-features=UseOzonePlatform --ozone-platform=wayland}}"
 
       # Fix the desktop link
       substituteInPlace $out/share/applications/slack.desktop \
@@ -192,7 +192,10 @@ let
       runHook preInstall
       mkdir -p $out/Applications/Slack.app
       cp -R . $out/Applications/Slack.app
-      /usr/bin/defaults write com.tinyspeck.slackmacgap SlackNoAutoUpdates -bool YES
+    '' + lib.optionalString (!stdenv.isAarch64) ''
+      # on aarch64-darwin we get: Could not write domain com.tinyspeck.slackmacgap; exiting
+      /usr/bin/defaults write com.tinyspeck.slackmacgap SlackNoAutoUpdates -Bool YES
+    '' + ''
       runHook postInstall
     '';
   };

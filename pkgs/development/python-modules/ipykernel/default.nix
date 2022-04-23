@@ -1,29 +1,37 @@
 { lib
-, stdenv
 , buildPythonPackage
 , callPackage
 , fetchPypi
-, debugpy
+, pythonOlder
 , ipython
-, jupyter_client
+, jupyter-client
+, packaging
+, psutil
 , tornado
 , traitlets
-, pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "ipykernel";
-  version = "6.3.0";
+  version = "6.12.1";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "5314690a638f893e2cc3bf3d25042920e9fbb873f7d8263033390264caeb95f4";
+    sha256 = "sha256-CGj1VhcpreREAR+Mp9NQLcnyf39E4g8dX+5+Hytxg6E=";
   };
 
+  # debugpy is optional, see https://github.com/ipython/ipykernel/pull/767
+  postPatch = ''
+    sed -i "/debugpy/d" setup.py
+  '';
+
   propagatedBuildInputs = [
-    debugpy
     ipython
-    jupyter_client
+    jupyter-client
+    packaging
+    psutil
     tornado
     traitlets
   ];

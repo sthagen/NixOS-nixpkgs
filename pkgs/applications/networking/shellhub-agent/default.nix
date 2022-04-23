@@ -1,33 +1,31 @@
 { lib
 , buildGoModule
 , fetchFromGitHub
-, genericUpdater
-, common-updater-scripts
+, gitUpdater
 , makeWrapper
 , openssh
 }:
 
 buildGoModule rec {
   pname = "shellhub-agent";
-  version = "0.7.2";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "shellhub-io";
     repo = "shellhub";
     rev = "v${version}";
-    sha256 = "02ka7acynkwkml2pavlv4j5vkm6x5aq5sfxgydv26qzs39f1wdgc";
+    sha256 = "E1TX3GBVKn0tXloNhyiXOtDwSlO7mwXJ6zaOSHKZEFc=";
   };
 
   modRoot = "./agent";
 
-  vendorSha256 = "18z3vwcwkyj6hcvl35qmj034237h9l18dvcbx1hxry7qdwv807c9";
+  vendorSha256 = "sha256-sPb49tRUHhwow7+IKiN33sgWYAa3lTpOD1vh8e5Wy68=";
 
   ldflags = [ "-s" "-w" "-X main.AgentVersion=v${version}" ];
 
   passthru = {
-    updateScript = genericUpdater {
+    updateScript = gitUpdater {
       inherit pname version;
-      versionLister = "${common-updater-scripts}/bin/list-git-tags ${src.meta.homepage}";
       rev-prefix = "v";
       ignoredVersions = ".(rc|beta).*";
     };

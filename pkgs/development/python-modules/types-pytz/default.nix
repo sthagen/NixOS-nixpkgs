@@ -5,17 +5,20 @@
 
 buildPythonPackage rec {
   pname = "types-pytz";
-  version = "2021.3.0";
+  version = "2021.3.6";
+  format = "setuptools";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-hqYZZ4NNzuqvmLaQLtg1fv3SYruK/K9LyMzs90hZJ3g=";
+    sha256 = "sha256-dFR/2Q2NirTx7t86NEp9GG2XSGlziV+BIhpxLh4s2ZM=";
   };
 
   # Modules doesn't have tests
   doCheck = false;
 
-  pythonImportsCheck = [ "pytz-stubs" ];
+  pythonImportsCheck = [
+    "pytz-stubs"
+  ];
 
   meta = with lib; {
     description = "Typing stubs for pytz";

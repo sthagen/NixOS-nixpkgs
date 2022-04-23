@@ -5,7 +5,7 @@
 , pkgs
 , stdenv
 , fetchzip
-, openjdk16
+, jdk
 , nodejs
 , pathDeps ? [ ]
 }:
@@ -54,6 +54,7 @@ buildGoModule rec {
     description = "A free, open source game management panel";
     homepage = "https://www.pufferpanel.com/";
     license = with licenses; [ asl20 ];
-    maintainers = with maintainers; [ ronthecookie ];
+    maintainers = with maintainers; [ ckie ];
+    broken = stdenv.isDarwin; # never built on Hydra https://hydra.nixos.org/job/nixpkgs/trunk/pufferpanel.x86_64-darwin
   };
 }

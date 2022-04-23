@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "swayr";
-  version = "0.7.0";
+  version = "0.16.1";
 
   src = fetchFromSourcehut {
     owner = "~tsdh";
     repo = "swayr";
     rev = "v${version}";
-    sha256 = "sha256-B19cHdoiCbxhvRGi3NzKPKneKgOI4+l8+Qg9/YVgUV8=";
+    sha256 = "sha256-c/VHD5VceddhKanuId4rG1Tl+9Bg7zUmIqq4gMsy1e0=";
   };
 
-  cargoSha256 = "sha256-iO64K+d/wEyY/tVztIG8zYSha5X0iTHV7IDVthMJQGA=";
+  cargoSha256 = "sha256-0aGMWuU6DvBr9tvgDd1GZqhlY8bGCuPs8pSc5A03L3w=";
 
   patches = [
     ./icon-paths.patch

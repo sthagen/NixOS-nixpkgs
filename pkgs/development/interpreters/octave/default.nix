@@ -58,9 +58,6 @@
 , qtscript ? null
 , qscintilla ? null
 , qttools ? null
-# - JIT compiler for loops:
-, enableJIT ? false
-, llvm ? null
 , libiconv
 , darwin
 }:
@@ -114,12 +111,12 @@ let
   };
 
   self = mkDerivation rec {
-    version = "6.3.0";
+    version = "7.1.0";
     pname = "octave";
 
     src = fetchurl {
       url = "mirror://gnu/octave/${pname}-${version}.tar.gz";
-      sha256 = "sha256-IyBl86cvwwE/6fF/Qpo99p1nLB9rYHcCmjHI881Ypm4=";
+      sha256 = "sha256-1KnYHz9ntKbgfLeoDcsQrV6RdvzDB2LHCoFYCmS4sLY=";
     };
 
     buildInputs = [
@@ -173,7 +170,6 @@ let
       texinfo
     ]
     ++ lib.optionals (sundials != null) [ sundials ]
-    ++ lib.optionals enableJIT [ llvm ]
     ++ lib.optionals enableQt [
       qtscript
       qttools
@@ -187,11 +183,6 @@ let
     # Fix linker error on Darwin (see https://trac.macports.org/ticket/61865)
     NIX_LDFLAGS = lib.optionalString stdenv.isDarwin "-lobjc";
 
-    # Avoid Qt 5.12 problem on Big Sur: https://bugreports.qt.io/browse/QTBUG-87014
-    qtWrapperArgs = lib.optionals stdenv.isDarwin [
-      "--set QT_MAC_WANTS_LAYER 1"
-    ];
-
     # See https://savannah.gnu.org/bugs/?50339
     F77_INTEGER_8_FLAG = if use64BitIdx then "-fdefault-integer-8" else "";
 
@@ -204,7 +195,6 @@ let
     ++ lib.optionals enableReadline [ "--enable-readline" ]
     ++ lib.optionals stdenv.isDarwin [ "--with-x=no" ]
     ++ lib.optionals enableQt [ "--with-qt=5" ]
-    ++ lib.optionals enableJIT [ "--enable-jit" ]
     ;
 
     # Keep a copy of the octave tests detailed results in the output
@@ -225,7 +215,7 @@ let
       inherit portaudio;
       inherit jdk;
       inherit python;
-      inherit enableQt enableJIT enableReadline enableJava;
+      inherit enableQt enableReadline enableJava;
       buildEnv = callPackage ./build-env.nix {
         octave = self;
         inherit octavePackages wrapOctave;
@@ -240,9 +230,7 @@ let
       homepage = "https://www.gnu.org/software/octave/";
       license = lib.licenses.gpl3Plus;
       maintainers = with lib.maintainers; [ raskin doronbehar ];
-      description = "Scientific Pragramming Language";
-      # https://savannah.gnu.org/bugs/?func=detailitem&item_id=56425 is the best attempt to fix JIT
-      broken = enableJIT;
+      description = "Scientific Programming Language";
       platforms = if overridePlatforms == null then
         (lib.platforms.linux ++ lib.platforms.darwin)
       else overridePlatforms;

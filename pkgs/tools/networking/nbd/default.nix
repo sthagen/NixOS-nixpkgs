@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, pkg-config, glib, which }:
+{ lib, stdenv, fetchurl, pkg-config, glib, which, nixosTests }:
 
 stdenv.mkDerivation rec {
   pname = "nbd";
@@ -21,6 +21,10 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  passthru.tests = {
+    test = nixosTests.nbd;
+  };
+
   # Glib calls `clock_gettime', which is in librt. Linking that library
   # here ensures that a proper rpath is added to the executable so that
   # it can be loaded at run-time.
@@ -30,7 +34,6 @@ stdenv.mkDerivation rec {
     homepage = "http://nbd.sourceforge.net";
     description = "Map arbitrary files as block devices over the network";
     license = lib.licenses.gpl2;
-    maintainers = [ lib.maintainers.peti ];
     platforms = lib.platforms.linux;
   };
 }

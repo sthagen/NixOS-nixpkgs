@@ -16,13 +16,20 @@
 
 buildPythonPackage rec {
   pname = "fakeredis";
-  version = "1.6.1";
-  disabled = pythonOlder "3.5";
+  version = "1.7.1";
+  format = "pyproject";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-DQapOE+3nanyFkzpbjTrnU4upGIVBwgF6m/TwXRZC0c=";
+    hash = "sha256-fCxLobQuCnUzfFS3d78GcQVrRWllDj/5J+S5s4WvyOw=";
   };
+
+  postPatch = ''
+    substituteInPlace setup.cfg \
+      --replace "redis<4.2.0" "redis"
+  '';
 
   propagatedBuildInputs = [
     aioredis
@@ -40,12 +47,9 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
-  disabledTestPaths = [
-    # AttributeError: 'AsyncGenerator' object has no attribute XXXX
-    "test/test_aioredis2.py"
+  pythonImportsCheck = [
+    "fakeredis"
   ];
-
-  pythonImportsCheck = [ "fakeredis" ];
 
   meta = with lib; {
     description = "Fake implementation of Redis API";

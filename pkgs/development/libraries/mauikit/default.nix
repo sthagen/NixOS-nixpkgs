@@ -14,14 +14,14 @@
 
 mkDerivation rec {
   pname = "mauikit";
-  version = "2.0.2";
+  version = "2.1.1";
 
   src = fetchFromGitLab {
     domain = "invent.kde.org";
     owner = "maui";
     repo = "mauikit";
     rev = "v${version}";
-    sha256 = "sha256-skukb9M6jhijCTb+tMIz/3vUCAvVJw+4zTFv9Z7HqWk=";
+    hash = "sha256-INvh+J484xkAsNGtYdf8NGGpFGp2AG7s9UYESoem3QY=";
   };
 
   nativeBuildInputs = [

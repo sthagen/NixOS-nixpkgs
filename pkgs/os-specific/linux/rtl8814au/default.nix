@@ -2,16 +2,17 @@
 
 stdenv.mkDerivation {
   pname = "rtl8814au";
-  version = "${kernel.version}-unstable-2021-05-18";
+  version = "${kernel.version}-unstable-2022-02-21";
 
   src = fetchFromGitHub {
     owner = "morrownr";
     repo = "8814au";
-    rev = "388786c864f9b1437fc4d934b1eccf6d7f1e1355";
-    sha256 = "sha256-2EnheODPFWTGN/fz45LWRSOGeV6pTENEUrehahj+PJ4=";
+    rev = "a538e3878c4b7b0b012f2d2fe7804390caaebd90";
+    sha256 = "sha256-xBGbcy/WonFrNflMlFCD/JQOFKhPrv0J3j2XcXWc6hk=";
   };
 
-  buildInputs = kernel.moduleBuildDependencies;
+  nativeBuildInputs = kernel.moduleBuildDependencies;
+  makeFlags = kernel.makeFlags;
 
   hardeningDisable = [ "pic" ];
 

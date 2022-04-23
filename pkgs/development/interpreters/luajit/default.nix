@@ -4,7 +4,7 @@
 , buildPackages
 , name ? "luajit-${version}"
 , isStable
-, sha256
+, hash
 , rev
 , version
 , extraMeta ? { }
@@ -46,14 +46,10 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "LuaJIT";
     repo = "LuaJIT";
-    inherit sha256 rev;
+    inherit hash rev;
   };
 
   luaversion = "5.1";
-
-  # Fix for pcall on aarch64-darwin.
-  # Upstream issue: https://github.com/LuaJIT/LuaJIT/issues/698
-  patches = lib.optionals (stdenv.hostPlatform.system == "aarch64-darwin") [ ./aarch64-darwin-disable-unwind-external.patch ];
 
   postPatch = ''
     substituteInPlace Makefile --replace ldconfig :
@@ -117,6 +113,6 @@ stdenv.mkDerivation rec {
     homepage = "http://luajit.org";
     license = licenses.mit;
     platforms = platforms.linux ++ platforms.darwin;
-    maintainers = with maintainers; [ thoughtpolice smironov vcunat andir lblasc ];
+    maintainers = with maintainers; [ thoughtpolice smironov vcunat lblasc ];
   } // extraMeta;
 }

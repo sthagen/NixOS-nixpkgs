@@ -5,21 +5,28 @@
 
 stdenv.mkDerivation rec {
   pname = "rdma-core";
-  version = "37.0";
+  version = "39.1";
 
   src = fetchFromGitHub {
     owner = "linux-rdma";
     repo = "rdma-core";
     rev = "v${version}";
-    sha256 = "0cz6dq34w0zxm1c6xk4pqascvvppa1b0m8jfnpncg5a68day8x65";
+    sha256 = "19jfrb0jv050abxswzh34nx2zr8if3rb2k5a7n5ydvi3x9r8827w";
   };
 
-  nativeBuildInputs = [ cmake pkg-config pandoc docutils ];
-  buildInputs = [ libnl ethtool iproute2 udev python3 perl ];
+  strictDeps = true;
+  nativeBuildInputs = [ cmake pkg-config pandoc docutils python3 ];
+  buildInputs = [ libnl ethtool iproute2 udev perl ];
 
   cmakeFlags = [
     "-DCMAKE_INSTALL_RUNDIR=/run"
     "-DCMAKE_INSTALL_SHAREDSTATEDIR=/var/lib"
+  ];
+
+  patches = [
+    # this has been fixed in master. As soon as it gets into a release, this
+    # patch won't apply anymore and can be removed.
+    ./pkg-config-template.patch
   ];
 
   postPatch = ''

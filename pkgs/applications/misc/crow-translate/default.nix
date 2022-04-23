@@ -34,8 +34,8 @@ let
   qonlinetranslator = fetchFromGitHub {
     owner = "crow-translate";
     repo = "QOnlineTranslator";
-    rev = "df89083d2f680a8f856b1df00b8846f995cf1fae";
-    sha256 = "sha256-I64KGInnYd/QdI5kANJERsF95wMvRlr8kgQhUqXXN/0=";
+    rev = "1.5.3";
+    sha256 = "sha256-L8y4vazbWD5SC7itxQOjEcX10w0laewxTOGz+Yd+kVM=";
   };
   circleflags = fetchFromGitHub {
     owner = "HatScripts";
@@ -52,13 +52,13 @@ let
 in
 mkDerivation rec {
   pname = "crow-translate";
-  version = "2.8.7";
+  version = "2.9.2";
 
   src = fetchFromGitHub {
     owner = "crow-translate";
     repo = pname;
     rev = version;
-    sha256 = "sha256-0bq9itbFyzdOhdNuUtdCYLTCIhc91MM+YRhJgXC5PPw=";
+    sha256 = "sha256-cxfBdoqGVmtCaXyw6QzXj2V44wKyVal/uqsddwIdvjw=";
   };
 
   patches = [

@@ -1,4 +1,4 @@
-{ mkXfceDerivation, gtk3, libxfce4ui, vte, xfconf, pcre2, libxslt, docbook_xml_dtd_45, docbook_xsl }:
+{ lib, mkXfceDerivation, gtk3, libxfce4ui, vte, xfconf, pcre2, libxslt, docbook_xml_dtd_45, docbook_xsl, nixosTests }:
 
 mkXfceDerivation {
   category = "apps";
@@ -11,7 +11,10 @@ mkXfceDerivation {
 
   buildInputs = [ gtk3 libxfce4ui vte xfconf pcre2 ];
 
-  meta = {
+  passthru.tests.test = nixosTests.terminal-emulators.xfce4-terminal;
+
+  meta = with lib; {
     description = "A modern terminal emulator";
+    maintainers = with maintainers; [ ] ++ teams.xfce.members;
   };
 }

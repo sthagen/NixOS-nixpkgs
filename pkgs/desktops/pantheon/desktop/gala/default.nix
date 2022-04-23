@@ -1,7 +1,7 @@
-{ lib, stdenv
+{ lib
+, stdenv
 , fetchFromGitHub
 , nix-update-script
-, pantheon
 , pkg-config
 , meson
 , python3
@@ -14,14 +14,10 @@
 , granite
 , libgee
 , bamf
-, libcanberra
 , libcanberra-gtk3
 , gnome-desktop
 , mutter
 , clutter
-, elementary-dock
-, elementary-icon-theme
-, elementary-settings-daemon
 , gnome-settings-daemon
 , wrapGAppsHook
 , gexiv2
@@ -29,20 +25,20 @@
 
 stdenv.mkDerivation rec {
   pname = "gala";
-  version = "6.2.1";
+  version = "6.3.1";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "1phnhj731kvk8ykmm33ypcxk8fkfny9k6kdapl582qh4d47wcy6f";
+    sha256 = "sha256-7RZt6gA3wyp1cxIWBYFK+fYFSZDbjHcwYa2snOmDw1Y=";
   };
 
-  passthru = {
-    updateScript = nix-update-script {
-      attrPath = "pantheon.${pname}";
-    };
-  };
+  patches = [
+    # We look for plugins in `/run/current-system/sw/lib/` because
+    # there are multiple plugin providers (e.g. gala and wingpanel).
+    ./plugins-dir.patch
+  ];
 
   nativeBuildInputs = [
     desktop-file-utils
@@ -59,22 +55,20 @@ stdenv.mkDerivation rec {
   buildInputs = [
     bamf
     clutter
-    elementary-dock
-    elementary-icon-theme
-    elementary-settings-daemon
     gnome-settings-daemon
     gexiv2
     gnome-desktop
     granite
     gtk3
-    libcanberra
     libcanberra-gtk3
     libgee
     mutter
   ];
 
-  patches = [
-    ./plugins-dir.patch
+  mesonFlags = [
+    # TODO: enable this and remove --builtin flag from session-settings
+    # https://github.com/NixOS/nixpkgs/pull/140429
+    "-Dsystemd=false"
   ];
 
   postPatch = ''
@@ -82,11 +76,18 @@ stdenv.mkDerivation rec {
     patchShebangs build-aux/meson/post_install.py
   '';
 
-  meta =  with lib; {
+  passthru = {
+    updateScript = nix-update-script {
+      attrPath = "pantheon.${pname}";
+    };
+  };
+
+  meta = with lib; {
     description = "A window & compositing manager based on mutter and designed by elementary for use with Pantheon";
     homepage = "https://github.com/elementary/gala";
     license = licenses.gpl3Plus;
     platforms = platforms.linux;
     maintainers = teams.pantheon.members;
+    mainProgram = "gala";
   };
 }

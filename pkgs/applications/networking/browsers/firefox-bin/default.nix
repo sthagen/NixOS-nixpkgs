@@ -11,7 +11,6 @@
 , gdk-pixbuf
 , glib
 , glibc
-, gtk2
 , gtk3
 , libkrb5
 , libX11
@@ -25,7 +24,9 @@
 , libXi
 , libXinerama
 , libXrender
+, libXrandr
 , libXt
+, libXtst
 , libcanberra
 , libnotify
 , adwaita-icon-theme
@@ -50,7 +51,7 @@
 , ffmpeg
 , runtimeShell
 , mesa # firefox wants gbm for drm+dmabuf
-, systemLocale ? config.i18n.defaultLocale or "en-US"
+, systemLocale ? config.i18n.defaultLocale or "en_US"
 }:
 
 let
@@ -78,7 +79,12 @@ let
 
   defaultSource = lib.findFirst (sourceMatches "en-US") {} sources;
 
-  source = lib.findFirst (sourceMatches systemLocale) defaultSource sources;
+  mozLocale =
+    if systemLocale == "ca_ES@valencia"
+    then "ca-valencia"
+    else lib.replaceStrings ["_"] ["-"] systemLocale;
+
+  source = lib.findFirst (sourceMatches mozLocale) defaultSource sources;
 
   pname = "firefox-${channel}-bin-unwrapped";
 
@@ -103,7 +109,6 @@ stdenv.mkDerivation {
       gdk-pixbuf
       glib
       glibc
-      gtk2
       gtk3
       libkrb5
       mesa
@@ -118,7 +123,9 @@ stdenv.mkDerivation {
       libXi
       libXinerama
       libXrender
+      libXrandr
       libXt
+      libXtst
       libcanberra
       libnotify
       libGLU libGL
@@ -181,6 +188,8 @@ stdenv.mkDerivation {
       ln -s ${policiesJson} "$out/lib/firefox-bin-${version}/distribution/policies.json";
     '';
 
+  passthru.binaryName = "firefox";
+  passthru.libName = "firefox-bin-${version}";
   passthru.execdir = "/bin";
   passthru.ffmpegSupport = true;
   passthru.gssSupport = true;

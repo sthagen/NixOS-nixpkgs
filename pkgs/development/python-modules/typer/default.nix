@@ -1,28 +1,33 @@
 { lib
+, stdenv
 , buildPythonPackage
+, fetchpatch
 , fetchPypi
+, flit-core
 , click
 , pytestCheckHook
 , shellingham
 , pytest-xdist
 , pytest-sugar
 , coverage
-, mypy
-, black
-, isort
 , pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "typer";
-  version = "0.4.0";
+  version = "0.4.1";
+  format = "pyproject";
 
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "1pgm0zsylbmz1r96q4n3rfi0h3pn4jss2yfs83z0yxa90nmsxhv3";
+    sha256 = "sha256-Vkau8Nk2ssdhoQOT8DhO5rXH/guz5c1xCxcTTKHZnP8=";
   };
+
+  nativeBuildInputs = [
+    flit-core
+  ];
 
   propagatedBuildInputs = [
     click
@@ -33,15 +38,17 @@ buildPythonPackage rec {
     pytest-xdist
     pytest-sugar
     shellingham
-    coverage
-    mypy
-    black
-    isort
+    coverage # execs coverage in tests
   ];
 
   preCheck = ''
     export HOME=$(mktemp -d);
   '';
+  disabledTests = lib.optionals stdenv.isDarwin [
+    # likely related to https://github.com/sarugaku/shellingham/issues/35
+    "test_show_completion"
+    "test_install_completion"
+  ];
 
   pythonImportsCheck = [ "typer" ];
 

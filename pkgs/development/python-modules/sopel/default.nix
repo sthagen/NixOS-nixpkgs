@@ -13,12 +13,12 @@
 
 buildPythonPackage rec {
   pname = "sopel";
-  version = "7.1.4";
+  version = "7.1.8";
   disabled = isPyPy;
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "d778ec2b92866eddf97d0809968bc5f9887cb5a000a518a4b67d8eb999cb775c";
+    sha256 = "sha256-zxb95GVcDrd3FG/k+0PLg+dVlMgQpf1ntG8jF/zpHH4=";
   };
 
   propagatedBuildInputs = [
@@ -56,7 +56,7 @@ buildPythonPackage rec {
 
   meta = with lib; {
     description = "Simple and extensible IRC bot";
-    homepage = "http://sopel.chat";
+    homepage = "https://sopel.chat";
     license = licenses.efl20;
     maintainers = with maintainers; [ mog ];
   };

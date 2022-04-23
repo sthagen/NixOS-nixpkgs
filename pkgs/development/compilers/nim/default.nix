@@ -72,15 +72,17 @@ let
   nimHost = parsePlatform stdenv.hostPlatform;
   nimTarget = parsePlatform stdenv.targetPlatform;
 
-  bootstrapCompiler = stdenv.mkDerivation rec {
+  bootstrapCompiler = let
+    revision = "561b417c65791cd8356b5f73620914ceff845d10";
+  in stdenv.mkDerivation {
     pname = "nim-bootstrap";
-    version = "0.20.0";
+    version = "g${lib.substring 0 7 revision}";
 
-    src = fetchgit {
-      # A Git checkout is much smaller than a GitHub tarball.
-      url = "https://github.com/nim-lang/csources.git";
-      rev = "v${version}";
-      sha256 = "0i6vsfy1sgapx43n226q8m0pvn159sw2mhp50zm3hhb9zfijanis";
+    src = fetchFromGitHub {
+      owner = "nim-lang";
+      repo = "csources_v1";
+      rev = revision;
+      sha256 = "sha256-gwBFuR7lzO4zttR/6rgdjXMRxVhwKeLqDwpmOwMyU7A=";
     };
 
     enableParallelBuilding = true;
@@ -96,12 +98,12 @@ in {
 
   nim-unwrapped = stdenv.mkDerivation rec {
     pname = "nim-unwrapped";
-    version = "1.4.8";
+    version = "1.6.4";
     strictDeps = true;
 
     src = fetchurl {
       url = "https://nim-lang.org/download/nim-${version}.tar.xz";
-      hash = "sha256-t5jFd0EdfZW4YxJh27Nnbp0a/Z42dA0ESWagVVtBRBo=";
+      hash = "sha256-f8MJKFW1wiAM2f7tEz0EYFgj8lDXO01KxQEwA3DgoMI=";
     };
 
     buildInputs = [ boehmgc openssl pcre readline sqlite ];
@@ -112,7 +114,7 @@ in {
 
       ./nixbuild.patch
       # Load libraries at runtime by absolute path
-    ];
+    ] ++ lib.optional (!stdenv.hostPlatform.isWindows) ./toLocation.patch;
 
     configurePhase = ''
       runHook preConfigure

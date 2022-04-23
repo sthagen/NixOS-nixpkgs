@@ -2,20 +2,20 @@
 
 buildGoModule rec {
   pname = "kube3d";
-  version = "5.0.0";
+  version = "5.3.0";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "1pkrcjr78xxw3idmyzpkbx0rp20972dl44bzwkkp06milrzsq27i";
+    sha256 = "sha256-ZuUjk1wb7iRZX+OpjLJHp1T0WYNjCHU6DpYF4V/heVc=";
   };
 
   vendorSha256 = null;
 
   nativeBuildInputs = [ installShellFiles ];
 
-  excludedPackages = "\\(tools\\|docgen\\)";
+  excludedPackages = [ "tools" "docgen" ];
 
   ldflags =
     let t = "github.com/rancher/k3d/v5/version"; in
@@ -49,7 +49,8 @@ buildGoModule rec {
       multi-node k3s cluster on a single machine using docker.
     '';
     license = licenses.mit;
-    maintainers = with maintainers; [ kuznero jlesquembre ngerstle jk ];
-    platforms = platforms.linux;
+    maintainers = with maintainers; [ kuznero jlesquembre ngerstle jk ricochet ];
+    mainProgram = "k3d";
+    platforms = platforms.linux ++ platforms.darwin;
   };
 }

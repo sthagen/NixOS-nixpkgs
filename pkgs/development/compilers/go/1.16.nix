@@ -7,7 +7,6 @@
 , perl
 , which
 , pkg-config
-, patch
 , procps
 , pcre
 , cacert
@@ -40,9 +39,13 @@ let
     "armv5tel" = "arm";
     "armv6l" = "arm";
     "armv7l" = "arm";
-    "powerpc64le" = "ppc64le";
     "mips" = "mips";
-  }.${platform.parsed.cpu.name} or (throw "Unsupported system");
+    "mipsel" = "mipsle";
+    "riscv64" = "riscv64";
+    "s390x" = "s390x";
+    "powerpc64le" = "ppc64le";
+    "mips64el" = "mips64le";
+  }.${platform.parsed.cpu.name} or (throw "Unsupported system: ${platform.parsed.cpu.name}");
 
   # We need a target compiler which is still runnable at build time,
   # to handle the cross-building case where build != host == target
@@ -51,15 +54,15 @@ in
 
 stdenv.mkDerivation rec {
   pname = "go";
-  version = "1.16.9";
+  version = "1.16.15";
 
   src = fetchurl {
     url = "https://dl.google.com/go/go${version}.src.tar.gz";
-    sha256 = "sha256-ChzH/XvSBEj3Hr7WTYRhOIUNUJmxjPXMEKT8RRYNjD0=";
+    sha256 = "sha256-kKCMaJJ54184ZbpRCZjDOmMlXDYImz7CBskS/AVow9M=";
   };
 
   # perl is used for testing go vet
-  nativeBuildInputs = [ perl which pkg-config patch procps ];
+  nativeBuildInputs = [ perl which pkg-config procps ];
   buildInputs = [ cacert pcre ]
     ++ lib.optionals stdenv.isLinux [ stdenv.cc.libc.out ]
     ++ lib.optionals (stdenv.hostPlatform.libc == "glibc") [ stdenv.cc.libc.static ];
@@ -126,7 +129,6 @@ stdenv.mkDerivation rec {
     # Disable cgo lookup tests not works, they depend on resolver
     rm src/net/cgo_unix_test.go
 
-  '' + lib.optionalString stdenv.isLinux ''
     # prepend the nix path to the zoneinfo files but also leave the original value for static binaries
     # that run outside a nix server
     sed -i 's,\"/usr/share/zoneinfo/,"${tzdata}/share/zoneinfo/\"\,\n\t&,' src/time/zoneinfo_unix.go
@@ -166,6 +168,7 @@ stdenv.mkDerivation rec {
     ./creds-test.patch
     ./go-1.9-skip-flaky-19608.patch
     ./go-1.9-skip-flaky-20072.patch
+    ./skip-chown-tests-1.16.patch
     ./skip-external-network-tests-1.16.patch
     ./skip-nohup-tests.patch
     ./skip-cgo-tests-1.15.patch
@@ -270,7 +273,7 @@ stdenv.mkDerivation rec {
   disallowedReferences = [ goBootstrap ];
 
   meta = with lib; {
-    homepage = "http://golang.org/";
+    homepage = "https://go.dev/";
     description = "The Go Programming language";
     license = licenses.bsd3;
     maintainers = teams.golang.members;

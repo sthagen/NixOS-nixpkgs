@@ -14,11 +14,11 @@
 
 buildPythonPackage rec {
   pname = "tqdm";
-  version = "4.62.2";
+  version = "4.63.1";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "a4d6d112e507ef98513ac119ead1159d286deab17dffedd96921412c2d236ff5";
+    sha256 = "sha256-QjCkkRmkFsiMxH0NLTLV2Q8aKC1eSX1JgBlQcE5Jhj0=";
   };
 
   nativeBuildInputs = [
@@ -36,6 +36,11 @@ buildPythonPackage rec {
   ] ++
     # pandas is not supported on i686 or risc-v
     lib.optional (!stdenv.isi686 && !stdenv.hostPlatform.isRiscV) pandas;
+
+  pytestFlagsArray = [
+    # pytest-asyncio 0.17.0 compat; https://github.com/tqdm/tqdm/issues/1289
+    "--asyncio-mode=strict"
+  ];
 
   # Remove performance testing.
   # Too sensitive for on Hydra.

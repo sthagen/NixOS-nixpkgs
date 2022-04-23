@@ -12,7 +12,7 @@
 , polkit
 , gnutls
 , ppp
-, dhcp
+, dhcpcd
 , iptables
 , nftables
 , python3
@@ -54,11 +54,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "networkmanager";
-  version = "1.32.10";
+  version = "1.36.4";
 
   src = fetchurl {
     url = "mirror://gnome/sources/NetworkManager/${lib.versions.majorMinor version}/NetworkManager-${version}.tar.xz";
-    sha256 = "sha256-PlzMZoBWWePxGnGOOlmflya3mgHW/xSBS+ati8Xai7g=";
+    sha256 = "YTBOk33ZJkcdVnFb3t57q3zKyCc1bmfycA00MxfNPFk=";
   };
 
   outputs = [ "out" "dev" "devdoc" "man" "doc" ];
@@ -96,9 +96,9 @@ stdenv.mkDerivation rec {
     "-Dresolvconf=${openresolv}/bin/resolvconf"
 
     # DHCP clients
-    "-Ddhclient=${dhcp}/bin/dhclient"
-    # Upstream prefers dhclient, so don't add dhcpcd to the closure
-    "-Ddhcpcd=no"
+    # ISC DHCP client has reached it's end of life, so stop using it
+    "-Ddhclient=no"
+    "-Ddhcpcd=${dhcpcd}/bin/dhcpcd"
     "-Ddhcpcanon=no"
 
     # Miscellaneous
@@ -191,7 +191,7 @@ stdenv.mkDerivation rec {
     description = "Network configuration and management tool";
     license = licenses.gpl2Plus;
     changelog = "https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/raw/${version}/NEWS";
-    maintainers = teams.freedesktop.members ++ (with maintainers; [ phreedom domenkozar obadz maxeaubrey ]);
+    maintainers = teams.freedesktop.members ++ (with maintainers; [ domenkozar obadz maxeaubrey ]);
     platforms = platforms.linux;
   };
 }

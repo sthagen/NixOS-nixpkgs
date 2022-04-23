@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "lf";
-  version = "24";
+  version = "27";
 
   src = fetchFromGitHub {
     owner = "gokcehan";
     repo = "lf";
     rev = "r${version}";
-    sha256 = "0nc7vfkaxxl2a201wnbz74an3siz8cjwrfylx17v6al5n93vxip0";
+    hash = "sha256-CrtVw3HhrC+D3c4ltHX8FSQnDvBpQJ890oJHoD6qPt4=";
   };
 
-  vendorSha256 = "sha256-ujQh4aE++K/fn3PJqkAbTtwRyJPSI9TJQ1DvwLF9etU=";
+  vendorSha256 = "sha256-evkQT624EGj6MUwx3/ajdIbUMYjA1QyOnIQFtTLt0Yo=";
 
   nativeBuildInputs = [ installShellFiles ];
 
@@ -20,7 +20,7 @@ buildGoModule rec {
   postInstall = ''
     install -D --mode=444 lf.desktop $out/share/applications/lf.desktop
     installManPage lf.1
-    installShellCompletion etc/lf.{zsh,fish}
+    installShellCompletion etc/lf.{bash,zsh,fish}
   '';
 
   meta = with lib; {

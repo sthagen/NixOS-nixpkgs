@@ -5,7 +5,7 @@
 , libnotify, libsoup, libgee
 , librsvg, libsignal-protocol-c
 , libgcrypt
-, epoxy
+, libepoxy
 , at-spi2-core
 , sqlite
 , dbus
@@ -13,17 +13,19 @@
 , pcre
 , qrencode
 , icu
+, gspell
+, srtp, libnice, gnutls, gstreamer, gst-plugins-base, gst-plugins-good
  }:
 
 stdenv.mkDerivation rec {
   pname = "dino";
-  version = "0.2.2";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "dino";
     repo = "dino";
     rev = "v${version}";
-    sha256 = "sha256-uYP3D2uyvfRP91fq/1jKOaKgp/+How0SUwmxSrLLH4c=";
+    sha256 = "sha256-L5a5QlF9qlr4X/hGTabbbvOE5J1x/UVneWl/BRAa29Q=";
   };
 
   nativeBuildInputs = [
@@ -50,12 +52,19 @@ stdenv.mkDerivation rec {
     libgcrypt
     libsoup
     pcre
-    epoxy
+    libepoxy
     at-spi2-core
     dbus
     icu
     libsignal-protocol-c
     librsvg
+    gspell
+    srtp
+    libnice
+    gnutls
+    gstreamer
+    gst-plugins-base
+    gst-plugins-good
   ] ++ lib.optionals (!stdenv.isDarwin) [
     xorg.libxcb
     xorg.libpthreadstubs
@@ -83,6 +92,6 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/dino/dino";
     license = licenses.gpl3Plus;
     platforms = platforms.linux ++ platforms.darwin;
-    maintainers = with maintainers; [ mic92 qyliss ];
+    maintainers = with maintainers; [ qyliss tomfitzhenry ];
   };
 }

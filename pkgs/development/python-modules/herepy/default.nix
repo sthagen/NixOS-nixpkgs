@@ -9,7 +9,8 @@
 
 buildPythonPackage rec {
   pname = "herepy";
-  version = "3.5.4";
+  version = "3.5.7";
+  format = "setuptools";
 
   disabled = pythonOlder "3.5";
 
@@ -17,13 +18,8 @@ buildPythonPackage rec {
     owner = "abdullahselek";
     repo = "HerePy";
     rev = version;
-    sha256 = "0wnkyrzpahxg7yh2qf149fzgs4x2jx3lf458syzz3crm7qix2hsk";
+    hash = "sha256-iPFFEFGH3csqzDtBtLkVkUezObwiMHNbiD/mTgIrdpo=";
   };
-
-  postPatch = ''
-    substituteInPlace requirements.txt \
-      --replace "requests==2.25.1" "requests>=2.25.1"
-  '';
 
   propagatedBuildInputs = [
     requests
@@ -34,7 +30,9 @@ buildPythonPackage rec {
     responses
   ];
 
-  pythonImportsCheck = [ "herepy" ];
+  pythonImportsCheck = [
+    "herepy"
+  ];
 
   meta = with lib; {
     description = "Library that provides a Python interface to the HERE APIs";

@@ -1,11 +1,12 @@
 # NixOS module for Buildbot continous integration server.
 
-{ config, lib, pkgs, ... }:
+{ config, lib, options, pkgs, ... }:
 
 with lib;
 
 let
   cfg = config.services.buildbot-master;
+  opt = options.services.buildbot-master;
 
   python = cfg.package.pythonModule;
 
@@ -63,7 +64,7 @@ in {
         description = "Factory Steps";
         default = [];
         example = [
-          "steps.Git(repourl='git://github.com/buildbot/pyflakes.git', mode='incremental')"
+          "steps.Git(repourl='https://github.com/buildbot/pyflakes.git', mode='incremental')"
           "steps.ShellCommand(command=['trial', 'pyflakes'])"
         ];
       };
@@ -73,7 +74,7 @@ in {
         description = "List of Change Sources.";
         default = [];
         example = [
-          "changes.GitPoller('git://github.com/buildbot/pyflakes.git', workdir='gitpoller-workdir', branch='master', pollinterval=300)"
+          "changes.GitPoller('https://github.com/buildbot/pyflakes.git', workdir='gitpoller-workdir', branch='master', pollinterval=300)"
         ];
       };
 
@@ -152,6 +153,7 @@ in {
 
       buildbotDir = mkOption {
         default = "${cfg.home}/master";
+        defaultText = literalExpression ''"''${config.${opt.home}}/master"'';
         type = types.path;
         description = "Specifies the Buildbot directory.";
       };

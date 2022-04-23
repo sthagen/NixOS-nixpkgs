@@ -33,7 +33,7 @@ in
       type = types.listOf types.str;
       default = [];
       description = ''
-        Groups to which the user ${name} should be added.
+        Groups to which the service user should be added.
       '';
     };
 
@@ -537,6 +537,69 @@ in
               type = types.str;
               description = ''
                 Specify the OAuth token URL.
+              '';
+            };
+            baseURL = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the OAuth base URL.
+              '';
+            };
+            userProfileURL = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the OAuth userprofile URL.
+              '';
+            };
+            userProfileUsernameAttr = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the name of the attribute for the username from the claim.
+              '';
+            };
+            userProfileDisplayNameAttr = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the name of the attribute for the display name from the claim.
+              '';
+            };
+            userProfileEmailAttr = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the name of the attribute for the email from the claim.
+              '';
+            };
+            scope = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the OAuth scope.
+              '';
+            };
+            providerName = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the name to be displayed for this strategy.
+              '';
+            };
+            rolesClaim = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify the role claim name.
+              '';
+            };
+            accessRole = mkOption {
+              type = with types; nullOr str;
+              default = null;
+              description = ''
+                Specify role which should be included in the ID token roles claim to grant access
               '';
             };
             clientID = mkOption {

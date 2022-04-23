@@ -2,11 +2,12 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "hledger-check-fancyassertions";
-  version = "1.23";
+  inherit (haskellPackages.hledger-lib) version;
 
   src = fetchurl {
+    name = "hledger-check-fancyassertion-${version}.hs";
     url = "https://raw.githubusercontent.com/simonmichael/hledger/hledger-lib-${version}/bin/hledger-check-fancyassertions.hs";
-    sha256 = "08p2din1j7l4c29ipn68k8vvs3ys004iy8a3zf318lzby4h04h0n";
+    sha256 = "1xy3ssxnwybq40nlffz95w7m9xbzf8ysb13svg0i8g5sfgrw11vk";
   };
 
   dontUnpack = true;
@@ -16,7 +17,8 @@ stdenvNoCC.mkDerivation rec {
     "hledger-check-fancyassertions"
     {
       libraries = with haskellPackages; [
-        base base-compat base-compat-batteries filepath hledger-lib_1_23
+        hledger-lib
+        base base-compat base-compat-batteries filepath
         megaparsec microlens optparse-applicative string-qq text time
         transformers
       ];

@@ -7,16 +7,19 @@
 , scikit-learn
 , scipy
 , pytestCheckHook
+, pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "pynndescent";
-  version = "0.5.4";
+  version = "0.5.6";
   format = "setuptools";
+
+  disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "221124cbad8e3cf3ed421a4089d80ac5a29d3215e76cb49effc1df887533d2a8";
+    hash = "sha256-YfsxiFuqxGnWeTPix8k1tu3rsG7kmOLw+d/JfFnTclw=";
   };
 
   propagatedBuildInputs = [
@@ -29,6 +32,20 @@ buildPythonPackage rec {
 
   checkInputs = [
     pytestCheckHook
+  ];
+
+  disabledTests = [
+    # numpy.core._exceptions._UFuncNoLoopError
+    "test_sparse_nn_descent_query_accuracy_angular"
+    "test_nn_descent_query_accuracy_angular"
+    "test_alternative_distances"
+    # scipy: ValueError: Unknown Distance Metric: wminkowski
+    # https://github.com/scikit-learn/scikit-learn/pull/21741
+    "test_weighted_minkowski"
+  ];
+
+  pythonImportsCheck = [
+    "pynndescent"
   ];
 
   meta = with lib; {

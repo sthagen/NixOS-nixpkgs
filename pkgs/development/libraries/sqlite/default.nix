@@ -1,9 +1,8 @@
-{ lib, stdenv, fetchurl, zlib, interactive ? false, readline ? null, ncurses ? null
+{ lib, stdenv, fetchurl, zlib, interactive ? false, readline, ncurses
 , python3Packages
 , enableDeserialize ? false
+, sqldiff, sqlite-analyzer
 }:
-
-assert interactive -> readline != null && ncurses != null;
 
 with lib;
 
@@ -12,13 +11,14 @@ let
 in
 
 stdenv.mkDerivation rec {
-  pname = "sqlite";
-  version = "3.36.0";
+  pname = "sqlite${optionalString interactive "-interactive"}";
+  version = "3.38.2";
 
+  # nixpkgs-update: no auto update
   # NB! Make sure to update ./tools.nix src (in the same directory).
   src = fetchurl {
-    url = "https://sqlite.org/2021/sqlite-autoconf-${archiveVersion version}.tar.gz";
-    sha256 = "sha256-vZDD65a+6ZYga4O+cGXJzhmu84w/T7Uwc62g0LabvOM=";
+    url = "https://sqlite.org/2022/sqlite-autoconf-${archiveVersion version}.tar.gz";
+    sha256 = "sha256-55dKoUMLrWkKXp95pu5chJKtqCadxnWHWtD7dH18raQ=";
   };
 
   outputs = [ "bin" "dev" "out" ];
@@ -86,6 +86,7 @@ stdenv.mkDerivation rec {
 
   passthru.tests = {
     inherit (python3Packages) sqlalchemy;
+    inherit sqldiff sqlite-analyzer;
   };
 
   meta = {
@@ -93,6 +94,7 @@ stdenv.mkDerivation rec {
     downloadPage = "https://sqlite.org/download.html";
     homepage = "https://www.sqlite.org/";
     license = licenses.publicDomain;
+    mainProgram = "sqlite3";
     maintainers = with maintainers; [ eelco np ];
     platforms = platforms.unix ++ platforms.windows;
   };

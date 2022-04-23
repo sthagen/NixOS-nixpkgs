@@ -29,6 +29,7 @@ let
     "blackbox"
     "buildkite-agent"
     "collectd"
+    "dmarc"
     "dnsmasq"
     "domain"
     "dovecot"
@@ -55,12 +56,14 @@ let
     "postfix"
     "postgres"
     "process"
+    "pve"
     "py-air-control"
     "redis"
     "rspamd"
     "rtl_433"
     "script"
     "snmp"
+    "smartctl"
     "smokeping"
     "sql"
     "surfboard"
@@ -192,7 +195,7 @@ let
         serviceConfig.MemoryDenyWriteExecute = true;
         serviceConfig.NoNewPrivileges = true;
         serviceConfig.PrivateDevices = true;
-        serviceConfig.ProtectClock = true;
+        serviceConfig.ProtectClock = mkDefault true;
         serviceConfig.ProtectControlGroups = true;
         serviceConfig.ProtectHome = true;
         serviceConfig.ProtectHostname = true;

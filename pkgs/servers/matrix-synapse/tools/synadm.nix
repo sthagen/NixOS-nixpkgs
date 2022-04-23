@@ -4,12 +4,12 @@
 
 with python3Packages; buildPythonApplication rec {
   pname = "synadm";
-  version = "0.31";
+  version = "0.34";
   format = "setuptools";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "1098a5248a1e2de53ced3c699b3b78ced3327c5f4e0ff092a95ef4940e4f9c6e";
+    sha256 = "sha256-pM1nY8j7W1aeWv7/H+9Sz9jo4u1sax/fuKPtx0JKtL8=";
   };
 
   postPatch = ''

@@ -8,16 +8,16 @@ rec {
       , moby-src
       , runcRev, runcSha256
       , containerdRev, containerdSha256
-      , tiniRev, tiniSha256, buildxSupport ? true
+      , tiniRev, tiniSha256, buildxSupport ? true, composeSupport ? true
       # package dependencies
-      , stdenv, fetchFromGitHub, buildGoPackage
+      , stdenv, fetchFromGitHub, fetchpatch, buildGoPackage
       , makeWrapper, installShellFiles, pkg-config, glibc
-      , go-md2man, go, containerd_1_4, runc, docker-proxy, tini, libtool
-      , sqlite, iproute2, lvm2, systemd, docker-buildx
+      , go-md2man, go, containerd, runc, docker-proxy, tini, libtool
+      , sqlite, iproute2, lvm2, systemd, docker-buildx, docker-compose_2
       , btrfs-progs, iptables, e2fsprogs, xz, util-linux, xfsprogs, git
-      , procps, libseccomp
+      , procps, libseccomp, rootlesskit, slirp4netns, fuse-overlayfs
       , nixosTests
-      , clientOnly ? !stdenv.isLinux
+      , clientOnly ? !stdenv.isLinux, symlinkJoin
     }:
   let
     docker-runc = runc.overrideAttrs (oldAttrs: {
@@ -33,7 +33,7 @@ rec {
       patches = [];
     });
 
-    docker-containerd = containerd_1_4.overrideAttrs (oldAttrs: {
+    docker-containerd = containerd.overrideAttrs (oldAttrs: {
       name = "docker-containerd-${version}";
       inherit version;
       src = fetchFromGitHub {
@@ -77,6 +77,18 @@ rec {
 
       extraPath = optionals (stdenv.isLinux) (makeBinPath [ iproute2 iptables e2fsprogs xz xfsprogs procps util-linux git ]);
 
+      extraUserPath = optionals (stdenv.isLinux && !clientOnly) (makeBinPath [ rootlesskit slirp4netns fuse-overlayfs ]);
+
+      patches = [
+        # This patch incorporates code from a PR fixing using buildkit with the ZFS graph driver.
+        # It could be removed when a version incorporating this patch is released.
+        (fetchpatch {
+          name = "buildkit-zfs.patch";
+          url = "https://github.com/moby/moby/pull/43136.patch";
+          sha256 = "1WZfpVnnqFwLMYqaHLploOodls0gHF8OCp7MrM26iX8=";
+        })
+      ];
+
       postPatch = ''
         patchShebangs hack/make.sh hack/make/
       '';
@@ -109,6 +121,11 @@ rec {
         install -Dm644 ./contrib/init/systemd/docker.service $out/etc/systemd/system/docker.service
         substituteInPlace $out/etc/systemd/system/docker.service --replace /usr/bin/dockerd $out/bin/dockerd
         install -Dm644 ./contrib/init/systemd/docker.socket $out/etc/systemd/system/docker.socket
+
+        # rootless Docker
+        install -Dm755 ./contrib/dockerd-rootless.sh $out/libexec/docker/dockerd-rootless.sh
+        makeWrapper $out/libexec/docker/dockerd-rootless.sh $out/bin/dockerd-rootless \
+          --prefix PATH : "$out/libexec/docker:$extraPath:$extraUserPath"
       '';
 
       DOCKER_BUILDTAGS = []
@@ -117,6 +134,10 @@ rec {
         ++ optional (lvm2 == null) "exclude_graphdriver_devicemapper"
         ++ optional (libseccomp != null) "seccomp";
     });
+
+    plugins = optionals buildxSupport [ docker-buildx ]
+      ++ optionals composeSupport [ docker-compose_2 ];
+    pluginsRef = symlinkJoin { name = "docker-plugins"; paths = plugins; };
   in
     buildGoPackage ((optionalAttrs (!clientOnly) {
 
@@ -141,14 +162,14 @@ rec {
     ];
     buildInputs = optionals (!clientOnly) [
       sqlite lvm2 btrfs-progs systemd libseccomp
-    ] ++ optionals (buildxSupport) [ docker-buildx ];
+    ] ++ plugins;
 
     postPatch = ''
       patchShebangs man scripts/build/
       substituteInPlace ./scripts/build/.variables --replace "set -eu" ""
-    '' + optionalString buildxSupport ''
+    '' + optionalString (plugins != []) ''
       substituteInPlace ./cli-plugins/manager/manager_unix.go --replace /usr/libexec/docker/cli-plugins \
-          ${lib.strings.makeSearchPathOutput "bin" "libexec/docker/cli-plugins" [docker-buildx]}
+          "${pluginsRef}/libexec/docker/cli-plugins"
     '';
 
     # Keep eyes on BUILDTIME format - https://github.com/docker/cli/blob/${version}/scripts/build/.variables
@@ -180,6 +201,7 @@ rec {
     '' + optionalString (!clientOnly) ''
       # symlink docker daemon to docker cli derivation
       ln -s ${moby}/bin/dockerd $out/bin/dockerd
+      ln -s ${moby}/bin/dockerd-rootless $out/bin/dockerd-rootless
 
       # systemd
       mkdir -p $out/etc/systemd/system
@@ -221,20 +243,20 @@ rec {
   # Get revisions from
   # https://github.com/moby/moby/tree/${version}/hack/dockerfile/install/*
   docker_20_10 = callPackage dockerGen rec {
-    version = "20.10.9";
+    version = "20.10.14";
     rev = "v${version}";
-    sha256 = "1msqvzfccah6cggvf1pm7n35zy09zr4qg2aalgwpqigv0jmrbyd4";
+    sha256 = "sha256-eDwgqFx4io++SMOjhxMxVzqzcOgOnv6Xe/qmmPCvZts=";
     moby-src = fetchFromGitHub {
       owner = "moby";
       repo = "moby";
       rev = "v${version}";
-      sha256 = "04xx7m8s9vrkm67ba2k5i90053h5qqkjcvw5rc8w7m5a309xcp4n";
+      sha256 = "sha256-I5oxpFLH789I2Sb29OXDaM4fCbQT/KvPq0DYcAVp0aI=";
     };
-    runcRev = "v1.0.2"; # v1.0.2
-    runcSha256 = "1bpckghjah0rczciw1a1ab8z718lb2d3k4mjm4zb45lpm3njmrcp";
-    containerdRev = "v1.4.11"; # v1.4.11
-    containerdSha256 = "02slv4gc2blxnmv0p8pkm139vjn6ihjblmn8ps2k1afbbyps0ilr";
-    tiniRev = "v0.19.0"; # v0.19.0
-    tiniSha256 = "1h20i3wwlbd8x4jr2gz68hgklh0lb0jj7y5xk1wvr8y58fip1rdn";
+    runcRev = "v1.0.3";
+    runcSha256 = "sha256-Tl/JKbIpao+FCjngPzaVkxse50zo3XQ9Mg/AdkblMcI=";
+    containerdRev = "v1.5.11";
+    containerdSha256 = "sha256-YzFtv6DIjImSK0SywxhZrEeEmCnHTceAi3pfwnPubKg=";
+    tiniRev = "v0.19.0";
+    tiniSha256 = "sha256-ZDKu/8yE5G0RYFJdhgmCdN3obJNyRWv6K/Gd17zc1sI=";
   };
 }

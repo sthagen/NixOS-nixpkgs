@@ -9,14 +9,16 @@
 
 buildPythonPackage rec {
   pname = "plexapi";
-  version = "4.7.1";
-  disabled = pythonOlder "3.5";
+  version = "4.10.1";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = "pkkid";
     repo = "python-plexapi";
     rev = version;
-    sha256 = "sha256-kZREcjLBSWXGULEKfWiherRCl5UXLOw4f3JFaqs8dXw=";
+    sha256 = "sha256-0j3uf3wSDFSyDGo3oRi99KNKfhuGP2puSi0KgVjsXnQ=";
   };
 
   propagatedBuildInputs = [
@@ -28,7 +30,9 @@ buildPythonPackage rec {
   # Tests require a running Plex instance
   doCheck = false;
 
-  pythonImportsCheck = [ "plexapi" ];
+  pythonImportsCheck = [
+    "plexapi"
+  ];
 
   meta = with lib; {
     description = "Python bindings for the Plex API";

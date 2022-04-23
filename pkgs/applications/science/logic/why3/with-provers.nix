@@ -12,14 +12,16 @@ let configAwkScript = runCommand "why3-conf.awk" { inherit provers; }
   '';
 in
 stdenv.mkDerivation {
-  name = "${why3.name}-with-provers";
+  pname = "${why3.pname}-with-provers";
 
   nativeBuildInputs = [ makeWrapper ];
   buildInputs = [ why3 ] ++ provers;
 
+  dontUnpack = true;
+
   buildPhase = ''
     mkdir -p $out/share/why3/
-    why3 config --detect-provers -C $out/share/why3/why3.conf
+    why3 config detect -C $out/share/why3/why3.conf
     awk -i inplace -f ${configAwkScript} $out/share/why3/why3.conf
   '';
 

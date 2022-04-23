@@ -10,15 +10,16 @@
 
 buildPythonPackage rec {
   pname = "greeclimate";
-  version = "0.11.9";
+  version = "1.1.1";
+  format = "setuptools";
 
   disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = "cmroche";
     repo = "greeclimate";
-    rev = version;
-    sha256 = "sha256-fyIx/w+jKIscPGbK6LqjMtjy43qJtzzITwtUeNurE+o=";
+    rev = "refs/tags/v${version}";
+    hash = "sha256-TFsuzw9twhoGrgOnTNSmYWqsUW4oqY+SGvrvPUT4tZY=";
   };
 
   propagatedBuildInputs = [

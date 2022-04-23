@@ -1,6 +1,7 @@
 { config, options, lib, pkgs, stdenv, ... }:
 let
   cfg = config.services.pleroma;
+  cookieFile = "/var/lib/pleroma/.cookie";
 in {
   options = {
     services.pleroma = with lib; {
@@ -8,7 +9,7 @@ in {
 
       package = mkOption {
         type = types.package;
-        default = pkgs.pleroma;
+        default = pkgs.pleroma.override { inherit cookieFile; };
         defaultText = literalExpression "pkgs.pleroma";
         description = "Pleroma package to use.";
       };
@@ -116,8 +117,14 @@ in {
         # has not been updated. But the no-op process is pretty fast.
         # Better be safe than sorry migration-wise.
         ExecStartPre =
-          let preScript = pkgs.writers.writeBashBin "pleromaStartPre"
-            "${cfg.package}/bin/pleroma_ctl migrate";
+          let preScript = pkgs.writers.writeBashBin "pleromaStartPre" ''
+            if [ ! -f "${cookieFile}" ] || [ ! -s "${cookieFile}" ]
+            then
+              echo "Creating cookie file"
+              dd if=/dev/urandom bs=1 count=16 | ${pkgs.hexdump}/bin/hexdump -e '16/1 "%02x"' > "${cookieFile}"
+            fi
+            ${cfg.package}/bin/pleroma_ctl migrate
+          '';
           in "${preScript}/bin/pleromaStartPre";
 
         ExecStart = "${cfg.package}/bin/pleroma start";

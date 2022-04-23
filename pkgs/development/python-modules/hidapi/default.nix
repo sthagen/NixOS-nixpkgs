@@ -11,11 +11,11 @@
 
 buildPythonPackage rec {
   pname = "hidapi";
-  version = "0.10.1";
+  version = "0.11.2";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "a1170b18050bc57fae3840a51084e8252fd319c0fc6043d68c8501deb0e25846";
+    sha256 = "sha256-yYS37C/C6ph81EzwaUflVXJJjtLUPGSJC0q1iymvcrw=";
   };
 
   nativeBuildInputs = lib.optionals stdenv.isDarwin [ xcbuild ];

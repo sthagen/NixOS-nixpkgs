@@ -1,13 +1,14 @@
-{ fetchgit, libcommuni, qtbase, qmake, lib, stdenv, wrapQtAppsHook }:
+{ fetchFromGitHub, libcommuni, qtbase, qmake, lib, stdenv, wrapQtAppsHook }:
 
 stdenv.mkDerivation rec {
   pname = "communi";
   version = "3.5.0";
 
-  src = fetchgit {
-    url = "https://github.com/communi/communi-desktop.git";
+  src = fetchFromGitHub {
+    owner = "communi";
+    repo = "communi-desktop";
     rev = "v${version}";
-    sha256 = "10grskhczh8601s90ikdsbjabgr9ypcp2j7vivjkl456rmg6xbji";
+    sha256 = "sha256-Ua5uXs2mEDrljvtIcdn1Kb+l5NJtRpB0AAbBz+DU+YE=";
     fetchSubmodules = true;
   };
 
@@ -38,8 +39,6 @@ stdenv.mkDerivation rec {
     install_name_tool \
       -add_rpath @executable_path/../Frameworks \
       $out/Applications/Communi.app/Contents/MacOS/Communi
-
-    wrapQtApp $out/Applications/Communi.app/Contents/MacOS/Communi
   '' else ''
     substituteInPlace "$out/share/applications/communi.desktop" \
       --replace "/usr/bin" "$out/bin"

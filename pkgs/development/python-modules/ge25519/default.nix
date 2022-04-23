@@ -7,15 +7,19 @@
 , nose
 , parts
 , pytestCheckHook
+, pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "ge25519";
-  version = "1.0.0";
+  version = "1.2.0";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-f7xvZ92zRO3GLSdfgEyhkWVwAFT2TvKHy6+iF+k43bI=";
+    hash = "sha256-8GsNY62SusUmQcaqlhKOPHbd0jvZulCaxMxeob37JJM=";
   };
 
   propagatedBuildInputs = [
@@ -30,7 +34,15 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
-  pythonImportsCheck = [ "ge25519" ];
+  postPatch = ''
+    substituteInPlace setup.cfg \
+      --replace " --cov=ge25519 --cov-report term-missing" ""
+  '';
+
+
+  pythonImportsCheck = [
+    "ge25519"
+  ];
 
   meta = with lib; {
     description = "Python implementation of Ed25519 group elements and operations";

@@ -3,25 +3,33 @@
 , buildPythonPackage
 , fetchPypi
 , pytestCheckHook
-, pytest-cov
+, pythonOlder
 , setuptools-scm
 }:
 
 buildPythonPackage rec {
   pname = "cbor2";
-  version = "5.4.1";
+  version = "5.4.2.post1";
+
+  disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "1jga5wj3kalf6zj5gyrmy6kwmxxkld52mvcgxc5gb5dmdhpl7gx8";
+    sha256 = "sha256-nPIdWWBLlSnXh3yOA0Ki66rhoH/o/1aD3HX+wVhHx5c=";
   };
 
-  nativeBuildInputs = [ setuptools-scm ];
+  nativeBuildInputs = [
+    setuptools-scm
+  ];
 
   checkInputs = [
-    pytest-cov
     pytestCheckHook
   ];
+
+  postPatch = ''
+    substituteInPlace setup.cfg \
+      --replace "--cov" ""
+  '';
 
   # https://github.com/agronholm/cbor2/issues/99
   disabledTests = lib.optionals stdenv.is32bit [
@@ -29,7 +37,9 @@ buildPythonPackage rec {
     "test_huge_truncated_string"
   ];
 
-  pythonImportsCheck = [ "cbor2" ];
+  pythonImportsCheck = [
+    "cbor2"
+  ];
 
   meta = with lib; {
     description = "Python CBOR (de)serializer with extensive tag support";

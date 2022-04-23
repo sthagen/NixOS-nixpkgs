@@ -1,19 +1,22 @@
 { lib, stdenv, fetchurl, pkg-config
 , alsa-lib, fftw, gsl, motif, xorg
+, CoreServices, CoreMIDI
 }:
 
 stdenv.mkDerivation rec {
   pname = "snd";
-  version = "21.7";
+  version = "22.2";
 
   src = fetchurl {
     url = "mirror://sourceforge/snd/snd-${version}.tar.gz";
-    sha256 = "sha256-GjaPZmJfodvYvhObGcBDRN0mIyc6Vxycd0BZGHdvoJA=";
+    sha256 = "sha256-MZ8Vm/d+0r7YsXdySKcH5rqXBh4iFLyUe44LBOD58E0=";
   };
 
   nativeBuildInputs = [ pkg-config ];
 
-  buildInputs = [ alsa-lib fftw gsl motif ]
+  buildInputs = [ fftw gsl motif ]
+    ++ lib.optionals stdenv.isLinux [ alsa-lib ]
+    ++ lib.optionals stdenv.isDarwin [ CoreServices CoreMIDI ]
     ++ (with xorg; [ libXext libXft libXpm libXt ]);
 
   configureFlags = [ "--with-motif" ];

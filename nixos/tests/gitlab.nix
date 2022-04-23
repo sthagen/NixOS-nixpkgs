@@ -6,7 +6,7 @@ in
 import ./make-test-python.nix ({ pkgs, lib, ...} : with lib; {
   name = "gitlab";
   meta = with pkgs.lib.maintainers; {
-    maintainers = [ globin ];
+    maintainers = [ globin yayayayaka ];
   };
 
   nodes = {
@@ -14,6 +14,8 @@ import ./make-test-python.nix ({ pkgs, lib, ...} : with lib; {
       imports = [ common/user-account.nix ];
 
       virtualisation.memorySize = if pkgs.stdenv.is64bit then 4096 else 2047;
+      virtualisation.cores = 4;
+      virtualisation.useNixStoreImage = true;
       systemd.services.gitlab.serviceConfig.Restart = mkForce "no";
       systemd.services.gitlab-workhorse.serviceConfig.Restart = mkForce "no";
       systemd.services.gitaly.serviceConfig.Restart = mkForce "no";
@@ -110,21 +112,27 @@ import ./make-test-python.nix ({ pkgs, lib, ...} : with lib; {
             "${pkgs.sudo}/bin/sudo -u gitlab -H gitlab-rake gitlab:check 1>&2"
         )
         gitlab.succeed(
-            "echo \"Authorization: Bearer \$(curl -X POST -H 'Content-Type: application/json' -d @${auth} http://gitlab/oauth/token | ${pkgs.jq}/bin/jq -r '.access_token')\" >/tmp/headers"
+            "echo \"Authorization: Bearer $(curl -X POST -H 'Content-Type: application/json' -d @${auth} http://gitlab/oauth/token | ${pkgs.jq}/bin/jq -r '.access_token')\" >/tmp/headers"
         )
       '' + optionalString doSetup ''
         gitlab.succeed(
-            "curl -X POST -H 'Content-Type: application/json' -H @/tmp/headers -d @${createProject} http://gitlab/api/v4/projects"
+            """[ "$(curl -o /dev/null -w '%{http_code}' -X POST -H 'Content-Type: application/json' -H @/tmp/headers -d @${createProject} http://gitlab/api/v4/projects)" = "201" ]"""
         )
         gitlab.succeed(
-            "curl -X POST -H 'Content-Type: application/json' -H @/tmp/headers -d @${putFile} http://gitlab/api/v4/projects/1/repository/files/some-file.txt"
+            """[ "$(curl -o /dev/null -w '%{http_code}' -X POST -H 'Content-Type: application/json' -H @/tmp/headers -d @${putFile} http://gitlab/api/v4/projects/2/repository/files/some-file.txt)" = "201" ]"""
         )
       '' + ''
         gitlab.succeed(
-            "curl -H @/tmp/headers http://gitlab/api/v4/projects/1/repository/archive.tar.gz > /tmp/archive.tar.gz"
+            """[ "$(curl -o /dev/null -w '%{http_code}' -H @/tmp/headers http://gitlab/api/v4/projects/2/repository/archive.tar.gz)" = "200" ]"""
         )
         gitlab.succeed(
-            "curl -H @/tmp/headers http://gitlab/api/v4/projects/1/repository/archive.tar.bz2 > /tmp/archive.tar.bz2"
+            """curl -H @/tmp/headers http://gitlab/api/v4/projects/2/repository/archive.tar.gz > /tmp/archive.tar.gz"""
+        )
+        gitlab.succeed(
+            """[ "$(curl -o /dev/null -w '%{http_code}' -H @/tmp/headers http://gitlab/api/v4/projects/2/repository/archive.tar.bz2)" = "200" ]"""
+        )
+        gitlab.succeed(
+            """curl -o /dev/null -w '%{http_code}' -H @/tmp/headers http://gitlab/api/v4/projects/2/repository/archive.tar.bz2 > /tmp/archive.tar.bz2"""
         )
         gitlab.succeed("test -s /tmp/archive.tar.gz")
         gitlab.succeed("test -s /tmp/archive.tar.bz2")

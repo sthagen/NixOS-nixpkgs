@@ -3,20 +3,19 @@
 , fetchPypi
 , isPy3k
 , pytestCheckHook
-, setuptoolsBuildHook
 , python
 }:
 
 buildPythonPackage rec {
   pname = "frozendict";
-  version = "2.0.5";  # 2.0.6 breaks canonicaljson
+  version = "2.3.1";
   format = "setuptools";
 
   disabled = !isPy3k;
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-wb7hwHDY2fZA4SjluHV2pEAAhgCfeGLRPAv4YA5iE9M=";
+    sha256 = "sha256-vJHGkjPrkWu268QJiLbYSXNXcCQO/JxgvkW0q5GcG94=";
   };
 
   pythonImportsCheck = [
@@ -28,20 +27,12 @@ buildPythonPackage rec {
   ];
 
   preCheck = ''
-    rm -r frozendict
-    export PYTHONPATH=$out/${python.sitePackages}:$PYTHONPATH
+    pushd test
   '';
 
-  disabledTests = [
-    # TypeError: unsupported operand type(s) for |=: 'frozendict.frozendict' and 'dict'
-    "test_union"
-  ];
-
-  disabledTestPaths = [
-    # unpackaged test dependency: coold
-    "test/test_coold.py"
-    "test/test_coold_subclass.py"
-  ];
+  postCheck = ''
+    popd
+  '';
 
   meta = with lib; {
     homepage = "https://github.com/slezica/python-frozendict";

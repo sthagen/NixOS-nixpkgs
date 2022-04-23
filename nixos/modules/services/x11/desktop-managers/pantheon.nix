@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, utils, pkgs, ... }:
 
 with lib;
 
@@ -135,6 +135,7 @@ in
       services.bamf.enable = true;
       services.colord.enable = mkDefault true;
       services.fwupd.enable = mkDefault true;
+      services.packagekit.enable = mkDefault true;
       services.touchegg.enable = mkDefault true;
       services.touchegg.package = pkgs.pantheon.touchegg;
       services.tumbler.enable = mkDefault true;
@@ -213,7 +214,7 @@ in
         elementary-settings-daemon
         pantheon-agent-geoclue2
         pantheon-agent-polkit
-      ]) ++ (gnome.removePackagesByName [
+      ]) ++ (utils.removePackagesByName [
         gnome.gnome-font-viewer
         gnome.gnome-settings-daemon338
       ] config.environment.pantheon.excludePackages);
@@ -222,11 +223,13 @@ in
       programs.file-roller.enable = mkDefault true;
 
       # Settings from elementary-default-settings
-      environment.sessionVariables.GTK_CSD = "1";
       environment.etc."gtk-3.0/settings.ini".source = "${pkgs.pantheon.elementary-default-settings}/etc/gtk-3.0/settings.ini";
 
-      xdg.portal.extraPortals = [
-        pkgs.pantheon.elementary-files
+      xdg.portal.enable = true;
+      xdg.portal.extraPortals = with pkgs.pantheon; [
+        elementary-files
+        elementary-settings-daemon
+        xdg-desktop-portal-pantheon
       ];
 
       # Override GSettings schemas
@@ -264,12 +267,12 @@ in
 
       fonts.fontconfig.defaultFonts = {
         monospace = [ "Roboto Mono" ];
-        sansSerif = [ "Open Sans" ];
+        sansSerif = [ "Inter" ];
       };
     })
 
     (mkIf serviceCfg.apps.enable {
-      environment.systemPackages = (with pkgs.pantheon; pkgs.gnome.removePackagesByName [
+      environment.systemPackages = with pkgs.pantheon; utils.removePackagesByName ([
         elementary-calculator
         elementary-calendar
         elementary-camera
@@ -279,10 +282,15 @@ in
         elementary-music
         elementary-photos
         elementary-screenshot
+        elementary-tasks
         elementary-terminal
         elementary-videos
         epiphany
-      ] config.environment.pantheon.excludePackages);
+      ] ++ lib.optionals config.services.flatpak.enable [
+        # Only install appcenter if flatpak is enabled before
+        # https://github.com/NixOS/nixpkgs/issues/15932 is resolved.
+        appcenter
+      ]) config.environment.pantheon.excludePackages;
 
       # needed by screenshot
       fonts.fonts = [
@@ -291,9 +299,10 @@ in
     })
 
     (mkIf serviceCfg.contractor.enable {
-      environment.systemPackages = with  pkgs.pantheon; [
+      environment.systemPackages = with pkgs.pantheon; [
         contractor
-        extra-elementary-contracts
+        file-roller-contract
+        gnome-bluetooth-contract
       ];
 
       environment.pathsToLink = [

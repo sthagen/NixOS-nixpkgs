@@ -8,18 +8,20 @@
 , numba
 , pynndescent
 , tensorflow
+, tqdm
 , pytestCheckHook
+, keras
 }:
 
 buildPythonPackage rec {
   pname = "umap-learn";
-  version = "0.5.1";
+  version = "0.5.3";
 
   src = fetchFromGitHub {
     owner = "lmcinnes";
     repo = "umap";
     rev = version;
-    sha256 = "0favphngcz5jvyqs06x07hk552lvl9qx3vka8r4x0xmv88gsg349";
+    sha256 = "sha256-S2+k7Ec4AxsN6d0GUGnU81oLnBgmlZp8OmUFCNaUJYw=";
   };
 
   propagatedBuildInputs = [
@@ -28,12 +30,14 @@ buildPythonPackage rec {
     scipy
     numba
     pynndescent
+    tqdm
   ];
 
   checkInputs = [
     nose
     tensorflow
     pytestCheckHook
+    keras
   ];
 
   preCheck = ''
@@ -48,6 +52,9 @@ buildPythonPackage rec {
 
     # Flaky test. Fails with AssertionError sometimes.
     "test_sparse_hellinger"
+
+    # tensorflow maybe incompatible? https://github.com/lmcinnes/umap/issues/821
+    "test_save_load"
   ];
 
   meta = with lib; {

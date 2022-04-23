@@ -3,7 +3,6 @@
 , fetchFromGitLab
 , cmake
 , extra-cmake-modules
-, applet-window-buttons
 , karchive
 , kcoreaddons
 , ki18n
@@ -16,16 +15,21 @@
 }:
 
 mkDerivation rec {
-  pname = "index";
-  version = "2.0.0";
+  pname = "index-fm";
+  version = "2.1.1";
 
   src = fetchFromGitLab {
     domain = "invent.kde.org";
     owner = "maui";
     repo = "index-fm";
     rev = "v${version}";
-    sha256 = "sha256-aY8JBCIh6VyCDOGQIMWhO6asGMo6I6ZTgzpDnnDy9eo=";
+    hash = "sha256-F4qgewkPxkbAbeR+MaeRDiw9KIsd/Xx4C0cYEYDkPOE=";
   };
+
+  postPatch = ''
+    substituteInPlace CMakeLists.txt \
+      --replace "-Werror" ""
+  '';
 
   nativeBuildInputs = [
     cmake
@@ -33,7 +37,6 @@ mkDerivation rec {
   ];
 
   buildInputs = [
-    applet-window-buttons
     karchive
     kcoreaddons
     ki18n

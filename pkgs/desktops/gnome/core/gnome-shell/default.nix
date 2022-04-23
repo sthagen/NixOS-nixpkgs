@@ -46,6 +46,7 @@
 , evolution-data-server
 , gtk3
 , gtk4
+, libadwaita
 , sassc
 , systemd
 , pipewire
@@ -55,7 +56,7 @@
 , gnome-clocks
 , gnome-settings-daemon
 , gnome-autoar
-, asciidoc-full
+, asciidoc
 , bash-completion
 , mesa
 }:
@@ -66,13 +67,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "gnome-shell";
-  version = "41.0";
+  version = "42.0";
 
   outputs = [ "out" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "Uvlx6FFA5d50uTae9mVuSc6Vrx8jL8Hg3x8EYSmrT2U=";
+    sha256 = "M9QE+zyTud5CmE8BEKKWnWpKckfCf+f14kxn7P7HUJQ=";
   };
 
   patches = [
@@ -103,13 +104,6 @@ stdenv.mkDerivation rec {
       url = "https://src.fedoraproject.org/rpms/gnome-shell/raw/9a647c460b651aaec0b8a21f046cc289c1999416/f/0001-gdm-Work-around-failing-fingerprint-auth.patch";
       sha256 = "pFvZli3TilUt6YwdZztpB8Xq7O60XfuWUuPMMVSpqLw=";
     })
-
-    # Make color picker in GTK work again
-    # https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/1990
-    (fetchpatch {
-      url = "https://gitlab.gnome.org/GNOME/gnome-shell/-/commit/a3dcdaae30bdcbadec7ba3fa31c9eb0bb2a4c8c2.patch";
-      sha256 = "1UTWGZ5CiVJVCYcepaf+A6/8X/s6jUMsYB4BJ7VTjxk=";
-    })
   ];
 
   nativeBuildInputs = [
@@ -125,8 +119,7 @@ stdenv.mkDerivation rec {
     sassc
     desktop-file-utils
     libxslt.bin
-    python3
-    asciidoc-full
+    asciidoc
   ];
 
   buildInputs = [
@@ -149,6 +142,7 @@ stdenv.mkDerivation rec {
     libical
     gtk3
     gtk4
+    libadwaita
     gdm
     geoclue2
     adwaita-icon-theme
@@ -176,6 +170,9 @@ stdenv.mkDerivation rec {
     bash-completion
     gnome-autoar
     json-glib
+
+    # for tools
+    pythonEnv
   ];
 
   mesonFlags = [
@@ -184,11 +181,9 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     patchShebangs src/data-to-c.pl
-    chmod +x meson/postinstall.py
-    patchShebangs meson/postinstall.py
 
-    substituteInPlace src/gnome-shell-extension-tool.in --replace "@PYTHON@" "${pythonEnv}/bin/python"
-    substituteInPlace src/gnome-shell-perf-tool.in --replace "@PYTHON@" "${pythonEnv}/bin/python"
+    # We can generate it ourselves.
+    rm -f man/gnome-shell.1
   '';
 
   preFixup = ''

@@ -4,17 +4,18 @@
 , openh264, usrsctp, libevent, libvpx
 , libX11, libXtst, libXcomposite, libXdamage, libXext, libXrender, libXrandr, libXi
 , glib, abseil-cpp, pcre, util-linuxMinimal, libselinux, libsepol, pipewire
+, mesa, valgrind, libepoxy, libglvnd
 }:
 
 stdenv.mkDerivation {
   pname = "tg_owt";
-  version = "unstable-2021-09-15";
+  version = "unstable-2022-02-25";
 
   src = fetchFromGitHub {
     owner = "desktop-app";
     repo = "tg_owt";
-    rev = "575fb17d2853c43329e45f6693370f5e41668055";
-    sha256 = "17lhy5g4apdakspv75zm070k7003crf1i80m8wy8f631s86v30md";
+    rev = "a264028ec71d9096e0aa629113c49c25db89d260";
+    sha256 = "10p3x8z3ps8s1ivi9y8px2gsg4pvsvz6g9wbgh5w8hilikxqq7r5";
     fetchSubmodules = true;
   };
 
@@ -27,6 +28,7 @@ stdenv.mkDerivation {
     openh264 usrsctp libevent libvpx
     libX11 libXtst libXcomposite libXdamage libXext libXrender libXrandr libXi
     glib abseil-cpp pcre util-linuxMinimal libselinux libsepol pipewire
+    mesa libepoxy libglvnd
   ];
 
   cmakeFlags = [

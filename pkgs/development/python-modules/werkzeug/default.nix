@@ -5,6 +5,7 @@
 , fetchPypi
 , watchdog
 , dataclasses
+, ephemeral-port-reserve
 , pytest-timeout
 , pytest-xprocess
 , pytestCheckHook
@@ -12,13 +13,15 @@
 
 buildPythonPackage rec {
   pname = "werkzeug";
-  version = "2.0.1";
-  disabled = pythonOlder "3.6";
+  version = "2.1.0";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     pname = "Werkzeug";
     inherit version;
-    sha256 = "0hlwawnn8c41f254qify5jnjj8xb97n294h09bqimzqhs0qdpq8x";
+    sha256 = "sha256-m1VGaj6Z4TsfBoamYRfTm9qFqZIWbgp5rt/PNYYyj3o=";
   };
 
   propagatedBuildInputs = lib.optionals (!stdenv.isDarwin) [
@@ -29,6 +32,7 @@ buildPythonPackage rec {
   ];
 
   checkInputs = [
+    ephemeral-port-reserve
     pytest-timeout
     pytest-xprocess
     pytestCheckHook
@@ -36,6 +40,11 @@ buildPythonPackage rec {
 
   disabledTests = lib.optionals stdenv.isDarwin [
     "test_get_machine_id"
+  ];
+
+  disabledTestPaths = [
+    # ConnectionRefusedError: [Errno 111] Connection refused
+    "tests/test_serving.py"
   ];
 
   pytestFlagsArray = [
@@ -54,5 +63,6 @@ buildPythonPackage rec {
       utility libraries.
     '';
     license = licenses.bsd3;
+    maintainers = with maintainers; [ ];
   };
 }

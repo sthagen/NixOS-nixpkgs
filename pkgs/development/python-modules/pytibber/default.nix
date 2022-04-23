@@ -7,20 +7,22 @@
 , graphql-subscription-manager
 , python-dateutil
 , pytz
+, pytest-asyncio
 , pytestCheckHook
 }:
 
 buildPythonPackage rec {
   pname = "pytibber";
-  version = "0.20.0";
+  version = "0.22.3";
+  format = "setuptools";
 
-  disabled = pythonOlder "3.7";
+  disabled = pythonOlder "3.9";
 
   src = fetchFromGitHub {
     owner = "Danielhiversen";
     repo = "pyTibber";
     rev = version;
-    sha256 = "sha256-q7DNRCJrt4B/u7QV4MocxmlfEdLmJMP7umv3+PJjIoE=";
+    hash = "sha256-tM8Uu/TpP5a7y+ePFko0bMoZJWG2efYA861Ez8dPeFY=";
   };
 
   propagatedBuildInputs = [
@@ -32,15 +34,20 @@ buildPythonPackage rec {
   ];
 
   checkInputs = [
+    pytest-asyncio
     pytestCheckHook
   ];
 
-  pytestFlagsArray = [ "test/test.py" ];
+  pytestFlagsArray = [
+    "test/test.py"
+  ];
 
   # tests access network
   doCheck = false;
 
-  pythonImportsCheck = [ "tibber" ];
+  pythonImportsCheck = [
+    "tibber"
+  ];
 
   meta = with lib; {
     description = "Python library to communicate with Tibber";

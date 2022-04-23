@@ -1,22 +1,20 @@
 { buildGoModule, lib, fetchFromGitHub }:
 buildGoModule rec {
   pname = "tfswitch";
-  version = "0.12.1168";
+  version = "0.13.1218";
 
   src = fetchFromGitHub {
     owner = "warrensbox";
     repo = "terraform-switcher";
     rev = version;
-    sha256 = "sha256-BKqbxja19JxAr9/Cy7LpbZTJrt/pYfwtCbZMY0wwvZc=";
+    sha256 = "sha256-RJdbNXO+6TqFLapWiZ1UeXGS5522ykQvhhNDEHPr8xE=";
   };
 
-  vendorSha256 = "sha256-y8T1MV2xHr9n7XWmB4LikIzyGx+0XKhsxmatnCZFN9I=";
+  vendorSha256 = "sha256-Xqgki072Iy+snRriPVJ9oaDNJ/LiKL+AuU+eVw0zlDU=";
 
   # Disable tests since it requires network access and relies on the
   # presence of release.hashicorp.com
   doCheck = false;
-
-  runVend = true;
 
   postInstall = ''
     # The binary is named tfswitch

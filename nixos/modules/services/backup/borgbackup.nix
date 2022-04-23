@@ -30,7 +30,7 @@ let
     }
     trap 'on_exit' INT TERM QUIT EXIT
 
-    archiveName="${cfg.archiveBaseName}-$(date ${cfg.dateFormat})"
+    archiveName="${if cfg.archiveBaseName == null then "" else cfg.archiveBaseName + "-"}$(date ${cfg.dateFormat})"
     archiveSuffix="${optionalString cfg.appendFailedSuffix ".failed"}"
     ${cfg.preHook}
   '' + optionalString cfg.doInit ''
@@ -42,12 +42,16 @@ let
       ${cfg.postInit}
     fi
   '' + ''
-    borg create $extraArgs \
-      --compression ${cfg.compression} \
-      --exclude-from ${mkExcludeFile cfg} \
-      $extraCreateArgs \
-      "::$archiveName$archiveSuffix" \
-      ${escapeShellArgs cfg.paths}
+    (
+      set -o pipefail
+      ${optionalString (cfg.dumpCommand != null) ''${escapeShellArg cfg.dumpCommand} | \''}
+      borg create $extraArgs \
+        --compression ${cfg.compression} \
+        --exclude-from ${mkExcludeFile cfg} \
+        $extraCreateArgs \
+        "::$archiveName$archiveSuffix" \
+        ${if cfg.paths == null then "-" else escapeShellArgs cfg.paths}
+    )
   '' + optionalString cfg.appendFailedSuffix ''
     borg rename $extraArgs \
       "::$archiveName$archiveSuffix" "$archiveName"
@@ -56,7 +60,7 @@ let
   '' + optionalString (cfg.prune.keep != { }) ''
     borg prune $extraArgs \
       ${mkKeepArgs cfg} \
-      --prefix ${escapeShellArg cfg.prune.prefix} \
+      ${optionalString (cfg.prune.prefix != null) "--prefix ${escapeShellArg cfg.prune.prefix} \\"}
       $extraPruneArgs
     ${cfg.postPrune}
   '';
@@ -95,7 +99,18 @@ let
         BORG_REPO = cfg.repo;
         inherit (cfg) extraArgs extraInitArgs extraCreateArgs extraPruneArgs;
       } // (mkPassEnv cfg) // cfg.environment;
-      inherit (cfg) startAt;
+    };
+
+  mkBackupTimers = name: cfg:
+    nameValuePair "borgbackup-job-${name}" {
+      description = "BorgBackup job ${name} timer";
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        Persistent = cfg.persistentTimer;
+        OnCalendar = cfg.startAt;
+      };
+      # if remote-backup wait for network
+      after = optional (cfg.persistentTimer && !isLocalPath cfg.repo) "network-online.target";
     };
 
   # utility function around makeWrapper
@@ -182,6 +197,14 @@ let
       + " without at least one public key";
   };
 
+  mkSourceAssertions = name: cfg: {
+    assertion = count isNull [ cfg.dumpCommand cfg.paths ] == 1;
+    message = ''
+      Exactly one of borgbackup.jobs.${name}.paths or borgbackup.jobs.${name}.dumpCommand
+      must be set.
+    '';
+  };
+
   mkRemovableDeviceAssertions = name: cfg: {
     assertion = !(isLocalPath cfg.repo) -> !cfg.removableDevice;
     message = ''
@@ -240,9 +263,23 @@ in {
         options = {
 
           paths = mkOption {
-            type = with types; coercedTo str lib.singleton (listOf str);
-            description = "Path(s) to back up.";
+            type = with types; nullOr (coercedTo str lib.singleton (listOf str));
+            default = null;
+            description = ''
+              Path(s) to back up.
+              Mutually exclusive with <option>dumpCommand</option>.
+            '';
             example = "/home/user";
+          };
+
+          dumpCommand = mkOption {
+            type = with types; nullOr path;
+            default = null;
+            description = ''
+              Backup the stdout of this program instead of filesystem paths.
+              Mutually exclusive with <option>paths</option>.
+            '';
+            example = "/path/to/createZFSsend.sh";
           };
 
           repo = mkOption {
@@ -258,7 +295,7 @@ in {
           };
 
           archiveBaseName = mkOption {
-            type = types.strMatching "[^/{}]+";
+            type = types.nullOr (types.strMatching "[^/{}]+");
             default = "${globalConfig.networking.hostName}-${name}";
             defaultText = literalExpression ''"''${config.networking.hostName}-<name>"'';
             description = ''
@@ -266,6 +303,7 @@ in {
               determined by <option>dateFormat</option>, will be appended. The full
               name can be modified at runtime (<literal>$archiveName</literal>).
               Placeholders like <literal>{hostname}</literal> must not be used.
+              Use <literal>null</literal> for no base name.
             '';
           };
 
@@ -291,6 +329,19 @@ in {
               automatically, use <literal>[ ]</literal>.
               It will generate a systemd service borgbackup-job-NAME.
               You may trigger it manually via systemctl restart borgbackup-job-NAME.
+            '';
+          };
+
+          persistentTimer = mkOption {
+            default = false;
+            type = types.bool;
+            example = true;
+            description = ''
+              Set the <literal>persistentTimer</literal> option for the
+              <citerefentry><refentrytitle>systemd.timer</refentrytitle>
+              <manvolnum>5</manvolnum></citerefentry>
+              which triggers the backup immediately if the last trigger
+              was missed (e.g. if the system was powered down).
             '';
           };
 
@@ -445,11 +496,11 @@ in {
           };
 
           prune.prefix = mkOption {
-            type = types.str;
+            type = types.nullOr (types.str);
             description = ''
               Only consider archive names starting with this prefix for pruning.
               By default, only archives created by this job are considered.
-              Use <literal>""</literal> to consider all archives.
+              Use <literal>""</literal> or <literal>null</literal> to consider all archives.
             '';
             default = config.archiveBaseName;
             defaultText = literalExpression "archiveBaseName";
@@ -657,6 +708,7 @@ in {
       assertions =
         mapAttrsToList mkPassAssertion jobs
         ++ mapAttrsToList mkKeysAssertion repos
+        ++ mapAttrsToList mkSourceAssertions jobs
         ++ mapAttrsToList mkRemovableDeviceAssertions jobs;
 
       system.activationScripts = mapAttrs' mkActivationScript jobs;
@@ -666,6 +718,10 @@ in {
         mapAttrs' mkBackupService jobs
         # A repo named "foo" is mapped to systemd.services.borgbackup-repo-foo
         // mapAttrs' mkRepoService repos;
+
+      # A job named "foo" is mapped to systemd.timers.borgbackup-job-foo
+      # only generate the timer if interval (startAt) is set
+      systemd.timers = mapAttrs' mkBackupTimers (filterAttrs (_: cfg: cfg.startAt != []) jobs);
 
       users = mkMerge (mapAttrsToList mkUsersConfig repos);
 

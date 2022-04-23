@@ -6,12 +6,12 @@
 }:
 
 mkDerivation {
-  name = "baloo";
+  pname = "baloo";
   nativeBuildInputs = [ extra-cmake-modules ];
   buildInputs = [
     kauth kconfig kcrash kdbusaddons ki18n kio kidletime lmdb qtdeclarative
     solid
   ];
-  outputs = [ "dev" "out" ];
+  outputs = [ "out" "dev" ];
   propagatedBuildInputs = [ kcoreaddons kfilemetadata qtbase ];
 }

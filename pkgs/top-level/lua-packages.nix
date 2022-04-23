@@ -63,7 +63,7 @@ in
     inherit (pkgs) makeSetupHook makeWrapper;
   };
 
-  luarocks = callPackage ../development/tools/misc/luarocks {
+  luarocks = callPackage ../development/tools/misc/luarocks/default.nix {
     inherit lua lib;
   };
 

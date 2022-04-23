@@ -4,12 +4,12 @@
 }:
 
 buildPythonPackage rec {
-  version = "1.8.4";
+  version = "1.9.3";
   pname = "bids-validator";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "63e7a02c9ddb5505a345e178f4e436b82c35ec0a177d7047b67ea10ea3029a68";
+    sha256 = "sha256-ATJi4eCWV0i3Z8AsgV/DtiCn8Qzi2cMDtId5jXCoDL0=";
   };
 
   # needs packages which are not available in nixpkgs

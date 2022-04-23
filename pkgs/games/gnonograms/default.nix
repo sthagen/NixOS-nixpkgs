@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch
 , vala
 , meson
 , ninja
@@ -13,18 +14,28 @@
 , gtk3
 , pantheon
 , libgee
+, libhandy
 }:
 
 stdenv.mkDerivation rec {
   pname = "gnonograms";
-  version = "1.4.5";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "jeremypw";
     repo = "gnonograms";
     rev = "v${version}";
-    sha256 = "1ly3inp6dvjrixdysz5hdfwlhbs49ks0lf8062z2iq6gaf8ivkb2";
+    sha256 = "sha256-2uXaybpCAm9cr0o7bqfhgD7mMNPwtv1X/PgnFnSDOl0=";
   };
+
+  patches = [
+    # Fix build with meson 0.61, can be removed on next release
+    # https://github.com/jeremypw/gnonograms/pull/45
+    (fetchpatch {
+      url = "https://github.com/jeremypw/gnonograms/commit/0e90d8ff42d64a94002ec8500889bc4d7e06c1b6.patch";
+      sha256 = "sha256-G/yqsZFmOA69A3E2CROMYAS5vmok/K5l1S/M2m8DMh4=";
+    })
+  ];
 
   postPatch = ''
     patchShebangs meson/post_install.py
@@ -46,6 +57,7 @@ stdenv.mkDerivation rec {
     gtk3
     pantheon.granite
     libgee
+    libhandy
   ];
 
   meta = with lib; {

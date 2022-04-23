@@ -1,10 +1,11 @@
 { lib
 , fetchFromGitHub
-, crystal_1_0
+, crystal
 }:
+
 let
   generic =
-    { version, sha256, crystal }:
+    { version, hash }:
 
     crystal.buildCrystalPackage {
       pname = "shards";
@@ -14,7 +15,7 @@ let
         owner = "crystal-lang";
         repo = "shards";
         rev = "v${version}";
-        inherit sha256;
+        inherit hash;
       };
 
       # we cannot use `make` or `shards` here as it would introduce a cyclical dependency
@@ -35,12 +36,10 @@ let
 
 in
 rec {
-
-  shards_0_15 = generic {
-    version = "0.15.0";
-    sha256 = "sha256-/C6whh5RbTBkFWqpn0GqyVe0opbrklm8xPv5MIG99VU=";
-    crystal = crystal_1_0;
+  shards_0_17 = generic {
+    version = "0.17.0";
+    hash = "sha256-f9MptrKalW7gi0J2h0fokkzdjKBVa2TmoPX8BYffqzY=";
   };
 
-  shards = shards_0_15;
+  shards = shards_0_17;
 }

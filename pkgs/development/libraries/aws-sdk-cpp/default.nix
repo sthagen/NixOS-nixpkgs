@@ -1,6 +1,19 @@
-{ lib, stdenv, fetchFromGitHub, cmake, curl, openssl, s2n-tls, zlib
-, aws-c-cal, aws-c-common, aws-c-event-stream, aws-c-io, aws-checksums
-, CoreAudio, AudioToolbox
+{ lib
+, stdenv
+, fetchFromGitHub
+, cmake
+, curl
+, openssl
+, s2n-tls
+, zlib
+, aws-crt-cpp
+, aws-c-cal
+, aws-c-common
+, aws-c-event-stream
+, aws-c-io
+, aws-checksums
+, CoreAudio
+, AudioToolbox
 , # Allow building a limited set of APIs, e.g. ["s3" "ec2"].
   apis ? ["*"]
 , # Whether to enable AWS' custom memory management.
@@ -17,14 +30,39 @@ in
 
 stdenv.mkDerivation rec {
   pname = "aws-sdk-cpp";
-  version = "1.8.130";
+  version = "1.9.238";
 
   src = fetchFromGitHub {
-    owner = "awslabs";
+    owner = "aws";
     repo = "aws-sdk-cpp";
     rev = version;
-    sha256 = "sha256-5T4l0KYB0utFTdEOtYT9trQ/JehQbXxk/IhI6YavErs=";
+    sha256 = "sha256-pEmsTfZXsvJMV79dGkjDNbUVajwyoYgzE5DCsC53pGY=";
   };
+
+  postPatch = ''
+    # Missing includes for GCC11
+    sed '5i#include <thread>' -i \
+      aws-cpp-sdk-cloudfront-integration-tests/CloudfrontOperationTest.cpp \
+      aws-cpp-sdk-cognitoidentity-integration-tests/IdentityPoolOperationTest.cpp \
+      aws-cpp-sdk-dynamodb-integration-tests/TableOperationTest.cpp \
+      aws-cpp-sdk-elasticfilesystem-integration-tests/ElasticFileSystemTest.cpp \
+      aws-cpp-sdk-lambda-integration-tests/FunctionTest.cpp \
+      aws-cpp-sdk-mediastore-data-integration-tests/MediaStoreDataTest.cpp \
+      aws-cpp-sdk-queues/source/sqs/SQSQueue.cpp \
+      aws-cpp-sdk-redshift-integration-tests/RedshiftClientTest.cpp \
+      aws-cpp-sdk-s3-crt-integration-tests/BucketAndObjectOperationTest.cpp \
+      aws-cpp-sdk-s3-integration-tests/BucketAndObjectOperationTest.cpp \
+      aws-cpp-sdk-s3control-integration-tests/S3ControlTest.cpp \
+      aws-cpp-sdk-sqs-integration-tests/QueueOperationTest.cpp \
+      aws-cpp-sdk-transfer-tests/TransferTests.cpp
+    # Flaky on Hydra
+    rm aws-cpp-sdk-core-tests/aws/auth/AWSCredentialsProviderTest.cpp
+    # Includes aws-c-auth private headers, so only works with submodule build
+    rm aws-cpp-sdk-core-tests/aws/auth/AWSAuthSignerTest.cpp
+  '' + lib.optionalString stdenv.hostPlatform.isMusl ''
+    # TestRandomURLMultiThreaded fails
+    rm aws-cpp-sdk-core-tests/http/HttpClientTest.cpp
+  '';
 
   # FIXME: might be nice to put different APIs in different outputs
   # (e.g. libaws-cpp-sdk-s3.so in output "s3").
@@ -40,14 +78,7 @@ stdenv.mkDerivation rec {
          [ CoreAudio AudioToolbox ];
 
   # propagation is needed for Security.framework to be available when linking
-  propagatedBuildInputs = [
-    aws-c-cal
-    aws-c-event-stream
-    aws-c-io
-    aws-c-common
-    aws-checksums
-    s2n-tls
-  ];
+  propagatedBuildInputs = [ aws-crt-cpp ];
 
   cmakeFlags = [
     "-DBUILD_DEPS=OFF"
@@ -64,7 +95,6 @@ stdenv.mkDerivation rec {
   # fix build with gcc9, can be removed after bumping to current version
   NIX_CFLAGS_COMPILE = [ "-Wno-error" ];
 
-  # aws-cpp-sdk-core-tests/aws/auth/AWSCredentialsProviderTest.cpp
   # aws-cpp-sdk-core-tests/aws/client/AWSClientTest.cpp
   # seem to have a datarace
   enableParallelChecking = false;
@@ -86,7 +116,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "A C++ interface for Amazon Web Services";
-    homepage = "https://github.com/awslabs/aws-sdk-cpp";
+    homepage = "https://github.com/aws/aws-sdk-cpp";
     license = licenses.asl20;
     platforms = platforms.unix;
     maintainers = with maintainers; [ eelco orivej ];

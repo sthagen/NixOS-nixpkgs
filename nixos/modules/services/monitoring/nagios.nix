@@ -102,8 +102,8 @@ in
 
       plugins = mkOption {
         type = types.listOf types.package;
-        default = with pkgs; [ monitoring-plugins ssmtp mailutils ];
-        defaultText = literalExpression "[pkgs.monitoring-plugins pkgs.ssmtp pkgs.mailutils]";
+        default = with pkgs; [ monitoring-plugins msmtp mailutils ];
+        defaultText = literalExpression "[pkgs.monitoring-plugins pkgs.msmtp pkgs.mailutils]";
         description = "
           Packages to be added to the Nagios <envar>PATH</envar>.
           Typically used to add plugins, but can be anything.
@@ -131,6 +131,7 @@ in
       validateConfig = mkOption {
         type = types.bool;
         default = pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform;
+        defaultText = literalExpression "pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform";
         description = "if true, the syntax of the nagios configuration file is checked at build time";
       };
 

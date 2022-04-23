@@ -1,9 +1,9 @@
 { stdenv, lib, buildPythonPackage, fetchPypi, makeWrapper, isPy3k
-, python, twisted, jinja2, zope_interface, sqlalchemy
-, sqlalchemy_migrate, python-dateutil, txaio, autobahn, pyjwt, pyyaml, unidiff, treq
-, txrequests, pypugjs, boto3, moto, mock, lz4, setuptoolsTrial
-, isort, pylint, flake8, buildbot-worker, buildbot-pkg, buildbot-plugins
-, parameterized, git, openssh, glibcLocales, ldap3, nixosTests
+, python, twisted, jinja2, zope_interface, sqlalchemy, alembic, python-dateutil
+, txaio, autobahn, pyjwt, pyyaml, unidiff, treq, txrequests, pypugjs, boto3
+, moto, mock, lz4, setuptoolsTrial, isort, pylint, flake8, buildbot-worker
+, buildbot-pkg, buildbot-plugins, parameterized, git, openssh, glibcLocales
+, nixosTests
 }:
 
 let
@@ -31,11 +31,11 @@ let
 
   package = buildPythonPackage rec {
     pname = "buildbot";
-    version = "3.3.0";
+    version = "3.5.0";
 
     src = fetchPypi {
       inherit pname version;
-      sha256 = "sha256-FST+mCIQpzxc/5iQdsSNBlKxY985v+z6Xeh8ZQRu2FE=";
+      sha256 = "sha256-woGHdCan5qTp00toNkWa821EgVQMrPK+OWXoqFcgIDQ=";
     };
 
     propagatedBuildInputs = [
@@ -44,7 +44,7 @@ let
       jinja2
       zope_interface
       sqlalchemy
-      sqlalchemy_migrate
+      alembic
       python-dateutil
       txaio
       autobahn
@@ -74,9 +74,6 @@ let
       git
       openssh
       glibcLocales
-      # optional dependency that was accidentally made required for tests
-      # https://github.com/buildbot/buildbot/pull/5857
-      ldap3
     ];
 
     patches = [
@@ -95,6 +92,9 @@ let
     preCheck = ''
       export LC_ALL="en_US.UTF-8"
       export PATH="$out/bin:$PATH"
+
+      # remove testfile which is missing configuration file from sdist
+      rm buildbot/test/integration/test_graphql.py
     '';
 
     disabled = !isPy3k;

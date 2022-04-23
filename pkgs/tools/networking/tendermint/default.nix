@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "tendermint";
-  version = "0.34.13";
+  version = "0.35.2";
 
   src = fetchFromGitHub {
     owner = "tendermint";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-z3rbDdk68PTvJ/LPnAx8kOjCGXMfxQA0LK9GLYgaiUY=";
+    sha256 = "sha256-QCCDZ0zsAqV7tvlBeyTpN5iz/jBc50oBgrmUB/R5wCY=";
   };
 
-  vendorSha256 = "sha256-bwDyis/dHKSqBFw5jFWSZip5YjBe1bq/ieg6Jg0P/TM=";
+  vendorSha256 = "sha256-h4sNfV8B+WGgfVPDmWVNek7fQo5qZ3+VGkx4VSw4QF8=";
 
   subPackages = [ "cmd/tendermint" ];
 

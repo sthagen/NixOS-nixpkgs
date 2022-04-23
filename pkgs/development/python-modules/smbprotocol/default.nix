@@ -12,14 +12,16 @@
 
 buildPythonPackage rec {
   pname = "smbprotocol";
-  version = "1.7.0";
+  version = "1.9.0";
+  format = "setuptools";
+
   disabled = pythonOlder "3.6";
 
   src = fetchFromGitHub {
     owner = "jborean93";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-4nhgt9/LgoGucNehZkgs4XcneCq+fihWQHtwMbuSp2s=";
+    sha256 = "sha256-u3brP3WsnoqRy3R0OQQkIbq+avS7nemx9GKpvTq+vxg=";
   };
 
   propagatedBuildInputs = [
@@ -43,7 +45,9 @@ buildPythonPackage rec {
     "test_recv_"
   ];
 
-  pythonImportsCheck = [ "smbprotocol" ];
+  pythonImportsCheck = [
+    "smbprotocol"
+  ];
 
   meta = with lib; {
     description = "Python SMBv2 and v3 Client";

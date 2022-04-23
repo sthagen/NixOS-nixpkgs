@@ -11,10 +11,10 @@
 }:
 
 let
-  sha256 = "08j7j9fpxh08vkczjqahb8r55bwks8p3ykrv6a2kfi309629nm96";
+  sha256 = "1f0nrdg8hf650qxz79i3a1d2zyf24niyrcnbnhc9i7hzbnqbp5qg";
   # specVersion taken from: https://www.linode.com/docs/api/openapi.yaml at `info.version`.
-  specVersion = "4.104.0";
-  specSha256 = "0lbky0djqsndp33067q6yir5525m3zcgkpvf1z16mkspkixzadqs";
+  specVersion = "4.119.4";
+  specSha256 = "057qzpy8da0r0av8wmm640mqqhl4qynqxqalkf3ylsa3xnch5c9m";
   spec = fetchurl {
     url = "https://raw.githubusercontent.com/linode/linode-api-docs/v${specVersion}/openapi.yaml";
     sha256 = specSha256;
@@ -24,7 +24,7 @@ in
 
 buildPythonApplication rec {
   pname = "linode-cli";
-  version = "5.9.0";
+  version = "5.17.2";
 
   src = fetchFromGitHub {
     owner = "linode";
@@ -32,6 +32,10 @@ buildPythonApplication rec {
     rev = version;
     inherit sha256;
   };
+
+  patches = [
+    ./remove-update-check.patch
+  ];
 
   # remove need for git history
   prePatch = ''
@@ -68,6 +72,6 @@ buildPythonApplication rec {
     description = "The Linode Command Line Interface";
     homepage = "https://github.com/linode/linode-cli";
     license = licenses.bsd3;
-    maintainers = with maintainers; [ ryantm superherointj ];
+    maintainers = with maintainers; [ ryantm ];
   };
 }

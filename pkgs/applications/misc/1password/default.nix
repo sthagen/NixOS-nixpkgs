@@ -1,25 +1,38 @@
-{ lib, stdenv, fetchzip, autoPatchelfHook, fetchurl, xar, cpio }:
+{ lib, stdenv, fetchurl, fetchzip, autoPatchelfHook, installShellFiles, cpio, xar }:
 
-stdenv.mkDerivation rec {
-  pname = "1password";
-  version = "1.11.2";
+let
+  inherit (stdenv.hostPlatform) system;
+  fetch = srcPlatform: sha256: extension:
+    let
+      args = {
+        url = "https://cache.agilebits.com/dist/1P/op2/pkg/v${version}/op_${srcPlatform}_v${version}.${extension}";
+        inherit sha256;
+      } // lib.optionalAttrs (extension == "zip") { stripRoot = false; };
+    in
+    if extension == "zip" then fetchzip args else fetchurl args;
+
+  pname = "1password-cli";
+  version = "2.0.2";
+  sources = rec {
+    aarch64-linux = fetch "linux_arm64" "sha256-DhKxY4Ry1IpT16UC3HbbUSKWzhGm/0R7rYrvqupg/Zo=" "zip";
+    i686-linux = fetch "linux_386" "sha256-ANoOYjG4+mci6TdF4HC9fP8e5eAckrbZITRuA1fqtCA=" "zip";
+    x86_64-linux = fetch "linux_amd64" "sha256-uPudElKu30smsupSIvGAmrF/f9TXoTzyUfSrUAvTDWw=" "zip";
+    aarch64-darwin = fetch "apple_universal" "sha256-P5qsy4kiE/DMJnJr3EUHMcb0KoUZyO2BQ5PIosPbnI8=" "pkg";
+    x86_64-darwin = aarch64-darwin;
+  };
+  platforms = builtins.attrNames sources;
+  mainProgram = "op";
+in
+
+stdenv.mkDerivation {
+  inherit pname version;
   src =
-    if stdenv.isLinux then fetchzip {
-      url = {
-        "i686-linux" = "https://cache.agilebits.com/dist/1P/op/pkg/v${version}/op_linux_386_v${version}.zip";
-        "x86_64-linux" = "https://cache.agilebits.com/dist/1P/op/pkg/v${version}/op_linux_amd64_v${version}.zip";
-        "aarch64-linux" = "https://cache.agilebits.com/dist/1P/op/pkg/v${version}/op_linux_arm_v${version}.zip";
-      }.${stdenv.hostPlatform.system};
-      sha256 = {
-        "i686-linux" = "0rh5bakj9qd43cf6wj5v46a3h98kcwqyc0f1yw72wvcacvjycyjz";
-        "x86_64-linux" = "00nf0cb8cxk1pvzr1wq778wvikzrlzy38r3rzkq44whdpdj50jzx";
-        "aarch64-linux" = "1gv282z49bj3ln5na4wb1z5455a64cyd54fp5i96k8shaxd0apxf";
-      }.${stdenv.hostPlatform.system};
-      stripRoot = false;
-    } else fetchurl {
-      url = "https://cache.agilebits.com/dist/1P/op/pkg/v${version}/op_apple_universal_v${version}.pkg";
-      sha256 = "1pqdjr6d23j9fpwgahb0s1ni1bpjv9jajs1hapgq5kdrww2w7nhm";
-    };
+    if (builtins.elem system platforms) then
+      sources.${system}
+    else
+      throw "Source for ${pname} is not available for ${system}";
+
+  nativeBuildInputs = [ installShellFiles ] ++ lib.optional stdenv.isLinux autoPatchelfHook;
 
   buildInputs = lib.optionals stdenv.isDarwin [ xar cpio ];
 
@@ -29,25 +42,32 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    install -D op $out/bin/op
+    runHook preInstall
+    install -D ${mainProgram} $out/bin/${mainProgram}
+    runHook postInstall
+  '';
+
+  postInstall = ''
+    installShellCompletion --cmd ${mainProgram} \
+      --bash <($out/bin/${mainProgram} completion bash) \
+      --fish <($out/bin/${mainProgram} completion fish) \
+      --zsh <($out/bin/${mainProgram} completion zsh)
   '';
 
   dontStrip = stdenv.isDarwin;
 
-  nativeBuildInputs = lib.optionals stdenv.isLinux [ autoPatchelfHook ];
-
   doInstallCheck = true;
 
   installCheckPhase = ''
-    $out/bin/op --version
+    $out/bin/${mainProgram} --version
   '';
 
   meta = with lib; {
-    description  = "1Password command-line tool";
-    homepage     = "https://support.1password.com/command-line/";
-    downloadPage = "https://app-updates.agilebits.com/product_history/CLI";
-    maintainers  = with maintainers; [ joelburget marsam ];
-    license      = licenses.unfree;
-    platforms    = [ "i686-linux" "x86_64-linux" "x86_64-darwin" "aarch64-linux" ];
+    description = "1Password command-line tool";
+    homepage = "https://developer.1password.com/docs/cli/";
+    downloadPage = "https://app-updates.agilebits.com/product_history/CLI2";
+    maintainers = with maintainers; [ joelburget marsam ];
+    license = licenses.unfree;
+    inherit mainProgram platforms;
   };
 }

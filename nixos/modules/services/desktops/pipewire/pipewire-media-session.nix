@@ -13,10 +13,10 @@ let
   # Use upstream config files passed through spa-json-dump as the base
   # Patched here as necessary for them to work with this module
   defaults = {
-    alsa-monitor = (builtins.fromJSON (builtins.readFile ./alsa-monitor.conf.json));
-    bluez-monitor = (builtins.fromJSON (builtins.readFile ./bluez-monitor.conf.json));
-    media-session = (builtins.fromJSON (builtins.readFile ./media-session.conf.json));
-    v4l2-monitor = (builtins.fromJSON (builtins.readFile ./v4l2-monitor.conf.json));
+    alsa-monitor = lib.importJSON ./media-session/alsa-monitor.conf.json;
+    bluez-monitor = lib.importJSON ./media-session/bluez-monitor.conf.json;
+    media-session = lib.importJSON ./media-session/media-session.conf.json;
+    v4l2-monitor = lib.importJSON ./media-session/v4l2-monitor.conf.json;
   };
 
   configs = {
@@ -29,6 +29,8 @@ in {
 
   meta = {
     maintainers = teams.freedesktop.members;
+    # uses attributes of the linked package
+    buildDocsInSandbox = false;
   };
 
   ###### interface
@@ -36,15 +38,14 @@ in {
     services.pipewire.media-session = {
       enable = mkOption {
         type = types.bool;
-        default = config.services.pipewire.enable;
-        defaultText = literalExpression "config.services.pipewire.enable";
-        description = "Example pipewire session manager";
+        default = false;
+        description = "Whether to enable the deprecated example Pipewire session manager";
       };
 
       package = mkOption {
         type = types.package;
-        default = pkgs.pipewire.mediaSession;
-        defaultText = literalExpression "pkgs.pipewire.mediaSession";
+        default = pkgs.pipewire-media-session;
+        defaultText = literalExpression "pkgs.pipewire-media-session";
         description = ''
           The pipewire-media-session derivation to use.
         '';
@@ -55,36 +56,36 @@ in {
           type = json.type;
           description = ''
             Configuration for the media session core. For details see
-            https://gitlab.freedesktop.org/pipewire/pipewire/-/blob/${cfg.package.version}/src/daemon/media-session.d/media-session.conf
+            https://gitlab.freedesktop.org/pipewire/media-session/-/blob/${cfg.package.version}/src/daemon/media-session.d/media-session.conf
           '';
-          default = {};
+          default = defaults.media-session;
         };
 
         alsa-monitor = mkOption {
           type = json.type;
           description = ''
             Configuration for the alsa monitor. For details see
-            https://gitlab.freedesktop.org/pipewire/pipewire/-/blob/${cfg.package.version}/src/daemon/media-session.d/alsa-monitor.conf
+            https://gitlab.freedesktop.org/pipewire/media-session/-/blob/${cfg.package.version}/src/daemon/media-session.d/alsa-monitor.conf
           '';
-          default = {};
+          default = defaults.alsa-monitor;
         };
 
         bluez-monitor = mkOption {
           type = json.type;
           description = ''
             Configuration for the bluez5 monitor. For details see
-            https://gitlab.freedesktop.org/pipewire/pipewire/-/blob/${cfg.package.version}/src/daemon/media-session.d/bluez-monitor.conf
+            https://gitlab.freedesktop.org/pipewire/media-session/-/blob/${cfg.package.version}/src/daemon/media-session.d/bluez-monitor.conf
           '';
-          default = {};
+          default = defaults.bluez-monitor;
         };
 
         v4l2-monitor = mkOption {
           type = json.type;
           description = ''
             Configuration for the V4L2 monitor. For details see
-            https://gitlab.freedesktop.org/pipewire/pipewire/-/blob/${cfg.package.version}/src/daemon/media-session.d/v4l2-monitor.conf
+            https://gitlab.freedesktop.org/pipewire/media-session/-/blob/${cfg.package.version}/src/daemon/media-session.d/v4l2-monitor.conf
           '';
-          default = {};
+          default = defaults.v4l2-monitor;
         };
       };
     };
@@ -94,6 +95,12 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
     systemd.packages = [ cfg.package ];
+
+    # Enable either system or user units.
+    systemd.services.pipewire-media-session.enable = config.services.pipewire.systemWide;
+    systemd.user.services.pipewire-media-session.enable = !config.services.pipewire.systemWide;
+
+    systemd.services.pipewire-media-session.wantedBy = [ "pipewire.service" ];
     systemd.user.services.pipewire-media-session.wantedBy = [ "pipewire.service" ];
 
     environment.etc."pipewire/media-session.d/media-session.conf" = {
@@ -102,6 +109,11 @@ in {
     environment.etc."pipewire/media-session.d/v4l2-monitor.conf" = {
       source = json.generate "v4l2-monitor.conf" configs.v4l2-monitor;
     };
+
+    environment.etc."pipewire/media-session.d/with-audio" =
+      mkIf config.services.pipewire.audio.enable {
+        text = "";
+      };
 
     environment.etc."pipewire/media-session.d/with-alsa" =
       mkIf config.services.pipewire.alsa.enable {

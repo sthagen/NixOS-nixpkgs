@@ -1,18 +1,18 @@
-{ fetchFromGitHub, lib, rustPlatform, makeWrapper }:
+{ fetchzip, lib, rustPlatform, makeWrapper }:
 
 rustPlatform.buildRustPackage rec {
   pname = "helix";
-  version = "0.4.1";
+  version = "22.03";
 
-  src = fetchFromGitHub {
-    owner = "helix-editor";
-    repo = pname;
-    rev = "v${version}";
-    fetchSubmodules = true;
-    sha256 = "sha256-lScMHZ/pLcHkuvv8kSKnYK5AFVxyhOUMFdsu3nlDVD0=";
+  # This release tarball includes source code for the tree-sitter grammars,
+  # which is not ordinarily part of the repository.
+  src = fetchzip {
+    url = "https://github.com/helix-editor/helix/releases/download/${version}/helix-${version}-source.tar.xz";
+    sha256 = "DP/hh6JfnyHdW2bg0cvhwlWvruNDvL9bmXM46iAUQzA=";
+    stripRoot = false;
   };
 
-  cargoSha256 = "sha256-N5vlPoYyksHEZsyia8u8qtoEBY6qsXqO9CRBFaTQmiw=";
+  cargoSha256 = "zJQ+KvO+6iUIb0eJ+LnMbitxaqTxfqgu7XXj3j0GiX4=";
 
   nativeBuildInputs = [ makeWrapper ];
 
@@ -29,6 +29,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://helix-editor.com";
     license = licenses.mpl20;
     mainProgram = "hx";
-    maintainers = with maintainers; [ yusdacra ];
+    maintainers = with maintainers; [ danth yusdacra ];
   };
 }

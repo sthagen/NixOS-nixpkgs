@@ -24,13 +24,18 @@
 
 buildPythonPackage rec {
   pname = "snowflake-connector-python";
-  version = "2.6.2";
+  version = "2.7.6";
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "ce131b1dd059a4d081e78595d618654bf9b9fc184d78352f24512375467257d1";
+    sha256 = "sha256-MxYo4MoCdkSSuDteR3A72FcRWuKTRrct4y1/t8nsVIs=";
   };
+
+  postPatch = ''
+    substituteInPlace setup.cfg \
+      --replace "pyOpenSSL>=16.2.0,<22.0.0" "pyOpenSSL"
+  '';
 
   propagatedBuildInputs = [
     azure-storage-blob

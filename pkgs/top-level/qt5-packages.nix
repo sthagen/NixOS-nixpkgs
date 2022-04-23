@@ -108,13 +108,13 @@ in (kdeFrameworks // plasmaMobileGear // plasma5 // plasma5.thirdParty // kdeGea
 
   kquickimageedit = callPackage ../development/libraries/kquickimageedit { };
 
+  kweathercore = libsForQt5.callPackage ../development/libraries/kweathercore { };
+
   ldutils = callPackage ../development/libraries/ldutils { };
 
   libcommuni = callPackage ../development/libraries/libcommuni { };
 
   libdbusmenu = callPackage ../development/libraries/libdbusmenu-qt/qt-5.5.nix { };
-
-  libktorrent = callPackage ../development/libraries/libktorrent { };
 
   liblastfm = callPackage ../development/libraries/liblastfm { };
 
@@ -133,6 +133,8 @@ in (kdeFrameworks // plasmaMobileGear // plasma5 // plasma5.thirdParty // kdeGea
   libqofono = callPackage ../development/libraries/libqofono { };
 
   libqtav = callPackage ../development/libraries/libqtav { };
+
+  libqaccessibilityclient = callPackage ../development/libraries/libqaccessibilityclient { };
 
   kpmcore = callPackage ../development/libraries/kpmcore { };
 
@@ -174,6 +176,11 @@ in (kdeFrameworks // plasmaMobileGear // plasma5 // plasma5.thirdParty // kdeGea
 
   qca-qt5 = callPackage ../development/libraries/qca-qt5 { };
 
+  # Until macOS SDK allows for Qt 5.15, darwin is limited to 2.3.2
+  qca-qt5_2_3_2 = callPackage ../development/libraries/qca-qt5/2.3.2.nix { };
+
+  qcoro = callPackage ../development/libraries/qcoro { };
+
   qcsxcad = callPackage ../development/libraries/science/electronics/qcsxcad { };
 
   qmltermwidget = callPackage ../development/libraries/qmltermwidget {
@@ -184,9 +191,9 @@ in (kdeFrameworks // plasmaMobileGear // plasma5 // plasma5.thirdParty // kdeGea
 
   qoauth = callPackage ../development/libraries/qoauth { };
 
-  qscintilla = callPackage ../development/libraries/qscintilla {
-    withQt5 = true;
-  };
+  qscintilla = callPackage ../development/libraries/qscintilla { };
+
+  qt5ct = callPackage ../tools/misc/qt5ct { };
 
   qtfeedback = callPackage ../development/libraries/qtfeedback { };
 
@@ -206,7 +213,9 @@ in (kdeFrameworks // plasmaMobileGear // plasma5 // plasma5.thirdParty // kdeGea
 
   quazip = callPackage ../development/libraries/quazip { };
 
-  qwt = callPackage ../development/libraries/qwt/6.nix { };
+  qwt = callPackage ../development/libraries/qwt/default.nix { };
+
+  qwt6_1 = callPackage ../development/libraries/qwt/6_1.nix { };
 
   soqt = callPackage ../development/libraries/soqt { };
 
@@ -222,4 +231,5 @@ in (kdeFrameworks // plasmaMobileGear // plasma5 // plasma5.thirdParty // kdeGea
 
   soundkonverter = callPackage ../applications/audio/soundkonverter {};
 
+  yuview = callPackage ../applications/video/yuview { };
 })))

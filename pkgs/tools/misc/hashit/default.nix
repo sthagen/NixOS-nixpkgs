@@ -24,7 +24,6 @@ stdenv.mkDerivation rec {
   buildInputs = [
     gtk3
     libgee
-    pantheon.elementary-icon-theme
     pantheon.granite
   ];
 
@@ -45,5 +44,6 @@ stdenv.mkDerivation rec {
     license = licenses.gpl2Plus;
     maintainers = teams.pantheon.members;
     platforms = platforms.linux;
+    mainProgram = "com.github.artemanufrij.hashit";
   };
 }

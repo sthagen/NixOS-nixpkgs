@@ -5,18 +5,18 @@
 , pkg-config
 , scdoc
 , stdenv
-, systemd
+, systemdSupport ? stdenv.isLinux, systemd
 }:
 
 stdenv.mkDerivation rec {
   pname = "seatd";
-  version = "0.6.2";
+  version = "0.6.4";
 
   src = fetchFromSourcehut {
     owner = "~kennylevinsen";
     repo = "seatd";
     rev = version;
-    sha256 = "0c07i1nq0k60xmcsnr37ryqs7nzbg4qfq6fzbnzwbh1yhr8kypcm";
+    sha256 = "1k0wz68aqr9xgpyrfrsmrjn5b634qmm7fwv2d73w112hjmgvjxk5";
   };
 
   outputs = [ "bin" "out" "dev" "man" ];
@@ -25,9 +25,13 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ meson ninja pkg-config scdoc ];
 
-  buildInputs = [ systemd ];
+  buildInputs = lib.optionals systemdSupport [ systemd ];
 
-  mesonFlags = [ "-Dlibseat-logind=systemd" "-Dlibseat-builtin=enabled" ];
+  mesonFlags = [
+    "-Dlibseat-logind=${if systemdSupport then "systemd" else "disabled"}"
+    "-Dlibseat-builtin=enabled"
+    "-Dserver=enabled"
+  ];
 
   meta = with lib; {
     description = "A universal seat management library";

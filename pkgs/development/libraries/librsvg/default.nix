@@ -12,34 +12,49 @@
 , ApplicationServices
 , Foundation
 , libobjc
+, rustPlatform
 , rustc
+, rust
 , cargo
+, gi-docgen
+, python3
 , gnome
 , vala
+, withIntrospection ? stdenv.hostPlatform == stdenv.buildPlatform
 , gobject-introspection
 , nixosTests
 }:
 
 stdenv.mkDerivation rec {
   pname = "librsvg";
-  version = "2.52.0";
+  version = "2.54.0";
 
-  outputs = [ "out" "dev" "installedTests" ];
+  outputs = [ "out" "dev" "installedTests" ] ++ lib.optionals withIntrospection [
+    "devdoc"
+  ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "14zkdd7a9mymnfs3laqj0gr69c16nwixvbc5a4gvd534w6riz0mx";
+    sha256 = "uvjrwUfxRrQmG7PQzQ+slEv427Sx8jR9IzQfl03MMIU=";
   };
 
+  cargoVendorDir = "vendor";
+
+  strictDeps = true;
+
+  depsBuildBuild = [ pkg-config ];
+
   nativeBuildInputs = [
+    gdk-pixbuf
     pkg-config
     rustc
     cargo
+    python3.pkgs.docutils
     vala
+    rustPlatform.cargoSetupHook
+  ] ++ lib.optionals withIntrospection [
     gobject-introspection
-  ] ++ lib.optionals stdenv.isDarwin [
-    ApplicationServices
-    Foundation
+    gi-docgen
   ];
 
   buildInputs = [
@@ -47,7 +62,11 @@ stdenv.mkDerivation rec {
     bzip2
     pango
     libintl
+  ] ++ lib.optionals withIntrospection [
+    gobject-introspection
   ] ++ lib.optionals stdenv.isDarwin [
+    ApplicationServices
+    Foundation
     libobjc
   ];
 
@@ -58,15 +77,16 @@ stdenv.mkDerivation rec {
   ];
 
   configureFlags = [
-    "--enable-introspection"
-  ] ++ lib.optionals (!stdenv.isDarwin) [
+    (lib.enableFeature withIntrospection "introspection")
+
     # Vapi does not build on MacOS.
     # https://github.com/NixOS/nixpkgs/pull/117081#issuecomment-827782004
-    "--enable-vala"
-  ] ++ [
+    (lib.enableFeature (withIntrospection && !stdenv.isDarwin) "vala")
+
     "--enable-installed-tests"
     "--enable-always-build-tests"
-  ] ++ lib.optional stdenv.isDarwin "--disable-Bsymbolic";
+  ] ++ lib.optional stdenv.isDarwin "--disable-Bsymbolic"
+    ++ lib.optional (stdenv.buildPlatform != stdenv.hostPlatform) "RUST_TARGET=${rust.toRustTarget stdenv.hostPlatform}";
 
   makeFlags = [
     "installed_test_metadir=${placeholder "installedTests"}/share/installed-tests/RSVG"
@@ -93,13 +113,21 @@ stdenv.mkDerivation rec {
     # Fix thumbnailer path
     sed -e "s#@bindir@\(/gdk-pixbuf-thumbnailer\)#${gdk-pixbuf}/bin\1#g" \
         -i gdk-pixbuf-loader/librsvg.thumbnailer.in
+
+    # 'error: linker `cc` not found' when cross-compiling
+    export RUSTFLAGS="-Clinker=$CC"
   '';
 
-  # Merge gdkpixbuf and librsvg loaders
-  postInstall = ''
-    mv $GDK_PIXBUF/loaders.cache $GDK_PIXBUF/loaders.cache.tmp
-    cat ${gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache $GDK_PIXBUF/loaders.cache.tmp > $GDK_PIXBUF/loaders.cache
-    rm $GDK_PIXBUF/loaders.cache.tmp
+  # Not generated when cross compiling.
+  postInstall = lib.optionalString (stdenv.hostPlatform == stdenv.buildPlatform) ''
+    # Merge gdkpixbuf and librsvg loaders
+    cat ${lib.getLib gdk-pixbuf}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache $GDK_PIXBUF/loaders.cache > $GDK_PIXBUF/loaders.cache.tmp
+    mv $GDK_PIXBUF/loaders.cache.tmp $GDK_PIXBUF/loaders.cache
+  '';
+
+  postFixup = ''
+    # Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.
+    moveToOutput "share/doc" "$devdoc"
   '';
 
   passthru = {

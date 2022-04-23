@@ -4,17 +4,13 @@ import ./make-test-python.nix ({ pkgs, ... }: {
     maintainers = [ sumnerevans ];
   };
 
-  machine =
+  nodes.machine =
     { pkgs, ... }:
     {
       services.airsonic = {
         enable = true;
         maxMemory = 800;
       };
-
-      # Airsonic is a Java application, and unfortunately requires a significant
-      # amount of memory.
-      virtualisation.memorySize = 1024;
     };
 
   testScript = ''

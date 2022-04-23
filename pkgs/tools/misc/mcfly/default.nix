@@ -2,22 +2,22 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "mcfly";
-  version = "0.5.9";
+  version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "cantino";
     repo = "mcfly";
     rev = "v${version}";
-    sha256 = "0i3qjgq1b8h3bzc7rxa60kq1yc2im9m6dgzrvial086a1zk8s81r";
+    sha256 = "sha256-k8Z/CS1vbnQvoddos7Y0KcM1zB8QDAbXaROjNCyPEN0=";
   };
 
   postPatch = ''
-    substituteInPlace mcfly.bash --replace '$(which mcfly)' '${placeholder "out"}/bin/mcfly'
-    substituteInPlace mcfly.zsh  --replace '$(which mcfly)' '${placeholder "out"}/bin/mcfly'
-    substituteInPlace mcfly.fish --replace '(which mcfly)'  '${placeholder "out"}/bin/mcfly'
+    substituteInPlace mcfly.bash --replace '$(command which mcfly)' '${placeholder "out"}/bin/mcfly'
+    substituteInPlace mcfly.zsh  --replace '$(command which mcfly)' '${placeholder "out"}/bin/mcfly'
+    substituteInPlace mcfly.fish --replace '(command which mcfly)'  '${placeholder "out"}/bin/mcfly'
   '';
 
-  cargoSha256 = "084v4fsdi25ahz068ssq29z7d5d3k3jh3s8b07irwybdsy18c629";
+  cargoSha256 = "sha256-2SKgzVJdtzH9poHx/NJba6+lj/C0PBcEgI/2ITO18Bk=";
 
   meta = with lib; {
     homepage = "https://github.com/cantino/mcfly";

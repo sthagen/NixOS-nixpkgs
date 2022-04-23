@@ -4,7 +4,7 @@
   freetype, tradcpp, fontconfig, meson, ninja, ed, fontforge,
   libGL, spice-protocol, zlib, libGLU, dbus, libunwind, libdrm,
   mesa, udev, bootstrap_cmds, bison, flex, clangStdenv, autoreconfHook,
-  mcpp, epoxy, openssl, pkg-config, llvm, libxslt,
+  mcpp, libepoxy, openssl, pkg-config, llvm, libxslt,
   ApplicationServices, Carbon, Cocoa, Xplugin
 }:
 
@@ -442,6 +442,17 @@ self: super:
 
   xf86videoati = super.xf86videoati.overrideAttrs (attrs: {
     NIX_CFLAGS_COMPILE = "-I${self.xorgserver.dev or self.xorgserver}/include/xorg";
+    nativeBuildInputs = with self; attrs.nativeBuildInputs ++ [ autoreconfHook utilmacros ];
+    patches = [
+      (fetchpatch {
+        url = "https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati/-/commit/e0511968d04b42abf11bc0ffb387f143582bc144.patch";
+        sha256 = "sha256-79nqKuJRgMYXDEMB8IWxdmbxtI/m+Oca1wSLYeGMuEk=";
+      })
+    ];
+  });
+
+  xf86videonouveau = super.xf86videonouveau.overrideAttrs (attrs: {
+    nativeBuildInputs = with self; attrs.nativeBuildInputs ++ [ autoreconfHook utilmacros ];
   });
 
   xf86videovmware = super.xf86videovmware.overrideAttrs (attrs: {
@@ -452,6 +463,16 @@ self: super:
   });
 
   xf86videoqxl = super.xf86videoqxl.overrideAttrs (attrs: {
+    # https://gitlab.freedesktop.org/xorg/driver/xf86-video-qxl/-/issues/12
+    postPatch = ''
+      patch -p1 <<EOF
+      --- a/src/qxl_option_helpers.c
+      +++ b/src/qxl_option_helpers.c
+      @@ -37 +37 @@
+      -        return options[option_index].value.bool;
+      +        return options[option_index].value.boolean;
+      EOF
+    '';
     buildInputs =  attrs.buildInputs ++ [ spice-protocol ];
   });
 
@@ -594,17 +615,7 @@ self: super:
               sed -i -e "s|#include <drm_fourcc.h>|#include <libdrm/drm_fourcc.h>|" $i
             done
           '';}
-        else if (abiCompat == "1.17") then {
-          name = "xorg-server-1.17.4";
-          builder = ./builder.sh;
-          src = fetchurl {
-            url = "mirror://xorg/individual/xserver/xorg-server-1.17.4.tar.bz2";
-            sha256 = "0mv4ilpqi5hpg182mzqn766frhi6rw48aba3xfbaj4m82v0lajqc";
-          };
-          nativeBuildInputs = [ pkg-config ];
-          buildInputs = [ xorgproto libdrm openssl libX11 libXau libXaw libxcb xcbutil xcbutilwm xcbutilimage xcbutilkeysyms xcbutilrenderutil libXdmcp libXfixes libxkbfile libXmu libXpm libXrender libXres libXt ];
-          meta.platforms = lib.platforms.unix;
-        } else if (abiCompat == "1.18") then {
+        else if (abiCompat == "1.18") then {
             name = "xorg-server-1.18.4";
             builder = ./builder.sh;
             src = fetchurl {
@@ -620,7 +631,7 @@ self: super:
     in attrs //
     (let
       version = lib.getVersion attrs;
-      commonBuildInputs = attrs.buildInputs ++ [ xtrans ];
+      commonBuildInputs = attrs.buildInputs ++ [ libxcvt xtrans ];
       commonPropagatedBuildInputs = [
         zlib libGL libGLU dbus
         xorgproto
@@ -639,6 +650,15 @@ self: super:
         ];
         postInstall = ":"; # prevent infinite recursion
       });
+
+      fpgit = commit: sha256: name: fetchpatch (
+        {
+          url = "https://gitlab.freedesktop.org/xorg/xserver/-/commit/${commit}.diff";
+          inherit sha256;
+        } // lib.optionalAttrs (name != null) {
+            name = name + ".patch";
+          }
+      );
     in
       if (!isDarwin)
       then {
@@ -650,7 +670,7 @@ self: super:
           ./dont-create-logdir-during-build.patch
         ];
         buildInputs = commonBuildInputs ++ [ libdrm mesa ];
-        propagatedBuildInputs = attrs.propagatedBuildInputs or [] ++ [ libpciaccess epoxy ] ++ commonPropagatedBuildInputs ++ lib.optionals stdenv.isLinux [
+        propagatedBuildInputs = attrs.propagatedBuildInputs or [] ++ [ libpciaccess libepoxy ] ++ commonPropagatedBuildInputs ++ lib.optionals stdenv.isLinux [
           udev
         ];
         prePatch = lib.optionalString stdenv.hostPlatform.isMusl ''
@@ -779,6 +799,7 @@ self: super:
     stdenv = if isDarwin then clangStdenv else stdenv;
   }).overrideAttrs (attrs: {
     buildInputs = attrs.buildInputs ++ lib.optional isDarwin bootstrap_cmds;
+    depsBuildBuild = [ buildPackages.stdenv.cc ];
     configureFlags = [
       "--with-xserver=${self.xorgserver.out}/bin/X"
     ] ++ lib.optionals isDarwin [
@@ -794,6 +815,10 @@ self: super:
         sha256 = "18kb88i3s9nbq2jxl7l2hyj6p56c993hivk8mzxg811iqbbawkp7";
       })
     ];
+    postPatch = ''
+      # Avoid replacement of word-looking cpp's builtin macros in Nix's cross-compiled paths
+      substituteInPlace Makefile.in --replace "PROGCPPDEFS =" "PROGCPPDEFS = -Dlinux=linux -Dunix=unix"
+    '';
     propagatedBuildInputs = attrs.propagatedBuildInputs or [] ++ [ self.xauth ]
                          ++ lib.optionals isDarwin [ self.libX11 self.xorgproto ];
     postFixup = ''
@@ -803,14 +828,14 @@ self: super:
 
   xf86videointel = super.xf86videointel.overrideAttrs (attrs: {
     # the update script only works with released tarballs :-/
-    name = "xf86-video-intel-2019-12-09";
+    name = "xf86-video-intel-2021-01-15";
     src = fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
       group = "xorg";
       owner = "driver";
       repo = "xf86-video-intel";
-      rev = "f66d39544bb8339130c96d282a80f87ca1606caf";
-      sha256 = "14rwbbn06l8qpx7s5crxghn80vgcx8jmfc7qvivh72d81r0kvywl";
+      rev = "31486f40f8e8f8923ca0799aea84b58799754564";
+      sha256 = "sha256-nqT9VZDb2kAC72ot9UCdwEkM1uuP9NriJePulzrdZlM=";
     };
     buildInputs = attrs.buildInputs ++ [ self.libXScrnSaver self.libXfixes self.libXv self.pixman ];
     nativeBuildInputs = attrs.nativeBuildInputs ++ [autoreconfHook self.utilmacros];

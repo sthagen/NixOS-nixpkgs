@@ -15,6 +15,8 @@
 }:
 
 let
+  dotnet-sdk = dotnetCorePackages.sdk_5_0;
+  dotnet-aspnetcore = dotnetCorePackages.aspnetcore_5_0;
   runtimeDeps = [
     ffmpeg
     fontconfig
@@ -34,10 +36,6 @@ let
       "musl-");
   # https://docs.microsoft.com/en-us/dotnet/core/rid-catalog#using-rids
   runtimeId = "${os}-${musl}${arch}";
-
-  dotnet-sdk = dotnetCorePackages.sdk_5_0;
-  dotnet-net = dotnetCorePackages.net_5_0;
-  dotnet-aspnetcore = dotnetCorePackages.aspnetcore_5_0;
 in
 stdenv.mkDerivation rec {
   pname = "jellyfin";
@@ -62,20 +60,15 @@ stdenv.mkDerivation rec {
   ];
 
   nugetDeps = linkFarmFromDrvs "${pname}-nuget-deps" (import ./nuget-deps.nix {
-    fetchNuGet = { name, version, sha256 }: fetchurl {
-      name = "nuget-${name}-${version}.nupkg";
-      url = "https://www.nuget.org/api/v2/package/${name}/${version}";
+    fetchNuGet = { pname, version, sha256 }: fetchurl {
+      name = "${pname}-${version}.nupkg";
+      url = "https://www.nuget.org/api/v2/package/${pname}/${version}";
       inherit sha256;
     };
   });
 
   configurePhase = ''
     runHook preConfigure
-
-    export HOME=$(mktemp -d)
-
-    export DOTNET_CLI_TELEMETRY_OPTOUT=1
-    export DOTNET_NOLOGO=1
 
     nuget sources Add -Name nixos -Source "$PWD/nixos"
     nuget init "$nugetDeps" "$PWD/nixos"
@@ -123,5 +116,6 @@ stdenv.mkDerivation rec {
     # https://github.com/jellyfin/jellyfin/issues/610#issuecomment-537625510
     license = licenses.gpl2Plus;
     maintainers = with maintainers; [ nyanloutre minijackson purcell jojosch ];
+    platforms = dotnet-aspnetcore.meta.platforms;
   };
 }

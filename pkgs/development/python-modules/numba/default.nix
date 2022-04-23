@@ -9,29 +9,57 @@
 , llvmlite
 , setuptools
 , libcxx
+, substituteAll
+
+# CUDA-only dependencies:
+, addOpenGLRunpath ? null
+, cudaPackages ? {}
+
+# CUDA flags:
+, cudaSupport ? false
 }:
 
-buildPythonPackage rec {
-  version = "0.54.0";
+let
+  inherit (cudaPackages) cudatoolkit;
+in buildPythonPackage rec {
+  version = "0.55.1";
   pname = "numba";
   disabled = pythonOlder "3.6" || pythonAtLeast "3.10";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "bad6bd98ab2e41c34aa9c80b8d9737e07d92a53df4f74d3ada1458b0b516ccff";
+    sha256 = "sha256-A+kGmiZm0chPk7ANvXFvuP7d6Lssbvr6LwSEKkZELqM=";
   };
 
   postPatch = ''
+    # numpy
     substituteInPlace setup.py \
-      --replace "1.21" "1.22"
+      --replace "1.22" "2"
 
     substituteInPlace numba/__init__.py \
-      --replace "(1, 20)" "(1, 21)"
+      --replace "(1, 21)" "(2, 0)"
   '';
 
   NIX_CFLAGS_COMPILE = lib.optionalString stdenv.isDarwin "-I${lib.getDev libcxx}/include/c++/v1";
 
-  propagatedBuildInputs = [ numpy llvmlite setuptools ];
+  propagatedBuildInputs = [ numpy llvmlite setuptools ] ++ lib.optionals cudaSupport [ cudatoolkit cudatoolkit.lib ];
+
+  nativeBuildInputs = lib.optional cudaSupport [ addOpenGLRunpath ];
+
+  patches = lib.optionals cudaSupport [
+    (substituteAll {
+      src = ./cuda_path.patch;
+      cuda_toolkit_path = cudatoolkit;
+      cuda_toolkit_lib_path = cudatoolkit.lib;
+    })
+  ];
+
+  postFixup = lib.optionalString cudaSupport ''
+    find $out -type f \( -name '*.so' -or -name '*.so.*' \) | while read lib; do
+      addOpenGLRunpath "$lib"
+      patchelf --set-rpath "${cudatoolkit}/lib:${cudatoolkit.lib}/lib:$(patchelf --print-rpath "$lib")" "$lib"
+    done
+  '';
 
   # Copy test script into $out and run the test suite.
   checkPhase = ''

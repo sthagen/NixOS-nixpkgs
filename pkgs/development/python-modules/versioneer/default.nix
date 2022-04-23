@@ -6,19 +6,23 @@
 
 buildPythonPackage rec {
   pname = "versioneer";
-  version = "0.20";
-  disabled = pythonOlder "3.6";
+  version = "0.22";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-Ljk2AOwnF7efWcmE942TX3bkbEyu+HWoe4tO1gLy/2U=";
+    hash = "sha256-nw6aLLXvUhy/0QTUOiCN2RJN+0rM+nLWlODQQwoBQrw=";
   };
 
   # Couldn't get tests to work because, for instance, they used virtualenv and
   # pip.
   doCheck = false;
 
-  pythonImportsCheck = [ "versioneer" ];
+  pythonImportsCheck = [
+    "versioneer"
+  ];
 
   meta = with lib; {
     description = "Version-string management for VCS-controlled trees";

@@ -294,7 +294,7 @@ in
       };
 
       submissionOptions = mkOption {
-        type = types.attrs;
+        type = with types; attrsOf str;
         default = {
           smtpd_tls_security_level = "encrypt";
           smtpd_sasl_auth_enable = "yes";
@@ -312,7 +312,7 @@ in
       };
 
       submissionsOptions = mkOption {
-        type = types.attrs;
+        type = with types; attrsOf str;
         default = {
           smtpd_sasl_auth_enable = "yes";
           smtpd_client_restrictions = "permit_sasl_authenticated,reject";
@@ -723,23 +723,10 @@ in
         { ${setgidGroup}.gid = config.ids.gids.postdrop;
         };
 
-      systemd.services.postfix =
-        { description = "Postfix mail server";
-
-          wantedBy = [ "multi-user.target" ];
-          after = [ "network.target" ];
-          path = [ pkgs.postfix ];
-
-          serviceConfig = {
-            Type = "forking";
-            Restart = "always";
-            PIDFile = "/var/lib/postfix/queue/pid/master.pid";
-            ExecStart = "${pkgs.postfix}/bin/postfix start";
-            ExecStop = "${pkgs.postfix}/bin/postfix stop";
-            ExecReload = "${pkgs.postfix}/bin/postfix reload";
-          };
-
-          preStart = ''
+      systemd.services.postfix-setup =
+        { description = "Setup for Postfix mail server";
+          serviceConfig.Type = "oneshot";
+          script = ''
             # Backwards compatibility
             if [ ! -d /var/lib/postfix ] && [ -d /var/postfix ]; then
               mkdir -p /var/lib
@@ -775,6 +762,24 @@ in
             #Finally delegate to postfix checking remain directories in /var/lib/postfix and set permissions on them
             ${pkgs.postfix}/bin/postfix set-permissions config_directory=/var/lib/postfix/conf
           '';
+        };
+
+      systemd.services.postfix =
+        { description = "Postfix mail server";
+
+          wantedBy = [ "multi-user.target" ];
+          after = [ "network.target" "postfix-setup.service" ];
+          requires = [ "postfix-setup.service" ];
+          path = [ pkgs.postfix ];
+
+          serviceConfig = {
+            Type = "forking";
+            Restart = "always";
+            PIDFile = "/var/lib/postfix/queue/pid/master.pid";
+            ExecStart = "${pkgs.postfix}/bin/postfix start";
+            ExecStop = "${pkgs.postfix}/bin/postfix stop";
+            ExecReload = "${pkgs.postfix}/bin/postfix reload";
+          };
         };
 
       services.postfix.config = (mapAttrs (_: v: mkDefault v) {

@@ -7,11 +7,11 @@
 
 buildPythonPackage rec {
   pname = "pbr";
-  version = "5.6.0";
+  version = "5.8.1";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "42df03e7797b796625b1029c0400279c7c34fd7df24a7d7818a1abb5b38710dd";
+    sha256 = "sha256-ZrxaNJEvQIuzklvyEjHLb1kgYme39j81A++GXBopLiU=";
   };
 
   propagatedBuildInputs = [ setuptools ];

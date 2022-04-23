@@ -219,9 +219,11 @@ else let
           # it again.
           staticMarker = lib.optionalString stdenv.hostPlatform.isStatic "-static";
         in
+        lib.strings.sanitizeDerivationName (
           if attrs ? name
           then attrs.name + hostSuffix
-          else "${attrs.pname}${staticMarker}${hostSuffix}-${attrs.version}";
+          else "${attrs.pname}${staticMarker}${hostSuffix}-${attrs.version}"
+        );
     }) // {
       builder = attrs.realBuilder or stdenv.shell;
       args = attrs.args or ["-e" (attrs.builder or ./default-builder.sh)];
@@ -282,7 +284,7 @@ else let
       ++ [ "-DCMAKE_SYSTEM_NAME=${lib.findFirst lib.isString "Generic" (
            lib.optional (!stdenv.hostPlatform.isRedox) stdenv.hostPlatform.uname.system)}"]
       ++ lib.optional (stdenv.hostPlatform.uname.processor != null) "-DCMAKE_SYSTEM_PROCESSOR=${stdenv.hostPlatform.uname.processor}"
-      ++ lib.optional (stdenv.hostPlatform.uname.release != null) "-DCMAKE_SYSTEM_VERSION=${stdenv.hostPlatform.release}"
+      ++ lib.optional (stdenv.hostPlatform.uname.release != null) "-DCMAKE_SYSTEM_VERSION=${stdenv.hostPlatform.uname.release}"
       ++ lib.optional (stdenv.hostPlatform.isDarwin) "-DCMAKE_OSX_ARCHITECTURES=${stdenv.hostPlatform.darwinArch}"
       ++ lib.optional (stdenv.buildPlatform.uname.system != null) "-DCMAKE_HOST_SYSTEM_NAME=${stdenv.buildPlatform.uname.system}"
       ++ lib.optional (stdenv.buildPlatform.uname.processor != null) "-DCMAKE_HOST_SYSTEM_PROCESSOR=${stdenv.buildPlatform.uname.processor}"
@@ -305,6 +307,9 @@ else let
           cpu_family = '${cpuFamily stdenv.targetPlatform}'
           cpu = '${stdenv.targetPlatform.parsed.cpu.name}'
           endian = ${if stdenv.targetPlatform.isLittleEndian then "'little'" else "'big'"}
+
+          [binaries]
+          llvm-config = 'llvm-config-native'
         '';
       in [ "--cross-file=${crossFile}" ] ++ mesonFlags;
     } // lib.optionalAttrs (attrs.enableParallelBuilding or false) {
@@ -337,8 +342,9 @@ else let
   # passed to the builder and is not a dependency.  But since we
   # include it in the result, it *is* available to nix-env for queries.
   meta = {
-      # `name` above includes cross-compilation cruft (and is under assert),
-      # lets have a clean always accessible version here.
+      # `name` above includes cross-compilation cruft,
+      # is under assert, and is sanitized.
+      # Let's have a clean always accessible version here.
       name = attrs.name or "${attrs.pname}-${attrs.version}";
 
       # If the packager hasn't specified `outputsToInstall`, choose a default,

@@ -1,11 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, utils, ... }:
 
 let
   toplevelConfig = config;
   inherit (lib) types;
-  inherit (import ../system/boot/systemd-lib.nix {
-    inherit config pkgs lib;
-  }) mkPathSafeName;
+  inherit (utils.systemdUtils.lib) mkPathSafeName;
 in {
   options.systemd.services = lib.mkOption {
     type = types.attrsOf (types.submodule ({ name, config, ... }: {
@@ -177,8 +175,8 @@ in {
       serviceName = "${name}.service";
       excludedPath = rootPaths;
     } ''
-      mkdir -p "$out/lib/systemd/system"
-      serviceFile="$out/lib/systemd/system/$serviceName"
+      mkdir -p "$out/lib/systemd/system/$serviceName.d"
+      serviceFile="$out/lib/systemd/system/$serviceName.d/confinement.conf"
 
       echo '[Service]' > "$serviceFile"
 

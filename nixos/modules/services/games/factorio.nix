@@ -53,6 +53,14 @@ in
         '';
       };
 
+      bind = mkOption {
+        type = types.str;
+        default = "0.0.0.0";
+        description = ''
+          The address to which the service should bind.
+        '';
+      };
+
       admins = mkOption {
         type = types.listOf types.str;
         default = [];
@@ -75,8 +83,8 @@ in
         description = ''
           The name of the savegame that will be used by the server.
 
-          When not present in ${stateDir}/saves, a new map with default
-          settings will be generated before starting the service.
+          When not present in /var/lib/''${config.services.factorio.stateDirName}/saves,
+          a new map with default settings will be generated before starting the service.
         '';
       };
       # TODO Add more individual settings as nixos-options?
@@ -241,6 +249,7 @@ in
           "${cfg.package}/bin/factorio"
           "--config=${cfg.configFile}"
           "--port=${toString cfg.port}"
+          "--bind=${cfg.bind}"
           "--start-server=${mkSavePath cfg.saveName}"
           "--server-settings=${serverSettingsFile}"
           (optionalString (cfg.mods != []) "--mod-directory=${modDir}")

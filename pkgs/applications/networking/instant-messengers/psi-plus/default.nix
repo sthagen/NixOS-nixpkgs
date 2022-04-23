@@ -4,6 +4,7 @@
 , cmake
 , qtbase
 , qtmultimedia
+, qtimageformats
 , qtx11extras
 , qttools
 , libidn
@@ -42,13 +43,13 @@ assert enablePsiMedia -> enablePlugins;
 
 mkDerivation rec {
   pname = "psi-plus";
-  version = "1.5.1549";
+  version = "1.5.1615";
 
   src = fetchFromGitHub {
     owner = "psi-plus";
     repo = "psi-plus-snapshots";
     rev = version;
-    sha256 = "0jpv6qzfg6xjwkrnci7fav27nxm174i9l5g4vmsbchqpwfk90z2m";
+    sha256 = "sha256-aD+JVGmBWHUav2bH9rXGtgqI+/5lJTMrYLRP7E65JxI=";
   };
 
   cmakeFlags = [
@@ -67,6 +68,7 @@ mkDerivation rec {
   buildInputs = [
     qtbase
     qtmultimedia
+    qtimageformats
     qtx11extras
     libidn
     qca-qt5
@@ -96,7 +98,7 @@ mkDerivation rec {
 
   meta = with lib; {
     homepage = "https://psi-plus.com";
-    description = "XMPP (Jabber) client";
+    description = "XMPP (Jabber) client based on Qt5";
     maintainers = with maintainers; [ orivej misuzu unclechu ];
     license = licenses.gpl2Only;
     platforms = platforms.linux;

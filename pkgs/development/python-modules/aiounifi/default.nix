@@ -11,7 +11,7 @@
 
 buildPythonPackage rec {
   pname = "aiounifi";
-  version = "27";
+  version = "31";
 
   disabled = pythonOlder "3.7";
 
@@ -19,7 +19,7 @@ buildPythonPackage rec {
     owner = "Kane610";
     repo = pname;
     rev = "v${version}";
-    sha256 = "09bxyfrwhqwlfxwgbbnkyd7md9wz05y3fjvc9f0rrj70z7qcicnv";
+    sha256 = "sha256-8Hm7sUkIW4rVLCL5+vHfhAvmc8+IKDXaSLtYJTf14XY=";
   };
 
   propagatedBuildInputs = [
@@ -31,6 +31,10 @@ buildPythonPackage rec {
     pytest-aiohttp
     pytest-asyncio
     pytestCheckHook
+  ];
+
+  pytestFlagsArray = [
+    "--asyncio-mode=auto"
   ];
 
   pythonImportsCheck = [ "aiounifi" ];

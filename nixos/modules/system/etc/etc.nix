@@ -66,6 +66,8 @@ in
 
 {
 
+  imports = [ ../build.nix ];
+
   ###### interface
 
   options = {
@@ -85,7 +87,7 @@ in
       '';
 
       type = with types; attrsOf (submodule (
-        { name, config, ... }:
+        { name, config, options, ... }:
         { options = {
 
             enable = mkOption {
@@ -172,7 +174,8 @@ in
             target = mkDefault name;
             source = mkIf (config.text != null) (
               let name' = "etc-" + baseNameOf name;
-              in mkDefault (pkgs.writeText name' config.text));
+              in mkDerivedConfig options.text (pkgs.writeText name')
+            );
           };
 
         }));
@@ -187,14 +190,12 @@ in
   config = {
 
     system.build.etc = etc;
-
-    system.activationScripts.etc = stringAfter [ "users" "groups" ]
+    system.build.etcActivationCommands =
       ''
         # Set up the statically computed bits of /etc.
         echo "setting up /etc..."
         ${pkgs.perl.withPackages (p: [ p.FileSlurp ])}/bin/perl ${./setup-etc.pl} ${etc}/etc
       '';
-
   };
 
 }

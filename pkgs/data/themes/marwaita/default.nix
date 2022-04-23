@@ -5,17 +5,18 @@
 , gtk-engine-murrine
 , gtk_engines
 , librsvg
+, gitUpdater
 }:
 
 stdenv.mkDerivation rec {
   pname = "marwaita";
-  version = "11.1";
+  version = "13.0";
 
   src = fetchFromGitHub {
     owner = "darkomarko42";
     repo = pname;
     rev = version;
-    sha256 = "0jzjrx21i9bny4117nlwkrvjc4cg2w6r42ra66hxzaazcs9hvny2";
+    sha256 = "sha256-aP/zPM7M8Oru/2AA8w6rKU/AVJJ0bAEC01C60yi2SbM=";
   };
 
   buildInputs = [
@@ -36,6 +37,8 @@ stdenv.mkDerivation rec {
     cp -a Marwaita* $out/share/themes
     runHook postInstall
   '';
+
+  passthru.updateScript = gitUpdater {inherit pname version; };
 
   meta = with lib; {
     description = "GTK theme supporting Budgie, Pantheon, Mate, Xfce4 and GNOME desktops";

@@ -1,21 +1,29 @@
 { lib
 , buildPythonPackage
 , fetchPypi
+, types-urllib3
 }:
 
 buildPythonPackage rec {
   pname = "types-requests";
-  version = "2.25.10";
+  version = "2.27.20";
+  format = "setuptools";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-PhIZiBaM/8+mHv+vSPkOvF7gI/bMUNBMAUTt16ImW2U=";
+    sha256 = "sha256-YzRFc83mxO/UTYZ8AVjZ+35r65VyHL6YgvP4V+6KU5g=";
   };
 
-  # Modules doesn't have tests
+  propagatedBuildInputs = [
+    types-urllib3
+  ];
+
+  # Module doesn't have tests
   doCheck = false;
 
-  pythonImportsCheck = [ "requests-stubs" ];
+  pythonImportsCheck = [
+    "requests-stubs"
+  ];
 
   meta = with lib; {
     description = "Typing stubs for requests";

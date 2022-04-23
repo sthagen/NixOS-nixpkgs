@@ -1,6 +1,5 @@
 { lib
 , argon2_cffi
-, attrs
 , buildPythonPackage
 , cbor
 , cbor2
@@ -24,12 +23,14 @@
 
 buildPythonPackage rec {
   pname = "autobahn";
-  version = "21.3.1";
+  version = "22.3.2";
+  format = "setuptools";
+
   disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "00wf9dkfgakg80gy62prg650lb8zz9y9fdlxwxcznwp8hgsw29p1";
+    sha256 = "sha256-WKiHx6GWuwjYtmJMs2lfSTqeXJ8A/TUNjW+Cm0f/kDY=";
   };
 
   propagatedBuildInputs = [
@@ -65,9 +66,13 @@ buildPythonPackage rec {
     export USE_ASYNCIO=1
   '';
 
-  pytestFlagsArray = [ "--pyargs autobahn" ];
+  pytestFlagsArray = [
+    "--pyargs autobahn"
+  ];
 
-  pythonImportsCheck = [ "autobahn" ];
+  pythonImportsCheck = [
+    "autobahn"
+  ];
 
   meta = with lib; {
     description = "WebSocket and WAMP in Python for Twisted and asyncio";

@@ -9,19 +9,18 @@
 , gobject-introspection
 , wrapGAppsHook
 , glib
-, genericUpdater
-, common-updater-scripts
+, gitUpdater
 }:
 
 python3Packages.buildPythonApplication rec {
   pname = "mate-tweak";
-  version = "21.04.3";
+  version = "22.04.4";
 
   src = fetchFromGitHub {
     owner = "ubuntu-mate";
     repo = pname;
     rev = version;
-    sha256 = "0vpzy7awhb1xfsdjsrchy5b9dygj4ixdcvgx5v5w8hllmi4yxpc1";
+    sha256 = "ncBN1wjCcMtuasnXk7WMge+9MK7BMmTu89/R+hiY/Ks=";
   };
 
   nativeBuildInputs = [
@@ -74,10 +73,9 @@ python3Packages.buildPythonApplication rec {
     done
   '';
 
-  passthru.updateScript = genericUpdater {
+  passthru.updateScript = gitUpdater {
     inherit pname version;
     attrPath = "mate.${pname}";
-    versionLister = "${common-updater-scripts}/bin/list-git-tags ${src.meta.homepage}";
   };
 
   meta = with lib; {

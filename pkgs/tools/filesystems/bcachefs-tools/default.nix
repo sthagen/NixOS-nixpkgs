@@ -22,24 +22,24 @@
 
 stdenv.mkDerivation {
   pname = "bcachefs-tools";
-  version = "unstable-2021-10-01";
+  version = "unstable-2022-04-08";
 
   src = fetchFromGitHub {
     owner = "koverstreet";
     repo = "bcachefs-tools";
-    rev = "37850436dd7dfbe67738749c4d4a2506ffff1ec3";
-    sha256 = "040vgxrimahmfs9rhlggfwg0bzl7h9j2ksx3563rh63asjwlhnhi";
+    rev = "986533d8d5b21c8eb512bbb3f0496d3d2a087c5d";
+    sha256 = "1qvb5l937nnls5j82ipgrdh6q5fk923z752rzzqqcms6fz7rrjs4";
   };
 
   postPatch = ''
+    patchShebangs .
     substituteInPlace Makefile \
       --replace "pytest-3" "pytest --verbose" \
       --replace "INITRAMFS_DIR=/etc/initramfs-tools" \
-                "INITRAMFS_DIR=${placeholder "out"}/etc/initramfs-tools" \
-      --replace "doc/macro2rst.py" "python3 doc/macro2rst.py"
+                "INITRAMFS_DIR=${placeholder "out"}/etc/initramfs-tools"
   '';
 
-  nativeBuildInputs = [ pkg-config docutils ];
+  nativeBuildInputs = [ pkg-config docutils python3Packages.python ];
 
   buildInputs = [
     libuuid libscrypt libsodium keyutils liburcu zlib libaio
@@ -60,11 +60,13 @@ stdenv.mkDerivation {
     smoke-test = nixosTests.bcachefs;
   };
 
+  enableParallelBuilding = true;
+
   meta = with lib; {
     description = "Tool for managing bcachefs filesystems";
     homepage = "https://bcachefs.org/";
     license = licenses.gpl2;
-    maintainers = with maintainers; [ davidak chiiruno ];
-    platforms = [ "x86_64-linux" ]; # does not build on aarch64, see https://github.com/koverstreet/bcachefs-tools/issues/39
+    maintainers = with maintainers; [ davidak Madouura ];
+    platforms = platforms.linux;
   };
 }

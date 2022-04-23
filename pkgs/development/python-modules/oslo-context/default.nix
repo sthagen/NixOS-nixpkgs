@@ -2,11 +2,11 @@
 
 buildPythonPackage rec {
   pname = "oslo.context";
-  version = "3.3.1";
+  version = "4.1.0";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "f578ea38569cf0a677e2167178196b21a54175471358c4320ddfd5c97c52f4d1";
+    sha256 = "sha256-damnIqVS+6ionooBAo+oKmGQqzF6lZG7gzA6IhCnkUQ=";
   };
 
   postPatch = ''

@@ -1,31 +1,59 @@
 { lib
-, black
+, stdenv
 , buildPythonPackage
 , dataclasses
 , fetchFromGitHub
 , hypothesis
-, isort
-, pytest
+, libiconv
+, pytestCheckHook
 , python
 , pythonOlder
 , pyyaml
+, rustPlatform
+, setuptools-rust
+, setuptools-scm
 , typing-extensions
 , typing-inspect
 }:
 
 buildPythonPackage rec {
   pname = "libcst";
-  version = "0.3.20";
+  version = "0.4.1";
+  format = "pyproject";
+
   disabled = pythonOlder "3.6";
 
-  # Some files for tests missing from PyPi
-  # https://github.com/Instagram/LibCST/issues/331
   src = fetchFromGitHub {
     owner = "instagram";
     repo = pname;
     rev = "v${version}";
-    sha256 = "063bl21gyyd25i2v0j6kz29cxxdfhng2nins4i2qblmac90f2nqy";
+    sha256 = "sha256-soAlt1KBpCn5JxM1b2LZ3vOpBn9HPGdbm+BBYbyEkfE=";
   };
+
+  cargoDeps = rustPlatform.fetchCargoTarball {
+    inherit src;
+    sourceRoot = "source/${cargoRoot}";
+    name = "${pname}-${version}";
+    hash = "sha256:1rz1c0dv3f1h2m5hwdisl3rbqnmifbva4f0c4vygk7rh1q27l515";
+  };
+
+  cargoRoot = "native";
+
+  postPatch = ''
+    # test try to format files, which isn't necessary when consuming releases
+    sed -i libcst/codegen/generate.py \
+      -e '/ufmt/c\        pass'
+  '';
+
+  SETUPTOOLS_SCM_PRETEND_VERSION = version;
+
+  nativeBuildInputs = [
+    setuptools-rust
+    setuptools-scm
+    rustPlatform.cargoSetupHook
+  ] ++ (with rustPlatform; [ rust.cargo rust.rustc ]);
+
+  buildInputs = lib.optionals stdenv.isDarwin [ libiconv ];
 
   propagatedBuildInputs = [
     hypothesis
@@ -37,9 +65,7 @@ buildPythonPackage rec {
   ];
 
   checkInputs = [
-    black
-    isort
-    pytest
+    pytestCheckHook
   ];
 
   preCheck = ''
@@ -54,7 +80,9 @@ buildPythonPackage rec {
     "test_codemod_formatter_error_input"
   ];
 
-  pythonImportsCheck = [ "libcst" ];
+  pythonImportsCheck = [
+    "libcst"
+  ];
 
   meta = with lib; {
     description = "Concrete Syntax Tree (CST) parser and serializer library for Python";

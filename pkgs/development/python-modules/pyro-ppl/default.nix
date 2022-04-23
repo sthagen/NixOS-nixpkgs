@@ -2,12 +2,12 @@
 , graphviz, networkx, six, opt-einsum, tqdm, pyro-api }:
 
 buildPythonPackage rec {
-  version = "1.7.0";
+  version = "1.8.1";
   pname = "pyro-ppl";
 
   src = fetchPypi {
     inherit version pname;
-    sha256 = "a8ec6968fdfa34f140584b266099238f1ffeacbbaab3775de5c94c0e685d018a";
+    sha256 = "sha256-18BJ6y50haYStN2ZwkwwnMhgx8vGsZczhwNPVDbRyNY=";
   };
 
   propagatedBuildInputs = [

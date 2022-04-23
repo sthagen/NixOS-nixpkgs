@@ -4,7 +4,7 @@
 , pbr
 , appdirs
 , cliff
-, dogpile_cache
+, dogpile-cache
 , jsonschema
 , keystoneauth1
 , openstacksdk
@@ -20,18 +20,18 @@
 
 buildPythonApplication rec {
   pname = "python-ironicclient";
-  version = "4.8.0";
+  version = "4.11.0";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "b55516a72b995f92fb434619cbc1e2effa604c7fcaa6ac4afb8f5af1ea8193a4";
+    sha256 = "sha256-zGG/3Cq7mARyuGGvqa4KGWFmx/UN+W2KMuy+RNenzXM=";
   };
 
   propagatedBuildInputs = [
     pbr
     appdirs
     cliff
-    dogpile_cache
+    dogpile-cache
     jsonschema
     keystoneauth1
     openstacksdk

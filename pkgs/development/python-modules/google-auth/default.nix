@@ -1,7 +1,6 @@
 { stdenv
 , lib
 , buildPythonPackage
-, fetchpatch
 , fetchPypi
 , pytestCheckHook
 , cachetools
@@ -19,12 +18,17 @@
 
 buildPythonPackage rec {
   pname = "google-auth";
-  version = "2.0.1";
+  version = "2.6.2";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-6hrwULPgbrc+RHD3BNIwBzB7wOh8E+AV9rkEYPFAe9M=";
+    sha256 = "sha256-YNRJ+BQsdC23YPTAvjkSG8jZvoVVVdeEwlLerKHO0/U=";
   };
+
+  postPatch = ''
+    substituteInPlace setup.py \
+      --replace "cachetools>=2.0.0,<5.0" "cachetools"
+  '';
 
   propagatedBuildInputs = [
     cachetools
@@ -55,6 +59,15 @@ buildPythonPackage rec {
     "test_request_headers"
     "test_request_error"
     "test_request_basic"
+  ] ++ lib.optionals (stdenv.isDarwin && stdenv.isAarch64) [
+    # E MemoryError: Cannot allocate write+execute memory for ffi.callback().
+    # You might be running on a system that prevents this.
+    # For more information, see https://cffi.readthedocs.io/en/latest/using.html#callbacks
+    "test_configure_mtls_channel_with_callback"
+    "test_configure_mtls_channel_with_metadata"
+    "TestDecryptPrivateKey"
+    "TestMakeMutualTlsHttp"
+    "TestMutualTlsAdapter"
   ];
 
   meta = with lib; {

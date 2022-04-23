@@ -22,6 +22,7 @@
 , qtx11extras
 , quazip
 , readline
+, wrapGAppsHook
 , wrapQtAppsHook
 , yubikey-personalization
 , zlib
@@ -90,7 +91,7 @@ stdenv.mkDerivation rec {
     runHook postCheck
   '';
 
-  nativeBuildInputs = [ asciidoctor cmake wrapQtAppsHook qttools pkg-config ];
+  nativeBuildInputs = [ asciidoctor cmake wrapGAppsHook wrapQtAppsHook qttools pkg-config ];
 
   buildInputs = [
     curl
@@ -114,11 +115,6 @@ stdenv.mkDerivation rec {
   ++ optional stdenv.isDarwin qtmacextras
   ++ optional (stdenv.isDarwin && withKeePassTouchID)
     darwin.apple_sdk.frameworks.LocalAuthentication;
-
-  preFixup = optionalString stdenv.isDarwin ''
-    # Make it work without Qt in PATH.
-    wrapQtApp $out/Applications/KeePassXC.app/Contents/MacOS/KeePassXC
-  '';
 
   passthru.tests = nixosTests.keepassxc;
 

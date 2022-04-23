@@ -3,6 +3,7 @@
 , lib
 , fetchFromGitHub
 , ncurses
+, perl
 , pkg-config
 , python3
 , fontconfig
@@ -17,16 +18,16 @@
 , xcbutilwm
 , wayland
 , zlib
-  # Apple frameworks
 , CoreGraphics
 , Cocoa
 , Foundation
 , libiconv
+, nixosTests
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "20210814-124438-54e29167";
+  version = "20220408-101518-b908e2dd";
 
   outputs = [ "out" "terminfo" ];
 
@@ -35,20 +36,23 @@ rustPlatform.buildRustPackage rec {
     repo = pname;
     rev = version;
     fetchSubmodules = true;
-    sha256 = "sha256-6HXTftgAs6JMzOMCY+laN74in8xfjE8yJc5xSl9PQCE=";
+    sha256 = "sha256-kuuoD+hqgj7QXFRIxa112oc4idtcK0ptFACDpI0bzGY=";
   };
 
   postPatch = ''
     echo ${version} > .tag
+
+    # tests are failing with: Unable to exchange encryption keys
+    rm -r wezterm-ssh/tests
   '';
 
-  cargoSha256 = "sha256-yjTrWoqIKoRV4oZQ0mfTGrIGmm89AaKJd16WL1Ozhnw=";
+  cargoSha256 = "sha256-iIb2zLUZpn23ooEiOP+yQMYUUmvef/KqvjzgLOFmjs0=";
 
   nativeBuildInputs = [
     pkg-config
     python3
     ncurses # tic for terminfo
-  ];
+  ] ++ lib.optional stdenv.isDarwin perl;
 
   buildInputs = [
     fontconfig
@@ -96,11 +100,18 @@ rustPlatform.buildRustPackage rec {
     ln -s $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$OUT_APP"
   '';
 
+  passthru.tests = {
+    all-terminfo = nixosTests.allTerminfo;
+    test = nixosTests.terminal-emulators.wezterm;
+  };
+
   meta = with lib; {
     description = "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust";
     homepage = "https://wezfurlong.org/wezterm";
     license = licenses.mit;
     maintainers = with maintainers; [ SuperSandro2000 ];
     platforms = platforms.unix;
+    # Fails on missing UserNotifications framework while linking
+    broken = stdenv.isDarwin;
   };
 }

@@ -6,28 +6,30 @@
 , stdenv
 , libX11
 , libXrandr
+, AppKit
 , withSki ? true
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "menyoki";
-  version = "1.5.3";
+  version = "1.6.0";
 
   src = fetchFromGitHub {
     owner = "orhun";
     repo = pname;
     rev = "v${version}";
-    sha256 = "050c6c60il6cy0a8d3nw4z2cyp043912a7n4n44yjpmx047w7kc7";
+    sha256 = "sha256-7dqV18+Q0M1PrSXfMro5bUqSeA72Stj5JfP4MsTlrjM=";
   };
 
-  cargoSha256 = "0wwcda2w8jg3q132cvhdgfmjc0rz93fx6fai93g5w8br98aq9qzx";
+  cargoSha256 = "sha256-c3VpHr/X2tKh7mY4dOQac0lS7oem0GGqjzv7feNwc24=";
 
   nativeBuildInputs = [ installShellFiles ]
     ++ lib.optional stdenv.isLinux pkg-config;
 
-  buildInputs = lib.optionals stdenv.isLinux [ libX11 libXrandr ];
+  buildInputs = lib.optionals stdenv.isLinux [ libX11 libXrandr ]
+    ++ lib.optional stdenv.isDarwin AppKit;
 
-  cargoBuildFlags = lib.optional (!withSki) "--no-default-features";
+  buildNoDefaultFeatures = !withSki;
 
   postInstall = ''
     installManPage man/*
@@ -37,8 +39,8 @@ rustPlatform.buildRustPackage rec {
   meta = with lib; {
     description = "Screen{shot,cast} and perform ImageOps on the command line";
     homepage = "https://menyoki.cli.rs/";
+    changelog = "https://github.com/orhun/menyoki/blob/v${version}/CHANGELOG.md";
     license = licenses.gpl3Only;
     maintainers = with maintainers; [ figsoda ];
-    broken = stdenv.isDarwin;
   };
 }

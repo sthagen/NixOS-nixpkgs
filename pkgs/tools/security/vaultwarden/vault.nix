@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "vaultwarden-vault";
-  version = "2.22.3";
+  version = "2.27.0";
 
   src = fetchurl {
     url = "https://github.com/dani-garcia/bw_web_builds/releases/download/v${version}/bw_web_v${version}.tar.gz";
-    sha256 = "sha256-cPyh6Hyvqw6ygmOP+qiyhSNAwdryC4nowm8n2ULOJxs=";
+    sha256 = "sha256-r4z45gjVB+RMZM0IE/ec0yf+rt4YDz5IpZEz5FlQSds=";
   };
 
   buildCommand = ''

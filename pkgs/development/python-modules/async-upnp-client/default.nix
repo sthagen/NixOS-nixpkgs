@@ -14,14 +14,16 @@
 
 buildPythonPackage rec {
   pname = "async-upnp-client";
-  version = "0.22.8";
-  disabled = pythonOlder "3.6";
+  version = "0.27.0";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.7";
 
   src = fetchFromGitHub {
     owner = "StevenLooman";
     repo = "async_upnp_client";
     rev = version;
-    sha256 = "sha256-0McLH5iNiA6aIyk6OaN57JAs97R+/4M7xaUDmh+xV6c=";
+    sha256 = "sha256-QElc4J2BxOFI+L9D/SVMiYeRVOmwrNTW65LgdBG0TbU=";
   };
 
   propagatedBuildInputs = [
@@ -59,7 +61,9 @@ buildPythonPackage rec {
     "test_deferred_callback_url"
   ];
 
-  pythonImportsCheck = [ "async_upnp_client" ];
+  pythonImportsCheck = [
+    "async_upnp_client"
+  ];
 
   meta = with lib; {
     description = "Asyncio UPnP Client library for Python";

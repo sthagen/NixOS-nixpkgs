@@ -2,10 +2,8 @@
 , stdenv
 , callPackage
 , resholve
-, resholvePackage
-, resholveScript
-, resholveScriptBin
 , shunit2
+, fetchFromGitHub
 , coreutils
 , gnused
 , gnugrep
@@ -21,55 +19,20 @@
 , rSrc
 , runDemo ? false
 , binlore
+, sqlite
+, util-linux
+, gawk
+, rlwrap
+, gnutar
+, bc
 }:
 
 let
-
+  default_packages = [ bash file findutils gettext ];
+  parsed_packages = [ coreutils sqlite util-linux gnused gawk findutils rlwrap gnutar bc ];
 in
 rec {
-  re_shunit2 = with shunit2;
-    resholvePackage {
-      inherit pname src version installPhase;
-      solutions = {
-        shunit = {
-          interpreter = "none";
-          scripts = [ "bin/shunit2" ];
-          inputs = [ coreutils gnused gnugrep findutils ];
-          # resholve's Nix API is analogous to the CLI flags
-          # documented in 'man resholve'
-          fake = {
-            # "missing" functions shunit2 expects the user to declare
-            function = [
-              "oneTimeSetUp"
-              "oneTimeTearDown"
-              "setUp"
-              "tearDown"
-              "suite"
-              "noexec"
-            ];
-            # shunit2 is both bash and zsh compatible, and in
-            # some zsh-specific code it uses this non-bash builtin
-            builtin = [ "setopt" ];
-          };
-          fix = {
-            # stray absolute path; make it resolve from coreutils
-            "/usr/bin/od" = true;
-          };
-          keep = {
-            # dynamically defined in shunit2:_shunit_mktempFunc
-            eval = [ "shunit_condition_" "_shunit_test_" "_shunit_prepForSourcing" ];
-
-            # variables invoked as commands; long-term goal is to
-            # resolve the *variable*, but that is complexish, so
-            # this is where we are...
-            "$__SHUNIT_CMD_ECHO_ESC" = true;
-            "$_SHUNIT_LINENO_" = true;
-            "$SHUNIT_CMD_TPUT" = true;
-          };
-        };
-      };
-    };
-  module1 = resholvePackage {
+  module1 = resholve.mkDerivation {
     pname = "testmod1";
     version = "unreleased";
 
@@ -93,7 +56,7 @@ rec {
 
     is_it_okay_with_arbitrary_envs = "shonuff";
   };
-  module2 = resholvePackage {
+  module2 = resholve.mkDerivation {
     pname = "testmod2";
     version = "unreleased";
 
@@ -101,19 +64,20 @@ rec {
     setSourceRoot = "sourceRoot=$(echo */tests/nix/openssl)";
 
     installPhase = ''
-      mkdir -p $out/bin
+      mkdir -p $out/bin $out/libexec
       install openssl.sh $out/bin/openssl.sh
+      install libexec.sh $out/libexec/invokeme
       install profile $out/profile
     '';
-
+    # LOGLEVEL="DEBUG";
     solutions = {
       openssl = {
         fix = {
           aliases = true;
         };
-        scripts = [ "bin/openssl.sh" ];
+        scripts = [ "bin/openssl.sh" "libexec/invokeme" ];
         interpreter = "none";
-        inputs = [ re_shunit2 openssl.bin ];
+        inputs = [ shunit2 openssl.bin "libexec" "libexec/invokeme" ];
         execer = [
           /*
             This is the same verdict binlore will
@@ -132,7 +96,8 @@ rec {
       };
     };
   };
-  module3 = resholvePackage {
+  # demonstrate that we could use resholve in larger build
+  module3 = stdenv.mkDerivation {
     pname = "testmod3";
     version = "unreleased";
 
@@ -142,15 +107,15 @@ rec {
     installPhase = ''
       mkdir -p $out/bin
       install conjure.sh $out/bin/conjure.sh
-    '';
-
-    solutions = {
-      conjure = {
+      ${resholve.phraseSolution "conjure" {
         scripts = [ "bin/conjure.sh" ];
         interpreter = "${bash}/bin/bash";
         inputs = [ module1 ];
-      };
-    };
+        fake = {
+          external = [ "jq" "openssl" ];
+        };
+      }}
+    '';
   };
 
   cli = stdenv.mkDerivation {
@@ -166,13 +131,14 @@ rec {
     # LOGLEVEL="DEBUG";
 
     # default path
-    RESHOLVE_PATH = "${lib.makeBinPath [ bash file findutils gettext ]}";
+    RESHOLVE_PATH = "${lib.makeBinPath default_packages}";
     # but separate packages for combining as needed
     PKG_FILE = "${lib.makeBinPath [ file ]}";
     PKG_FINDUTILS = "${lib.makeBinPath [ findutils ]}";
     PKG_GETTEXT = "${lib.makeBinPath [ gettext ]}";
     PKG_COREUTILS = "${lib.makeBinPath [ coreutils ]}";
-    RESHOLVE_LORE = "${binlore.collect { drvs = [ bash file findutils gettext coreutils ]; } }";
+    RESHOLVE_LORE = "${binlore.collect { drvs = default_packages ++ [ coreutils ] ++ parsed_packages; } }";
+    PKG_PARSED = "${lib.makeBinPath parsed_packages}";
 
     # explicit interpreter for demo suite; maybe some better way...
     INTERP = "${bash}/bin/bash";
@@ -199,14 +165,14 @@ rec {
   };
 
   # Caution: ci.nix asserts the equality of both of these w/ diff
-  resholvedScript = resholveScript "resholved-script" {
+  resholvedScript = resholve.writeScript "resholved-script" {
     inputs = [ file ];
     interpreter = "${bash}/bin/bash";
   } ''
     echo "Hello"
     file .
   '';
-  resholvedScriptBin = resholveScriptBin "resholved-script-bin" {
+  resholvedScriptBin = resholve.writeScriptBin "resholved-script-bin" {
     inputs = [ file ];
     interpreter = "${bash}/bin/bash";
   } ''

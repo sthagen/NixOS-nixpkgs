@@ -1,5 +1,6 @@
 { stdenv
 , alsa-lib
+, addOpenGLRunpath
 , autoPatchelfHook
 , cairo
 , fetchurl
@@ -7,28 +8,33 @@
 , gcc11
 , gnome
 , gssdp
-, gupnp
+, lame
 , lib
 , libgmpris
 , llvmPackages_10
+, mpg123
 , rpmextract
 , wavpack
-}:
 
+, gupnp
+, gupnp-av
+, meson
+, ninja
+}:
 stdenv.mkDerivation rec {
   pname = "hqplayerd";
-  version = "4.25.2-66";
+  version = "4.30.3-87";
 
   src = fetchurl {
-    url = "https://www.signalyst.eu/bins/${pname}/fc34/${pname}-${version}.fc34.x86_64.rpm";
-    sha256 = "sha256-BZGtv/Bumkltk6fJw3+RG1LZc3pGpd8e4DvgLxOTvcQ=";
+    url = "https://www.signalyst.eu/bins/${pname}/fc35/${pname}-${version}.fc35.x86_64.rpm";
+    hash = "sha256-fEze4aScWDwHDTXU0GatdopQf6FWcywWCGhR/7zXK7A=";
   };
 
   unpackPhase = ''
     ${rpmextract}/bin/rpmextract $src
   '';
 
-  nativeBuildInputs = [ autoPatchelfHook rpmextract ];
+  nativeBuildInputs = [ addOpenGLRunpath autoPatchelfHook rpmextract ];
 
   buildInputs = [
     alsa-lib
@@ -38,8 +44,11 @@ stdenv.mkDerivation rec {
     gnome.rygel
     gssdp
     gupnp
+    gupnp-av
+    lame
     libgmpris
     llvmPackages_10.openmp
+    mpg123
     wavpack
   ];
 
@@ -86,14 +95,19 @@ stdenv.mkDerivation rec {
       --replace "NetworkManager-wait-online.service" ""
   '';
 
-  postFixup = ''
-    patchelf --replace-needed libomp.so.5 libomp.so $out/bin/hqplayerd
+  # NB: addOpenGLRunpath needs to run _after_ autoPatchelfHook, which runs in
+  # postFixup, so we tack it on here.
+  doInstallCheck = true;
+  installCheckPhase = ''
+    addOpenGLRunpath $out/bin/hqplayerd
+    $out/bin/hqplayerd --version
   '';
 
   meta = with lib; {
     homepage = "https://www.signalyst.com/custom.html";
     description = "High-end upsampling multichannel software embedded HD-audio player";
     license = licenses.unfree;
+    platforms = [ "x86_64-linux" ];
     maintainers = with maintainers; [ lovesegfault ];
   };
 }

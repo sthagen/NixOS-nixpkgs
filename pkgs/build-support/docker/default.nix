@@ -5,6 +5,8 @@
 , closureInfo
 , coreutils
 , e2fsprogs
+, fakechroot
+, fakeNss
 , fakeroot
 , findutils
 , go
@@ -14,8 +16,8 @@
 , makeWrapper
 , moreutils
 , nix
+, nixosTests
 , pigz
-, pkgs
 , rsync
 , runCommand
 , runtimeShell
@@ -24,6 +26,7 @@
 , storeDir ? builtins.storeDir
 , substituteAll
 , symlinkJoin
+, tarsum
 , util-linux
 , vmTools
 , writeReferencesToFile
@@ -31,11 +34,18 @@
 , writeText
 , writeTextDir
 , writePython3
-, system
-, # Note: This is the cross system we're compiling for
 }:
 
 let
+  inherit (lib)
+    optionals
+    optionalString
+    ;
+
+  inherit (lib)
+    escapeShellArgs
+    toList
+    ;
 
   mkDbExtraCommand = contents:
     let
@@ -72,6 +82,15 @@ rec {
     inherit buildImage buildLayeredImage fakeNss pullImage shadowSetup buildImageWithNixDb;
   };
 
+  tests = {
+    inherit (nixosTests)
+      docker-tools
+      docker-tools-overlay
+      # requires remote builder
+      # docker-tools-cross
+      ;
+  };
+
   pullImage =
     let
       fixName = name: builtins.replaceStrings [ "/" ":" ] [ "-" "-" ] name;
@@ -104,7 +123,7 @@ rec {
         outputHashAlgo = "sha256";
         outputHash = sha256;
 
-        nativeBuildInputs = lib.singleton skopeo;
+        nativeBuildInputs = [ skopeo ];
         SSL_CERT_FILE = "${cacert.out}/etc/ssl/certs/ca-bundle.crt";
 
         sourceURL = "docker://${imageName}@${imageDigest}";
@@ -123,7 +142,7 @@ rec {
 
   # We need to sum layer.tar, not a directory, hence tarsum instead of nix-hash.
   # And we cannot untar it, because then we cannot preserve permissions etc.
-  tarsum = pkgs.tarsum;
+  inherit tarsum; # pkgs.dockerTools.tarsum
 
   # buildEnv creates symlinks to dirs, which is hard to edit inside the overlay VM
   mergeDrvs =
@@ -232,7 +251,7 @@ rec {
           # Unpack all of the parent layers into the image.
           lowerdir=""
           extractionID=0
-          for layerTar in $(tac layer-list); do
+          for layerTar in $(cat layer-list); do
             echo "Unpacking layer $layerTar"
             extractionID=$((extractionID + 1))
 
@@ -402,7 +421,7 @@ rec {
 
       preMount = lib.optionalString (contents != null && contents != [ ]) ''
         echo "Adding contents..."
-        for item in ${toString contents}; do
+        for item in ${escapeShellArgs (map (c: "${c}") (toList contents))}; do
           echo "Adding $item..."
           rsync -a${if keepContentsDirlinks then "K" else "k"} --chown=0:0 $item/ layer/
         done
@@ -739,31 +758,13 @@ rec {
   # Useful when packaging binaries that insist on using nss to look up
   # username/groups (like nginx).
   # /bin/sh is fine to not exist, and provided by another shim.
-  fakeNss = symlinkJoin {
-    name = "fake-nss";
-    paths = [
-      (writeTextDir "etc/passwd" ''
-        root:x:0:0:root user:/var/empty:/bin/sh
-        nobody:x:65534:65534:nobody:/var/empty:/bin/sh
-      '')
-      (writeTextDir "etc/group" ''
-        root:x:0:
-        nobody:x:65534:
-      '')
-      (writeTextDir "etc/nsswitch.conf" ''
-        hosts: files dns
-      '')
-      (runCommand "var-empty" { } ''
-        mkdir -p $out/var/empty
-      '')
-    ];
-  };
+  inherit fakeNss; # alias
 
   # This provides a /usr/bin/env, for shell scripts using the
   # "#!/usr/bin/env executable" shebang.
   usrBinEnv = runCommand "usr-bin-env" { } ''
     mkdir -p $out/usr/bin
-    ln -s ${pkgs.coreutils}/bin/env $out/usr/bin
+    ln -s ${coreutils}/bin/env $out/usr/bin
   '';
 
   # This provides /bin/sh, pointing to bashInteractive.
@@ -808,6 +809,10 @@ rec {
     , # Optional bash script to run inside fakeroot environment.
       # Could be used for changing ownership of files in customisation layer.
       fakeRootCommands ? ""
+    , # Whether to run fakeRootCommands in fakechroot as well, so that they
+      # appear to run inside the image, but have access to the normal Nix store.
+      # Perhaps this could be enabled on by default on pkgs.stdenv.buildPlatform.isLinux
+      enableFakechroot ? false
     , # We pick 100 to ensure there is plenty of room for extension. I
       # believe the actual maximum is 128.
       maxLayers ? 100
@@ -815,6 +820,8 @@ rec {
       # this on, but tooling may disable this to insert the store paths more
       # efficiently via other means, such as bind mounting the host store.
       includeStorePaths ? true
+    , # Passthru arguments for the underlying derivation.
+      passthru ? {}
     ,
     }:
       assert
@@ -839,16 +846,26 @@ rec {
           name = "${baseName}-customisation-layer";
           paths = contentsList;
           inherit extraCommands fakeRootCommands;
-          nativeBuildInputs = [ fakeroot ];
+          nativeBuildInputs = [
+            fakeroot
+          ] ++ optionals enableFakechroot [
+            fakechroot
+            # for chroot
+            coreutils
+            # fakechroot needs getopt, which is provided by util-linux
+            util-linux
+          ];
           postBuild = ''
             mv $out old_out
             (cd old_out; eval "$extraCommands" )
 
             mkdir $out
-
-            fakeroot bash -c '
+            ${optionalString enableFakechroot ''
+              export FAKECHROOT_EXCLUDE_PATH=/dev:/proc:/sys:${builtins.storeDir}:$out/layer.tar
+            ''}
+            ${optionalString enableFakechroot ''fakechroot chroot $PWD/old_out ''}fakeroot bash -c '
               source $stdenv/setup
-              cd old_out
+              ${optionalString (!enableFakechroot) ''cd old_out''}
               eval "$fakeRootCommands"
               tar \
                 --sort name \
@@ -864,13 +881,13 @@ rec {
         };
 
         closureRoots = lib.optionals includeStorePaths /* normally true */ (
-          [ baseJson ] ++ contentsList
+          [ baseJson customisationLayer ]
         );
         overallClosure = writeText "closure" (lib.concatStringsSep " " closureRoots);
 
         # These derivations are only created as implementation details of docker-tools,
         # so they'll be excluded from the created images.
-        unnecessaryDrvs = [ baseJson overallClosure ];
+        unnecessaryDrvs = [ baseJson overallClosure customisationLayer ];
 
         conf = runCommand "${baseName}-conf.json"
           {
@@ -965,7 +982,7 @@ rec {
         result = runCommand "stream-${baseName}"
           {
             inherit (conf) imageName;
-            passthru = {
+            passthru = passthru // {
               inherit (conf) imageTag;
 
               # Distinguish tarballs and exes at the Nix level so functions that

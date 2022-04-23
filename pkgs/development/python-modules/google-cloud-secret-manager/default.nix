@@ -8,15 +8,19 @@
 , proto-plus
 , pytestCheckHook
 , pytest-asyncio
+, pythonOlder
 }:
 
 buildPythonPackage rec {
   pname = "google-cloud-secret-manager";
-  version = "2.7.2";
+  version = "2.10.0";
+  format = "setuptools";
+
+  disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "6508a260ea273de0ff17d0bf66a3f93009a9b02ace7736486f70a91789c3e34a";
+    hash = "sha256-nQfdej2SveO0Qxam57ZRAyTQ0NnGoyb4nx2YFnqtAhI=";
   };
 
   propagatedBuildInputs = [

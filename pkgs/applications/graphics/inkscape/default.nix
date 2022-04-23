@@ -1,4 +1,5 @@
-{ lib, stdenv
+{ stdenv
+, lib
 , boehmgc
 , boost
 , cairo
@@ -8,7 +9,6 @@
 , gettext
 , ghostscript
 , glib
-, glib-networking
 , glibmm
 , gsl
 , gspell
@@ -48,15 +48,16 @@ let
       lxml
       pillow
       scour
+      pyserial
     ]);
 in
 stdenv.mkDerivation rec {
   pname = "inkscape";
-  version = "1.1";
+  version = "1.1.2";
 
   src = fetchurl {
     url = "https://media.inkscape.org/dl/resources/file/${pname}-${version}.tar.xz";
-    sha256 = "sha256-cebozj/fcC9Z28SidmZeuYLreCKwKbvb7O0t9DAXleY=";
+    sha256 = "sha256-P/5UoG0LJaTNi260JFNu8e0gW+E0Q6Oc1DfIx7ibltE=";
   };
 
   # Inkscape hits the ARGMAX when linking on macOS. It appears to be
@@ -73,13 +74,11 @@ stdenv.mkDerivation rec {
       python3 = "${python3Env}/bin/python";
     })
 
-    # Fix parsing paths by Python extensions.
-    # https://gitlab.com/inkscape/extensions/-/merge_requests/342
+    # Fix build with poppler 22.03
+    # https://gitlab.com/inkscape/inkscape/-/merge_requests/4187
     (fetchpatch {
-      url = "https://gitlab.com/inkscape/extensions/-/commit/a82c382c610d37837c8f3f5b13224bab8fd3667e.patch";
-      sha256 = "YWrgjCnQ9q6BUsxSLQojIXnDzPxM/SgrIfj1gxQ/JKM=";
-      stripLen = 1;
-      extraPrefix = "share/extensions/";
+      url = "https://gitlab.com/inkscape/inkscape/-/commit/a18c57ffff313fd08bc8a44f6b6bf0b01d7e9b75.patch";
+      sha256 = "UZb8ZTtfA5667uo5ZlVQ5vPowiSgd4ItAJ9U1BOsRQg=";
     })
   ];
 
@@ -117,7 +116,6 @@ stdenv.mkDerivation rec {
     boost
     gettext
     glib
-    glib-networking
     glibmm
     gsl
     gtkmm3

@@ -2,7 +2,7 @@
 , buildPythonPackage
 , fetchPypi
 , git
-, ruamel_yaml
+, ruamel-yaml
 , jsonschema
 , rfc3987
 , setuptools
@@ -11,17 +11,17 @@
 
 buildPythonPackage rec {
   pname = "dtschema";
-  version = "2021.10";
+  version = "2022.1";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "d09c94d13f46e6674ba11ff31220651ad1b02dae860f5a87905dfac6b8d768d9";
+    sha256 = "sha256-G5KzuaMbbkuLK+cNvzBld1UwvExS6ZGVW2e+GXQRFMU=";
   };
 
   nativeBuildInputs = [ setuptools-scm git ];
   propagatedBuildInputs = [
     setuptools
-    ruamel_yaml
+    ruamel-yaml
     jsonschema
     rfc3987
   ];

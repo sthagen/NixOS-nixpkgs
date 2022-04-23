@@ -1,8 +1,12 @@
-{ stdenv, lib
-, buildPythonPackage, fetchPypi, pythonOlder, setuptools-scm, pytestCheckHook
+{ stdenv
+, lib
+, buildPythonPackage
+, fetchPypi
+, pythonOlder
+, setuptools-scm
+, pytestCheckHook
 , aiohttp
 , aiohttp-cors
-, attrs
 , click
 , colorama
 , dataclasses
@@ -10,7 +14,6 @@
 , pathspec
 , parameterized
 , platformdirs
-, regex
 , tomli
 , typed-ast
 , typing-extensions
@@ -20,13 +23,13 @@
 
 buildPythonPackage rec {
   pname = "black";
-  version = "21.9b0";
+  version = "22.3.0";
 
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-feTPx+trcQ3jJXEtQBJWiRAdIdJSg+7X6ZmHIs8Q65E=";
+    hash = "sha256-NQILiIbAIs7ZKCtRtah1ttGrDDh7MaBluE23wzCFynk=";
   };
 
   nativeBuildInputs = [ setuptools-scm ];
@@ -62,24 +65,21 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     aiohttp
     aiohttp-cors
-    attrs
     click
     colorama
     mypy-extensions
     pathspec
     platformdirs
-    regex
     tomli
-    typed-ast # required for tests and python2 extra
     uvloop
-  ] ++ lib.optional (pythonOlder "3.7") dataclasses
-    ++ lib.optional (pythonOlder "3.8") typing-extensions;
+  ] ++ lib.optional (pythonOlder "3.8") typed-ast
+  ++ lib.optional (pythonOlder "3.10") typing-extensions;
 
   meta = with lib; {
     description = "The uncompromising Python code formatter";
     homepage = "https://github.com/psf/black";
     changelog = "https://github.com/psf/black/blob/${version}/CHANGES.md";
     license = licenses.mit;
-    maintainers = with maintainers; [ sveitser ];
+    maintainers = with maintainers; [ sveitser autophagy ];
   };
 }

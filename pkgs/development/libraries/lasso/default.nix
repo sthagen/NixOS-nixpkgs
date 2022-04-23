@@ -3,16 +3,16 @@
 stdenv.mkDerivation rec {
 
   pname = "lasso";
-  version = "2.7.0";
+  version = "2.8.0";
 
   src = fetchurl {
     url = "https://dev.entrouvert.org/lasso/lasso-${version}.tar.gz";
-    sha256 = "138x8pmj4k1pbah32z14rd8ylyx4lgz70s93m39vd17f8sjz50lj";
+    sha256 = "sha256-/8vVhR2YWGx+HK9DutZhZCEaO2HRK/hgoFmESP+fKzg=";
 
   };
 
-  nativeBuildInputs = [ autoreconfHook pkg-config ];
-  buildInputs = [ autoconf automake glib gobject-introspection gtk-doc libtool libxml2 libxslt openssl python27Packages.six xmlsec zlib ];
+  nativeBuildInputs = [ autoreconfHook pkg-config autoconf automake ];
+  buildInputs = [ glib gobject-introspection gtk-doc libtool libxml2 libxslt openssl python27Packages.six xmlsec zlib ];
 
   configurePhase = ''
     ./configure --with-pkg-config=$PKG_CONFIG_PATH \

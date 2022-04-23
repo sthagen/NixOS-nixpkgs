@@ -11,12 +11,12 @@
 
 buildPythonPackage rec {
   pname = "GeoAlchemy2";
-  version = "0.9.4";
+  version = "0.11.1";
   format = "setuptools";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "b0e56d4a945bdc0f8fa9edd50ecc912889ea68e0e3558a19160dcb0d5b1b65fc";
+    sha256 = "sha256-+SoPrdtbdDhNu/PHAAQzNYzo4HoYD+HWwoQ+qgQ3/wg=";
   };
 
   nativeBuildInputs = [
@@ -34,6 +34,12 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
+  pytestFlagsArray = [
+    # tests require live postgis database
+    "--deselect=tests/test_pickle.py::TestPickle::test_pickle_unpickle"
+    "--deselect=tests/gallery/test_specific_compilation.py::test_specific_compilation"
+  ];
+
   disabledTestPaths = [
     # tests require live postgis database
     "tests/gallery/test_decipher_raster.py"
@@ -41,6 +47,11 @@ buildPythonPackage rec {
     "tests/gallery/test_summarystatsagg.py"
     "tests/gallery/test_type_decorator.py"
     "tests/test_functional.py"
+    "tests/test_functional_postgresql.py"
+  ];
+
+  pythonImportsCheck = [
+    "geoalchemy2"
   ];
 
   meta = with lib; {

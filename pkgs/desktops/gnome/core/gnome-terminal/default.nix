@@ -23,15 +23,16 @@
 , pcre2
 , libxslt
 , docbook-xsl-nons
+, nixosTests
 }:
 
 stdenv.mkDerivation rec {
   pname = "gnome-terminal";
-  version = "3.42.0";
+  version = "3.44.0";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-terminal/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "tQ6eVmQjDmyikLzziBKltl4LqsZqSG7iEIlM9nX3Lgs=";
+    sha256 = "qpZxie62CUWebApGigHqcMuMRTDaHVALLT9PxDi4/io=";
   };
 
   nativeBuildInputs = [
@@ -81,6 +82,8 @@ stdenv.mkDerivation rec {
       attrPath = "gnome.gnome-terminal";
     };
   };
+
+  passthru.tests.test = nixosTests.terminal-emulators.gnome-terminal;
 
   meta = with lib; {
     description = "The GNOME Terminal Emulator";
