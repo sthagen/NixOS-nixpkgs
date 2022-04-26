@@ -175,6 +175,7 @@ mapAliases ({
   claws-mail-gtk2 = throw "claws-mail-gtk2 was removed to get rid of Python 2, please use claws-mail"; # Added 2021-12-05
   claws-mail-gtk3 = claws-mail; # Added 2021-07-10
   clawsMail = throw "'clawsMail' has been renamed to/replaced by 'claws-mail'"; # Converted to throw 2022-02-22
+  cldr-emoji-annotation = throw "'cldr-emoji-annotation' has been removed, as it was unmaintained; use 'cldr-annotations' instead"; # Added 2022-04-03
   clearsilver = throw "clearsilver has been removed: abandoned by upstream"; # Added 2022-03-15
   clutter_gtk = throw "'clutter_gtk' has been renamed to/replaced by 'clutter-gtk'"; # Converted to throw 2022-02-22
   cmakeWithQt4Gui = throw "cmakeWithQt4Gui has been removed in favor of cmakeWithGui (Qt 5)"; # Added 2021-05
@@ -879,6 +880,7 @@ mapAliases ({
   oauth2_proxy = oauth2-proxy; # Added 2021-04-18
   octoprint-plugins = throw "octoprint-plugins are now part of the octoprint.python.pkgs package set"; # Added 2021-01-24
   ocz-ssd-guru = throw "ocz-ssd-guru has been removed due to there being no source available"; # Added 2021-07-12
+  odpdown = throw "odpdown has been removed because it lacks python3 support"; # Added 2022-04-25
   ofp = throw "ofp is not compatible with odp-dpdk";
   olifant = throw "olifant has been removed from nixpkgs, as it was unmaintained"; # Added 2021-08-05
   onnxruntime = throw "onnxruntime has been removed due to poor maintainability"; # Added 2020-12-04
@@ -1200,6 +1202,7 @@ mapAliases ({
   spaceOrbit = throw "'spaceOrbit' has been renamed to/replaced by 'space-orbit'"; # Converted to throw 2022-02-22
   spectral = neochat; # Added 2020-12-27
   speech_tools = throw "'speech_tools' has been renamed to/replaced by 'speech-tools'"; # Converted to throw 2022-02-22
+  speedometer = throw "speedometer has been removed: abandoned by upstream"; # Added 2022-04-24
   speedtest_cli = throw "'speedtest_cli' has been renamed to/replaced by 'speedtest-cli'"; # Converted to throw 2022-02-22
   sphinxbase = throw "sphinxbase has been removed: unmaintained"; # Added 2022-04-24
   spice_gtk = throw "'spice_gtk' has been renamed to/replaced by 'spice-gtk'"; # Converted to throw 2022-02-22
