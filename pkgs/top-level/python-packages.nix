@@ -513,9 +513,7 @@ in {
 
   ansi2html = callPackage ../development/python-modules/ansi2html { };
 
-  ansible = callPackage ../development/python-modules/ansible/legacy.nix { };
-
-  ansible-base = callPackage ../development/python-modules/ansible/base.nix { };
+  ansible = callPackage ../development/python-modules/ansible { };
 
   ansible-compat = callPackage ../development/python-modules/ansible-compat { };
 
@@ -6129,6 +6127,8 @@ in {
   pdm-pep517 = callPackage ../development/python-modules/pdm-pep517 { };
 
   pdoc3 = callPackage ../development/python-modules/pdoc3 { };
+
+  peaqevcore = callPackage ../development/python-modules/peaqevcore { };
 
   pebble = callPackage ../development/python-modules/pebble { };
 
