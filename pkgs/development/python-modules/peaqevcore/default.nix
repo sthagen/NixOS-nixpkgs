@@ -6,20 +6,18 @@
 
 buildPythonPackage rec {
   pname = "peaqevcore";
-  version = "0.0.16";
+  version = "0.0.20";
   format = "setuptools";
 
   disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-VYJzypRiVOF4FrvglAp2NWMUNxZx2Fq1Pw7lx0xbVFw=";
+    hash = "sha256-h/WQzkDoEuE4grnb0YeuWhHDPWIqVHgjWgMq02XLahs=";
   };
 
   postPatch = ''
     substituteInPlace setup.py \
-      --replace "datetime" "" \
-      --replace "statistics" "" \
       --replace "pytest" ""
   '';
 

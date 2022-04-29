@@ -2272,6 +2272,7 @@
       fingerprint = "539F 0655 4D35 38A5 429A  E253 13E7 9449 C052 5215";
     }];
     name = "ckie";
+    matrix = "@ckie:ckie.dev";
   };
   clkamp = {
     email = "c@lkamp.de";
@@ -4715,6 +4716,12 @@
     githubId = 201997;
     name = "Eric Seidel";
   };
+  grindhold = {
+    name = "grindhold";
+    email = "grindhold+nix@skarphed.org";
+    github = "grindhold";
+    githubId = 2592640;
+  };
   gspia = {
     email = "iahogsp@gmail.com";
     github = "gspia";
@@ -5603,6 +5610,12 @@
     github = "javaguirre";
     githubId = 488556;
     name = "Javier Aguirre";
+  };
+  jayesh-bhoot = {
+    name = "Jayesh Bhoot";
+    email = "jayesh@bhoot.sh";
+    github = "jayesh-bhoot";
+    githubId = 1915507;
   };
   jb55 = {
     email = "jb55@jb55.com";
@@ -12497,6 +12510,12 @@
     githubId = 844343;
     name = "Thiago K. Okada";
   };
+  thibaultlemaire = {
+    email = "thibault.lemaire@protonmail.com";
+    github = "ThibaultLemaire";
+    githubId = 21345269;
+    name = "Thibault Lemaire";
+  };
   thibautmarty = {
     email = "github@thibautmarty.fr";
     matrix = "@thibaut:thibautmarty.fr";
@@ -12742,6 +12761,13 @@
     github = "ToxicFrog";
     githubId = 90456;
     name = "Rebecca (Bex) Kelly";
+  };
+  tpw_rules = {
+    name = "Thomas Watson";
+    email = "twatson52@icloud.com";
+    matrix = "@tpw_rules:matrix.org";
+    github = "tpwrules";
+    githubId = 208010;
   };
   travisbhartwell = {
     email = "nafai@travishartwell.net";
@@ -13509,7 +13535,7 @@
     name = "Andrei Pampu";
   };
   wolfangaukang = {
-    email = "liquid.query960@4wrd.cc";
+    email = "clone.gleeful135+nixpkgs@anonaddy.me";
     github = "wolfangaukang";
     githubId = 8378365;
     name = "P. R. d. O.";
@@ -13561,6 +13587,13 @@
     email = "lambdafuzz@tutanota.com";
     github = "wunderbrick";
     githubId = 52174714;
+  };
+  wyndon = {
+    email = "72203260+wyndon@users.noreply.github.com";
+    matrix = "@wyndon:envs.net";
+    github = "wyndon";
+    githubId = 72203260;
+    name = "wyndon";
   };
   wyvie = {
     email = "elijahrum@gmail.com";
