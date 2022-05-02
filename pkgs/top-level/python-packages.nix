@@ -1735,6 +1735,8 @@ in {
 
   cloudflare = callPackage ../development/python-modules/cloudflare { };
 
+  cloudflare-dyndns = callPackage ../applications/networking/cloudflare-dyndns { };
+
   cloudpickle = callPackage ../development/python-modules/cloudpickle { };
 
   cloudscraper = callPackage ../development/python-modules/cloudscraper { };
@@ -2529,6 +2531,8 @@ in {
   duckdb = callPackage ../development/python-modules/duckdb {
     inherit (pkgs) duckdb;
   };
+
+  duckdb-engine = callPackage ../development/python-modules/duckdb-engine { };
 
   duecredit = callPackage ../development/python-modules/duecredit { };
 
@@ -4192,6 +4196,8 @@ in {
   ipython_genutils = callPackage ../development/python-modules/ipython_genutils { };
 
   ipython = callPackage ../development/python-modules/ipython { };
+
+  ipython-sql = callPackage ../development/python-modules/ipython-sql { };
 
   ipyvue = callPackage ../development/python-modules/ipyvue { };
 
@@ -6509,6 +6515,8 @@ in {
 
   poetry-core = callPackage ../development/python-modules/poetry-core { };
 
+  poetry-dynamic-versioning = callPackage ../development/python-modules/poetry-dynamic-versioning { };
+
   poetry-semver = callPackage ../development/python-modules/poetry-semver { };
 
   poetry2conda = callPackage ../development/python-modules/poetry2conda { };
@@ -7462,7 +7470,7 @@ in {
   pynanoleaf = callPackage ../development/python-modules/pynanoleaf { };
 
   pync = callPackage ../development/python-modules/pync {
-    inherit (pkgs) coreutils which;
+    inherit (pkgs) which;
   };
 
   pynello = callPackage ../development/python-modules/pynello { };
@@ -11144,6 +11152,8 @@ in {
   yq = callPackage ../development/python-modules/yq {
     inherit (pkgs) jq;
   };
+
+  yte = callPackage ../development/python-modules/yte { };
 
   ytmusicapi = callPackage ../development/python-modules/ytmusicapi { };
 
