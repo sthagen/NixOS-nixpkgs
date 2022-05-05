@@ -45,6 +45,33 @@
       </listitem>
       <listitem>
         <para>
+          <literal>stdenv.mkDerivation</literal> now supports a
+          self-referencing <literal>finalAttrs:</literal> parameter
+          containing the final <literal>mkDerivation</literal> arguments
+          including overrides. <literal>drv.overrideAttrs</literal> now
+          supports two parameters
+          <literal>finalAttrs: previousAttrs:</literal>. This allows
+          packaging configuration to be overridden in a consistent
+          manner by providing an alternative to
+          <literal>rec {}</literal> syntax.
+        </para>
+        <para>
+          Additionally, <literal>passthru</literal> can now reference
+          <literal>finalAttrs.finalPackage</literal> containing the
+          final package, including attributes such as the output paths
+          and <literal>overrideAttrs</literal>.
+        </para>
+        <para>
+          New language integrations can be simplified by overriding a
+          <quote>prototype</quote> package containing the
+          language-specific logic. This removes the need for a extra
+          layer of overriding for the <quote>generic builder</quote>
+          arguments, thus removing a usability problem and source of
+          error.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           PHP 8.1 is now available
         </para>
       </listitem>
@@ -74,8 +101,20 @@
         </para>
       </listitem>
       <listitem>
-<literallayout>Pulseaudio has been upgraded to version 15.0 and now optionally <link xlink:href="https://www.freedesktop.org/wiki/Software/PulseAudio/Notes/15.0/#supportforldacandaptxbluetoothcodecsplussbcxqsbcwithhigher-qualityparameters">supports additional Bluetooth audio codecs</link> like aptX or LDAC, with codec switching support being available in <literal>pavucontrol</literal>. This feature is disabled by default but can be enabled by using <literal>hardware.pulseaudio.package = pkgs.pulseaudioFull;</literal>.
-Existing 3rd party modules that provided similar functionality, like <literal>pulseaudio-modules-bt</literal> or <literal>pulseaudio-hsphfpd</literal> are deprecated and have been removed.</literallayout>
+        <para>
+          Pulseaudio has been upgraded to version 15.0 and now
+          optionally
+          <link xlink:href="https://www.freedesktop.org/wiki/Software/PulseAudio/Notes/15.0/#supportforldacandaptxbluetoothcodecsplussbcxqsbcwithhigher-qualityparameters">supports
+          additional Bluetooth audio codecs</link> like aptX or LDAC,
+          with codec switching support being available in
+          <literal>pavucontrol</literal>. This feature is disabled by
+          default but can be enabled by using
+          <literal>hardware.pulseaudio.package = pkgs.pulseaudioFull;</literal>.
+          Existing 3rd party modules that provided similar
+          functionality, like <literal>pulseaudio-modules-bt</literal>
+          or <literal>pulseaudio-hsphfpd</literal> are deprecated and
+          have been removed.
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -110,6 +149,14 @@ Existing 3rd party modules that provided similar functionality, like <literal>pu
           <literal>pkgs.haskellPackages</literal> and
           <literal>pkgs.ghc</literal> will now use this version by
           default.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The GNOME and Plasma installation CDs now use
+          <literal>pkgs.calamares</literal> and
+          <literal>pkgs.calamares-nixos-extensions</literal> to allow
+          users to easily install and set up NixOS with a GUI.
         </para>
       </listitem>
     </itemizedlist>
@@ -499,6 +546,19 @@ Existing 3rd party modules that provided similar functionality, like <literal>pu
       </listitem>
       <listitem>
         <para>
+          For new installations
+          <literal>virtualisation.oci-containers.backend</literal> is
+          now set to <literal>podman</literal> by default. If you still
+          want to use Docker on systems where
+          <literal>system.stateVersion</literal> is set to to
+          <literal>&quot;22.05&quot;</literal> set
+          <literal>virtualisation.oci-containers.backend = &quot;docker&quot;;</literal>.Old
+          systems with older <literal>stateVersion</literal>s stay with
+          <quote>docker</quote>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>security.klogd</literal> was removed. Logging of
           kernel messages is handled by systemd since Linux 3.5.
         </para>
@@ -816,6 +876,11 @@ Existing 3rd party modules that provided similar functionality, like <literal>pu
           <literal>22.05</literal>. Files will need to be manually moved
           to the new location if the <literal>stateVersion</literal> is
           updated.
+        </para>
+        <para>
+          As of Synapse 1.58.0, the old groups/communities feature has
+          been disabled by default. It will be completely removed with
+          Synapse 1.61.0.
         </para>
       </listitem>
       <listitem>
