@@ -972,6 +972,12 @@
     githubId = 1118815;
     name = "Vikram Narayanan";
   };
+  armeenm = {
+    email = "mahdianarmeen@gmail.com";
+    github = "armeenm";
+    githubId = 29145250;
+    name = "Armeen Mahdian";
+  };
   armijnhemel = {
     email = "armijn@tjaldur.nl";
     github = "armijnhemel";
@@ -5022,6 +5028,12 @@
     github = "hexagonal-sun";
     githubId = 222664;
     name = "Matthew Leach";
+  };
+  hexchen = {
+    email = "nix@lilwit.ch";
+    github = "hexchen";
+    githubId = 41522204;
+    name = "hexchen";
   };
   hh = {
     email = "hh@m-labs.hk";
@@ -13975,6 +13987,13 @@
     github = "zakkor";
     githubId = 6191421;
     name = "Edward d'Albon";
+  };
+  zebreus = {
+    matrix = "@lennart:cicen.net";
+    email = "lennarteichhorn+nixpkgs@gmail.com";
+    github = "Zebreus";
+    githubId = 1557253;
+    name = "Lennart Eichhorn";
   };
   zef = {
     email = "zef@zef.me";
