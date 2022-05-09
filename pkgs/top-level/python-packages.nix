@@ -120,6 +120,7 @@ in {
     pythonImportsCheckHook
     pythonNamespacesHook
     pythonRecompileBytecodeHook
+    pythonRelaxDepsHook
     pythonRemoveBinBytecodeHook
     pythonRemoveTestsDirHook
     setuptoolsBuildHook
@@ -5193,8 +5194,6 @@ in {
 
   meld3 = callPackage ../development/python-modules/meld3 { };
 
-  memcached = callPackage ../development/python-modules/memcached { };
-
   memory-allocator = callPackage ../development/python-modules/memory-allocator { };
 
   memory_profiler = callPackage ../development/python-modules/memory_profiler { };
@@ -6474,6 +6473,8 @@ in {
   python-keystoneclient = callPackage ../development/python-modules/python-keystoneclient { };
 
   python-lsp-black = callPackage ../development/python-modules/python-lsp-black { };
+
+  python-memcached = callPackage ../development/python-modules/python-memcached { };
 
   python-openems = callPackage ../development/python-modules/python-openems { };
 
@@ -10579,6 +10580,8 @@ in {
 
   ukpostcodeparser = callPackage ../development/python-modules/ukpostcodeparser { };
 
+  ukrainealarm = callPackage ../development/python-modules/ukrainealarm { };
+
   umalqurra = callPackage ../development/python-modules/umalqurra { };
 
   umap-learn = callPackage ../development/python-modules/umap-learn { };
@@ -11191,7 +11194,6 @@ in {
 
   youtube-dl-light = callPackage ../tools/misc/youtube-dl {
     ffmpegSupport = false;
-    phantomjsSupport = false;
   };
 
   yoyo-migrations = callPackage ../development/python-modules/yoyo-migrations { };
@@ -11201,7 +11203,6 @@ in {
   yt-dlp-light = callPackage ../tools/misc/yt-dlp {
     atomicparsleySupport = false;
     ffmpegSupport = false;
-    phantomjsSupport = false;
     rtmpSupport = false;
   };
 
