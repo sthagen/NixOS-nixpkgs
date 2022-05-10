@@ -5645,7 +5645,7 @@ in {
   });
 
   nghttp2 = (toPythonModule (pkgs.nghttp2.override {
-    inherit (self) python cython setuptools;
+    python3Packages = self;
     inherit (pkgs) ncurses;
     enableApp = false; # build only libnghttp2 ...
     enablePython = true; # ... and its Python bindings
@@ -9494,6 +9494,8 @@ in {
   sip_4 = callPackage ../development/python-modules/sip/4.x.nix { };
 
   six = callPackage ../development/python-modules/six { };
+
+  sjcl = callPackage ../development/python-modules/sjcl { };
 
   skein = callPackage ../development/python-modules/skein { };
 
