@@ -1175,6 +1175,16 @@
       </listitem>
       <listitem>
         <para>
+          <literal>teleport</literal> has been upgraded to major version
+          9. Please see upstream
+          <link xlink:href="https://goteleport.com/docs/setup/operations/upgrading/">upgrade
+          instructions</link> and
+          <link xlink:href="https://goteleport.com/docs/changelog/#900">release
+          notes</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           For <literal>pkgs.python3.pkgs.ipython</literal>, its direct
           dependency
           <literal>pkgs.python3.pkgs.matplotlib-inline</literal> (which
@@ -1871,6 +1881,37 @@
       </listitem>
       <listitem>
         <para>
+          Mastodon now uses <literal>services.redis.servers</literal> to
+          start a new redis server, instead of using a global redis
+          server. This improves compatibility with other services that
+          use redis.
+        </para>
+        <para>
+          Note that this will recreate the redis database, although
+          according to the
+          <link xlink:href="https://docs.joinmastodon.org/admin/backups/">Mastodon
+          docs</link>, this is almost harmless:
+        </para>
+        <blockquote>
+          <para>
+            Losing the Redis database is almost harmless: The only
+            irrecoverable data will be the contents of the Sidekiq
+            queues and scheduled retries of previously failed jobs. The
+            home and list feeds are stored in Redis, but can be
+            regenerated with tootctl.
+          </para>
+        </blockquote>
+        <para>
+          If you do want to save the redis database, you can use the
+          following commands:
+        </para>
+        <programlisting language="bash">
+redis-cli save
+cp /var/lib/redis/dump.rdb &quot;/var/lib/redis-mastodon/dump.rdb&quot;
+</programlisting>
+      </listitem>
+      <listitem>
+        <para>
           If you are using Wayland you can choose to use the Ozone
           Wayland support in Chrome and several Electron apps by setting
           the environment variable <literal>NIXOS_OZONE_WL=1</literal>
@@ -2299,6 +2340,14 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>phpPackages.box</literal> package has been
+          updated from 2.7.5 to 3.16.0. See the
+          <link xlink:href="https://github.com/box-project/box/blob/master/UPGRADE.md#from-27-to-30">upgrade
+          guide</link> for more details.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>zrepl</literal> package has been updated from
           0.4.0 to 0.5:
         </para>
@@ -2393,6 +2442,14 @@
           <literal>security.polkit.enable</literal>, is now disabled by
           default. It will automatically be enabled through services and
           desktop environments as needed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>mercury</literal> was updated to 22.01.1, which has
+          some breaking changes
+          (<link xlink:href="https://dl.mercurylang.org/release/release-notes-22.01.html">Mercury
+          22.01 news</link>).
         </para>
       </listitem>
       <listitem>
