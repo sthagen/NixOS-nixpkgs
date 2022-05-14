@@ -3626,6 +3626,8 @@ in {
 
   gpy = callPackage ../development/python-modules/gpy { };
 
+  gpt-2-simple = callPackage ../development/python-modules/gpt-2-simple { };
+
   gpyopt = callPackage ../development/python-modules/gpyopt { };
 
   gql = callPackage ../development/python-modules/gql { };
@@ -5840,6 +5842,8 @@ in {
   nvchecker = callPackage ../development/python-modules/nvchecker { };
 
   python-nvd3 = callPackage ../development/python-modules/python-nvd3 { };
+
+  py-deprecate = callPackage ../development/python-modules/py-deprecate { };
 
   nwdiag = callPackage ../development/python-modules/nwdiag { };
 
@@ -10360,6 +10364,8 @@ in {
 
   torchgpipe = callPackage ../development/python-modules/torchgpipe { };
 
+  torchmetrics = callPackage ../development/python-modules/torchmetrics { };
+
   torchinfo = callPackage ../development/python-modules/torchinfo { };
 
   torchvision = callPackage ../development/python-modules/torchvision { };
@@ -10595,6 +10601,8 @@ in {
   ua-parser = callPackage ../development/python-modules/ua-parser { };
 
   uarray = callPackage ../development/python-modules/uarray { };
+
+  uasiren = callPackage ../development/python-modules/uasiren { };
 
   uc-micro-py = callPackage ../development/python-modules/uc-micro-py { };
 
