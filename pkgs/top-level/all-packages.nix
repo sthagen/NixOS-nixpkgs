@@ -294,6 +294,8 @@ with pkgs;
 
   catatonit = callPackage ../applications/virtualization/catatonit { };
 
+  catppuccin-gtk = callPackage ../data/themes/catppuccin-gtk { };
+
   btdu = callPackage ../tools/misc/btdu { };
 
   cereal = callPackage ../development/libraries/cereal { };
@@ -1103,6 +1105,8 @@ with pkgs;
   aquosctl = callPackage ../tools/misc/aquosctl { };
 
   arch-install-scripts = callPackage ../tools/misc/arch-install-scripts {};
+
+  audible-cli = callPackage ../tools/misc/audible-cli { };
 
   auditwheel = callPackage ../tools/package-management/auditwheel { };
 
@@ -1921,6 +1925,10 @@ with pkgs;
   };
 
   checkip = callPackage ../tools/networking/checkip { };
+
+  crystfel = callPackage ../applications/science/physics/crystfel { };
+
+  crystfel-headless = callPackage ../applications/science/physics/crystfel { withGui = false; };
 
   ec2-api-tools = callPackage ../tools/virtualization/ec2-api-tools { };
 
@@ -2790,7 +2798,7 @@ with pkgs;
 
   brutespray = callPackage ../tools/security/brutespray { };
 
-  breakpointHook = assert stdenv.isLinux;
+  breakpointHook = assert stdenv.buildPlatform.isLinux;
     makeSetupHook { } ../build-support/setup-hooks/breakpoint-hook.sh;
 
   btrfs-progs = callPackage ../tools/filesystems/btrfs-progs { };
@@ -7271,6 +7279,8 @@ with pkgs;
 
   jira-cli = callPackage ../development/tools/jira_cli { };
 
+  jira-cli-go = callPackage ../development/tools/jira-cli-go { };
+
   jirafeau = callPackage ../servers/web-apps/jirafeau { };
 
   jitterentropy = callPackage ../development/libraries/jitterentropy { };
@@ -7758,7 +7768,9 @@ with pkgs;
 
   mmv-go = callPackage ../tools/misc/mmv-go { };
 
-  mob = callPackage ../applications/misc/mob { };
+  mob = callPackage ../applications/misc/mob {
+    buildGoModule = buildGo116Module;
+  };
 
   most = callPackage ../tools/misc/most { };
 
@@ -8721,6 +8733,8 @@ with pkgs;
   pcmsolver = callPackage ../development/libraries/pcmsolver { };
 
   pgbadger = perlPackages.callPackage ../tools/misc/pgbadger { };
+
+  pffft = callPackage ../development/libraries/pffft { };
 
   phash = callPackage ../development/libraries/phash { };
 
@@ -9812,6 +9826,8 @@ with pkgs;
   rs = callPackage ../tools/text/rs { };
 
   rst2html5 = callPackage ../tools/text/rst2html5 { };
+
+  rstcheck = with python3Packages; toPythonApplication rstcheck;
 
   rt = callPackage ../servers/rt { };
 
@@ -12976,8 +12992,9 @@ with pkgs;
   gcc-arm-embedded-10 = callPackage ../development/compilers/gcc-arm-embedded/10 {};
   gcc-arm-embedded = gcc-arm-embedded-10;
 
-  gdc = gdc9;
-  gdc9 = wrapCC (gcc9.cc.override {
+  # Has to match the default gcc so that there are no linking errors when
+  # using C/C++ libraries in D packages
+  gdc = wrapCC (gcc.cc.override {
     name = "gdc";
     langCC = false;
     langC = false;
@@ -15166,7 +15183,9 @@ with pkgs;
 
   cloud-nuke = callPackage ../development/tools/cloud-nuke { };
 
-  cloudcompare = libsForQt5.callPackage ../applications/graphics/cloudcompare {};
+  cloudcompare = libsForQt5.callPackage ../applications/graphics/cloudcompare {
+    pdal = pdal_2_3;
+  };
 
   cloudflare-warp = callPackage ../tools/networking/cloudflare-warp { };
 
@@ -17861,7 +17880,7 @@ with pkgs;
 
   hwloc = callPackage ../development/libraries/hwloc {};
 
-  hydra_unstable = callPackage ../development/tools/misc/hydra/unstable.nix { nix = nixVersions.nix_2_6; };
+  hydra_unstable = callPackage ../development/tools/misc/hydra/unstable.nix { nix = nixVersions.nix_2_8; };
 
   hydra-cli = callPackage ../development/tools/misc/hydra-cli { };
 
@@ -20018,6 +20037,8 @@ with pkgs;
   pcre2 = callPackage ../development/libraries/pcre2 { };
 
   pdal = callPackage ../development/libraries/pdal { } ;
+
+  pdal_2_3 = callPackage ../development/libraries/pdal/2_3.nix { } ;
 
   pdf2xml = callPackage ../development/libraries/pdf2xml {} ;
 
@@ -25443,8 +25464,6 @@ with pkgs;
 
   btops = callPackage ../applications/window-managers/btops { };
 
-  buho = libsForQt5.callPackage ../applications/office/buho { };
-
   bvi = callPackage ../applications/editors/bvi { };
 
   bviplus = callPackage ../applications/editors/bviplus { };
@@ -25575,8 +25594,6 @@ with pkgs;
 
   clightd = callPackage ../applications/misc/clight/clightd.nix { };
 
-  clip = libsForQt5.callPackage ../applications/video/clip { };
-
   clipgrab = libsForQt5.callPackage ../applications/video/clipgrab { };
 
   clipcat = callPackage ../applications/misc/clipcat { };
@@ -25610,8 +25627,6 @@ with pkgs;
   cntr = callPackage ../applications/virtualization/cntr { };
 
   communi = libsForQt5.callPackage ../applications/networking/irc/communi { };
-
-  communicator = libsForQt5.callPackage ../tools/misc/communicator { };
 
   complete-alias = callPackage ../tools/misc/complete-alias { };
 
@@ -27087,8 +27102,6 @@ with pkgs;
 
   pmbootstrap = python3Packages.callPackage ../tools/misc/pmbootstrap { };
 
-  shelf = libsForQt5.callPackage ../applications/office/shelf { };
-
   shepherd = nodePackages."@nerdwallet/shepherd";
 
   skate = callPackage ../applications/misc/skate { };
@@ -27354,8 +27367,6 @@ with pkgs;
   img-cat = callPackage ../applications/graphics/img-cat { };
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
-
-  index-fm = libsForQt5.callPackage ../applications/misc/index-fm { };
 
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
 
@@ -28225,8 +28236,6 @@ with pkgs;
   ncmpc = callPackage ../applications/audio/ncmpc { };
 
   ncmpcpp = callPackage ../applications/audio/ncmpcpp { };
-
-  maui-nota = libsForQt5.callPackage ../applications/editors/maui-nota { };
 
   pragha = libsForQt5.callPackage ../applications/audio/pragha { };
 
@@ -30427,8 +30436,6 @@ with pkgs;
     jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
     jdk = jdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
-
-  vvave = libsForQt5.callPackage ../applications/video/vvave { };
 
   vwm = callPackage ../applications/window-managers/vwm { };
 
