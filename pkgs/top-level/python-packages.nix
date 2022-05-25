@@ -1105,6 +1105,10 @@ in {
 
   babelgladeextractor = callPackage ../development/python-modules/babelgladeextractor { };
 
+  pulumi = callPackage ../development/python-modules/pulumi { };
+
+  pulumi-aws = callPackage ../development/python-modules/pulumi-aws { };
+
   backcall = callPackage ../development/python-modules/backcall { };
 
   backoff = callPackage ../development/python-modules/backoff { };
@@ -2325,7 +2329,7 @@ in {
 
   django-gravatar2 = callPackage ../development/python-modules/django-gravatar2 { };
 
-  django_guardian = callPackage ../development/python-modules/django_guardian { };
+  django-guardian = callPackage ../development/python-modules/django-guardian { };
 
   django-haystack = callPackage ../development/python-modules/django-haystack { };
 
@@ -2362,7 +2366,7 @@ in {
 
   django-picklefield = callPackage ../development/python-modules/django-picklefield { };
 
-  django_polymorphic = callPackage ../development/python-modules/django-polymorphic { };
+  django-polymorphic = callPackage ../development/python-modules/django-polymorphic { };
 
   django-postgresql-netfields = callPackage ../development/python-modules/django-postgresql-netfields { };
 
@@ -2535,6 +2539,8 @@ in {
   drf-jwt = callPackage ../development/python-modules/drf-jwt { };
 
   drf-nested-routers = callPackage ../development/python-modules/drf-nested-routers { };
+
+  drf-spectacular-sidecar = callPackage ../development/python-modules/drf-spectacular-sidecar { };
 
   drf-yasg = callPackage ../development/python-modules/drf-yasg { };
 
@@ -3116,7 +3122,7 @@ in {
 
   flask-versioned = callPackage ../development/python-modules/flask-versioned { };
 
-  flask_wtf = callPackage ../development/python-modules/flask-wtf { };
+  flask-wtf = callPackage ../development/python-modules/flask-wtf { };
 
   flatbuffers = callPackage ../development/python-modules/flatbuffers {
     inherit (pkgs) flatbuffers;
@@ -5329,6 +5335,7 @@ in {
   mizani = callPackage ../development/python-modules/mizani { };
 
   mkdocs = callPackage ../development/python-modules/mkdocs { };
+  mkdocs-drawio-exporter = callPackage ../development/python-modules/mkdocs-drawio-exporter { };
   mkdocs-material = callPackage ../development/python-modules/mkdocs-material { };
   mkdocs-material-extensions = callPackage ../development/python-modules/mkdocs-material/mkdocs-material-extensions.nix { };
   mkdocs-minify = callPackage ../development/python-modules/mkdocs-minify { };
@@ -5857,6 +5864,8 @@ in {
   nutils = callPackage ../development/python-modules/nutils { };
 
   nvchecker = callPackage ../development/python-modules/nvchecker { };
+
+  nxt-python = callPackage ../development/python-modules/nxt-python { };
 
   python-nvd3 = callPackage ../development/python-modules/python-nvd3 { };
 
@@ -7792,8 +7801,6 @@ in {
   pyramid_mako = callPackage ../development/python-modules/pyramid_mako { };
 
   pyramid_multiauth = callPackage ../development/python-modules/pyramid_multiauth { };
-
-  pyreadability = callPackage ../development/python-modules/pyreadability { };
 
   pyrealsense2 = toPythonModule (pkgs.librealsense.override {
     enablePython = true;
@@ -10592,6 +10599,8 @@ in {
   types-protobuf = callPackage ../development/python-modules/types-protobuf { };
 
   types-pytz = callPackage ../development/python-modules/types-pytz { };
+
+  types-redis = callPackage ../development/python-modules/types-redis { };
 
   types-requests = callPackage ../development/python-modules/types-requests { };
 

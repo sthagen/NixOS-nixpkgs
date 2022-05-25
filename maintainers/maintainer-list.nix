@@ -3429,6 +3429,12 @@
       fingerprint = "389A 78CB CD88 5E0C 4701  DEB9 FD42 C7D0 D414 94C8";
     }];
   };
+  dukc = {
+    email = "ajieskola@gmail.com";
+    github = "dukc";
+    githubId = 24233408;
+    name = "Ate Eskola";
+  };
   dump_stack = {
     email = "root@dumpstack.io";
     github = "jollheef";
@@ -5334,6 +5340,16 @@
     github = "wavewave";
     githubId = 1031119;
     name = "Ian-Woo Kim";
+  };
+  ibizaman = {
+    email = "ibizapeanut@gmail.com";
+    github = "ibizaman";
+    githubId = 1044950;
+    name = "Pierre Penninckx";
+    keys = [{
+      longkeyid = "rsa2048/0xD4C5C37E6031A3FE";
+      fingerprint = "A01F 10C6 7176 B2AE 2A34  1A56 D4C5 C37E 6031 A3FE";
+    }];
   };
   iblech = {
     email = "iblech@speicherleck.de";
@@ -8128,6 +8144,12 @@
     github = "mdaiter";
     githubId = 1377571;
     name = "Matthew S. Daiter";
+  };
+  mdarocha = {
+    email = "marek@mdarocha.pl";
+    github = "mdarocha";
+    githubId = 11572618;
+    name = "Marek Darocha";
   };
   mdevlamynck = {
     email = "matthias.devlamynck@mailoo.org";
@@ -14606,5 +14628,11 @@
       longkeyid = "rsa2048/0xEF90E3E98B8F5C0B";
       fingerprint = "41EA 00B4 00F9 6970 1CB2  D3AF EF90 E3E9 8B8F 5C0B";
     }];
+  };
+  snpschaaf = {
+    email = "philipe.schaaf@secunet.com";
+    name = "Philippe Schaaf";
+    github = "snpschaaf";
+    githubId = 105843013;
   };
 }
