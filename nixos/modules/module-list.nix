@@ -137,6 +137,7 @@
   ./programs/captive-browser.nix
   ./programs/ccache.nix
   ./programs/cdemu.nix
+  ./programs/cfs-zen-tweaks.nix
   ./programs/chromium.nix
   ./programs/clickshare.nix
   ./programs/cnping.nix
@@ -733,6 +734,7 @@
   ./services/networking/bitcoind.nix
   ./services/networking/autossh.nix
   ./services/networking/bird.nix
+  ./services/networking/bird-lg.nix
   ./services/networking/bitlbee.nix
   ./services/networking/blockbook-frontend.nix
   ./services/networking/blocky.nix
