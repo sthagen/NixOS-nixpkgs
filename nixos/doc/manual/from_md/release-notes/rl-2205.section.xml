@@ -1006,7 +1006,7 @@
     };
 
     extraConfigFiles = [
-      /run/keys/matrix-synapse/secrets.yaml
+      &quot;/run/keys/matrix-synapse/secrets.yaml&quot;
     ];
   };
 }
@@ -1014,7 +1014,9 @@
         <para>
           The secrets in your original config should be migrated into a
           YAML file that is included via
-          <literal>extraConfigFiles</literal>.
+          <literal>extraConfigFiles</literal>. The filename must be
+          quoted to prevent nix from copying it to the (world readable)
+          store.
         </para>
         <para>
           Additionally a few option defaults have been synced up with
@@ -2668,6 +2670,14 @@ cp /var/lib/redis/dump.rdb &quot;/var/lib/redis-mastodon/dump.rdb&quot;
           <literal>nss_esr</literal>. This was done to ease maintenance
           of <literal>nss</literal> and dependent high-profile packages
           like <literal>firefox</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The default <literal>scribus</literal> version is now 1.5,
+          while version 1.4 is still available as
+          <literal>scribus_1_4</literal>
+          (<link xlink:href="https://github.com/NixOS/nixpkgs/pull/172700">#172700</link>).
         </para>
       </listitem>
       <listitem>
