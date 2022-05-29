@@ -2392,6 +2392,8 @@ with pkgs;
 
   pass = callPackage ../tools/security/pass { };
 
+  passage = callPackage ../tools/security/passage { };
+
   passphrase2pgp = callPackage ../tools/security/passphrase2pgp { };
 
   pass-git-helper = python3Packages.callPackage ../applications/version-management/git-and-tools/pass-git-helper { };
@@ -2670,6 +2672,8 @@ with pkgs;
   bibtex2html = callPackage ../tools/misc/bibtex2html { };
 
   bicon = callPackage ../applications/misc/bicon { };
+
+  biliass = with python3.pkgs; toPythonApplication biliass;
 
   bindfs = callPackage ../tools/filesystems/bindfs { };
 
@@ -8645,8 +8649,6 @@ with pkgs;
   ngrok = ngrok-2;
 
   ngrok-2 = callPackage ../tools/networking/ngrok-2 { };
-
-  ngrok-1 = callPackage ../tools/networking/ngrok-1 { };
 
   nifi = callPackage ../servers/web-apps/nifi { };
 
@@ -15920,6 +15922,8 @@ with pkgs;
     jre_headless = jre8_headless;
   };
 
+  nmrpflash = callPackage ../development/embedded/nmrpflash { };
+
   nwjs = callPackage ../development/tools/nwjs { };
 
   nwjs-sdk = callPackage ../development/tools/nwjs {
@@ -22291,9 +22295,9 @@ with pkgs;
   mysql80 = callPackage ../servers/sql/mysql/8.0.x.nix {
     inherit (darwin) cctools developer_cmds DarwinTools;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
-    boost = boost173; # Configure checks for specific version.
-    protobuf = protobuf3_11;
-    icu =  icu67;
+    boost = boost177; # Configure checks for specific version.
+    protobuf = protobuf3_19;
+    icu = icu69;
   };
 
   mysql_jdbc = callPackage ../servers/sql/mysql/jdbc { };
@@ -30973,6 +30977,8 @@ with pkgs;
 
   ytmdl = callPackage ../tools/misc/ytmdl { };
 
+  yutto = with python3.pkgs; toPythonApplication yutto;
+
   yuview = libsForQt5.yuview;
 
   zam-plugins = callPackage ../applications/audio/zam-plugins { };
@@ -32247,6 +32253,10 @@ with pkgs;
   };
 
   springLobby = callPackage ../games/spring/springlobby.nix { };
+
+  srb2 = callPackage ../games/srb2 { };
+
+  srb2kart = callPackage ../games/srb2kart { };
 
   ssl-cert-check = callPackage ../tools/admin/ssl-cert-check { };
 
@@ -34253,11 +34263,11 @@ with pkgs;
     configuration:
       let
         c = import (path + "/nixos/lib/eval-config.nix") {
-              inherit (stdenv.hostPlatform) system;
               modules =
                 [(
                   { lib, ... }: {
                     config.nixpkgs.pkgs = lib.mkDefault pkgs;
+                    config.nixpkgs.localSystem = lib.mkDefault stdenv.hostPlatform;
                   }
                 )] ++ (
                   if builtins.isList configuration
