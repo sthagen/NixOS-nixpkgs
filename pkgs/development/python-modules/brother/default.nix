@@ -10,7 +10,7 @@
 
 buildPythonPackage rec {
   pname = "brother";
-  version = "1.2.1";
+  version = "1.2.3";
   format = "setuptools";
 
   disabled = pythonOlder "3.8";
@@ -19,7 +19,7 @@ buildPythonPackage rec {
     owner = "bieniu";
     repo = pname;
     rev = "refs/tags/${version}";
-    hash = "sha256-9SC4q2iZN0/fEYS4Ii7Ndcx5UpLryGCe9ytIVDdjg0M=";
+    hash = "sha256-+o6hv63u6FBEu57mD02lss0LQPwgBnXsP8CKQ+/74/Q=";
   };
 
   propagatedBuildInputs = [
@@ -31,15 +31,6 @@ buildPythonPackage rec {
     pytest-error-for-skips
     pytestCheckHook
   ];
-
-  postPatch = ''
-    substituteInPlace setup.cfg \
-      --replace "--cov --cov-report term-missing " ""
-    substituteInPlace setup.py \
-      --replace '"pytest-runner"' ""
-    substituteInPlace requirements.txt \
-      --replace "pysnmplib==" "pysnmplib>="
-  '';
 
   pythonImportsCheck = [
     "brother"

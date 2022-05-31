@@ -1,4 +1,5 @@
-{ lib
+{ stdenv
+, lib
 , buildPythonPackage
 , fetchFromGitHub
 , mock
@@ -49,6 +50,9 @@ buildPythonPackage rec {
     "TestPipRunner"
     "TestPythonPipWorkflow"
     "TestRubyWorkflow"
+    # Tests which are passing locally but not on Hydra
+    "test_copy_dependencies_action_1_multiple_files"
+    "test_move_dependencies_action_1_multiple_files"
   ];
 
   pythonImportsCheck = [
@@ -56,6 +60,7 @@ buildPythonPackage rec {
   ];
 
   meta = with lib; {
+    broken = (stdenv.isLinux && stdenv.isAarch64);
     description = "Tool to compile, build and package AWS Lambda functions";
     homepage = "https://github.com/awslabs/aws-lambda-builders";
     longDescription = ''
