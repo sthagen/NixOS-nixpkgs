@@ -1293,9 +1293,6 @@ let
 
     rfc7748 = callPackage ../development/ocaml-modules/rfc7748 { };
 
-    ezresto = callPackage ../development/ocaml-modules/resto/ezresto.nix { };
-    ezresto-directory = callPackage ../development/ocaml-modules/resto/ezresto-directory.nix { };
-
     resto = callPackage ../development/ocaml-modules/resto { };
     resto-acl = callPackage ../development/ocaml-modules/resto/acl.nix { };
     resto-cohttp = callPackage ../development/ocaml-modules/resto/cohttp.nix { };
@@ -1369,6 +1366,12 @@ let
     trie = callPackage ../development/ocaml-modules/trie { };
 
     tsdl = callPackage ../development/ocaml-modules/tsdl { };
+
+    tsdl-image = callPackage ../development/ocaml-modules/tsdl-image { };
+
+    tsdl-mixer = callPackage ../development/ocaml-modules/tsdl-mixer { };
+
+    tsdl-ttf = callPackage ../development/ocaml-modules/tsdl-ttf { };
 
     twt = callPackage ../development/ocaml-modules/twt { };
 
