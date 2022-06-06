@@ -40,12 +40,19 @@
   </section>
   <section xml:id="sec-release-22.11-new-services">
     <title>New Services</title>
-    <itemizedlist spacing="compact">
+    <itemizedlist>
       <listitem>
         <para>
           <link xlink:href="https://github.com/jollheef/appvm">appvm</link>,
           Nix based app VMs. Available as
           <link xlink:href="options.html#opt-virtualisation.appvm.enable">virtualisation.appvm</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/leetronics/infnoise">infnoise</link>,
+          a hardware True Random Number Generator dongle. Available as
+          <link xlink:href="options.html#opt-services.infnoise.enable">services.infnoise</link>.
         </para>
       </listitem>
     </itemizedlist>
@@ -107,6 +114,13 @@
           restored multiple times). If your Synapse database already has
           duplicate rows in this table, this could fail with an error
           and require manual remediation.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          memtest86+ was updated from 5.00-coreboot-002 to 6.00-beta2.
+          It is now the upstream version from https://www.memtest.org/,
+          as coreboot’s fork is no longer available.
         </para>
       </listitem>
     </itemizedlist>
