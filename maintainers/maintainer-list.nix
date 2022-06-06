@@ -3770,12 +3770,6 @@
     githubId = 57923898;
     name = "Elyhaka";
   };
-  em0lar = {
-    email = "nix@em0lar.dev";
-    github = "em0lar";
-    githubId = 11006031;
-    name = "Leo Maroni";
-  };
   emmabastas = {
     email = "emma.bastas@protonmail.com";
     matrix = "@emmabastas:matrix.org";
@@ -6425,6 +6419,13 @@
     githubId = 1189739;
     name = "Julio Borja Barra";
   };
+  jugendhacker = {
+    name = "j.r";
+    email = "j.r@jugendhacker.de";
+    github = "jugendhacker";
+    githubId = 12773748;
+    matrix = "@j.r:chaos.jetzt";
+  };
   juliendehos = {
     email = "dehos@lisic.univ-littoral.fr";
     github = "juliendehos";
@@ -7280,6 +7281,12 @@
     github = "leo60228";
     githubId = 8355305;
     name = "leo60228";
+  };
+  leona = {
+    email = "nix@leona.is";
+    github = "leona-ya";
+    githubId = 11006031;
+    name = "Leona Maroni";
   };
   leonardoce = {
     email = "leonardo.cecchi@gmail.com";
@@ -10228,6 +10235,12 @@
     githubId = 10473184;
     name = "Jia Xiaodong";
   };
+  pogobanane = {
+    email = "mail@peter-okelmann.de";
+    github = "pogobanane";
+    githubId = 38314551;
+    name = "Peter Okelmann";
+  };
   polarmutex = {
     email = "brian@brianryall.xyz";
     github = "polarmutex";
@@ -11999,6 +12012,12 @@
     githubId = 26806;
     name = "Scott Olson";
   };
+  somasis = {
+    email = "kylie@somas.is";
+    github = "somasis";
+    githubId = 264788;
+    name = "Kylie McClain";
+  };
   SomeoneSerge = {
     email = "sergei.kozlukov@aalto.fi";
     matrix = "@ss:someonex.net";
@@ -13663,6 +13682,17 @@
   wedens = {
     email = "kirill.wedens@gmail.com";
     name = "wedens";
+  };
+  WeebSorceress = {
+    name = "WeebSorceress";
+    email = "hello@weebsorceress.anonaddy.me";
+    matrix = "@weebsorceress:matrix.org";
+    github = "WeebSorceress";
+    githubId = 106774777;
+    keys = [{
+      longkeyid = "rsa4096/0x7F57344317F0FA43";
+      fingerprint = "659A 9BC3 F904 EC24 1461  2EFE 7F57 3443 17F0 FA43";
+    }];
   };
   wegank = {
     name = "Weijia Wang";
