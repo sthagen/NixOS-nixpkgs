@@ -518,6 +518,15 @@
     "vendorSha256": "sha256-HrsjhaMlzs+uel5tBlxJD69Kkjl+4qVisWWREANBx40=",
     "version": "5.0.2"
   },
+  "hetznerdns": {
+    "owner": "timohirt",
+    "provider-source-address": "registry.terraform.io/timohirt/hetznerdns",
+    "repo": "terraform-provider-hetznerdns",
+    "rev": "v2.1.0",
+    "sha256": "sha256-QmD9UlQpyvEz4in1I960J0eC6xNtgk5z8tZUxaApOwE=",
+    "vendorSha256": "sha256-Bat/S4e5vzT0/XOhJ9zCWLa4IE4owLC6ec1yvEh+c0Y=",
+    "version": "2.1.0"
+  },
   "htpasswd": {
     "owner": "loafoe",
     "provider-source-address": "registry.terraform.io/loafoe/htpasswd",
@@ -977,6 +986,15 @@
     "sha256": "sha256-acB1BHGxquiK137OfTe31pUGHdWp7xxlv5BINNzNLSs=",
     "vendorSha256": "sha256-MMUit5RxsymBNX9fH8B6D2gJ/k5zaN6FCyP9N/+TV+E=",
     "version": "3.2.0"
+  },
+  "remote": {
+    "owner": "tenstad",
+    "provider-source-address": "registry.terraform.io/tenstad/remote",
+    "repo": "terraform-provider-remote",
+    "rev": "v0.0.24",
+    "sha256": "sha256-ksOp9okCdJXOQOsJrJ6tD+aLpPIuwkIxuIGtQ+d7e4k=",
+    "vendorSha256": "sha256-AAqilm26uz3Kt/JxwEbi8GULZstIs/6Vc+uShXbsZTs=",
+    "version": "0.0.24"
   },
   "rundeck": {
     "owner": "rundeck",
