@@ -1,6 +1,7 @@
 { lib
 , aws-sdk-cpp
 , boehmgc
+, curl
 , callPackage
 , fetchFromGitHub
 , fetchurl
@@ -31,7 +32,7 @@ let
 
   common = args:
     callPackage
-      (import ./common.nix ({ inherit lib fetchFromGitHub; } // args))
+      (import ./common.nix ({ inherit lib fetchFromGitHub curl; } // args))
       {
         inherit Security storeDir stateDir confDir;
         boehmgc = boehmgc-nix;
@@ -86,29 +87,21 @@ in lib.makeExtensible (self: {
   };
 
   nix_2_9 = common {
-    version = "2.9.0";
-    sha256 = "sha256-W6aTsTpCTb+vXQEXDjnKqetOuJmEfSuK2CXvAMqwo74=";
-    patches = [
-      # can be removed when updated to 2.9.1
-      (fetchpatch {
-        name = "fix-segfault-in-git-fetcher";
-        url = "https://github.com/NixOS/nix/commit/bc4759345538c89e1f045aaabcc0cafe4ecca12a.patch";
-        sha256 = "sha256-UrfH4M7a02yfE9X3tA1Pwhw4RacBW+rShYkl7ybG64I=";
-      })
-    ];
+    version = "2.9.1";
+    sha256 = "sha256-qNL3lQPBsnStkru3j1ajN/H+knXI+X3dku8/dBfSw3g=";
   };
 
   stable = self.nix_2_9;
 
   # remember to backport updates to the stable branch!
   unstable = lib.lowPrio (common rec {
-    version = "2.8";
-    suffix = "pre20220530_${lib.substring 0 7 src.rev}";
+    version = "2.9";
+    suffix = "pre20220610_${lib.substring 0 7 src.rev}";
     src = fetchFromGitHub {
       owner = "NixOS";
       repo = "nix";
-      rev = "af23d38019a47e5bb4cd6585a1678b37c957130c";
-      sha256 = "sha256-RH77Y4IhbTofNYlLQSGKLL0fJAG9iHSwRNvMEZ4M0VQ=";
+      rev = "45ebaab66594692035f028796200a6db2b1fedaf";
+      sha256 = "sha256-82M5jKdGUxQBfYj+8nK2SvfVv4Uo0YrPxiuWV/fnvtI=";
     };
   });
 })
