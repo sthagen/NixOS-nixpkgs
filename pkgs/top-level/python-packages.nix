@@ -4550,6 +4550,8 @@ in {
 
   json-schema-for-humans = callPackage ../development/python-modules/json-schema-for-humans { };
 
+  json-stream = callPackage ../development/python-modules/json-stream { };
+
   jsonnet = buildPythonPackage { inherit (pkgs.jsonnet) name src; };
 
   jsonpatch = callPackage ../development/python-modules/jsonpatch { };
@@ -5649,6 +5651,8 @@ in {
 
   mysql-connector = callPackage ../development/python-modules/mysql-connector { };
 
+  myst-parser = callPackage ../development/python-modules/myst-parser { };
+
   nad-receiver = callPackage ../development/python-modules/nad-receiver { };
 
   nagiosplugin = callPackage ../development/python-modules/nagiosplugin { };
@@ -6472,6 +6476,8 @@ in {
   pi1wire = callPackage ../development/python-modules/pi1wire { };
 
   piccata = callPackage ../development/python-modules/piccata { };
+
+  pick = callPackage ../development/python-modules/pick { };
 
   pickleshare = callPackage ../development/python-modules/pickleshare { };
 
@@ -8342,6 +8348,8 @@ in {
 
   pytest-ordering = callPackage ../development/python-modules/pytest-ordering { };
 
+  pytest-param-files = callPackage ../development/python-modules/pytest-param-files { };
+
   pytest-pylint = callPackage ../development/python-modules/pytest-pylint { };
 
   pytest-qt = callPackage ../development/python-modules/pytest-qt { };
@@ -9920,6 +9928,8 @@ in {
   spinners = callPackage ../development/python-modules/spinners { };
 
   sphinx-better-theme = callPackage ../development/python-modules/sphinx-better-theme { };
+
+  sphinx-pytest = callPackage ../development/python-modules/sphinx-pytest { };
 
   sphinxcontrib-actdiag = callPackage ../development/python-modules/sphinxcontrib-actdiag { };
 
