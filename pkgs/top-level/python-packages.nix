@@ -1119,6 +1119,8 @@ in {
 
   babelgladeextractor = callPackage ../development/python-modules/babelgladeextractor { };
 
+  pad4pi = callPackage ../development/python-modules/pad4pi { };
+
   pulumi = callPackage ../development/python-modules/pulumi { };
 
   pulumi-aws = callPackage ../development/python-modules/pulumi-aws { };
@@ -4426,6 +4428,8 @@ in {
   jaraco_logging = callPackage ../development/python-modules/jaraco_logging { };
 
   jaraco_stream = callPackage ../development/python-modules/jaraco_stream { };
+
+  jaraco-test = callPackage ../development/python-modules/jaraco-test { };
 
   jaraco_text = callPackage ../development/python-modules/jaraco_text { };
 
@@ -9339,6 +9343,12 @@ in {
   rpdb = callPackage ../development/python-modules/rpdb { };
 
   rpi-bad-power = callPackage ../development/python-modules/rpi-bad-power { };
+
+  rpi-gpio = callPackage ../development/python-modules/rpi-gpio { };
+
+  rpi-gpio2 = callPackage ../development/python-modules/rpi-gpio2 { };
+
+  rplcd = callPackage ../development/python-modules/rplcd { };
 
   rply = callPackage ../development/python-modules/rply { };
 
