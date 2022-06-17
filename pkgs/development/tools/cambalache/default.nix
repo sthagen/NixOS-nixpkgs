@@ -12,13 +12,15 @@
 , glib
 , gtk3
 , gtk4
+, libadwaita
+, libhandy
 , webkitgtk
 , nix-update-script
 }:
 
 python3.pkgs.buildPythonApplication rec {
   pname = "cambalache";
-  version = "0.10.1";
+  version = "0.10.2";
 
   format = "other";
 
@@ -27,7 +29,7 @@ python3.pkgs.buildPythonApplication rec {
     owner = "jpu";
     repo = pname;
     rev = version;
-    sha256 = "sha256-UgPyG1xDt624W+qTb88d0WvOza6YvVAO/YXeUV51Rro=";
+    sha256 = "sha256-/0HMtNR9R/Oq1ZoBaLe4iU0OOVZUozuo8gP0j9J8hdc=";
   };
 
   nativeBuildInputs = [
@@ -50,6 +52,9 @@ python3.pkgs.buildPythonApplication rec {
     gtk3
     gtk4
     webkitgtk
+    # For extra widgets support.
+    libadwaita
+    libhandy
   ];
 
   # Not compatible with gobject-introspection setup hooks.
