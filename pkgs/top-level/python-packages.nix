@@ -5437,6 +5437,7 @@ in {
 
   mkdocs = callPackage ../development/python-modules/mkdocs { };
   mkdocs-drawio-exporter = callPackage ../development/python-modules/mkdocs-drawio-exporter { };
+  mkdocs-gitlab = callPackage ../development/python-modules/mkdocs-gitlab-plugin { };
   mkdocs-macros = callPackage ../development/python-modules/mkdocs-macros { };
   mkdocs-material = callPackage ../development/python-modules/mkdocs-material { };
   mkdocs-material-extensions = callPackage ../development/python-modules/mkdocs-material/mkdocs-material-extensions.nix { };
@@ -7147,6 +7148,8 @@ in {
   pychart = callPackage ../development/python-modules/pychart { };
 
   pychef = callPackage ../development/python-modules/pychef { };
+
+  pychm = callPackage ../development/python-modules/pychm { };
 
   PyChromecast = callPackage ../development/python-modules/pychromecast { };
 
@@ -10469,6 +10472,8 @@ in {
   threadpool = callPackage ../development/python-modules/threadpool { };
 
   threadpoolctl = callPackage ../development/python-modules/threadpoolctl { };
+
+  threat9-test-bed = callPackage ../development/python-modules/threat9-test-bed { };
 
   three-merge = callPackage ../development/python-modules/three-merge { };
 

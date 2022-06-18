@@ -2933,7 +2933,7 @@
     name = "David Rusu";
   };
   davidtwco = {
-    email = "nix@david.davidtw.co";
+    email = "david@davidtw.co";
     github = "davidtwco";
     githubId = 1295100;
     name = "David Wood";
@@ -6302,6 +6302,12 @@
     github = "JonathanReeve";
     githubId = 1843676;
     name = "Jonathan Reeve";
+  };
+  jonnybolton = {
+    email = "jonnybolton@gmail.com";
+    github = "jonnybolton";
+    githubId = 8580434;
+    name = "Jonny Bolton";
   };
   jonringer = {
     email = "jonringer117@gmail.com";
