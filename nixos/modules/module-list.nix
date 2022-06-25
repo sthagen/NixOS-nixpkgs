@@ -430,6 +430,7 @@
   ./services/games/terraria.nix
   ./services/hardware/acpid.nix
   ./services/hardware/actkbd.nix
+  ./services/hardware/argonone.nix
   ./services/hardware/auto-cpufreq.nix
   ./services/hardware/bluetooth.nix
   ./services/hardware/bolt.nix
@@ -515,6 +516,7 @@
   ./services/mail/rspamd.nix
   ./services/mail/rss2email.nix
   ./services/mail/roundcube.nix
+  ./services/mail/schleuder.nix
   ./services/mail/sympa.nix
   ./services/mail/nullmailer.nix
   ./services/matrix/appservice-discord.nix

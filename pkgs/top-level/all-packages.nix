@@ -5557,6 +5557,10 @@ with pkgs;
     conf = config.schildichat-web.conf or {};
   };
 
+  schleuder = callPackage ../tools/security/schleuder { };
+
+  schleuder-cli = callPackage ../tools/security/schleuder/cli { };
+
   tealdeer = callPackage ../tools/misc/tealdeer {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -6786,6 +6790,8 @@ with pkgs;
   grpcui = callPackage ../tools/networking/grpcui { };
 
   grpc-tools = callPackage ../development/tools/misc/grpc-tools { };
+
+  grpc-client-cli = callPackage ../development/tools/misc/grpc-client-cli { };
 
   grub = pkgsi686Linux.callPackage ../tools/misc/grub ({
     stdenv = overrideCC stdenv buildPackages.pkgsi686Linux.gcc6;
@@ -9537,6 +9543,8 @@ with pkgs;
   pls = callPackage ../tools/misc/pls { };
 
   pm2 = nodePackages.pm2;
+
+  pmenu = callPackage ../tools/X11/pmenu { };
 
   pngcheck = callPackage ../tools/graphics/pngcheck { };
 
@@ -15355,6 +15363,8 @@ with pkgs;
   corrosion = callPackage ../development/tools/build-managers/corrosion { };
 
   corundum = callPackage ../development/tools/corundum { };
+
+  confluencepot = callPackage ../servers/confluencepot {};
 
   confluent-platform = callPackage ../servers/confluent-platform {};
 
