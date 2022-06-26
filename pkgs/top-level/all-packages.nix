@@ -3933,6 +3933,8 @@ with pkgs;
 
   languagetool = callPackage ../tools/text/languagetool {  };
 
+  ldtk = callPackage ../applications/editors/ldtk { };
+
   lepton = callPackage ../tools/graphics/lepton { };
 
   lepton-eda = callPackage ../applications/science/electronics/lepton-eda { };
@@ -5670,7 +5672,7 @@ with pkgs;
   conform = callPackage ../applications/version-management/git-and-tools/conform { };
 
   emscripten = callPackage ../development/compilers/emscripten {
-    llvmPackages = llvmPackages_13;
+    llvmPackages = llvmPackages_14;
   };
 
   emscriptenPackages = recurseIntoAttrs (callPackage ./emscripten-packages.nix { });
@@ -12447,7 +12449,10 @@ with pkgs;
 
   bigloo = callPackage ../development/compilers/bigloo { };
 
-  binaryen = callPackage ../development/compilers/binaryen { };
+  binaryen = callPackage ../development/compilers/binaryen {
+    nodejs = nodejs-slim;
+    inherit (python3Packages) filecheck;
+  };
 
   blueprint-compiler = callPackage ../development/compilers/blueprint { };
 
@@ -27347,6 +27352,8 @@ with pkgs;
 
   pixelnuke = callPackage ../applications/graphics/pixelnuke { };
 
+  pixelorama = callPackage ../applications/editors/pixelorama { };
+
   pixeluvo = callPackage ../applications/graphics/pixeluvo { };
 
   pixinsight = libsForQt5.callPackage ../applications/graphics/pixinsight { };
@@ -27755,19 +27762,6 @@ with pkgs;
   kde-gruvbox = callPackage ../data/themes/kde-gruvbox { };
 
   kdeltachat = libsForQt5.callPackage ../applications/networking/instant-messengers/kdeltachat { };
-
-  kdevelop-pg-qt = libsForQt5.callPackage ../applications/editors/kdevelop5/kdevelop-pg-qt.nix { };
-
-  kdevelop-unwrapped = libsForQt5.callPackage ../applications/editors/kdevelop5/kdevelop.nix {
-    llvmPackages = llvmPackages_10;
-  };
-
-  kdev-php = libsForQt5.callPackage ../applications/editors/kdevelop5/kdev-php.nix { };
-  kdev-python = libsForQt5.callPackage ../applications/editors/kdevelop5/kdev-python.nix {
-    python = python3;
-  };
-
-  kdevelop = libsForQt5.callPackage ../applications/editors/kdevelop5/wrapper.nix { };
 
   kepubify = callPackage ../tools/misc/kepubify { };
 
@@ -32097,6 +32091,8 @@ with pkgs;
 
   icbm3d = callPackage ../games/icbm3d { };
 
+  infra-arcana = callPackage ../games/infra-arcana { };
+
   ingen = callPackage ../applications/audio/ingen { };
 
   ideogram = callPackage ../applications/graphics/ideogram { };
@@ -33689,6 +33685,8 @@ with pkgs;
   };
 
   why3 = callPackage ../applications/science/logic/why3 { };
+
+  wayback-machine-archiver = callPackage ../tools/misc/wayback-machine-archiver { };
 
   workcraft = callPackage ../applications/science/logic/workcraft {};
 
