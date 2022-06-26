@@ -6163,6 +6163,8 @@ in {
 
   oscrypto = callPackage ../development/python-modules/oscrypto { };
 
+  oscpy = callPackage ../development/python-modules/oscpy { };
+
   oset = callPackage ../development/python-modules/oset { };
 
   osmnx = callPackage ../development/python-modules/osmnx { };
@@ -10999,6 +11001,10 @@ in {
   validphys2 = callPackage ../development/python-modules/validphys2 { };
 
   vallox-websocket-api = callPackage ../development/python-modules/vallox-websocket-api { };
+
+  vapoursynth = callPackage ../development/python-modules/vapoursynth {
+    inherit (pkgs) vapoursynth;
+  };
 
   variants = callPackage ../development/python-modules/variants { };
 

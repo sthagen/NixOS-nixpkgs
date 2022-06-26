@@ -216,6 +216,14 @@
       </listitem>
       <listitem>
         <para>
+          <literal>bsp-layout</literal> no longer uses the command
+          <literal>cycle</literal> to switch to other window layouts, as
+          it got replaced by the commands <literal>previous</literal>
+          and <literal>next</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The Barco ClickShare driver/client package
           <literal>pkgs.clickshare-csc1</literal> and the option
           <literal>programs.clickshare-csc1.enable</literal> have been
@@ -231,6 +239,13 @@
         <para>
           PHP 7.4 is no longer supported due to upstream not supporting
           this version for the entire lifecycle of the 22.11 release.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          riak package removed along with
+          <literal>services.riak</literal> module, due to lack of
+          maintainer to update the package.
         </para>
       </listitem>
       <listitem>
