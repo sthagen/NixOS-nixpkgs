@@ -192,10 +192,12 @@
       <listitem>
         <para>
           <literal>i18n.supportedLocales</literal> is now by default
-          only generated with the default locale set in
-          <literal>i18n.defaultLocale</literal>. This got copied over
-          from the minimal profile and reduces the final system size by
-          200MB. If you require all locales installed set the option to
+          only generated with the locales set in
+          <literal>i18n.defaultLocale</literal> and
+          <literal>i18n.extraLocaleSettings</literal>. This got
+          partially copied over from the minimal profile and reduces the
+          final system size by up to 200MB. If you require all locales
+          installed set the option to
           <literal>[ &quot;all&quot; ]</literal>.
         </para>
       </listitem>
@@ -292,12 +294,6 @@
           restored multiple times). If your Synapse database already has
           duplicate rows in this table, this could fail with an error
           and require manual remediation.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <literal>zfs</literal> was updated from 2.1.4 to 2.1.5,
-          enabling it to be used with Linux kernel 5.18.
         </para>
       </listitem>
       <listitem>

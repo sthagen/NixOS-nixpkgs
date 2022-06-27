@@ -207,6 +207,10 @@ with pkgs;
       }
     '');
 
+  chkservice = callPackage ../tools/admin/chkservice {
+    stdenv = gcc10StdenvCompat;
+  };
+
   addOpenGLRunpath = callPackage ../build-support/add-opengl-runpath { };
 
   quickemu = callPackage ../development/quickemu { };
@@ -2659,6 +2663,8 @@ with pkgs;
 
   awsls = callPackage ../tools/admin/awsls { };
 
+  awsrm = callPackage ../tools/admin/awsrm { };
+
   awstats = callPackage ../tools/system/awstats { };
 
   awsweeper = callPackage ../tools/admin/awsweeper { };
@@ -4286,6 +4292,8 @@ with pkgs;
 
   shab = callPackage ../tools/text/shab { };
 
+  sheldon = callPackage ../tools/misc/sheldon { };
+
   shell-hist = callPackage ../tools/misc/shell-hist { };
 
   shellhub-agent = callPackage ../applications/networking/shellhub-agent { };
@@ -4572,6 +4580,8 @@ with pkgs;
   bomutils = callPackage ../tools/archivers/bomutils { };
 
   boofuzz= callPackage ../tools/security/boofuzz { };
+
+  briar-desktop = callPackage ../applications/networking/instant-messengers/briar-desktop { };
 
   bsdbuild = callPackage ../development/tools/misc/bsdbuild { };
 
@@ -13669,6 +13679,8 @@ with pkgs;
 
   microscheme = callPackage ../development/compilers/microscheme { };
 
+  millet = callPackage ../development/tools/millet {};
+
   mint = callPackage ../development/compilers/mint { };
 
   mitscheme = callPackage ../development/compilers/mit-scheme
@@ -14412,7 +14424,7 @@ with pkgs;
 
   inherit (beam.interpreters)
     erlang erlangR25 erlangR24 erlangR23 erlangR22 erlangR21
-    erlang_odbc erlang_javac erlang_odbc_javac erlang_basho_R16B02
+    erlang_odbc erlang_javac erlang_odbc_javac
     elixir elixir_1_13 elixir_1_12 elixir_1_11 elixir_1_10 elixir_1_9
     elixir_ls;
 
@@ -16101,6 +16113,8 @@ with pkgs;
   nwjs-sdk = callPackage ../development/tools/nwjs {
     sdk = true;
   };
+
+  nrf5-sdk = callPackage ../development/libraries/nrf5-sdk { };
 
   nrfutil = callPackage ../development/tools/misc/nrfutil { };
 
@@ -20879,6 +20893,23 @@ with pkgs;
 
   sphinx = with python3Packages; toPythonApplication sphinx;
 
+  # A variation of sphinx that is only suitable for offline use as it excludes
+  # pyopenssl, which is broken on aarch64-darwin.
+  # https://github.com/NixOS/nixpkgs/issues/175875
+  sphinx_offline =
+    if !(stdenv.buildPlatform.isDarwin && stdenv.buildPlatform.isAarch64)
+    then sphinx
+    else
+      sphinx.override (o: {
+        requests = pkgsBuildTarget.python3Packages.requests.override (o: {
+          urllib3 = pkgsBuildTarget.python3Packages.urllib3.overrideAttrs (o: {
+            # urllib3 adds the optional pyopenssl to propagatedBuildInputs
+            # pkgs/development/python-modules/urllib3/default.nix
+            propagatedBuildInputs = [];
+          });
+        });
+      });
+
   sphinx-autobuild = with python3Packages; toPythonApplication sphinx-autobuild;
 
   sphinx-serve = with python3Packages; toPythonApplication sphinx-serve;
@@ -25057,6 +25088,8 @@ with pkgs;
 
   stdmanpages = callPackage ../data/documentation/std-man-pages { };
 
+  starfetch = callPackage ../tools/misc/starfetch { };
+
   starship = callPackage ../tools/misc/starship {
     inherit (darwin.apple_sdk.frameworks) Security Foundation Cocoa;
   };
@@ -26933,6 +26966,8 @@ with pkgs;
 
   # Git with SVN support, but without GUI.
   gitSVN = lowPrio (git.override { svnSupport = true; });
+
+  git-autofixup = perlPackages.GitAutofixup;
 
   git-doc = lib.addMetaAttrs {
     description = "Additional documentation for Git";
@@ -28858,6 +28893,8 @@ with pkgs;
 
   diff-pdf = callPackage ../applications/misc/diff-pdf { wxGTK = wxGTK31; };
 
+  diffuse = callPackage ../applications/misc/diffuse { };
+
   mlocate = callPackage ../tools/misc/mlocate { };
 
   plocate = callPackage ../tools/misc/plocate { };
@@ -30248,7 +30285,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  tig = callPackage ../applications/version-management/git-and-tools/tig { };
+  tig = callPackage ../applications/version-management/git-and-tools/tig {
+    readline = readline81;
+  };
 
   tilemaker = callPackage ../applications/misc/tilemaker { };
 
@@ -35679,7 +35718,7 @@ with pkgs;
 
   xsos = callPackage ../os-specific/linux/xsos { };
 
-  xmcp = callPackage ../tools/x11/xmcp { };
+  xmcp = callPackage ../tools/X11/xmcp { };
 
   zk = callPackage ../applications/office/zk {};
 
