@@ -9821,6 +9821,17 @@
     githubId = 645664;
     name = "Philippe Hürlimann";
   };
+  phaer = {
+    name = "Paul Haerle";
+    email = "nix@phaer.org";
+
+    matrix = "@phaer:matrix.org";
+    github = "phaer";
+    githubId = 101753;
+    keys = [{
+      fingerprint = "5D69 CF04 B7BC 2BC1 A567  9267 00BC F29B 3208 0700";
+    }];
+  };
   philandstuff = {
     email = "philip.g.potter@gmail.com";
     github = "philandstuff";
@@ -12843,6 +12854,13 @@
     github = "TomSmeets";
     githubId = 6740669;
     name = "Tom Smeets";
+  };
+  tomsiewert = {
+    email = "tom@siewert.io";
+    matrix = "@tom:frickel.earth";
+    github = "tomsiewert";
+    githubId = 8794235;
+    name = "Tom Siewert";
   };
   toonn = {
     email = "nixpkgs@toonn.io";
