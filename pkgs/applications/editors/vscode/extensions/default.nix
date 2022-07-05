@@ -1522,6 +1522,22 @@ let
         };
       };
 
+      lucperkins.vrl-vscode = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          publisher = "lucperkins";
+          name = "vrl-vscode";
+          version = "0.1.4";
+          sha256 = "sha256-xcGa43iPwUR6spOJGTmmWA1dOMNMQEdiuhMZPYZ+dTU=";
+        };
+        meta = {
+          description = "VS Code extension for Vector Remap Language (VRL)";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=lucperkins.vrl-vscode";
+          homepage = "https://github.com/lucperkins/vrl-vscode";
+          license = lib.licenses.mpl20;
+          maintainers = with lib.maintainers; [ lucperkins ];
+        };
+      };
+
       mads-hartmann.bash-ide-vscode = buildVscodeMarketplaceExtension {
         mktplcRef = {
           publisher = "mads-hartmann";
@@ -1912,6 +1928,22 @@ let
         };
         meta = {
           license = lib.licenses.mit;
+        };
+      };
+
+      piousdeer.adwaita-theme = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "adwaita-theme";
+          publisher = "piousdeer";
+          version = "1.0.7";
+          sha256 = "zfG9ktxOCUOJaNrWtblq+ktSMppwp1SaB/39F1qfQew=";
+        };
+        meta = with lib; {
+          description = "Theme for the GNOME desktop";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=piousdeer.adwaita-theme";
+          homepage = "https://github.com/piousdeer/vscode-adwaita";
+          license = licenses.gpl3;
+          maintainers = with maintainers; [ wyndon ];
         };
       };
 
