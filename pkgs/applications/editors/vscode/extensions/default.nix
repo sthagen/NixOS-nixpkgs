@@ -310,14 +310,18 @@ let
         mktplcRef = {
           name = "vscode-pylance";
           publisher = "MS-python";
-          version = "2022.1.5";
-          sha256 = "1b5ihrac9xsq35a39vlq7krr1ffqpdjxdlhv9s056hs033kayazl";
+          version = "2022.7.11";
+          sha256 = "sha256-JatjLZXO7iwpBwjL1hrNafBiF81CaozWWANyRm8A36Y=";
         };
 
         buildInputs = [ nodePackages.pyright ];
 
-        meta = {
-          license = lib.licenses.unfree;
+        meta = with lib; {
+          changelog = "https://marketplace.visualstudio.com/items/ms-python.vscode-pylance/changelog";
+          description = "A performant, feature-rich language server for Python in VS Code";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance";
+          homepage = "https://github.com/microsoft/pylance-release";
+          license = licenses.unfree;
         };
       };
 
