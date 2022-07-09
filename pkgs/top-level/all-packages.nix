@@ -1244,6 +1244,8 @@ with pkgs;
 
   nominatim = callPackage ../servers/nominatim { };
 
+  ocs-url = libsForQt5.callPackage ../tools/misc/ocs-url { };
+
   pferd = callPackage ../tools/misc/pferd {};
 
   qFlipper = libsForQt515.callPackage ../tools/misc/qflipper { };
@@ -11853,6 +11855,8 @@ with pkgs;
   xkeysnail = callPackage ../tools/X11/xkeysnail { };
 
   xfstests = callPackage ../tools/misc/xfstests { };
+
+  xprompt = callPackage ../tools/X11/xprompt { };
 
   xprintidle = callPackage ../tools/X11/xprintidle {};
 
@@ -34014,6 +34018,8 @@ with pkgs;
   librepcb = libsForQt5.callPackage ../applications/science/electronics/librepcb { };
 
   ngspice = callPackage ../applications/science/electronics/ngspice { };
+
+  nvc = callPackage ../applications/science/electronics/nvc { };
 
   openems = callPackage ../applications/science/electronics/openems {
     qcsxcad = libsForQt5.qcsxcad;
