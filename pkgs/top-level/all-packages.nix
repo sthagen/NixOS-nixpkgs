@@ -16740,6 +16740,8 @@ with pkgs;
     readline = readline81;
   };
 
+  gf = callPackage ../development/tools/misc/gf { };
+
   java-language-server = callPackage ../development/tools/java/java-language-server { };
 
   jprofiler = callPackage ../development/tools/java/jprofiler {
@@ -31385,6 +31387,8 @@ with pkgs;
   xmp = callPackage ../applications/audio/xmp { };
 
   xnee = callPackage ../tools/X11/xnee { };
+
+  xnotify = callPackage ../tools/X11/xnotify { };
 
   xvidcap = callPackage ../applications/video/xvidcap {
     inherit (gnome2) scrollkeeper libglade;
