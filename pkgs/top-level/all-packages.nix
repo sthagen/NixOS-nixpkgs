@@ -4982,6 +4982,8 @@ with pkgs;
 
   evscript = callPackage ../tools/inputmethods/evscript { };
 
+  keyd = callPackage ../tools/inputmethods/keyd { };
+
   gebaar-libinput = callPackage ../tools/inputmethods/gebaar-libinput { stdenv = gcc10StdenvCompat; };
 
   kime = callPackage ../tools/inputmethods/kime { };
@@ -8141,6 +8143,8 @@ with pkgs;
   kcollectd = libsForQt5.callPackage ../tools/misc/kcollectd {};
 
   kea = callPackage ../tools/networking/kea { };
+
+  iredis = callPackage ../tools/admin/iredis { };
 
   ispell = callPackage ../tools/text/ispell {};
 
@@ -13194,7 +13198,7 @@ with pkgs;
     inherit (gnome2) libart_lgpl;
   });
 
-  gnat = gnat11;
+  gnat = gnat12;
 
   gnat6 = wrapCC (gcc6.cc.override {
     name = "gnat";
@@ -13225,7 +13229,7 @@ with pkgs;
     gnatboot =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnat6
+      then buildPackages.gnatboot
       else buildPackages.gnat9;
   });
 
@@ -13241,7 +13245,7 @@ with pkgs;
     gnatboot =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnat6
+      then buildPackages.gnatboot
       else buildPackages.gnat10;
   });
 
@@ -13257,7 +13261,7 @@ with pkgs;
     gnatboot =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnat6
+      then buildPackages.gnatboot
       else buildPackages.gnat11;
   });
 
@@ -13273,7 +13277,7 @@ with pkgs;
     gnatboot =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnat6
+      then buildPackages.gnatboot
       else buildPackages.gnat12;
   });
 
@@ -16466,7 +16470,7 @@ with pkgs;
 
   rman = callPackage ../development/tools/misc/rman { };
 
-  rnix-lsp = callPackage ../development/tools/rnix-lsp { };
+  rnix-lsp = callPackage ../development/tools/rnix-lsp { nix = nixVersions.nix_2_9; };
 
   rnginline = with python3Packages; toPythonApplication rnginline;
 
@@ -17869,13 +17873,13 @@ with pkgs;
 
   relibc = callPackage ../development/libraries/relibc { };
 
-  # Only supported on Linux
+  # Only supported on Linux and only on glibc
   glibcLocales =
-    if stdenv.hostPlatform.isLinux
+    if stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isGnu
     then callPackage ../development/libraries/glibc/locales.nix { }
     else null;
   glibcLocalesUtf8 =
-    if stdenv.hostPlatform.isLinux
+    if stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isGnu
     then callPackage ../development/libraries/glibc/locales.nix { allLocales = false; }
     else null;
 
@@ -22141,9 +22145,7 @@ with pkgs;
     jdk = jdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
 
-  eventstore = callPackage ../servers/nosql/eventstore {
-    Nuget = dotnetPackages.Nuget;
-  };
+  eventstore = callPackage ../servers/nosql/eventstore { };
 
   exim = callPackage ../servers/mail/exim { };
 
@@ -31327,6 +31329,10 @@ with pkgs;
   xmonad-with-packages = callPackage ../applications/window-managers/xmonad/wrapper.nix {
     inherit (haskellPackages) ghcWithPackages;
     packages = _: [ haskellPackages.xmonad-contrib ];
+  };
+
+  xmonadctl = callPackage ../applications/window-managers/xmonad/xmonadctl.nix {
+    inherit (haskellPackages) ghcWithPackages;
   };
 
   xmonad_log_applet = callPackage ../applications/window-managers/xmonad/log-applet {
