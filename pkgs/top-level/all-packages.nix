@@ -3613,7 +3613,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_17;
+    electron = electron_19;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -4700,6 +4700,8 @@ with pkgs;
   blueberry = callPackage ../tools/bluetooth/blueberry { };
 
   blueman = callPackage ../tools/bluetooth/blueman { };
+
+  bluetuith = callPackage ../tools/bluetooth/bluetuith { };
 
   bmrsa = callPackage ../tools/security/bmrsa/11.nix { };
 
@@ -6144,6 +6146,8 @@ with pkgs;
   flvstreamer = callPackage ../tools/networking/flvstreamer { };
 
   frr = callPackage ../servers/frr { };
+
+  gemstash = callPackage ../development/tools/gemstash { };
 
   hmetis = pkgsi686Linux.callPackage ../applications/science/math/hmetis { };
 
@@ -7627,6 +7631,8 @@ with pkgs;
   };
 
   jsubfinder = callPackage ../tools/security/jsubfinder { };
+
+  jtag-remote-server = callPackage ../development/embedded/jtag-remote-server { };
 
   jtc = callPackage ../development/tools/jtc { };
 
@@ -9618,6 +9624,8 @@ with pkgs;
 
   pinentry-bemenu = callPackage ../tools/security/pinentry-bemenu { };
 
+  pinentry-rofi = callPackage ../tools/security/pinentry-rofi { };
+
   pingtcp = callPackage ../tools/networking/pingtcp { };
 
   pinnwand = callPackage ../servers/pinnwand { };
@@ -10068,6 +10076,8 @@ with pkgs;
   redpanda = callPackage ../servers/redpanda { };
 
   redsocks = callPackage ../tools/networking/redsocks { };
+
+  renpy = callPackage ../development/interpreters/renpy { };
 
   rep = callPackage ../development/tools/rep { };
 
@@ -14166,6 +14176,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  cargo-public-api = callPackage ../development/tools/rust/cargo-public-api { };
+
   crate2nix = callPackage ../development/tools/rust/crate2nix { };
 
   convco = callPackage ../development/tools/convco {
@@ -15850,6 +15862,8 @@ with pkgs;
   framac = callPackage ../development/tools/analysis/frama-c { };
 
   frame = callPackage ../development/libraries/frame { };
+
+  framesh = callPackage ../applications/blockchains/framesh { };
 
   frp = callPackage ../tools/networking/frp { };
 
@@ -18384,6 +18398,8 @@ with pkgs;
   isocodes = callPackage ../development/libraries/iso-codes { };
 
   iso-flags = callPackage ../data/icons/iso-flags { };
+
+  isort = with python3Packages; toPythonApplication isort;
 
   ispc = callPackage ../development/compilers/ispc {
     inherit (llvmPackages) stdenv;
@@ -24945,7 +24961,9 @@ with pkgs;
 
   logiops = callPackage ../misc/drivers/logiops { };
 
-  logitech-udev-rules = callPackage ../os-specific/linux/logitech-udev-rules { };
+  # ltunifi and solaar both provide udev rules but solaar's rules are more
+  # up-to-date so we simply use that instead of having to maintain our own rules
+  logitech-udev-rules = solaar.udev;
 
   # lohit-fonts.assamese lohit-fonts.bengali lohit-fonts.devanagari lohit-fonts.gujarati lohit-fonts.gurmukhi
   # lohit-fonts.kannada lohit-fonts.malayalam lohit-fonts.marathi lohit-fonts.nepali lohit-fonts.odia
@@ -27839,7 +27857,7 @@ with pkgs;
     ghostscript = null;
   });
 
-  imagemagickBig = lowPrio (callPackage ../applications/graphics/ImageMagick/7.0.nix {
+  imagemagickBig = lowPrio (callPackage ../applications/graphics/ImageMagick {
     inherit (darwin.apple_sdk.frameworks) ApplicationServices Foundation;
   });
 
@@ -28110,6 +28128,8 @@ with pkgs;
   kubectl-doctor = callPackage ../applications/networking/cluster/kubectl-doctor { };
 
   kubectl-example = callPackage ../applications/networking/cluster/kubectl-example { };
+
+  kubectl-node-shell = callPackage ../applications/networking/cluster/kubectl-node-shell { };
 
   kubectl-tree = callPackage ../applications/networking/cluster/kubectl-tree { };
 
