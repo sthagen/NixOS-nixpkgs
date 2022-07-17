@@ -486,6 +486,7 @@ mapAliases ({
   gitinspector = throw "gitinspector has been removed because it doesn't work with python3"; # Added 2022-01-12
   gksu = throw "gksu has been removed"; # Added 2022-01-16
   glib_networking = throw "'glib_networking' has been renamed to/replaced by 'glib-networking'"; # Converted to throw 2022-02-22
+  glimpse = throw "glimpse was removed, as the project was discontinued. You can use gimp instead."; # Added 2022-07-11
   gmailieer = lieer; # Added 2020-04-19
   gmic_krita_qt = gmic-qt-krita; # Added 2019-09-07
   gmvault = throw "gmvault has been removed because it is unmaintained, mostly broken, and insecure"; # Added 2021-03-08
@@ -864,6 +865,7 @@ mapAliases ({
   mercurial_4 = throw "mercurial_4 has been removed as it's unmaintained"; # Added 2021-10-18
   mesos = throw "mesos has been removed from nixpkgs, as it's unmaintained"; # Added 2020-08-15
   mess = mame; # Added 2019-10-30
+  metal = throw "metal has been removed due to lack of maintainers";
   mididings = throw "mididings has been removed from nixpkgs as it doesn't support recent python3 versions and its upstream stopped maintaining it"; # Added 2022-01-12
   midoriWrapper = throw "'midoriWrapper' has been renamed to/replaced by 'midori'"; # Converted to throw 2022-02-22
   mime-types = mailcap; # Added 2022-01-21
