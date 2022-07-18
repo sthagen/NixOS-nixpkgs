@@ -2471,8 +2471,6 @@ in {
 
   django-reversion = callPackage ../development/python-modules/django-reversion { };
 
-  django-sampledatahelper = callPackage ../development/python-modules/django-sampledatahelper { };
-
   django-sesame = callPackage ../development/python-modules/django-sesame { };
 
   django_silk = callPackage ../development/python-modules/django_silk { };
@@ -9577,6 +9575,8 @@ in {
 
   scikit-learn-extra = callPackage ../development/python-modules/scikit-learn-extra { };
 
+  scikit-misc = callPackage ../development/python-modules/scikit-misc { };
+
   scikit-optimize = callPackage ../development/python-modules/scikit-optimize { };
 
   scikits-odes = callPackage ../development/python-modules/scikits-odes { };
@@ -10251,6 +10251,8 @@ in {
   strategies = callPackage ../development/python-modules/strategies { };
 
   stravalib = callPackage ../development/python-modules/stravalib { };
+
+  streamdeck = callPackage ../development/python-modules/streamdeck { };
 
   streaming-form-data = callPackage ../development/python-modules/streaming-form-data { };
 
