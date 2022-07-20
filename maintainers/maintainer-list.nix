@@ -9756,12 +9756,12 @@
     githubId = 71795;
     name = "Mica Semrick";
   };
-  papojari = {
-    email = "papojari-git.ovoid@aleeas.com";
+  annaaurora = {
+    email = "anna@annaaurora.eu";
     matrix = "@papojari:artemislena.eu";
     github = "auroraanna";
     githubId = 81317317;
-    name = "papojari";
+    name = "Anna Aurora";
   };
   paraseba = {
     email = "paraseba@gmail.com";
@@ -14713,5 +14713,11 @@
     name = "Patsakula Nikita";
     github = "npatsakula";
     githubId = 23001619;
+  };
+  dfithian = {
+    email = "daniel.m.fithian@gmail.com";
+    name = "Daniel Fithian";
+    github = "dfithian";
+    githubId = 8409320;
   };
 }
