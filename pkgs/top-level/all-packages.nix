@@ -691,7 +691,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     boost = boost177; # Configure checks for specific version.
     protobuf = protobuf3_19;
-    icu =  icu67;
+    icu =  icu69;
     v8 = v8_8_x;
   };
 
@@ -3329,6 +3329,8 @@ with pkgs;
 
   wlogout = callPackage ../tools/wayland/wlogout { };
 
+  wlopm = callPackage ../tools/wayland/wlopm { };
+
   wlr-randr = callPackage ../tools/wayland/wlr-randr { };
 
   wlrctl = callPackage ../tools/wayland/wlrctl { };
@@ -4183,7 +4185,7 @@ with pkgs;
   # example of an error which this fixes
   # [Errno 8] Exec format error: './gdk3-scan'
   mesonEmulatorHook =
-    if (stdenv.buildPlatform != stdenv.targetPlatform) then
+    if (!stdenv.buildPlatform.canExecute stdenv.targetPlatform) then
       makeSetupHook
         {
           name = "mesonEmulatorHook";
@@ -4194,7 +4196,7 @@ with pkgs;
             '';
           };
         } ../development/tools/build-managers/meson/emulator-hook.sh
-    else throw "mesonEmulatorHook has to be in a cross conditional i.e. (stdenv.buildPlatform != stdenv.hostPlatform)";
+    else throw "mesonEmulatorHook has to be in a conditional to check if the target binaries can be executed i.e. (!stdenv.buildPlatform.canExecute stdenv.hostPlatform)";
 
   meson-tools = callPackage ../misc/meson-tools { };
 
@@ -5694,6 +5696,8 @@ with pkgs;
     ssh = openssh;
   };
 
+  kics = callPackage ../tools/admin/kics { };
+
   kramdown-asciidoc = callPackage ../tools/typesetting/kramdown-asciidoc { };
 
   lychee = callPackage ../tools/networking/lychee { };
@@ -6393,6 +6397,8 @@ with pkgs;
   galculator = callPackage ../applications/misc/galculator {
     gtk = gtk3;
   };
+
+  fornalder = callPackage ../applications/version-management/fornalder { };
 
   free42 = callPackage ../applications/misc/free42 { };
 
@@ -9703,7 +9709,10 @@ with pkgs;
 
   plantuml-server = callPackage ../tools/misc/plantuml-server { };
 
-  plan9port = callPackage ../tools/system/plan9port { };
+  plan9port = callPackage ../tools/system/plan9port {
+    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa IOKit Metal QuartzCore;
+    inherit (darwin) DarwinTools;
+  };
 
   platformioPackages = dontRecurseIntoAttrs (callPackage ../development/embedded/platformio { });
   platformio = platformioPackages.platformio-chrootenv;
@@ -10440,6 +10449,8 @@ with pkgs;
   sasview = libsForQt5.callPackage ../applications/science/misc/sasview {};
 
   scanbd = callPackage ../tools/graphics/scanbd { };
+
+  scdl = callPackage ../tools/misc/scdl { };
 
   scdoc = callPackage ../tools/typesetting/scdoc { };
 
@@ -11434,6 +11445,10 @@ with pkgs;
   ttygif = callPackage ../tools/misc/ttygif { };
 
   ttylog = callPackage ../tools/misc/ttylog { };
+
+  txtpbfmt = callPackage ../development/tools/txtpbfmt {
+    buildGoModule = buildGo118Module;
+  };
 
   ipbt = callPackage ../tools/misc/ipbt { };
 
@@ -14218,6 +14233,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-play = callPackage ../development/tools/rust/cargo-play { };
+  cargo-profiler = callPackage ../development/tools/rust/cargo-profiler {};
   cargo-raze = callPackage ../development/tools/rust/cargo-raze {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -18034,7 +18050,7 @@ with pkgs;
   gns3-gui = gns3Packages.guiStable;
   gns3-server = gns3Packages.serverStable;
 
-  gobject-introspection = if (stdenv.hostPlatform != stdenv.targetPlatform)
+  gobject-introspection = if (!stdenv.hostPlatform.canExecute stdenv.targetPlatform)
     then callPackage ../development/libraries/gobject-introspection/wrapper.nix { } else gobject-introspection-unwrapped;
 
   gobject-introspection-unwrapped = callPackage ../development/libraries/gobject-introspection {
@@ -27858,6 +27874,10 @@ with pkgs;
 
   tiramisu = callPackage ../applications/misc/tiramisu { };
 
+  rlaunch = callPackage ../applications/misc/rlaunch {
+    inherit (xorg) libX11 libXft libXinerama;
+  };
+
   rootbar = callPackage ../applications/misc/rootbar {};
 
   waybar = callPackage ../applications/misc/waybar {};
@@ -34678,6 +34698,10 @@ with pkgs;
   dbus-map = callPackage ../tools/misc/dbus-map { };
 
   dell-530cdn = callPackage ../misc/drivers/dell-530cdn {};
+
+  deploy-rs = callPackage ../tools/package-management/deploy-rs {
+    inherit (darwin.apple_sdk.frameworks) CoreServices SystemConfiguration;
+  };
 
   dockutil = callPackage ../os-specific/darwin/dockutil { };
 
