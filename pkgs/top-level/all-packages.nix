@@ -2275,8 +2275,6 @@ with pkgs;
 
   cosign = callPackage ../tools/security/cosign {
     inherit (darwin.apple_sdk.frameworks) PCSC;
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
   };
 
   cozy = callPackage ../applications/audio/cozy { };
@@ -15398,7 +15396,9 @@ with pkgs;
 
   bazel-remote = callPackage ../development/tools/build-managers/bazel/bazel-remote { };
 
-  bazel-watcher = callPackage ../development/tools/bazel-watcher { };
+  bazel-watcher = callPackage ../development/tools/bazel-watcher {
+    go = go_1_18;
+  };
 
   bazel-gazelle = callPackage ../development/tools/bazel-gazelle { };
 
@@ -20892,6 +20892,10 @@ with pkgs;
   qgnomeplatform = libsForQt5.callPackage ../development/libraries/qgnomeplatform { };
 
   randomx = callPackage ../development/libraries/randomx { };
+
+  remodel = callPackage ../development/tools/remodel {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   retro-gtk = callPackage ../development/libraries/retro-gtk { };
 
@@ -27284,6 +27288,10 @@ with pkgs;
   foxtrotgps = callPackage ../applications/misc/foxtrotgps { };
 
   fractal = callPackage ../applications/networking/instant-messengers/fractal { };
+
+  fractal-next = callPackage ../applications/networking/instant-messengers/fractal-next {
+    inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-bad;
+  };
 
   fragments = callPackage ../applications/networking/p2p/fragments { };
 
@@ -36194,7 +36202,7 @@ with pkgs;
     udev = systemdMinimal;
     jack = libjack2;
   };
-  inherit (jami) jami-daemon jami-libclient jami-client-qt;
+  inherit (jami) jami-daemon jami-client-qt;
 
   jitsi-meet-electron = callPackage ../applications/networking/instant-messengers/jitsi-meet-electron {
     electron = electron_17;
