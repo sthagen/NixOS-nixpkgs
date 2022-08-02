@@ -171,6 +171,8 @@ in {
 
   adafruit-io = callPackage ../development/python-modules/adafruit-io { };
 
+  adafruit-nrfutil = callPackage ../development/python-modules/adafruit-nrfutil { };
+
   adafruit-platformdetect = callPackage ../development/python-modules/adafruit-platformdetect { };
 
   adafruit-pureio = callPackage ../development/python-modules/adafruit-pureio { };
@@ -1232,6 +1234,8 @@ in {
   beautifulsoup4 = callPackage ../development/python-modules/beautifulsoup4 { };
 
   beautifultable = callPackage ../development/python-modules/beautifultable { };
+
+  bech32 = callPackage ../development/python-modules/bech32 { };
 
   bedup = callPackage ../development/python-modules/bedup { };
 
@@ -10768,6 +10772,8 @@ in {
   transmission-rpc = callPackage ../development/python-modules/transmission-rpc { };
 
   transmissionrpc = callPackage ../development/python-modules/transmissionrpc { };
+
+  trectools = callPackage ../development/python-modules/trectools { };
 
   treelog = callPackage ../development/python-modules/treelog { };
 

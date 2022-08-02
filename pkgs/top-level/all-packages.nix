@@ -386,6 +386,8 @@ with pkgs;
 
   coordgenlibs  = callPackage ../development/libraries/coordgenlibs { };
 
+  copilot-cli = callPackage ../tools/admin/copilot-cli { };
+
   cp437 = callPackage ../tools/misc/cp437 { };
 
   cpm = callPackage ../development/tools/cpm { };
@@ -1192,6 +1194,8 @@ with pkgs;
   ejson2env = callPackage ../tools/admin/ejson2env { };
 
   davinci-resolve = callPackage ../applications/video/davinci-resolve { };
+
+  dwarfs = callPackage ../tools/filesystems/dwarfs { };
 
   gamemode = callPackage ../tools/games/gamemode {
     libgamemode32 = pkgsi686Linux.gamemode.lib;
@@ -4072,6 +4076,12 @@ with pkgs;
   klaus = with python3Packages; toPythonApplication klaus;
 
   klipper = callPackage ../servers/klipper { };
+
+  klipper-firmware = callPackage ../servers/klipper/klipper-firmware.nix { };
+
+  klipper-flash = callPackage ../servers/klipper/klipper-flash.nix { };
+
+  klipper-genconf = callPackage ../servers/klipper/klipper-genconf.nix { };
 
   klog = qt5.callPackage ../applications/radio/klog { };
 
@@ -10528,7 +10538,9 @@ with pkgs;
 
   secp256k1 = callPackage ../tools/security/secp256k1 { };
 
-  securefs = callPackage ../tools/filesystems/securefs { };
+  securefs = callPackage ../tools/filesystems/securefs {
+    stdenv = clangStdenv;
+  };
 
   seehecht = callPackage ../tools/text/seehecht { };
 
@@ -17035,6 +17047,8 @@ with pkgs;
 
   arb = callPackage ../development/libraries/arb {};
 
+  argparse = callPackage ../development/libraries/argparse { };
+
   argp-standalone = callPackage ../development/libraries/argp-standalone {};
 
   aribb25 = callPackage ../development/libraries/aribb25 {
@@ -20800,6 +20814,8 @@ with pkgs;
   quesoglc = callPackage ../development/libraries/quesoglc { };
 
   quickder = callPackage ../development/libraries/quickder {};
+
+  quickmem = callPackage ../development/libraries/quickmem {};
 
   quicksynergy = callPackage ../applications/misc/quicksynergy { };
 
@@ -26856,10 +26872,6 @@ with pkgs;
 
   fbpanel = callPackage ../applications/window-managers/fbpanel { };
 
-  fbreader = callPackage ../applications/misc/fbreader {
-    inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
-  };
-
   fdr = libsForQt5.callPackage ../applications/science/programming/fdr { };
 
   feedbackd = callPackage ../applications/misc/feedbackd { };
@@ -32495,7 +32507,7 @@ with pkgs;
 
   fishfight = callPackage ../games/fishfight {
     inherit (xorg) libX11 libXi;
-    inherit (darwin.apple_sdk.frameworks) AudioToolbox Cocoa CoreAudio OpenGL;
+    inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL;
   };
 
   flightgear = libsForQt5.callPackage ../games/flightgear { };
@@ -34425,6 +34437,8 @@ with pkgs;
 
   pynac = callPackage ../applications/science/math/pynac { };
 
+  scalp = callPackage ../applications/science/math/scalp { };
+
   singular = callPackage ../applications/science/math/singular { };
 
   scilab-bin = callPackage ../applications/science/math/scilab-bin {};
@@ -34864,7 +34878,7 @@ with pkgs;
 
   hplipWithPlugin = hplip.override { withPlugin = true; };
 
-  hyfetch = callPackage ../tools/misc/hyfetch { };
+  hyfetch = python3Packages.callPackage ../tools/misc/hyfetch { };
 
   hyperfine = callPackage ../tools/misc/hyperfine {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -35529,8 +35543,6 @@ with pkgs;
     ;
 
   terraform = terraform_1;
-  # deprecated
-  terraform-full = terraform.full;
 
   terraform-providers = recurseIntoAttrs (
     callPackage ../applications/networking/cluster/terraform-providers { }
@@ -35602,6 +35614,8 @@ with pkgs;
   tvbrowser-bin = callPackage ../applications/misc/tvbrowser/bin.nix { };
 
   tvheadend = callPackage ../servers/tvheadend { };
+
+  twiggy = callPackage ../development/tools/twiggy { };
 
   uacme = callPackage ../tools/admin/uacme { };
 
@@ -35751,6 +35765,8 @@ with pkgs;
 
   with-shell = callPackage ../applications/misc/with-shell { };
 
+  wizer = darwin.apple_sdk_11_0.callPackage ../development/tools/wizer {};
+
   wmutils-core = callPackage ../tools/X11/wmutils-core { };
 
   wmutils-libwm = callPackage ../tools/X11/wmutils-libwm { };
@@ -35788,8 +35804,6 @@ with pkgs;
   xortool = python3Packages.callPackage ../tools/security/xortool { };
 
   xorex = callPackage ../tools/security/xorex { };
-
-  xow = callPackage ../misc/drivers/xow { };
 
   xbps = callPackage ../tools/package-management/xbps { };
 
