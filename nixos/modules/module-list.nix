@@ -783,6 +783,7 @@
   ./services/networking/expressvpn.nix
   ./services/networking/fakeroute.nix
   ./services/networking/ferm.nix
+  ./services/networking/firefox-syncserver.nix
   ./services/networking/fireqos.nix
   ./services/networking/firewall.nix
   ./services/networking/flannel.nix
@@ -1022,7 +1023,7 @@
   ./services/system/cloud-init.nix
   ./services/system/dbus.nix
   ./services/system/earlyoom.nix
-  ./services/system/localtime.nix
+  ./services/system/localtimed.nix
   ./services/system/kerberos/default.nix
   ./services/system/nscd.nix
   ./services/system/saslauthd.nix
