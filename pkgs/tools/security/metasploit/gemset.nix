@@ -104,10 +104,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1bz5wb377xnp4hs13sf4sxalfn2ycxfry1g5lfwixzvwhhbim5x1";
+      sha256 = "0vgbfpxpybq5hr87knpc65ha0cyckbq2i00y8wd8sc3j663sffm2";
       type = "gem";
     };
-    version = "1.616.0";
+    version = "1.619.0";
   };
   aws-sdk-core = {
     groups = ["default"];
@@ -124,10 +124,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0674pphc7m3di01dzbcvl9g5brv1mmcmj14lwaj73gsvbc6zybhy";
+      sha256 = "1x9wcq89bp8785qqx8jlj4isbqq5w5kisfdd275r6p2chmm1mw47";
       type = "gem";
     };
-    version = "1.326.0";
+    version = "1.328.0";
   };
   aws-sdk-iam = {
     groups = ["default"];
@@ -354,10 +354,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1jf9gfr2viracxm0nzd2mzs07j2ilznj7w3awyrr2wm53b56pc3h";
+      sha256 = "1a6q8k82vfqyzlnrs6r6d82fyz5fminc8p57mr5xkdabs0m2y3mx";
       type = "gem";
     };
-    version = "2.5.1";
+    version = "2.5.2";
   };
   faraday-net_http = {
     groups = ["default"];
@@ -614,12 +614,12 @@
     platforms = [];
     source = {
       fetchSubmodules = false;
-      rev = "addeeea49e5217ade1407a2e9a3cf6514ad8972e";
-      sha256 = "1ndzjsynm11dclr18x8cvpfw94399r1wv3mylqwlby87rljq1m1i";
+      rev = "6241267e515db4b2902831fda1bc41773fb24529";
+      sha256 = "10d380b4584q1k5zid3cldzzvpqk0gdcq9lmwanwswd3ly5bv4gp";
       type = "git";
       url = "https://github.com/rapid7/metasploit-framework";
     };
-    version = "6.2.11";
+    version = "6.2.13";
   };
   metasploit-model = {
     groups = ["default"];
@@ -686,10 +686,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "14a9ign0hj3z3j4cpfplj2djaskx3skzyx4fl3x53d7saxmhrgn1";
+      sha256 = "0516ypqlx0mlcfn5xh7qppxqc3xndn1fnadxawa8wld5dkcimy30";
       type = "gem";
     };
-    version = "5.16.2";
+    version = "5.16.3";
   };
   mqtt = {
     groups = ["default"];
@@ -1447,10 +1447,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0yvfyxz70r45j65763fzy0p5j8cxlhnpn1n5lcxj4is7hp8v5i23";
+      sha256 = "0k62nrh30sinsfbs17w8cahydf3vm3j14l0l0ba78vfh429cv4i3";
       type = "gem";
     };
-    version = "1.2022.1";
+    version = "1.2022.3";
   };
   unf = {
     groups = ["default"];
