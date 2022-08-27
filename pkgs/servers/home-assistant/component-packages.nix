@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2022.8.6";
+  version = "2022.8.7";
   components = {
     "abode" = ps: with ps; [
       abodepy
@@ -2719,7 +2719,8 @@
       tailscale
     ];
     "tank_utility" = ps: with ps; [
-    ]; # missing inputs: tank_utility
+      tank-utility
+    ];
     "tankerkoenig" = ps: with ps; [
       pytankerkoenig
     ];
