@@ -1344,7 +1344,9 @@ in {
 
   bitbox02 = callPackage ../development/python-modules/bitbox02 { };
 
-  bitcoinlib = callPackage ../development/python-modules/bitcoinlib { };
+  bitcoinlib = callPackage ../development/python-modules/bitcoinlib {
+    openssl = pkgs.openssl_1_1;
+  };
 
   bitcoin-utils-fork-minimal = callPackage ../development/python-modules/bitcoin-utils-fork-minimal { };
 
@@ -1690,6 +1692,8 @@ in {
   certbot = callPackage ../development/python-modules/certbot { };
 
   certbot-dns-cloudflare = callPackage ../development/python-modules/certbot-dns-cloudflare { };
+
+  certbot-dns-inwx = callPackage ../development/python-modules/certbot-dns-inwx { };
 
   certbot-dns-rfc2136 = callPackage ../development/python-modules/certbot-dns-rfc2136 { };
 
@@ -2124,6 +2128,7 @@ in {
   cryptography = callPackage ../development/python-modules/cryptography {
     inherit (pkgs.darwin) libiconv;
     inherit (pkgs.darwin.apple_sdk.frameworks) Security;
+    openssl = pkgs.openssl_1_1;
   };
 
   cryptolyzer = callPackage ../development/python-modules/cryptolyzer { };
@@ -2299,6 +2304,10 @@ in {
     inherit (pkgs) dbus;
   };
 
+  dbus-python-client-gen = callPackage ../development/python-modules/dbus-python-client-gen { };
+
+  dbus-signature-pyparsing = callPackage ../development/python-modules/dbus-signature-pyparsing { };
+
   dbutils = callPackage ../development/python-modules/dbutils { };
 
   db-dtypes = callPackage ../development/python-modules/db-dtypes { };
@@ -2332,6 +2341,8 @@ in {
   decopatch = callPackage ../development/python-modules/decopatch { };
 
   deemix = callPackage ../development/python-modules/deemix { };
+
+  deep-chainmap = callPackage ../development/python-modules/deep-chainmap { };
 
   deep_merge = callPackage ../development/python-modules/deep_merge { };
 
@@ -3250,6 +3261,8 @@ in {
   fipy = callPackage ../development/python-modules/fipy { };
 
   fire = callPackage ../development/python-modules/fire { };
+
+  fireflyalgorithm = callPackage ../development/python-modules/fireflyalgorithm { };
 
   firetv = callPackage ../development/python-modules/firetv { };
 
@@ -4230,6 +4243,8 @@ in {
 
   hpccm = callPackage ../development/python-modules/hpccm { };
 
+  hs-dbus-signature = callPackage ../development/python-modules/hs-dbus-signature { };
+
   hsaudiotag3k = callPackage ../development/python-modules/hsaudiotag3k { };
 
   hsluv = callPackage ../development/python-modules/hsluv { };
@@ -4518,6 +4533,8 @@ in {
 
   intervaltree = callPackage ../development/python-modules/intervaltree { };
 
+  into-dbus-python = callPackage ../development/python-modules/into-dbus-python { };
+
   intreehooks = callPackage ../development/python-modules/intreehooks { };
 
   invocations = callPackage ../development/python-modules/invocations { };
@@ -4804,6 +4821,8 @@ in {
 
   jsonrpc-websocket = callPackage ../development/python-modules/jsonrpc-websocket { };
 
+  jsons = callPackage ../development/python-modules/jsons { };
+
   jsonschema = callPackage ../development/python-modules/jsonschema { };
 
   jsonstreams = callPackage ../development/python-modules/jsonstreams { };
@@ -5056,6 +5075,8 @@ in {
   leather = callPackage ../development/python-modules/leather { };
 
   leb128 = callPackage ../development/python-modules/leb128 { };
+
+  led-ble = callPackage ../development/python-modules/led-ble { };
 
   ledger = (toPythonModule (pkgs.ledger.override {
     usePython = true;
@@ -5324,6 +5345,12 @@ in {
 
   localimport = callPackage ../development/python-modules/localimport { };
 
+  localstack = callPackage ../development/python-modules/localstack { };
+
+  localstack-client = callPackage ../development/python-modules/localstack-client { };
+
+  localstack-ext = callPackage ../development/python-modules/localstack-ext { };
+
   localzone = callPackage ../development/python-modules/localzone { };
 
   locationsharinglib = callPackage ../development/python-modules/locationsharinglib { };
@@ -5396,7 +5423,10 @@ in {
 
   lzstring = callPackage ../development/python-modules/lzstring { };
 
-  m2crypto = callPackage ../development/python-modules/m2crypto { };
+  m2crypto = callPackage ../development/python-modules/m2crypto {
+    # https://gitlab.com/m2crypto/m2crypto/-/issues/310
+    openssl = pkgs.openssl_1_1;
+  };
 
   m2r = callPackage ../development/python-modules/m2r { };
 
@@ -6480,6 +6510,8 @@ in {
 
   ovh = callPackage ../development/python-modules/ovh { };
 
+  ovmfvartool = callPackage ../development/python-modules/ovmfvartool { };
+
   ovoenergy = callPackage ../development/python-modules/ovoenergy { };
 
   owslib = callPackage ../development/python-modules/owslib { };
@@ -7045,6 +7077,8 @@ in {
 
   plumbum = callPackage ../development/python-modules/plumbum { };
 
+  plux = callPackage ../development/python-modules/plux { };
+
   ply = callPackage ../development/python-modules/ply { };
 
   plyer = callPackage ../development/python-modules/plyer { };
@@ -7240,6 +7274,8 @@ in {
   psutil = callPackage ../development/python-modules/psutil {
     inherit (pkgs.darwin.apple_sdk.frameworks) IOKit;
   };
+
+  psutil-home-assistant = callPackage ../development/python-modules/psutil-home-assistant { };
 
   psycopg = callPackage ../development/python-modules/psycopg { };
 
@@ -9757,6 +9793,8 @@ in {
 
   safe = callPackage ../development/python-modules/safe { };
 
+  safeeyes = callPackage ../applications/misc/safeeyes { };
+
   safeio = callPackage ../development/python-modules/safeio { };
 
   safety = callPackage ../development/python-modules/safety { };
@@ -10698,6 +10736,8 @@ in {
 
   tbm-utils = callPackage ../development/python-modules/tbm-utils { };
 
+  tcxparser = callPackage ../development/python-modules/tcxparser { };
+
   tcxreader = callPackage ../development/python-modules/tcxreader { };
 
   teamcity-messages = callPackage ../development/python-modules/teamcity-messages { };
@@ -10963,6 +11003,8 @@ in {
 
   toml = callPackage ../development/python-modules/toml { };
 
+  toml-adapt = callPackage ../development/python-modules/toml-adapt { };
+
   tomli = callPackage ../development/python-modules/tomli { };
 
   tomli-w = callPackage ../development/python-modules/tomli-w { };
@@ -11187,6 +11229,8 @@ in {
 
   typer = callPackage ../development/python-modules/typer { };
 
+  types-colorama = callPackage ../development/python-modules/types-colorama { };
+
   types-dateutil = callPackage ../development/python-modules/types-dateutil { };
 
   types-decorator = callPackage ../development/python-modules/types-decorator { };
@@ -11242,6 +11286,7 @@ in {
   tzlocal = callPackage ../development/python-modules/tzlocal { };
 
   uamqp = callPackage ../development/python-modules/uamqp {
+    openssl = pkgs.openssl_1_1;
     inherit (pkgs.darwin.apple_sdk.frameworks) CFNetwork CoreFoundation Security;
   };
 

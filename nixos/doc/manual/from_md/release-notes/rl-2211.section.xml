@@ -132,6 +132,11 @@
       </listitem>
       <listitem>
         <para>
+          OpenSSL now defaults to OpenSSL 3, updated from 1.1.1.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>hardware.nvidia</literal> has a new option
           <literal>open</literal> that can be used to opt in the
           opensource version of NVIDIA kernel driver. Note that the
@@ -260,9 +265,24 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://github.com/L11R/go-autoconfig">go-autoconfig</link>,
+          IMAP/SMTP autodiscover server. Available as
+          <link linkend="opt-services.go-autoconfig.enable">services.go-autoconfig</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://www.grafana.com/oss/tempo/">Grafana
           Tempo</link>, a distributed tracing store. Available as
           <link linkend="opt-services.tempo.enable">services.tempo</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://www.ausweisapp.bund.de/">AusweisApp2</link>,
+          the authentication software for the German ID card. Available
+          as
+          <link linkend="opt-programs.ausweisapp.enable">programs.ausweisapp</link>.
         </para>
       </listitem>
       <listitem>
@@ -443,6 +463,15 @@
       </listitem>
       <listitem>
         <para>
+          dd-agent package removed along with the
+          <literal>services.dd-agent</literal> module, due to the
+          project being deprecated in favor of
+          <literal>datadog-agent</literal>, which is available via the
+          <literal>services.datadog-agent</literal> module.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           virtlyst package and <literal>services.virtlyst</literal>
           module removed, due to lack of maintainers.
         </para>
@@ -477,6 +506,12 @@
           <literal>configure.pathogen</literal> anymore to reduce
           maintainance burden. Use <literal>configure.packages</literal>
           instead.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Neovim can not be configured with plug anymore (still works
+          for vim).
         </para>
       </listitem>
       <listitem>
@@ -575,6 +610,25 @@
           memtest86+ was updated from 5.00-coreboot-002 to 6.00-beta2.
           It is now the upstream version from https://www.memtest.org/,
           as coreboot’s fork is no longer available.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Option descriptions, examples, and defaults writting in
+          DocBook are now deprecated. Using CommonMark is preferred and
+          will become the default in a future release.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <literal>documentation.nixos.options.allowDocBook</literal>
+          option was added to ease the transition to CommonMark option
+          documentation. Setting this option to <literal>false</literal>
+          causes an error for every option included in the manual that
+          uses DocBook documentation; it defaults to
+          <literal>true</literal> to preserve the previous behavior and
+          will be removed once the transition to CommonMark is complete.
         </para>
       </listitem>
       <listitem>
