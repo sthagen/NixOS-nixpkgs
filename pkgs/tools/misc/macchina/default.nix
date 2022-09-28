@@ -3,16 +3,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "macchina";
-  version = "6.1.2";
+  version = "6.1.6";
 
   src = fetchFromGitHub {
     owner = "Macchina-CLI";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-zJr5RG1bbcKhPGygERSROC9JVfVigHauFzaqfY4KXC4=";
+    sha256 = "sha256-0wPMx3IMYhB3XxSsTRqKIsNCGghnRcpwZloHjLxjlMo=";
   };
 
-  cargoSha256 = "sha256-QwZWm50D3N4OES9ypnIQOxEPYcUXVUcwKQ0/SUy7jyI=";
+  cargoSha256 = "sha256-QaqRIc3eKp7Wy5798wCCA4hk9Twa5Nr1mXTIxf+Hy/Q=";
 
   nativeBuildInputs = [ installShellFiles ];
   buildInputs = lib.optionals stdenv.isDarwin [ libiconv Foundation ];

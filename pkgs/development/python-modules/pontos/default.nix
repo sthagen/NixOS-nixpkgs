@@ -14,7 +14,7 @@
 
 buildPythonPackage rec {
   pname = "pontos";
-  version = "22.8.1";
+  version = "22.9.3";
   format = "pyproject";
 
   disabled = pythonOlder "3.7";
@@ -22,8 +22,8 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "greenbone";
     repo = pname;
-    rev = "v${version}";
-    hash = "sha256-oWk6t7PocF7go7EE7nQjHA78G0Q1tAOXBff2zKXDvgU=";
+    rev = "refs/tags/v${version}";
+    hash = "sha256-YqOeeivOscH1YtYXu348ozY25vHFkD9q1OFJ/jfZJLk=";
   };
 
   nativeBuildInputs = [

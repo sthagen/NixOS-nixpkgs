@@ -8,6 +8,7 @@
 , python3Packages
 , jdk
 , llvmPackages_8
+, llvmPackages_14
 , nixpkgs-fmt
 , protobuf
 , jq
@@ -1198,12 +1199,22 @@ let
       };
 
       github = {
+        codespaces = buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "github";
+            name = "codespaces";
+            version = "1.10.6";
+            sha256 = "04d6lx8s6rwc6ry6flyw59hg9c4814s5wvi8ycxlwq4pl8n0imd7";
+          };
+          meta = { license = lib.licenses.unfree; };
+        };
+
         copilot = buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "github";
             name = "copilot";
-            version = "1.7.4812";
-            sha256 = "1yl7m90m38pv8nz4dwcszjsa1sf253459xln17mngmc8z9wd3d3a";
+            version = "1.46.6822";
+            sha256 = "sha256-L71mC0190ZubqNVliu7es4SDsBTGVokePpcNupABI8Q=";
           };
           meta = { license = lib.licenses.unfree; };
         };
@@ -2551,7 +2562,7 @@ let
         };
       };
 
-      vadimcn.vscode-lldb = callPackage ./vscode-lldb { };
+      vadimcn.vscode-lldb = callPackage ./vscode-lldb { llvmPackages = llvmPackages_14; };
 
       valentjn.vscode-ltex = vscode-utils.buildVscodeMarketplaceExtension rec {
         mktplcRef = {
@@ -2637,8 +2648,8 @@ let
         mktplcRef = {
           name = "vim";
           publisher = "vscodevim";
-          version = "1.23.2";
-          sha256 = "sha256-QC+5FJYjWsEaao1ifgMTJyg7vZ5JUbNNJiV+OuiIaM0=";
+          version = "1.24.1";
+          sha256 = "00gq6mqqwqipc6d7di2x9mmi1lya11vhkkww9563avchavczb9sv";
         };
         meta = {
           license = lib.licenses.mit;

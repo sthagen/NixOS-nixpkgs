@@ -306,6 +306,8 @@ in {
 
   aioextensions = callPackage ../development/python-modules/aioextensions { };
 
+  aiofile = callPackage ../development/python-modules/aiofile { };
+
   aiofiles = callPackage ../development/python-modules/aiofiles { };
 
   aioflo = callPackage ../development/python-modules/aioflo { };
@@ -373,6 +375,8 @@ in {
   aiolip = callPackage ../development/python-modules/aiolip { };
 
   aiolyric = callPackage ../development/python-modules/aiolyric { };
+
+  aiomisc = callPackage ../development/python-modules/aiomisc { };
 
   aiomodernforms = callPackage ../development/python-modules/aiomodernforms { };
 
@@ -781,6 +785,8 @@ in {
   asttokens = callPackage ../development/python-modules/asttokens { };
 
   astunparse = callPackage ../development/python-modules/astunparse { };
+
+  asyauth = callPackage ../development/python-modules/asyauth { };
 
   async_generator = callPackage ../development/python-modules/async_generator { };
 
@@ -1597,6 +1603,8 @@ in {
     inherit (self) python numpy boost;
   });
 
+  caio = callPackage ../development/python-modules/caio { };
+
   cairo-lang = callPackage ../development/python-modules/cairo-lang { };
 
   cairocffi = callPackage ../development/python-modules/cairocffi { };
@@ -2252,6 +2260,8 @@ in {
 
   databricks-connect = callPackage ../development/python-modules/databricks-connect { };
 
+  databricks-sql-connector = callPackage ../development/python-modules/databricks-sql-connector { };
+
   dataclasses = callPackage ../development/python-modules/dataclasses { };
 
   dataclasses-json = callPackage ../development/python-modules/dataclasses-json { };
@@ -2297,6 +2307,8 @@ in {
   dbfread = callPackage ../development/python-modules/dbfread { };
 
   dbus-client-gen = callPackage ../development/python-modules/dbus-client-gen { };
+
+  dbus-fast = callPackage ../development/python-modules/dbus-fast { };
 
   dbus-next = callPackage ../development/python-modules/dbus-next { };
 
@@ -2943,6 +2955,8 @@ in {
   enaml = callPackage ../development/python-modules/enaml { };
 
   enamlx = callPackage ../development/python-modules/enamlx { };
+
+  energyflow = callPackage ../development/python-modules/energyflow { };
 
   enhancements = callPackage ../development/python-modules/enhancements { };
 
@@ -4133,6 +4147,8 @@ in {
 
   hatch-vcs = callPackage ../development/python-modules/hatch-vcs { };
 
+  hatch-nodejs-version = callPackage ../development/python-modules/hatch-nodejs-version { };
+
   haversine = callPackage ../development/python-modules/haversine { };
 
   hawkauthlib = callPackage ../development/python-modules/hawkauthlib { };
@@ -4825,6 +4841,8 @@ in {
 
   jsonschema = callPackage ../development/python-modules/jsonschema { };
 
+  jsonschema_3 = callPackage ../development/python-modules/jsonschema/3_x.nix { };
+
   jsonstreams = callPackage ../development/python-modules/jsonstreams { };
 
   json-tricks = callPackage ../development/python-modules/json-tricks { };
@@ -5365,6 +5383,8 @@ in {
 
   logfury = callPackage ../development/python-modules/logfury { };
 
+  logging-journald = callPackage ../development/python-modules/logging-journald { };
+
   logi-circle = callPackage ../development/python-modules/logi-circle { };
 
   logical-unification = callPackage ../development/python-modules/logical-unification { };
@@ -5703,7 +5723,9 @@ in {
 
   minio = callPackage ../development/python-modules/minio { };
 
-  miniupnpc = callPackage ../development/python-modules/miniupnpc { };
+  miniupnpc = callPackage ../development/python-modules/miniupnpc {
+    inherit (pkgs.darwin) cctools;
+  };
 
   misaka = callPackage ../development/python-modules/misaka { };
 
@@ -5866,6 +5888,8 @@ in {
   msgpack = callPackage ../development/python-modules/msgpack { };
 
   msgpack-numpy = callPackage ../development/python-modules/msgpack-numpy { };
+
+  msgspec = callPackage ../development/python-modules/msgspec { };
 
   msldap = callPackage ../development/python-modules/msldap { };
 
@@ -6105,6 +6129,8 @@ in {
     enablePython = true; # ... and its Python bindings
   })).python;
 
+  niaarm = callPackage ../development/python-modules/niaarm { };
+
   niapy = callPackage ../development/python-modules/niapy { };
 
   nibabel = callPackage ../development/python-modules/nibabel { };
@@ -6320,7 +6346,9 @@ in {
 
   ocifs = callPackage ../development/python-modules/ocifs { };
 
-  ocrmypdf = callPackage ../development/python-modules/ocrmypdf { };
+  ocrmypdf = callPackage ../development/python-modules/ocrmypdf {
+    tesseract = pkgs.tesseract5;
+  };
 
   od = callPackage ../development/python-modules/od { };
 
@@ -6362,6 +6390,13 @@ in {
 
   onnx = callPackage ../development/python-modules/onnx { };
 
+  onnxconverter-common = callPackage ../development/python-modules/onnxconverter-common { };
+
+  onnxruntime = (toPythonModule (pkgs.onnxruntime.override {
+    python3Packages = self;
+    pythonSupport = true;
+  })).python;
+
   onvif-zeep-async = callPackage ../development/python-modules/onvif-zeep-async { };
 
   oocsi = callPackage ../development/python-modules/oocsi { };
@@ -6369,6 +6404,8 @@ in {
   open-garage = callPackage ../development/python-modules/open-garage { };
 
   open-meteo = callPackage ../development/python-modules/open-meteo { };
+
+  openai-whisper = callPackage ../development/python-modules/openai-whisper { };
 
   openant = callPackage ../development/python-modules/openant { };
 
@@ -6779,6 +6816,8 @@ in {
   openapi-core = callPackage ../development/python-modules/openapi-core { };
 
   overly = callPackage ../development/python-modules/overly { };
+
+  overpy = callPackage ../development/python-modules/overpy { };
 
   pandas-stubs = callPackage ../development/python-modules/pandas-stubs { };
 
@@ -7456,6 +7495,8 @@ in {
   };
 
   pybotvac = callPackage ../development/python-modules/pybotvac { };
+
+  pybravia = callPackage ../development/python-modules/pybravia { };
 
   pybrowserid = callPackage ../development/python-modules/pybrowserid { };
 
@@ -9611,6 +9652,8 @@ in {
 
   rich = callPackage ../development/python-modules/rich { };
 
+  rich-click = callPackage ../development/python-modules/rich-click { };
+
   rich-rst = callPackage ../development/python-modules/rich-rst { };
 
   rig = callPackage ../development/python-modules/rig { };
@@ -10126,6 +10169,8 @@ in {
 
   skidl = callPackage ../development/python-modules/skidl { };
 
+  skl2onnx = callPackage ../development/python-modules/skl2onnx { };
+
   sklearn-deap = callPackage ../development/python-modules/sklearn-deap { };
 
   skodaconnect = callPackage ../development/python-modules/skodaconnect { };
@@ -10422,6 +10467,8 @@ in {
 
   sphinx-copybutton = callPackage ../development/python-modules/sphinx-copybutton { };
 
+  sphinxemoji = callPackage ../development/python-modules/sphinxemoji { };
+
   sphinx-inline-tabs = callPackage ../development/python-modules/sphinx-inline-tabs { };
 
   sphinx-jinja = callPackage ../development/python-modules/sphinx-jinja { };
@@ -10475,6 +10522,8 @@ in {
   sqlalchemy-mixins = callPackage ../development/python-modules/sqlalchemy-mixins { };
 
   sqlalchemy-utils = callPackage ../development/python-modules/sqlalchemy-utils { };
+
+  sqlglot = callPackage ../development/python-modules/sqlglot { };
 
   sqlitedict = callPackage ../development/python-modules/sqlitedict { };
 
@@ -10757,6 +10806,8 @@ in {
   telfhash = callPackage ../development/python-modules/telfhash { };
 
   temescal = callPackage ../development/python-modules/temescal { };
+
+  temperusb = callPackage ../development/python-modules/temperusb { };
 
   tempest = callPackage ../development/python-modules/tempest { };
 
@@ -11492,6 +11543,8 @@ in {
 
   vdirsyncer = callPackage ../development/python-modules/vdirsyncer { };
 
+  vector = callPackage ../development/python-modules/vector { };
+
   vehicle = callPackage ../development/python-modules/vehicle { };
 
   vega = callPackage ../development/python-modules/vega { };
@@ -11622,6 +11675,8 @@ in {
   waqiasync = callPackage ../development/python-modules/waqiasync { };
 
   wasabi = callPackage ../development/python-modules/wasabi { };
+
+  wasserstein = callPackage ../development/python-modules/wasserstein { };
 
   wasm = callPackage ../development/python-modules/wasm { };
 
