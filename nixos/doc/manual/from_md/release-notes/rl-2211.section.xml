@@ -144,6 +144,13 @@
       </listitem>
       <listitem>
         <para>
+          An image configuration and generator has been added for Linode
+          images, largely based on the present GCE configuration and
+          image.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>hardware.nvidia</literal> has a new option
           <literal>open</literal> that can be used to opt in the
           opensource version of NVIDIA kernel driver. Note that the
@@ -283,6 +290,13 @@
           an enterprise resource planning and customer relationship
           manager. Enable using
           <link linkend="opt-services.dolibarr.enable">services.dolibarr</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://freshrss.org/">FreshRSS</link>, a
+          free, self-hostable RSS feed aggregator. Available as
+          <link linkend="opt-services.freshrss.enable">services.freshrss</link>.
         </para>
       </listitem>
       <listitem>
@@ -491,14 +505,6 @@
       </listitem>
       <listitem>
         <para>
-          The (previously undocumented) Nixpkgs configuration option
-          <literal>checkMeta</literal> now defaults to
-          <literal>true</literal>. This may cause evaluation failures
-          for packages with incorrect <literal>meta</literal> attribute.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
           xow package removed along with the
           <literal>hardware.xow</literal> module, due to the project
           being deprecated in favor of <literal>xone</literal>, which is
@@ -642,6 +648,12 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>networking.wireguard</literal> module now can set
+          the mtu on interfaces and tag its packets with an fwmark.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>services.matrix-synapse</literal> systemd unit
           has been hardened.
         </para>
@@ -745,6 +757,13 @@
         <para>
           There is a new module for AMD SEV CPU functionality, which
           grants access to the hardware.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The Wordpress module got support for installing language packs
+          through
+          <literal>services.wordpress.sites.&lt;site&gt;.languages</literal>.
         </para>
       </listitem>
       <listitem>

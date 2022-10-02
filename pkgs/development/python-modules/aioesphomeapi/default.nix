@@ -12,17 +12,22 @@
 
 buildPythonPackage rec {
   pname = "aioesphomeapi";
-  version = "10.13.0";
+  version = "11.0.0";
   format = "setuptools";
 
-  disabled = pythonOlder "3.7";
+  disabled = pythonOlder "3.9";
 
   src = fetchFromGitHub {
     owner = "esphome";
     repo = pname;
     rev = "refs/tags/v${version}";
-    sha256 = "sha256-ZaNrSkRH9pFhzZncCs37k1M0w5svPfrY0WxePUnUlms=";
+    sha256 = "sha256-HHVA/eH6Ucn1shQy6QzcxvHWRQqjv/OEgHgq0ITS23Q=";
   };
+
+  postPatch = ''
+    substituteInPlace requirements.txt \
+      --replace "protobuf>=3.12.2,<4.0" "protobuf>=3.12.2"
+  '';
 
   propagatedBuildInputs = [
     noiseprotocol

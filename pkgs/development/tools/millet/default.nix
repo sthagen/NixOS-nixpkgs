@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "millet";
-  version = "0.3.9";
+  version = "0.3.12";
 
   src = fetchFromGitHub {
     owner = "azdavis";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-mG8vpcBcFACfVa8IFuax81pDeiloi0ustbAy6MOYpZs=";
+    sha256 = "sha256-VqcC5RWo7az1SyrdLmbModK9I5za33plXm/PJ8b7Pbk=";
   };
 
-  cargoSha256 = "sha256-QoD5c2QZRKRO0gV+buvJN6d2RgfkA65AHibwJ4Kg/q8=";
+  cargoSha256 = "sha256-1gU1SnKqLsIbipAbczu/WvAGxKHZ2NYhAqXwMAuISa0=";
 
   postPatch = ''
     rm .cargo/config.toml
@@ -27,5 +27,6 @@ rustPlatform.buildRustPackage rec {
     changelog = "https://github.com/azdavis/millet/raw/v${version}/docs/changelog.md";
     license = [ licenses.mit /* or */ licenses.asl20 ];
     maintainers = with maintainers; [ marsam ];
+    mainProgram = "lang-srv";
   };
 }
