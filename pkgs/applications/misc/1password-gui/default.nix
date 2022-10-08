@@ -51,7 +51,7 @@ in stdenv.mkDerivation rec {
     if stdenv.hostPlatform.isAarch64 then
       fetchurl {
         url = "https://downloads.1password.com/linux/tar/stable/aarch64/1password-${version}.arm64.tar.gz";
-        sha256 = "0y456ssfsx4cy6pcnihiwi64y90s91399qhgs4abn4pp9wr0h08g";
+        sha256 = "sha256-SJDUfAFEwYnOR+y/6Dg2S/CkA84QogoRpMXOPP5PyrM=";
       }
     else
       fetchurl {
@@ -120,8 +120,8 @@ in stdenv.mkDerivation rec {
       cp -a resources/icons $out/share
 
       interp="$(cat $NIX_CC/nix-support/dynamic-linker)"
-      patchelf --set-interpreter $interp $out/share/1password/{1password,1Password-BrowserSupport,1Password-KeyringHelper}
-      patchelf --set-rpath ${rpath}:$out/share/1password $out/share/1password/{1password,1Password-BrowserSupport,1Password-KeyringHelper}
+      patchelf --set-interpreter $interp $out/share/1password/{1password,1Password-BrowserSupport,1Password-KeyringHelper,op-ssh-sign}
+      patchelf --set-rpath ${rpath}:$out/share/1password $out/share/1password/{1password,1Password-BrowserSupport,1Password-KeyringHelper,op-ssh-sign}
       for file in $(find $out -type f -name \*.so\* ); do
         patchelf --set-rpath ${rpath}:$out/share/1password $file
       done
