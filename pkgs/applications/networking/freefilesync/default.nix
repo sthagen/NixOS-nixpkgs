@@ -13,13 +13,13 @@
 
 gcc12Stdenv.mkDerivation rec {
   pname = "freefilesync";
-  version = "11.25";
+  version = "11.26";
 
   src = fetchFromGitHub {
     owner = "hkneptune";
     repo = "FreeFileSync";
     rev = "v${version}";
-    sha256 = "sha256-JV9qwBiF9kl+wc9+7lUufQVu6uiMQ6vojntxduNJ8MI=";
+    sha256 = "sha256-MKs9PfxKVxfDYYB8Dqop9dUd757ajjgvIdMtKJX5dNw=";
   };
 
   # Patches from ROSA Linux
@@ -42,11 +42,6 @@ gcc12Stdenv.mkDerivation rec {
       '';
     })
   ];
-
-  postPatch = ''
-    substituteInPlace FreeFileSync/Source/ui/version_check.cpp \
-      --replace "openBrowserForDownload();" "openBrowserForDownload(parent);"
-  '';
 
   nativeBuildInputs = [
     pkg-config
@@ -96,7 +91,7 @@ gcc12Stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Open Source File Synchronization & Backup Software";
     homepage = "https://freefilesync.org";
-    license = licenses.gpl3Only;
+    license = [ licenses.gpl3Only licenses.openssl licenses.curl licenses.libssh2 ];
     maintainers = with maintainers; [ wegank ];
     platforms = platforms.linux;
   };

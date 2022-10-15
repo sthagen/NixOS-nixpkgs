@@ -291,6 +291,8 @@ in {
 
   aiocontextvars = callPackage ../development/python-modules/aiocontextvars { };
 
+  aiocsv = callPackage ../development/python-modules/aiocsv { };
+
   aiocurrencylayer = callPackage ../development/python-modules/aiocurrencylayer { };
 
   aiodiscover = callPackage ../development/python-modules/aiodiscover { };
@@ -1285,7 +1287,10 @@ in {
 
   bcdoc = callPackage ../development/python-modules/bcdoc { };
 
-  bcrypt = callPackage ../development/python-modules/bcrypt { };
+  bcrypt = if stdenv.hostPlatform.system == "i686-linux" then
+    callPackage ../development/python-modules/bcrypt/3.nix { }
+  else
+    callPackage ../development/python-modules/bcrypt { };
 
   beaker = callPackage ../development/python-modules/beaker { };
 
@@ -2958,6 +2963,8 @@ in {
   ecs-logging =  callPackage ../development/python-modules/ecs-logging { };
 
   ed25519 = callPackage ../development/python-modules/ed25519 { };
+
+  ed25519-blake2b = callPackage ../development/python-modules/ed25519-blake2b { };
 
   edalize = callPackage ../development/python-modules/edalize { };
 
@@ -6531,6 +6538,11 @@ in {
 
   openidc-client = callPackage ../development/python-modules/openidc-client { };
 
+  openmm = toPythonModule (pkgs.openmm.override {
+    python3Packages = self;
+    enablePython = true;
+  });
+
   openpyxl = callPackage ../development/python-modules/openpyxl { };
 
   openrazer = callPackage ../development/python-modules/openrazer/pylib.nix { };
@@ -7411,7 +7423,7 @@ in {
   psd-tools = callPackage ../development/python-modules/psd-tools { };
 
   psutil = callPackage ../development/python-modules/psutil {
-    inherit (pkgs.darwin.apple_sdk.frameworks) IOKit;
+    inherit (pkgs.darwin.apple_sdk.frameworks) CoreFoundation IOKit;
   };
 
   psutil-home-assistant = callPackage ../development/python-modules/psutil-home-assistant { };
@@ -7484,6 +7496,8 @@ in {
 
   py-air-control-exporter = callPackage ../development/python-modules/py-air-control-exporter { };
 
+  py-bip39-bindings = callPackage ../development/python-modules/py-bip39-bindings { };
+
   py-dmidecode = callPackage ../development/python-modules/py-dmidecode { };
 
   py-nightscout = callPackage ../development/python-modules/py-nightscout { };
@@ -7491,6 +7505,8 @@ in {
   py-synologydsm-api = callPackage ../development/python-modules/py-synologydsm-api { };
 
   py-sneakers = callPackage ../development/python-modules/py-sneakers { };
+
+  py-sr25519-bindings = callPackage ../development/python-modules/py-sr25519-bindings { };
 
   py-tes = callPackage ../development/python-modules/py-tes { };
 
@@ -8420,6 +8436,8 @@ in {
   pyqt6 = callPackage ../development/python-modules/pyqt/6.x.nix { };
 
   pyqt6-sip = callPackage ../development/python-modules/pyqt/pyqt6-sip.nix { };
+
+  pyqt6-webengine = callPackage ../development/python-modules/pyqt6-webengine.nix { };
 
   pyqtgraph = callPackage ../development/python-modules/pyqtgraph { };
 
@@ -9616,6 +9634,8 @@ in {
 
   readthedocs-sphinx-ext = callPackage ../development/python-modules/readthedocs-sphinx-ext { };
 
+  reactivex = callPackage ../development/python-modules/reactivex { };
+
   rebulk = callPackage ../development/python-modules/rebulk { };
 
   recaptcha_client = callPackage ../development/python-modules/recaptcha_client { };
@@ -9897,6 +9917,8 @@ in {
   rsskey = callPackage ../development/python-modules/rsskey { };
 
   rst2ansi = callPackage ../development/python-modules/rst2ansi { };
+
+  rst2pdf = callPackage ../development/python-modules/rst2pdf { };
 
   rstcheck = callPackage ../development/python-modules/rstcheck { };
 
@@ -11996,8 +12018,8 @@ in {
   };
 
   wxPython_4_1 = callPackage ../development/python-modules/wxPython/4.1.nix {
-    wxGTK = pkgs.wxGTK31.override {
-      withGtk2 = false;
+    inherit (pkgs.darwin.apple_sdk.frameworks) AGL AudioToolbox AVFoundation AVKit Carbon Cocoa CoreMedia CoreFoundation IOKit Kernel OpenGL Security WebKit;
+    wxGTK = pkgs.wxGTK31-gtk3.override {
       withWebKit = true;
     };
   };

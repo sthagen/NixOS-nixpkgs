@@ -117,9 +117,9 @@ in {
   ceph-single-node = handleTestOn ["x86_64-linux"] ./ceph-single-node.nix {};
   ceph-single-node-bluestore = handleTestOn ["x86_64-linux"] ./ceph-single-node-bluestore.nix {};
   certmgr = handleTest ./certmgr.nix {};
-  cfssl = handleTestOn ["x86_64-linux"] ./cfssl.nix {};
+  cfssl = handleTestOn ["aarch64-linux" "x86_64-linux"] ./cfssl.nix {};
   charliecloud = handleTest ./charliecloud.nix {};
-  chromium = (handleTestOn ["x86_64-linux"] ./chromium.nix {}).stable or {};
+  chromium = (handleTestOn ["aarch64-linux" "x86_64-linux"] ./chromium.nix {}).stable or {};
   cinnamon = handleTest ./cinnamon.nix {};
   cjdns = handleTest ./cjdns.nix {};
   clickhouse = handleTest ./clickhouse.nix {};
@@ -147,7 +147,7 @@ in {
   corerad = handleTest ./corerad.nix {};
   coturn = handleTest ./coturn.nix {};
   couchdb = handleTest ./couchdb.nix {};
-  cri-o = handleTestOn ["x86_64-linux"] ./cri-o.nix {};
+  cri-o = handleTestOn ["aarch64-linux" "x86_64-linux"] ./cri-o.nix {};
   custom-ca = handleTest ./custom-ca.nix {};
   croc = handleTest ./croc.nix {};
   deluge = handleTest ./deluge.nix {};
@@ -160,8 +160,8 @@ in {
   dnscrypt-wrapper = handleTestOn ["x86_64-linux"] ./dnscrypt-wrapper {};
   dnsdist = handleTest ./dnsdist.nix {};
   doas = handleTest ./doas.nix {};
-  docker = handleTestOn ["x86_64-linux"] ./docker.nix {};
-  docker-rootless = handleTestOn ["x86_64-linux"] ./docker-rootless.nix {};
+  docker = handleTestOn ["aarch64-linux" "x86_64-linux"] ./docker.nix {};
+  docker-rootless = handleTestOn ["aarch64-linux" "x86_64-linux"] ./docker-rootless.nix {};
   docker-registry = handleTest ./docker-registry.nix {};
   docker-tools = handleTestOn ["x86_64-linux"] ./docker-tools.nix {};
   docker-tools-cross = handleTestOn ["x86_64-linux" "aarch64-linux"] ./docker-tools-cross.nix {};
@@ -180,6 +180,7 @@ in {
   ejabberd = handleTest ./xmpp/ejabberd.nix {};
   elk = handleTestOn ["x86_64-linux"] ./elk.nix {};
   emacs-daemon = handleTest ./emacs-daemon.nix {};
+  endlessh-go = handleTest ./endlessh-go.nix {};
   engelsystem = handleTest ./engelsystem.nix {};
   enlightenment = handleTest ./enlightenment.nix {};
   env = handleTest ./env.nix {};
@@ -252,7 +253,7 @@ in {
   herbstluftwm = handleTest ./herbstluftwm.nix {};
   installed-tests = pkgs.recurseIntoAttrs (handleTest ./installed-tests {});
   invidious = handleTest ./invidious.nix {};
-  oci-containers = handleTestOn ["x86_64-linux"] ./oci-containers.nix {};
+  oci-containers = handleTestOn ["aarch64-linux" "x86_64-linux"] ./oci-containers.nix {};
   odoo = handleTest ./odoo.nix {};
   # 9pnet_virtio used to mount /nix partition doesn't support
   # hibernation. This test happens to work on x86_64-linux but
@@ -440,6 +441,7 @@ in {
   non-default-filesystems = handleTest ./non-default-filesystems.nix {};
   noto-fonts = handleTest ./noto-fonts.nix {};
   novacomd = handleTestOn ["x86_64-linux"] ./novacomd.nix {};
+  nscd = handleTest ./nscd.nix {};
   nsd = handleTest ./nsd.nix {};
   nzbget = handleTest ./nzbget.nix {};
   nzbhydra2 = handleTest ./nzbhydra2.nix {};
@@ -485,16 +487,18 @@ in {
   phylactery = handleTest ./web-apps/phylactery.nix {};
   pict-rs = handleTest ./pict-rs.nix {};
   pinnwand = handleTest ./pinnwand.nix {};
+  plasma-bigscreen = handleTest ./plasma-bigscreen.nix {};
   plasma5 = handleTest ./plasma5.nix {};
   plasma5-systemd-start = handleTest ./plasma5-systemd-start.nix {};
   plausible = handleTest ./plausible.nix {};
+  please = handleTest ./please.nix {};
   pleroma = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./pleroma.nix {};
   plikd = handleTest ./plikd.nix {};
   plotinus = handleTest ./plotinus.nix {};
   podgrab = handleTest ./podgrab.nix {};
-  podman = handleTestOn ["x86_64-linux"] ./podman/default.nix {};
-  podman-dnsname = handleTestOn ["x86_64-linux"] ./podman/dnsname.nix {};
-  podman-tls-ghostunnel = handleTestOn ["x86_64-linux"] ./podman/tls-ghostunnel.nix {};
+  podman = handleTestOn ["aarch64-linux" "x86_64-linux"] ./podman/default.nix {};
+  podman-dnsname = handleTestOn ["aarch64-linux" "x86_64-linux"] ./podman/dnsname.nix {};
+  podman-tls-ghostunnel = handleTestOn ["aarch64-linux" "x86_64-linux"] ./podman/tls-ghostunnel.nix {};
   polaris = handleTest ./polaris.nix {};
   pomerium = handleTestOn ["x86_64-linux"] ./pomerium.nix {};
   postfix = handleTest ./postfix.nix {};
@@ -529,7 +533,6 @@ in {
   rasdaemon = handleTest ./rasdaemon.nix {};
   redis = handleTest ./redis.nix {};
   redmine = handleTest ./redmine.nix {};
-  resolv = handleTest ./resolv.nix {};
   restartByActivationScript = handleTest ./restart-by-activation-script.nix {};
   restic = handleTest ./restic.nix {};
   retroarch = handleTest ./retroarch.nix {};
@@ -629,10 +632,11 @@ in {
   tmate-ssh-server = handleTest ./tmate-ssh-server.nix { };
   tomcat = handleTest ./tomcat.nix {};
   tor = handleTest ./tor.nix {};
-  # traefik test relies on docker-containers
-  traefik = handleTestOn ["x86_64-linux"] ./traefik.nix {};
+  traefik = handleTestOn ["aarch64-linux" "x86_64-linux"] ./traefik.nix {};
   trafficserver = handleTest ./trafficserver.nix {};
   transmission = handleTest ./transmission.nix {};
+  # tracee requires bpf
+  tracee = handleTestOn ["x86_64-linux"] ./tracee.nix {};
   trezord = handleTest ./trezord.nix {};
   trickster = handleTest ./trickster.nix {};
   trilium-server = handleTestOn ["x86_64-linux"] ./trilium-server.nix {};

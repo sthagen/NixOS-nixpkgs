@@ -359,6 +359,10 @@ self: super: {
     };
   });
 
+  flit-nvim = super.flit-nvim.overrideAttrs (old: {
+    dependencies = with self; [ leap-nvim ];
+  });
+
   forms = super.forms.overrideAttrs (old: {
     dependencies = with self; [ self.self ];
   });
@@ -522,6 +526,10 @@ self: super: {
     dependencies = with self; [ nvim-lspconfig plenary-nvim ];
   });
 
+  leap-ast-nvim = super.leap-ast-nvim.overrideAttrs (old: {
+    dependencies = with self; [ leap-nvim nvim-treesitter ];
+  });
+
   lens-vim = super.lens-vim.overrideAttrs (old: {
     # remove duplicate g:lens#animate in doc/lens.txt
     # https://github.com/NixOS/nixpkgs/pull/105810#issuecomment-740007985
@@ -618,6 +626,10 @@ self: super: {
 
   null-ls-nvim = super.null-ls-nvim.overrideAttrs (old: {
     dependencies = with self; [ plenary-nvim ];
+  });
+
+  nvim-dap-python = super.nvim-dap-python.overrideAttrs (old: {
+    dependencies = with self; [ nvim-dap ];
   });
 
   nvim-lsputils = super.nvim-lsputils.overrideAttrs (old: {
