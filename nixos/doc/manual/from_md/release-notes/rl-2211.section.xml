@@ -40,6 +40,24 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>polymc</literal> package has been removed due to
+          a rogue maintainer. It has been replaced by
+          <literal>prismlauncher</literal>, a fork by the rest of the
+          maintainers. For more details, see
+          <link xlink:href="https://github.com/NixOS/nixpkgs/pull/196624">the
+          pull request that made this change</link> and
+          <link xlink:href="https://github.com/NixOS/nixpkgs/issues/196460">this
+          issue detailing the vulnerability</link>. Users with existing
+          installations should rename
+          <literal>~/.local/share/polymc</literal> to
+          <literal>~/.local/share/PrismLauncher</literal>. The main
+          config file’s path has also moved from
+          <literal>~/.local/share/polymc/polymc.cfg</literal> to
+          <literal>~/.local/share/PrismLauncher/prismlauncher.cfg</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>nixpkgs.hostPlatform</literal> and
           <literal>nixpkgs.buildPlatform</literal> options have been
           added. These cover and override the
@@ -135,6 +153,15 @@
           Perl has been updated to 5.36, and its core module
           <literal>HTTP::Tiny</literal> was patched to verify SSL/TLS
           certificates by default.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Improved performances of
+          <literal>lib.closePropagation</literal> which was previously
+          quadratic. This is used in e.g.
+          <literal>ghcWithPackages</literal>. Please see backward
+          incompatibilities notes below.
         </para>
       </listitem>
       <listitem>
@@ -256,6 +283,13 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://github.com/prymitive/karma">karma</link>,
+          an alert dashboard for Prometheus Alertmanager. Available as
+          <link xlink:href="options.html#opt-services.karma.enable">services.karma</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://languagetool.org/">languagetool</link>,
           a multilingual grammar, style, and spell checker. Available as
           <link xlink:href="options.html#opt-services.languagetool.enable">services.languagetool</link>.
@@ -273,6 +307,13 @@
           <link xlink:href="https://www.getoutline.com/">Outline</link>,
           a wiki and knowledge base similar to Notion. Available as
           <link linkend="opt-services.outline.enable">services.outline</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://ntfy.sh">ntfy.sh</link>, a push
+          notification service. Available as
+          <link linkend="opt-services.ntfy-sh.enable">services.ntfy-sh</link>
         </para>
       </listitem>
       <listitem>
@@ -475,6 +516,16 @@
       </listitem>
       <listitem>
         <para>
+          <literal>openssh</literal> was updated to version 9.1,
+          disabling the generation of DSA keys when using
+          <literal>ssh-keygen -A</literal> as they are insecure. Also,
+          <literal>SetEnv</literal> directives in
+          <literal>ssh_config</literal> and
+          <literal>sshd_config</literal> are now first-match-wins
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>bsp-layout</literal> no longer uses the command
           <literal>cycle</literal> to switch to other window layouts, as
           it got replaced by the commands <literal>previous</literal>
@@ -581,6 +632,12 @@
       </listitem>
       <listitem>
         <para>
+          <literal>lib.closePropagation</literal> now needs that all
+          gathered sets have an <literal>outPath</literal> attribute.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           lemmy module option
           <literal>services.lemmy.settings.database.createLocally</literal>
           moved to
@@ -591,6 +648,27 @@
         <para>
           virtlyst package and <literal>services.virtlyst</literal>
           module removed, due to lack of maintainers.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>generateOptparseApplicativeCompletions</literal> and
+          <literal>generateOptparseApplicativeCompletion</literal> from
+          <literal>haskell.lib.compose</literal> (and
+          <literal>haskell.lib</literal>) have been deprecated in favor
+          of <literal>generateOptparseApplicativeCompletions</literal>
+          (plural!) as provided by the haskell package sets (so
+          <literal>haskellPackages.generateOptparseApplicativeCompletions</literal>
+          etc.). The latter allows for cross-compilation (by
+          automatically disabling generation of completion in the cross
+          case). For it to work properly you need to make sure that the
+          function comes from the same context as the package you are
+          trying to override, i.e. always use the same package set as
+          your package is coming from or – even better – use
+          <literal>self.generateOptparseApplicativeCompletions</literal>
+          if you are overriding a haskell package set. The old functions
+          are retained for backwards compatibility, but yield are
+          warning.
         </para>
       </listitem>
       <listitem>
@@ -668,6 +746,12 @@
       </listitem>
       <listitem>
         <para>
+          The top-level <literal>termonad-with-packages</literal> alias
+          for <literal>termonad</literal> has been removed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           (Neo)Vim can not be configured with
           <literal>configure.pathogen</literal> anymore to reduce
           maintainance burden. Use <literal>configure.packages</literal>
@@ -705,6 +789,16 @@
           <literal>luauSupport</literal> overrides, use
           <literal>features</literal> instead, which defaults to
           <literal>[ &quot;lua54&quot; &quot;luau&quot; ]</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>pkgs.fetchNextcloudApp</literal> has been rewritten
+          to circumvent impurities in e.g. tarballs from GitHub and to
+          make it easier to apply patches. This means that your hashes
+          are out-of-date and the (previously required) attributes
+          <literal>name</literal> and <literal>version</literal> are no
+          longer accepted.
         </para>
       </listitem>
     </itemizedlist>

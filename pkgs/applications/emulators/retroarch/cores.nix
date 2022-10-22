@@ -55,7 +55,7 @@ let
     , stdenvOverride ? stdenv
     , src ? (getCoreSrc core)
     , broken ? false
-    , version ? "unstable-2022-10-01"
+    , version ? "unstable-2022-10-18"
     , platforms ? retroarch.meta.platforms
       # The resulting core file is based on core name
       # Setting `normalizeCore` to `true` will convert `-` to `_` on the core filename
@@ -676,7 +676,7 @@ in
     description = "Fast MegaDrive/MegaCD/32X emulator";
     license = "MAME";
     dontConfigure = true;
-    makeFlags = lib.optional stdenv.hostPlatform.isAarch64 [ "platform=aarch64" ];
+    makeFlags = lib.optionals stdenv.hostPlatform.isAarch64 [ "platform=aarch64" ];
   };
 
   play = mkLibRetroCore {

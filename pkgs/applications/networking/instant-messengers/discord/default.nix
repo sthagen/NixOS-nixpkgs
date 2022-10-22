@@ -1,9 +1,9 @@
 { branch ? "stable", callPackage, fetchurl, lib, stdenv }:
 let
   versions = if stdenv.isLinux then {
-    stable = "0.0.20";
+    stable = "0.0.21";
     ptb = "0.0.29";
-    canary = "0.0.139";
+    canary = "0.0.140";
   } else {
     stable = "0.0.264";
     ptb = "0.0.59";
@@ -14,7 +14,7 @@ let
     x86_64-linux = {
       stable = fetchurl {
         url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-        sha256 = "3f7yuxigEF3e8qhCetCHKBtV4XUHsx/iYiaCCXjspYw=";
+        sha256 = "KDKUssPRrs/D10s5GhJ23hctatQmyqd27xS9nU7iNaM=";
       };
       ptb = fetchurl {
         url = "https://dl-ptb.discordapp.net/apps/linux/${version}/discord-ptb-${version}.tar.gz";
@@ -22,7 +22,7 @@ let
       };
       canary = fetchurl {
         url = "https://dl-canary.discordapp.net/apps/linux/${version}/discord-canary-${version}.tar.gz";
-        sha256 = "sha256-/PfO0TWRxMrK+V1XkYmdaXQ6SfyJNBFETaR9oV90itI=";
+        sha256 = "sha256-AEbjkAMeOJ48RVgbVj35Rp26klCsCsDCX+VD5u1xCM0=";
       };
     };
     aarch64-darwin = {

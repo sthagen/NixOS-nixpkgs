@@ -522,6 +522,10 @@ self: super: {
       '';
     };
 
+  lazy-lsp-nvim = super.lazy-lsp-nvim.overrideAttrs (old: {
+    dependencies = with self; [ nvim-lspconfig ];
+  });
+
   lean-nvim = super.lean-nvim.overrideAttrs (old: {
     dependencies = with self; [ nvim-lspconfig plenary-nvim ];
   });
@@ -671,8 +675,6 @@ self: super: {
   });
 
   inherit parinfer-rust;
-
-  # plenary-nvim = super.toVimPlugin(luaPackages.plenary-nvim);
 
   plenary-nvim = super.plenary-nvim.overrideAttrs (old: {
     postPatch = ''
@@ -1001,7 +1003,7 @@ self: super: {
             libiconv
           ];
 
-          cargoSha256 = "sha256-AY14YEdMpHXmiHwEA9hwSwwwJ8hYIomAuIuCJv1OUDw=";
+          cargoSha256 = "sha256-MzacdTuCaBIAyWxH+Uza1KToGZgGPcwMCe5JtQ+68/M=";
         };
       in
       ''
