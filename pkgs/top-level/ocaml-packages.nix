@@ -10,8 +10,6 @@ let
 
     # Libs
 
-    buildOcaml = callPackage ../build-support/ocaml { };
-
     buildOasisPackage = callPackage ../build-support/ocaml/oasis.nix { };
 
     buildDunePackage = callPackage ../build-support/ocaml/dune.nix {};
@@ -93,6 +91,8 @@ let
     bls12-381 = callPackage ../development/ocaml-modules/bls12-381 { };
     bls12-381-gen = callPackage ../development/ocaml-modules/bls12-381/gen.nix { };
     bls12-381-legacy = callPackage ../development/ocaml-modules/bls12-381/legacy.nix { };
+
+    bls12-381-signature = callPackage ../development/ocaml-modules/bls12-381-signature { };
 
     bos = callPackage ../development/ocaml-modules/bos { };
 
@@ -528,8 +528,6 @@ let
     happy-eyeballs-mirage = callPackage ../development/ocaml-modules/happy-eyeballs/mirage.nix { };
 
     hashcons = callPackage ../development/ocaml-modules/hashcons { };
-
-    herelib = callPackage ../development/ocaml-modules/herelib { };
 
     hidapi = callPackage ../development/ocaml-modules/hidapi { };
 
@@ -986,6 +984,8 @@ let
 
     ocamlify = callPackage ../development/tools/ocaml/ocamlify { };
 
+    ocamline = callPackage ../development/ocaml-modules/ocamline { };
+
     jsonrpc = callPackage ../development/ocaml-modules/ocaml-lsp/jsonrpc.nix { };
     lsp = callPackage ../development/ocaml-modules/ocaml-lsp/lsp.nix { };
     ocaml-lsp = callPackage ../development/ocaml-modules/ocaml-lsp { };
@@ -1272,8 +1272,6 @@ let
 
     parany = callPackage ../development/ocaml-modules/parany { };
 
-    pipebang = callPackage ../development/ocaml-modules/pipebang { };
-
     portaudio = callPackage ../development/ocaml-modules/portaudio {
       inherit (pkgs) portaudio;
     };
@@ -1325,8 +1323,6 @@ let
     printbox-text = callPackage ../development/ocaml-modules/printbox/text.nix { };
 
     process = callPackage ../development/ocaml-modules/process { };
-
-    prof_spacetime = callPackage ../development/ocaml-modules/prof_spacetime { };
 
     progress = callPackage ../development/ocaml-modules/progress { };
 

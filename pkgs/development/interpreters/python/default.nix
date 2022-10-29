@@ -31,13 +31,22 @@
     , pythonAttr ? null
     , self # is pythonOnHostForTarget
     }: let
-      pythonPackages = callPackage
+      pythonPackages = let
+        ensurePythonModules = items: let
+          exceptions = [
+            stdenv
+          ];
+          providesSetupHook = lib.attrByPath [ "provides" "setupHook"] false;
+          valid = value: !((lib.isDerivation value) && !((pythonPackages.hasPythonModule value) || (providesSetupHook value))) || (lib.elem value exceptions);
+          func = name: value: if (valid value) then value else throw "${name} should use `buildPythonPackage` or `toPythonModule` if it is to be part of the Python packages set.";
+        in lib.mapAttrs func items;
+      in ensurePythonModules (callPackage
         # Function that when called
         # - imports python-packages.nix
         # - adds spliced package sets to the package set
         # - applies overrides from `packageOverrides` and `pythonPackagesOverlays`.
         ({ pkgs, stdenv, python, overrides }: let
-          pythonPackagesFun = import ../../../top-level/python-packages.nix {
+          pythonPackagesFun = import ./python-packages-base.nix {
             inherit stdenv pkgs lib;
             python = self;
           };
@@ -48,47 +57,19 @@
             selfHostHost = pythonOnHostForHost.pkgs;
             selfTargetTarget = pythonOnTargetForTarget.pkgs or {}; # There is no Python TargetTarget.
           };
-          keep = self: {
-            # TODO maybe only define these here so nothing is needed to be kept in sync.
-            inherit (self)
-              isPy27 isPy35 isPy36 isPy37 isPy38 isPy39 isPy310 isPy3k isPyPy pythonAtLeast pythonOlder
-              python bootstrapped-pip buildPythonPackage buildPythonApplication
-              fetchPypi
-              hasPythonModule requiredPythonModules makePythonPath disabledIf
-              toPythonModule toPythonApplication
-              buildSetupcfg
-
-              condaInstallHook
-              condaUnpackHook
-              eggUnpackHook
-              eggBuildHook
-              eggInstallHook
-              flitBuildHook
-              pipBuildHook
-              pipInstallHook
-              pytestCheckHook
-              pythonCatchConflictsHook
-              pythonImportsCheckHook
-              pythonNamespacesHook
-              pythonRecompileBytecodeHook
-              pythonRemoveBinBytecodeHook
-              pythonRemoveTestsDirHook
-              setuptoolsBuildHook
-              setuptoolsCheckHook
-              venvShellHook
-              wheelUnpackHook
-
-              wrapPython
-
-              pythonPackages
-
-              recursivePthLoader
-            ;
-          };
+          hooks = import ./hooks/default.nix;
+          keep = lib.extends hooks pythonPackagesFun;
           extra = _: {};
           optionalExtensions = cond: as: if cond then as else [];
+          pythonExtension = import ../../../top-level/python-packages.nix;
           python2Extension = import ../../../top-level/python2-packages.nix;
-          extensions = lib.composeManyExtensions ((optionalExtensions (!self.isPy3k) [python2Extension]) ++ pythonPackagesExtensions ++ [ overrides ]);
+          extensions = lib.composeManyExtensions ([
+            pythonExtension
+          ] ++ (optionalExtensions (!self.isPy3k) [
+            python2Extension
+          ]) ++ pythonPackagesExtensions ++ [
+            overrides
+          ]);
           aliases = self: super: lib.optionalAttrs config.allowAliases (import ../../../top-level/python-aliases.nix lib self super);
         in lib.makeScopeWithSplicing
           splicePackages
@@ -96,11 +77,11 @@
           otherSplices
           keep
           extra
-          (lib.extends (lib.composeExtensions aliases extensions) pythonPackagesFun))
+          (lib.extends (lib.composeExtensions aliases extensions) keep))
         {
           overrides = packageOverrides;
           python = self;
-        };
+        });
     in rec {
         isPy27 = pythonVersion == "2.7";
         isPy35 = pythonVersion == "3.5";
@@ -215,9 +196,9 @@ in {
       major = "3";
       minor = "11";
       patch = "0";
-      suffix = "rc2";
+      suffix = "";
     };
-    sha256 = "sha256-JbNcx9gsWtNNhnsXmhwWldEpvl7RSiHka2t/I1CotJA=";
+    sha256 = "sha256-pX3ILXc1hhe6ZbmEHO4eO0QfOGw3id3AZ27KB38pUcM=";
     inherit (darwin) configd;
     inherit passthruFun;
   };

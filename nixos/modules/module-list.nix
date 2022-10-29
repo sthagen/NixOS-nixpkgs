@@ -718,6 +718,7 @@
   ./services/monitoring/ups.nix
   ./services/monitoring/uptime.nix
   ./services/monitoring/vmagent.nix
+  ./services/monitoring/uptime-kuma.nix
   ./services/monitoring/vnstat.nix
   ./services/monitoring/zabbix-agent.nix
   ./services/monitoring/zabbix-proxy.nix
@@ -978,6 +979,7 @@
   ./services/video/rtsp-simple-server.nix
   ./services/networking/uptermd.nix
   ./services/networking/v2ray.nix
+  ./services/networking/vdirsyncer.nix
   ./services/networking/vsftpd.nix
   ./services/networking/wasabibackend.nix
   ./services/networking/websockify.nix
@@ -1145,6 +1147,7 @@
   ./services/web-servers/caddy/default.nix
   ./services/web-servers/darkhttpd.nix
   ./services/web-servers/fcgiwrap.nix
+  ./services/web-servers/garage.nix
   ./services/web-servers/hitch/default.nix
   ./services/web-servers/hydron.nix
   ./services/web-servers/jboss/default.nix
@@ -1252,6 +1255,7 @@
   ./system/boot/systemd/user.nix
   ./system/boot/timesyncd.nix
   ./system/boot/tmp.nix
+  ./system/boot/uvesafb.nix
   ./system/etc/etc-activation.nix
   ./tasks/auto-upgrade.nix
   ./tasks/bcache.nix
