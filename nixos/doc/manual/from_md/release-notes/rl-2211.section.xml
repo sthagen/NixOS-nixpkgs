@@ -132,6 +132,13 @@
       </listitem>
       <listitem>
         <para>
+          <literal>protonup</literal> has been aliased to and replaced
+          by <literal>protonup-ng</literal> due to upstream not
+          maintaining it.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           Perl has been updated to 5.36, and its core module
           <literal>HTTP::Tiny</literal> was patched to verify SSL/TLS
           certificates by default.
@@ -457,6 +464,14 @@
           <link linkend="opt-services.uptime-kuma.enable">services.uptime-kuma</link>.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://mepo.milesalan.com">Mepo</link>, a
+          fast, simple, hackable OSM map viewer for mobile and desktop
+          Linux. Available as
+          <link linkend="opt-programs.mepo.enable">programs.mepo.enable</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </section>
   <section xml:id="sec-release-22.11-incompatibilities">
@@ -645,6 +660,15 @@
       </listitem>
       <listitem>
         <para>
+          ppd files in <literal>pkgs.cups-drv-rastertosag-gdi</literal>
+          are now gzipped. If you refer to such a ppd file with its path
+          (e.g. via
+          <link xlink:href="options.html#opt-hardware.printers.ensurePrinters">hardware.printers.ensurePrinters</link>)
+          you will need to append <literal>.gz</literal> to the path.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           xow package removed along with the
           <literal>hardware.xow</literal> module, due to the project
           being deprecated in favor of <literal>xone</literal>, which is
@@ -797,6 +821,28 @@
       </listitem>
       <listitem>
         <para>
+          <literal>arangodb</literal> versions 3.3, 3.4, and 3.5 have
+          been removed because they are at EOL upstream. The default is
+          now 3.10.0. Support for aarch64-linux has been removed since
+          the target cannot be built reproducibly. By default
+          <literal>arangodb</literal> is now built for the
+          <literal>haswell</literal> architecture. If you wish to build
+          for a different architecture, you may override the
+          <literal>targetArchitecture</literal> argument with a value
+          from
+          <link xlink:href="https://github.com/arangodb/arangodb/blob/207ec6937e41a46e10aea34953879341f0606841/cmake/OptimizeForArchitecture.cmake#L594">this
+          list supported upstream</link>. Some architecture specific
+          optimizations are also conditionally enabled. You may alter
+          this behavior by overriding the
+          <literal>asmOptimizations</literal> parameter. You may also
+          add additional architecture support by adding more
+          <literal>-DHAS_XYZ</literal> flags to
+          <literal>cmakeFlags</literal> via
+          <literal>overrideAttrs</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>meta.mainProgram</literal> attribute of packages
           in <literal>wineWowPackages</literal> now defaults to
           <literal>&quot;wine64&quot;</literal>.
@@ -813,6 +859,12 @@
         <para>
           The top-level <literal>termonad-with-packages</literal> alias
           for <literal>termonad</literal> has been removed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Linux 4.9 has been removed because it will reach its end of
+          life within the lifespan of 22.11.
         </para>
       </listitem>
       <listitem>
@@ -841,6 +893,14 @@
         <para>
           The default <literal>kops</literal> version is now 1.25.1 and
           support for 1.22 and older has been dropped.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>zrepl</literal> package has been updated from
+          0.5.0 to 0.6.0. See the
+          <link xlink:href="https://zrepl.github.io/changelog.html">changelog</link>
+          for details.
         </para>
       </listitem>
       <listitem>
@@ -888,6 +948,30 @@
           <literal>percona-server56</literal> has been removed. Please
           migrate to <literal>mysql</literal> or
           <literal>mariadb</literal> if possible.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>obs-studio</literal> hase been updated to version 28.
+          If you have packaged custom plugins, check if they are
+          compatible. <literal>obs-websocket</literal> has been
+          integrated into <literal>obs-studio</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>signald</literal> has been bumped to
+          <literal>0.23.0</literal>. For the upgrade, a migration
+          process is necessary. It can be done by running a command like
+          this before starting <literal>signald.service</literal>:
+        </para>
+        <programlisting>
+signald -d /var/lib/signald/db \
+  --database sqlite:/var/lib/signald/db \
+  --migrate-data
+</programlisting>
+        <para>
+          For further information, please read the upstream changelogs.
         </para>
       </listitem>
       <listitem>
@@ -950,6 +1034,13 @@
           <link xlink:href="https://github.com/openzfs/zfs/issues/12842">OpenZFS/12842</link>.
           Use the <literal>boot.zfs.allowHibernation</literal> option to
           configure this behaviour.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>mastodon</literal> now automatically removes remote
+          media attachments older than 30 days. This is configurable
+          through <literal>services.mastodon.mediaAutoRemove</literal>.
         </para>
       </listitem>
       <listitem>
@@ -1114,6 +1205,13 @@
       </listitem>
       <listitem>
         <para>
+          The redis module now persists each instance’s configuration
+          file in the state directory, in order to support some more
+          advanced use cases like sentinel.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The udisks2 service, available at
           <literal>services.udisks2.enable</literal>, is now disabled by
           default. It will automatically be enabled through services and
@@ -1169,6 +1267,19 @@
       <listitem>
         <para>
           Add udev rules for the Teensy family of microcontrollers.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The Qt QML disk cache is now disabled by default. This fixes a
+          long-standing issue where updating Qt/KDE apps would sometimes
+          cause them to crash or behave strangely without explanation.
+          Those concerned about the small (~10%) performance hit to
+          application startup can re-enable the cache (and expose
+          themselves to gremlins) by setting the envrionment variable
+          <literal>QML_FORCE_DISK_CACHE</literal> to
+          <literal>1</literal> using e.g. the
+          <literal>environment.sessionVariables</literal> NixOS option.
         </para>
       </listitem>
       <listitem>
@@ -1273,6 +1384,34 @@
           versions and a new <literal>postRebuild</literal> hook has
           been added for packages to perform extra build steps before
           the npm install step prunes dev dependencies.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>boot.kernel.sysctl</literal> is defined as a
+          freeformType and adds a custom merge option for
+          <quote>net.core.rmem_max</quote> (taking the highest value
+          defined to avoid conflicts between 2 services trying to set
+          that value).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>mame</literal> package does not ship with its
+          tools anymore in the default output. They were moved to a
+          separate <literal>tools</literal> output instead. For
+          convenience, <literal>mame-tools</literal> package was added
+          for those who want to use it.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          A NixOS module for Firefox has been added which allows
+          preferences and
+          <link xlink:href="https://github.com/mozilla/policy-templates/blob/master/README.md">policies</link>
+          to be set. This also allows extensions to be installed via the
+          <literal>ExtensionSettings</literal> policy. The new options
+          are under <literal>programs.firefox</literal>.
         </para>
       </listitem>
     </itemizedlist>

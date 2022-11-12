@@ -956,6 +956,8 @@ let
     else
     null;
 
+    ocamlc-loc = callPackage ../development/ocaml-modules/ocamlc-loc { };
+
     ocaml_cryptgps = callPackage ../development/ocaml-modules/cryptgps { };
 
     ocaml_expat =
@@ -1313,6 +1315,8 @@ let
       else null;
 
     ppx_tools_versioned = callPackage ../development/ocaml-modules/ppx_tools_versioned { };
+
+    ppx_yojson_conv = callPackage ../development/ocaml-modules/ppx_yojson_conv {};
 
     ppx_yojson_conv_lib = callPackage ../development/ocaml-modules/ppx_yojson_conv_lib {};
 

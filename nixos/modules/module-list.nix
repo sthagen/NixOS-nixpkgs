@@ -157,6 +157,7 @@
   ./programs/extra-container.nix
   ./programs/feedbackd.nix
   ./programs/file-roller.nix
+  ./programs/firefox.nix
   ./programs/firejail.nix
   ./programs/fish.nix
   ./programs/flashrom.nix
@@ -186,6 +187,8 @@
   ./programs/less.nix
   ./programs/liboping.nix
   ./programs/light.nix
+  ./programs/mdevctl.nix
+  ./programs/mepo.nix
   ./programs/mosh.nix
   ./programs/mininet.nix
   ./programs/msmtp.nix
@@ -320,6 +323,7 @@
   ./services/backup/znapzend.nix
   ./services/blockchain/ethereum/geth.nix
   ./services/blockchain/ethereum/erigon.nix
+  ./services/blockchain/ethereum/lighthouse.nix
   ./services/backup/zrepl.nix
   ./services/cluster/corosync/default.nix
   ./services/cluster/hadoop/default.nix
@@ -572,7 +576,6 @@
   ./services/misc/etcd.nix
   ./services/misc/etebase-server.nix
   ./services/misc/etesync-dav.nix
-  ./services/misc/ethminer.nix
   ./services/misc/exhibitor.nix
   ./services/misc/felix.nix
   ./services/misc/freeswitch.nix
@@ -1221,6 +1224,7 @@
   ./services/x11/xfs.nix
   ./services/x11/xserver.nix
   ./system/activation/activation-script.nix
+  ./system/activation/specialisation.nix
   ./system/activation/top-level.nix
   ./system/boot/binfmt.nix
   ./system/boot/emergency-mode.nix
