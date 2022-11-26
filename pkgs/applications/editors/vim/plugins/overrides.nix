@@ -114,6 +114,16 @@
 
 self: super: {
 
+  barbecue-nvim = super.vimshell-vim.overrideAttrs (old: {
+    dependencies = with self; [ nvim-lspconfig nvim-navic nvim-web-devicons ];
+    meta = {
+      description = "A VS Code like winbar for Neovim";
+      homepage = "https://github.com/utilyre/barbecue.nvim";
+      license = lib.licenses.mit;
+      maintainers = with lib.maintainers; [ lightquantum ];
+    };
+  });
+
   clang_complete = super.clang_complete.overrideAttrs (old: {
     # In addition to the arguments you pass to your compiler, you also need to
     # specify the path of the C++ std header (if you are using C++).
@@ -461,20 +471,14 @@ self: super: {
     dependencies = with self; [ lush-nvim ];
   });
 
-  himalaya-vim = buildVimPluginFrom2Nix {
-    pname = "himalaya-vim";
-    inherit (himalaya) src version;
-    dependencies = with self; [ himalaya ];
-    configurePhase = ''
-      cd vim
+  himalaya-vim = super.himalaya-vim.overrideAttrs (old: {
+    postPatch = ''
       substituteInPlace plugin/himalaya.vim \
-        --replace 'if !executable("himalaya")' 'if v:false'
+        --replace "if !executable('himalaya')" "if v:false"
+      substituteInPlace autoload/himalaya/request.vim \
+        --replace "'himalaya" "'${himalaya}/bin/himalaya"
     '';
-    postFixup = ''
-      mkdir -p $out/bin
-      ln -s ${himalaya}/bin/himalaya $out/bin/himalaya
-    '';
-  };
+  });
 
   jedi-vim = super.jedi-vim.overrideAttrs (old: {
     # checking for python3 support in vim would be neat, too, but nobody else seems to care
@@ -743,6 +747,10 @@ self: super: {
       substituteInPlace lua/sqlite/defs.lua \
         --replace "path = vim.g.sqlite_clib_path" "path = vim.g.sqlite_clib_path or ${lib.escapeShellArg libsqlite}"
     '';
+  });
+
+  ssr = super.ssr-nvim.overrideAttrs (old: {
+    dependencies = with self; [ nvim-treesitter ];
   });
 
   statix = buildVimPluginFrom2Nix rec {
@@ -1306,6 +1314,7 @@ self: super: {
       "coc-smartf"
       "coc-snippets"
       "coc-solargraph"
+      "coc-spell-checker"
       "coc-sqlfluff"
       "coc-stylelint"
       "coc-sumneko-lua"

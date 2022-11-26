@@ -1,4 +1,14 @@
-{ config, lib, stdenv, fetchurl, gettext, meson, ninja, pkg-config, perl, python3
+{ config
+, lib
+, stdenv
+, fetchurl
+, fetchpatch
+, gettext
+, meson
+, ninja
+, pkg-config
+, perl
+, python3
 , libiconv, zlib, libffi, pcre2, libelf, gnome, libselinux, bash, gnum4, gtk-doc, docbook_xsl, docbook_xml_dtd_45, libxslt
 # use util-linuxMinimal to avoid circular dependency (util-linux, systemd, glib)
 , util-linuxMinimal ? null
@@ -58,6 +68,19 @@ stdenv.mkDerivation (finalAttrs: {
   ] ++ lib.optionals stdenv.hostPlatform.isMusl [
     ./quark_init_on_demand.patch
     ./gobject_init_on_demand.patch
+
+    # Fix error about missing sentinel in glib/tests/cxx.cpp
+    # These two commits are part of already merged glib MRs 3033 and 3031:
+    # https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3033
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/0ca5254c5d92aec675b76b4bfa72a6885cde6066.patch";
+      sha256 = "OfD5zO/7JIgOMLc0FAgHV9smWugFJuVPHCn9jTsMQJg=";
+    })
+    # https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3031
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/7dc19632f3115e3f517c6bc80436fe72c1dcdeb4.patch";
+      sha256 = "v28Yk+R0kN9ssIcvJudRZ4vi30rzQEE8Lsd1kWp5hbM=";
+    })
   ] ++ [
     ./glib-appinfo-watch.patch
     ./schema-override-variable.patch
@@ -95,6 +118,14 @@ stdenv.mkDerivation (finalAttrs: {
     # Disable flaky test.
     # https://gitlab.gnome.org/GNOME/glib/-/issues/820
     ./skip-timer-test.patch
+
+    # Fix infinite loop (e.g. in gnome-keyring)
+    # https://github.com/NixOS/nixpkgs/pull/197754#issuecomment-1312805358
+    # https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3039
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/2a36bb4b7e46f9ac043561c61f9a790786a5440c.patch";
+      sha256 = "b77Hxt6WiLxIGqgAj9ZubzPWrWmorcUOEe/dp01BcXA=";
+    })
   ];
 
   outputs = [ "bin" "out" "dev" "devdoc" ];

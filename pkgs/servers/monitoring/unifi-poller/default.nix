@@ -1,17 +1,20 @@
-{ lib, buildGoModule, fetchFromGitHub }:
+{ lib
+, buildGoModule
+, fetchFromGitHub
+}:
 
 buildGoModule rec {
   pname = "unifi-poller";
-  version = "2.1.7";
+  version = "2.2.0";
 
   src = fetchFromGitHub {
     owner = "unifi-poller";
     repo = "unifi-poller";
     rev = "v${version}";
-    sha256 = "sha256-79aBqYS8B+gIqmhu/UIA7g+FvTS/68qsK7qi5MGH10k=";
+    hash = "sha256-jPatTo+5nQ73AETXI88x/bma0wlY333DNvuyaYQTgz0=";
   };
 
-  vendorSha256 = "sha256-WVYQ3cZOO+EyJRTFcMjziDHwqqinm1IvxvSLuHTaqT8=";
+  vendorHash = "sha256-Y4FcBLdVB3AjJOpP2CuoNVAIxaqlZxHI0yKzp7Wqpwc=";
 
   ldflags = [
     "-w" "-s"
@@ -24,6 +27,7 @@ buildGoModule rec {
   meta = with lib; {
     description = "Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus";
     homepage = "https://github.com/unifi-poller/unifi-poller";
+    changelog = "https://github.com/unpoller/unpoller/releases/tag/v${version}";
     license = licenses.mit;
     maintainers = with maintainers; [ ];
   };

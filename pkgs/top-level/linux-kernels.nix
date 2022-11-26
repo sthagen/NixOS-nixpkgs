@@ -325,6 +325,8 @@ in {
 
     liquidtux = callPackage ../os-specific/linux/liquidtux {};
 
+    lkrg = callPackage ../os-specific/linux/lkrg {};
+
     v4l2loopback = callPackage ../os-specific/linux/v4l2loopback { };
 
     lttng-modules = callPackage ../os-specific/linux/lttng-modules { };
@@ -373,6 +375,8 @@ in {
     rtl8189fs = callPackage ../os-specific/linux/rtl8189fs { };
 
     rtl8723bs = callPackage ../os-specific/linux/rtl8723bs { };
+
+    rtl8723ds = callPackage ../os-specific/linux/rtl8723ds { };
 
     rtl8812au = callPackage ../os-specific/linux/rtl8812au { };
 

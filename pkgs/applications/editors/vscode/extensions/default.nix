@@ -537,6 +537,16 @@ let
         };
       };
 
+      bmalehorn.vscode-fish = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-fish";
+          publisher = "bmalehorn";
+          version = "1.0.31";
+          sha256 = "sha256-jDWW43ozUPIzhK/qQ+a+JSNdDHrjvgosyGe8kzBX6xM=";
+        };
+        meta.license = lib.licenses.mit;
+      };
+
       bradlc.vscode-tailwindcss = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-tailwindcss";
@@ -1396,8 +1406,8 @@ let
         mktplcRef = {
           name = "elixir-ls";
           publisher = "JakeBecker";
-          version = "0.11.0";
-          sha256 = "sha256-okvwyD0m2r8ar85VtuBUNMUZGGrCfJ4DB9v7aSX5PjM=";
+          version = "0.12.0";
+          sha256 = "sha256-ZwdGcsvmEKDH5ZAkKiLEV/3ru74BittnxibMWbdkaco=";
         };
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/JakeBecker.elixir-ls/changelog";
@@ -1441,8 +1451,8 @@ let
         mktplcRef = {
           name = "latex-workshop";
           publisher = "James-Yu";
-          version = "8.29.0";
-          sha256 = "sha256-khAlxN+y06aneZE97fqNg2esj/wvIUINiMdVc/exd38=";
+          version = "9.0.0";
+          sha256 = "sha256-aXDYRLbDZGul2mG+jZs6o5Z5QVhEiOCaLhHpj/zVt6E=";
         };
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/James-Yu.latex-workshop/changelog";
@@ -1666,6 +1676,16 @@ let
           license = lib.licenses.mit;
           maintainers = with lib.maintainers; [ kamadorueda ];
         };
+      };
+
+      matangover.mypy = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "mypy";
+          publisher = "matangover";
+          version = "0.2.2";
+          sha256 = "sha256-eaiR30HjPCpOLUKQqiQ2Oqj+XY+JNnV47bM5KD2Mouk=";
+        };
+        meta.license = lib.licenses.mit;
       };
 
       mattn.lisp = buildVscodeMarketplaceExtension {
@@ -2083,6 +2103,16 @@ let
         };
       };
 
+      redhat.vscode-xml = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-xml";
+          publisher = "redhat";
+          version = "0.22.0";
+          sha256 = "sha256-7QOw0EVcfa7MFnZAHAsUtDZHXD5AFlW54f1qaN3h+2U=";
+        };
+        meta.license = lib.licenses.epl20;
+      };
+
       redhat.vscode-yaml = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-yaml";
@@ -2421,6 +2451,16 @@ let
         };
       };
 
+      sonarsource.sonarlint-vscode = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "sonarlint-vscode";
+          publisher = "sonarsource";
+          version = "3.12.0";
+          sha256 = "sha256-vVOmqb0iEIGgN+LkJfazNN+KNWvnWRbIsqetXfeabJU=";
+        };
+        meta.license = lib.licenses.lgpl3Only;
+      };
+
       spywhere.guides = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "guides";
@@ -2487,8 +2527,8 @@ let
         mktplcRef = {
           name = "code-spell-checker";
           publisher = "streetsidesoftware";
-          version = "2.11.0";
-          sha256 = "sha256-ZYbkCe/FdSxmipV9TTq0AF/Ft01+LTUeo3sVyKMP3iQ=";
+          version = "2.11.1";
+          sha256 = "sha256-o6Se+xpqwrdJIMnVE/HaDGIoDqZkeX0nTGHa8GjaqVQ=";
         };
         meta = with lib; {
           changelog = "https://marketplace.visualstudio.com/items/streetsidesoftware.code-spell-checker/changelog";
@@ -2588,6 +2628,16 @@ let
         };
       };
 
+      thenuprojectcontributors.vscode-nushell-lang = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-nushell-lang";
+          publisher = "thenuprojectcontributors";
+          version = "0.7.0";
+          sha256 = "sha256-+AGJkFx/uzgQzuRnRBZ44xGNQ6a/QWt7SNiQgwPTZxo=";
+        };
+        meta.license = lib.licenses.mit;
+      };
+
       tiehuis.zig = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "zig";
@@ -2605,8 +2655,8 @@ let
         mktplcRef = {
           name = "shellcheck";
           publisher = "timonwong";
-          version = "0.19.3";
-          sha256 = "0l8fbim19jgcdgxxgidnhdczxvhls920vrffwrac8k1y34lgfl3v";
+          version = "0.26.3";
+          sha256 = "GlyOLc2VrRnA50MkaG83qa0yLUyJYwueqEO+ZeAStYs=";
         };
         nativeBuildInputs = [ jq moreutils ];
         postInstall = ''
@@ -2907,8 +2957,8 @@ let
         mktplcRef = {
           name = "markdown-all-in-one";
           publisher = "yzhang";
-          version = "3.4.0";
-          sha256 = "0ihfrsg2sc8d441a2lkc453zbw1jcpadmmkbkaf42x9b9cipd5qb";
+          version = "3.4.4";
+          sha256 = "2lZfWP+yk0Dp8INLjlJY5ROGu0sLaWhb4fT+O9xGg0s=";
         };
         meta = {
           license = lib.licenses.mit;

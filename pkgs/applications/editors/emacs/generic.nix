@@ -20,7 +20,6 @@
 , AppKit, Carbon, Cocoa, IOKit, OSAKit, Quartz, QuartzCore, WebKit
 , ImageCaptureCore, GSS, ImageIO # These may be optional
 
-, systemd ? null
 , withX ? !stdenv.isDarwin && !withPgtk
 , withNS ? stdenv.isDarwin && !withMacport
 , withMacport ? macportVersion != null
@@ -45,6 +44,7 @@
   else if withMotif then "motif"
   else if withAthena then "athena"
   else "lucid")
+, withSystemd ? stdenv.isLinux, systemd
 }:
 
 assert (libXft != null) -> libpng != null;      # probably a bug
@@ -141,11 +141,13 @@ let emacs = (if withMacport then llvmPackages_6.stdenv else stdenv).mkDerivation
 
   buildInputs =
     [ ncurses gconf libxml2 gnutls gettext jansson harfbuzz.dev ]
-    ++ lib.optionals stdenv.isLinux [ dbus libselinux systemd alsa-lib acl gpm ]
+    ++ lib.optionals stdenv.isLinux [ dbus libselinux alsa-lib acl gpm ]
+    ++ lib.optionals withSystemd [ systemd ]
     ++ lib.optionals withX
-      [ xlibsWrapper libXaw Xaw3d libXpm libpng libjpeg giflib libtiff libXft
-        gconf cairo ]
-    ++ lib.optionals (withX || withNS) [ librsvg ]
+      [ xlibsWrapper libXaw Xaw3d gconf cairo ]
+    ++ lib.optionals (withX || withPgtk)
+      [ libXpm libpng libjpeg giflib libtiff ]
+    ++ lib.optionals (withX || withNS || withPgtk ) [ librsvg ]
     ++ lib.optionals withImageMagick [ imagemagick ]
     ++ lib.optionals (stdenv.isLinux && withX) [ m17n_lib libotf ]
     ++ lib.optional (withX && withGTK2) gtk2-x11
@@ -177,8 +179,10 @@ let emacs = (if withMacport then llvmPackages_6.stdenv else stdenv).mkDerivation
       then [ "--disable-ns-self-contained" ]
     else if withX
       then [ "--with-x-toolkit=${toolkit}" "--with-xft" "--with-cairo" ]
-      else [ "--with-x=no" "--with-xpm=no" "--with-jpeg=no" "--with-png=no"
-             "--with-gif=no" "--with-tiff=no" ])
+    else if withPgtk
+      then [ "--with-pgtk" ]
+    else [ "--with-x=no" "--with-xpm=no" "--with-jpeg=no" "--with-png=no"
+           "--with-gif=no" "--with-tiff=no" ])
     ++ lib.optionals withMacport [
       "--with-mac"
       "--enable-mac-app=$$out/Applications"
@@ -188,7 +192,6 @@ let emacs = (if withMacport then llvmPackages_6.stdenv else stdenv).mkDerivation
     ++ lib.optional withXwidgets "--with-xwidgets"
     ++ lib.optional nativeComp "--with-native-compilation"
     ++ lib.optional withImageMagick "--with-imagemagick"
-    ++ lib.optional withPgtk "--with-pgtk"
     ++ lib.optional withXinput2 "--with-xinput2"
     ++ lib.optional (!withToolkitScrollBars) "--without-toolkit-scroll-bars"
   ;

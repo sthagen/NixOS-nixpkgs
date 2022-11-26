@@ -6,6 +6,8 @@
 # - Add plugin to it's own directory (because of future patches).
 
 {
+  input-overlay = qt6Packages.callPackage ./input-overlay.nix { };
+
   looking-glass-obs = callPackage ./looking-glass-obs.nix { };
 
   obs-backgroundremoval = callPackage ./obs-backgroundremoval { };
@@ -23,6 +25,8 @@
   obs-nvfbc = callPackage ./obs-nvfbc.nix { };
 
   obs-pipewire-audio-capture = callPackage ./obs-pipewire-audio-capture.nix { };
+
+  obs-source-record = callPackage ./obs-source-record.nix { };
 
   obs-vkcapture = callPackage ./obs-vkcapture.nix {
     obs-vkcapture32 = pkgsi686Linux.obs-studio-plugins.obs-vkcapture;

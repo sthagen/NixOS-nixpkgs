@@ -5,13 +5,13 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "appthreat-depscan";
-  version = "2.2.1";
+  version = "3.2.0";
 
   src = fetchFromGitHub {
     owner = "AppThreat";
     repo = "dep-scan";
     rev = "refs/tags/v${version}";
-    hash = "sha256-O6RHd7akTuslM+nt+4OilrjZvJs6B3BzkjjlRaty9Tg=";
+    hash = "sha256-JDc5VNcx/x1X4luPz9RBx4LII3402/CLim68l2QBkw4=";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
@@ -46,6 +46,7 @@ python3.pkgs.buildPythonApplication rec {
   meta = with lib; {
     description = "Tool to audit dependencies based on known vulnerabilities and advisories";
     homepage = "https://github.com/AppThreat/dep-scan";
+    changelog = "https://github.com/AppThreat/dep-scan/releases/tag/v${version}";
     license = with licenses; [ mit ];
     maintainers = with maintainers; [ fab ];
   };
