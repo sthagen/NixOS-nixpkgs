@@ -75,7 +75,7 @@ let
       INTEL_RAPL                       = whenAtLeast "5.3" module;
       X86_INTEL_LPSS                   = yes;
       X86_INTEL_PSTATE                 = yes;
-      X86_AMD_PSTATE                   = whenAtLeast "5.17" module;
+      X86_AMD_PSTATE                   = whenAtLeast "5.17" yes;
     };
 
     external-firmware = {
@@ -303,6 +303,8 @@ let
       # Intel GVT-g graphics virtualization supports 64-bit only
       DRM_I915_GVT = whenAtLeast "4.16" yes;
       DRM_I915_GVT_KVMGT = whenAtLeast "4.16" module;
+      # Enable Hyper-V Synthetic DRM Driver
+      DRM_HYPERV = whenAtLeast "5.14" module;
     } // optionalAttrs (stdenv.hostPlatform.system == "aarch64-linux") {
       # enable HDMI-CEC on RPi boards
       DRM_VC4_HDMI_CEC = yes;

@@ -702,6 +702,8 @@ self: super: with self; {
 
   async-timeout = callPackage ../development/python-modules/async_timeout { };
 
+  asyncua = callPackage ../development/python-modules/asyncua { };
+
   async-upnp-client = callPackage ../development/python-modules/async-upnp-client { };
 
   asyncwhois = callPackage ../development/python-modules/asyncwhois { };
@@ -2493,8 +2495,6 @@ self: super: with self; {
 
   django-debug-toolbar = callPackage ../development/python-modules/django-debug-toolbar { };
 
-  django-discover-runner = callPackage ../development/python-modules/django-discover-runner { };
-
   django-dynamic-preferences = callPackage ../development/python-modules/django-dynamic-preferences { };
 
   django-encrypted-model-fields = callPackage ../development/python-modules/django-encrypted-model-fields { };
@@ -2833,6 +2833,8 @@ self: super: with self; {
   easydict = callPackage ../development/python-modules/easydict { };
 
   easygui = callPackage ../development/python-modules/easygui { };
+
+  easyocr = callPackage ../development/python-modules/easyocr { };
 
   EasyProcess = callPackage ../development/python-modules/easyprocess { };
 
@@ -3539,8 +3541,6 @@ self: super: with self; {
   funcsigs = callPackage ../development/python-modules/funcsigs { };
 
   functools32 = callPackage ../development/python-modules/functools32 { };
-
-  functorch = callPackage ../development/python-modules/functorch { };
 
   funcy = callPackage ../development/python-modules/funcy { };
 
@@ -4756,7 +4756,7 @@ self: super: with self; {
 
   jinja2_pluralize = callPackage ../development/python-modules/jinja2_pluralize { };
 
-  jinja2_time = callPackage ../development/python-modules/jinja2_time { };
+  jinja2-time = callPackage ../development/python-modules/jinja2-time { };
 
   jira = callPackage ../development/python-modules/jira { };
 
@@ -5408,7 +5408,7 @@ self: super: with self; {
 
   logilab_astng = callPackage ../development/python-modules/logilab_astng { };
 
-  logilab_common = callPackage ../development/python-modules/logilab/common.nix { };
+  logilab-common = callPackage ../development/python-modules/logilab/common.nix { };
 
   logilab-constraint = callPackage ../development/python-modules/logilab/constraint.nix { };
 
@@ -5534,6 +5534,10 @@ self: super: with self; {
   mapbox-earcut = callPackage ../development/python-modules/mapbox-earcut { };
 
   mariadb = callPackage ../development/python-modules/mariadb { };
+
+  marisa = callPackage ../development/python-modules/marisa {
+    inherit (pkgs) marisa;
+  };
 
   marisa-trie = callPackage ../development/python-modules/marisa-trie { };
 
@@ -6538,6 +6542,8 @@ self: super: with self; {
 
   opuslib = callPackage ../development/python-modules/opuslib { };
 
+  opytimark = callPackage ../development/python-modules/opytimark { };
+
   oralb-ble = callPackage ../development/python-modules/oralb-ble { };
 
   orderedmultidict = callPackage ../development/python-modules/orderedmultidict { };
@@ -7350,9 +7356,15 @@ self: super: with self; {
 
   proto-plus = callPackage ../development/python-modules/proto-plus { };
 
+  # Protobuf 4.x
   protobuf = callPackage ../development/python-modules/protobuf {
     # If a protobuf upgrade causes many Python packages to fail, please pin it here to the previous version.
     inherit (pkgs) protobuf;
+  };
+
+  # Protobuf 3.x
+  protobuf3 = callPackage ../development/python-modules/protobuf {
+    protobuf = pkgs.protobuf3_20;
   };
 
   protobuf3-to-dict = callPackage ../development/python-modules/protobuf3-to-dict { };
@@ -9638,6 +9650,8 @@ self: super: with self; {
 
   recordlinkage = callPackage ../development/python-modules/recordlinkage { };
 
+  recurring-ical-events = callPackage ../development/python-modules/recurring-ical-events { };
+
   redbaron = callPackage ../development/python-modules/redbaron { };
 
   redis = callPackage ../development/python-modules/redis { };
@@ -10238,6 +10252,8 @@ self: super: with self; {
   shutilwhich = callPackage ../development/python-modules/shutilwhich { };
 
   sievelib = callPackage ../development/python-modules/sievelib { };
+
+  signalslot = callPackage ../development/python-modules/signalslot { };
 
   signedjson = callPackage ../development/python-modules/signedjson { };
 
@@ -11649,6 +11665,8 @@ self: super: with self; {
 
   urwid-readline = callPackage ../development/python-modules/urwid-readline { };
 
+  usb-devices = callPackage ../development/python-modules/usb-devices { };
+
   usbrelay-py = callPackage ../os-specific/linux/usbrelay/python.nix { };
 
   usbtmc = callPackage ../development/python-modules/usbtmc { };
@@ -12039,6 +12057,7 @@ self: super: with self; {
     };
   };
 
+  x-wr-timezone = callPackage ../development/python-modules/x-wr-timezone { };
 
   x11_hash = callPackage ../development/python-modules/x11_hash { };
 
@@ -12049,6 +12068,7 @@ self: super: with self; {
   };
 
   xapp = callPackage ../development/python-modules/xapp {
+    inherit (pkgs.buildPackages) meson;
     inherit (pkgs) gtk3 gobject-introspection polkit;
     inherit (pkgs.cinnamon) xapp;
   };
@@ -12144,8 +12164,6 @@ self: super: with self; {
   xvfbwrapper = callPackage ../development/python-modules/xvfbwrapper {
     inherit (pkgs.xorg) xorgserver;
   };
-
-  xxh = callPackage ../tools/networking/xxh { };
 
   xxhash = callPackage ../development/python-modules/xxhash { };
 
@@ -12382,4 +12400,6 @@ self: super: with self; {
   zwave-js-server-python = callPackage ../development/python-modules/zwave-js-server-python { };
 
   zxcvbn = callPackage ../development/python-modules/zxcvbn { };
+
+  zxing_cpp = callPackage ../development/python-modules/zxing_cpp { };
 }

@@ -11,26 +11,14 @@
 , hip
 , gfortran
 , git
-, fetchzip ? null
-, gtest ? null
+, gtest
 , buildTests ? false
 }:
 
-assert buildTests -> fetchzip != null;
-assert buildTests -> gtest != null;
-
 # This can also use cuSPARSE as a backend instead of rocSPARSE
-let
-  matrices = lib.optionalAttrs buildTests import ./deps.nix {
-    inherit fetchzip;
-    mirror1 = "https://sparse.tamu.edu/MM";
-    mirror2 = "https://www.cise.ufl.edu/research/sparse/MM";
-  };
-in stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "hipsparse";
-  repoVersion = "2.3.1";
-  rocmVersion = "5.3.3";
-  version = "${finalAttrs.repoVersion}-${finalAttrs.rocmVersion}";
+  version = "5.3.3";
 
   outputs = [
     "out"
@@ -41,7 +29,7 @@ in stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "ROCmSoftwarePlatform";
     repo = "hipSPARSE";
-    rev = "rocm-${finalAttrs.rocmVersion}";
+    rev = "rocm-${finalAttrs.version}";
     hash = "sha256-Phcihat774ZSAe1QetE/GSZzGlnCnvS9GwsHBHCaD4c=";
   };
 
@@ -81,25 +69,25 @@ in stdenv.mkDerivation (finalAttrs: {
   '' + lib.optionalString buildTests ''
     mkdir -p matrices
 
-    ln -s ${matrices.matrix-01}/*.mtx matrices
-    ln -s ${matrices.matrix-02}/*.mtx matrices
-    ln -s ${matrices.matrix-03}/*.mtx matrices
-    ln -s ${matrices.matrix-04}/*.mtx matrices
-    ln -s ${matrices.matrix-05}/*.mtx matrices
-    ln -s ${matrices.matrix-06}/*.mtx matrices
-    ln -s ${matrices.matrix-07}/*.mtx matrices
-    ln -s ${matrices.matrix-08}/*.mtx matrices
-    ln -s ${matrices.matrix-09}/*.mtx matrices
-    ln -s ${matrices.matrix-10}/*.mtx matrices
-    ln -s ${matrices.matrix-11}/*.mtx matrices
-    ln -s ${matrices.matrix-12}/*.mtx matrices
-    ln -s ${matrices.matrix-13}/*.mtx matrices
-    ln -s ${matrices.matrix-14}/*.mtx matrices
-    ln -s ${matrices.matrix-15}/*.mtx matrices
-    ln -s ${matrices.matrix-16}/*.mtx matrices
-    ln -s ${matrices.matrix-17}/*.mtx matrices
-    ln -s ${matrices.matrix-18}/*.mtx matrices
-    ln -s ${matrices.matrix-19}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-01}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-02}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-03}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-04}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-05}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-06}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-07}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-08}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-09}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-10}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-11}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-12}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-13}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-14}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-15}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-16}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-17}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-18}/*.mtx matrices
+    ln -s ${rocsparse.passthru.matrices.matrix-19}/*.mtx matrices
 
     # Not used by the original cmake, causes an error
     rm matrices/*_b.mtx
@@ -127,11 +115,9 @@ in stdenv.mkDerivation (finalAttrs: {
   passthru.updateScript = writeScript "update.sh" ''
     #!/usr/bin/env nix-shell
     #!nix-shell -i bash -p curl jq common-updater-scripts
-    json="$(curl -sL "https://api.github.com/repos/ROCmSoftwarePlatform/hipSPARSE/releases?per_page=1")"
-    repoVersion="$(echo "$json" | jq '.[0].name | split(" ") | .[1]' --raw-output)"
-    rocmVersion="$(echo "$json" | jq '.[0].tag_name | split("-") | .[1]' --raw-output)"
-    update-source-version hipsparse "$repoVersion" --ignore-same-hash --version-key=repoVersion
-    update-source-version hipsparse "$rocmVersion" --ignore-same-hash --version-key=rocmVersion
+    version="$(curl ''${GITHUB_TOKEN:+"-u \":$GITHUB_TOKEN\""} \
+      -sL "https://api.github.com/repos/ROCmSoftwarePlatform/hipSPARSE/releases?per_page=1" | jq '.[0].tag_name | split("-") | .[1]' --raw-output)"
+    update-source-version hipsparse "$version" --ignore-same-hash
   '';
 
   meta = with lib; {
@@ -139,6 +125,6 @@ in stdenv.mkDerivation (finalAttrs: {
     homepage = "https://github.com/ROCmSoftwarePlatform/hipSPARSE";
     license = with licenses; [ mit ];
     maintainers = teams.rocm.members;
-    broken = finalAttrs.rocmVersion != hip.version;
+    broken = finalAttrs.version != hip.version;
   };
 })

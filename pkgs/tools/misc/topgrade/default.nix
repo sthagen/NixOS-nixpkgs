@@ -10,16 +10,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "topgrade";
-  version = "10.1.2";
+  version = "10.2.1";
 
   src = fetchFromGitHub {
     owner = "topgrade-rs";
     repo = "topgrade";
     rev = "v${version}";
-    sha256 = "sha256-/xabrMFcP8O2haGzqJ64u/O2snk9dJ9Sm17c3kr3nsY=";
+    sha256 = "sha256-ljjbTqFhDDHqyA+UzqxICAM9YI1U0fI6J864o9ee6kg=";
   };
 
-  cargoSha256 = "sha256-mWV8h2l7kJnTfTyF74BqR/qaVpswUqI971IDiBZF3XE=";
+  cargoSha256 = "sha256-PezSEd2/98us2KPNPTmVIuPlWcRIWF7TUuT/m4df1Fs=";
 
   nativeBuildInputs = [ installShellFiles ];
 
@@ -28,6 +28,12 @@ rustPlatform.buildRustPackage rec {
   NIX_CFLAGS_COMPILE = lib.optionals stdenv.isDarwin [ "-framework" "AppKit" ];
 
   postInstall = ''
+    installShellCompletion --cmd topgrade \
+      --bash <($out/bin/topgrade --gen-completion bash) \
+      --fish <($out/bin/topgrade --gen-completion fish) \
+      --zsh <($out/bin/topgrade --gen-completion zsh)
+
+    $out/bin/topgrade --gen-manpage > topgrade.8
     installManPage topgrade.8
   '';
 

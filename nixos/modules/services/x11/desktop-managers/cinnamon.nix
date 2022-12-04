@@ -74,6 +74,10 @@ in
           name = mkDefault "Mint-X-Dark";
           package = mkDefault pkgs.cinnamon.mint-x-icons;
         };
+        cursorTheme = mkIf (notExcluded pkgs.cinnamon.mint-cursor-themes) {
+          name = mkDefault "Bibata-Modern-Classic";
+          package = mkDefault pkgs.cinnamon.mint-cursor-themes;
+        };
       };
       services.xserver.displayManager.sessionCommands = ''
         if test "$XDG_CURRENT_DESKTOP" = "Cinnamon"; then
@@ -172,10 +176,10 @@ in
         sound-theme-freedesktop
         nixos-artwork.wallpapers.simple-dark-gray
         mint-artwork
+        mint-cursor-themes
         mint-themes
         mint-x-icons
         mint-y-icons
-        vanilla-dmz
       ] config.environment.cinnamon.excludePackages);
 
       xdg.mime.enable = true;

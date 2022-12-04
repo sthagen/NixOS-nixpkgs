@@ -46,6 +46,7 @@
   ./hardware/brillo.nix
   ./hardware/ckb-next.nix
   ./hardware/cpu/amd-microcode.nix
+  ./hardware/cpu/amd-sev.nix
   ./hardware/cpu/intel-microcode.nix
   ./hardware/cpu/intel-sgx.nix
   ./hardware/corectrl.nix
@@ -164,6 +165,7 @@
   ./programs/flexoptix-app.nix
   ./programs/freetds.nix
   ./programs/fuse.nix
+  ./programs/fzf.nix
   ./programs/gamemode.nix
   ./programs/geary.nix
   ./programs/git.nix
@@ -209,10 +211,12 @@
   ./programs/plotinus.nix
   ./programs/proxychains.nix
   ./programs/qt5ct.nix
+  ./programs/rog-control-center.nix
   ./programs/rust-motd.nix
   ./programs/screen.nix
   ./programs/sedutil.nix
   ./programs/seahorse.nix
+  ./programs/skim.nix
   ./programs/slock.nix
   ./programs/shadow.nix
   ./programs/spacefm.nix
@@ -448,6 +452,7 @@
   ./services/hardware/acpid.nix
   ./services/hardware/actkbd.nix
   ./services/hardware/argonone.nix
+  ./services/hardware/asusd.nix
   ./services/hardware/auto-cpufreq.nix
   ./services/hardware/bluetooth.nix
   ./services/hardware/bolt.nix
@@ -475,6 +480,7 @@
   ./services/hardware/sane_extra_backends/brscan5.nix
   ./services/hardware/sane_extra_backends/dsseries.nix
   ./services/hardware/spacenavd.nix
+  ./services/hardware/supergfxd.nix
   ./services/hardware/tcsd.nix
   ./services/hardware/tlp.nix
   ./services/hardware/thinkfan.nix
@@ -722,7 +728,7 @@
   ./services/monitoring/thanos.nix
   ./services/monitoring/tremor-rs.nix
   ./services/monitoring/tuptime.nix
-  ./services/monitoring/unifi-poller.nix
+  ./services/monitoring/unpoller.nix
   ./services/monitoring/ups.nix
   ./services/monitoring/uptime.nix
   ./services/monitoring/vmagent.nix
@@ -966,6 +972,7 @@
   ./services/networking/syncthing-relay.nix
   ./services/networking/syncplay.nix
   ./services/networking/tailscale.nix
+  ./services/networking/tayga.nix
   ./services/networking/tcpcrypt.nix
   ./services/networking/teamspeak3.nix
   ./services/networking/tedicross.nix
@@ -1329,6 +1336,7 @@
   ./virtualisation/parallels-guest.nix
   ./virtualisation/podman/default.nix
   ./virtualisation/qemu-guest-agent.nix
+  ./virtualisation/rosetta.nix
   ./virtualisation/spice-usb-redirection.nix
   ./virtualisation/virtualbox-guest.nix
   ./virtualisation/virtualbox-host.nix
