@@ -22,12 +22,42 @@
   </section>
   <section xml:id="sec-release-23.05-new-services">
     <title>New Services</title>
-    <itemizedlist spacing="compact">
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/akinomyoga/ble.sh">blesh</link>,
+          a line editor written in pure bash. Available as
+          <link linkend="opt-programs.bash.blesh.enable">programs.bash.blesh</link>.
+        </para>
+      </listitem>
       <listitem>
         <para>
           <link xlink:href="https://github.com/junegunn/fzf">fzf</link>,
           a command line fuzzyfinder. Available as
           <link linkend="opt-programs.fzf.fuzzyCompletion">programs.fzf</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/ellie/atuin">atuin</link>,
+          a sync server for shell history. Available as
+          <link linkend="opt-services.atuin.enable">services.atuin</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://gitlab.com/kop316/mmsd">mmsd</link>,
+          a lower level daemon that transmits and recieves MMSes.
+          Available as
+          <link linkend="opt-services.mmsd.enable">services.mmsd</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://v2raya.org">v2rayA</link>, a Linux
+          web GUI client of Project V which supports V2Ray, Xray, SS,
+          SSR, Trojan and Pingtunnel. Available as
+          <link xlink:href="options.html#opt-services.v2raya.enable">services.v2raya</link>.
         </para>
       </listitem>
     </itemizedlist>
@@ -44,6 +74,14 @@
           and
           <link xlink:href="https://github.com/kolloch/crate2nix">crate2nix</link>
           instead.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>borgbackup</literal> module now has an option for
+          inhibiting system sleep while backups are running, defaulting
+          to off (not inhibiting sleep), available as
+          <link linkend="opt-services.borgbackup.jobs._name_.inhibitsSleep"><literal>services.borgbackup.jobs.&lt;name&gt;.inhibitsSleep</literal></link>.
         </para>
       </listitem>
       <listitem>
@@ -68,6 +106,36 @@
           due to
           <link xlink:href="https://sourcehut.org/blog/2022-08-01-dispatch-deprecation-plans/">upstream
           deprecation</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <link linkend="opt-services.snapserver.openFirewall">services.snapserver.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitly set this option to <literal>true</literal>,
+          or configure your firewall.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <link linkend="opt-services.tmate-ssh-server.openFirewall">services.tmate-ssh-server.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitly set this option to <literal>true</literal>,
+          or configure your firewall.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The
+          <link linkend="opt-services.unifi-video.openFirewall">services.unifi-video.openFirewall</link>
+          module option default value has been changed from
+          <literal>true</literal> to <literal>false</literal>. You will
+          need to explicitly set this option to <literal>true</literal>,
+          or configure your firewall.
         </para>
       </listitem>
       <listitem>
@@ -101,6 +169,17 @@
       </listitem>
       <listitem>
         <para>
+          In <literal>mastodon</literal> it is now necessary to specify
+          location of file with <literal>PostgreSQL</literal> database
+          password. In
+          <literal>services.mastodon.database.passwordFile</literal>
+          parameter default value
+          <literal>/var/lib/mastodon/secrets/db-password</literal> has
+          been changed to <literal>null</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>nix.readOnlyStore</literal> option has been
           renamed to <literal>boot.readOnlyNixStore</literal> to clarify
           that it configures the NixOS boot process, not the Nix daemon.
@@ -111,6 +190,17 @@
   <section xml:id="sec-release-23.05-notable-changes">
     <title>Other Notable Changes</title>
     <itemizedlist>
+      <listitem>
+        <para>
+          <literal>vim_configurable</literal> has been renamed to
+          <literal>vim-full</literal> to avoid confusion:
+          <literal>vim-full</literal>’s build-time features are
+          configurable, but both <literal>vim</literal> and
+          <literal>vim-full</literal> are
+          <emphasis>customizable</emphasis> (in the sense of user
+          configuration, like vimrc).
+        </para>
+      </listitem>
       <listitem>
         <para>
           The module for the application firewall
@@ -130,6 +220,36 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>dnsmasq</literal> service now takes configuration
+          via the <literal>services.dnsmasq.settings</literal> attribute
+          set. The option
+          <literal>services.dnsmasq.extraConfig</literal> will be
+          deprecated when NixOS 22.11 reaches end of life.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          To reduce closure size in
+          <literal>nixos/modules/profiles/minimal.nix</literal> profile
+          disabled installation documentations and manuals. Also
+          disabled <literal>logrotate</literal> and
+          <literal>udisks2</literal> services.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The minimal ISO image now uses the
+          <literal>nixos/modules/profiles/minimal.nix</literal> profile.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>mastodon</literal> now supports connection to a
+          remote <literal>PostgreSQL</literal> database.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           A new <literal>virtualisation.rosetta</literal> module was
           added to allow running <literal>x86_64</literal> binaries
           through
@@ -143,6 +263,21 @@
       </listitem>
       <listitem>
         <para>
+          The new option <literal>users.motdFile</literal> allows
+          configuring a Message Of The Day that can be updated
+          dynamically.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Enabling global redirect in
+          <literal>services.nginx.virtualHosts</literal> now allows one
+          to add exceptions with the <literal>locations</literal>
+          option.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           Resilio sync secret keys can now be provided using a secrets
           file at runtime, preventing these secrets from ending up in
           the Nix store.
@@ -150,9 +285,31 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>services.fwupd</literal> module now allows
+          arbitrary daemon settings to be configured in a structured
+          manner
+          (<link linkend="opt-services.fwupd.daemonSettings"><literal>services.fwupd.daemonSettings</literal></link>).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>unifi-poller</literal> package and corresponding
           NixOS module have been renamed to <literal>unpoller</literal>
           to match upstream.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The new option
+          <literal>services.tailscale.useRoutingFeatures</literal>
+          controls various settings for using Tailscale features like
+          exit nodes and subnet routers. If you wish to use your machine
+          as an exit node, you can set this setting to
+          <literal>server</literal>, otherwise if you wish to use an
+          exit node you can set this setting to
+          <literal>client</literal>. The strict RPF warning has been
+          removed as the RPF will be loosened automatically based on the
+          value of this setting.
         </para>
       </listitem>
     </itemizedlist>

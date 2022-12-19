@@ -6,7 +6,7 @@
 let
   inherit (import ../lib/testing-python.nix { inherit system pkgs; }) makeTest;
   inherit (pkgs.lib) concatStringsSep maintainers mapAttrs mkMerge
-    removeSuffix replaceChars singleton splitString;
+    removeSuffix replaceStrings singleton splitString;
 
   /*
     * The attrset `exporterTests` contains one attribute
@@ -182,7 +182,7 @@ let
         enable = true;
         extraFlags = [ "--web.collectd-push-path /collectd" ];
       };
-      exporterTest = let postData = replaceChars [ "\n" ] [ "" ] ''
+      exporterTest = let postData = replaceStrings [ "\n" ] [ "" ] ''
         [{
           "values":[23],
           "dstypes":["gauge"],
@@ -1086,13 +1086,8 @@ let
         ];
       };
       exporterTest = ''
-        wait_for_unit("prometheus-smartctl-exporter.service")
-        wait_for_open_port(9633)
         wait_until_succeeds(
-          "curl -sSf 'localhost:9633/metrics'"
-        )
-        wait_until_succeeds(
-            'journalctl -eu prometheus-smartctl-exporter.service -o cat | grep "/dev/vda: Unable to detect device type"'
+            'journalctl -eu prometheus-smartctl-exporter.service -o cat | grep "Device unavailable"'
         )
       '';
     };
@@ -1249,10 +1244,8 @@ let
       exporterConfig.enable = true;
       exporterConfig.controllers = [{ }];
       exporterTest = ''
-        wait_for_unit("prometheus-unpoller-exporter.service")
-        wait_for_open_port(9130)
-        succeed(
-            "curl -sSf localhost:9130/metrics | grep 'unpoller_build_info{.\\+} 1'"
+        wait_until_succeeds(
+            'journalctl -eu prometheus-unpoller-exporter.service -o cat | grep "Connection Error"'
         )
       '';
     };

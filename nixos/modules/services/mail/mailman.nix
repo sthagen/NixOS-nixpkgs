@@ -113,7 +113,7 @@ in {
           type = types.str;
           example = "/run/secrets/ldap-bind";
           description = lib.mdDoc ''
-            Path to the file containing the bind password of the servie account
+            Path to the file containing the bind password of the service account
             defined by [](#opt-services.mailman.ldap.bindDn).
           '';
         };
@@ -443,7 +443,7 @@ in {
       virtualHosts = lib.genAttrs cfg.webHosts (webHost: {
         locations = {
           ${cfg.serve.virtualRoot}.extraConfig = "uwsgi_pass unix:/run/mailman-web.socket;";
-          "${cfg.serve.virtualRoot}/static/".alias = webSettings.STATIC_ROOT + "/";
+          "${removeSuffix "/" cfg.serve.virtualRoot}/static/".alias = webSettings.STATIC_ROOT + "/";
         };
       });
     };
