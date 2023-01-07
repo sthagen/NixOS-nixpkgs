@@ -598,6 +598,14 @@ self: super: {
     '';
   });
 
+  mason-lspconfig-nvim = super.mason-lspconfig-nvim.overrideAttrs (old: {
+    dependencies = with self; [ mason-nvim nvim-lspconfig ];
+  });
+
+  mason-tool-installer-nvim = super.mason-tool-installer-nvim.overrideAttrs (old: {
+    dependencies = with self; [ mason-nvim ];
+  });
+
   meson = buildVimPluginFrom2Nix {
     inherit (meson) pname version src;
     preInstall = "cd data/syntax-highlighting/vim";
@@ -669,8 +677,20 @@ self: super: {
     dontBuild = true;
   });
 
+  vim-mediawiki-editor = super.vim-mediawiki-editor.overrideAttrs (old: {
+    passthru.python3Dependencies = [ python3.pkgs.mwclient ];
+  });
+
   nvim-spectre = super.nvim-spectre.overrideAttrs (old: {
     dependencies = with self; [ plenary-nvim ];
+  });
+
+  nvim-teal-maker = super.nvim-teal-maker.overrideAttrs (old: {
+    postPatch = ''
+      substituteInPlace lua/tealmaker/init.lua \
+        --replace cyan ${luaPackages.cyan}/bin/cyan
+    '';
+    vimCommandCheck = "TealBuild";
   });
 
   nvim-treesitter = super.nvim-treesitter.overrideAttrs (old:
@@ -685,7 +705,18 @@ self: super: {
     configurePhase = "cd vim";
   });
 
+  orgmode = super.orgmode.overrideAttrs (old: {
+    dependencies = with self; [ (nvim-treesitter.withPlugins (p: [ p.org ])) ];
+  });
+
   inherit parinfer-rust;
+
+  playground = super.playground.overrideAttrs (old: {
+    dependencies = with self; [
+      # we need the 'query' grammer to make
+      (nvim-treesitter.withPlugins (p: [ p.query ]))
+    ];
+  });
 
   plenary-nvim = super.plenary-nvim.overrideAttrs (old: {
     postPatch = ''
@@ -707,7 +738,10 @@ self: super: {
 
   # needs  "http" and "json" treesitter grammars too
   rest-nvim = super.rest-nvim.overrideAttrs (old: {
-    dependencies = with self; [ plenary-nvim ];
+    dependencies = with self; [
+      plenary-nvim
+      (nvim-treesitter.withPlugins (p: [ p.http p.json ]))
+    ];
   });
 
   skim = buildVimPluginFrom2Nix {
@@ -722,18 +756,18 @@ self: super: {
 
   sniprun =
     let
-      version = "1.1.2";
+      version = "1.2.8";
       src = fetchFromGitHub {
         owner = "michaelb";
         repo = "sniprun";
         rev = "v${version}";
-        sha256 = "sha256-WL0eXwiPhcndI74wtFox2tSnZn1siE86x2MLkfpxxT4=";
+        sha256 = "sha256-iPZ0DPAErkMJIn85t1FIiGhLcMZlL06iNKLqmRu7gXI=";
       };
       sniprun-bin = rustPlatform.buildRustPackage {
         pname = "sniprun-bin";
         inherit version src;
 
-        cargoSha256 = "sha256-1WbgnsjoFdvko6VRKY+IjafMNqvJvyIZCDk8I9GV3GM=";
+        cargoSha256 = "sha256-HZEh6jtuRqsyjyDbDIV38x2N1unbSu24D8vrPZ17ktE=";
 
         nativeBuildInputs = [ makeWrapper ];
 
@@ -1018,7 +1052,7 @@ self: super: {
             libiconv
           ];
 
-          cargoSha256 = "sha256-MzacdTuCaBIAyWxH+Uza1KToGZgGPcwMCe5JtQ+68/M=";
+          cargoSha256 = "sha256-UCf5Jya1ATYgCggS/5SitLuQZwtMjrIY9qcBL4RDRAc=";
         };
       in
       ''
@@ -1040,6 +1074,10 @@ self: super: {
         rm $out/colors/darkBlue.vim
       '';
     });
+  });
+
+  vim-dadbod-ui = super.vim-dadbod-ui.overrideAttrs (old: {
+    dependencies = with self; [ vim-dadbod ];
   });
 
   vim-dasht = super.vim-dasht.overrideAttrs (old: {

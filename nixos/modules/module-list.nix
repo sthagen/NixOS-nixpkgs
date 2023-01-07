@@ -179,6 +179,7 @@
   ./programs/haguichi.nix
   ./programs/hamster.nix
   ./programs/htop.nix
+  ./programs/iay.nix
   ./programs/iftop.nix
   ./programs/i3lock.nix
   ./programs/iotop.nix
@@ -201,6 +202,7 @@
   ./programs/nbd.nix
   ./programs/neovim.nix
   ./programs/nethoscope.nix
+  ./programs/nix-index.nix
   ./programs/nix-ld.nix
   ./programs/nm-applet.nix
   ./programs/nncp.nix
@@ -244,6 +246,7 @@
   ./programs/waybar.nix
   ./programs/weylus.nix
   ./programs/wireshark.nix
+  ./programs/xastir.nix
   ./programs/wshowkeys.nix
   ./programs/xfconf.nix
   ./programs/xfs_quota.nix
@@ -518,6 +521,7 @@
   ./services/logging/syslog-ng.nix
   ./services/logging/syslogd.nix
   ./services/logging/vector.nix
+  ./services/logging/ulogd.nix
   ./services/mail/clamsmtp.nix
   ./services/mail/davmail.nix
   ./services/mail/dkimproxy-out.nix
@@ -821,6 +825,8 @@
   ./services/networking/firefox-syncserver.nix
   ./services/networking/fireqos.nix
   ./services/networking/firewall.nix
+  ./services/networking/firewall-iptables.nix
+  ./services/networking/firewall-nftables.nix
   ./services/networking/flannel.nix
   ./services/networking/freenet.nix
   ./services/networking/freeradius.nix
@@ -890,6 +896,8 @@
   ./services/networking/namecoind.nix
   ./services/networking/nar-serve.nix
   ./services/networking/nat.nix
+  ./services/networking/nat-iptables.nix
+  ./services/networking/nat-nftables.nix
   ./services/networking/nats.nix
   ./services/networking/nbd.nix
   ./services/networking/ncdns.nix
@@ -1006,6 +1014,7 @@
   ./services/networking/wasabibackend.nix
   ./services/networking/websockify.nix
   ./services/networking/wg-netmanager.nix
+  ./services/networking/webhook.nix
   ./services/networking/wg-quick.nix
   ./services/networking/wireguard.nix
   ./services/networking/wpa_supplicant.nix
@@ -1022,6 +1031,7 @@
   ./services/networking/znc/default.nix
   ./services/printing/cupsd.nix
   ./services/printing/ipp-usb.nix
+  ./services/printing/cups-pdf.nix
   ./services/scheduling/atd.nix
   ./services/scheduling/cron.nix
   ./services/scheduling/fcron.nix
@@ -1096,6 +1106,7 @@
   ./services/video/rtsp-simple-server.nix
   ./services/video/unifi-video.nix
   ./services/wayland/cage.nix
+  ./services/web-apps/akkoma.nix
   ./services/web-apps/alps.nix
   ./services/web-apps/atlassian/confluence.nix
   ./services/web-apps/atlassian/crowd.nix
@@ -1303,6 +1314,7 @@
   ./tasks/filesystems/btrfs.nix
   ./tasks/filesystems/cifs.nix
   ./tasks/filesystems/ecryptfs.nix
+  ./tasks/filesystems/envfs.nix
   ./tasks/filesystems/exfat.nix
   ./tasks/filesystems/ext.nix
   ./tasks/filesystems/f2fs.nix

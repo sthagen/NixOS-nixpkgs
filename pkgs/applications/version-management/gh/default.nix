@@ -1,17 +1,17 @@
-{ lib, fetchFromGitHub, buildGoModule, installShellFiles }:
+{ lib, fetchFromGitHub, buildGoModule, installShellFiles, testers, gh }:
 
 buildGoModule rec {
   pname = "gh";
-  version = "2.20.2";
+  version = "2.21.2";
 
   src = fetchFromGitHub {
     owner = "cli";
     repo = "cli";
     rev = "v${version}";
-    sha256 = "sha256-atUC6vb/tOO2GapMjTqFi4qjDAdSf2F8v3gZuzyt+9Q=";
+    sha256 = "sha256-syd7OMBEMv9uJUDjIIqVkJ3pvuyKnD5pubG4d3TbkY8=";
   };
 
-  vendorSha256 = "sha256-FSniCYr3emV9W/BuEkWe0a4aZ5RCoZJc7+K+f2q49ys=";
+  vendorSha256 = "sha256-m9K43Ns8j82nMkz+zkmC7HueOA6q6T4mFPQ1GSdqo24=";
 
   nativeBuildInputs = [ installShellFiles ];
 
@@ -41,6 +41,10 @@ buildGoModule rec {
 
   # most tests require network access
   doCheck = false;
+
+  passthru.tests.version = testers.testVersion {
+    package = gh;
+  };
 
   meta = with lib; {
     description = "GitHub CLI tool";

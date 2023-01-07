@@ -10,6 +10,7 @@
 , qpdf
 , tesseract5
 , unpaper
+, poppler_utils
 , liberation_ttf
 , fetchFromGitHub
 }:
@@ -75,6 +76,7 @@ let
     qpdf
     tesseract5
     unpaper
+    poppler_utils
   ];
 in
 python.pkgs.pythonPackages.buildPythonApplication rec {
@@ -199,6 +201,9 @@ python.pkgs.pythonPackages.buildPythonApplication rec {
     chmod +x $out/lib/paperless-ngx/src/manage.py
     makeWrapper $out/lib/paperless-ngx/src/manage.py $out/bin/paperless-ngx \
       --prefix PYTHONPATH : "$PYTHONPATH" \
+      --prefix PATH : "${path}"
+    makeWrapper ${python.pkgs.celery}/bin/celery $out/bin/celery \
+      --prefix PYTHONPATH : "$PYTHONPATH:$out/lib/paperless-ngx/src" \
       --prefix PATH : "${path}"
   '';
 
