@@ -62,6 +62,14 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://github.com/StevenBlack/hosts">stevenblack-blocklist</link>,
+          A unified hosts file with base extensions for blocking
+          unwanted websites. Available as
+          <link xlink:href="options.html#opt-networking.stevenblack.enable">networking.stevenblack</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://github.com/ellie/atuin">atuin</link>,
           a sync server for shell history. Available as
           <link linkend="opt-services.atuin.enable">services.atuin</link>.
@@ -122,6 +130,14 @@
           delete all of their local containers, images, volumes, etc, by
           running <literal>podman system reset --force</literal> once
           before upgrading their systems.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>git-bug</literal> has been updated to at least
+          version 0.8.0, which includes backwards incompatible changes.
+          The <literal>git-bug-migration</literal> package can be used
+          to upgrade existing repositories.
         </para>
       </listitem>
       <listitem>
@@ -507,6 +523,13 @@
           <link xlink:href="https://xastir.org/index.php/Main_Page">Xastir</link>
           can now access AX.25 interfaces via the
           <literal>libax25</literal> package.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>nixos-version</literal> now accepts
+          <literal>--configuration-revision</literal> to display more
+          information about the current generation revision
         </para>
       </listitem>
     </itemizedlist>
