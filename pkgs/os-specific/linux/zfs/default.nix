@@ -1,4 +1,4 @@
-{ pkgs, lib, stdenv, fetchFromGitHub
+{ pkgs, lib, stdenv, fetchFromGitHub, fetchpatch
 , autoreconfHook269, util-linux, nukeReferences, coreutils
 , perl, nixosTests
 , configFile ? "all"
@@ -52,7 +52,13 @@ let
         inherit rev sha256;
       };
 
-      patches = extraPatches;
+      patches = [
+        (fetchpatch {
+          name = "musl.patch";
+          url = "https://github.com/openzfs/zfs/commit/1f19826c9ac85835cbde61a7439d9d1fefe43a4a.patch";
+          sha256 = "XEaK227ubfOwlB2s851UvZ6xp/QOtYUWYsKTkEHzmo0=";
+        })
+      ] ++ extraPatches;
 
       postPatch = optionalString buildKernel ''
         patchShebangs scripts
@@ -234,10 +240,10 @@ in {
     # IMPORTANT: Always use a tagged release candidate or commits from the
     # zfs-<version>-staging branch, because this is tested by the OpenZFS
     # maintainers.
-    version = "2.1.8-staging-2022-12-01";
-    rev = "21bd7661334cd865d17934bebbcaf8d3356279ee";
+    version = "2.1.8-staging-2023-01-10";
+    rev = "0156253d29a303bdcca3e535958e754d8f086e33";
 
-    sha256 = "sha256-vLm6RE11nqOCoYXne79JU3nUQnVEUNbwrULwFfghWcI=";
+    sha256 = "sha256-2+vymBesmNLB3fuaCwQOojEzn3aYqtxIo35MvlwOoNw=";
 
     isUnstable = true;
   };

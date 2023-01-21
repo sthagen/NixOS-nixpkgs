@@ -295,6 +295,7 @@
   ./services/amqp/rabbitmq.nix
   ./services/audio/alsa.nix
   ./services/audio/botamusique.nix
+  ./services/audio/gmediarender.nix
   ./services/audio/hqplayerd.nix
   ./services/audio/icecast.nix
   ./services/audio/jack.nix
@@ -529,6 +530,7 @@
   ./services/mail/dovecot.nix
   ./services/mail/dspam.nix
   ./services/mail/exim.nix
+  ./services/mail/goeland.nix
   ./services/mail/listmonk.nix
   ./services/mail/maddy.nix
   ./services/mail/mail.nix
@@ -559,6 +561,7 @@
   ./services/matrix/mautrix-facebook.nix
   ./services/matrix/mautrix-telegram.nix
   ./services/matrix/mjolnir.nix
+  ./services/matrix/mx-puppet-discord.nix
   ./services/matrix/pantalaimon.nix
   ./services/matrix/synapse.nix
   ./services/misc/airsonic.nix
@@ -626,7 +629,6 @@
   ./services/misc/mediatomb.nix
   ./services/misc/metabase.nix
   ./services/misc/moonraker.nix
-  ./services/misc/mx-puppet-discord.nix
   ./services/misc/n8n.nix
   ./services/misc/nitter.nix
   ./services/misc/nix-daemon.nix
@@ -1165,6 +1167,7 @@
   ./services/web-apps/peertube.nix
   ./services/web-apps/pgpkeyserver-lite.nix
   ./services/web-apps/phylactery.nix
+  ./services/web-apps/photoprism.nix
   ./services/web-apps/pict-rs.nix
   ./services/web-apps/plantuml-server.nix
   ./services/web-apps/plausible.nix
@@ -1302,6 +1305,8 @@
   ./system/boot/systemd/shutdown.nix
   ./system/boot/systemd/tmpfiles.nix
   ./system/boot/systemd/user.nix
+  ./system/boot/systemd/userdbd.nix
+  ./system/boot/systemd/homed.nix
   ./system/boot/timesyncd.nix
   ./system/boot/tmp.nix
   ./system/boot/uvesafb.nix
