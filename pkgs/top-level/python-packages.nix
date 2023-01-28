@@ -1212,6 +1212,8 @@ self: super: with self; {
 
   bellows = callPackage ../development/python-modules/bellows { };
 
+  bencoder = callPackage ../development/python-modules/bencoder { };
+
   beniget = callPackage ../development/python-modules/beniget { };
 
   bespon = callPackage ../development/python-modules/bespon { };
@@ -2379,6 +2381,8 @@ self: super: with self; {
 
   dicom2nifti = callPackage ../development/python-modules/dicom2nifti { };
 
+  dicom-numpy = callPackage ../development/python-modules/dicom-numpy { };
+
   dict2xml = callPackage ../development/python-modules/dict2xml { };
 
   dictdiffer = callPackage ../development/python-modules/dictdiffer { };
@@ -2579,6 +2583,8 @@ self: super: with self; {
   django-js-reverse = callPackage ../development/python-modules/django-js-reverse { };
 
   django-logentry-admin = callPackage ../development/python-modules/django-logentry-admin { };
+
+  django-login-required-middleware = callPackage ../development/python-modules/django-login-required-middleware { };
 
   django-mailman3 = callPackage ../development/python-modules/django-mailman3 { };
 
@@ -2930,6 +2936,10 @@ self: super: with self; {
   editdistance-s = callPackage ../development/python-modules/editdistance-s { };
 
   editorconfig = callPackage ../development/python-modules/editorconfig { };
+
+  edlib = callPackage ../development/python-modules/edlib {
+    inherit (pkgs) edlib;
+  };
 
   edward = callPackage ../development/python-modules/edward { };
 
@@ -3652,6 +3662,8 @@ self: super: with self; {
 
   garminconnect = callPackage ../development/python-modules/garminconnect { };
 
+  gassist-text = callPackage ../development/python-modules/gassist-text { };
+
   gast = callPackage ../development/python-modules/gast { };
 
   gatt = callPackage ../development/python-modules/gatt { };
@@ -3701,6 +3713,8 @@ self: super: with self; {
   gekitchen = callPackage ../development/python-modules/gekitchen { };
 
   gemfileparser = callPackage ../development/python-modules/gemfileparser { };
+
+  gemfileparser2 = callPackage ../development/python-modules/gemfileparser2 { };
 
   genanki = callPackage ../development/python-modules/genanki { };
 
@@ -4188,6 +4202,8 @@ self: super: with self; {
   hacking = callPackage ../development/python-modules/hacking { };
 
   hdate = callPackage ../development/python-modules/hdate { };
+
+  hdf5plugin = callPackage ../development/python-modules/hdf5plugin { };
 
   ha-ffmpeg = callPackage ../development/python-modules/ha-ffmpeg { };
 
@@ -4795,9 +4811,6 @@ self: super: with self; {
 
   jaxlib-build = callPackage ../development/python-modules/jaxlib rec {
     inherit (pkgs.darwin) cctools;
-    buildBazelPackage = pkgs.buildBazelPackage.override {
-      stdenv = if stdenv.isDarwin then pkgs.darwin.apple_sdk_11_0.stdenv else stdenv;
-    };
     # Some platforms don't have `cudaSupport` defined, hence the need for 'or false'.
     cudaSupport = pkgs.config.cudaSupport or false;
     IOKit = pkgs.darwin.apple_sdk_11_0.IOKit;
@@ -5533,6 +5546,8 @@ self: super: with self; {
 
   lsassy = callPackage ../development/python-modules/lsassy { };
 
+  lsprotocol = callPackage ../development/python-modules/lsprotocol { };
+
   luddite = callPackage ../development/python-modules/luddite { };
 
   ludios_wpull = callPackage ../development/python-modules/ludios_wpull { };
@@ -5609,6 +5624,8 @@ self: super: with self; {
   makefun = callPackage ../development/python-modules/makefun { };
 
   mailsuite = callPackage ../development/python-modules/mailsuite { };
+
+  maison = callPackage ../development/python-modules/maison { };
 
   Mako = callPackage ../development/python-modules/Mako { };
 
@@ -6152,6 +6169,8 @@ self: super: with self; {
   nanoleaf = callPackage ../development/python-modules/nanoleaf { };
 
   nomadnet = callPackage ../development/python-modules/nomadnet { };
+
+  nox = callPackage ../development/python-modules/nox { };
 
   nanomsg-python = callPackage ../development/python-modules/nanomsg-python {
     inherit (pkgs) nanomsg;
@@ -8293,6 +8312,8 @@ self: super: with self; {
 
   pymediaroom = callPackage ../development/python-modules/pymediaroom { };
 
+  pymedio = callPackage ../development/python-modules/pymedio { };
+
   pymeeus = callPackage ../development/python-modules/pymeeus { };
 
   pymelcloud = callPackage ../development/python-modules/pymelcloud { };
@@ -8888,6 +8909,8 @@ self: super: with self; {
   pyte = callPackage ../development/python-modules/pyte { };
 
   pytenable = callPackage ../development/python-modules/pytenable { };
+
+  pytensor = callPackage ../development/python-modules/pytensor { };
 
   pytelegrambotapi = callPackage ../development/python-modules/pyTelegramBotAPI { };
 
@@ -10496,6 +10519,8 @@ self: super: with self; {
 
   sip_4 = callPackage ../development/python-modules/sip/4.x.nix { };
 
+  siuba = callPackage ../development/python-modules/siuba { };
+
   six = callPackage ../development/python-modules/six { };
 
   sjcl = callPackage ../development/python-modules/sjcl { };
@@ -10889,6 +10914,8 @@ self: super: with self; {
   sqlparse = callPackage ../development/python-modules/sqlparse { };
 
   sqlsoup = callPackage ../development/python-modules/sqlsoup { };
+
+  sqltrie = callPackage ../development/python-modules/sqltrie { };
 
   srp = callPackage ../development/python-modules/srp { };
 
@@ -11572,6 +11599,8 @@ self: super: with self; {
 
   trytond = callPackage ../development/python-modules/trytond { };
 
+  ttach = callPackage ../development/python-modules/ttach { };
+
   ttls = callPackage ../development/python-modules/ttls { };
 
   ttp = callPackage ../development/python-modules/ttp { };
@@ -12053,6 +12082,8 @@ self: super: with self; {
   wandb = callPackage ../development/python-modules/wandb { };
 
   warcio = callPackage ../development/python-modules/warcio { };
+
+  ward = callPackage ../development/python-modules/ward { };
 
   warlock = callPackage ../development/python-modules/warlock { };
 

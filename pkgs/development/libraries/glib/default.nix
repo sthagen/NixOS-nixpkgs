@@ -188,6 +188,9 @@ stdenv.mkDerivation (finalAttrs: {
     "-Ddevbindir=${placeholder "dev"}/bin"
   ] ++ lib.optionals (!stdenv.isDarwin) [
     "-Dman=true"                # broken on Darwin
+  ] ++ lib.optionals stdenv.isFreeBSD [
+    "-Db_lundef=false"
+    "-Dxattr=false"
   ];
 
   NIX_CFLAGS_COMPILE = toString [
@@ -253,7 +256,7 @@ stdenv.mkDerivation (finalAttrs: {
     done
   '';
 
-  checkInputs = [ tzdata desktop-file-utils shared-mime-info ];
+  nativeCheckInputs = [ tzdata desktop-file-utils shared-mime-info ];
 
   preCheck = lib.optionalString finalAttrs.doCheck or config.doCheckByDefault or false ''
     export LD_LIBRARY_PATH="$NIX_BUILD_TOP/glib-${finalAttrs.version}/glib/.libs''${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
@@ -300,7 +303,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   meta = with lib; {
     description = "C library of programming buildings blocks";
-    homepage    = "https://www.gtk.org/";
+    homepage    = "https://wiki.gnome.org/Projects/GLib";
     license     = licenses.lgpl21Plus;
     maintainers = teams.gnome.members ++ (with maintainers; [ lovek323 raskin ]);
     platforms   = platforms.unix;

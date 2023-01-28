@@ -626,7 +626,7 @@ Before and after running `make`, the hooks `preBuild` and `postBuild` are called
 
 ### The check phase {#ssec-check-phase}
 
-The check phase checks whether the package was built correctly by running its test suite. The default `checkPhase` calls `make check`, but only if the `doCheck` variable is enabled.
+The check phase checks whether the package was built correctly by running its test suite. The default `checkPhase` calls `make $checkTarget`, but only if the `doCheck` variable is enabled (see below).
 
 #### Variables controlling the check phase {#variables-controlling-the-check-phase}
 
@@ -646,7 +646,7 @@ See the [build phase](#var-stdenv-makeFlags) for details.
 
 ##### `checkTarget` {#var-stdenv-checkTarget}
 
-The make target that runs the tests. Defaults to `check`.
+The make target that runs the tests. Defaults to `check` if it exists, otherwise `test`; if neither is found, do nothing.
 
 ##### `checkFlags` / `checkFlagsArray` {#var-stdenv-checkFlags}
 
@@ -654,7 +654,11 @@ A list of strings passed as additional flags to `make`. Like `makeFlags` and `ma
 
 ##### `checkInputs` {#var-stdenv-checkInputs}
 
-A list of dependencies used by the phase. This gets included in `nativeBuildInputs` when `doCheck` is set.
+A list of host dependencies used by the phase, usually libraries linked into executables built during tests. This gets included in `buildInputs` when `doCheck` is set.
+
+##### `nativeCheckInputs` {#var-stdenv-nativeCheckInputs}
+
+A list of native dependencies used by the phase, notably tools needed on `$PATH`. This gets included in `nativeBuildInputs` when `doCheck` is set.
 
 ##### `preCheck` {#var-stdenv-preCheck}
 
@@ -821,7 +825,11 @@ A list of strings passed as additional flags to `make`. Like `makeFlags` and `ma
 
 ##### `installCheckInputs` {#var-stdenv-installCheckInputs}
 
-A list of dependencies used by the phase. This gets included in `nativeBuildInputs` when `doInstallCheck` is set.
+A list of host dependencies used by the phase, usually libraries linked into executables built during tests. This gets included in `buildInputs` when `doInstallCheck` is set.
+
+##### `nativeInstallCheckInputs` {#var-stdenv-nativeInstallCheckInputs}
+
+A list of native dependencies used by the phase, notably tools needed on `$PATH`. This gets included in `nativeBuildInputs` when `doInstallCheck` is set.
 
 ##### `preInstallCheck` {#var-stdenv-preInstallCheck}
 

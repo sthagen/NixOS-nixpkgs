@@ -211,7 +211,7 @@ let
             ''
               mkdir $out
               diskImage=$out/disk.img
-              ${qemu}/bin/qemu-img create -f qcow2 $diskImage "60M"
+              ${qemu}/bin/qemu-img create -f qcow2 $diskImage "120M"
               ${if cfg.useEFIBoot then ''
                 efiVars=$out/efi-vars.fd
                 cp ${cfg.efi.variables} $efiVars
@@ -225,7 +225,7 @@ let
                       + " -drive if=pflash,format=raw,unit=1,file=$efiVars");
         }
         ''
-          # Create a /boot EFI partition with 60M and arbitrary but fixed GUIDs for reproducibility
+          # Create a /boot EFI partition with 120M and arbitrary but fixed GUIDs for reproducibility
           ${pkgs.gptfdisk}/bin/sgdisk \
             --set-alignment=1 --new=1:34:2047 --change-name=1:BIOSBootPartition --typecode=1:ef02 \
             --set-alignment=512 --largest-new=2 --change-name=2:EFISystem --typecode=2:ef00 \
@@ -545,7 +545,8 @@ in
     virtualisation.vlans =
       mkOption {
         type = types.listOf types.ints.unsigned;
-        default = [ 1 ];
+        default = if config.virtualisation.interfaces == {} then [ 1 ] else [ ];
+        defaultText = lib.literalExpression ''if config.virtualisation.interfaces == {} then [ 1 ] else [ ]'';
         example = [ 1 2 ];
         description =
           lib.mdDoc ''
@@ -559,6 +560,35 @@ in
             in the list of VMs.
           '';
       };
+
+    virtualisation.interfaces = mkOption {
+      default = {};
+      example = {
+        enp1s0.vlan = 1;
+      };
+      description = lib.mdDoc ''
+        Network interfaces to add to the VM.
+      '';
+      type = with types; attrsOf (submodule {
+        options = {
+          vlan = mkOption {
+            type = types.ints.unsigned;
+            description = lib.mdDoc ''
+              VLAN to which the network interface is connected.
+            '';
+          };
+
+          assignIP = mkOption {
+            type = types.bool;
+            default = false;
+            description = lib.mdDoc ''
+              Automatically assign an IP address to the network interface using the same scheme as
+              virtualisation.vlans.
+            '';
+          };
+        };
+      });
+    };
 
     virtualisation.writableStore =
       mkOption {

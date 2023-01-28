@@ -63,6 +63,13 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://www.magicbug.co.uk/cloudlog/">Cloudlog</link>,
+          a web-based Amateur Radio logging application. Available as
+          <link linkend="opt-services.cloudlog.enable">services.cloudlog</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://github.com/junegunn/fzf">fzf</link>,
           a command line fuzzyfinder. Available as
           <link linkend="opt-programs.fzf.fuzzyCompletion">programs.fzf</link>.
@@ -130,6 +137,13 @@
           <link xlink:href="options.html#opt-services.photoprism.enable">services.photoprism</link>.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/languitar/autosuspend">autosuspend</link>,
+          a python daemon that suspends a system if certain conditions
+          are met, or not met.
+        </para>
+      </listitem>
     </itemizedlist>
   </section>
   <section xml:id="sec-release-23.05-incompatibilities">
@@ -144,6 +158,30 @@
           and
           <link xlink:href="https://github.com/kolloch/crate2nix">crate2nix</link>
           instead.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>checkInputs</literal> have been renamed to
+          <literal>nativeCheckInputs</literal>, because they behave the
+          same as <literal>nativeBuildInputs</literal> when
+          <literal>doCheck</literal> is set.
+          <literal>checkInputs</literal> now denote a new type of
+          dependencies, added to <literal>buildInputs</literal> when
+          <literal>doCheck</literal> is set. As a rule of thumb,
+          <literal>nativeCheckInputs</literal> are tools on
+          <literal>$PATH</literal> used during the tests, and
+          <literal>checkInputs</literal> are libraries which are linked
+          to executables built as part of the tests. Similarly,
+          <literal>installCheckInputs</literal> are renamed to
+          <literal>nativeInstallCheckInputs</literal>, corresponding to
+          <literal>nativeBuildInputs</literal>, and
+          <literal>installCheckInputs</literal> are a new type of
+          dependencies added to <literal>buildInputs</literal> when
+          <literal>doInstallCheck</literal> is set. (Note that this
+          change will not cause breakage to derivations with
+          <literal>strictDeps</literal> unset, which are most packages
+          except python, rust and go packages).
         </para>
       </listitem>
       <listitem>
@@ -247,6 +285,33 @@
       </listitem>
       <listitem>
         <para>
+          Kime has been updated from 2.5.6 to 3.0.2 and the
+          <literal>i18n.inputMethod.kime.config</literal> option has
+          been removed. Users should use
+          <literal>daemonModules</literal>,
+          <literal>iconColor</literal>, and
+          <literal>extraConfig</literal> options under
+          <literal>i18n.inputMethod.kime</literal> instead.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>tut</literal> has been updated from 1.0.34 to 2.0.0,
+          and now uses the TOML format for the configuration file
+          instead of INI. Additional information can be found
+          <link xlink:href="https://github.com/RasmusLindroth/tut/releases/tag/2.0.0">here</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>wordpress</literal> derivation no longer contains
+          any builtin plugins or themes. If you need them you have to
+          add them back to prevent your site from breaking. You can find
+          them in <literal>wordpressPackages.{plugins,themes}</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>llvmPackages_rocm.llvm</literal> will not contain
           <literal>clang</literal> or <literal>compiler-rt</literal>.
           <literal>llvmPackages_rocm.clang</literal> will not contain
@@ -254,16 +319,6 @@
           <literal>llvmPackages_rocm.clangNoCompilerRt</literal> has
           been removed in favor of using
           <literal>llvmPackages_rocm.clang-unwrapped</literal>.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          The Nginx module now validates the syntax of config files at
-          build time. For more complex configurations (using
-          <literal>include</literal> with out-of-store files notably)
-          you may need to disable this check by setting
-          <link linkend="opt-services.nginx.validateConfig">services.nginx.validateConfig</link>
-          to <literal>false</literal>.
         </para>
       </listitem>
       <listitem>
@@ -307,6 +362,17 @@
       </listitem>
       <listitem>
         <para>
+          The
+          <link linkend="opt-services.wordpress.sites._name_.plugins">services.wordpress.sites.&lt;name&gt;.plugins</link>
+          and
+          <link linkend="opt-services.wordpress.sites._name_.themes">services.wordpress.sites.&lt;name&gt;.themes</link>
+          options have been converted from sets to attribute sets to
+          allow for consumers to specify explicit install paths via
+          attribute name.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           In <literal>mastodon</literal> it is now necessary to specify
           location of file with <literal>PostgreSQL</literal> database
           password. In
@@ -314,6 +380,15 @@
           parameter default value
           <literal>/var/lib/mastodon/secrets/db-password</literal> has
           been changed to <literal>null</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>--target-host</literal> and
+          <literal>--build-host</literal> options of
+          <literal>nixos-rebuild</literal> no longer treat the
+          <literal>localhost</literal> value specially – to build
+          on/deploy to local machine, omit the relevant flag.
         </para>
       </listitem>
       <listitem>
@@ -329,6 +404,13 @@
           package has been removed in favour of direct use of its
           constitutents: <literal>xorg.libX11</literal>,
           <literal>freetype</literal> and others.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          .NET 5.0 was removed due to being end-of-life, use a newer,
+          supported .NET version -
+          https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core
         </para>
       </listitem>
     </itemizedlist>
@@ -394,6 +476,22 @@
       </listitem>
       <listitem>
         <para>
+          DocBook option documentation, which has been deprecated since
+          22.11, will now cause a warning when documentation is built.
+          Out-of-tree modules should migrate to using CommonMark
+          documentation as outlined in
+          <xref linkend="sec-option-declarations" /> to silence this
+          warning.
+        </para>
+        <para>
+          DocBook option documentation support will be removed in the
+          next release and CommonMark will become the default. DocBook
+          option documentation that has not been migrated until then
+          will no longer render properly or cause errors.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>dnsmasq</literal> service now takes configuration
           via the <literal>services.dnsmasq.settings</literal> attribute
           set. The option
@@ -442,6 +540,17 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>ghcWithPackages</literal> and
+          <literal>ghcWithHoogle</literal> wrappers will now also
+          symlink GHC’s and all included libraries’ documentation to
+          <literal>$out/share/doc</literal> for convenience. If
+          undesired, the old behavior can be restored by overriding the
+          builders with
+          <literal>{ installDocumentation = false; }</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>mastodon</literal> now supports connection to a
           remote <literal>PostgreSQL</literal> database.
         </para>
@@ -471,6 +580,13 @@
           <literal>services.chronyd</literal> is now started with
           additional systemd sandbox/hardening options for better
           security.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>services.dhcpcd</literal> service now don’t solicit
+          or accept IPv6 Router Advertisements on interfaces that use
+          static IPv6 addresses.
         </para>
       </listitem>
       <listitem>
@@ -648,6 +764,15 @@
           The option
           <literal>services.nomad.extraSettingsPlugins</literal> has
           been fixed to allow more than one plugin in the path.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          A new option was added to the virtualisation module that
+          enables specifying explicitly named network interfaces in QEMU
+          VMs. The existing <literal>virtualisation.vlans</literal> is
+          still supported for cases where the name of the network
+          interface is irrelevant.
         </para>
       </listitem>
     </itemizedlist>
