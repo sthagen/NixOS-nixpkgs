@@ -68,12 +68,15 @@ let
 
   sources = lib.sourceFilesBySuffices ./. [".xml"];
 
-  modulesDoc = builtins.toFile "modules.xml" ''
-    <section xmlns:xi="http://www.w3.org/2001/XInclude" id="modules">
-    ${(lib.concatMapStrings (path: ''
-      <xi:include href="${path}" />
-    '') (lib.catAttrs "value" config.meta.doc))}
-    </section>
+  modulesDoc = runCommand "modules.xml" {
+    nativeBuildInputs = [ pkgs.nixos-render-docs ];
+  } ''
+    nixos-render-docs manual docbook \
+      --manpage-urls ${pkgs.path + "/doc/manpage-urls.json"} \
+      "$out" \
+      --section \
+        --section-id modules \
+        --chapters ${lib.concatMapStrings (p: "${p.value} ") config.meta.doc}
   '';
 
   generatedSources = runCommand "generated-docbook" {} ''
@@ -251,12 +254,17 @@ in rec {
   # Generate the NixOS manpages.
   manpages = runCommand "nixos-manpages"
     { inherit sources;
-      nativeBuildInputs = [ buildPackages.libxml2.bin buildPackages.libxslt.bin ];
+      nativeBuildInputs = [
+        buildPackages.libxml2.bin
+        buildPackages.libxslt.bin
+        buildPackages.installShellFiles
+      ];
       allowedReferences = ["out"];
     }
     ''
       # Generate manpages.
-      mkdir -p $out/share/man
+      mkdir -p $out/share/man/man8
+      installManPage ${./manpages}/*
       xsltproc --nonet \
         --maxdepth 6000 \
         --param man.output.in.separate.dir 1 \

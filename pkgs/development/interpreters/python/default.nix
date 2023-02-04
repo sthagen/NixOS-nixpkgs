@@ -36,8 +36,12 @@
             stdenv
           ];
           providesSetupHook = lib.attrByPath [ "provides" "setupHook"] false;
-          valid = value: !((lib.isDerivation value) && !((pythonPackages.hasPythonModule value) || (providesSetupHook value))) || (lib.elem value exceptions);
-          func = name: value: if (valid value) then value else throw "${name} should use `buildPythonPackage` or `toPythonModule` if it is to be part of the Python packages set.";
+          valid = value: pythonPackages.hasPythonModule value || providesSetupHook value || lib.elem value exceptions;
+          func = name: value:
+            if lib.isDerivation value then
+              lib.extendDerivation (valid value || throw "${name} should use `buildPythonPackage` or `toPythonModule` if it is to be part of the Python packages set.") {} value
+            else
+              value;
         in lib.mapAttrs func items;
       in ensurePythonModules (callPackage
         # Function that when called
@@ -308,8 +312,8 @@ in {
     inherit passthruFun;
   };
 
-  rustpython = callPackage ./rustpython/default.nix {
-    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
+  rustpython = darwin.apple_sdk_11_0.callPackage ./rustpython/default.nix {
+    inherit (darwin.apple_sdk_11_0.frameworks) SystemConfiguration;
   };
 
 })
