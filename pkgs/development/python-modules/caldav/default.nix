@@ -14,13 +14,15 @@
 
 buildPythonPackage rec {
   pname = "caldav";
-  version = "1.0.1";
+  version = "1.1.3";
+
+  format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "python-caldav";
     repo = pname;
     rev = "refs/tags/v${version}";
-    hash = "sha256-1BGy4h0TpeiUNtUnj/BiGSfH4T9YXP8YGJ1+4UsRGug=";
+    hash = "sha256-ZilsCYr1M2WKSz/g5JV41JVsuHopPerxOevoG7FrEjQ=";
   };
 
   propagatedBuildInputs = [
