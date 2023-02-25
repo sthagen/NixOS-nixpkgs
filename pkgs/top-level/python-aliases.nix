@@ -85,6 +85,7 @@ mapAliases ({
   filemagic = throw "inactive since 2014, so use python-magic instead"; # added 2022-11-19
   flaskbabel = flask-babel; # added 2023-01-19
   flask_login = flask-login; # added 2022-10-17
+  flask-restplus = throw "flask-restplus is no longer maintained, use flask-restx instead"; # added 2023-02-21
   flask_sqlalchemy = flask-sqlalchemy; # added 2022-07-20
   flask_testing = flask-testing; # added 2022-04-25
   flask_wtf = flask-wtf; # added 2022-05-24
@@ -123,6 +124,7 @@ mapAliases ({
   logilab_common = logilab-common; # added 2022-11-21
   loo-py = loopy; # added 2022-05-03
   Markups = markups; # added 2022-02-14
+  MDP = mdp; # added 2023-02-24
   MechanicalSoup = mechanicalsoup; # added 2021-06-01
   memcached = python-memcached; # added 2022-05-06
   mailman = throw "Please use pkgs.mailman"; # added 2022-04-29

@@ -386,6 +386,8 @@ with pkgs;
 
   catppuccin-kde = callPackage ../data/themes/catppuccin-kde { };
 
+  catppuccin-papirus-folders = callPackage ../data/icons/catppuccin-papirus-folders { };
+
   btdu = callPackage ../tools/misc/btdu { };
 
   ccal = callPackage ../tools/misc/ccal { };
@@ -8771,6 +8773,8 @@ with pkgs;
 
   kakoune-cr = callPackage ../tools/misc/kakoune-cr { crystal = crystal_1_2; };
 
+  kaniko = callPackage ../applications/networking/cluster/kaniko { };
+
   katana = callPackage ../tools/security/katana { };
 
   katriawm = callPackage ../applications/window-managers/katriawm { };
@@ -8778,7 +8782,7 @@ with pkgs;
   kbdd = callPackage ../applications/window-managers/kbdd { };
 
   kbs2 = callPackage ../tools/security/kbs2 {
-    inherit (darwin.apple_sdk.frameworks) AppKit;
+    inherit (darwin.apple_sdk.frameworks) AppKit SystemConfiguration;
   };
 
   kdash = callPackage ../development/tools/kdash {
@@ -10140,6 +10144,8 @@ with pkgs;
 
   nextcloud-news-updater = callPackage ../servers/nextcloud/news-updater.nix { };
 
+  nextcloud-notify_push = callPackage ../servers/nextcloud/notify_push.nix { };
+
   ndstool = callPackage ../tools/archivers/ndstool { };
 
   nfs-ganesha = callPackage ../servers/nfs-ganesha { };
@@ -10909,8 +10915,6 @@ with pkgs;
   phockup = callPackage ../applications/misc/phockup { };
 
   phodav = callPackage ../tools/networking/phodav { };
-
-  phodav_2_0 = callPackage ../tools/networking/phodav/2.0.nix { };
 
   photon-rss = callPackage ../applications/networking/feedreaders/photon { };
 
@@ -12908,6 +12912,8 @@ with pkgs;
   uair = callPackage ../tools/misc/uair { };
 
   ubidump = python3Packages.callPackage ../tools/filesystems/ubidump { };
+
+  ubi_reader = callPackage ../tools/filesystems/ubi_reader { };
 
   ubridge = callPackage ../tools/networking/ubridge { };
 
@@ -17179,7 +17185,8 @@ with pkgs;
     electron_19
     electron_20
     electron_21
-    electron_22;
+    electron_22
+    electron_23;
 
   autobuild = callPackage ../development/tools/misc/autobuild { };
 
@@ -20606,6 +20613,8 @@ with pkgs;
 
   jbigkit = callPackage ../development/libraries/jbigkit { };
 
+  jefferson = callPackage ../tools/filesystems/jefferson { };
+
   jemalloc = callPackage ../development/libraries/jemalloc { };
 
   jose = callPackage ../development/libraries/jose { };
@@ -22252,8 +22261,8 @@ with pkgs;
 
   micropython = callPackage ../development/interpreters/micropython { };
 
-  MIDIVisualizer = callPackage ../applications/audio/midi-visualizer {
-    inherit (darwin.apple_sdk.frameworks) AppKit Cocoa Carbon CoreAudio CoreMIDI CoreServices Kernel;
+  MIDIVisualizer = darwin.apple_sdk_11_0.callPackage ../applications/audio/midi-visualizer {
+    inherit (darwin.apple_sdk_11_0.frameworks) AppKit Cocoa Carbon CoreAudio CoreMIDI CoreServices Kernel;
   };
 
   mimalloc = callPackage ../development/libraries/mimalloc { };
@@ -23411,8 +23420,6 @@ with pkgs;
 
   spice-gtk = callPackage ../development/libraries/spice-gtk { };
 
-  spice-gtk_libsoup2 = spice-gtk.override { withLibsoup2 = true; };
-
   spice-protocol = callPackage ../development/libraries/spice-protocol { };
 
   spice-up = callPackage ../applications/office/spice-up { };
@@ -24252,6 +24259,8 @@ with pkgs;
   ### SERVERS
 
   _389-ds-base = callPackage ../servers/ldap/389 { };
+
+  _5etools = callPackage ../servers/web-apps/5etools {};
 
   adguardhome = callPackage ../servers/adguardhome {};
 
@@ -27039,6 +27048,8 @@ with pkgs;
   bakoma_ttf = callPackage ../data/fonts/bakoma-ttf { };
 
   barlow = callPackage ../data/fonts/barlow { };
+
+  base16-schemes = callPackage ../data/themes/base16-schemes { };
 
   bgnet = callPackage ../data/documentation/bgnet { };
 
@@ -30967,7 +30978,7 @@ with pkgs;
 
   kubernetes-helm-wrapped = wrapHelm kubernetes-helm {};
 
-  kubernetes-helmPlugins = dontRecurseIntoAttrs (callPackage ../applications/networking/cluster/helm/plugins { });
+  kubernetes-helmPlugins = recurseIntoAttrs (callPackage ../applications/networking/cluster/helm/plugins { });
 
   chart-testing = callPackage ../applications/networking/cluster/helm/chart-testing { };
 
@@ -35889,7 +35900,6 @@ with pkgs;
   };
 
   tengine = callPackage ../servers/http/tengine {
-    openssl = openssl_1_1;
     modules = with nginxModules; [ rtmp dav moreheaders modsecurity ];
   };
 
