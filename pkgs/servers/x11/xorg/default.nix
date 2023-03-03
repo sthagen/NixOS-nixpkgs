@@ -696,11 +696,11 @@ self: with self; {
   # THIS IS A GENERATED FILE.  DO NOT EDIT!
   fontutil = callPackage ({ stdenv, pkg-config, fetchurl }: stdenv.mkDerivation {
     pname = "font-util";
-    version = "1.3.1";
+    version = "1.3.3";
     builder = ./builder.sh;
     src = fetchurl {
-      url = "mirror://xorg/individual/font/font-util-1.3.1.tar.bz2";
-      sha256 = "08drjb6cf84pf5ysghjpb4i7xkd2p86k3wl2a0jxs1jif6qbszma";
+      url = "mirror://xorg/individual/font/font-util-1.3.3.tar.xz";
+      sha256 = "1lpb5qd2drilql4wl644m682hvmv67hdbbisnrm0ah4wfy8ci4g7";
     };
     hardeningDisable = [ "bindnow" "relro" ];
     strictDeps = true;
@@ -892,11 +892,11 @@ self: with self; {
   # THIS IS A GENERATED FILE.  DO NOT EDIT!
   libX11 = callPackage ({ stdenv, pkg-config, fetchurl, xorgproto, libpthreadstubs, libxcb, xtrans }: stdenv.mkDerivation {
     pname = "libX11";
-    version = "1.8.3";
+    version = "1.8.4";
     builder = ./builder.sh;
     src = fetchurl {
-      url = "mirror://xorg/individual/lib/libX11-1.8.3.tar.xz";
-      sha256 = "1gc5cnfys48m1y9y1cidph89fww5c209qff93phbidh68346a5g3";
+      url = "mirror://xorg/individual/lib/libX11-1.8.4.tar.xz";
+      sha256 = "sha256-yaKHpa76mATOPPr89Rb+lu0/fo5FwOLuWehMhnV99Rg=";
     };
     hardeningDisable = [ "bindnow" "relro" ];
     strictDeps = true;
@@ -3322,18 +3322,18 @@ self: with self; {
   }) {};
 
   # THIS IS A GENERATED FILE.  DO NOT EDIT!
-  xorgserver = callPackage ({ stdenv, pkg-config, fetchurl, xorgproto, openssl, libX11, libXau, libXaw, libxcb, xcbutil, xcbutilwm, xcbutilimage, xcbutilkeysyms, xcbutilrenderutil, libXdmcp, libXfixes, libxkbfile, libXmu, libXpm, libXrender, libXres, libXt }: stdenv.mkDerivation {
+  xorgserver = callPackage ({ stdenv, pkg-config, fetchurl, xorgproto, openssl, libX11, libXau, libxcb, xcbutil, xcbutilwm, xcbutilimage, xcbutilkeysyms, xcbutilrenderutil, libXdmcp, libXfixes, libxkbfile }: stdenv.mkDerivation {
     pname = "xorg-server";
-    version = "1.20.14";
+    version = "21.1.7";
     builder = ./builder.sh;
     src = fetchurl {
-      url = "mirror://xorg/individual/xserver/xorg-server-1.20.14.tar.xz";
-      sha256 = "0sx18vsxr0dg9z7b9ph1gz6q4pmxc1n6b4sbb7i47578kc5vgiaw";
+      url = "mirror://xorg/individual/xserver/xorg-server-21.1.7.tar.xz";
+      sha256 = "sha256-2cYLLdDsUjJspqsg2w5JCx/09Wb1nKdC1lMuknlYd7s=";
     };
     hardeningDisable = [ "bindnow" "relro" ];
     strictDeps = true;
     nativeBuildInputs = [ pkg-config ];
-    buildInputs = [ xorgproto openssl libX11 libXau libXaw libxcb xcbutil xcbutilwm xcbutilimage xcbutilkeysyms xcbutilrenderutil libXdmcp libXfixes libxkbfile libXmu libXpm libXrender libXres libXt ];
+    buildInputs = [ xorgproto openssl libX11 libXau libxcb xcbutil xcbutilwm xcbutilimage xcbutilkeysyms xcbutilrenderutil libXdmcp libXfixes libxkbfile ];
     meta.platforms = lib.platforms.unix;
   }) {};
 
