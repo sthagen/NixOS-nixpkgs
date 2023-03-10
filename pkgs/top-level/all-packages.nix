@@ -2990,6 +2990,8 @@ with pkgs;
     electron = electron_13;
   };
 
+  biscuit-cli = callPackage ../tools/security/biscuit-cli { };
+
   bitwarden = callPackage ../tools/security/bitwarden { };
 
   inherit (nodePackages) bitwarden-cli;
@@ -3034,6 +3036,8 @@ with pkgs;
   buildbot-worker = with python3Packages; toPythonApplication buildbot-worker;
 
   bunyan-rs = callPackage ../development/tools/bunyan-rs { };
+
+  calcure = callPackage ../applications/misc/calcure { };
 
   callaudiod = callPackage ../applications/audio/callaudiod { };
 
@@ -3842,7 +3846,6 @@ with pkgs;
 
   bookstack = callPackage ../servers/web-apps/bookstack { };
 
-  # Upstream recommends qt5.12 and it doesn't build with qt5.15
   boomerang = libsForQt5.callPackage ../development/tools/boomerang { };
 
   boost-build = callPackage ../development/tools/boost-build { };
@@ -4186,6 +4189,8 @@ with pkgs;
   swayimg = callPackage ../tools/wayland/swayimg { };
 
   swaytools = python3Packages.callPackage ../tools/wayland/swaytools { };
+
+  swww = callPackage ../tools/wayland/swww { };
 
   wayland-utils = callPackage ../tools/wayland/wayland-utils { };
 
@@ -5299,6 +5304,8 @@ with pkgs;
 
   mpd-mpris = callPackage ../tools/audio/mpd-mpris { };
 
+  mpd-sima = python3Packages.callPackage ../tools/audio/mpd-sima { };
+
   mpris-scrobbler = callPackage ../tools/audio/mpris-scrobbler { };
 
   mq-cli = callPackage ../tools/system/mq-cli { };
@@ -5312,6 +5319,8 @@ with pkgs;
   n2n = callPackage ../tools/networking/n2n { };
 
   nextdns = callPackage ../applications/networking/nextdns { };
+
+  nexttrace = callPackage ../tools/networking/nexttrace { };
 
   ngadmin = callPackage ../applications/networking/ngadmin { };
 
@@ -9409,6 +9418,8 @@ with pkgs;
 
   lcdf-typetools = callPackage ../tools/misc/lcdf-typetools { };
 
+  ldapdomaindump = with python3Packages; toPythonApplication ldapdomaindump;
+
   ldapmonitor = callPackage ../tools/security/ldapmonitor { };
 
   ldapnomnom = callPackage ../tools/security/ldapnomnom { };
@@ -11665,6 +11676,8 @@ with pkgs;
     inherit (python3Packages) sphinx;
   };
 
+  rmw = callPackage ../tools/misc/rmw { };
+
   rng-tools = callPackage ../tools/security/rng-tools { };
 
   rnnoise = callPackage ../development/libraries/rnnoise { };
@@ -13589,6 +13602,10 @@ with pkgs;
   };
 
   veryfasttree = callPackage ../applications/science/biology/veryfasttree { };
+
+  viceroy = callPackage ../development/tools/viceroy {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   vlan = callPackage ../tools/networking/vlan { };
 
@@ -15575,7 +15592,7 @@ with pkgs;
   ocsigen-i18n = callPackage ../development/tools/ocaml/ocsigen-i18n { };
 
   opa = callPackage ../development/compilers/opa {
-    ocamlPackages = ocaml-ng.ocamlPackages_4_05;
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14_unsafe_string;
   };
 
   opaline = callPackage ../development/tools/ocaml/opaline { };
@@ -18002,6 +18019,8 @@ with pkgs;
   flex_2_5_35 = callPackage ../development/tools/parsing/flex/2.5.35.nix { };
   flex = callPackage ../development/tools/parsing/flex { };
 
+  re-flex = callPackage ../development/tools/parsing/re-flex { };
+
   flexibee = callPackage ../applications/office/flexibee { };
 
   flexcpp = callPackage ../development/tools/parsing/flexc++ { };
@@ -18051,6 +18070,8 @@ with pkgs;
 
   gnumake = callPackage ../development/tools/build-managers/gnumake { };
   gnumake42 = callPackage ../development/tools/build-managers/gnumake/4.2 { };
+
+  go-licenses = callPackage ../development/tools/misc/go-licenses  { };
 
   gob2 = callPackage ../development/tools/misc/gob2 { };
 
@@ -18448,6 +18469,10 @@ with pkgs;
   omniorb = callPackage ../development/tools/omniorb { };
 
   openai = with python3Packages; toPythonApplication openai;
+
+  openai-full = with python3Packages; toPythonApplication (openai.override {
+   withOptionalDependencies = true;
+  });
 
   openai-whisper = with python3.pkgs; toPythonApplication openai-whisper;
 
@@ -21857,6 +21882,8 @@ with pkgs;
 
   libqt5pas = libsForQt5.callPackage ../development/compilers/fpc/libqt5pas.nix { };
 
+  librclone = callPackage ../development/libraries/librclone { };
+
   libroxml = callPackage ../development/libraries/libroxml { };
 
   librsvg = callPackage ../development/libraries/librsvg {
@@ -23030,12 +23057,11 @@ with pkgs;
 
   qt5 = recurseIntoAttrs (makeOverridable
     (import ../development/libraries/qt-5/5.15) {
-      inherit newScope;
-      inherit lib fetchurl fetchpatch fetchgit fetchFromGitHub makeSetupHook makeWrapper;
-      inherit bison cups dconf harfbuzz libGL perl gtk3 python3;
-      inherit (gst_all_1) gstreamer gst-plugins-base;
-      inherit darwin;
-      inherit buildPackages;
+      inherit (__splicedPackages)
+        makeScopeWithSplicing generateSplicesForMkScope lib fetchurl fetchpatch fetchgit fetchFromGitHub makeSetupHook makeWrapper
+        bison cups dconf harfbuzz libGL perl gtk3 python3
+        darwin buildPackages;
+      inherit (__splicedPackages.gst_all_1) gstreamer gst-plugins-base;
       stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
     });
 
@@ -23045,7 +23071,7 @@ with pkgs;
 
   # TODO: remove once no package needs this anymore or together with OpenSSL 1.1
   # Current users: mumble, murmur
-  qt5_openssl_1_1 = qt5.overrideScope' (_: super: {
+  qt5_openssl_1_1 = qt5.overrideScope (_: super: {
     qtbase = super.qtbase.override {
       openssl = openssl_1_1;
       libmysqlclient = libmysqlclient.override {
@@ -26614,6 +26640,8 @@ with pkgs;
 
   gotestsum = callPackage ../development/tools/gotestsum { };
 
+  gqlgenc = callPackage ../development/tools/gqlgenc { };
+
   impl = callPackage ../development/tools/impl { };
 
   moq = callPackage ../development/tools/moq { };
@@ -28871,6 +28899,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon;
   };
 
+  celeste = callPackage ../applications/networking/sync/celeste { };
+
   cyan = callPackage ../applications/graphics/cyan {};
 
   cyanrip = callPackage ../applications/audio/cyanrip { };
@@ -30111,6 +30141,8 @@ with pkgs;
 
   linssid = libsForQt5.callPackage ../applications/networking/linssid { };
 
+  linvstmanager = qt5.callPackage ../applications/audio/linvstmanager { };
+
   deadd-notification-center = callPackage ../applications/misc/deadd-notification-center { };
 
   lollypop = callPackage ../applications/audio/lollypop { };
@@ -30656,9 +30688,7 @@ with pkgs;
 
   i3-wk-switch = callPackage ../applications/window-managers/i3/wk-switch.nix { };
 
-  waybox = callPackage ../applications/window-managers/waybox {
-    wlroots = wlroots_0_14;
-  };
+  waybox = callPackage ../applications/window-managers/waybox { };
 
   workstyle = callPackage ../applications/window-managers/i3/workstyle.nix { };
 
@@ -31018,6 +31048,8 @@ with pkgs;
 
   kpt = callPackage ../applications/networking/cluster/kpt { };
 
+  krabby = callPackage ../applications/misc/krabby { };
+
   krane = callPackage ../applications/networking/cluster/krane { };
 
   krita = libsForQt5.callPackage ../applications/graphics/krita { };
@@ -31207,7 +31239,7 @@ with pkgs;
 
   libreoffice = hiPrio libreoffice-still;
 
-  libreoffice-unwrapped = (hiPrio libreoffice-still).libreoffice;
+  libreoffice-unwrapped = libreoffice.unwrapped;
 
   libreoffice-args = {
     inherit (perlPackages) ArchiveZip IOCompress;
@@ -31228,7 +31260,7 @@ with pkgs;
   };
 
   libreoffice-qt = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    libreoffice = libsForQt5.callPackage ../applications/office/libreoffice
+    unwrapped = libsForQt5.callPackage ../applications/office/libreoffice
       (libreoffice-args // {
         kdeIntegration = true;
         variant = "fresh";
@@ -31236,20 +31268,20 @@ with pkgs;
   });
 
   libreoffice-fresh = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    libreoffice = callPackage ../applications/office/libreoffice
+    unwrapped = callPackage ../applications/office/libreoffice
       (libreoffice-args // {
         variant = "fresh";
       });
   });
-  libreoffice-fresh-unwrapped = libreoffice-fresh.libreoffice;
+  libreoffice-fresh-unwrapped = libreoffice-fresh.unwrapped;
 
   libreoffice-still = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    libreoffice = callPackage ../applications/office/libreoffice
+    unwrapped = callPackage ../applications/office/libreoffice
       (libreoffice-args // {
         variant = "still";
       });
   });
-  libreoffice-still-unwrapped = libreoffice-still.libreoffice;
+  libreoffice-still-unwrapped = libreoffice-still.unwrapped;
 
   libresprite = callPackage ../applications/editors/libresprite {
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa Foundation;
@@ -31786,6 +31818,7 @@ with pkgs;
     simple-mpv-webui = callPackage ../applications/video/mpv/scripts/simple-mpv-webui.nix {};
     sponsorblock = callPackage ../applications/video/mpv/scripts/sponsorblock.nix {};
     thumbnail = callPackage ../applications/video/mpv/scripts/thumbnail.nix { };
+    uosc = callPackage ../applications/video/mpv/scripts/uosc.nix { };
     vr-reversal = callPackage ../applications/video/mpv/scripts/vr-reversal.nix {};
     webtorrent-mpv-hook = callPackage ../applications/video/mpv/scripts/webtorrent-mpv-hook.nix { };
     youtube-quality = callPackage ../applications/video/mpv/scripts/youtube-quality.nix { };
@@ -34617,6 +34650,10 @@ with pkgs;
 
   youtube-music = callPackage ../applications/audio/youtube-music { };
 
+  youtube-tui = callPackage ../applications/video/youtube-tui {
+    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
+  };
+
   youki = callPackage ../applications/virtualization/youki { };
 
   yt-dlp = with python3Packages; toPythonApplication yt-dlp;
@@ -35080,6 +35117,8 @@ with pkgs;
   julius = callPackage ../games/julius { };
 
   jumpnbump = callPackage ../games/jumpnbump { };
+
+  katawa-shoujo = callPackage ../games/katawa-shoujo { };
 
   keeperrl = callPackage ../games/keeperrl { };
 
@@ -37256,7 +37295,7 @@ with pkgs;
     jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
   tlaps = callPackage ../applications/science/logic/tlaplus/tlaps.nix {
-    inherit (ocaml-ng.ocamlPackages_4_05) ocaml;
+    inherit (ocaml-ng.ocamlPackages_4_14_unsafe_string) ocaml;
   };
   tlaplusToolbox = callPackage ../applications/science/logic/tlaplus/toolbox.nix {};
 

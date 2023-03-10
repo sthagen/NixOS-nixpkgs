@@ -2,12 +2,14 @@
 
 self:
 let
-  inherit (pkgs) callPackage;
+  inherit (self) callPackage;
 in
 {
   agda-input = callPackage ./manual-packages/agda-input { };
 
   agda2-mode = callPackage ./manual-packages/agda2-mode { };
+
+  bqn-mode = callPackage ./manual-packages/bqn-mode { };
 
   cask = callPackage ./manual-packages/cask { };
 

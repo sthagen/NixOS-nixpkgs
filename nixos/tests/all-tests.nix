@@ -137,6 +137,7 @@ in {
   cntr = handleTestOn ["aarch64-linux" "x86_64-linux"] ./cntr.nix {};
   cockpit = handleTest ./cockpit.nix {};
   cockroachdb = handleTestOn ["x86_64-linux"] ./cockroachdb.nix {};
+  coder = handleTest ./coder.nix {};
   collectd = handleTest ./collectd.nix {};
   connman = handleTest ./connman.nix {};
   consul = handleTest ./consul.nix {};
@@ -238,6 +239,7 @@ in {
   ft2-clone = handleTest ./ft2-clone.nix {};
   mimir = handleTest ./mimir.nix {};
   garage = handleTest ./garage {};
+  gemstash = handleTest ./gemstash.nix {};
   gerrit = handleTest ./gerrit.nix {};
   geth = handleTest ./geth.nix {};
   ghostunnel = handleTest ./ghostunnel.nix {};
