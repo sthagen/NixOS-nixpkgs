@@ -483,7 +483,7 @@ let
     };
     ffmpeg-avdevice = callPackage ../development/ocaml-modules/ffmpeg/ffmpeg-avdevice.nix {
       inherit (pkgs) ffmpeg;
-      inherit (pkgs.darwin.apple_sdk.frameworks) AppKit AudioToolbox Cocoa CoreImage ForceFeedback OpenGL VideoToolbox;
+      inherit (pkgs.darwin.apple_sdk.frameworks) AppKit AudioToolbox AVFoundation Cocoa CoreImage ForceFeedback OpenGL VideoToolbox;
     };
 
     fiber = callPackage ../development/ocaml-modules/fiber { };
@@ -568,6 +568,8 @@ let
     hmap = callPackage ../development/ocaml-modules/hmap { };
 
     hpack = callPackage ../development/ocaml-modules/hpack { };
+
+    http-mirage-client = callPackage ../development/ocaml-modules/http-mirage-client { };
 
     hxd = callPackage ../development/ocaml-modules/hxd { };
 
@@ -754,6 +756,8 @@ let
     letsencrypt-app = callPackage ../development/ocaml-modules/letsencrypt/app.nix { };
 
     letsencrypt-dns = callPackage ../development/ocaml-modules/letsencrypt/dns.nix { };
+
+    letsencrypt-mirage = callPackage ../development/ocaml-modules/letsencrypt/mirage.nix { };
 
     lilv = callPackage ../development/ocaml-modules/lilv {
       inherit (pkgs) lilv;

@@ -4784,6 +4784,8 @@ self: super: with self; {
 
   ipwhl = callPackage ../development/python-modules/ipwhl { };
 
+  ipwhois = callPackage ../development/python-modules/ipwhois { };
+
   ipy = callPackage ../development/python-modules/IPy { };
 
   ipydatawidgets = callPackage ../development/python-modules/ipydatawidgets { };
@@ -5545,6 +5547,8 @@ self: super: with self; {
   limnoria = callPackage ../development/python-modules/limnoria { };
 
   linecache2 = callPackage ../development/python-modules/linecache2 { };
+
+  lineedit = callPackage ../development/python-modules/lineedit { };
 
   line_profiler = callPackage ../development/python-modules/line_profiler { };
 
@@ -9933,6 +9937,8 @@ self: super: with self; {
     radicale = pkgs.radicale.override { python3 = python; };
   };
 
+  radian = callPackage ../development/python-modules/radian { };
+
   radio_beam = callPackage ../development/python-modules/radio_beam { };
 
   radios = callPackage ../development/python-modules/radios { };
@@ -9978,6 +9984,8 @@ self: super: with self; {
   ray = callPackage ../development/python-modules/ray { redis = pkgs.redis; };
 
   rbtools = callPackage ../development/python-modules/rbtools { };
+
+  rchitect = callPackage ../development/python-modules/rchitect { };
 
   rcssmin = callPackage ../development/python-modules/rcssmin { };
 
