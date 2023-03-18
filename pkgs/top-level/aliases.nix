@@ -1439,7 +1439,8 @@ mapAliases ({
   smugline = throw "smugline has been removed from nixpkgs, as it's unmaintained and depends on deprecated libraries"; # Added 2020-11-04
   snack = throw "snack has been removed: broken for 5+ years"; # Added 2022-04-21
   soldat-unstable = opensoldat; # Added 2022-07-02
-  solr_8 = solr; # Added 2021-01-30
+  solr_8 = throw "'solr' has been removed from nixpkgs, as it was broken and unmaintained"; # Added 2023-03-16
+  solr = throw "'solr' has been removed from nixpkgs, as it was broken and unmaintained"; # Added 2023-03-16
 
   # Added 2020-02-10
   sourceHanSansPackages = {
@@ -1552,6 +1553,7 @@ mapAliases ({
   timescale-prometheus = promscale; # Added 2020-09-29
   timedoctor = throw "'timedoctor' has been removed from nixpkgs"; # Added 2022-10-09
   timetable = throw "timetable has been removed, as the upstream project has been abandoned"; # Added 2021-09-05
+  tixati = throw "'tixati' has been removed from nixpkgs as it is unfree and unmaintained"; # Added 2023-03-17
   tkcvs = tkrev; # Added 2022-03-07
   togglesg-download = throw "togglesg-download was removed 2021-04-30 as it's unmaintained"; # Added 2021-04-30
   tokodon = plasma5Packages.tokodon;
