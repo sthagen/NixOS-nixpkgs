@@ -404,6 +404,8 @@ with pkgs;
 
   chatgpt-cli = callPackage ../tools/misc/chatgpt-cli { };
 
+  chatgpt-retrieval-plugin = callPackage ../servers/chatgpt-retrieval-plugin { };
+
   checkov = callPackage ../development/tools/analysis/checkov {
     python3 = python311;
   };
@@ -3295,6 +3297,8 @@ with pkgs;
   galaxy-buds-client = callPackage ../applications/audio/galaxy-buds-client { };
 
   gamecube-tools = callPackage ../development/tools/gamecube-tools { };
+
+  gammaray = libsForQt5.callPackage ../development/tools/gammaray { };
 
   gams = callPackage ../tools/misc/gams (config.gams or {});
 
@@ -11184,6 +11188,8 @@ with pkgs;
 
   podman-tui = callPackage ../applications/virtualization/podman-tui { };
 
+  podman-desktop = callPackage ../applications/virtualization/podman-desktop {};
+
   pods = callPackage ../applications/virtualization/pods { };
 
   pod2mdoc = callPackage ../tools/misc/pod2mdoc { };
@@ -12820,6 +12826,10 @@ with pkgs;
   tmuxinator = callPackage ../tools/misc/tmuxinator { };
 
   tmux-mem-cpu-load = callPackage ../tools/misc/tmux-mem-cpu-load { };
+
+  tmux-sessionizer = callPackage ../tools/misc/tmux-sessionizer {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   tmux-xpanes = callPackage ../tools/misc/tmux-xpanes { };
 
@@ -17075,7 +17085,9 @@ with pkgs;
 
   ### DEVELOPMENT / MISC
 
-  h3 = callPackage ../development/misc/h3 { };
+  inherit (callPackage ../development/misc/h3 { }) h3_3 h3_4;
+
+  h3 = h3_3;
 
   amtk = callPackage ../development/libraries/amtk { };
 
@@ -23397,6 +23409,10 @@ with pkgs;
 
   rustc-demangle = callPackage ../development/libraries/rustc-demangle { };
 
+  rustls-ffi = callPackage ../development/libraries/rustls-ffi {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   s2geometry = callPackage ../development/libraries/s2geometry { };
 
   /*  This package references ghc844, which we no longer have. Unfortunately, I
@@ -24569,7 +24585,9 @@ with pkgs;
 
   apache-directory-server = callPackage ../servers/ldap/apache-directory-server { };
 
-  apacheHttpd_2_4 = callPackage ../servers/http/apache-httpd/2.4.nix { };
+  apacheHttpd_2_4 = callPackage ../servers/http/apache-httpd/2.4.nix {
+    inherit (darwin.apple_sdk.frameworks) Foundation;
+  };
   apacheHttpd = apacheHttpd_2_4;
 
   apacheHttpdPackagesFor = apacheHttpd: self: let callPackage = newScope self; in {
@@ -36126,6 +36144,8 @@ with pkgs;
 
   raylib-games = callPackage ../games/raylib-games { };
 
+  raycast = callPackage ../os-specific/darwin/raycast { };
+
   redeclipse = callPackage ../games/redeclipse { };
 
   rftg = callPackage ../games/rftg { };
@@ -39731,4 +39751,6 @@ with pkgs;
   duden = callPackage ../applications/misc/duden { };
 
   zf = callPackage ../tools/misc/zf { };
+
+  isolate = callPackage ../tools/security/isolate { };
 }
