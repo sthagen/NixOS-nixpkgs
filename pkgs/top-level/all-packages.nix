@@ -246,6 +246,8 @@ with pkgs;
     python3 = python39;
   };
 
+  ariang = callPackage ../servers/ariang { };
+
   mov-cli = callPackage ../applications/video/mov-cli { };
 
   ani-cli = callPackage ../applications/video/ani-cli { };
@@ -6912,6 +6914,8 @@ with pkgs;
 
   edk2-uefi-shell = callPackage ../tools/misc/edk2-uefi-shell { };
 
+  edl = callPackage ../development/embedded/edl { };
+
   edlib = callPackage ../development/libraries/science/biology/edlib { };
 
   eff = callPackage ../development/interpreters/eff { };
@@ -8476,6 +8480,8 @@ with pkgs;
   iaito = libsForQt5.callPackage ../tools/security/iaito { };
 
   jamulus = libsForQt5.callPackage ../applications/audio/jamulus { };
+
+  ultrablue-server = callPackage ../os-specific/linux/ultrablue-server { };
 
   ibm-sw-tpm2 = callPackage ../tools/security/ibm-sw-tpm2 { };
 
@@ -11099,7 +11105,8 @@ with pkgs;
   };
 
   platformioPackages = dontRecurseIntoAttrs (callPackage ../development/embedded/platformio { });
-  platformio = platformioPackages.platformio-chrootenv;
+  platformio = if stdenv.isLinux then platformioPackages.platformio-chrootenv else platformioPackages.platformio-core;
+  platformio-core = platformioPackages.platformio-core;
 
   platinum-searcher = callPackage ../tools/text/platinum-searcher { };
 
@@ -20835,6 +20842,8 @@ with pkgs;
 
   iso-flags = callPackage ../data/icons/iso-flags { };
 
+  isoimagewriter = libsForQt5.callPackage ../tools/misc/isoimagewriter {};
+
   isort = with python3Packages; toPythonApplication isort;
 
   ispc = callPackage ../development/compilers/ispc {
@@ -21243,7 +21252,7 @@ with pkgs;
   libdeflate = darwin.apple_sdk_11_0.callPackage ../development/libraries/libdeflate { };
 
   libdeltachat = callPackage ../development/libraries/libdeltachat {
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
+    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security SystemConfiguration;
   };
 
   libdevil = callPackage ../development/libraries/libdevil {
@@ -32890,7 +32899,7 @@ with pkgs;
   process-cpp = callPackage ../development/libraries/process-cpp { };
 
   processing = callPackage ../applications/graphics/processing {
-    jdk = oraclejdk8;
+    jdk = jdk17;
   };
 
   # perhaps there are better apps for this task? It's how I had configured my preivous system.
@@ -39552,6 +39561,8 @@ with pkgs;
 
   wfuzz = with python3Packages; toPythonApplication wfuzz;
 
+  wmenu = callPackage ../applications/misc/wmenu { };
+
   bemenu = callPackage ../applications/misc/bemenu { };
 
   _9menu = callPackage ../applications/misc/9menu { };
@@ -39691,6 +39702,8 @@ with pkgs;
   yesplaymusic = callPackage ../applications/audio/yesplaymusic { };
 
   ymuse = callPackage ../applications/audio/ymuse { };
+
+  zeyple = callPackage ../misc/zeyple { };
 
   zk = callPackage ../applications/office/zk { };
 
