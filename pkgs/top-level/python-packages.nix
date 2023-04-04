@@ -5000,6 +5000,8 @@ self: super: with self; {
 
   jira = callPackage ../development/python-modules/jira { };
 
+  jiwer = callPackage ../development/python-modules/jiwer { };
+
   jmespath = callPackage ../development/python-modules/jmespath { };
 
   jmp = callPackage ../development/python-modules/jmp { };
@@ -6023,6 +6025,7 @@ self: super: with self; {
   minexr = callPackage ../development/python-modules/minexr { };
 
   miniaudio = callPackage ../development/python-modules/miniaudio {
+    inherit (pkgs) miniaudio;
     inherit (pkgs.darwin.apple_sdk.frameworks) AudioToolbox CoreAudio;
   };
 
