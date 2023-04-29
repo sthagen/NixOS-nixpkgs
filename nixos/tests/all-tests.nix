@@ -634,6 +634,7 @@ in {
   smokeping = handleTest ./smokeping.nix {};
   snapcast = handleTest ./snapcast.nix {};
   snapper = handleTest ./snapper.nix {};
+  snipe-it = runTest ./web-apps/snipe-it.nix;
   soapui = handleTest ./soapui.nix {};
   sogo = handleTest ./sogo.nix {};
   solanum = handleTest ./solanum.nix {};
@@ -645,6 +646,7 @@ in {
   sslh = handleTest ./sslh.nix {};
   sssd = handleTestOn ["x86_64-linux"] ./sssd.nix {};
   sssd-ldap = handleTestOn ["x86_64-linux"] ./sssd-ldap.nix {};
+  stargazer = runTest ./web-servers/stargazer.nix;
   starship = handleTest ./starship.nix {};
   step-ca = handleTestOn ["x86_64-linux"] ./step-ca.nix {};
   stratis = handleTest ./stratis {};
@@ -712,6 +714,7 @@ in {
   tiddlywiki = handleTest ./tiddlywiki.nix {};
   tigervnc = handleTest ./tigervnc.nix {};
   timescaledb = handleTest ./timescaledb.nix {};
+  promscale = handleTest ./promscale.nix {};
   timezone = handleTest ./timezone.nix {};
   tinc = handleTest ./tinc {};
   tinydns = handleTest ./tinydns.nix {};

@@ -8317,6 +8317,18 @@ final: prev:
     meta.homepage = "https://github.com/darfink/starsearch.vim/";
   };
 
+  statuscol-nvim = buildVimPluginFrom2Nix {
+    pname = "statuscol.nvim";
+    version = "2023-04-23";
+    src = fetchFromGitHub {
+      owner = "luukvbaal";
+      repo = "statuscol.nvim";
+      rev = "b115b5d7a4ea5d4b152d61d89457cc874e08a7d1";
+      sha256 = "026j7m8la14pfz9xqmw13gr1x8c9yx9ykqq4wa8x7cyf3a1s8z13";
+    };
+    meta.homepage = "https://github.com/luukvbaal/statuscol.nvim/";
+  };
+
   stylish-nvim = buildVimPluginFrom2Nix {
     pname = "stylish.nvim";
     version = "2022-02-01";
@@ -13209,6 +13221,18 @@ final: prev:
     meta.homepage = "https://github.com/honza/vim-snippets/";
   };
 
+  vim-solarized8 = buildVimPluginFrom2Nix {
+    pname = "vim-solarized8";
+    version = "2023-02-25";
+    src = fetchFromGitHub {
+      owner = "lifepillar";
+      repo = "vim-solarized8";
+      rev = "bcd4e74e9850fd59ee0294a5c3ae958ed535cc52";
+      sha256 = "00qhqy511wdcmlsglwhqsd6gffagjmdz0wl5627a3nwmxs8p45sa";
+    };
+    meta.homepage = "https://github.com/lifepillar/vim-solarized8/";
+  };
+
   vim-solidity = buildVimPluginFrom2Nix {
     pname = "vim-solidity";
     version = "2018-04-17";
@@ -14289,6 +14313,18 @@ final: prev:
       sha256 = "0sqhx4h2qchihf37g5fpa3arpxrnzsfpjj34ca3sdn4db89a0c8n";
     };
     meta.homepage = "https://github.com/mattn/webapi-vim/";
+  };
+
+  wgsl-vim = buildVimPluginFrom2Nix {
+    pname = "wgsl.vim";
+    version = "2023-04-12";
+    src = fetchFromGitHub {
+      owner = "DingDean";
+      repo = "wgsl.vim";
+      rev = "b72cb2c28ec9554be240113bceb34198f88484e6";
+      sha256 = "1l1y9dwp33g5gp5mvyq4vkw8q8369r493i0qfn81nmwnmc09rsbn";
+    };
+    meta.homepage = "https://github.com/DingDean/wgsl.vim/";
   };
 
   which-key-nvim = buildVimPluginFrom2Nix {
