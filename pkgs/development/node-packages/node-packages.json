@@ -13,7 +13,7 @@
 , "@medable/mdctl-cli"
 , "@microsoft/rush"
 , "@nerdwallet/shepherd"
-, "@nestjs/cli"
+, "@shopify/cli"
 , "@squoosh/cli"
 , "@tailwindcss/aspect-ratio"
 , "@tailwindcss/forms"
@@ -21,6 +21,7 @@
 , "@tailwindcss/line-clamp"
 , "@tailwindcss/typography"
 , "@uppy/companion"
+, "@volar/vue-language-server"
 , "@vue/cli"
 , {"@webassemblyjs/cli": "1.11.1"}
 , {"@webassemblyjs/repl": "1.11.1"}
@@ -153,7 +154,6 @@
 , "git-ssb"
 , "git-standup"
 , "@gitbeaker/cli"
-, "@githubnext/github-copilot-cli"
 , "gitmoji-cli"
 , "glob"
 , "gramma"

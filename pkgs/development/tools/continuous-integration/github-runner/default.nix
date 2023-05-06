@@ -12,20 +12,52 @@
 , nodejs_16
 , stdenv
 , which
+, buildPackages
+, runtimeShell
 }:
 buildDotnetModule rec {
   pname = "github-runner";
-  version = "2.303.0";
+  version = "2.304.0";
 
   src = fetchFromGitHub {
     owner = "actions";
     repo = "runner";
     rev = "v${version}";
-    hash = "sha256-gGIYlYM4Rf7Ils2rThsQHWIkLDt5Htg4NDuJhxvl1rU=";
-    # Required to obtain HEAD's Git commit hash
+    hash = "sha256-5amc0oVcFCPFrUcX5iITjnN9Mtpzi4wWsJe7Kdm9YxA=";
     leaveDotGit = true;
+    postFetch = ''
+      git -C $out rev-parse --short HEAD > $out/.git-revision
+      rm -rf $out/.git
+    '';
   };
 
+  # The git commit is read during the build and some tests depends on a git repo to be present
+  # https://github.com/actions/runner/blob/22d1938ac420a4cb9e3255e47a91c2e43c38db29/src/dir.proj#L5
+  unpackPhase = ''
+    cp -r $src $TMPDIR/src
+    chmod -R +w $TMPDIR/src
+    cd $TMPDIR/src
+    (
+      export PATH=${buildPackages.git}/bin:$PATH
+      git init
+      git config user.email "root@localhost"
+      git config user.name "root"
+      git add .
+      git commit -m "Initial commit"
+      git checkout -b v${version}
+    )
+    mkdir -p $TMPDIR/bin
+    cat > $TMPDIR/bin/git <<EOF
+    #!${runtimeShell}
+    if [ \$# -eq 1 ] && [ "\$1" = "rev-parse" ]; then
+      echo $(cat $TMPDIR/src/.git-revision)
+      exit 0
+    fi
+    exec ${buildPackages.git}/bin/git "\$@"
+    EOF
+    chmod +x $TMPDIR/bin/git
+    export PATH=$TMPDIR/bin:$PATH
+  '';
 
   patches = [
     # Replace some paths that originally point to Nix's read-only store
@@ -66,8 +98,8 @@ buildDotnetModule rec {
   '';
 
   nativeBuildInputs = [
-    git
     which
+    git
   ] ++ lib.optionals stdenv.isLinux [
     autoPatchelfHook
   ] ++ lib.optionals (stdenv.isDarwin && stdenv.isAarch64) [

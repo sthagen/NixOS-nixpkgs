@@ -355,6 +355,7 @@ rec {
   # PLIST handling
   toPlist = {}: v: let
     isFloat = builtins.isFloat or (x: false);
+    isPath = x: builtins.typeOf x == "path";
     expr = ind: x:  with builtins;
       if x == null  then "" else
       if isBool x   then bool ind x else
@@ -362,6 +363,7 @@ rec {
       if isString x then str ind x else
       if isList x   then list ind x else
       if isAttrs x  then attrs ind x else
+      if isPath x   then str ind (toString x) else
       if isFloat x  then float ind x else
       abort "generators.toPlist: should never happen (v = ${v})";
 
@@ -434,6 +436,7 @@ ${expr "" v}
    Configuration:
      * multiline - by default is true which results in indented block-like view.
      * indent - initial indent.
+     * asBindings - by default generate single value, but with this use attrset to set global vars.
 
    Attention:
      Regardless of multiline parameter there is no trailing newline.
@@ -464,18 +467,35 @@ ${expr "" v}
     /* If this option is true, the output is indented with newlines for attribute sets and lists */
     multiline ? true,
     /* Initial indentation level */
-    indent ? ""
+    indent ? "",
+    /* Interpret as variable bindings */
+    asBindings ? false,
   }@args: v:
     with builtins;
     let
       innerIndent = "${indent}  ";
       introSpace = if multiline then "\n${innerIndent}" else " ";
       outroSpace = if multiline then "\n${indent}" else " ";
-      innerArgs = args // { indent = innerIndent; };
+      innerArgs = args // {
+        indent = if asBindings then indent else innerIndent;
+        asBindings = false;
+      };
       concatItems = concatStringsSep ",${introSpace}";
       isLuaInline = { _type ? null, ... }: _type == "lua-inline";
+
+      generatedBindings =
+          assert lib.assertMsg (badVarNames == []) "Bad Lua var names: ${toPretty {} badVarNames}";
+          libStr.concatStrings (
+            lib.attrsets.mapAttrsToList (key: value: "${indent}${key} = ${toLua innerArgs value}\n") v
+            );
+
+      # https://en.wikibooks.org/wiki/Lua_Programming/variable#Variable_names
+      matchVarName = match "[[:alpha:]_][[:alnum:]_]*(\\.[[:alpha:]_][[:alnum:]_]*)*";
+      badVarNames = filter (name: matchVarName name == null) (attrNames v);
     in
-    if v == null then
+    if asBindings then
+      generatedBindings
+    else if v == null then
       "nil"
     else if isInt v || isFloat v || isString v || isBool v then
       builtins.toJSON v

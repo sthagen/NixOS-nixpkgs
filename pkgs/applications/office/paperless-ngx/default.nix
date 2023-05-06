@@ -17,13 +17,13 @@
 }:
 
 let
-  version = "1.14.0";
+  version = "1.14.4";
 
   src = fetchFromGitHub {
     owner = "paperless-ngx";
     repo = "paperless-ngx";
     rev = "refs/tags/v${version}";
-    hash = "sha256-O1Miy0GV34YbE1UrLUWZsatpWyfzFLGvX6fQUJnwbuE=";
+    hash = "sha256-9+8XqENpSdsND6g59oJkVoCe5tJ1Pwo8HD7Cszv/t7o=";
   };
 
   # Use specific package versions required by paperless-ngx
@@ -82,7 +82,7 @@ let
     pname = "paperless-ngx-frontend";
     inherit version src;
 
-    npmDepsHash = "sha256-wUlybMxnXLNmeu2z+RFFOHVEhH12XD3ZfMo5K+HSBpY=";
+    npmDepsHash = "sha256-XTk4DpQAU/rI2XoUvLm0KVjuXFWdz2wb2EAg8EBVEdU=";
 
     nativeBuildInputs = [
       python3

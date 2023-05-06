@@ -210,6 +210,7 @@ mapAliases ({
   cgmanager = throw "cgmanager was deprecated by lxc and therefore removed from nixpkgs"; # Added 2020-06-05
   checkbashism = throw "'checkbashism' has been renamed to/replaced by 'checkbashisms'"; # Converted to throw 2022-02-22
   chefdk = throw "chefdk has been removed due to being deprecated upstream by Chef Workstation"; # Added 2023-03-22
+  chocolateDoom = chocolate-doom; # Added 2023-05-01
   chrome-gnome-shell = gnome-browser-connector; # Added 2022-07-27
   chronos = throw "chronos has been removed from nixpkgs, as it was unmaintained"; # Added 2020-08-15
   chunkwm = throw "chunkwm has been removed: abandoned by upstream"; # Added 2022-01-07
@@ -222,6 +223,7 @@ mapAliases ({
   cpp-ipfs-api = cpp-ipfs-http-client; # Project has been renamed. Added 2022-05-15
   cratesIO = throw "cratesIO has been removed, use alternatives such as naersk and crate2nix instead"; # Added 2022-11-22
   creddump = throw "creddump has been removed from nixpkgs as the upstream has abandoned the project"; # Added 2022-01-01
+  crispyDoom = crispy-doom; # Added 2023-05-01
 
   # these are for convenience, not for backward compat and shouldn't expire
   clang5Stdenv = lowPrio llvmPackages_5.stdenv;
@@ -538,6 +540,7 @@ mapAliases ({
   g4py = python3Packages.geant4; # Added 2020-06-06
   gaia = throw "gaia has been removed because it seems abandoned upstream and uses no longer supported dependencies"; # Added 2020-06-06
   gammy = throw "'gammy' is deprecated upstream and has been replaced by 'gummy'"; # Added 2022-09-03
+  garmindev = throw "'garmindev' has been removed as the dependent software 'qlandkartegt' has been removed"; # Added 2023-04-17
   gawp = throw "gawp has been dropped due to the lack of maintanence from upstream since 2017"; # Added 2022-06-02
   gdal_1_11 = throw "gdal_1_11 was removed. Use gdal instead"; # Added 2021-04-03
   gdb-multitarget = throw "'gdb-multitarget' has been renamed to/replaced by 'gdb'"; # Converted to throw 2022-02-22
@@ -1194,6 +1197,7 @@ mapAliases ({
   packet-cli = metal-cli; # Added 2021-10-25
   paperless = paperless-ngx; # Added 2021-06-06
   paperless-ng = paperless-ngx; # Added 2022-04-11
+  paper-note = throw "paper-note has been removed: abandoned by upstream"; # Added 2023-05-03
   parity = openethereum; # Added 2020-08-01
   parity-ui = throw "parity-ui was removed because it was broken and unmaintained by upstream"; # Added 2022-01-10
   parquet-cpp = throw "'parquet-cpp' has been renamed to/replaced by 'arrow-cpp'"; # Converted to throw 2022-02-22
@@ -1390,6 +1394,7 @@ mapAliases ({
   qcsxcad = libsForQt5.qcsxcad; # Added 2020-11-05
   qflipper = qFlipper; # Added 2022-02-11
   qmk_firmware = throw "qmk_firmware has been removed because it was broken"; # Added 2021-04-02
+  qlandkartegt = throw "'qlandkartegt' has been removed from nixpkgs, as it was broken and unmaintained"; # Added 2023-04-17
   qr-filetransfer = throw ''"qr-filetransfer" has been renamed to "qrcp"''; # Added 2020-12-02
   qshowdiff = throw "'qshowdiff' (Qt4) is unmaintained and not been updated since its addition in 2010"; # Added 2022-06-14
   qt-3 = throw "qt-3 has been removed from nixpkgs, as it's unmaintained and insecure"; # Added 2021-02-15

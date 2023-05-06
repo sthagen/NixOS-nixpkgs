@@ -66,6 +66,15 @@ let
     ;
 
 in {
+
+  # Testing the test driver
+  nixos-test-driver = {
+    extra-python-packages = handleTest ./nixos-test-driver/extra-python-packages.nix {};
+    node-name = runTest ./nixos-test-driver/node-name.nix;
+  };
+
+  # NixOS vm tests and non-vm unit tests
+
   _3proxy = runTest ./3proxy.nix;
   aaaaxy = runTest ./aaaaxy.nix;
   acme = runTest ./acme.nix;
@@ -146,6 +155,7 @@ in {
   collectd = handleTest ./collectd.nix {};
   connman = handleTest ./connman.nix {};
   consul = handleTest ./consul.nix {};
+  consul-template = handleTest ./consul-template.nix {};
   containers-bridge = handleTest ./containers-bridge.nix {};
   containers-custom-pkgs.nix = handleTest ./containers-custom-pkgs.nix {};
   containers-ephemeral = handleTest ./containers-ephemeral.nix {};
@@ -170,6 +180,7 @@ in {
   cups-pdf = handleTest ./cups-pdf.nix {};
   custom-ca = handleTest ./custom-ca.nix {};
   croc = handleTest ./croc.nix {};
+  deepin = handleTest ./deepin.nix {};
   deluge = handleTest ./deluge.nix {};
   dendrite = handleTest ./matrix/dendrite.nix {};
   dex-oidc = handleTest ./dex-oidc.nix {};
@@ -195,6 +206,7 @@ in {
   dovecot = handleTest ./dovecot.nix {};
   drbd = handleTest ./drbd.nix {};
   earlyoom = handleTestOn ["x86_64-linux"] ./earlyoom.nix {};
+  early-mount-options = handleTest ./early-mount-options.nix {};
   ec2-config = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-config or {};
   ec2-nixops = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-nixops or {};
   ecryptfs = handleTest ./ecryptfs.nix {};
@@ -218,7 +230,6 @@ in {
   etcd-cluster = handleTestOn ["x86_64-linux"] ./etcd-cluster.nix {};
   etebase-server = handleTest ./etebase-server.nix {};
   etesync-dav = handleTest ./etesync-dav.nix {};
-  extra-python-packages = handleTest ./extra-python-packages.nix {};
   evcc = handleTest ./evcc.nix {};
   fancontrol = handleTest ./fancontrol.nix {};
   fcitx5 = handleTest ./fcitx5 {};
@@ -379,6 +390,7 @@ in {
   limesurvey = handleTest ./limesurvey.nix {};
   listmonk = handleTest ./listmonk.nix {};
   litestream = handleTest ./litestream.nix {};
+  lldap = handleTest ./lldap.nix {};
   locate = handleTest ./locate.nix {};
   login = handleTest ./login.nix {};
   logrotate = handleTest ./logrotate.nix {};
@@ -390,7 +402,7 @@ in {
   lxd-image-server = handleTest ./lxd-image-server.nix {};
   #logstash = handleTest ./logstash.nix {};
   lorri = handleTest ./lorri/default.nix {};
-  maddy = handleTest ./maddy.nix {};
+  maddy = discoverTests (import ./maddy { inherit handleTest; });
   maestral = handleTest ./maestral.nix {};
   magic-wormhole-mailbox-server = handleTest ./magic-wormhole-mailbox-server.nix {};
   magnetico = handleTest ./magnetico.nix {};
@@ -752,6 +764,7 @@ in {
   varnish60 = handleTest ./varnish.nix { package = pkgs.varnish60; };
   varnish72 = handleTest ./varnish.nix { package = pkgs.varnish72; };
   vault = handleTest ./vault.nix {};
+  vault-agent = handleTest ./vault-agent.nix {};
   vault-dev = handleTest ./vault-dev.nix {};
   vault-postgresql = handleTest ./vault-postgresql.nix {};
   vaultwarden = handleTest ./vaultwarden.nix {};
