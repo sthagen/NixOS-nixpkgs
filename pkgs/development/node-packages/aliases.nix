@@ -33,7 +33,11 @@ let
       aliases;
 in
 
-mapAliases ({
+mapAliases {
+  "@antora/cli" = pkgs.antora; # Added 2023-05-06
   "@githubnext/github-copilot-cli" = pkgs.github-copilot-cli; # Added 2023-05-02
-  "@nestjs/cli" = pkgs.nest-cli;
-})
+  "@google/clasp" = pkgs.google-clasp; # Added 2023-05-07
+  "@nestjs/cli" = pkgs.nest-cli; # Added 2023-05-06
+  manta = pkgs.node-manta; # Added 2023-05-06
+  triton = pkgs.triton; # Added 2023-05-06
+}
