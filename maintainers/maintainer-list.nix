@@ -996,7 +996,7 @@
     name = "Stanislas Lange";
   };
   AngryAnt = {
-    name = "Emil Johansen";
+    name = "Emil \"AngryAnt\" Johansen";
     email = "git@eej.dk";
     matrix = "@angryant:envs.net";
     github = "AngryAnt";
@@ -4957,6 +4957,12 @@
     githubId = 25955146;
     name = "eyJhb";
   };
+  f2k1de = {
+    name = "f2k1de";
+    email = "hi@f2k1.de";
+    github = "f2k1de";
+    githubId = 11199213;
+  };
   f4814n = {
     email = "me@f4814n.de";
     github = "f4814";
@@ -7075,7 +7081,7 @@
   };
   jayesh-bhoot = {
     name = "Jayesh Bhoot";
-    email = "jayesh@bhoot.sh";
+    email = "jb@jayeshbhoot.com";
     github = "jayeshbhoot";
     githubId = 1915507;
   };
