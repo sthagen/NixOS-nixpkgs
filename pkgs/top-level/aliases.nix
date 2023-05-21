@@ -459,7 +459,7 @@ mapAliases ({
   enyo-doom = enyo-launcher; # Added 2022-09-09
   epoxy = libepoxy; # Added 2021-11-11
   epsxe = throw "epsxe has been removed from nixpkgs, as it was unmaintained."; # added 2021-12-15
-  inherit (beam.interpreters) erlangR25 erlangR24 erlangR23; # added 2023-03-21
+  inherit (beam.interpreters) erlangR26 erlangR25 erlangR24 erlangR23; # added 2023-03-21
   erlang_21 = throw "erlangR21 has been removed in favor of newer versions."; # added 2023-03-21
   erlangR21 = erlang_21;
   erlang_22 = throw "erlangR22 has been removed in favor of newer versions."; # added 2023-03-21
@@ -812,6 +812,7 @@ mapAliases ({
   krename-qt5 = throw "'krename-qt5' has been renamed to/replaced by 'krename'"; # Converted to throw 2022-02-22
   krita-beta = krita; # moved from top-level 2021-12-23
   kube-aws = throw "kube-aws is deprecated and archived by upstream"; # Added 2022-04-05
+  kubei = kubeclarity; # Added 2023-05-20
   kubeless = throw "kubeless is deprecated and archived by upstream"; # Added 2022-04-05
   kubicorn = throw "kubicorn has been dropped due to the lack of maintenance from upstream since 2019"; # Added 2022-05-30
   kvm = throw "'kvm' has been renamed to/replaced by 'qemu_kvm'"; # Converted to throw 2022-02-22
@@ -1057,7 +1058,6 @@ mapAliases ({
   mopidy-gmusic = throw "mopidy-gmusic has been removed because Google Play Music was discontinued"; # Added 2021-03-07
   mopidy-local-images = throw "mopidy-local-images has been removed as it's unmaintained. Its functionality has been merged into the mopidy-local extension"; # Added 2020-10-18
   mopidy-local-sqlite = throw "mopidy-local-sqlite has been removed as it's unmaintained. Its functionality has been merged into the mopidy-local extension"; # Added 2020-10-18
-  mopidy-spotify = throw "mopidy-spotify has been removed because Spotify stopped supporting libspotify"; # added 2022-05-29
   mopidy-spotify-tunigo = throw "mopidy-spotify-tunigo has been removed because Spotify stopped supporting libspotify"; # added 2022-05-29
 
   morituri = throw "'morituri' has been renamed to/replaced by 'whipper'"; # Converted to throw 2022-02-22
@@ -1146,8 +1146,6 @@ mapAliases ({
   nodejs-slim-16_x = nodejs-slim_16; # Added 2022-11-06
   nodejs-18_x = nodejs_18; # Added 2022-11-06
   nodejs-slim-18_x = nodejs-slim_18; # Added 2022-11-06
-  nodejs-19_x = nodejs_19; # Added 2022-11-06
-  nodejs-slim-19_x = nodejs-slim_19; # Added 2022-11-06
   nologin = throw "'nologin' has been renamed to/replaced by 'shadow'"; # Converted to throw 2022-02-22
   nomad_1_1 = throw "nomad_1_1 has been removed because it's outdated. Use a a newer version instead"; # Added 2022-05-22
   nordic-polar = throw "nordic-polar was removed on 2021-05-27, now integrated in nordic"; # Added 2021-05-27
@@ -1206,6 +1204,7 @@ mapAliases ({
 
   p11_kit = throw "'p11_kit' has been renamed to/replaced by 'p11-kit'"; # Converted to throw 2022-02-22
   packet-cli = metal-cli; # Added 2021-10-25
+  palemoon = throw "palemoon has been dropped due to python2 being EOL and marked insecure. Use 'palemoon-bin' instead"; # Added 2023-05-18
   paperless = paperless-ngx; # Added 2021-06-06
   paperless-ng = paperless-ngx; # Added 2022-04-11
   paper-note = throw "paper-note has been removed: abandoned by upstream"; # Added 2023-05-03
@@ -1554,6 +1553,7 @@ mapAliases ({
 
   sourcetrail = throw "sourcetrail has been removed: abandoned by upstream"; # Added 2022-08-14
 
+  spacegun = throw "'spacegun' has been removed as unmaintained"; # Added 2023-05-20
   spaceOrbit = throw "'spaceOrbit' has been renamed to/replaced by 'space-orbit'"; # Converted to throw 2022-02-22
   spectral = neochat; # Added 2020-12-27
   speech_tools = throw "'speech_tools' has been renamed to/replaced by 'speech-tools'"; # Converted to throw 2022-02-22

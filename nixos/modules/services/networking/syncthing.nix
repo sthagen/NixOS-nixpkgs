@@ -13,14 +13,20 @@ let
     deviceID = device.id;
   }) cfg.settings.devices;
 
-  folders = mapAttrsToList (_: folder: folder // {
+  folders = mapAttrsToList (_: folder: folder //
+    throwIf (folder?rescanInterval || folder?watch || folder?watchDelay) ''
+      The options services.syncthing.settings.folders.<name>.{rescanInterval,watch,watchDelay}
+      were removed. Please use, respectively, {rescanIntervalS,fsWatcherEnabled,fsWatcherDelayS} instead.
+    '' {
     devices = map (device:
       if builtins.isString device then
         { deviceId = cfg.settings.devices.${device}.id; }
       else
         device
     ) folder.devices;
-  }) cfg.settings.folders;
+  }) (filterAttrs (_: folder:
+    folder.enable
+  ) cfg.settings.folders);
 
   updateConfig = pkgs.writers.writeDash "merge-syncthing-config" ''
     set -efu
@@ -121,10 +127,9 @@ in {
               description = mdDoc ''
                 The options element contains all other global configuration options
               '';
-              type = types.attrsOf (types.submodule ({ name, ... }: {
+              type = types.submodule ({ name, ... }: {
                 freeformType = settingsFormat.type;
                 options = {
-
                   localAnnounceEnabled = mkOption {
                     type = types.bool;
                     default = true;
@@ -176,7 +181,7 @@ in {
                     '';
                   };
                 };
-              }));
+              });
             };
 
             # device settings
@@ -344,6 +349,7 @@ in {
                       ]
                     '';
                     type = with types; nullOr (submodule {
+                      freeformType = settingsFormat.type;
                       options = {
                         type = mkOption {
                           type = enum [ "external" "simple" "staggered" "trashcan" ];
@@ -609,9 +615,7 @@ in {
           ];
         };
       };
-      syncthing-init = mkIf (
-        cfg.settings.devices != {} || cfg.folders != {} || cfg.extraOptions != {}
-      ) {
+      syncthing-init = mkIf (cfg.settings != {}) {
         description = "Syncthing configuration updater";
         requisite = [ "syncthing.service" ];
         after = [ "syncthing.service" ];

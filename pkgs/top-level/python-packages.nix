@@ -28,8 +28,6 @@ self: super: with self; {
 
   accupy = callPackage ../development/python-modules/accupy { };
 
-  acebinf = callPackage ../development/python-modules/acebinf { };
-
   acme = callPackage ../development/python-modules/acme { };
 
   acme-tiny = callPackage ../development/python-modules/acme-tiny { };
@@ -1833,6 +1831,8 @@ self: super: with self; {
 
   cle = callPackage ../development/python-modules/cle { };
 
+  clean-fid = callPackage ../development/python-modules/clean-fid { };
+
   cleo = callPackage ../development/python-modules/cleo { };
 
   clevercsv = callPackage ../development/python-modules/clevercsv { };
@@ -1840,6 +1840,8 @@ self: super: with self; {
   clf = callPackage ../development/python-modules/clf { };
 
   clip = callPackage ../development/python-modules/clip { };
+
+  clip-anytorch = callPackage ../development/python-modules/clip-anytorch { };
 
   cock = callPackage ../development/python-modules/cock { };
 
@@ -2691,10 +2693,9 @@ self: super: with self; {
 
   django-hierarkey = callPackage ../development/python-modules/django-hierarkey { };
 
-  django_hijack_admin = callPackage ../development/python-modules/django-hijack-admin { };
+  django-hijack-admin = callPackage ../development/python-modules/django-hijack-admin { };
 
-  django_hijack = callPackage ../development/python-modules/django-hijack { };
-  # This package may need an older version of Django. Override the package set and set e.g. `django = super.django_1_9`. See the Nixpkgs manual for examples on how to override the package set.
+  django-hijack = callPackage ../development/python-modules/django-hijack { };
 
   django-i18nfield = callPackage ../development/python-modules/django-i18nfield { };
 
@@ -3114,6 +3115,8 @@ self: super: with self; {
   editdistance-s = callPackage ../development/python-modules/editdistance-s { };
 
   editorconfig = callPackage ../development/python-modules/editorconfig { };
+
+  edk2-pytool-library = callPackage ../development/python-modules/edk2-pytool-library { };
 
   edlib = callPackage ../development/python-modules/edlib {
     inherit (pkgs) edlib;
@@ -5320,8 +5323,10 @@ self: super: with self; {
 
   jxmlease = callPackage ../development/python-modules/jxmlease { };
 
+  k-diffusion = callPackage ../development/python-modules/k-diffusion { };
+
   k5test = callPackage ../development/python-modules/k5test {
-    inherit (pkgs) krb5 findutils which;
+    inherit (pkgs) krb5 findutils;
   };
 
   kaa-base = callPackage ../development/python-modules/kaa-base { };
@@ -5757,6 +5762,8 @@ self: super: with self; {
 
   line_profiler = callPackage ../development/python-modules/line_profiler { };
 
+  linetable = callPackage ../development/python-modules/linetable { };
+
   lingua = callPackage ../development/python-modules/lingua { };
 
   linkify-it-py = callPackage ../development/python-modules/linkify-it-py { };
@@ -5964,10 +5971,6 @@ self: super: with self; {
 
   manuel = callPackage ../development/python-modules/manuel { };
 
-  manticore = callPackage ../development/python-modules/manticore {
-    inherit (pkgs) z3;
-  };
-
   mapbox = callPackage ../development/python-modules/mapbox { };
 
   mapbox-earcut = callPackage ../development/python-modules/mapbox-earcut { };
@@ -6108,6 +6111,8 @@ self: super: with self; {
   meinheld = callPackage ../development/python-modules/meinheld { };
 
   meld3 = callPackage ../development/python-modules/meld3 { };
+
+  memestra = callPackage ../development/python-modules/memestra { };
 
   memory-allocator = callPackage ../development/python-modules/memory-allocator { };
 
@@ -6304,6 +6309,8 @@ self: super: with self; {
 
   mockupdb = callPackage ../development/python-modules/mockupdb { };
 
+  moddb = callPackage ../development/python-modules/moddb { };
+
   modeled = callPackage ../development/python-modules/modeled { };
 
   moderngl = callPackage ../development/python-modules/moderngl { };
@@ -6437,9 +6444,13 @@ self: super: with self; {
 
   munch = callPackage ../development/python-modules/munch { };
 
+  mung = callPackage ../development/python-modules/mung { };
+
   munkres = callPackage ../development/python-modules/munkres { };
 
   murmurhash = callPackage ../development/python-modules/murmurhash { };
+
+  muscima = callPackage ../development/python-modules/muscima { };
 
   musicbrainzngs = callPackage ../development/python-modules/musicbrainzngs { };
 
@@ -6938,6 +6949,8 @@ self: super: with self; {
 
   omnilogic = callPackage ../development/python-modules/omnilogic { };
 
+  omrdatasettools = callPackage ../development/python-modules/omrdatasettools { };
+
   ondilo = callPackage ../development/python-modules/ondilo { };
 
   onetimepass = callPackage ../development/python-modules/onetimepass { };
@@ -6964,6 +6977,8 @@ self: super: with self; {
   onvif-zeep-async = callPackage ../development/python-modules/onvif-zeep-async { };
 
   oocsi = callPackage ../development/python-modules/oocsi { };
+
+  opcua-widgets = callPackage ../development/python-modules/opcua-widgets { };
 
   open-garage = callPackage ../development/python-modules/open-garage { };
 
@@ -8710,9 +8725,13 @@ self: super: with self; {
 
   pyls-isort = callPackage ../development/python-modules/pyls-isort { };
 
+  pyls-memestra = callPackage ../development/python-modules/pyls-memestra { };
+
   pyls-spyder = callPackage ../development/python-modules/pyls-spyder { };
 
   pylsp-mypy = callPackage ../development/python-modules/pylsp-mypy { };
+
+  pylsp-rope = callPackage ../development/python-modules/pylsp-rope { };
 
   pylpsd = callPackage ../development/python-modules/pylpsd { };
 
@@ -9088,6 +9107,8 @@ self: super: with self; {
 
   pyramid_multiauth = callPackage ../development/python-modules/pyramid_multiauth { };
 
+  pyrate-limiter = callPackage ../development/python-modules/pyrate-limiter { };
+
   pyreadstat = callPackage ../development/python-modules/pyreadstat {
     inherit (pkgs.darwin) libiconv;
   };
@@ -9197,8 +9218,6 @@ self: super: with self; {
   pyserial = callPackage ../development/python-modules/pyserial { };
 
   pysftp = callPackage ../development/python-modules/pysftp { };
-
-  pysha3 = callPackage ../development/python-modules/pysha3 { };
 
   pyshp = callPackage ../development/python-modules/pyshp { };
 
@@ -10035,8 +10054,6 @@ self: super: with self; {
 
   pyvcd = callPackage ../development/python-modules/pyvcd { };
 
-  pyvcf = callPackage ../development/python-modules/pyvcf { };
-
   pyvera = callPackage ../development/python-modules/pyvera { };
 
   pyverilog = callPackage ../development/python-modules/pyverilog { };
@@ -10452,6 +10469,8 @@ self: super: with self; {
   reretry = callPackage ../development/python-modules/reretry { };
 
   resampy = callPackage ../development/python-modules/resampy { };
+
+  resize-right = callPackage ../development/python-modules/resize-right { };
 
   resolvelib = callPackage ../development/python-modules/resolvelib { };
 
@@ -11532,8 +11551,6 @@ self: super: with self; {
 
   sseclient-py = callPackage ../development/python-modules/sseclient-py { };
 
-  ssh-mitm = callPackage ../development/python-modules/ssh-mitm { };
-
   sshfs = callPackage ../development/python-modules/sshfs { };
 
   sshpubkeys = callPackage ../development/python-modules/sshpubkeys { };
@@ -12137,6 +12154,8 @@ self: super: with self; {
 
   torchaudio-bin = callPackage ../development/python-modules/torchaudio/bin.nix { };
 
+  torchdiffeq = callPackage ../development/python-modules/torchdiffeq { };
+
   torchgpipe = callPackage ../development/python-modules/torchgpipe { };
 
   torchmetrics = callPackage ../development/python-modules/torchmetrics { };
@@ -12146,6 +12165,8 @@ self: super: with self; {
   torchinfo = callPackage ../development/python-modules/torchinfo { };
 
   torchlibrosa = callPackage ../development/python-modules/torchlibrosa { };
+
+  torchsde = callPackage ../development/python-modules/torchsde { };
 
   torchvision = callPackage ../development/python-modules/torchvision { };
 
@@ -12192,6 +12213,8 @@ self: super: with self; {
   traitsui = callPackage ../development/python-modules/traitsui { };
 
   traittypes = callPackage ../development/python-modules/traittypes { };
+
+  trampoline = callPackage ../development/python-modules/trampoline { };
 
   transaction = callPackage ../development/python-modules/transaction { };
 
@@ -12779,8 +12802,6 @@ self: super: with self; {
   wasabi = callPackage ../development/python-modules/wasabi { };
 
   wasserstein = callPackage ../development/python-modules/wasserstein { };
-
-  wasm = callPackage ../development/python-modules/wasm { };
 
   wasmerPackages = pkgs.recurseIntoAttrs (callPackage ../development/python-modules/wasmer { });
   inherit (self.wasmerPackages) wasmer wasmer-compiler-cranelift wasmer-compiler-llvm wasmer-compiler-singlepass;
