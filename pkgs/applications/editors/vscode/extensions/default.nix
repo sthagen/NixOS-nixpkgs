@@ -1069,8 +1069,8 @@ let
         mktplcRef = {
           name = "elixir-ls";
           publisher = "JakeBecker";
-          version = "0.14.5";
-          sha256 = "sha256-5TQ7BSpN/hZukKN2xGP4UmLi3uqitUwXyZQAtguH/z8=";
+          version = "0.14.7";
+          sha256 = "sha256-RkwgQqasBKMA+0293QhbZhgyGSqhJSic5DuIpBB+OEA=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/JakeBecker.elixir-ls/changelog";
@@ -1581,8 +1581,8 @@ let
         mktplcRef = {
           name = "Ionide-fsharp";
           publisher = "Ionide";
-          version = "7.5.2";
-          sha256 = "sha256-v2fd2vGaGwRnebKiyjyd/2pgWit0H5lhJT+PXWQq0h4=";
+          version = "7.5.4";
+          sha256 = "sha256-cM3ssUzQnqt5WL8UaLYkrmfHscVa2sGa7/UWLXMIHGg=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Ionide.Ionide-fsharp/changelog";
