@@ -1,17 +1,19 @@
 { lib
 , buildGoModule
 , fetchFromGitHub
+, testers
+, bearer
 }:
 
 buildGoModule rec {
   pname = "bearer";
-  version = "1.8.0";
+  version = "1.8.1";
 
   src = fetchFromGitHub {
     owner = "bearer";
     repo = "bearer";
     rev = "refs/tags/v${version}";
-    hash = "sha256-RwLYBz51zfJltsHOqRi7GJLP2ncPiqRqo229wv5jvdc=";
+    hash = "sha256-5Vd6knHm9r2VicHuvPKE7jzRGcNog8THNwDQmW2MJ5Q=";
   };
 
   vendorHash = "sha256-FRB01Tfz87MZp4V0HPeiEgYV8KEPcbzkeUM0uIBh6DU=";
@@ -23,9 +25,15 @@ buildGoModule rec {
   ldflags = [
     "-s"
     "-w"
+    "-X=github.com/bearer/bearer/cmd/bearer/build.Version=${version}"
   ];
 
-#  doCheck = false;
+  passthru.tests = {
+    version = testers.testVersion {
+      package = bearer;
+      command = "bearer version";
+    };
+  };
 
   meta = with lib; {
     description = "Code security scanning tool (SAST) to discover, filter and prioritize security and privacy risks";

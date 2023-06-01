@@ -931,6 +931,12 @@
     githubId = 123550;
     name = "André Silva";
   };
+  andresnav = {
+    email = "nix@andresnav.com";
+    github = "andres-nav";
+    githubId = 118762770;
+    name = "Andres Navarro";
+  };
   andrestylianos = {
     email = "andre.stylianos@gmail.com";
     github = "andrestylianos";
@@ -5247,6 +5253,12 @@
     githubId = 2489598;
     name = "Felix Breidenstein";
   };
+  flemzord = {
+    email = "maxence@maireaux.fr";
+    github = "flemzord";
+    githubId = 1952914;
+    name = "Maxence Maireaux";
+  };
   flexagoon = {
     email = "flexagoon@pm.me";
     github = "flexagoon";
@@ -5530,17 +5542,17 @@
     githubId = 606000;
     name = "Gabriel Adomnicai";
   };
-  Gabriel439 = {
-    email = "Gabriel439@gmail.com";
-    github = "Gabriella439";
-    githubId = 1313787;
-    name = "Gabriel Gonzalez";
-  };
   GabrielDougherty = {
     email = "contact@gabrieldougherty.com";
     github = "GabrielDougherty";
     githubId = 10541219;
     name = "Gabriel Dougherty";
+  };
+  Gabriella439 = {
+    email = "GenuineGabriella@gmail.com";
+    github = "Gabriella439";
+    githubId = 1313787;
+    name = "Gabriella Gonzalez";
   };
   gador = {
     email = "florian.brandes@posteo.de";
@@ -6396,6 +6408,15 @@
     github = "hlolli";
     githubId = 6074754;
     name = "Hlodver Sigurdsson";
+  };
+  hmajid2301 = {
+    name = "Haseeb Majid";
+    email = "hello@haseebmajid.dev";
+    github = "hmajid2301";
+    githubId = 998807;
+    keys = [{
+      fingerprint = "A236 785D 59F1 9076 1E9C E8EC 7828 3DB3 D233 E1F9";
+    }];
   };
   hmenke = {
     name = "Henri Menke";
@@ -7526,6 +7547,12 @@
     github = "magnusjonsson";
     githubId = 8900;
     name = "Johan Magnus Jonsson";
+  };
+  jmbaur = {
+    email = "jaredbaur@fastmail.com";
+    github = "jmbaur";
+    githubId = 45740526;
+    name = "Jared Baur";
   };
   jmc-figueira = {
     email = "business+nixos@jmc-figueira.dev";
@@ -9670,6 +9697,12 @@
     githubId = 346094;
     name = "Michael Alyn Miller";
   };
+  mangoiv = {
+    email = "contact@mangoiv.com";
+    github = "mangoiv";
+    githubId = 40720523;
+    name = "MangoIV";
+  };
   manojkarthick = {
     email = "smanojkarthick@gmail.com";
     github = "manojkarthick";
@@ -11044,6 +11077,11 @@
     githubId = 1009523;
     name = "Ashijit Pramanik";
   };
+  name-snrl = {
+    github = "name-snrl";
+    githubId = 72071763;
+    name = "Yusup Urazaev";
+  };
   namore = {
     email = "namor@hemio.de";
     github = "namore";
@@ -11428,6 +11466,16 @@
     github = "NilsIrl";
     githubId = 26231126;
     name = "Nils ANDRÉ-CHANG";
+  };
+  nim65s = {
+    email = "guilhem.saurel@laas.fr";
+    matrix = "@gsaurel:laas.fr";
+    github = "nim65s";
+    githubId = 131929;
+    name = "Guilhem Saurel";
+    keys = [{
+      fingerprint = "9B1A 7906 5D2F 2B80 6C8A  5A1C 7D2A CDAF 4653 CF28";
+    }];
   };
   ninjatrappeur = {
     email = "felix@alternativebit.fr";
