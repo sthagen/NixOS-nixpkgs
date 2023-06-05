@@ -180,7 +180,6 @@ mapAliases ({
   bitwarden_rs-vault = vaultwarden-vault;
 
 
-  blink = throw "blink has been removed from nixpkgs, it was unmaintained and required python2 at the time of removal"; # Added 2022-01-12
   bs1770gain = throw "bs1770gain has been removed from nixpkgs, as it had no maintainer or reverse dependencies"; # Added 2021-01-02
   bsod = throw "bsod has been removed: deleted by upstream"; # Added 2022-01-07
   btc1 = throw "btc1 has been removed, it was abandoned by upstream"; # Added 2020-11-03
@@ -1833,6 +1832,7 @@ mapAliases ({
   zdfmediathk = throw "'zdfmediathk' has been renamed to/replaced by 'mediathekview'"; # Converted to throw 2022-02-22
   zimreader = throw "zimreader has been removed from nixpkgs as it has been replaced by kiwix-serve and stopped working with modern zimlib versions"; # Added 2021-03-28
   zimwriterfs = throw "zimwriterfs is now part of zim-tools"; # Added 2022-06-10.
+  zinc = zincsearch; # Added 2023-05-28
   zq = zed.overrideAttrs (old: { meta = old.meta // { mainProgram = "zq"; }; }); # Added 2023-02-06
 
   # TODO(ekleog): add ‘wasm’ alias to ‘ocamlPackages.wasm’ after 19.03
