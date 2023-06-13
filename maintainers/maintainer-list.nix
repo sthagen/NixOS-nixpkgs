@@ -3560,6 +3560,12 @@
       fingerprint = "4779 D1D5 3C97 2EAE 34A5  ED3D D8AF C4BF 0567 0F9D";
     }];
   };
+  dariof4 = {
+    name = "dariof4";
+    email = "dazedtank@gmail.com";
+    github = "dariof4";
+    githubId = 9992814;
+  };
   darkonion0 = {
     name = "Alexandre Peruggia";
     email = "darkgenius1@protonmail.com";
@@ -4946,6 +4952,12 @@
     githubId = 1847524;
     name = "Evan Stoll";
   };
+  evanrichter = {
+    email = "evanjrichter@gmail.com";
+    github = "evanrichter";
+    githubId = 330292;
+    name = "Evan Richter";
+  };
   evax = {
     email = "nixos@evax.fr";
     github = "evax";
@@ -5748,6 +5760,12 @@
     github = "Gerschtli";
     githubId = 10353047;
     name = "Tobias Happ";
+  };
+  getchoo = {
+    email = "getchoo@tuta.io";
+    github = "getchoo";
+    githubId = 48872998;
+    name = "Seth";
   };
   gfrascadorio = {
     email = "gfrascadorio@tutanota.com";
@@ -9201,6 +9219,12 @@
     keys = [{
       fingerprint = "74F5 E5CC 19D3 B5CB 608F  6124 68FF 81E6 A785 0F49";
     }];
+  };
+  liyangau = {
+    email = "d@aufomm.com";
+    github = "liyangau";
+    githubId = 71299093;
+    name = "Li Yang";
   };
   lizelive = {
     email = "nixpkgs@lize.live";
@@ -16519,6 +16543,15 @@
       fingerprint = "EE59 5E29 BB5B F2B3 5ED2  3F1C D276 FF74 6700 7335";
     }];
   };
+  undefined-moe = {
+    name = "undefined";
+    email = "i@undefined.moe";
+    github = "undefined-moe";
+    githubId = 29992205;
+    keys = [{
+      fingerprint = "6684 4E7D D213 C75D 8828  6215 C714 A58B 6C1E 0F52";
+    }];
+  };
   unhammer = {
     email = "unhammer@fsfe.org";
     github = "unhammer";
@@ -17825,6 +17858,12 @@
     github = "zhaofengli";
     githubId = 2189609;
     name = "Zhaofeng Li";
+  };
+  zi3m5f = {
+    name = "zi3m5f";
+    email = "k7n3o3a6f@mozmail.com";
+    github = "zi3m5f";
+    githubId = 113244000;
   };
   ziguana = {
     name = "Zig Uana";

@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2023.6.0";
+  version = "2023.6.1";
   components = {
     "3_day_blinds" = ps: with ps; [
     ];
@@ -3646,7 +3646,8 @@
     "siren" = ps: with ps; [
     ];
     "sisyphus" = ps: with ps; [
-    ]; # missing inputs: sisyphus-control
+      sisyphus-control
+    ];
     "sky_hub" = ps: with ps; [
       pyskyqhub
     ];
