@@ -46,10 +46,7 @@ let
           inherit sha256;
         };
         extraMeta = {
-          broken =
-            kernel.meta.broken ||
-            lib.versions.majorMinor version == "4.14" ||
-            (stdenv.isx86_64 && lib.versionAtLeast version "4.19" && lib.versionOlder version "5.5");
+          broken = kernel.meta.broken;
         };
       };
       kernelPatches = kernel.kernelPatches ++ [
@@ -256,9 +253,18 @@ in {
 
     linux_hardened = hardenedKernelFor packageAliases.linux_default.kernel { };
 
-    linux_4_14_hardened = hardenedKernelFor kernels.linux_4_14 { };
-    linux_4_19_hardened = hardenedKernelFor kernels.linux_4_19 { };
-    linux_5_4_hardened = hardenedKernelFor kernels.linux_5_4 { };
+    linux_4_14_hardened = hardenedKernelFor kernels.linux_4_14 {
+      stdenv = gcc10Stdenv;
+      buildPackages = buildPackages // { stdenv = buildPackages.gcc10Stdenv; };
+    };
+    linux_4_19_hardened = hardenedKernelFor kernels.linux_4_19 {
+      stdenv = gcc10Stdenv;
+      buildPackages = buildPackages // { stdenv = buildPackages.gcc10Stdenv; };
+    };
+    linux_5_4_hardened = hardenedKernelFor kernels.linux_5_4 {
+      stdenv = gcc10Stdenv;
+      buildPackages = buildPackages // { stdenv = buildPackages.gcc10Stdenv; };
+    };
     linux_5_10_hardened = hardenedKernelFor kernels.linux_5_10 { };
     linux_5_15_hardened = hardenedKernelFor kernels.linux_5_15 { };
     linux_6_1_hardened = hardenedKernelFor kernels.linux_6_1 { };
@@ -476,8 +482,6 @@ in {
 
     prl-tools = callPackage ../os-specific/linux/prl-tools { };
 
-    sch_cake = callPackage ../os-specific/linux/sch_cake { };
-
     isgx = callPackage ../os-specific/linux/isgx { };
 
     rr-zen_workaround = callPackage ../development/tools/analysis/rr/zen_workaround.nix { };
@@ -557,6 +561,7 @@ in {
 
   } // lib.optionalAttrs config.allowAliases {
     ati_drivers_x11 = throw "ati drivers are no longer supported by any kernel >=4.1"; # added 2021-05-18;
+    sch_cake = throw "sch_cake was added in mainline kernel version 4.19"; # Added 2023-06-14
     xmm7360-pci = throw "Support for the XMM7360 WWAN card was added to the iosm kmod in mainline kernel version 5.18";
   });
 
@@ -600,23 +605,14 @@ in {
     linux_testing = packagesFor kernels.linux_testing;
     linux_testing_bcachefs = recurseIntoAttrs (packagesFor kernels.linux_testing_bcachefs);
 
-    linux_hardened = recurseIntoAttrs (hardenedPackagesFor packageAliases.linux_default.kernel { });
+    linux_hardened = recurseIntoAttrs (packagesFor kernels.linux_hardened);
 
-    linux_4_14_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_4_14 {
-      stdenv = gcc10Stdenv;
-      buildPackages = buildPackages // { stdenv = buildPackages.gcc10Stdenv; };
-    });
-    linux_4_19_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_4_19 {
-      stdenv = gcc10Stdenv;
-      buildPackages = buildPackages // { stdenv = buildPackages.gcc10Stdenv; };
-    });
-    linux_5_4_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_5_4 {
-      stdenv = gcc10Stdenv;
-      buildPackages = buildPackages // { stdenv = buildPackages.gcc10Stdenv; };
-    });
-    linux_5_10_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_5_10 { });
-    linux_5_15_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_5_15 { });
-    linux_6_1_hardened = recurseIntoAttrs (hardenedPackagesFor kernels.linux_6_1 { });
+    linux_4_14_hardened = recurseIntoAttrs (packagesFor kernels.linux_4_14_hardened);
+    linux_4_19_hardened = recurseIntoAttrs (packagesFor kernels.linux_4_19_hardened);
+    linux_5_4_hardened = recurseIntoAttrs (packagesFor kernels.linux_5_4_hardened);
+    linux_5_10_hardened = recurseIntoAttrs (packagesFor kernels.linux_5_10_hardened);
+    linux_5_15_hardened = recurseIntoAttrs (packagesFor kernels.linux_5_15_hardened);
+    linux_6_1_hardened = recurseIntoAttrs (packagesFor kernels.linux_6_1_hardened);
 
     linux_zen = recurseIntoAttrs (packagesFor kernels.linux_zen);
     linux_lqx = recurseIntoAttrs (packagesFor kernels.linux_lqx);
