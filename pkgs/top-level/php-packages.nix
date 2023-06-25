@@ -294,6 +294,8 @@ lib.makeScope pkgs.newScope (self: with self; {
 
     swoole = callPackage ../development/php-packages/swoole { };
 
+    uv = callPackage ../development/php-packages/uv { };
+
     xdebug = callPackage ../development/php-packages/xdebug { };
 
     yaml = callPackage ../development/php-packages/yaml { };
@@ -438,7 +440,7 @@ lib.makeScope pkgs.newScope (self: with self; {
         }
         {
           name = "openssl";
-          buildInputs = if (lib.versionAtLeast php.version "8.1") then [ openssl ] else [ openssl_1_1 ];
+          buildInputs = [ openssl ];
           configureFlags = [ "--with-openssl" ];
           doCheck = false;
         }
@@ -554,8 +556,7 @@ lib.makeScope pkgs.newScope (self: with self; {
         { name = "tidy"; configureFlags = [ "--with-tidy=${html-tidy}" ]; doCheck = false; }
         {
           name = "tokenizer";
-          patches = lib.optional (lib.versionAtLeast php.version "8.1")
-            ../development/interpreters/php/fix-tokenizer-php81.patch;
+          patches = [ ../development/interpreters/php/fix-tokenizer-php81.patch ];
         }
         {
           name = "xml";

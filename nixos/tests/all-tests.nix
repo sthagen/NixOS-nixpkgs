@@ -108,7 +108,7 @@ in {
   alps = handleTest ./alps.nix {};
   amazon-init-shell = handleTest ./amazon-init-shell.nix {};
   apcupsd = handleTest ./apcupsd.nix {};
-  apfs = handleTest ./apfs.nix {};
+  apfs = runTest ./apfs.nix;
   apparmor = handleTest ./apparmor.nix {};
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
@@ -253,6 +253,7 @@ in {
   etebase-server = handleTest ./etebase-server.nix {};
   etesync-dav = handleTest ./etesync-dav.nix {};
   evcc = handleTest ./evcc.nix {};
+  fakeroute = handleTest ./fakeroute.nix {};
   fancontrol = handleTest ./fancontrol.nix {};
   fcitx5 = handleTest ./fcitx5 {};
   fenics = handleTest ./fenics.nix {};
@@ -313,6 +314,8 @@ in {
   graylog = handleTest ./graylog.nix {};
   grocy = handleTest ./grocy.nix {};
   grub = handleTest ./grub.nix {};
+  guacamole-client = handleTest ./guacamole-client.nix {};
+  guacamole-server = handleTest ./guacamole-server.nix {};
   gvisor = handleTest ./gvisor.nix {};
   hadoop = import ./hadoop { inherit handleTestOn; package=pkgs.hadoop; };
   hadoop_3_2 = import ./hadoop { inherit handleTestOn; package=pkgs.hadoop_3_2; };
@@ -559,6 +562,7 @@ in {
   openstack-image-metadata = (handleTestOn ["x86_64-linux"] ./openstack-image.nix {}).metadata or {};
   openstack-image-userdata = (handleTestOn ["x86_64-linux"] ./openstack-image.nix {}).userdata or {};
   opentabletdriver = handleTest ./opentabletdriver.nix {};
+  opentelemetry-collector = handleTest ./opentelemetry-collector.nix {};
   owncast = handleTest ./owncast.nix {};
   outline = handleTest ./outline.nix {};
   image-contents = handleTest ./image-contents.nix {};
@@ -591,7 +595,6 @@ in {
   phosh = handleTest ./phosh.nix {};
   photoprism = handleTest ./photoprism.nix {};
   php = handleTest ./php {};
-  php80 = handleTest ./php { php = pkgs.php80; };
   php81 = handleTest ./php { php = pkgs.php81; };
   php82 = handleTest ./php { php = pkgs.php82; };
   phylactery = handleTest ./web-apps/phylactery.nix {};
