@@ -26,6 +26,7 @@
 , gnused ? null
 , cloog # unused; just for compat with gcc4, as we override the parameter on some places
 , buildPackages
+, callPackage
 }:
 
 # Note: this package is used for bootstrapping fetchurl, and thus
@@ -59,7 +60,6 @@ let majorVersion = "9";
       ./fix-struct-redefinition-on-glibc-2.36.patch
       # Fix https://gcc.gnu.org/bugzilla/show_bug.cgi?id=80431
       ../fix-bug-80431.patch
-      ../install-info-files-serially.patch
     ] ++ optional (targetPlatform != hostPlatform) ../libstdc++-target.patch
       ++ optional targetPlatform.isNetBSD ../libstdc++-netbsd-ctypes.patch
       ++ optional noSysDirs ../no-sys-dirs.patch
@@ -144,7 +144,7 @@ let majorVersion = "9";
 
 in
 
-stdenv.mkDerivation ({
+lib.pipe (stdenv.mkDerivation ({
   pname = "${crossNameAddon}${name}";
   inherit version;
 
@@ -235,6 +235,9 @@ stdenv.mkDerivation ({
     (targetPlatform == hostPlatform && hostPlatform == buildPlatform)
     (if profiledCompiler then "profiledbootstrap" else "bootstrap");
 
+  # https://gcc.gnu.org/PR109898
+  enableParallelInstalling = false;
+
   inherit (callFile ../common/strip-attributes.nix { })
     stripDebugList
     stripDebugListTarget
@@ -285,10 +288,9 @@ stdenv.mkDerivation ({
   };
 }
 
-// optionalAttrs (targetPlatform != hostPlatform && targetPlatform.libc == "msvcrt" && crossStageStatic) {
-  makeFlags = [ "all-gcc" "all-target-libgcc" ];
-  installTargets = "install-gcc install-target-libgcc";
-}
 
 // optionalAttrs (enableMultilib) { dontMoveLib64 = true; }
 )
+) [
+  (callPackage ../common/libgcc.nix   { inherit version langC langCC langJit targetPlatform hostPlatform crossStageStatic; })
+]

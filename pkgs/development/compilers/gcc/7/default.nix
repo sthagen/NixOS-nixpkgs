@@ -23,6 +23,7 @@
 , gnused ? null
 , cloog ? null # unused; just for compat with gcc4, as we override the parameter on some places
 , buildPackages
+, callPackage
 }:
 
 # Make sure we get GNU sed.
@@ -61,7 +62,6 @@ let majorVersion = "7";
         ../fix-bug-80431.patch
 
         ../9/fix-struct-redefinition-on-glibc-2.36.patch
-        ../install-info-files-serially.patch
       ]
       ++ optional (targetPlatform != hostPlatform) ../libstdc++-target.patch
       ++ optionals targetPlatform.isNetBSD [
@@ -149,7 +149,7 @@ let majorVersion = "7";
 
 in
 
-stdenv.mkDerivation ({
+lib.pipe (stdenv.mkDerivation ({
   pname = "${crossNameAddon}${name}";
   inherit version;
 
@@ -244,6 +244,9 @@ stdenv.mkDerivation ({
     (targetPlatform == hostPlatform && hostPlatform == buildPlatform)
     (if profiledCompiler then "profiledbootstrap" else "bootstrap");
 
+  # https://gcc.gnu.org/PR109898
+  enableParallelInstalling = false;
+
   inherit (callFile ../common/strip-attributes.nix { })
     stripDebugList
     stripDebugListTarget
@@ -296,10 +299,8 @@ stdenv.mkDerivation ({
   };
 }
 
-// optionalAttrs (targetPlatform != hostPlatform && targetPlatform.libc == "msvcrt" && crossStageStatic) {
-  makeFlags = [ "all-gcc" "all-target-libgcc" ];
-  installTargets = "install-gcc install-target-libgcc";
-}
-
 // optionalAttrs (enableMultilib) { dontMoveLib64 = true; }
-)
+))
+[
+  (callPackage ../common/libgcc.nix   { inherit version langC langCC langJit targetPlatform hostPlatform crossStageStatic; })
+]

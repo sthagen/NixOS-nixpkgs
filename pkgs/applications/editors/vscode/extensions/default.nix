@@ -587,6 +587,22 @@ let
         };
       };
 
+      brandonkirbyson.solarized-palenight = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "solarized-palenight";
+          publisher = "BrandonKirbyson";
+          version = "1.0.1";
+          sha256 = "sha256-vVbaHSaBX6QzpnYMQlpPsJU1TQYJEBe8jq95muzwN0o=";
+        };
+        meta = {
+          description = " A solarized-palenight theme for vscode";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=BrandonKirbyson.solarized-palenight";
+          homepage = "https://github.com/BrandonKirbyson/Solarized-Palenight";
+          license = lib.licenses.mit;
+          maintainers = [ lib.maintainers.sebtm ];
+        };
+      };
+
       brettm12345.nixfmt-vscode = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "nixfmt-vscode";
@@ -651,8 +667,8 @@ let
         mktplcRef = {
           name = "ruff";
           publisher = "charliermarsh";
-          version = "2023.26.0";
-          sha256 = "sha256-5JaOo0BqTWo3NAdzS9DSClTwB9YiBhICEPOqWmBv270=";
+          version = "2023.30.0";
+          sha256 = "sha256-E/zgKNxKH05qzLkoyq66qBDbkNJ7liBvU+ZSxw825c0=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -1159,8 +1175,8 @@ let
         mktplcRef = {
           name = "elixir-ls";
           publisher = "JakeBecker";
-          version = "0.15.1";
-          sha256 = "sha256-u7Vrj55u5BVZ9AAjarKV9veq2kTgEqeQvhV1j+HSIxU=";
+          version = "0.15.2";
+          sha256 = "sha256-Zu/AcV0KY3QV0hyZsGrQdbc/Qc0pKNHVkHZVJ3PL0ps=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/JakeBecker.elixir-ls/changelog";

@@ -298,6 +298,9 @@ lib.pipe (stdenv.mkDerivation ({
     stripDebugListTarget
     preFixup;
 
+  # https://gcc.gnu.org/PR109898
+  enableParallelInstalling = false;
+
   # https://gcc.gnu.org/install/specific.html#x86-64-x-solaris210
   ${if hostPlatform.system == "x86_64-solaris" then "CC" else null} = "gcc -m64";
 
@@ -341,15 +344,10 @@ lib.pipe (stdenv.mkDerivation ({
   };
 }
 
-// optionalAttrs (targetPlatform != hostPlatform && targetPlatform.libc == "msvcrt" && crossStageStatic) {
-  makeFlags = [ "all-gcc" "all-target-libgcc" ];
-  installTargets = "install-gcc install-target-libgcc";
-}
-
 // optionalAttrs (enableMultilib) { dontMoveLib64 = true; }
 ))
 [
-  (callPackage ../common/libgcc.nix   { inherit langC langCC langJit; })
+  (callPackage ../common/libgcc.nix   { inherit version langC langCC langJit targetPlatform hostPlatform crossStageStatic; })
   (callPackage ../common/checksum.nix { inherit langC langCC; })
 ]
 
