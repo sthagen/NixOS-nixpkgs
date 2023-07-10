@@ -1679,6 +1679,8 @@ with pkgs;
 
   fabs = callPackage ../tools/backup/fabs { };
 
+  fm-tune = callPackage ../applications/radio/fm-tune { };
+
   fwbuilder = libsForQt5.callPackage ../tools/security/fwbuilder { };
 
   hblock = callPackage ../tools/networking/hblock { };
@@ -4288,6 +4290,8 @@ with pkgs;
 
   traefik-certs-dumper = callPackage ../tools/misc/traefik-certs-dumper { };
 
+  caffeine = callPackage ../tools/misc/caffeine { };
+
   calamares = libsForQt5.callPackage ../tools/misc/calamares {
     python = python3;
     boost = boost.override { enablePython = true; python = python3; };
@@ -4519,6 +4523,8 @@ with pkgs;
   wdomirror = callPackage ../tools/wayland/wdomirror { };
 
   wdt = callPackage ../applications/networking/sync/wdt { };
+
+  wlay = callPackage ../tools/wayland/wlay { };
 
   wl-clip-persist = callPackage ../tools/wayland/wl-clip-persist { };
 
@@ -4824,6 +4830,8 @@ with pkgs;
   dotenv-linter = callPackage ../development/tools/analysis/dotenv-linter {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  dotool = callPackage ../tools/dotool { };
 
   inherit (ocamlPackages) dot-merlin-reader;
 
@@ -5537,6 +5545,8 @@ with pkgs;
 
   limitcpu = callPackage ../tools/misc/limitcpu { };
 
+  lineselect = callPackage ../tools/misc/lineselect { };
+
   link-grammar = callPackage ../tools/text/link-grammar { };
 
   linuxptp = callPackage ../os-specific/linux/linuxptp { };
@@ -5699,9 +5709,7 @@ with pkgs;
 
   mpdris2 = callPackage ../tools/audio/mpdris2 { };
 
-  mpd-discord-rpc = callPackage ../tools/audio/mpd-discord-rpc {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  mpd-discord-rpc = callPackage ../tools/audio/mpd-discord-rpc { };
 
   mpd-mpris = callPackage ../tools/audio/mpd-mpris { };
 
@@ -6479,8 +6487,9 @@ with pkgs;
 
   inherit (callPackage ../applications/networking/remote/citrix-workspace { })
     citrix_workspace_23_02_0
+    citrix_workspace_23_07_0
   ;
-  citrix_workspace = citrix_workspace_23_02_0;
+  citrix_workspace = citrix_workspace_23_07_0;
 
   cmigemo = callPackage ../tools/text/cmigemo { };
 
@@ -7974,6 +7983,8 @@ with pkgs;
 
   fuse-7z-ng = callPackage ../tools/filesystems/fuse-7z-ng { };
 
+  fuse-archive = callPackage ../tools/filesystems/fuse-archive { };
+
   fuse-overlayfs = callPackage ../tools/filesystems/fuse-overlayfs { };
 
   fusee-interfacee-tk = callPackage ../applications/misc/fusee-interfacee-tk { };
@@ -8997,6 +9008,8 @@ with pkgs;
   iperf2 = callPackage ../tools/networking/iperf/2.nix { };
   iperf3 = callPackage ../tools/networking/iperf/3.nix { };
   iperf = iperf3;
+
+  iperf3d = callPackage ../tools/networking/iperf3d { };
 
   ipfetch = callPackage ../tools/networking/ipfetch { };
 
@@ -11698,6 +11711,8 @@ with pkgs;
 
   pretender = callPackage ../tools/security/pretender { };
 
+  prettierd = callPackage ../development/tools/prettierd { };
+
   pretty-simple = callPackage ../development/tools/pretty-simple { };
 
   prettyping = callPackage ../tools/networking/prettyping { };
@@ -11828,7 +11843,7 @@ with pkgs;
     pythonPackages = python27Packages;
   };
 
-  py-spy = callPackage ../development/tools/py-spy { };
+  py-spy = darwin.apple_sdk_11_0.callPackage ../development/tools/py-spy { };
 
   pydeps = with python3Packages; toPythonApplication pydeps;
 
@@ -13330,6 +13345,8 @@ with pkgs;
   tldr = callPackage ../tools/misc/tldr { };
 
   tldr-hs = haskellPackages.tldr;
+
+  tlsclient = callPackage ../tools/admin/tlsclient { };
 
   tlsx = callPackage ../tools/security/tlsx { };
 
@@ -16650,7 +16667,7 @@ with pkgs;
   cargo2junit = callPackage ../development/tools/rust/cargo2junit { };
 
   cargo-espflash = callPackage ../development/tools/rust/cargo-espflash {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
   cargo-web = callPackage ../development/tools/rust/cargo-web {
@@ -18396,6 +18413,8 @@ with pkgs;
 
   catnip = callPackage ../tools/audio/catnip { };
 
+  catnip-gtk4 = callPackage ../tools/audio/catnip-gtk4 { };
+
   cbrowser = callPackage ../development/tools/misc/cbrowser { };
 
   cc-tool = callPackage ../development/embedded/cc-tool { };
@@ -19851,6 +19870,8 @@ with pkgs;
   tweak = callPackage ../applications/editors/tweak { };
 
   typical = callPackage ../development/tools/misc/typical { };
+
+  tyson = callPackage ../development/tools/misc/tyson { };
 
   uddup = callPackage ../tools/security/uddup { };
 
@@ -23242,6 +23263,8 @@ with pkgs;
   yaml-cpp = callPackage ../development/libraries/yaml-cpp { };
 
   yaml-cpp_0_3 = callPackage ../development/libraries/yaml-cpp/0.3.0.nix { };
+
+  yas = callPackage ../development/libraries/yas { };
 
   libyang = callPackage ../development/libraries/libyang { };
 
@@ -27334,7 +27357,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
 
-  btop = callPackage ../tools/system/btop {
+  btop = darwin.apple_sdk_11_0.callPackage ../tools/system/btop {
     stdenv = gcc12Stdenv;
   };
 
@@ -27936,6 +27959,8 @@ with pkgs;
   # pam_bioapi ( see http://www.thinkwiki.org/wiki/How_to_enable_the_fingerprint_reader )
 
   pam_ccreds = callPackage ../os-specific/linux/pam_ccreds { };
+
+  pam_dp9ik = callPackage ../os-specific/linux/pam_dp9ik { };
 
   pam_gnupg = callPackage ../os-specific/linux/pam_gnupg { };
 
@@ -35506,6 +35531,8 @@ with pkgs;
 
   viw = callPackage ../applications/editors/viw { };
 
+  virter = callPackage ../applications/virtualization/virter { };
+
   virt-viewer = callPackage ../applications/virtualization/virt-viewer { };
 
   virt-top = callPackage ../applications/virtualization/virt-top { };
@@ -38944,6 +38971,7 @@ with pkgs;
   tlaplus = callPackage ../applications/science/logic/tlaplus {
     jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
+  tlaplus18 = callPackage ../applications/science/logic/tlaplus/tlaplus18.nix {};
   tlaps = callPackage ../applications/science/logic/tlaplus/tlaps.nix {
     inherit (ocaml-ng.ocamlPackages_4_14_unsafe_string) ocaml;
   };
@@ -40333,7 +40361,7 @@ with pkgs;
 
   soundmodem = callPackage ../applications/radio/soundmodem { };
 
-  soundOfSorting = callPackage ../misc/sound-of-sorting { };
+  sound-of-sorting = callPackage ../misc/sound-of-sorting { };
 
   sourceAndTags = callPackage ../misc/source-and-tags {
     hasktags = haskellPackages.hasktags;
