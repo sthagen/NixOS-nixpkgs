@@ -138,6 +138,7 @@ in {
   borgbackup = handleTest ./borgbackup.nix {};
   botamusique = handleTest ./botamusique.nix {};
   bpf = handleTestOn ["x86_64-linux" "aarch64-linux"] ./bpf.nix {};
+  bpftune = handleTest ./bpftune.nix {};
   breitbandmessung = handleTest ./breitbandmessung.nix {};
   brscan5 = handleTest ./brscan5.nix {};
   btrbk = handleTest ./btrbk.nix {};
@@ -576,6 +577,7 @@ in {
   openvscode-server = handleTest ./openvscode-server.nix {};
   orangefs = handleTest ./orangefs.nix {};
   os-prober = handleTestOn ["x86_64-linux"] ./os-prober.nix {};
+  osquery = handleTestOn ["x86_64-linux"] ./osquery.nix {};
   osrm-backend = handleTest ./osrm-backend.nix {};
   overlayfs = handleTest ./overlayfs.nix {};
   pacemaker = handleTest ./pacemaker.nix {};
@@ -597,6 +599,7 @@ in {
   peertube = handleTestOn ["x86_64-linux"] ./web-apps/peertube.nix {};
   peroxide = handleTest ./peroxide.nix {};
   pgadmin4 = handleTest ./pgadmin4.nix {};
+  pgbouncer = handleTest ./pgbouncer.nix {};
   pgjwt = handleTest ./pgjwt.nix {};
   pgmanage = handleTest ./pgmanage.nix {};
   phosh = handleTest ./phosh.nix {};
@@ -726,6 +729,7 @@ in {
   switchTest = handleTest ./switch-test.nix {};
   sympa = handleTest ./sympa.nix {};
   syncthing = handleTest ./syncthing.nix {};
+  syncthing-no-settings = handleTest ./syncthing-no-settings.nix {};
   syncthing-init = handleTest ./syncthing-init.nix {};
   syncthing-relay = handleTest ./syncthing-relay.nix {};
   systemd = handleTest ./systemd.nix {};
@@ -804,6 +808,7 @@ in {
   turbovnc-headless-server = handleTest ./turbovnc-headless-server.nix {};
   tuxguitar = handleTest ./tuxguitar.nix {};
   twingate = runTest ./twingate.nix;
+  typesense = handleTest ./typesense.nix {};
   ucarp = handleTest ./ucarp.nix {};
   udisks2 = handleTest ./udisks2.nix {};
   ulogd = handleTest ./ulogd.nix {};

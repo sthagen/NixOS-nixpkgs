@@ -127,7 +127,6 @@ in {
       kernelPatches = [
         kernelPatches.bridge_stp_helper
         kernelPatches.request_key_helper
-        kernelPatches.CVE-2023-32233
       ];
     };
 
@@ -349,6 +348,8 @@ in {
     exfat-nofuse = if lib.versionOlder kernel.version "5.8" then callPackage ../os-specific/linux/exfat { } else null;
 
     evdi = callPackage ../os-specific/linux/evdi { };
+
+    fanout = callPackage ../os-specific/linux/fanout { };
 
     fwts-efi-runtime = callPackage ../os-specific/linux/fwts/module.nix { };
 
