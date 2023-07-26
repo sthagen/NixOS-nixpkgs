@@ -932,7 +932,7 @@ self: super: {
         pname = "sg-nvim-rust";
         inherit (old) version src;
 
-        cargoHash = "sha256-Xlhy2yfB99Tu0j7rXRC6UkdcV0MW09olyxcC2gjd7h4=";
+        cargoHash = "sha256-KhUCIAGSgf7TxabEzcjo582VgbSU79QSGlaEP7BbJCE=";
 
         nativeBuildInputs = [ pkg-config ];
 
@@ -966,18 +966,18 @@ self: super: {
 
   sniprun =
     let
-      version = "1.3.4";
+      version = "1.3.5";
       src = fetchFromGitHub {
         owner = "michaelb";
         repo = "sniprun";
         rev = "v${version}";
-        hash = "sha256-H1PmjiNyUp+fTDqnfppFii+aDh8gPD/ALHFNWVXch3w=";
+        hash = "sha256-D2nHei7mc7Yn8rgFiWFyaR87wQuryv76B25BYOpyp2I=";
       };
       sniprun-bin = rustPlatform.buildRustPackage {
         pname = "sniprun-bin";
         inherit version src;
 
-        cargoHash = "sha256-WXhH0zqGj/D83AoEfs0kPqW7UXIAkURTJ+/BKbuUvss=";
+        cargoHash = "sha256-TG84BeYm7K5Dn0CvMvv1gzqeX246JPks1qcwkfcsG8c=";
 
         nativeBuildInputs = [ makeWrapper ];
 
