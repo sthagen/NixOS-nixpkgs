@@ -11,14 +11,14 @@
 
 buildPythonPackage rec {
   pname = "tubeup";
-  version = "2023.7.23";
+  version = "2023.8.10";
   format = "setuptools";
 
   disabled = pythonOlder "3.7";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-lI+Ws1uVC8cnRERmfY7j5vPjQGEAH6zef7nBnd/hC+I=";
+    sha256 = "sha256-9jSPFKS1+mGprgGj1c6hOrOo/w2e7A+OXSUjQUm+NCg=";
   };
 
   nativeBuildInputs = [

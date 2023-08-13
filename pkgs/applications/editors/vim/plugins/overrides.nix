@@ -125,6 +125,7 @@
 
   # must be lua51Packages
 , luaPackages
+, luajitPackages
 }:
 
 self: super: {
@@ -600,6 +601,24 @@ self: super: {
 
   };
 
+  image-nvim = super.image-nvim.overrideAttrs {
+    dependencies = with self; [
+      nvim-treesitter
+      nvim-treesitter-parsers.markdown_inline
+      nvim-treesitter-parsers.norg
+    ];
+
+    # Add magick to package.path
+    patches = [ ./patches/image-nvim/magick.patch ];
+
+    postPatch = ''
+      substituteInPlace lua/image/magick.lua \
+        --replace @nix_magick@ ${luajitPackages.magick}
+    '';
+
+    nvimRequireCheck = "image";
+  };
+
   jedi-vim = super.jedi-vim.overrideAttrs {
     # checking for python3 support in vim would be neat, too, but nobody else seems to care
     buildInputs = [ python3.pkgs.jedi ];
@@ -883,6 +902,21 @@ self: super: {
     dependencies = with self; [ (nvim-treesitter.withPlugins (p: [ p.org ])) ];
   };
 
+  overseer-nvim = super.overseer-nvim.overrideAttrs {
+    doCheck = true;
+    checkPhase = ''
+      runHook preCheck
+
+      plugins=.testenv/data/nvim/site/pack/plugins/start
+      mkdir -p "$plugins"
+      ln -s ${self.plenary-nvim} "$plugins/plenary.nvim"
+      bash run_tests.sh
+      rm -r .testenv
+
+      runHook postCheck
+    '';
+  };
+
   inherit parinfer-rust;
 
   phpactor = buildVimPluginFrom2Nix {
@@ -932,7 +966,7 @@ self: super: {
         pname = "sg-nvim-rust";
         inherit (old) version src;
 
-        cargoHash = "sha256-KhUCIAGSgf7TxabEzcjo582VgbSU79QSGlaEP7BbJCE=";
+        cargoHash = "sha256-cMMNur6QKp87Q28JyCH2IMLE3xDVd7Irg9HvJ2AsnZc=";
 
         nativeBuildInputs = [ pkg-config ];
 
@@ -966,18 +1000,23 @@ self: super: {
 
   sniprun =
     let
-      version = "1.3.5";
+      version = "1.3.6";
       src = fetchFromGitHub {
         owner = "michaelb";
         repo = "sniprun";
         rev = "v${version}";
-        hash = "sha256-D2nHei7mc7Yn8rgFiWFyaR87wQuryv76B25BYOpyp2I=";
+        hash = "sha256-1xvB/YhpHlOhxbkIGlgQyTlO5ljWPHfOm+tuhKRTXAw=";
       };
       sniprun-bin = rustPlatform.buildRustPackage {
         pname = "sniprun-bin";
         inherit version src;
 
-        cargoHash = "sha256-TG84BeYm7K5Dn0CvMvv1gzqeX246JPks1qcwkfcsG8c=";
+        # Cargo.lock is outdated
+        preBuild = ''
+          cargo update --offline
+        '';
+
+        cargoHash = "sha256-pML4ZJYivC/tu/7yvbB/VHfXTT+UpLZuS1Y3iNXt2Ks=";
 
         nativeBuildInputs = [ makeWrapper ];
 
@@ -1055,9 +1094,8 @@ self: super: {
       svedbackend = stdenv.mkDerivation {
         name = "svedbackend-${super.sved.name}";
         inherit (super.sved) src;
-        nativeBuildInputs = [ wrapGAppsHook ];
+        nativeBuildInputs = [ wrapGAppsHook gobject-introspection ];
         buildInputs = [
-          gobject-introspection
           glib
           (python3.withPackages (ps: with ps; [ pygobject3 pynvim dbus-python ]))
         ];
@@ -1419,6 +1457,10 @@ self: super: {
 
   vim-metamath = super.vim-metamath.overrideAttrs {
     preInstall = "cd vim";
+  };
+
+  vim-pluto = super.vim-pluto.overrideAttrs {
+    dependencies = with self; [ denops-vim ];
   };
 
   vim-snipmate = super.vim-snipmate.overrideAttrs {

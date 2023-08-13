@@ -36,14 +36,14 @@ let
   in
     assert lib.all (p: p.enabled -> ! (builtins.elem null p.buildInputs)) plugins;
     stdenv.mkDerivation rec {
-      version = "4.0.2";
+      version = "4.0.3";
       pname = "weechat";
 
       hardeningEnable = [ "pie" ];
 
       src = fetchurl {
         url = "https://weechat.org/files/src/weechat-${version}.tar.xz";
-        hash = "sha256-DmSO4NAkyAmUJe5g1BsnKSTsjhmADujxRBCQcIg0Ajw=";
+        hash = "sha256-iA29zo5zs/SAKggsShp8YZQ9vFhn16lWleTkY8ZTWpI=";
       };
 
       outputs = [ "out" "man" ] ++ map (p: p.name) enabledPlugins;
@@ -95,6 +95,7 @@ let
         '';
         license = lib.licenses.gpl3;
         maintainers = with lib.maintainers; [ ncfavier ];
+        mainProgram = "weechat";
         platforms = lib.platforms.unix;
       };
     }

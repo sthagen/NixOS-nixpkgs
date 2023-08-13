@@ -425,7 +425,6 @@ with lib.maintainers; {
       offline
       saschagrunert
       srhb
-      zowoq
     ];
     scope = "Maintain the Kubernetes package and module";
     shortName = "Kubernetes";
@@ -712,7 +711,6 @@ with lib.maintainers; {
       adisbladis
       saschagrunert
       vdemeester
-      zowoq
     ];
     githubTeams = [
       "podman"
@@ -734,6 +732,7 @@ with lib.maintainers; {
       fridh
       hexa
       jonringer
+      tjni
     ];
     scope = "Maintain the Python interpreter and related packages.";
     shortName = "Python";
