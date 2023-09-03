@@ -517,7 +517,7 @@ self: super: {
     });
 
   fuzzy-nvim = super.fuzzy-nvim.overrideAttrs {
-    dependencies = with self; [ telescope-fzy-native-nvim ];
+    dependencies = with self; [ telescope-fzf-native-nvim ];
   };
 
   fzf-checkout-vim = super.fzf-checkout-vim.overrideAttrs {
@@ -966,7 +966,7 @@ self: super: {
         pname = "sg-nvim-rust";
         inherit (old) version src;
 
-        cargoHash = "sha256-cMMNur6QKp87Q28JyCH2IMLE3xDVd7Irg9HvJ2AsnZc=";
+        cargoHash = "sha256-BXmf/eUxfsqq49K31k1+KjMHTV7KBTh0Sse/hCcFjqw=";
 
         nativeBuildInputs = [ pkg-config ];
 
@@ -1635,7 +1635,6 @@ self: super: {
       "coc-haxe"
       "coc-highlight"
       "coc-html"
-      "coc-imselect"
       "coc-java"
       "coc-jest"
       "coc-json"

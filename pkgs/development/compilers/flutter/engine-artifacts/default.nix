@@ -19,10 +19,14 @@ let
     version = engineVersion;
     dontUnpack = true;
     src = fetchurl {
+      pname = "flutter-sky_engine-LICENSE";
+      version = engineVersion;
       url = "https://raw.githubusercontent.com/flutter/engine/${engineVersion}/sky/packages/sky_engine/LICENSE";
       sha256 = hashes.skyNotice;
     };
     flutterNotice = fetchurl {
+      pname = "flutter-LICENSE";
+      version = engineVersion;
       url = "https://raw.githubusercontent.com/flutter/flutter/${flutterVersion}/LICENSE";
       sha256 = hashes.flutterNotice;
     };
@@ -187,7 +191,7 @@ let
             hash = (if artifactDirectory == null then hashes else hashes.${artifactDirectory}).${archive};
           });
 
-      setSourceRoot = if overrideUnpackCmd then "sourceRoot=`pwd`" else null;
+      sourceRoot = if overrideUnpackCmd then "." else null;
       unpackCmd = if overrideUnpackCmd then "unzip -o $src -d $out" else null;
 
       installPhase =

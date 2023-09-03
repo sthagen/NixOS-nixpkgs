@@ -44,10 +44,13 @@ let
   pkgs = import ./.. { system = "x86_64-linux"; };
 
 
-  versionModule =
-    { system.nixos.versionSuffix = versionSuffix;
-      system.nixos.revision = nixpkgs.rev or nixpkgs.shortRev;
-    };
+  versionModule = { config, ... }: {
+    system.nixos.versionSuffix = versionSuffix;
+    system.nixos.revision = nixpkgs.rev or nixpkgs.shortRev;
+
+    # At creation time we do not have state yet, so just default to latest.
+    system.stateVersion = config.system.nixos.version;
+  };
 
   makeModules = module: rest: [ configuration versionModule module rest ];
 
@@ -143,7 +146,7 @@ in rec {
   manualHTML = buildFromConfig ({ ... }: { }) (config: config.system.build.manual.manualHTML);
   manual = manualHTML; # TODO(@oxij): remove eventually
   manualEpub = (buildFromConfig ({ ... }: { }) (config: config.system.build.manual.manualEpub));
-  manpages = buildFromConfig ({ ... }: { }) (config: config.system.build.manual.manpages);
+  nixos-configuration-reference-manpage = buildFromConfig ({ ... }: { }) (config: config.system.build.manual.nixos-configuration-reference-manpage);
   options = (buildFromConfig ({ ... }: { }) (config: config.system.build.manual.optionsJSON)).x86_64-linux;
 
 

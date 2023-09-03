@@ -5,16 +5,16 @@
 }:
 buildGoModule rec {
   pname = "turso-cli";
-  version = "0.79.0";
+  version = "0.81.0";
 
   src = fetchFromGitHub {
     owner = "tursodatabase";
     repo = "turso-cli";
     rev = "v${version}";
-    hash = "sha256-5ucStAFe3lZgnGMI0fRw1E4T60+9nglNbZnzrjRmRgk=";
+    hash = "sha256-Ck1q3II/o7f+n0pdR5PzUXG2c6GZmQFeddofHzPTLlA=";
   };
 
-  vendorHash = "sha256-+F9I6+f7Sm5qhBAoXCMKjV/jFY0fyVIk0NKBQNNI+qM=";
+  vendorHash = "sha256-Y/pg8+w6B1YQqaZ5wj8QZxiBHAG0Tf3Zec5WlVyA4eI=";
 
   # Test_setDatabasesCache fails due to /homeless-shelter: read-only file system error.
   doCheck = false;

@@ -22,6 +22,7 @@ rec {
       changelog = "https://www.thunderbird.net/en-US/thunderbird/${version}/releasenotes/";
       description = "A full-featured e-mail client";
       homepage = "https://thunderbird.net/";
+      mainProgram = "thunderbird";
       maintainers = with maintainers; [ eelco lovesegfault pierron vcunat ];
       platforms = platforms.unix;
       badPlatforms = platforms.darwin;
@@ -42,13 +43,13 @@ rec {
 
   thunderbird-115 = (buildMozillaMach rec {
     pname = "thunderbird";
-    version = "115.1.0";
+    version = "115.2.0";
     application = "comm/mail";
     applicationName = "Mozilla Thunderbird";
     binaryName = pname;
     src = fetchurl {
       url = "mirror://mozilla/thunderbird/releases/${version}/source/thunderbird-${version}.source.tar.xz";
-      sha512 = "da03935d9f7f9a531877b91e93815481aaa49afdd6d2a68308c59235202a2743afdcbad5604d5d889580936b08382a0773123477778049a47ac6202b2b84b80d";
+      sha512 = "31a8b16164e3bab60b62642e1adc55b3d97fc4f20cf28207b1e599275eb5a207f60b173fd642e8c52a48e83894e2ab874cb8424c22c5c712afd7169084b0a2df";
     };
     extraPatches = [
       # The file to be patched is different from firefox's `no-buildconfig-ffx90.patch`.
@@ -59,6 +60,7 @@ rec {
       changelog = "https://www.thunderbird.net/en-US/thunderbird/${version}/releasenotes/";
       description = "A full-featured e-mail client";
       homepage = "https://thunderbird.net/";
+      mainProgram = "thunderbird";
       maintainers = with maintainers; [ eelco lovesegfault pierron vcunat ];
       platforms = platforms.unix;
       badPlatforms = platforms.darwin;

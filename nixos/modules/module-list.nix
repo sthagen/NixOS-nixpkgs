@@ -319,6 +319,7 @@
   ./services/audio/botamusique.nix
   ./services/audio/gmediarender.nix
   ./services/audio/gonic.nix
+  ./services/audio/goxlr-utility.nix
   ./services/audio/hqplayerd.nix
   ./services/audio/icecast.nix
   ./services/audio/jack.nix
@@ -504,6 +505,7 @@
   ./services/hardware/fancontrol.nix
   ./services/hardware/freefall.nix
   ./services/hardware/fwupd.nix
+  ./services/hardware/hddfancontrol.nix
   ./services/hardware/illum.nix
   ./services/hardware/interception-tools.nix
   ./services/hardware/irqbalance.nix
@@ -928,6 +930,7 @@
   ./services/networking/jibri/default.nix
   ./services/networking/jicofo.nix
   ./services/networking/jitsi-videobridge.nix
+  ./services/networking/jool.nix
   ./services/networking/kea.nix
   ./services/networking/keepalived/default.nix
   ./services/networking/keybase.nix
@@ -978,6 +981,7 @@
   ./services/networking/nix-serve.nix
   ./services/networking/nix-store-gcs-proxy.nix
   ./services/networking/nixops-dns.nix
+  ./services/networking/nncp.nix
   ./services/networking/nntp-proxy.nix
   ./services/networking/nomad.nix
   ./services/networking/nsd.nix
@@ -1169,6 +1173,7 @@
   ./services/system/self-deploy.nix
   ./services/system/systembus-notify.nix
   ./services/system/uptimed.nix
+  ./services/system/zram-generator.nix
   ./services/torrent/deluge.nix
   ./services/torrent/flexget.nix
   ./services/torrent/magnetico.nix
@@ -1223,6 +1228,7 @@
   ./services/web-apps/healthchecks.nix
   ./services/web-apps/hedgedoc.nix
   ./services/web-apps/hledger-web.nix
+  ./services/web-apps/honk.nix
   ./services/web-apps/icingaweb2/icingaweb2.nix
   ./services/web-apps/icingaweb2/module-monitoring.nix
   ./services/web-apps/invidious.nix
@@ -1464,6 +1470,7 @@
   ./virtualisation/lxc.nix
   ./virtualisation/lxcfs.nix
   ./virtualisation/lxd.nix
+  ./virtualisation/lxd-agent.nix
   ./virtualisation/multipass.nix
   ./virtualisation/nixos-containers.nix
   ./virtualisation/oci-containers.nix

@@ -5,23 +5,23 @@
 
 buildGoModule rec {
   pname = "terragrunt";
-  version = "0.48.6";
+  version = "0.50.12";
 
   src = fetchFromGitHub {
     owner = "gruntwork-io";
     repo = pname;
     rev = "refs/tags/v${version}";
-    hash = "sha256-pvDZfKITFrhtLnewAhRGjwu45zj2q3usNSr9U2xb52Y=";
+    hash = "sha256-NAilGvA0S4GEQgqKKQMddemZmyFBnKE4+R689kAyoMg=";
   };
 
-  vendorHash = "sha256-5Umoqi2D6iUk2Ut7YB/nmkOyA6Rx2qFhy/ZbfqoX5qA=";
+  vendorHash = "sha256-wQ5jxOTuYkiW5zHcduByKZ+vHPKn/1ELL3DskKze+UI=";
 
   doCheck = false;
 
   ldflags = [
     "-s"
     "-w"
-    "-X main.VERSION=v${version}"
+    "-X github.com/gruntwork-io/go-commons/version.Version=v${version}"
   ];
 
   doInstallCheck = true;

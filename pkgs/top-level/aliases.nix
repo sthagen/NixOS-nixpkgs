@@ -81,6 +81,7 @@ mapAliases ({
   amuleGui = throw "amuleGui was renamed to amule-gui"; # Added 2022-02-11
   amsn = throw "amsn has been removed due to being unmaintained"; # Added 2020-12-09
   angelfish = libsForQt5.kdeGear.angelfish; # Added 2021-10-06
+  angryipscanner = ipscan; # Added 2023-08-30
   ansible_2_12 = throw "Ansible 2.12 goes end of life in 2023/05 and can't be supported throughout the 23.05 release cycle"; # Added 2023-05-16
   ansible_2_11 = throw "Ansible 2.11 goes end of life in 2022/11 and can't be supported throughout the 22.05 release cycle"; # Added 2022-03-30
   ansible_2_10 = throw "Ansible 2.10 went end of life in 2022/05 and has subsequently been dropped"; # Added 2022-03-30
@@ -96,6 +97,7 @@ mapAliases ({
   arduino_core = throw "'arduino_core' has been renamed to/replaced by 'arduino-core'"; # Converted to throw 2022-02-22
   arora = throw "arora has been removed"; # Added 2020-09-09
   asciidocFull = throw "'asciidocFull' has been renamed to/replaced by 'asciidoc-full'"; # Converted to throw 2022-02-22
+  aseprite-unfree = aseprite; # Added 2023-08-26
   asls = throw "asls has been removed: abandoned by upstream"; # Added 2023-03-16
   asterisk_13 = throw "asterisk_13: Asterisk 13 is end of life and has been removed"; # Added 2022-04-06
   asterisk_15 = throw "asterisk_15: Asterisk 15 is end of life and has been removed"; # Added 2020-10-07
@@ -416,6 +418,7 @@ mapAliases ({
   dolphinEmu = dolphin-emu; # Added 2021-11-10
   dolphinEmuMaster = dolphin-emu-beta; # Added 2021-11-10
   dot-http = throw "'dot-http' has been removed: abandoned by upstream. Use hurl instead."; # Added 2023-01-16
+  dotty = scala_3; # Added 2023-08-20
   dotnet-netcore = dotnet-runtime; # Added 2021-10-07
   double_conversion = throw "'double_conversion' has been renamed to/replaced by 'double-conversion'"; # Converted to throw 2022-02-22
   draftsight = throw "draftsight has been removed, no longer available as freeware"; # Added 2020-08-14
@@ -460,6 +463,7 @@ mapAliases ({
   emacs28NativeComp = emacs28; # Added 2022-06-08
   emacs28Packages = emacs28.pkgs; # Added 2021-10-04
   emacs28WithPackages = emacs28.pkgs.withPackages; # Added 2021-10-04
+  emacsMacport = emacs-macport; # Added 2023-08-10
   emacsNativeComp = emacs28NativeComp; # Added 2022-06-08
   emacsPackagesGen = throw "'emacsPackagesGen' has been renamed to/replaced by 'emacsPackagesFor'"; # Converted to throw 2022-02-22
   emacsPackagesNg = emacs.pkgs; # Added 2019-08-07
@@ -530,6 +534,7 @@ mapAliases ({
   flutter-beta = throw "Non-stable versions of Flutter have been removed. You can use flutterPackages.mkFlutter to generate a package for other Flutter versions"; # Added 2020-01-15
   flutter-dev = throw "Non-stable versions of Flutter have been removed. You can use flutterPackages.mkFlutter to generate a package for other Flutter versions"; # Added 2020-01-15
   flutter2 = throw "flutter2 has been removed because it isn't updated anymore, and no packages in nixpkgs use it. If you still need it, use flutter.mkFlutter to get a custom version"; # Added 2023-07-03
+  flutter37 = throw "flutter37 has been removed because it isn't updated anymore, and no packages in nixpkgs use it. If you still need it, use flutter.mkFlutter to get a custom version"; # Added 2023-07-03
   flvtool2 = throw "flvtool2 has been removed"; # Added 2020-11-03
   fme = throw "fme was removed, because it is old and uses Glade, a discontinued library"; # Added 2022-01-26
   foldingathome = fahclient; # Added 2020-09-03
@@ -639,6 +644,13 @@ mapAliases ({
   gnuvd = throw "gnuvd was removed because the backend service is missing"; # Added 2020-01-14
   gobby5 = gobby; # Added 2021-02-01
   gobjectIntrospection = throw "'gobjectIntrospection' has been renamed to/replaced by 'gobject-introspection'"; # Converted to throw 2022-02-22
+
+  #godot
+  godot = throw "godot has been renamed to godot3 to distinguish from version 4"; # Added 2023-07-16
+  godot-export-templates = throw "godot-export-templates has been renamed to godot3-export-templates to distinguish from version 4"; # Added 2023-07-16
+  godot-headless = throw "godot-headless has been renamed to godot3-headless to distinguish from version 4"; # Added 2023-07-16
+  godot-server = throw "godot-server has been renamed to godot3-server to distinguish from version 4"; # Added 2023-07-16
+
   gogoclient = throw "gogoclient has been removed, because it was unmaintained"; # Added 2021-12-15
   goklp = throw "goklp has been dropped due to the lack of maintenance from upstream since 2017"; # Added 2022-06-02
   golly-beta = throw "golly-beta has been removed: use golly instead"; # Added 2022-03-21
@@ -824,6 +836,7 @@ mapAliases ({
   kexpand = throw "kexpand awless has been dropped due to the lack of maintenance from upstream since 2017"; # Added 2022-06-01
   keybase-go = throw "'keybase-go' has been renamed to/replaced by 'keybase'"; # Converted to throw 2022-02-22
   keysmith = libsForQt5.kdeGear.keysmith; # Added 2021-07-14
+  kfctl = throw "kfctl is broken and has been archived by upstream" ; # Added 2023-08-21
   kgx = gnome-console; # Added 2022-02-19
   kibana7-oss = throw "kibana7-oss has been removed, as the distribution is no longer provided by upstream. https://github.com/NixOS/nixpkgs/pull/114456"; # Added 2021-06-09
   kicad-with-packages3d = kicad; # Added 2019-11-25
@@ -845,6 +858,7 @@ mapAliases ({
   kubei = kubeclarity; # Added 2023-05-20
   kubeless = throw "kubeless is deprecated and archived by upstream"; # Added 2022-04-05
   kubicorn = throw "kubicorn has been dropped due to the lack of maintenance from upstream since 2019"; # Added 2022-05-30
+  kuma-prometheus-sd = throw "kuma-prometheus-sd has been deprecated upstream"; # Added 2023-07-02
   kvm = throw "'kvm' has been renamed to/replaced by 'qemu_kvm'"; # Converted to throw 2022-02-22
 
   ### L ###
@@ -878,7 +892,6 @@ mapAliases ({
   liberation_ttf_v1_from_source = throw "'liberation_ttf_v1_from_source' has been renamed to/replaced by 'liberation_ttf_v1'"; # Converted to throw 2022-02-22
   liberation_ttf_v2_from_source = throw "'liberation_ttf_v2_from_source' has been renamed to/replaced by 'liberation_ttf_v2'"; # Converted to throw 2022-02-22
   liberationsansnarrow = throw "'liberationsansnarrow' has been renamed to/replaced by 'liberation-sans-narrow'"; # Converted to throw 2022-02-22
-  libgcc = throw "libgcc was removed, use gcc.cc.libgcc if needed"; # added 2023-05-13
   libgksu = throw "libgksu has been removed"; # Added 2022-01-16
   libgme = game-music-emu; # Added 2022-07-20
   libgnome_keyring = throw "'libgnome_keyring' has been renamed to/replaced by 'libgnome-keyring'"; # Converted to throw 2022-02-22
@@ -942,6 +955,7 @@ mapAliases ({
   lilyterm-git = throw "lilyterm-git has been removed from nixpkgs, because it was relying on a vte version that depended on python2"; # Added 2022-01-14
   links = throw "'links' has been renamed to/replaced by 'links2'"; # Converted to throw 2022-02-22
   linuxband = throw "linuxband has been removed from nixpkgs, as it's abandoned upstream"; # Added 2021-12-09
+  llama = walk; # Added 2023-01-23
 
   # Linux kernels
   linux-rt_5_10 = linuxKernel.kernels.linux_rt_5_10;
@@ -961,6 +975,7 @@ mapAliases ({
   linuxPackages_6_2 = linuxKernel.packages.linux_6_2;
   linuxPackages_6_3 = linuxKernel.packages.linux_6_3;
   linuxPackages_6_4 = linuxKernel.packages.linux_6_4;
+  linuxPackages_6_5 = linuxKernel.packages.linux_6_5;
   linuxPackages_hardkernel_4_14 = linuxKernel.packages.hardkernel_4_14;
   linuxPackages_rpi0 = linuxKernel.packages.linux_rpi1;
   linuxPackages_rpi02w = linuxKernel.packages.linux_rpi3;
@@ -985,6 +1000,7 @@ mapAliases ({
   linux_6_2 = linuxKernel.kernels.linux_6_2;
   linux_6_3 = linuxKernel.kernels.linux_6_3;
   linux_6_4 = linuxKernel.kernels.linux_6_4;
+  linux_6_5 = linuxKernel.kernels.linux_6_5;
   linuxPackages_mptcp = throw "'linuxPackages_mptcp' has been moved to https://github.com/teto/mptcp-flake"; # Converted to throw 2022-10-04
   linux_mptcp = throw "'linux_mptcp' has been moved to https://github.com/teto/mptcp-flake"; # Converted to throw 2022-10-04
   linux_mptcp_95 = throw "'linux_mptcp_95' has been moved to https://github.com/teto/mptcp-flake"; # Converted to throw 2022-10-04
@@ -1481,6 +1497,7 @@ mapAliases ({
   quake3game = throw "'quake3game' has been renamed to/replaced by 'ioquake3'"; # Converted to throw 2022-02-22
   quaternion-git = throw "quaternion-git has been removed in favor of the stable version 'quaternion'"; # Added 2020-04-09
   quilter = throw "quilter has been removed from nixpkgs, as it was unmaintained"; # Added 2021-08-03
+  qutebrowser-qt6 = throw "'qutebrowser-qt6' has been replaced by 'qutebrowser', since the the qt5 version has been removed"; # Added 2023-08-19
   qvim = throw "qvim has been removed"; # Added 2020-08-31
   qweechat = throw "qweechat has been removed because it was broken"; # Added 2021-03-08
   qwt6 = throw "'qwt6' has been renamed to/replaced by 'libsForQt5.qwt'"; # Converted to throw 2022-02-22
@@ -1571,9 +1588,11 @@ mapAliases ({
   shared_mime_info = throw "'shared_mime_info' has been renamed to/replaced by 'shared-mime-info'"; # Converted to throw 2022-02-22
   inherit (libsForQt5.mauiPackages) shelf; # added 2022-05-17
   shellinabox = throw "shellinabox has been removed from nixpkgs, as it was unmaintained upstream"; # Added 2021-12-15
+  shhgit = throw "shhgit is broken and is no longer maintained. See https://github.com/eth0izzle/shhgit#-shhgit-is-no-longer-maintained-" ; # Added 2023-08-08
   shipyard = jumppad; # Added 2023-06-06
   sickbeard = throw "sickbeard has been removed from nixpkgs, as it was unmaintained"; # Added 2022-01-01
   sickrage = throw "sickbeard has been removed from nixpkgs, as it was unmaintained"; # Added 2022-01-01
+  signumone-ks = throw "signumone-ks has been removed from nixpkgs because the developers stopped offering the binaries"; # Added 2023-08-17
   sigurlx = throw "sigurlx has been removed (upstream is gone)"; # Added 2022-01-24
   skrooge2 = throw "'skrooge2' has been renamed to/replaced by 'skrooge'"; # Converted to throw 2022-02-22
   skype = throw "'skype' has been renamed to/replaced by 'skypeforlinux'"; # Converted to throw 2022-02-22
@@ -1812,6 +1831,7 @@ mapAliases ({
   ### W ###
 
   wavesurfer = throw "wavesurfer has been removed: depended on snack which has been removed"; # Added 2022-04-21
+  waybar-hyprland = throw "waybar-hyprland has been removed: hyprland support is now built into waybar by default."; # Added 2023-08-21
   way-cooler = throw "way-cooler is abandoned by its author: https://way-cooler.org/blog/2020/01/09/way-cooler-post-mortem.html"; # Added 2020-01-13
   wayfireApplications-unwrapped = throw ''
     'wayfireApplications-unwrapped.wayfire' has been renamed to/replaced by 'wayfire'
@@ -1834,6 +1854,8 @@ mapAliases ({
   wineStaging = throw "'wineStaging' has been renamed to/replaced by 'wine-staging'"; # Converted to throw 2022-02-22
   wineUnstable = throw "'wineUnstable' has been renamed to/replaced by 'winePackages.unstable'"; # Converted to throw 2022-02-22
   wineWayland = wine-wayland;
+  win-qemu = throw "'win-qemu' has been replaced by 'win-virtio'"; # Added 2023-08-16
+  win-signed-gplpv-drivers = throw "win-signed-gplpv-drivers has been removed from nixpkgs, as it's unmaintained: https://help.univention.com/t/installing-signed-gplpv-drivers/21828"; # Added 2023-08-17
   winpdb = throw "winpdb has been removed: abandoned by upstream"; # Added 2022-04-22
   winusb = throw "'winusb' has been renamed to/replaced by 'woeusb'"; # Converted to throw 2022-02-22
   wireguard = throw "'wireguard' has been renamed to/replaced by 'wireguard-tools'"; # Converted to throw 2022-02-22
@@ -1943,7 +1965,7 @@ mapAliases ({
 
   ant-dracula-theme = throw "ant-dracula-theme is now dracula-theme, and theme name is Dracula instead of Ant-Dracula";
   dina-font-pcf = dina-font; # Added 2020-02-09
-  dnscrypt-proxy = throw "dnscrypt-proxy has been removed. Please use dnscrypt-proxy2"; # Added 2020-02-02
+  dnscrypt-proxy2 = dnscrypt-proxy; # Added 2023-02-02
   gcc-snapshot = throw "gcc-snapshot: Marked as broken for >2 years, additionally this 'snapshot' pointed to a fairly old one from gcc7";
   gnatsd = nats-server; # Added 2019-10-28
 
@@ -2004,26 +2026,29 @@ mapAliases ({
   https://github.com/NixOS/nixpkgs/pull/101369 */
 
   inherit (plasma5Packages)
-    akonadi akregator ark bluedevil bomber bovo breeze-grub breeze-gtk
+    akonadi akregator arianna ark bluedevil bomber bovo breeze-grub breeze-gtk
     breeze-icons breeze-plymouth breeze-qt5 colord-kde discover dolphin dragon elisa falkon
     ffmpegthumbs filelight granatier gwenview k3b kactivitymanagerd kaddressbook
-    kalendar kalzium kapman kapptemplate kate katomic kblackbox kblocks kbounce
+    kalzium kapman kapptemplate kate katomic kblackbox kblocks kbounce
     kcachegrind kcalc kcharselect kcolorchooser kde-cli-tools kde-gtk-config
     kdenlive kdeplasma-addons kdevelop-pg-qt kdevelop-unwrapped kdev-php
-    kdev-python kdevelop kdf kdialog kdiamond keditbookmarks kfind kfloppy
+    kdev-python kdevelop kdf kdialog kdiamond keditbookmarks kfind
     kgamma5 kget kgpg khelpcenter kig kigo killbots kinfocenter kitinerary
     kleopatra klettres klines kmag kmail kmenuedit kmines kmix kmplot
     knavalbattle knetwalk knights kollision kolourpaint kompare konsole kontact
     konversation korganizer kpkpass krdc kreversi krfb kscreen kscreenlocker
     kshisen ksquares ksshaskpass ksystemlog kteatime ktimer ktorrent ktouch
     kturtle kwallet-pam kwalletmanager kwave kwayland-integration kwin kwrited
-    marble milou minuet okular oxygen oxygen-icons5 picmi
+    marble merkuro milou minuet okular oxygen oxygen-icons5 picmi
     plasma-browser-integration plasma-desktop plasma-integration plasma-nano
     plasma-nm plasma-pa plasma-mobile plasma-systemmonitor plasma-thunderbolt
     plasma-vault plasma-workspace plasma-workspace-wallpapers polkit-kde-agent
     powerdevil qqc2-breeze-style sddm-kcm skanlite skanpage spectacle
     systemsettings xdg-desktop-portal-kde yakuake zanshin
   ;
+
+  kalendar = merkuro;  # Renamed in 23.08
+  kfloppy = throw "kfloppy has been removed upstream in KDE Gear 23.08";
 
   inherit (plasma5Packages.thirdParty)
     krohnkite

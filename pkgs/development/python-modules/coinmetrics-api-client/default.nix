@@ -11,13 +11,14 @@
 , pythonOlder
 , pythonRelaxDepsHook
 , requests
+, tqdm
 , typer
 , websocket-client
 }:
 
 buildPythonPackage rec {
   pname = "coinmetrics-api-client";
-  version = "2023.8.2.13";
+  version = "2023.8.30.20";
   format = "pyproject";
 
   disabled = pythonOlder "3.9";
@@ -27,7 +28,7 @@ buildPythonPackage rec {
   src = fetchPypi {
     inherit version;
     pname = "coinmetrics_api_client";
-    hash = "sha256-R7EbzH8ftHqoCbe8plXPOmTL01mow7t+zgVfL4+bZXQ=";
+    hash = "sha256-zi9hFpmRILfWXA9eLGbzt/+v3l1wykZz10GUuH20hzE=";
   };
 
   pythonRelaxDeps = [
@@ -44,6 +45,7 @@ buildPythonPackage rec {
     python-dateutil
     requests
     typer
+    tqdm
     websocket-client
   ];
 
