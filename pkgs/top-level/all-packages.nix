@@ -1699,6 +1699,8 @@ with pkgs;
 
   cf-vault = callPackage ../tools/admin/cf-vault { };
 
+  cfspeedtest = callPackage ../tools/networking/cfspeedtest { };
+
   cfonts = callPackage ../tools/misc/cfonts { };
 
   bikeshed = python3Packages.callPackage ../applications/misc/bikeshed { };
@@ -10234,31 +10236,30 @@ with pkgs;
   nodenv = callPackage ../development/tools/nodenv { };
 
   nodejs = hiPrio nodejs_18;
-
   nodejs-slim = nodejs-slim_18;
+  corepack = hiPrio corepack_18;
 
-  nodejs_14 = callPackage ../development/web/nodejs/v14.nix {
-    openssl = openssl_1_1;
-  };
+  nodejs_14 = callPackage ../development/web/nodejs/v14.nix { openssl = openssl_1_1; };
   nodejs-slim_14 = callPackage ../development/web/nodejs/v14.nix {
     openssl = openssl_1_1;
     enableNpm = false;
   };
+
   nodejs_16 = callPackage ../development/web/nodejs/v16.nix { };
-  nodejs-slim_16 = callPackage ../development/web/nodejs/v16.nix {
-    enableNpm = false;
-  };
+  nodejs-slim_16 = callPackage ../development/web/nodejs/v16.nix { enableNpm = false; };
+
   nodejs_18 = callPackage ../development/web/nodejs/v18.nix { };
-  nodejs-slim_18 = callPackage ../development/web/nodejs/v18.nix {
-    enableNpm = false;
-  };
+  nodejs-slim_18 = callPackage ../development/web/nodejs/v18.nix { enableNpm = false; };
+  corepack_18 = hiPrio (callPackage ../development/web/nodejs/corepack.nix { nodejs = nodejs_18; });
+
   nodejs_20 = callPackage ../development/web/nodejs/v20.nix { };
-  nodejs-slim_20 = callPackage ../development/web/nodejs/v20.nix {
-    enableNpm = false;
-  };
+  nodejs-slim_20 = callPackage ../development/web/nodejs/v20.nix { enableNpm = false; };
+  corepack_20 = hiPrio (callPackage ../development/web/nodejs/corepack.nix { nodejs = nodejs_20; });
+
   # Update this when adding the newest nodejs major version!
   nodejs_latest = nodejs_20;
   nodejs-slim_latest = nodejs-slim_20;
+  corepack_latest = hiPrio corepack_20;
 
   buildNpmPackage = callPackage ../build-support/node/build-npm-package { };
 
@@ -41674,7 +41675,7 @@ with pkgs;
   wmutils-opt = callPackage ../tools/X11/wmutils-opt { };
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress6_1 wordpress6_2;
+    wordpress wordpress6_1 wordpress6_2 wordpress6_3;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;
