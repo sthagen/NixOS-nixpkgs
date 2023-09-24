@@ -1078,6 +1078,7 @@ with pkgs;
     antlr = antlr4_10;
     boost = boost177; # Configure checks for specific version.
     icu =  icu69;
+    protobuf = protobuf3_21;
   };
 
   broadlink-cli = callPackage ../tools/misc/broadlink-cli { };
@@ -5678,6 +5679,7 @@ with pkgs;
   hyprdim = callPackage ../applications/misc/hyprdim { };
 
   hyprland = callPackage ../applications/window-managers/hyprwm/hyprland {
+    stdenv = gcc13Stdenv;
     wlroots = callPackage ../applications/window-managers/hyprwm/hyprland/wlroots.nix { };
     udis86 = callPackage ../applications/window-managers/hyprwm/hyprland/udis86.nix { };
   };
@@ -7976,7 +7978,7 @@ with pkgs;
   esshader = callPackage ../tools/graphics/esshader { };
 
   etcher = callPackage ../tools/misc/etcher {
-    electron = electron_12;
+    electron = electron_19;
   };
 
   ethercalc = callPackage ../servers/web-apps/ethercalc { };
@@ -13257,10 +13259,6 @@ with pkgs;
   smbnetfs = callPackage ../tools/filesystems/smbnetfs { };
 
   smenu = callPackage ../tools/misc/smenu { };
-
-  smesh = callPackage ../development/libraries/smesh {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
 
   boost-sml = callPackage ../development/libraries/boost-ext/boost-sml { };
 
@@ -20162,8 +20160,6 @@ with pkgs;
 
   rolespec = callPackage ../development/tools/misc/rolespec { };
 
-  rome = callPackage ../development/tools/rome { };
-
   rr = callPackage ../development/tools/analysis/rr { };
 
   rsass = callPackage ../development/tools/misc/rsass { };
@@ -24466,9 +24462,6 @@ with pkgs;
     python = python3;
   };
 
-  opencascade = callPackage ../development/libraries/opencascade {
-    inherit (darwin.apple_sdk.frameworks) OpenCL Cocoa;
-  };
   opencascade-occt = callPackage ../development/libraries/opencascade-occt { };
 
   opencl-headers = callPackage ../development/libraries/opencl-headers { };
@@ -25662,17 +25655,6 @@ with pkgs;
   vte-gtk4 = vte.override {
     gtkVersion = "4";
   };
-
-  vtk_8 = libsForQt5.callPackage ../development/libraries/vtk/8.x.nix {
-    stdenv = gcc9Stdenv;
-    inherit (darwin) libobjc;
-    inherit (darwin.apple_sdk.libs) xpc;
-    inherit (darwin.apple_sdk.frameworks) AGL Cocoa CoreServices DiskArbitration
-                                          IOKit CFNetwork Security ApplicationServices
-                                          CoreText IOSurface ImageIO OpenGL GLUT;
-  };
-
-  vtk_8_withQt5 = vtk_8.override { enableQt = true; };
 
   vtk_9 = libsForQt5.callPackage ../development/libraries/vtk/9.x.nix {
     inherit (darwin) libobjc;
@@ -28590,7 +28572,7 @@ with pkgs;
   ginkgo = callPackage ../development/tools/ginkgo { };
 
   gdlv = darwin.apple_sdk_11_0.callPackage ../development/tools/gdlv {
-    inherit (darwin.apple_sdk_11_0.frameworks) OpenGL AppKit;
+    inherit (darwin.apple_sdk_11_0.frameworks) Foundation CoreGraphics Metal AppKit;
   };
 
   go-bindata = callPackage ../development/tools/go-bindata { };
@@ -33528,7 +33510,7 @@ with pkgs;
 
   lame = callPackage ../development/libraries/lame { };
 
-  labwc = callPackage ../applications/window-managers/labwc {
+  labwc = callPackage ../by-name/la/labwc/package.nix {
     wlroots = wlroots_0_16;
   };
 
