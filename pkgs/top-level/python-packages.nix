@@ -3140,6 +3140,8 @@ self: super: with self; {
 
   dnspython = callPackage ../development/python-modules/dnspython { };
 
+  dns-lexicon = callPackage ../development/python-modules/dns-lexicon { };
+
   doc8 = callPackage ../development/python-modules/doc8 { };
 
   docformatter = callPackage ../development/python-modules/docformatter { };
@@ -3635,6 +3637,8 @@ self: super: with self; {
   explorerscript = callPackage ../development/python-modules/explorerscript { };
 
   exrex = callPackage ../development/python-modules/exrex { };
+
+  exitcode = callPackage ../development/python-modules/exitcode { };
 
   extractcode = callPackage ../development/python-modules/extractcode { };
 
@@ -8743,6 +8747,8 @@ self: super: with self; {
 
   psutil-home-assistant = callPackage ../development/python-modules/psutil-home-assistant { };
 
+  psychrolib = callPackage ../development/python-modules/psychrolib { };
+
   psycopg = callPackage ../development/python-modules/psycopg { };
 
   psycopg2 = callPackage ../development/python-modules/psycopg2 { };
@@ -8930,6 +8936,8 @@ self: super: with self; {
   pybindgen = callPackage ../development/python-modules/pybindgen { };
 
   pyblackbird = callPackage ../development/python-modules/pyblackbird { };
+
+  pybloom-live = callPackage ../development/python-modules/pybloom-live { };
 
   pybluez = callPackage ../development/python-modules/pybluez {
     inherit (pkgs) bluez;
@@ -10915,6 +10923,8 @@ self: super: with self; {
 
   pyweatherflowrest = callPackage ../development/python-modules/pyweatherflowrest { };
 
+  pyweatherflowudp = callPackage ../development/python-modules/pyweatherflowudp { };
+
   pywebpush = callPackage ../development/python-modules/pywebpush { };
 
   pywebview = callPackage ../development/python-modules/pywebview { };
@@ -10930,7 +10940,7 @@ self: super: with self; {
   pywizlight = callPackage ../development/python-modules/pywizlight { };
 
   pywlroots = callPackage ../development/python-modules/pywlroots {
-    wlroots = pkgs.wlroots_0_15;
+    wlroots = pkgs.wlroots_0_16;
   };
 
   pyws66i = callPackage ../development/python-modules/pyws66i { };
@@ -11050,7 +11060,7 @@ self: super: with self; {
   qtconsole = callPackage ../development/python-modules/qtconsole { };
 
   qtile = callPackage ../development/python-modules/qtile {
-    wlroots = pkgs.wlroots_0_15;
+    wlroots = pkgs.wlroots_0_16;
   };
   qtile-extras = callPackage ../development/python-modules/qtile-extras { };
 
@@ -11789,6 +11799,8 @@ self: super: with self; {
     inherit (pkgs) sentencepiece;
   };
 
+  sentence-splitter = callPackage ../development/python-modules/sentence-splitter { };
+
   sentence-transformers = callPackage ../development/python-modules/sentence-transformers { };
 
   sentinel = callPackage ../development/python-modules/sentinel { };
@@ -12508,6 +12520,8 @@ self: super: with self; {
   stickytape = callPackage ../development/python-modules/stickytape { };
 
   stim = callPackage ../development/python-modules/stim { };
+
+  stix2-patterns = callPackage ../development/python-modules/stix2-patterns { };
 
   stm32loader = callPackage ../development/python-modules/stm32loader { };
 
