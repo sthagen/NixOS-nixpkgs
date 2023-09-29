@@ -603,6 +603,8 @@ with pkgs;
 
   documenso = callPackage ../applications/office/documenso { };
 
+  domine = callPackage ../tools/misc/domine { };
+
   dsq = callPackage ../tools/misc/dsq { };
 
   dt = callPackage ../tools/text/dt { };
@@ -7830,8 +7832,6 @@ with pkgs;
 
   vt-cli = callPackage ../tools/security/vt-cli { };
 
-  utahfs = callPackage ../applications/networking/utahfs { };
-
   wakeonlan = callPackage ../tools/networking/wakeonlan { };
 
   wallutils = callPackage ../tools/graphics/wallutils { };
@@ -8041,10 +8041,6 @@ with pkgs;
 
   expliot = callPackage ../tools/security/expliot { };
 
-  eza = callPackage ../tools/misc/eza {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   f2fs-tools = callPackage ../tools/filesystems/f2fs-tools { };
 
   Fabric = with python3Packages; toPythonApplication fabric;
@@ -8174,9 +8170,7 @@ with pkgs;
 
   findex = callPackage ../applications/misc/findex { };
 
-  findomain = callPackage ../tools/networking/findomain {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  findomain = callPackage ../tools/networking/findomain { };
 
   findutils = callPackage ../tools/misc/findutils { };
 
@@ -8640,7 +8634,7 @@ with pkgs;
   };
   dapl-native = callPackage ../development/interpreters/dzaima-apl {
     buildNativeImage = true;
-    jdk = graalvm11-ce;
+    jdk = graalvm-ce;
   };
 
   gnucap = callPackage ../applications/science/electronics/gnucap { };
@@ -9379,6 +9373,8 @@ with pkgs;
   inadyn = callPackage ../tools/networking/inadyn { };
 
   incron = callPackage ../tools/system/incron { };
+
+  indexed-bzip2 = with python3Packages; toPythonApplication indexed-bzip2;
 
   industrializer = callPackage ../applications/audio/industrializer { };
 
@@ -12554,6 +12550,8 @@ with pkgs;
 
   ramfetch = callPackage ../tools/misc/ramfetch { };
 
+  rapidgzip = with python3Packages; toPythonApplication rapidgzip;
+
   rar = callPackage ../tools/archivers/rar { };
 
   rarcrack = callPackage ../tools/security/rarcrack { };
@@ -12561,6 +12559,8 @@ with pkgs;
   rare-regex = callPackage ../tools/text/rare-regex { };
 
   ratman = callPackage ../tools/networking/ratman { };
+
+  ratarmount = with python3Packages; toPythonApplication ratarmount;
 
   ratools = callPackage ../tools/networking/ratools { };
 
@@ -16477,10 +16477,7 @@ with pkgs;
 
   graalvmCEPackages =
     recurseIntoAttrs (callPackage ../development/compilers/graalvm/community-edition { });
-  graalvm-ce = graalvm11-ce;
-  graalvm11-ce = graalvmCEPackages.graalvm11-ce;
-  graalvm17-ce = graalvmCEPackages.graalvm17-ce;
-  graalvm19-ce = graalvmCEPackages.graalvm19-ce;
+  graalvm-ce = graalvmCEPackages.graalvm-ce;
   buildGraalvmNativeImage = (callPackage ../build-support/build-graalvm-native-image {
     graalvmDrv = graalvm-ce;
   }).override;
@@ -17768,7 +17765,7 @@ with pkgs;
   };
   dbqn-native = callPackage ../development/interpreters/bqn/dzaima-bqn {
     buildNativeImage = true;
-    jdk = graalvm11-ce;
+    jdk = graalvm-ce;
   };
 
   chibi = callPackage ../development/interpreters/chibi { };
@@ -26254,13 +26251,13 @@ with pkgs;
 
   ### DEVELOPMENT / R MODULES
 
-  R = callPackage ../applications/science/math/R {
+  R = darwin.apple_sdk_11_0.callPackage ../applications/science/math/R {
     # TODO: split docs into a separate output
     texLive = texlive.combine {
       inherit (texlive) scheme-small inconsolata helvetic texinfo fancyvrb cm-super rsfs;
     };
     withRecommendedPackages = false;
-    inherit (darwin.apple_sdk.frameworks) Cocoa Foundation;
+    inherit (darwin.apple_sdk_11_0.frameworks) Cocoa Foundation;
     inherit (darwin) libobjc;
   };
 

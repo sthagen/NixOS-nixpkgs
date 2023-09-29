@@ -11591,6 +11591,13 @@
     githubId = 1001112;
     name = "Marcin Janczyk";
   };
+  mjm = {
+    email = "matt@mattmoriarity.com";
+    github = "mjm";
+    githubId = 1181;
+    matrix = "@mjm:beeper.com";
+    name = "Matt Moriarity";
+  };
   mjp = {
     email = "mike@mythik.co.uk";
     github = "MikePlayle";
@@ -12090,6 +12097,11 @@
     github = "mxkrsv";
     githubId = 59313755;
     name = "Maxim Karasev";
+  };
+  mxmlnkn = {
+    github = "mxmlnkn";
+    githubId = 6842824;
+    name = "Maximilian Knespel";
   };
   myaats = {
     email = "mats@mats.sh";
@@ -15282,6 +15294,12 @@
     github = "samhug";
     githubId = 171470;
     name = "Sam Hug";
+  };
+  SamirTalwar = {
+    email = "lazy.git@functional.computer";
+    github = "SamirTalwar";
+    githubId = 47852;
+    name = "Samir Talwar";
   };
   samlich = {
     email = "nixos@samli.ch";
