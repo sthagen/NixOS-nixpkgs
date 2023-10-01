@@ -872,6 +872,8 @@ self: super: with self; {
     inherit (pkgs.darwin.apple_sdk.frameworks) AudioToolbox AudioUnit CoreServices;
   };
 
+  auditok = callPackage ../development/python-modules/auditok { };
+
   augeas = callPackage ../development/python-modules/augeas {
     inherit (pkgs) augeas;
   };
@@ -2610,6 +2612,8 @@ self: super: with self; {
   db-dtypes = callPackage ../development/python-modules/db-dtypes { };
 
   dcmstack = callPackage ../development/python-modules/dcmstack { };
+
+  dctorch = callPackage ../development/python-modules/dctorch { };
 
   ddt = callPackage ../development/python-modules/ddt { };
 
@@ -8999,6 +9003,8 @@ self: super: with self; {
 
   pycarwings2 = callPackage ../development/python-modules/pycarwings2 { };
 
+  pycatch22 = callPackage ../development/python-modules/pycatch22 { };
+
   pycategories = callPackage ../development/python-modules/pycategories { };
 
   pycddl = callPackage ../development/python-modules/pycddl { };
@@ -11198,7 +11204,7 @@ self: super: with self; {
 
   rawkit = callPackage ../development/python-modules/rawkit { };
 
-  ray = callPackage ../development/python-modules/ray { redis = pkgs.redis; };
+  ray = callPackage ../development/python-modules/ray { };
 
   razdel = callPackage ../development/python-modules/razdel { };
 
@@ -11516,6 +11522,8 @@ self: super: with self; {
   ropgadget = callPackage ../development/python-modules/ropgadget { };
 
   ropper = callPackage ../development/python-modules/ropper { };
+
+  rotary-embedding-torch = callPackage ../development/python-modules/rotary-embedding-torch { };
 
   rouge-score = callPackage ../development/python-modules/rouge-score { };
 
@@ -13853,6 +13861,8 @@ self: super: with self; {
   wakeonlan = callPackage ../development/python-modules/wakeonlan { };
 
   wallbox = callPackage ../development/python-modules/wallbox { };
+
+  walrus = callPackage ../development/python-modules/walrus { };
 
   wand = callPackage ../development/python-modules/wand { };
 
