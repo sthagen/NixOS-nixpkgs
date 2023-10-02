@@ -2543,6 +2543,8 @@ self: super: with self; {
 
   datapoint = callPackage ../development/python-modules/datapoint { };
 
+  dataprep-ml = callPackage ../development/python-modules/dataprep-ml { };
+
   dataproperty = callPackage ../development/python-modules/dataproperty { };
 
   dataset = callPackage ../development/python-modules/dataset { };
@@ -5113,6 +5115,8 @@ self: super: with self; {
   hypercorn = callPackage ../development/python-modules/hypercorn { };
 
   hyperframe = callPackage ../development/python-modules/hyperframe { };
+
+  hyperscan = callPackage ../development/python-modules/hyperscan { };
 
   hyperion-py = callPackage ../development/python-modules/hyperion-py { };
 
@@ -10437,6 +10441,8 @@ self: super: with self; {
 
   pytest-shutil = callPackage ../development/python-modules/pytest-shutil { };
 
+  pytest-spec = callPackage ../development/python-modules/pytest-spec { };
+
   python-status = callPackage ../development/python-modules/python-status { };
 
   python-string-utils = callPackage ../development/python-modules/python-string-utils { };
@@ -11795,6 +11801,8 @@ self: super: with self; {
     python3 = self.python;
   });
 
+  seasonal = callPackage ../development/python-modules/seasonal { };
+
   seatconnect = callPackage ../development/python-modules/seatconnect { };
 
   seccomp = callPackage ../development/python-modules/seccomp { };
@@ -12156,6 +12164,8 @@ self: super: with self; {
   snapcast = callPackage ../development/python-modules/snapcast { };
 
   snapshottest = callPackage ../development/python-modules/snapshottest { };
+
+  snaptime = callPackage ../development/python-modules/snaptime { };
 
   sniffio = callPackage ../development/python-modules/sniffio { };
 
@@ -12780,6 +12790,8 @@ self: super: with self; {
 
   taxi = callPackage ../development/python-modules/taxi { };
 
+  tbats = callPackage ../development/python-modules/tbats { };
+
   tblib = callPackage ../development/python-modules/tblib { };
 
   tblite = callPackage ../development/libraries/science/chemistry/tblite/python.nix {
@@ -13306,6 +13318,8 @@ self: super: with self; {
   truststore = callPackage ../development/python-modules/truststore { };
 
   trytond = callPackage ../development/python-modules/trytond { };
+
+  tsfresh = callPackage ../development/python-modules/tsfresh { };
 
   tskit = callPackage ../development/python-modules/tskit { };
 

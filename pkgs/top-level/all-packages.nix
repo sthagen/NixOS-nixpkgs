@@ -13134,8 +13134,6 @@ with pkgs;
 
   shrikhand = callPackage ../data/fonts/shrikhand { };
 
-  shopware-cli = callPackage ../tools/misc/shopware-cli { };
-
   shunit2 = callPackage ../tools/misc/shunit2 { };
 
   sic = callPackage ../applications/networking/irc/sic { };
@@ -16805,7 +16803,7 @@ with pkgs;
 
   inherit (callPackages ../development/compilers/nim
                         { inherit (darwin) Security;  }
-          ) nim-unwrapped nim-unwrapped-2 nimble-unwrapped nim nim2;
+          ) nim-unwrapped nim-unwrapped-2 nim nim2;
   nimPackages = recurseIntoAttrs nim.pkgs;
   nim2Packages = recurseIntoAttrs nim2.pkgs;
 
@@ -21345,6 +21343,8 @@ with pkgs;
       gst-libav;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
+
+  fastcdr = callPackage ../development/libraries/fastcdr { };
 
   fbthrift = callPackage ../development/libraries/fbthrift { };
 
@@ -32759,8 +32759,6 @@ with pkgs;
   popura = callPackage ../tools/networking/popura { };
 
   pureref = callPackage ../applications/graphics/pureref { };
-
-  shepherd = nodePackages."@nerdwallet/shepherd";
 
   inherit (callPackage ../applications/virtualization/singularity/packages.nix { })
     apptainer
