@@ -1162,6 +1162,8 @@ let
 
     mparser-pcre =  callPackage ../development/ocaml-modules/mparser/pcre.nix { };
 
+    msgpck = callPackage ../development/ocaml-modules/msgpck { };
+
     mrmime = callPackage ../development/ocaml-modules/mrmime { };
 
     mtime_1 =  callPackage ../development/ocaml-modules/mtime/1_x.nix { };
@@ -1883,6 +1885,10 @@ let
     zarith = callPackage ../development/ocaml-modules/zarith { };
 
     zed = callPackage ../development/ocaml-modules/zed { };
+
+    zelus = callPackage ../development/ocaml-modules/zelus { };
+
+    zelus-gtk = callPackage ../development/ocaml-modules/zelus-gtk { };
 
     zmq = callPackage ../development/ocaml-modules/zmq { };
 

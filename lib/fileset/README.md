@@ -1,5 +1,10 @@
 # File set library
 
+This is the internal contributor documentation.
+The user documentation is [in the Nixpkgs manual](https://nixos.org/manual/nixpkgs/unstable/#sec-fileset).
+
+## Goals
+
 The main goal of the file set library is to be able to select local files that should be added to the Nix store.
 It should have the following properties:
 - Easy:
@@ -207,6 +212,5 @@ Here's a list of places in the library that need to be updated in the future:
 - > The file set library is currently somewhat limited but is being expanded to include more functions over time.
 
   in [the manual](../../doc/functions/fileset.section.md)
-- Once a tracing function exists, `__noEval` in [internal.nix](./internal.nix) should mention it
 - If/Once a function to convert `lib.sources` values into file sets exists, the `_coerce` and `toSource` functions should be updated to mention that function in the error when such a value is passed
 - If/Once a function exists that can optionally include a path depending on whether it exists, the error message for the path not existing in `_coerce` should mention the new function
