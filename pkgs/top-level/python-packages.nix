@@ -11707,6 +11707,8 @@ self: super: with self; {
 
   pywerview = callPackage ../development/python-modules/pywerview { };
 
+  pywfa = callPackage ../development/python-modules/pywfa { };
+
   pywilight = callPackage ../development/python-modules/pywilight { };
 
   pywinrm = callPackage ../development/python-modules/pywinrm { };
@@ -13194,6 +13196,8 @@ self: super: with self; {
   spyder-kernels = callPackage ../development/python-modules/spyder-kernels { };
 
   spyse-python = callPackage ../development/python-modules/spyse-python { };
+
+  sqids = callPackage ../development/python-modules/sqids { };
 
   sqlalchemy = callPackage ../development/python-modules/sqlalchemy { };
 
