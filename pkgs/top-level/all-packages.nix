@@ -20508,8 +20508,11 @@ with pkgs;
 
   uefi-firmware-parser = callPackage ../development/tools/analysis/uefi-firmware-parser { };
 
-  uhd3_5 = callPackage ../applications/radio/uhd/3.5.nix { };
   uhd = callPackage ../applications/radio/uhd { };
+  uhdMinimal = uhd.override {
+    enableUtils = false;
+    enablePythonApi = false;
+  };
 
   uisp = callPackage ../development/embedded/uisp { };
 
@@ -22526,6 +22529,8 @@ with pkgs;
   ldb = callPackage ../development/libraries/ldb { };
 
   lensfun = callPackage ../development/libraries/lensfun { };
+
+  lesbar = callPackage ../applications/window-managers/lesbar { };
 
   lesstif = callPackage ../development/libraries/lesstif { };
 
@@ -31845,6 +31850,7 @@ with pkgs;
         # So it will not reference python
         enableModTool = false;
       };
+      uhd = uhdMinimal;
       features = {
         gnuradio-companion = false;
         python-support = false;
@@ -31877,6 +31883,7 @@ with pkgs;
         # So it will not reference python
         enableModTool = false;
       };
+      uhd = uhdMinimal;
       features = {
         gnuradio-companion = false;
         python-support = false;
@@ -31908,6 +31915,7 @@ with pkgs;
       volk = volk.override {
         enableModTool = false;
       };
+      uhd = uhdMinimal;
       features = {
         gnuradio-companion = false;
         python-support = false;
@@ -33065,8 +33073,6 @@ with pkgs;
   img-cat = callPackage ../applications/graphics/img-cat { };
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
-
-  imhex = callPackage ../applications/editors/imhex { };
 
   inframap = callPackage ../applications/networking/cluster/inframap { };
 
