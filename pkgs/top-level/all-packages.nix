@@ -126,9 +126,6 @@ with pkgs;
 
   common-updater-scripts = callPackage ../common-updater/scripts.nix { };
 
-  # vimPluginsUpdater = callPackage ../applications/editors/vim/plugins/updater.nix {
-  #   inherit (writers) writePython3Bin;
-  # };
   vimPluginsUpdater = callPackage ../applications/editors/vim/plugins/updater.nix {
     inherit (python3Packages) buildPythonApplication ;
   };
@@ -430,7 +427,7 @@ with pkgs;
 
   catatonit = callPackage ../applications/virtualization/catatonit { };
 
-  catppuccin-bat = callPackage ../data/themes/catppuccin-bat { };
+  catppuccin = callPackage ../data/themes/catppuccin { };
 
   catppuccin-catwalk = callPackage ../development/tools/misc/catppuccin-catwalk { };
 
@@ -1827,6 +1824,8 @@ with pkgs;
   godns = callPackage ../tools/networking/godns { };
 
   godspeed = callPackage ../tools/networking/godspeed { };
+
+  goodhosts = callPackage ../tools/networking/goodhosts { };
 
   goose = callPackage ../tools/misc/goose { };
 
@@ -10685,6 +10684,7 @@ with pkgs;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
   lxcfs = callPackage ../os-specific/linux/lxcfs { };
+
   lxd = callPackage ../tools/admin/lxd/wrapper.nix { };
   lxd-unwrapped = callPackage ../tools/admin/lxd { };
 
@@ -17098,6 +17098,9 @@ with pkgs;
   cargo-asm = callPackage ../development/tools/rust/cargo-asm {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+  cargo-bazel = callPackage ../development/tools/rust/cargo-bazel {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-binutils = callPackage ../development/tools/rust/cargo-binutils { };
   cargo-bloat = callPackage ../development/tools/rust/cargo-bloat { };
   cargo-bolero = callPackage ../development/tools/rust/cargo-bolero { };
@@ -17386,12 +17389,8 @@ with pkgs;
   tinycc = darwin.apple_sdk_11_0.callPackage ../development/compilers/tinycc { };
 
   tinygo = callPackage ../development/compilers/tinygo {
-    llvmPackages = llvmPackages_14;
-    avrgcc = pkgsCross.avr.buildPackages.gcc;
+    llvmPackages = llvmPackages_16;
     wasi-libc = pkgsCross.wasi32.wasilibc;
-    # go 1.20 build failure
-    go = go_1_19;
-    buildGoModule = buildGo119Module;
   };
 
   tinyscheme = callPackage ../development/interpreters/tinyscheme { };
@@ -26437,7 +26436,9 @@ with pkgs;
   grafana = callPackage ../servers/monitoring/grafana { };
   grafanaPlugins = callPackages ../servers/monitoring/grafana/plugins { };
 
-  grafana-agent = callPackage ../servers/monitoring/grafana-agent { };
+  grafana-agent = callPackage ../servers/monitoring/grafana-agent {
+    buildGoModule = buildGo121Module;
+  };
 
   grafana-loki = callPackage ../servers/monitoring/loki { };
   promtail = callPackage ../servers/monitoring/loki/promtail.nix { };
@@ -42116,7 +42117,9 @@ with pkgs;
 
   yazi = callPackage ../applications/file-managers/yazi { inherit (darwin.apple_sdk.frameworks) Foundation; };
 
-  ssl-proxy = callPackage ../tools/networking/ssl-proxy { };
+  ssl-proxy = callPackage ../tools/networking/ssl-proxy {
+    buildGoModule = buildGo119Module; # build fails with 1.20
+  };
 
   code-maat = callPackage ../development/tools/code-maat {};
 }
