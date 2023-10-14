@@ -6978,7 +6978,7 @@ with pkgs;
   keymapper = callPackage ../tools/inputmethods/keymapper { };
 
   twitch-tui = callPackage ../applications/networking/instant-messengers/twitch-tui {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk_11_0.frameworks) Security CoreServices;
   };
 
   gebaar-libinput = callPackage ../tools/inputmethods/gebaar-libinput { stdenv = gcc10StdenvCompat; };
@@ -12613,9 +12613,9 @@ with pkgs;
 
   redmine = callPackage ../applications/version-management/redmine { };
 
-  redpanda = callPackage ../servers/redpanda { };
+  redpanda-client = callPackage ../servers/redpanda { };
 
-  redpanda-server = redpanda.server;
+  redpanda-server = redpanda-client.server;
 
   redsocks = callPackage ../tools/networking/redsocks { };
 
@@ -38680,6 +38680,7 @@ with pkgs;
     gnome42Extensions
     gnome43Extensions
     gnome44Extensions
+    gnome45Extensions
   ;
 
   gnome-connections = callPackage ../desktops/gnome/apps/gnome-connections { };

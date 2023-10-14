@@ -1344,7 +1344,10 @@ in
 
   config = {
 
-    warnings = concatMap (i: i.warnings) interfaces;
+    warnings = (concatMap (i: i.warnings) interfaces) ++ (lib.optional
+      (config.systemd.network.enable && cfg.useDHCP && !cfg.useNetworkd) ''
+        The combination of `systemd.network.enable = true`, `networking.useDHCP = true` and `networking.useNetworkd = false` can cause both networkd and dhcpcd to manage the same interfaces. This can lead to loss of networking. It is recommended you choose only one of networkd (by also enabling `networking.useNetworkd`) or scripting (by disabling `systemd.network.enable`)
+      '');
 
     assertions =
       (forEach interfaces (i: {
@@ -1459,6 +1462,16 @@ in
         pkgs.iw
       ]
       ++ bridgeStp;
+
+    # Wake-on-LAN configuration is shared by the scripted and networkd backends.
+    systemd.network.links = pipe interfaces [
+      (filter (i: i.wakeOnLan.enable))
+      (map (i: nameValuePair "40-${i.name}" {
+        matchConfig.OriginalName = i.name;
+        linkConfig.WakeOnLan = concatStringsSep " " i.wakeOnLan.policy;
+      }))
+      listToAttrs
+    ];
 
     # The network-interfaces target is kept for backwards compatibility.
     # New modules must NOT use it.
