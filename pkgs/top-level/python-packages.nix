@@ -2855,7 +2855,7 @@ self: super: with self; {
 
   distro = callPackage ../development/python-modules/distro { };
 
-  distutils_extra = callPackage ../development/python-modules/distutils_extra { };
+  distutils-extra = callPackage ../development/python-modules/distutils-extra { };
 
   # LTS in extended support phase
   django_3 = callPackage ../development/python-modules/django/3.nix { };
@@ -3139,6 +3139,8 @@ self: super: with self; {
   };
 
   dlinfo = callPackage ../development/python-modules/dlinfo { };
+
+  dllogger = callPackage ../development/python-modules/dllogger { };
 
   dlms-cosem = callPackage ../development/python-modules/dlms-cosem { };
 
@@ -4933,8 +4935,6 @@ self: super: with self; {
 
   hg-git = callPackage ../development/python-modules/hg-git { };
 
-  hglib = callPackage ../development/python-modules/hglib { };
-
   hickle = callPackage ../development/python-modules/hickle { };
 
   hid = callPackage ../development/python-modules/hid {
@@ -5215,6 +5215,8 @@ self: super: with self; {
   igraph = callPackage ../development/python-modules/igraph {
     inherit (pkgs) igraph;
   };
+
+  ihm = callPackage ../development/python-modules/ihm { };
 
   iisignature = callPackage ../development/python-modules/iisignature { };
 
@@ -6895,6 +6897,8 @@ self: super: with self; {
   moddb = callPackage ../development/python-modules/moddb { };
 
   model-bakery = callPackage ../development/python-modules/model-bakery { };
+
+  modelcif = callPackage ../development/python-modules/modelcif { };
 
   modeled = callPackage ../development/python-modules/modeled { };
 
@@ -8759,6 +8763,8 @@ self: super: with self; {
 
   pdb2pqr = callPackage ../development/python-modules/pdb2pqr { };
 
+  pdbfixer = callPackage ../development/python-modules/pdbfixer { };
+
   pdf2docx = callPackage ../development/python-modules/pdf2docx { };
 
   pdf2image = callPackage ../development/python-modules/pdf2image { };
@@ -9644,6 +9650,8 @@ self: super: with self; {
   py3to2 = callPackage ../development/python-modules/3to2 { };
 
   py4j = callPackage ../development/python-modules/py4j { };
+
+  pyacaia-async = callPackage ../development/python-modules/pyacaia-async { };
 
   pyacoustid = callPackage ../development/python-modules/pyacoustid { };
 
@@ -10866,7 +10874,7 @@ self: super: with self; {
 
   pysmartapp = callPackage ../development/python-modules/pysmartapp { };
 
-  pySmartDL = callPackage ../development/python-modules/pySmartDL { };
+  pysmartdl = callPackage ../development/python-modules/pysmartdl { };
 
   pysmartthings = callPackage ../development/python-modules/pysmartthings { };
 
@@ -12649,6 +12657,8 @@ self: super: with self; {
 
   setupmeta = callPackage ../development/python-modules/setupmeta { };
 
+  setuptools-changelog-shortener = callPackage ../development/python-modules/setuptools-changelog-shortener { };
+
   setuptools-declarative-requirements = callPackage ../development/python-modules/setuptools-declarative-requirements { };
 
   setuptools-generate = callPackage ../development/python-modules/setuptools-generate { };
@@ -13437,7 +13447,7 @@ self: super: with self; {
 
   sunweg = callPackage ../development/python-modules/sunweg { };
 
-  supervise_api = callPackage ../development/python-modules/supervise_api { };
+  supervise-api = callPackage ../development/python-modules/supervise-api { };
 
   supervisor = callPackage ../development/python-modules/supervisor { };
 
@@ -15904,7 +15914,7 @@ self: super: with self; {
 
   zope_configuration = callPackage ../development/python-modules/zope_configuration { };
 
-  zope_contenttype = callPackage ../development/python-modules/zope_contenttype { };
+  zope-contenttype = callPackage ../development/python-modules/zope-contenttype { };
 
   zope_copy = callPackage ../development/python-modules/zope_copy { };
 
