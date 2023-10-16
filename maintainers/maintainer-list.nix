@@ -4424,6 +4424,15 @@
     githubId = 14034137;
     name = "Mostly Void";
   };
+  ditsuke = {
+    name = "Tushar";
+    email = "hello@ditsuke.com";
+    github = "ditsuke";
+    githubId = 72784348;
+    keys = [{
+      fingerprint = "8FD2 153F 4889 541A 54F1  E09E 71B6 C31C 8A5A 9D21";
+    }];
+  };
   djacu = {
     email = "daniel.n.baker@gmail.com";
     github = "djacu";
@@ -16420,6 +16429,11 @@
       fingerprint = "75F0 AB7C FE01 D077 AEE6  CAFD 353E 4A18 EE0F AB72";
     }];
   };
+  spacefault = {
+    github = "spacefault";
+    githubId = 74156492;
+    name = "spacefault";
+  };
   spacefrogg = {
     email = "spacefrogg-nixos@meterriblecrew.net";
     github = "spacefrogg";
@@ -18024,6 +18038,12 @@
     githubId = 1983821;
     name = "Eric Wolf";
   };
+  u2x1 = {
+    email = "u2x1@outlook.com";
+    github = "u2x1";
+    githubId = 30677291;
+    name = "u2x1";
+  };
   uakci = {
     name = "uakci";
     email = "uakci@uakci.pl";
@@ -18332,6 +18352,15 @@
     github = "veprbl";
     githubId = 245573;
     name = "Dmitry Kalinkin";
+  };
+  vgskye = {
+    name = "Skye Green";
+    email = "me@skye.vg";
+    github = "vgskye";
+    githubId = 116078858;
+    keys = [{
+      fingerprint = "CDEA 7E04 69E3 0885 A754  4B05 0104 BC05 F41B 77B8";
+    }];
   };
   victormeriqui = {
     name = "Victor Meriqui";
