@@ -17,6 +17,7 @@ let
       nativeBuildInputs = (previousAttrs.nativeBuildInputs or [ ]) ++ [
         composer
         composer-local-repo-plugin
+        phpDrv
         phpDrv.composerHooks.composerInstallHook
       ];
 
@@ -51,6 +52,13 @@ let
         runHook preInstall
 
         runHook postInstall
+      '';
+
+      doInstallCheck = previousAttrs.doInstallCheck or false;
+      installCheckPhase = previousAttrs.installCheckPhase or ''
+        runHook preCheckInstall
+
+        runHook postCheckInstall
       '';
 
       composerRepository = phpDrv.mkComposerRepository {
