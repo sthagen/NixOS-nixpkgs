@@ -338,7 +338,7 @@ with pkgs;
 
   beebeep = libsForQt5.callPackage ../applications/office/beebeep { };
 
-  beeper = qt5.callPackage ../applications/networking/instant-messengers/beeper { };
+  beeper = callPackage ../applications/networking/instant-messengers/beeper { };
 
   bakelite = callPackage ../tools/backup/bakelite { };
 
@@ -1115,6 +1115,8 @@ with pkgs;
   };
 
   fetchs3 = callPackage ../build-support/fetchs3 { };
+
+  fetchFromBittorrent = callPackage ../build-support/fetchbittorrent { };
 
   fetchsvn = if stdenv.buildPlatform != stdenv.hostPlatform
     # hack around splicing being crummy with things that (correctly) don't eval.
@@ -8454,8 +8456,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   })
     garage
-      garage_0_7 garage_0_8
-      garage_0_7_3 garage_0_8_4;
+      garage_0_8 garage_0_9
+      garage_0_8_4 garage_0_9_0;
 
   garmin-plugin = callPackage ../applications/misc/garmin-plugin { };
 
@@ -15550,7 +15552,7 @@ with pkgs;
   avra = callPackage ../development/compilers/avra { };
 
   ballerina = callPackage ../development/compilers/ballerina {
-    openjdk = openjdk11_headless;
+    openjdk = openjdk17_headless;
   };
 
   beekeeper-studio = callPackage ../development/tools/database/beekeeper-studio { };
@@ -17912,9 +17914,21 @@ with pkgs;
     bluezSupport = true;
     x11Support = true;
   };
+  python312Full = python312.override {
+    self = python312Full;
+    pythonAttr = "python312Full";
+    bluezSupport = true;
+    x11Support = true;
+  };
+  python313Full = python313.override {
+    self = python313Full;
+    pythonAttr = "python313Full";
+    bluezSupport = true;
+    x11Support = true;
+  };
 
   pythonInterpreters = callPackage ./../development/interpreters/python { };
-  inherit (pythonInterpreters) python27 python38 python39 python310 python311 python312 python3Minimal pypy27 pypy310 pypy39 rustpython;
+  inherit (pythonInterpreters) python27 python38 python39 python310 python311 python312 python313 python3Minimal pypy27 pypy310 pypy39 rustpython;
 
   # List of extensions with overrides to apply to all Python package sets.
   pythonPackagesExtensions = [ ];
@@ -17925,6 +17939,7 @@ with pkgs;
   python310Packages = recurseIntoAttrs python310.pkgs;
   python311Packages = recurseIntoAttrs python311.pkgs;
   python312Packages = python312.pkgs;
+  python313Packages = python313.pkgs;
   pypyPackages = pypy.pkgs;
   pypy2Packages = pypy2.pkgs;
   pypy27Packages = pypy27.pkgs;
@@ -20299,6 +20314,8 @@ with pkgs;
   tree-sitter-grammars = recurseIntoAttrs tree-sitter.builtGrammars;
 
   trellis = callPackage ../development/embedded/fpga/trellis { };
+
+  ttags = callPackage ../development/tools/misc/ttags { };
 
   ttyd = callPackage ../servers/ttyd { };
 
@@ -33599,7 +33616,7 @@ with pkgs;
 
   mediainfo-gui = callPackage ../applications/misc/mediainfo-gui { };
 
-  mediathekview = callPackage ../applications/video/mediathekview { jre = temurin-bin-17; };
+  mediathekview = callPackage ../applications/video/mediathekview { jre = temurin-bin-20; };
 
   megapixels = callPackage ../applications/graphics/megapixels { };
 
@@ -35924,6 +35941,7 @@ with pkgs;
   };
   transmission-gtk = transmission.override { enableGTK3 = true; };
   transmission-qt = transmission.override { enableQt = true; };
+  transmission_noSystemd = transmission.override { enableSystemd = false; };
 
   # Needs macOS >= 10.14.6
   transmission_4 = darwin.apple_sdk_11_0.callPackage ../applications/networking/p2p/transmission/4.nix {
@@ -38303,9 +38321,6 @@ with pkgs;
   sgt-puzzles-mobile = callPackage ../games/sgt-puzzles {
     isMobile = true;
   };
-
-  sgtpuzzles = throw "sgtpuzzles has been renamed to sgt-puzzles."; # 2023-10-06
-  sgtpuzzles-mobile = throw "sgtpuzzles-mobile has been renamed to sgt-puzzles-mobile."; # 2023-10-06
 
   shattered-pixel-dungeon = callPackage ../games/shattered-pixel-dungeon { };
 
