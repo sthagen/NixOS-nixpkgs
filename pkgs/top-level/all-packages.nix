@@ -3267,10 +3267,6 @@ with pkgs;
 
   apitrace = libsForQt5.callPackage ../applications/graphics/apitrace { };
 
-  argagg = callPackage ../development/libraries/argagg { };
-
-  argtable = callPackage ../development/libraries/argtable { };
-
   arguments = callPackage ../development/libraries/arguments { };
 
   argus = callPackage ../tools/networking/argus { };
@@ -6977,6 +6973,8 @@ with pkgs;
 
   evdevremapkeys = callPackage ../tools/inputmethods/evdevremapkeys { };
 
+  evsieve = callPackage ../tools/inputmethods/evsieve { };
+
   eyedropper = callPackage ../applications/graphics/eyedropper { };
 
   persistent-evdev = python3Packages.callPackage ../servers/persistent-evdev { };
@@ -10261,6 +10259,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreFoundation IOKit;
     protobuf = protobuf3_21;
   };
+  netdataCloud = netdata.override {
+    withCloud = !stdenv.isDarwin;
+    withCloudUi = true;
+  };
   # Exposed here so the bots can auto-upgrade it
   netdata-go-plugins = callPackage ../tools/system/netdata/go.d.plugin.nix { };
 
@@ -12662,7 +12664,7 @@ with pkgs;
 
   rewrk = callPackage ../tools/networking/rewrk { };
 
-  inherit (callPackage ../tools/security/rekor { })
+  inherit (callPackage ../tools/security/rekor { buildGoModule = buildGo121Module; })
     rekor-cli
     rekor-server;
 
@@ -13830,6 +13832,7 @@ with pkgs;
   tewisay = callPackage ../tools/misc/tewisay { };
 
   texmacs = libsForQt5.callPackage ../applications/editors/texmacs {
+    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
     tex = texlive.combined.scheme-small;
     extraFonts = true;
   };
@@ -34466,7 +34469,7 @@ with pkgs;
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix { };
 
   obsidian = callPackage ../applications/misc/obsidian {
-    electron = electron_24;
+    electron = electron_25;
   };
 
   octoprint = callPackage ../applications/misc/octoprint { };
@@ -35382,8 +35385,6 @@ with pkgs;
   sway-launcher-desktop = callPackage ../applications/misc/sway-launcher-desktop { };
 
   tart = callPackage ../applications/virtualization/tart { };
-
-  tecoc = callPackage ../applications/editors/tecoc { };
 
   viber = callPackage ../applications/networking/instant-messengers/viber { };
 
