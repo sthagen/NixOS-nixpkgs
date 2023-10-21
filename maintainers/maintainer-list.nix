@@ -11667,6 +11667,13 @@
     githubId = 149558;
     name = "Merlin Gaillard";
   };
+  mirkolenz = {
+    name = "Mirko Lenz";
+    email = "mirko@mirkolenz.com";
+    matrix = "@mlenz:matrix.org";
+    github = "mirkolenz";
+    githubId = 5160954;
+  };
   mirrexagon = {
     email = "mirrexagon@mirrexagon.com";
     github = "mirrexagon";
@@ -19348,6 +19355,11 @@
     name = "Yuri Meister";
     github = "ymeister";
     githubId = 47071325;
+  };
+  ymstnt = {
+    name = "YMSTNT";
+    github = "ymstnt";
+    githubId = 21342713;
   };
   yoavlavi = {
     email = "yoav@yoavlavi.com";

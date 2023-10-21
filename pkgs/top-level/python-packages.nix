@@ -198,6 +198,8 @@ self: super: with self; {
 
   aioecowitt = callPackage ../development/python-modules/aioecowitt { };
 
+  aioelectricitymaps = callPackage ../development/python-modules/aioelectricitymaps { };
+
   aioemonitor = callPackage ../development/python-modules/aioemonitor { };
 
   aioesphomeapi = callPackage ../development/python-modules/aioesphomeapi { };
@@ -1876,11 +1878,13 @@ self: super: with self; {
 
   certbot-dns-cloudflare = callPackage ../development/python-modules/certbot-dns-cloudflare { };
 
+  certbot-dns-google = callPackage ../development/python-modules/certbot-dns-google { };
+
   certbot-dns-inwx = callPackage ../development/python-modules/certbot-dns-inwx { };
 
-  certbot-dns-rfc2136 = callPackage ../development/python-modules/certbot-dns-rfc2136 { };
+  certbot-dns-ovh = callPackage ../development/python-modules/certbot-dns-ovh { };
 
-  certbot-dns-google = callPackage ../development/python-modules/certbot-dns-google { };
+  certbot-dns-rfc2136 = callPackage ../development/python-modules/certbot-dns-rfc2136 { };
 
   certbot-dns-route53 = callPackage ../development/python-modules/certbot-dns-route53 { };
 
@@ -12023,6 +12027,8 @@ self: super: with self; {
   readchar = callPackage ../development/python-modules/readchar { };
 
   readlike = callPackage ../development/python-modules/readlike { };
+
+  readmdict = callPackage ../development/python-modules/readmdict { };
 
   readme = callPackage ../development/python-modules/readme { };
 
