@@ -520,6 +520,7 @@
   ./services/hardware/hddfancontrol.nix
   ./services/hardware/illum.nix
   ./services/hardware/interception-tools.nix
+  ./services/hardware/iptsd.nix
   ./services/hardware/irqbalance.nix
   ./services/hardware/joycond.nix
   ./services/hardware/kanata.nix
@@ -1046,6 +1047,7 @@
   ./services/networking/redsocks.nix
   ./services/networking/resilio.nix
   ./services/networking/robustirc-bridge.nix
+  ./services/networking/rosenpass.nix
   ./services/networking/routedns.nix
   ./services/networking/rpcbind.nix
   ./services/networking/rxe.nix
