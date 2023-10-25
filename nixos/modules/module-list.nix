@@ -625,6 +625,7 @@
   ./services/matrix/matrix-sliding-sync.nix
   ./services/matrix/synapse.nix
   ./services/misc/airsonic.nix
+  ./services/misc/amazon-ssm-agent.nix
   ./services/misc/ananicy.nix
   ./services/misc/ankisyncd.nix
   ./services/misc/apache-kafka.nix
@@ -741,7 +742,6 @@
   ./services/misc/spice-autorandr.nix
   ./services/misc/spice-vdagentd.nix
   ./services/misc/spice-webdavd.nix
-  ./services/misc/ssm-agent.nix
   ./services/misc/sssd.nix
   ./services/misc/subsonic.nix
   ./services/misc/sundtek.nix
@@ -907,6 +907,7 @@
   ./services/networking/eternal-terminal.nix
   ./services/networking/expressvpn.nix
   ./services/networking/fakeroute.nix
+  ./services/networking/fastnetmon-advanced.nix
   ./services/networking/ferm.nix
   ./services/networking/firefox-syncserver.nix
   ./services/networking/fireqos.nix
@@ -1269,6 +1270,7 @@
   ./services/web-apps/kavita.nix
   ./services/web-apps/keycloak.nix
   ./services/web-apps/komga.nix
+  ./services/web-apps/lanraragi.nix
   ./services/web-apps/lemmy.nix
   ./services/web-apps/limesurvey.nix
   ./services/web-apps/mainsail.nix

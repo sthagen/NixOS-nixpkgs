@@ -248,6 +248,7 @@ in {
   ec2-nixops = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-nixops or {};
   ecryptfs = handleTest ./ecryptfs.nix {};
   fscrypt = handleTest ./fscrypt.nix {};
+  fastnetmon-advanced = runTest ./fastnetmon-advanced.nix;
   ejabberd = handleTest ./xmpp/ejabberd.nix {};
   elk = handleTestOn ["x86_64-linux"] ./elk.nix {};
   emacs-daemon = handleTest ./emacs-daemon.nix {};
@@ -431,6 +432,7 @@ in {
   kubo = import ./kubo { inherit recurseIntoAttrs runTest; };
   ladybird = handleTest ./ladybird.nix {};
   languagetool = handleTest ./languagetool.nix {};
+  lanraragi = handleTest ./lanraragi.nix {};
   latestKernel.login = handleTest ./login.nix { latestKernel = true; };
   leaps = handleTest ./leaps.nix {};
   lemmy = handleTest ./lemmy.nix {};
