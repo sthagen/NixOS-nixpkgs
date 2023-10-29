@@ -3533,8 +3533,6 @@ self: super: with self; {
 
   energyzero =  callPackage ../development/python-modules/energyzero { };
 
-  enhancements = callPackage ../development/python-modules/enhancements { };
-
   enlighten = callPackage ../development/python-modules/enlighten { };
 
   enocean = callPackage ../development/python-modules/enocean { };
@@ -11503,6 +11501,8 @@ self: super: with self; {
   });
 
   python-olm = callPackage ../development/python-modules/python-olm { };
+
+  python-on-whales = callPackage ../development/python-modules/python-on-whales { };
 
   python-opendata-transport = callPackage ../development/python-modules/python-opendata-transport { };
 

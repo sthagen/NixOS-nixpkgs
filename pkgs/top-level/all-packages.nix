@@ -364,6 +364,8 @@ with pkgs;
 
   blst = callPackage ../development/libraries/blst { };
 
+  bloom = qt6Packages.callPackage ../development/tools/bloom { };
+
   bloodhound-py = callPackage ../tools/security/bloodhound-py { };
 
   bodyclose = callPackage ../development/tools/bodyclose { };
@@ -13245,7 +13247,7 @@ with pkgs;
   sixpair = callPackage ../tools/misc/sixpair { };
 
   sketchybar = darwin.apple_sdk_11_0.callPackage ../os-specific/darwin/sketchybar {
-    inherit (darwin.apple_sdk_11_0.frameworks) AppKit CoreAudio CoreWLAN CoreVideo DisplayServices IOKit MediaRemote SkyLight;
+    inherit (darwin.apple_sdk_11_0.frameworks) AppKit Carbon CoreAudio CoreWLAN CoreVideo DisplayServices IOKit MediaRemote SkyLight;
   };
 
   sketchybar-app-font = callPackage ../data/fonts/sketchybar-app-font { };
@@ -18387,9 +18389,7 @@ with pkgs;
 
   glslls = callPackage ../development/tools/language-servers/glslls { };
 
-  gopls = callPackage ../development/tools/language-servers/gopls {
-    buildGoModule = buildGo121Module;
-  };
+  gopls = callPackage ../development/tools/language-servers/gopls { };
 
   helm-ls = callPackage ../development/tools/language-servers/helm-ls { };
 
@@ -19652,7 +19652,11 @@ with pkgs;
 
   mermerd = callPackage ../development/tools/database/mermerd { };
 
-  python-matter-server = with python3Packages; toPythonApplication python-matter-server;
+  python-matter-server = with python3Packages; toPythonApplication (
+    python-matter-server.overridePythonAttrs (oldAttrs: {
+      propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ oldAttrs.passthru.optional-dependencies.server;
+    })
+  );
 
   minify = callPackage ../development/web/minify { };
 
@@ -29014,6 +29018,8 @@ with pkgs;
 
   aileron = callPackage ../data/fonts/aileron { };
 
+  alacritty-theme = callPackage ../data/themes/alacritty-theme { };
+
   albatross = callPackage ../data/themes/albatross { };
 
   alegreya = callPackage ../data/fonts/alegreya { };
@@ -30075,6 +30081,7 @@ with pkgs;
 
   tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme {
     inherit (gnome) adwaita-icon-theme;
+    inherit (libsForQt5) breeze-icons;
   };
 
   tela-icon-theme = callPackage ../data/icons/tela-icon-theme { };
@@ -30517,8 +30524,6 @@ with pkgs;
   blocky = callPackage ../applications/networking/blocky { };
 
   brutefir = callPackage ../applications/audio/brutefir { };
-
-  cadence = libsForQt5.callPackage ../applications/audio/cadence { };
 
   cheesecutter = callPackage ../applications/audio/cheesecutter { };
 
@@ -31038,6 +31043,8 @@ with pkgs;
   cyclone = callPackage ../applications/audio/pd-plugins/cyclone  { };
 
   dablin = callPackage ../applications/radio/dablin { };
+
+  daktilo = callPackage ../tools/misc/daktilo { };
 
   darcs = haskell.lib.compose.overrideCabal (drv: {
     configureFlags = (lib.remove "-flibrary" drv.configureFlags or []) ++ ["-f-library"];
@@ -34873,10 +34880,6 @@ with pkgs;
 
   pyrosimple = callPackage ../applications/networking/p2p/pyrosimple { };
 
-  pzip = callPackage ../by-name/pz/pzip/package.nix {
-    buildGoModule = buildGo121Module;
-  };
-
   qbittorrent = libsForQt5.callPackage ../applications/networking/p2p/qbittorrent { };
   qbittorrent-nox = qbittorrent.override {
     guiSupport = false;
@@ -37556,6 +37559,8 @@ with pkgs;
   braincurses = callPackage ../games/braincurses { };
 
   brogue = callPackage ../games/brogue { };
+
+  brogue-ce = callPackage ../games/brogue-ce { };
 
   brutalmaze = callPackage ../games/brutalmaze { };
 
