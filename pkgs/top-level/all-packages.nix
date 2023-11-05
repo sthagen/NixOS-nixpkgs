@@ -2833,8 +2833,6 @@ with pkgs;
 
   yapesdl = callPackage ../applications/emulators/yapesdl { };
 
-  zesarux = callPackage ../applications/emulators/zesarux { };
-
   zsnes = pkgsi686Linux.callPackage ../applications/emulators/zsnes { };
   zsnes2 = pkgsi686Linux.callPackage ../applications/emulators/zsnes/2.x.nix { };
 
@@ -5513,8 +5511,6 @@ with pkgs;
   go-rice = callPackage ../tools/misc/go.rice { };
 
   go-2fa = callPackage ../tools/security/2fa { };
-
-  go-dependency-manager = callPackage ../development/tools/gdm { };
 
   go-neb = callPackage ../applications/networking/instant-messengers/go-neb { };
 
@@ -16385,7 +16381,7 @@ with pkgs;
   hop = callPackage ../development/compilers/hop { };
 
   hop-cli = callPackage ../tools/admin/hop-cli {
-    inherit (darwin.apple_sdk.frameworks) CoreServices Security;
+    inherit (darwin.apple_sdk.frameworks) CoreServices Security SystemConfiguration;
   };
 
   falcon = callPackage ../development/interpreters/falcon {
@@ -28546,6 +28542,8 @@ with pkgs;
   pam_krb5 = callPackage ../os-specific/linux/pam_krb5 { };
 
   pam_ldap = callPackage ../os-specific/linux/pam_ldap { };
+
+  pam_mktemp = callPackage ../os-specific/linux/pam_mktemp { };
 
   pam_mount = callPackage ../os-specific/linux/pam_mount { };
 
@@ -41729,8 +41727,6 @@ with pkgs;
   hss = callPackage ../tools/networking/hss { };
 
   undaemonize = callPackage ../tools/system/undaemonize { };
-
-  wtfis = callPackage ../tools/networking/wtfis { };
 
   houdini = callPackage ../applications/misc/houdini { };
 
