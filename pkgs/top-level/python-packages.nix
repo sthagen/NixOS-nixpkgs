@@ -5094,6 +5094,8 @@ self: super: with self; {
 
   htmllaundry = callPackage ../development/python-modules/htmllaundry { };
 
+  htmllistparse = callPackage ../development/python-modules/htmllistparse { };
+
   htmlmin = callPackage ../development/python-modules/htmlmin { };
 
   html-sanitizer = callPackage ../development/python-modules/html-sanitizer { };
@@ -15979,6 +15981,8 @@ self: super: with self; {
   zc-buildout = callPackage ../development/python-modules/buildout { };
 
   zc_lockfile = callPackage ../development/python-modules/zc_lockfile { };
+
+  zcbor = callPackage ../development/python-modules/zcbor { };
 
   zconfig = callPackage ../development/python-modules/zconfig { };
 
