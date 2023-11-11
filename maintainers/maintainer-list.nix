@@ -12478,6 +12478,11 @@
     githubId = 6709831;
     name = "Jake Hill";
   };
+  nasageek = {
+    github = "NasaGeek";
+    githubId = 474937;
+    name = "Chris Roberts";
+  };
   nasirhm = {
     email = "nasirhussainm14@gmail.com";
     github = "nasirhm";
@@ -16494,12 +16499,6 @@
     github = "sjmackenzie";
     githubId = 158321;
     name = "Stewart Mackenzie";
-  };
-  skeidel = {
-    email = "svenkeidel@gmail.com";
-    github = "svenkeidel";
-    githubId = 266500;
-    name = "Sven Keidel";
   };
   skykanin = {
     github = "skykanin";
