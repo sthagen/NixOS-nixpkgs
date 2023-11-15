@@ -11714,6 +11714,12 @@
     githubId = 34864484;
     name = "Mikael Fangel";
   };
+  mikecm = {
+    email = "mikecmcleod@gmail.com";
+    github = "MaxwellDupre";
+    githubId = 14096356;
+    name = "Michael McLeod";
+  };
   mikefaille = {
     email = "michael@faille.io";
     github = "mikefaille";
@@ -19244,12 +19250,6 @@
     github = "wizeman";
     githubId = 168610;
     name = "Ricardo M. Correia";
-  };
-  wjlroe = {
-    email = "willroe@gmail.com";
-    github = "wjlroe";
-    githubId = 43315;
-    name = "William Roe";
   };
   wladmis = {
     email = "dev@wladmis.org";
