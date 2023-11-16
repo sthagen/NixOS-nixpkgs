@@ -786,9 +786,9 @@ rec {
         _differenceTree (path + "/${name}") lhsValue (rhs.${name} or null)
       ) (_directoryEntries path lhs);
 
-  # Filters all files in a file set based on a predicate
-  # Type: ({ name, type, ... } -> Bool) -> FileSet -> FileSet
-  _fileFilter = predicate: fileset:
+  # Filters all files in a path based on a predicate
+  # Type: ({ name, type, ... } -> Bool) -> Path -> FileSet
+  _fileFilter = predicate: root:
     let
       # Check the predicate for a single file
       # Type: String -> String -> filesetTree
@@ -807,19 +807,45 @@ rec {
 
       # Check the predicate for all files in a directory
       # Type: Path -> filesetTree
-      fromDir = path: tree:
-        mapAttrs (name: subtree:
-          if isAttrs subtree || subtree == "directory" then
-            fromDir (path + "/${name}") subtree
-          else if subtree == null then
-            null
+      fromDir = path:
+        mapAttrs (name: type:
+          if type == "directory" then
+            fromDir (path + "/${name}")
           else
-            fromFile name subtree
-        ) (_directoryEntries path tree);
+            fromFile name type
+        ) (readDir path);
+
+      rootType = pathType root;
     in
-    if fileset._internalIsEmptyWithoutBase then
-      _emptyWithoutBase
+    if rootType == "directory" then
+      _create root (fromDir root)
     else
-      _create fileset._internalBase
-        (fromDir fileset._internalBase fileset._internalTree);
+      # Single files are turned into a directory containing that file or nothing.
+      _create (dirOf root) {
+        ${baseNameOf root} =
+          fromFile (baseNameOf root) rootType;
+      };
+
+  # Support for `builtins.fetchGit` with `submodules = true` was introduced in 2.4
+  # https://github.com/NixOS/nix/commit/55cefd41d63368d4286568e2956afd535cb44018
+  _fetchGitSubmodulesMinver = "2.4";
+
+  # Mirrors the contents of a Nix store path relative to a local path as a file set.
+  # Some notes:
+  # - The store path is read at evaluation time.
+  # - The store path must not include files that don't exist in the respective local path.
+  #
+  # Type: Path -> String -> FileSet
+  _mirrorStorePath = localPath: storePath:
+    let
+      recurse = focusedStorePath:
+        mapAttrs (name: type:
+          if type == "directory" then
+            recurse (focusedStorePath + "/${name}")
+          else
+            type
+        ) (builtins.readDir focusedStorePath);
+    in
+    _create localPath
+      (recurse storePath);
 }

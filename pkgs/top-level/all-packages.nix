@@ -30474,6 +30474,16 @@ with pkgs;
 
   audacity = callPackage ../applications/audio/audacity {
     inherit (darwin.apple_sdk.frameworks) AppKit CoreAudioKit;
+    wxGTK32 = wxGTK32.overrideAttrs {
+      patches = [
+       (fetchpatch { # required to run audacity 3.3.3 on wxGTK 3.2.4, see PR #266945
+         url = "https://github.com/wxWidgets/wxWidgets/commit/425d9455e8307c1267a79d47d77e3dafeb4d86de.patch";
+         excludes = [ "docs/changes.txt" ];
+         revert = true;
+         hash = "sha256-6LOYLDLtVCHxNdHAWv3zhlCsljIpi//RJb9XVLGD5hM=";
+       })
+     ];
+    };
   };
 
   audio-recorder = callPackage ../applications/audio/audio-recorder { };
@@ -34203,10 +34213,6 @@ with pkgs;
   roxctl = callPackage ../applications/networking/cluster/roxctl {
   };
 
-  rqbit = callPackage ../applications/networking/p2p/rqbit {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   rssguard = libsForQt5.callPackage ../applications/networking/feedreaders/rssguard { };
 
   scudcloud = callPackage ../applications/networking/instant-messengers/scudcloud { };
@@ -36436,7 +36442,9 @@ with pkgs;
 
   webssh = with python3Packages; toPythonApplication webssh;
 
-  webtorrent_desktop = callPackage ../applications/video/webtorrent_desktop { };
+  webtorrent_desktop = callPackage ../applications/video/webtorrent_desktop {
+    electron = electron_27;
+  };
 
   wrapWeechat = callPackage ../applications/networking/irc/weechat/wrapper.nix { };
 
@@ -37052,7 +37060,9 @@ with pkgs;
 
   dcrctl = callPackage ../applications/blockchains/dcrctl { };
   dcrd = callPackage ../applications/blockchains/dcrd { };
-  dcrwallet = callPackage ../applications/blockchains/dcrwallet { };
+  dcrwallet = callPackage ../applications/blockchains/dcrwallet {
+    buildGoModule = buildGo120Module;
+  };
 
   dogecoin  = libsForQt5.callPackage ../applications/blockchains/dogecoin {
     withGui = true;
@@ -37392,13 +37402,31 @@ with pkgs;
   rbdoom-3-bfg = callPackage ../games/doom-ports/rbdoom-3-bfg { };
 
   slade = callPackage ../games/doom-ports/slade {
-    wxGTK = wxGTK32.override {
+    wxGTK = (wxGTK32.overrideAttrs {
+      patches = [
+       (fetchpatch { # required to run slade 3.2.4 on wxGTK 3.2.4, see PR #266945
+         url = "https://github.com/wxWidgets/wxWidgets/commit/425d9455e8307c1267a79d47d77e3dafeb4d86de.patch";
+         excludes = [ "docs/changes.txt" ];
+         revert = true;
+         hash = "sha256-6LOYLDLtVCHxNdHAWv3zhlCsljIpi//RJb9XVLGD5hM=";
+       })
+     ];
+    }).override {
       withWebKit = true;
     };
   };
 
   sladeUnstable = callPackage ../games/doom-ports/slade/git.nix {
-    wxGTK = wxGTK32.override {
+    wxGTK = (wxGTK32.overrideAttrs {
+      patches = [
+       (fetchpatch { # required to run sladeUnstable unstable-2023-09-30 on wxGTK 3.2.4, see PR #266945
+         url = "https://github.com/wxWidgets/wxWidgets/commit/425d9455e8307c1267a79d47d77e3dafeb4d86de.patch";
+         excludes = [ "docs/changes.txt" ];
+         revert = true;
+         hash = "sha256-6LOYLDLtVCHxNdHAWv3zhlCsljIpi//RJb9XVLGD5hM=";
+       })
+     ];
+    }).override {
       withWebKit = true;
     };
   };
