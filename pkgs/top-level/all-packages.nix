@@ -778,7 +778,7 @@ with pkgs;
   protoc-gen-go-vtproto = callPackage ../development/tools/protoc-gen-go-vtproto { };
 
   protoc-gen-grpc-web = callPackage ../development/tools/protoc-gen-grpc-web {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   protoc-gen-connect-go = callPackage ../development/tools/protoc-gen-connect-go { };
@@ -1102,7 +1102,7 @@ with pkgs;
     antlr = antlr4_10;
     boost = boost177; # Configure checks for specific version.
     icu =  icu69;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   mysql-shell-innovation = callPackage ../development/tools/mysql-shell/innovation.nix {
@@ -1111,7 +1111,7 @@ with pkgs;
     antlr = antlr4_10;
     boost = boost177; # Configure checks for specific version.
     icu =  icu69;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   broadlink-cli = callPackage ../tools/misc/broadlink-cli { };
@@ -2700,7 +2700,7 @@ with pkgs;
   gensgs = pkgsi686Linux.callPackage ../applications/emulators/gens-gs { };
 
   goldberg-emu = callPackage ../applications/emulators/goldberg-emu {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   gopsuinfo = callPackage ../tools/system/gopsuinfo { };
@@ -2865,7 +2865,7 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) CoreBluetooth ForceFeedback IOBluetooth IOKit OpenGL VideoToolbox;
     inherit (darwin) moltenvk;
     stdenv =
-      if stdenv.isDarwin then darwin.apple_sdk_11_0.llvmPackages_14.stdenv
+      if stdenv.isDarwin then overrideLibcxx darwin.apple_sdk_11_0.llvmPackages_16.stdenv
       else stdenv;
   };
 
@@ -4180,7 +4180,7 @@ with pkgs;
   amoco = callPackage ../tools/security/amoco { };
 
   anbox = callPackage ../os-specific/linux/anbox {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   androidenv = callPackage ../development/mobile/androidenv { };
@@ -4732,7 +4732,7 @@ with pkgs;
   common-licenses = callPackage ../data/misc/common-licenses { };
 
   compactor = callPackage ../applications/networking/compactor {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   consul = callPackage ../servers/consul { };
@@ -5543,7 +5543,7 @@ with pkgs;
   ghdorker = callPackage ../tools/security/ghdorker { };
 
   ghidra = darwin.apple_sdk_11_0.callPackage ../tools/security/ghidra/build.nix {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   ghidra-bin = callPackage ../tools/security/ghidra { };
@@ -5781,7 +5781,9 @@ with pkgs;
 
   joystickwake = callPackage ../tools/games/joystickwake { };
 
-  juce = darwin.apple_sdk_11_0.callPackage ../development/misc/juce { };
+  juce = callPackage ../development/misc/juce {
+    stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  };
 
   jumppad = callPackage ../tools/virtualization/jumppad { };
 
@@ -5979,10 +5981,6 @@ with pkgs;
 
   merriweather-sans = callPackage ../data/fonts/merriweather-sans { };
 
-  meson = callPackage ../development/tools/build-managers/meson {
-    inherit (darwin.apple_sdk.frameworks) Foundation OpenGL AppKit Cocoa;
-  };
-
   # while building documentation meson may want to run binaries for host
   # which needs an emulator
   # example of an error which this fixes
@@ -6002,7 +6000,7 @@ with pkgs;
       # outer level, but not its outPath can still be evaluated if the condition
       # doesn't hold. This ensures that splicing still can work correctly.
       (if (!stdenv.hostPlatform.canExecute stdenv.targetPlatform) then
-        ../development/tools/build-managers/meson/emulator-hook.sh
+        ../by-name/me/meson/emulator-hook.sh
        else
          throw "mesonEmulatorHook may only be added to nativeBuildInputs when the target binaries can't be executed; however you are attempting to use it in a situation where ${stdenv.hostPlatform.config} can execute ${stdenv.targetPlatform.config}. Consider only adding mesonEmulatorHook according to a conditional based canExecute in your package expression.");
 
@@ -6793,6 +6791,7 @@ with pkgs;
   cdrkit = callPackage ../tools/cd-dvd/cdrkit { };
 
   cdrtools = callPackage ../tools/cd-dvd/cdrtools {
+    stdenv = if stdenv.isDarwin then overrideLibcxx llvmPackages_14.stdenv else stdenv;
     inherit (darwin.apple_sdk.frameworks) Carbon IOKit;
   };
 
@@ -6864,7 +6863,7 @@ with pkgs;
   clementine = libsForQt5.callPackage ../applications/audio/clementine {
     gst_plugins =
       with gst_all_1; [ gst-plugins-base gst-plugins-good gst-plugins-ugly gst-libav ];
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   mellowplayer = libsForQt5.callPackage ../applications/audio/mellowplayer { };
@@ -7069,7 +7068,7 @@ with pkgs;
 
     mozc = callPackage ../tools/inputmethods/ibus-engines/ibus-mozc {
       stdenv = clangStdenv;
-      protobuf = pkgs.protobuf3_21.overrideDerivation (_: { stdenv = clangStdenv; });
+      protobuf = pkgs.protobuf_21.overrideDerivation (_: { stdenv = clangStdenv; });
     };
 
     openbangla-keyboard = libsForQt5.callPackage ../applications/misc/openbangla-keyboard { withIbusSupport = true; };
@@ -9991,6 +9990,8 @@ with pkgs;
 
   lldpd = callPackage ../tools/networking/lldpd { };
 
+  llm = with python3Packages; toPythonApplication llm;
+
   lnav = callPackage ../tools/misc/lnav { };
 
   lnch = callPackage ../tools/misc/lnch { };
@@ -10272,7 +10273,7 @@ with pkgs;
 
   netdata = callPackage ../tools/system/netdata {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation IOKit;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
   netdataCloud = netdata.override {
     withCloud = !stdenv.isDarwin;
@@ -11418,7 +11419,7 @@ with pkgs;
   nq = callPackage ../tools/system/nq { };
 
   nsjail = callPackage ../tools/security/nsjail {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   nss_pam_ldapd = callPackage ../tools/networking/nss-pam-ldapd { };
@@ -11548,7 +11549,7 @@ with pkgs;
   oh-my-zsh = callPackage ../shells/zsh/oh-my-zsh { };
 
   ola = callPackage ../applications/misc/ola {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   olive-editor = qt6Packages.callPackage ../applications/video/olive-editor {
@@ -11646,10 +11647,6 @@ with pkgs;
   openrgb-plugin-effects = libsForQt5.callPackage ../applications/misc/openrgb-plugins/effects { };
 
   openrgb-plugin-hardwaresync = libsForQt5.callPackage ../applications/misc/openrgb-plugins/hardwaresync { };
-
-  openrussian-cli = callPackage ../misc/openrussian-cli {
-    lua = lua5_3;
-  };
 
   opensbi = callPackage ../misc/opensbi { };
 
@@ -11821,7 +11818,7 @@ with pkgs;
   p3x-onenote = callPackage ../applications/office/p3x-onenote { };
 
   p4c = callPackage ../development/compilers/p4c {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   p7zip = callPackage ../tools/archivers/p7zip { };
@@ -11921,7 +11918,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     boost = boost177; # Configure checks for specific version.
     icu = icu69;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
   percona-xtrabackup = percona-xtrabackup_8_0;
   percona-xtrabackup_8_0 = callPackage ../tools/backup/percona-xtrabackup/8_0.nix {
@@ -14511,9 +14508,7 @@ with pkgs;
     SDL = SDL_sixel;
   };
 
-  vtm = callPackage ../tools/misc/vtm {
-    stdenv = if stdenv.isDarwin then llvmPackages_16.stdenv else stdenv;
-  };
+  vtm = callPackage ../tools/misc/vtm { };
 
   witness = callPackage ../tools/security/witness { };
 
@@ -15043,9 +15038,7 @@ with pkgs;
 
   clipnotify = callPackage ../tools/misc/clipnotify { };
 
-  clipboard-jh = callPackage ../tools/misc/clipboard-jh {
-    stdenv = if stdenv.isDarwin then llvmPackages_16.stdenv else stdenv;
-  };
+  clipboard-jh = callPackage ../tools/misc/clipboard-jh { };
 
   clipbuzz = callPackage ../tools/misc/clipbuzz { };
 
@@ -15208,7 +15201,7 @@ with pkgs;
   zasm = callPackage ../development/compilers/zasm { };
 
   zbackup = callPackage ../tools/backup/zbackup {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   zbar = libsForQt5.callPackage ../tools/graphics/zbar {
@@ -16654,11 +16647,11 @@ with pkgs;
     # This returns the minimum supported version for the platform. The
     # assumption is that or any later version is good.
     choose = platform:
-      /**/ if platform.isDarwin then 11
+      /**/ if platform.isDarwin then 16
       else if platform.isFreeBSD then 12
       else if platform.isAndroid then 12
-      else if platform.isLinux then 11
-      else if platform.isWasm then 12
+      else if platform.isLinux then 16
+      else if platform.isWasm then 16
       else 14;
     # We take the "max of the mins". Why? Since those are lower bounds of the
     # supported version set, this is like intersecting those sets and then
@@ -16940,11 +16933,11 @@ with pkgs;
     inherit (darwin) apple_sdk;
   };
 
-  rust_1_72 = callPackage ../development/compilers/rust/1_72.nix {
+  rust_1_73 = callPackage ../development/compilers/rust/1_73.nix {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security SystemConfiguration;
     llvm_16 = llvmPackages_16.libllvm;
   };
-  rust = rust_1_72;
+  rust = rust_1_73;
 
   mrustc = callPackage ../development/compilers/mrustc { };
   mrustc-minicargo = callPackage ../development/compilers/mrustc/minicargo.nix { };
@@ -16952,8 +16945,8 @@ with pkgs;
     openssl = openssl_1_1;
   };
 
-  rustPackages_1_72 = rust_1_72.packages.stable;
-  rustPackages = rustPackages_1_72;
+  rustPackages_1_73 = rust_1_73.packages.stable;
+  rustPackages = rustPackages_1_73;
 
   inherit (rustPackages) cargo cargo-auditable cargo-auditable-cargo-wrapper clippy rustc rustPlatform;
 
@@ -17013,7 +17006,12 @@ with pkgs;
   cargo-clone = callPackage ../development/tools/rust/cargo-clone {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
-  cargo-codspeed = callPackage ../development/tools/rust/cargo-codspeed { };
+  cargo-codspeed = callPackage ../development/tools/rust/cargo-codspeed {
+    rustPlatform = makeRustPlatform {
+      stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+      inherit rustc cargo;
+    };
+  };
   cargo-component = callPackage ../development/tools/rust/cargo-component { };
   cargo-cranky = callPackage ../development/tools/rust/cargo-cranky { };
   cargo-criterion = callPackage ../development/tools/rust/cargo-criterion { };
@@ -18039,14 +18037,13 @@ with pkgs;
     inherit (darwin) libobjc;
   };
 
-  inherit (darwin.apple_sdk_11_0.callPackage ../development/interpreters/ruby {
+  inherit (callPackage ../development/interpreters/ruby {
     inherit (darwin) libobjc libunwind;
-    inherit (darwin.apple_sdk_11_0.frameworks) Foundation;
+    inherit (darwin.apple_sdk.frameworks) Foundation;
   })
     mkRubyVersion
     mkRuby
     ruby_2_7
-    ruby_3_0
     ruby_3_1
     ruby_3_2
     ruby_3_3;
@@ -18055,7 +18052,6 @@ with pkgs;
   rubyPackages = rubyPackages_3_1;
 
   rubyPackages_2_7 = recurseIntoAttrs ruby_2_7.gems;
-  rubyPackages_3_0 = recurseIntoAttrs ruby_3_0.gems;
   rubyPackages_3_1 = recurseIntoAttrs ruby_3_1.gems;
   rubyPackages_3_2 = recurseIntoAttrs ruby_3_2.gems;
   rubyPackages_3_3 = recurseIntoAttrs ruby_3_3.gems;
@@ -18178,9 +18174,9 @@ with pkgs;
   # Needed for autogen
   guile_2_0 = callPackage ../development/interpreters/guile/2.0.nix { };
 
-  guile_2_2 = darwin.apple_sdk_11_0.callPackage ../development/interpreters/guile/2.2.nix { };
+  guile_2_2 = callPackage ../development/interpreters/guile/2.2.nix { };
 
-  guile_3_0 = darwin.apple_sdk_11_0.callPackage ../development/interpreters/guile/3.0.nix { };
+  guile_3_0 = callPackage ../development/interpreters/guile/3.0.nix { };
 
   guile = guile_3_0;
 
@@ -18902,11 +18898,9 @@ with pkgs;
 
   ctmg = callPackage ../tools/security/ctmg { };
 
-  cmake = callPackage ../development/tools/build-managers/cmake { };
-
   # can't use override - it triggers infinite recursion
-  cmakeMinimal = callPackage ../development/tools/build-managers/cmake {
-    isBootstrap = true;
+  cmakeMinimal = callPackage ../by-name/cm/cmake/package.nix {
+    isMinimalBuild = true;
   };
 
   cmakeCurses = cmake.override {
@@ -19653,7 +19647,7 @@ with pkgs;
   modd = callPackage ../development/tools/modd { };
 
   mold = callPackage ../development/tools/mold {
-    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.llvmPackages_13.stdenv else stdenv;
+    stdenv = if stdenv.isDarwin then overrideLibcxx darwin.apple_sdk_11_0.llvmPackages_16.stdenv else stdenv;
     tbb = tbb_2021_8;
   };
 
@@ -20020,8 +20014,10 @@ with pkgs;
 
   sca2d = callPackage ../development/tools/sca2d {  };
 
-  sconsPackages = dontRecurseIntoAttrs (callPackage ../development/tools/build-managers/scons { });
-  scons = sconsPackages.scons_latest;
+  scons = scons_4_5_2;
+  scons_3_1_2 = callPackage ../development/tools/build-managers/scons/3.1.2.nix { };
+  scons_4_1_0 = callPackage ../development/tools/build-managers/scons/4.1.0.nix { };
+  scons_4_5_2 = callPackage ../development/tools/build-managers/scons/4.5.2.nix { };
 
   mill = callPackage ../development/tools/build-managers/mill { };
 
@@ -20121,12 +20117,12 @@ with pkgs;
   };
 
   spoofer = callPackage ../tools/networking/spoofer {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   spoofer-gui = callPackage ../tools/networking/spoofer {
     withGUI = true;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   spooles = callPackage ../development/libraries/science/math/spooles { };
@@ -20471,10 +20467,30 @@ with pkgs;
 
   aalib = callPackage ../development/libraries/aalib { };
 
-  abseil-cpp_202103 = callPackage ../development/libraries/abseil-cpp/202103.nix { };
-  abseil-cpp_202206 = callPackage ../development/libraries/abseil-cpp/202206.nix { };
-  abseil-cpp_202301 = callPackage ../development/libraries/abseil-cpp/202301.nix { };
-  abseil-cpp_202308 = callPackage ../development/libraries/abseil-cpp/202308.nix { };
+  abseil-cpp_202103 = callPackage ../development/libraries/abseil-cpp/202103.nix {
+    # If abseil-cpp doesn’t have a deployment target of 10.13+, arrow-cpp crashes in libgrpc.dylib.
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64
+      then overrideSDK stdenv { darwinMinVersion = "10.13"; }
+      else stdenv;
+  };
+  abseil-cpp_202206 = callPackage ../development/libraries/abseil-cpp/202206.nix {
+    # If abseil-cpp doesn’t have a deployment target of 10.13+, arrow-cpp crashes in libgrpc.dylib.
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64
+      then overrideSDK stdenv { darwinMinVersion = "10.13"; }
+      else stdenv;
+  };
+  abseil-cpp_202301 = callPackage ../development/libraries/abseil-cpp/202301.nix {
+    # If abseil-cpp doesn’t have a deployment target of 10.13+, arrow-cpp crashes in libgrpc.dylib.
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64
+      then overrideSDK stdenv { darwinMinVersion = "10.13"; }
+      else stdenv;
+  };
+  abseil-cpp_202308 = callPackage ../development/libraries/abseil-cpp/202308.nix {
+    # If abseil-cpp doesn’t have a deployment target of 10.13+, arrow-cpp crashes in libgrpc.dylib.
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64
+      then overrideSDK stdenv { darwinMinVersion = "10.13"; }
+      else stdenv;
+  };
   abseil-cpp = abseil-cpp_202301;
 
   accountsservice = callPackage ../development/libraries/accountsservice { };
@@ -20869,7 +20885,7 @@ with pkgs;
   cmrt = callPackage ../development/libraries/cmrt { };
 
   codecserver = callPackage ../applications/audio/codecserver {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   coeurl = callPackage ../development/libraries/coeurl { };
@@ -21163,7 +21179,6 @@ with pkgs;
   fancypp = callPackage ../development/libraries/fancypp { };
 
   far2l = callPackage ../applications/misc/far2l {
-    stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
     inherit (darwin.apple_sdk.frameworks) IOKit Carbon Cocoa AudioToolbox OpenGL System;
   };
 
@@ -21383,7 +21398,7 @@ with pkgs;
   gallia = callPackage ../tools/security/gallia { };
 
   gamenetworkingsockets = callPackage ../development/libraries/gamenetworkingsockets {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   game-music-emu = callPackage ../development/libraries/audio/game-music-emu { };
@@ -21448,7 +21463,9 @@ with pkgs;
 
   geomyidae = callPackage ../applications/networking/gopher/geomyidae { };
 
-  geos = callPackage ../development/libraries/geos { };
+  geos = callPackage ../development/libraries/geos {
+    stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_14.stdenv else stdenv;
+  };
 
   geos39 = callPackage ../development/libraries/geos/3.9.nix { };
 
@@ -21760,7 +21777,11 @@ with pkgs;
 
   grilo-plugins = callPackage ../development/libraries/grilo-plugins { };
 
-  grpc = callPackage ../development/libraries/grpc { };
+  grpc = darwin.apple_sdk_11_0.callPackage ../development/libraries/grpc {
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64
+      then overrideSDK darwin.apple_sdk_11_0.stdenv { darwinMinVersion = "10.13"; }
+      else stdenv;
+  };
 
   gsettings-qt = libsForQt5.callPackage ../development/libraries/gsettings-qt { };
 
@@ -22011,8 +22032,6 @@ with pkgs;
 
   hidapi = callPackage ../development/libraries/hidapi {
     inherit (darwin.apple_sdk.frameworks) Cocoa IOKit;
-    # TODO: remove once `udev` is `systemdMinimal` everywhere.
-    udev = systemdMinimal;
   };
 
   highfive = callPackage ../development/libraries/highfive { };
@@ -22360,7 +22379,9 @@ with pkgs;
 
   lerc = callPackage ../development/libraries/lerc { };
 
-  lib2geom = callPackage ../development/libraries/lib2geom { };
+  lib2geom = callPackage ../development/libraries/lib2geom {
+    stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_13.stdenv else stdenv;
+  };
 
   lib3ds = callPackage ../development/libraries/lib3ds { };
 
@@ -22562,8 +22583,6 @@ with pkgs;
 
   libcint = callPackage ../development/libraries/libcint { };
 
-  libclc = callPackage ../development/libraries/libclc { };
-
   libcli = callPackage ../development/libraries/libcli { };
 
   libclthreads = callPackage ../development/libraries/libclthreads  { };
@@ -22720,9 +22739,7 @@ with pkgs;
 
   libfakekey = callPackage ../development/libraries/libfakekey { };
 
-  libfido2 = callPackage ../development/libraries/libfido2 {
-    udev = systemdMinimal;
-  };
+  libfido2 = callPackage ../development/libraries/libfido2 {};
 
   libfilezilla = darwin.apple_sdk_11_0.callPackage ../development/libraries/libfilezilla {
     inherit (darwin.apple_sdk_11_0.frameworks) ApplicationServices;
@@ -23407,7 +23424,7 @@ with pkgs;
   libptytty = callPackage ../development/libraries/libptytty { };
 
   libpulsar = callPackage ../development/libraries/libpulsar {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   libpwquality = callPackage ../development/libraries/libpwquality {
@@ -23520,7 +23537,6 @@ with pkgs;
   libtomcrypt = callPackage ../development/libraries/libtomcrypt { };
 
   libtorrent-rasterbar-2_0_x = callPackage ../development/libraries/libtorrent-rasterbar {
-    stdenv = if stdenv.isDarwin then llvmPackages_14.stdenv else stdenv;
     inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
     python = python3;
   };
@@ -23600,8 +23616,6 @@ with pkgs;
   libusb1 = callPackage ../development/libraries/libusb1 {
     inherit (darwin) libobjc;
     inherit (darwin.apple_sdk.frameworks) IOKit Security;
-    # TODO: remove once `udev` is `systemdMinimal` everywhere.
-    udev = systemdMinimal;
   };
 
   libusbgx = callPackage ../development/libraries/libusbgx { };
@@ -24415,7 +24429,8 @@ with pkgs;
 
   inherit (callPackages ../development/libraries/openssl { })
     openssl_1_1
-    openssl_3;
+    openssl_3
+    openssl_3_1;
 
   opensubdiv = callPackage ../development/libraries/opensubdiv { };
 
@@ -24557,7 +24572,9 @@ with pkgs;
 
   primesieve = callPackage ../applications/science/math/primesieve { };
 
-  proj = callPackage ../development/libraries/proj { };
+  proj = callPackage ../development/libraries/proj {
+    stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_13.stdenv else stdenv;
+  };
 
   proj_7 = callPackage ../development/libraries/proj/7.nix { };
 
@@ -24570,13 +24587,14 @@ with pkgs;
 
   prospector = callPackage ../development/tools/prospector { };
 
-  protobuf = protobuf3_24;
+  protobuf = protobuf_24;
 
-  protobuf3_24 = callPackage ../development/libraries/protobuf/3.24.nix { };
-  protobuf3_23 = callPackage ../development/libraries/protobuf/3.23.nix { };
-  protobuf3_21 = callPackage ../development/libraries/protobuf/3.21.nix {
+  protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
+  protobuf_23 = callPackage ../development/libraries/protobuf/23.nix { };
+  protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
     abseil-cpp = abseil-cpp_202103;
   };
+
   protobuf3_20 = callPackage ../development/libraries/protobuf/3.20.nix {
     abseil-cpp = abseil-cpp_202103;
   };
@@ -24633,10 +24651,11 @@ with pkgs;
       inherit (__splicedPackages)
         makeScopeWithSplicing' generateSplicesForMkScope lib fetchurl fetchpatch fetchgit fetchFromGitHub makeSetupHook makeWrapper
         bison cups dconf harfbuzz libGL perl gtk3 python3
+        llvmPackages_15 overrideSDK overrideLibcxx
         darwin;
       inherit (__splicedPackages.gst_all_1) gstreamer gst-plugins-base;
       inherit config;
-      stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
+      stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
     });
 
   libsForQt5 = recurseIntoAttrs (import ./qt5-packages.nix {
@@ -24750,7 +24769,7 @@ with pkgs;
   qm-dsp = callPackage ../development/libraries/audio/qm-dsp { };
 
   qradiolink = callPackage ../applications/radio/qradiolink {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   qrupdate = callPackage ../development/libraries/qrupdate { };
@@ -25421,7 +25440,16 @@ with pkgs;
 
   ucommon = callPackage ../development/libraries/ucommon { };
 
-  v8 = darwin.apple_sdk_11_0.callPackage ../development/libraries/v8 { };
+  v8 = callPackage ../development/libraries/v8 (
+    let
+      stdenv' = if stdenv.cc.isClang && lib.versionAtLeast (lib.getVersion stdenv.cc.cc) "16"
+        then overrideLibcxx llvmPackages_15.stdenv
+        else stdenv;
+    in
+    {
+      stdenv = if stdenv'.isDarwin then overrideSDK stdenv' "11.0" else stdenv';
+    }
+  );
 
   intel-vaapi-driver = callPackage ../development/libraries/intel-vaapi-driver { };
 
@@ -25433,7 +25461,7 @@ with pkgs;
 
   valhalla = callPackage ../development/libraries/valhalla {
     boost = boost.override { enablePython = true; python = python38; };
-    protobuf = protobuf3_21.override {
+    protobuf = protobuf_21.override {
       abseil-cpp = abseil-cpp_202103.override {
         cxxStandard = "17";
       };
@@ -26531,7 +26559,9 @@ with pkgs;
 
   jboss_mysql_jdbc = callPackage ../servers/http/jboss/jdbc/mysql { };
 
-  jetty = callPackage ../servers/http/jetty { };
+  jetty = jetty_12;
+  jetty_12 = callPackage ../servers/http/jetty/12.x.nix { };
+  jetty_11 = callPackage ../servers/http/jetty/11.x.nix { };
 
   jibri = callPackage ../servers/jibri { };
 
@@ -26964,7 +26994,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     boost = boost177; # Configure checks for specific version.
     icu = icu69;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   mysql_jdbc = callPackage ../servers/sql/mysql/jdbc { };
@@ -27249,7 +27279,7 @@ with pkgs;
   rethinkdb = callPackage ../servers/nosql/rethinkdb {
     stdenv = clangStdenv;
     libtool = darwin.cctools;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   rippled = callPackage ../servers/rippled {
@@ -28064,14 +28094,6 @@ with pkgs;
   inherit (callPackages ../os-specific/linux/kernel-headers { inherit (pkgsBuildBuild) elf-header; })
     linuxHeaders makeLinuxHeaders;
 
-  linuxHeaders_5_19 = linuxHeaders.overrideAttrs rec {
-    version = "5.19.16";
-    src = fetchurl {
-      url = "mirror://kernel/linux/kernel/v5.x/linux-${version}.tar.xz";
-      hash = "sha256-oeuvZn4QWa4tcqpjdKTW4v68C4zNpqEkaHrMLqlh4I0=";
-    };
-  };
-
   klibc = callPackage ../os-specific/linux/klibc { };
 
   klibcShrunk = lowPrio (callPackage ../os-specific/linux/klibc/shrunk.nix { });
@@ -28233,10 +28255,6 @@ with pkgs;
   lsscsi = callPackage ../os-specific/linux/lsscsi { };
 
   lvm2 = callPackage ../os-specific/linux/lvm2/2_03.nix {
-    # udev is the same package as systemd which depends on cryptsetup
-    # which depends on lvm2 again.  But we only need the libudev part
-    # which does not depend on cryptsetup.
-    udev = systemdMinimal;
     # break the cyclic dependency:
     # util-linux (non-minimal) depends (optionally, but on by default) on systemd,
     # systemd (optionally, but on by default) on cryptsetup and cryptsetup depends on lvm2
@@ -28682,7 +28700,7 @@ with pkgs;
   sgx-ssl = callPackage ../os-specific/linux/sgx/ssl { };
 
   sgx-psw = callPackage ../os-specific/linux/sgx/psw {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   shadow = callPackage ../os-specific/linux/shadow { };
@@ -28770,6 +28788,7 @@ with pkgs;
     withResolved = false;
     withShellCompletions = false;
     withSysupdate = false;
+    withSysusers = false;
     withTimedated = false;
     withTimesyncd = false;
     withTpm2Tss = false;
@@ -28777,11 +28796,14 @@ with pkgs;
     withUkify = false;
     withBootloader = false;
   };
-
+  systemdLibs = systemdMinimal.override {
+    pname = "systemd-minimal-libs";
+    buildLibsOnly = true;
+  };
 
   udev =
     if (with stdenv.hostPlatform; isLinux && isStatic) then libudev-zero
-    else systemd; # TODO: change to systemdMinimal
+    else systemdLibs;
 
   systemd-wait = callPackage ../os-specific/linux/systemd-wait { };
 
@@ -30244,7 +30266,9 @@ with pkgs;
 
   dcw-gmt = callPackage ../applications/gis/gmt/dcw.nix { };
 
-  grass = callPackage ../applications/gis/grass { };
+  grass = callPackage ../applications/gis/grass {
+    stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  };
 
   openorienteering-mapper = libsForQt5.callPackage ../applications/gis/openorienteering-mapper { };
 
@@ -30460,7 +30484,7 @@ with pkgs;
 
   astroid = callPackage ../applications/networking/mailreaders/astroid {
     vim = vim-full.override { features = "normal"; };
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   aucatctl = callPackage ../applications/audio/aucatctl { };
@@ -32485,7 +32509,7 @@ with pkgs;
   };
 
   hyperion-ng = libsForQt5.callPackage ../applications/video/hyperion-ng {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   hyperledger-fabric = callPackage ../tools/misc/hyperledger-fabric { };
@@ -33309,7 +33333,7 @@ with pkgs;
   ladspa-sdk = callPackage ../applications/audio/ladspa-sdk { };
 
   ladybird = qt6Packages.callPackage ../applications/networking/browsers/ladybird {
-    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.llvmPackages_14.stdenv else stdenv;
+    stdenv = if stdenv.isDarwin then overrideLibcxx darwin.apple_sdk_11_0.llvmPackages_16.stdenv else stdenv;
   };
 
   lazpaint = callPackage ../applications/graphics/lazpaint { };
@@ -33651,7 +33675,7 @@ with pkgs;
   };
 
   sapling = callPackage ../applications/version-management/sapling {
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation CoreServices Security;
+    inherit (darwin.apple_sdk.frameworks) Cocoa CoreFoundation CoreGraphics CoreServices Security WebKit;
   };
 
   mercurialFull = mercurial.override { fullBuild = true; };
@@ -33987,14 +34011,14 @@ with pkgs;
       avahi = avahi-compat;
       pulseSupport = config.pulseaudio or false;
       iceSupport = config.murmur.iceSupport or true;
-      protobuf = protobuf3_21;
+      protobuf = protobuf_21;
     }).murmur;
 
   mumble = (callPackages ../applications/networking/mumble {
       avahi = avahi-compat;
       jackSupport = config.mumble.jackSupport or false;
       speechdSupport = config.mumble.speechdSupport or false;
-      protobuf = protobuf3_21;
+      protobuf = protobuf_21;
     }).mumble;
 
   mumble_overlay = callPackage ../applications/networking/mumble/overlay.nix {
@@ -34120,7 +34144,7 @@ with pkgs;
   osm2pgsql = callPackage ../tools/misc/osm2pgsql { };
 
   ostinato = libsForQt5.callPackage ../applications/networking/ostinato {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   p4 = callPackage ../applications/version-management/p4 {
@@ -34222,7 +34246,7 @@ with pkgs;
   shotcut = libsForQt5.callPackage ../applications/video/shotcut { };
 
   shogun = callPackage ../applications/science/machine-learning/shogun {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   smplayer = libsForQt5.callPackage ../applications/video/smplayer { };
@@ -34585,7 +34609,7 @@ with pkgs;
   osmo-sip-connector = callPackage ../servers/osmocom/osmo-sip-connector { };
 
   osmscout-server = libsForQt5.callPackage ../applications/misc/osmscout-server {
-    protobuf = protobuf3_21.override {
+    protobuf = protobuf_21.override {
       abseil-cpp = abseil-cpp_202103.override {
         cxxStandard = "17";
       };
@@ -35109,7 +35133,7 @@ with pkgs;
   rgp = libsForQt5.callPackage ../development/tools/rgp { };
 
   ricochet = libsForQt5.callPackage ../applications/networking/instant-messengers/ricochet {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   ries = callPackage ../applications/science/math/ries { };
@@ -35435,7 +35459,7 @@ with pkgs;
 
   curaengine = callPackage ../applications/misc/curaengine {
     inherit (python3.pkgs) libarcus;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   cura = libsForQt5.callPackage ../applications/misc/cura { };
@@ -35830,7 +35854,7 @@ with pkgs;
   tijolo = callPackage ../applications/editors/tijolo { };
 
   tilemaker = callPackage ../applications/misc/tilemaker {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   timbreid = callPackage ../applications/audio/pd-plugins/timbreid {
@@ -36043,9 +36067,7 @@ with pkgs;
 
   ueberzug = with python3Packages; toPythonApplication ueberzug;
 
-  ueberzugpp = darwin.apple_sdk_11_0.callPackage ../tools/graphics/ueberzugpp {
-    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.llvmPackages_14.stdenv else stdenv;
-  };
+  ueberzugpp = darwin.apple_sdk_11_0.callPackage ../tools/graphics/ueberzugpp { };
 
   uefi-run = callPackage ../tools/virtualization/uefi-run { };
 
@@ -36436,7 +36458,9 @@ with pkgs;
 
   webex = callPackage ../applications/networking/instant-messengers/webex { };
 
-  webmacs = libsForQt5.callPackage ../applications/networking/browsers/webmacs { };
+  webmacs = libsForQt5.callPackage ../applications/networking/browsers/webmacs {
+    stdenv = if stdenv.cc.isClang then gccStdenv else stdenv;
+  };
 
   websploit = python3Packages.callPackage ../tools/security/websploit { };
 
@@ -37033,11 +37057,11 @@ with pkgs;
 
   bitcoin-abc  = libsForQt5.callPackage ../applications/blockchains/bitcoin-abc {
     withGui = true;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
   bitcoind-abc = callPackage ../applications/blockchains/bitcoin-abc {
     mkDerivation = stdenv.mkDerivation;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
     withGui = false;
   };
 
@@ -37533,6 +37557,8 @@ with pkgs;
 
   angband = callPackage ../games/angband { };
 
+  animatch = callPackage ../games/animatch { };
+
   anki = callPackage ../games/anki {
     inherit (darwin.apple_sdk.frameworks) AVKit CoreAudio;
   };
@@ -37626,7 +37652,7 @@ with pkgs;
   ckan = callPackage ../games/ckan { };
 
   cockatrice = libsForQt5.callPackage ../games/cockatrice {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   commandergenius = callPackage ../games/commandergenius { };
@@ -38219,12 +38245,12 @@ with pkgs;
   pong3d = callPackage ../games/pong3d { };
 
   pokerth = libsForQt5.callPackage ../games/pokerth {
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   pokerth-server = libsForQt5.callPackage ../games/pokerth {
     target = "server";
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
   };
 
   pokete = callPackage ../games/pokete { };
@@ -38317,7 +38343,6 @@ with pkgs;
   scid-vs-pc = callPackage ../games/scid-vs-pc { };
 
   scummvm = callPackage ../games/scummvm {
-    stdenv = if (stdenv.isDarwin && stdenv.isAarch64) then llvmPackages_14.stdenv else stdenv;
     inherit (darwin) cctools;
     inherit (darwin.apple_sdk.frameworks) Cocoa AudioToolbox Carbon CoreMIDI AudioUnit;
   };
@@ -39312,7 +39337,7 @@ with pkgs;
 
   or-tools = callPackage ../development/libraries/science/math/or-tools {
     python = python3;
-    protobuf = protobuf3_21;
+    protobuf = protobuf_21;
     # or-tools builds with -std=c++20, so abseil-cpp must
     # also be built that way
     abseil-cpp = abseil-cpp_202206.override {
@@ -39712,7 +39737,9 @@ with pkgs;
 
   btor2tools = callPackage ../applications/science/logic/btor2tools { };
 
-  boolector = callPackage ../applications/science/logic/boolector { };
+  boolector = callPackage ../applications/science/logic/boolector {
+    stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_14.stdenv else stdenv;
+  };
 
   bitwuzla = callPackage ../applications/science/logic/bitwuzla { };
 
@@ -39793,6 +39820,8 @@ with pkgs;
     stable = false;
     with3d = false;
   };
+
+  kicadAddons = recurseIntoAttrs (callPackage ../applications/science/electronics/kicad/addons {});
 
   librepcb = libsForQt5.callPackage ../applications/science/electronics/librepcb { };
 
@@ -41445,7 +41474,7 @@ with pkgs;
   wmutils-opt = callPackage ../tools/X11/wmutils-opt { };
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress6_3;
+    wordpress wordpress6_3 wordpress6_4;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;
