@@ -8859,8 +8859,6 @@ self: super: with self; {
 
   paypalhttp = callPackage ../development/python-modules/paypalhttp { };
 
-  paypalrestsdk = callPackage ../development/python-modules/paypalrestsdk { };
-
   pbkdf2 = callPackage ../development/python-modules/pbkdf2 { };
 
   pbr = callPackage ../development/python-modules/pbr { };
@@ -13420,6 +13418,8 @@ self: super: with self; {
   sqlite-utils = callPackage ../development/python-modules/sqlite-utils { };
 
   sqlmap = callPackage ../development/python-modules/sqlmap { };
+
+  sqlmodel = callPackage ../development/python-modules/sqlmodel { };
 
   sqlobject = callPackage ../development/python-modules/sqlobject { };
 
