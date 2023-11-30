@@ -7137,6 +7137,13 @@
     githubId = 287769;
     name = "Sergii Paryzhskyi";
   };
+  heisfer = {
+    email = "heisfer@refract.dev";
+    github = "heisfer";
+    githubId = 28564678;
+    matrix = "@heisfer:matrix.org";
+    name = "Heisfer";
+  };
   helium = {
     email = "helium.dev@tuta.io";
     github = "helium18";
@@ -12158,7 +12165,7 @@
     name = "Martin Milata";
   };
   mmlb = {
-    email = "manny@peekaboo.mmlb.icu";
+    email = "i@m.mmlb.dev";
     github = "mmlb";
     githubId = 708570;
     name = "Manuel Mendez";
