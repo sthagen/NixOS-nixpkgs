@@ -2114,6 +2114,8 @@ with pkgs;
 
   vopono = callPackage ../tools/networking/vopono { };
 
+  vprof = with python3Packages; toPythonApplication vprof;
+
   vrc-get = callPackage ../tools/misc/vrc-get {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -4777,8 +4779,6 @@ with pkgs;
   shotman = callPackage ../tools/wayland/shotman { };
 
   slurp = callPackage ../tools/wayland/slurp { };
-
-  sov = callPackage ../tools/wayland/sov { };
 
   swaykbdd = callPackage ../tools/wayland/swaykbdd { };
 
@@ -13778,9 +13778,6 @@ with pkgs;
 
   telegraf = callPackage ../servers/monitoring/telegraf { };
 
-  teleport_11 = callPackage ../servers/teleport/11 {
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
-  };
   teleport_12 = callPackage ../servers/teleport/12 {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
   };
@@ -17952,6 +17949,7 @@ with pkgs;
 
   rakudo = callPackage ../development/interpreters/rakudo { };
   moarvm = callPackage ../development/interpreters/rakudo/moarvm.nix {
+    inherit (darwin) cctools-port;
     inherit (darwin.apple_sdk.frameworks) CoreServices ApplicationServices;
   };
   nqp = callPackage  ../development/interpreters/rakudo/nqp.nix { };
@@ -18289,8 +18287,6 @@ with pkgs;
   espup = callPackage ../development/tools/espup { };
 
   karma-runner = callPackage ../development/tools/karma-runner { };
-
-  phpunit = callPackage ../development/tools/misc/phpunit { };
 
   teller = callPackage ../development/tools/teller { };
 
@@ -29232,8 +29228,6 @@ with pkgs;
 
   documize-community = callPackage ../servers/documize-community { };
 
-  doge = callPackage ../misc/doge { };
-
   doulos-sil = callPackage ../data/fonts/doulos-sil { };
 
   cabin = callPackage ../data/fonts/cabin { };
@@ -30197,6 +30191,8 @@ with pkgs;
 
   victor-mono = callPackage ../data/fonts/victor-mono { };
 
+  vimix-cursor-theme = callPackage ../data/icons/vimix-cursor-theme { };
+
   vimix-gtk-themes = callPackage ../data/themes/vimix {
     inherit (gnome) gnome-shell;
   };
@@ -31009,8 +31005,6 @@ with pkgs;
   cordless = callPackage ../applications/networking/instant-messengers/cordless { };
 
   cosmic-settings = callPackage ../applications/window-managers/cosmic/settings { };
-
-  cosmic-edit = callPackage ../applications/editors/cosmic-edit { };
 
   coursera-dl = callPackage ../applications/misc/coursera-dl { };
 
@@ -34381,8 +34375,6 @@ with pkgs;
   nheko = libsForQt5.callPackage ../applications/networking/instant-messengers/nheko { };
 
   nomacs = libsForQt5.callPackage ../applications/graphics/nomacs { };
-
-  normcap = callPackage ../applications/graphics/normcap { };
 
   notepad-next = libsForQt5.callPackage ../applications/editors/notepad-next { };
 
