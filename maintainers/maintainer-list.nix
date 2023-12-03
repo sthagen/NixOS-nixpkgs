@@ -13949,6 +13949,18 @@
     githubId = 6931743;
     name = "pasqui23";
   };
+  passivelemon = {
+    email = "jeremyseber@gmail.com";
+    github = "PassiveLemon";
+    githubId = 72527881;
+    name = "PassiveLemon";
+  };
+  patricksjackson = {
+    email = "patrick@jackson.dev";
+    github = "patricksjackson";
+    githubId = 160646;
+    name = "Patrick Jackson";
+  };
   patryk27 = {
     email = "pwychowaniec@pm.me";
     github = "Patryk27";
@@ -17272,6 +17284,12 @@
     githubId = 327943;
     name = "Scott Zhu Reeves";
   };
+  starzation = {
+    email = "nixpkgs@starzation.net";
+    github = "starzation";
+    githubId = 145975416;
+    name = "Starzation";
+  };
   stasjok = {
     name = "Stanislav Asunkin";
     email = "nixpkgs@stasjok.ru";
@@ -18789,6 +18807,11 @@
     github = "udono";
     githubId = 347983;
     name = "Udo Spallek";
+  };
+  ufUNnxagpM = {
+    github = "ufUNnxagpM";
+    githubId = 12422133;
+    name = "Chromo-residuum-opec";
   };
   ulrikstrid = {
     email = "ulrik.strid@outlook.com";
