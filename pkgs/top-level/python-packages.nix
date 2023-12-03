@@ -7210,6 +7210,10 @@ self: super: with self; {
 
   mutf8 = callPackage ../development/python-modules/mutf8 { };
 
+  mujoco = callPackage ../development/python-modules/mujoco {
+    inherit (pkgs) mujoco;
+  };
+
   mujson = callPackage ../development/python-modules/mujson { };
 
   mwcli = callPackage ../development/python-modules/mwcli { };
@@ -16056,6 +16060,10 @@ self: super: with self; {
   yoda = toPythonModule (pkgs.yoda.override { inherit python; });
 
   yolink-api = callPackage ../development/python-modules/yolink-api { };
+
+  yosys = toPythonModule (pkgs.yosys.override {
+    python3 = python;
+  });
 
   youless-api = callPackage ../development/python-modules/youless-api { };
 
