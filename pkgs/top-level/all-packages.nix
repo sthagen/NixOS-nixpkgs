@@ -3027,8 +3027,6 @@ with pkgs;
 
   xplorer = callPackage ../applications/file-managers/xplorer { };
 
-  ytree = callPackage ../applications/file-managers/ytree { };
-
   johnny-reborn-engine = callPackage ../applications/misc/johnny-reborn { };
 
   johnny-reborn = callPackage ../applications/misc/johnny-reborn/with-data.nix { };
@@ -6326,6 +6324,10 @@ with pkgs;
       inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  rblake3sum = callPackage ../tools/security/rblake3sum {
+      inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   reg = callPackage ../tools/virtualization/reg { };
 
   retool = callPackage ../applications/misc/retool { };
@@ -7808,19 +7810,6 @@ with pkgs;
   stratis-cli = callPackage ../tools/filesystems/stratis-cli { };
 
   strawberry = libsForQt5.callPackage ../applications/audio/strawberry { };
-
-  schildichat-desktop = callPackage ../applications/networking/instant-messengers/schildichat/schildichat-desktop.nix {
-    inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_25;
-  };
-  schildichat-desktop-wayland = writeScriptBin "schildichat-desktop" ''
-    #!/bin/sh
-    NIXOS_OZONE_WL=1 exec ${schildichat-desktop}/bin/schildichat-desktop "$@"
-  '';
-
-  schildichat-web = callPackage ../applications/networking/instant-messengers/schildichat/schildichat-web.nix {
-    conf = config.schildichat-web.conf or { };
-  };
 
   schleuder = callPackage ../tools/security/schleuder { };
 
@@ -12186,8 +12175,6 @@ with pkgs;
 
   plowshare = callPackage ../tools/misc/plowshare { };
 
-  pls = callPackage ../tools/misc/pls { };
-
   pm2 = nodePackages.pm2;
 
   pmenu = callPackage ../tools/X11/pmenu { };
@@ -15752,6 +15739,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
 
+  critcl = callPackage ../development/compilers/critcl {
+    tcllib = tcllib.override { withCritcl = false; };
+  };
+
   inherit (darwin.apple_sdk_11_0.callPackage ../development/compilers/crystal { })
     crystal_1_2
     crystal_1_7
@@ -17546,7 +17537,7 @@ with pkgs;
 
   clojure = callPackage ../development/interpreters/clojure {
     # set this to an LTS version of java
-    jdk = jdk17;
+    jdk = jdk21;
   };
 
   clojure-lsp = callPackage ../development/tools/misc/clojure-lsp { };
@@ -18035,8 +18026,8 @@ with pkgs;
   smiley-sans = callPackage ../data/fonts/smiley-sans { };
 
   inherit (callPackages ../applications/networking/cluster/spark { })
-    spark_3_4 spark_3_3 spark_3_2;
-  spark3 = spark_3_4;
+    spark_3_5 spark_3_4 spark_3_3;
+  spark3 = spark_3_5;
   spark = spark3;
 
   sparkleshare = callPackage ../applications/version-management/sparkleshare { };
@@ -18410,7 +18401,6 @@ with pkgs;
   antlr = antlr4;
 
   apacheAnt = callPackage ../development/tools/build-managers/apache-ant { };
-  apacheAnt_1_9 = callPackage ../development/tools/build-managers/apache-ant/1.9.nix { };
   ant = apacheAnt;
 
   apacheKafka = apacheKafka_3_5;
@@ -18480,9 +18470,10 @@ with pkgs;
   electron_22 = electron_22-bin;
   electron_23 = electron_23-bin;
   electron_24 = electron_24-bin;
-  electron_25 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_25 then electron-source.electron_25 else electron_25-bin;
+  electron_25 = electron_25-bin;
   electron_26 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_26 then electron-source.electron_26 else electron_26-bin;
   electron_27 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_27 then electron-source.electron_27 else electron_27-bin;
+  electron_28 = electron-source.electron_28;
   electron = electron_27;
 
   autobuild = callPackage ../development/tools/misc/autobuild { };
@@ -24580,6 +24571,9 @@ with pkgs;
 
   protobuf = protobuf_24;
 
+  protobuf_25 = callPackage ../development/libraries/protobuf/25.nix {
+    abseil-cpp = abseil-cpp_202308;
+  };
   protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
   protobuf_23 = callPackage ../development/libraries/protobuf/23.nix { };
   protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
@@ -27142,6 +27136,7 @@ with pkgs;
   prometheus-alertmanager = callPackage ../servers/monitoring/prometheus/alertmanager.nix { };
   prometheus-apcupsd-exporter = callPackage ../servers/monitoring/prometheus/apcupsd-exporter.nix { };
   prometheus-artifactory-exporter = callPackage ../servers/monitoring/prometheus/artifactory-exporter.nix { };
+  prometheus-atlas-exporter = callPackage ../servers/monitoring/prometheus/atlas-exporter.nix { };
   prometheus-aws-s3-exporter = callPackage ../servers/monitoring/prometheus/aws-s3-exporter.nix { };
   prometheus-bind-exporter = callPackage ../servers/monitoring/prometheus/bind-exporter.nix { };
   prometheus-bird-exporter = callPackage ../servers/monitoring/prometheus/bird-exporter.nix { };
@@ -27404,6 +27399,8 @@ with pkgs;
   systemd-journal2gelf = callPackage ../tools/system/systemd-journal2gelf { };
 
   tailscale = callPackage ../servers/tailscale { };
+
+  tailscale-nginx-auth = callPackage ../by-name/ta/tailscale-nginx-auth/package.nix { };
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
@@ -31339,22 +31336,17 @@ with pkgs;
   em = callPackage ../applications/editors/em { };
 
   inherit (recurseIntoAttrs (darwin.apple_sdk_11_0.callPackage ../applications/editors/emacs { }))
-    emacs28
-    emacs28-gtk2
-    emacs28-gtk3
-    emacs28-nox
     emacs29
     emacs29-gtk3
     emacs29-nox
     emacs29-pgtk
-    emacs28-macport
     emacs29-macport
   ;
 
-  emacs-macport = emacs28-macport;
-  emacs = emacs28;
-  emacs-gtk = emacs28-gtk3;
-  emacs-nox = emacs28-nox;
+  emacs-macport = emacs29-macport;
+  emacs = emacs29;
+  emacs-gtk = emacs29-gtk3;
+  emacs-nox = emacs29-nox;
 
   emacsPackagesFor = emacs: import ./emacs-packages.nix {
     inherit (lib) makeScope makeOverridable dontRecurseIntoAttrs;
@@ -31956,8 +31948,6 @@ with pkgs;
   };
 
   firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
-
-  fmtoy = callPackage ../tools/audio/fmtoy { };
 
   flac = callPackage ../applications/audio/flac { };
 
@@ -38678,7 +38668,28 @@ with pkgs;
 
   ### DESKTOP ENVIRONMENTS
 
-  arcanPackages = recurseIntoAttrs (callPackage ../desktops/arcan { });
+  arcan-wrapped = arcan.wrapper.override { };
+  arcan-all-wrapped = arcan.wrapper.override {
+    name = "arcan-all-wrapped";
+    appls = [ cat9 durden pipeworld ];
+
+  };
+  cat9-wrapped = arcan.wrapper.override {
+    name = "cat9-wrapped";
+    appls = [ cat9 ];
+  };
+  durden-wrapped = arcan.wrapper.override {
+    name = "durden-wrapped";
+    appls = [ durden ];
+  };
+  pipeworld-wrapped = arcan.wrapper.override {
+    name = "pipeworld-wrapped";
+    appls = [ pipeworld ];
+  };
+  prio-wrapped = arcan.wrapper.override {
+    name = "prio-wrapped";
+    appls = [ prio ];
+  };
 
   budgie = recurseIntoAttrs (callPackage ../desktops/budgie { });
   budgiePlugins = recurseIntoAttrs (callPackage ../desktops/budgie/plugins { });

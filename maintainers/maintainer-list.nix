@@ -4131,7 +4131,7 @@
     email = "davidlewis@mac.com";
     github = "oceanlewis";
     githubId = 6754950;
-    name = "David Armstrong Lewis";
+    name = "Ocean Armstrong Lewis";
   };
   davidcromp = {
     email = "davidcrompton1192@gmail.com";
@@ -5162,6 +5162,12 @@
     github = "Eken-beep";
     name = "Edvin Källström";
     githubId = 84442052;
+  };
+  ekimber  = {
+    email = "ekimber@protonmail.com";
+    github = "ekimber";
+    name = "Edward Kimber";
+    githubId = 99987;
   };
   ekleog = {
     email = "leo@gaspard.io";
@@ -11980,7 +11986,7 @@
   };
   milran = {
     email = "milranmike@protonmail.com";
-    github = "milran";
+    github = "wattmto";
     githubId = 93639059;
     name = "Milran Mike";
   };
@@ -11995,6 +12001,12 @@
     github = "Mindavi";
     githubId = 9799623;
     name = "Rick van Schijndel";
+  };
+  mindstorms6 = {
+    email = "breland@bdawg.org";
+    github = "mindstorms6";
+    githubId = 92937;
+    name = "Breland Miley";
   };
   minijackson = {
     email = "minijackson@riseup.net";
@@ -15353,7 +15365,7 @@
   revol-xut = {
     email = "revol-xut@protonmail.com";
     name = "Tassilo Tanneberger";
-    github = "revol-xut";
+    github = "tanneberger";
     githubId = 32239737;
     keys = [{
       fingerprint = "91EB E870 1639 1323 642A  6803 B966 009D 57E6 9CC6";
@@ -16057,8 +16069,8 @@
   };
   SamirTalwar = {
     email = "lazy.git@functional.computer";
-    github = "abstracte";
-    githubId = 47852;
+    github = "SamirTalwar";
+    githubId = 47582;
     name = "Samir Talwar";
   };
   samlich = {
@@ -17349,13 +17361,12 @@
     name = "Stel Abrego";
   };
   stepbrobd = {
-    name = "StepBroBD";
-    github = "StepBroBD";
+    name = "Yifei Sun";
+    email = "ysun@hey.com";
+    github = "stepbrobd";
     githubId = 81826728;
-    email = "Hi@StepBroBD.com";
-    matrix = "@stepbrobd:matrix.org";
     keys = [{
-      fingerprint = "5D8B FA8B 286A C2EF 6EE4  8598 F742 B72C 8926 1A51";
+      fingerprint = "AC7C 52E6 BA2F E8DE 8F0F  5D78 D973 170F 9B86 DB70";
     }];
   };
   stephank = {
