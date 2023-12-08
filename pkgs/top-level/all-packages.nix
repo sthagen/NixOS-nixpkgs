@@ -822,6 +822,10 @@ with pkgs;
 
   sea-orm-cli = callPackage ../development/tools/sea-orm-cli { };
 
+  vcpkg-tool = callPackage ../by-name/vc/vcpkg-tool/package.nix {
+    fmt = fmt_10;
+  };
+
   r3ctl = qt5.callPackage ../tools/misc/r3ctl { };
 
   ptouch-print = callPackage ../misc/ptouch-print { };
@@ -7304,7 +7308,7 @@ with pkgs;
   cudaPackages_10_0 = callPackage ./cuda-packages.nix { cudaVersion = "10.0"; };
   cudaPackages_10_1 = callPackage ./cuda-packages.nix { cudaVersion = "10.1"; };
   cudaPackages_10_2 = callPackage ./cuda-packages.nix { cudaVersion = "10.2"; };
-  cudaPackages_10 = cudaPackages_10_2;
+  cudaPackages_10 = recurseIntoAttrs cudaPackages_10_2;
 
   cudaPackages_11_0 = callPackage ./cuda-packages.nix { cudaVersion = "11.0"; };
   cudaPackages_11_1 = callPackage ./cuda-packages.nix { cudaVersion = "11.1"; };
@@ -7315,12 +7319,13 @@ with pkgs;
   cudaPackages_11_6 = callPackage ./cuda-packages.nix { cudaVersion = "11.6"; };
   cudaPackages_11_7 = callPackage ./cuda-packages.nix { cudaVersion = "11.7"; };
   cudaPackages_11_8 = callPackage ./cuda-packages.nix { cudaVersion = "11.8"; };
-  cudaPackages_11 = cudaPackages_11_8;
+  cudaPackages_11 = recurseIntoAttrs cudaPackages_11_8;
 
   cudaPackages_12_0 = callPackage ./cuda-packages.nix { cudaVersion = "12.0"; };
   cudaPackages_12_1 = callPackage ./cuda-packages.nix { cudaVersion = "12.1"; };
   cudaPackages_12_2 = callPackage ./cuda-packages.nix { cudaVersion = "12.2"; };
-  cudaPackages_12 = cudaPackages_12_0;
+  cudaPackages_12_3 = callPackage ./cuda-packages.nix { cudaVersion = "12.3"; };
+  cudaPackages_12 = recurseIntoAttrs cudaPackages_12_0;
 
   # Use the older cudaPackages for tensorflow and jax, as determined by cudnn
   # compatibility: https://www.tensorflow.org/install/source#gpu
@@ -7328,7 +7333,7 @@ with pkgs;
 
   # TODO: try upgrading once there is a cuDNN release supporting CUDA 12. No
   # such cuDNN release as of 2023-01-10.
-  cudaPackages = recurseIntoAttrs cudaPackages_11;
+  cudaPackages = cudaPackages_11;
 
   # TODO: move to alias
   cudatoolkit = cudaPackages.cudatoolkit;
@@ -31336,17 +31341,22 @@ with pkgs;
   em = callPackage ../applications/editors/em { };
 
   inherit (recurseIntoAttrs (darwin.apple_sdk_11_0.callPackage ../applications/editors/emacs { }))
+    emacs28
+    emacs28-gtk2
+    emacs28-gtk3
+    emacs28-nox
     emacs29
     emacs29-gtk3
     emacs29-nox
     emacs29-pgtk
+    emacs28-macport
     emacs29-macport
   ;
 
-  emacs-macport = emacs29-macport;
-  emacs = emacs29;
-  emacs-gtk = emacs29-gtk3;
-  emacs-nox = emacs29-nox;
+  emacs-macport = emacs28-macport;
+  emacs = emacs28;
+  emacs-gtk = emacs28-gtk3;
+  emacs-nox = emacs28-nox;
 
   emacsPackagesFor = emacs: import ./emacs-packages.nix {
     inherit (lib) makeScope makeOverridable dontRecurseIntoAttrs;
@@ -32489,7 +32499,9 @@ with pkgs;
 
   hypnotix = callPackage ../applications/video/hypnotix { };
 
-  indigenous-desktop = callPackage ../applications/networking/feedreaders/indigenous-desktop { };
+  indiepass-desktop = callPackage ../by-name/in/indiepass-desktop/package.nix {
+    electron = electron_19;
+  };
 
   jackline = callPackage ../applications/networking/instant-messengers/jackline { };
 
@@ -34813,6 +34825,7 @@ with pkgs;
   protonvpn-cli_2 = python3Packages.callPackage ../applications/networking/protonvpn-cli/2.nix { };
 
   protonvpn-gui = python3Packages.callPackage ../applications/networking/protonvpn-gui { };
+  protonvpn-gui_legacy = python3Packages.callPackage ../applications/networking/protonvpn-gui/legacy.nix { };
 
   ps2client = callPackage ../applications/networking/ps2client { };
 
