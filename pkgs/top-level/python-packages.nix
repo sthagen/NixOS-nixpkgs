@@ -6836,6 +6836,8 @@ self: super: with self; {
 
   mediafile = callPackage ../development/python-modules/mediafile { };
 
+  mediafire-dl = callPackage ../development/python-modules/mediafire-dl { };
+
   mediapy = callPackage ../development/python-modules/mediapy { };
 
   meeko = callPackage ../development/python-modules/meeko { };
@@ -9342,6 +9344,8 @@ self: super: with self; {
   pyngo = callPackage ../development/python-modules/pyngo { };
 
   pyngrok = callPackage ../development/python-modules/pyngrok { };
+
+  pynitrokey = callPackage ../development/python-modules/pynitrokey { };
 
   pynndescent = callPackage ../development/python-modules/pynndescent { };
 
