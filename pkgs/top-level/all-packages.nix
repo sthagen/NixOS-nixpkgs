@@ -846,6 +846,14 @@ with pkgs;
 
   oauth2c = callPackage ../tools/security/oauth2c { };
 
+  octodns = python3Packages.callPackage ../tools/networking/octodns { };
+
+  octodns-providers = recurseIntoAttrs {
+    bind = python3Packages.callPackage ../tools/networking/octodns/providers/bind { };
+    hetzner = python3Packages.callPackage ../tools/networking/octodns/providers/hetzner { };
+    powerdns = python3Packages.callPackage ../tools/networking/octodns/providers/powerdns { };
+  };
+
   octosuite = callPackage ../tools/security/octosuite { };
 
   octosql = callPackage ../tools/misc/octosql { };
@@ -16205,6 +16213,7 @@ with pkgs;
 
   ghdl-llvm = callPackage ../development/compilers/ghdl {
     backend = "llvm";
+    inherit (llvmPackages_15) llvm;
   };
 
   gcl_2_6_13_pre = callPackage ../development/compilers/gcl/2.6.13-pre.nix { };
@@ -17985,8 +17994,6 @@ with pkgs;
   regexploit = callPackage ../tools/security/regexploit { };
 
   regextester = callPackage ../applications/misc/regextester { };
-
-  regina = callPackage ../development/interpreters/regina { };
 
   inherit (ocamlPackages) reason;
 
@@ -20862,11 +20869,7 @@ with pkgs;
 
   clucene_core_2 = callPackage ../development/libraries/clucene-core/2.x.nix { };
 
-  clucene_core_1 = callPackage ../development/libraries/clucene-core {
-    stdenv = if stdenv.cc.isClang then llvmPackages_6.stdenv else stdenv;
-  };
-
-  clucene_core = clucene_core_1;
+  clucene_core = clucene_core_2;
 
   clutter = callPackage ../development/libraries/clutter { };
 
@@ -32307,8 +32310,6 @@ with pkgs;
 
   gostatic = callPackage ../applications/misc/gostatic { };
 
-  gosmore = callPackage ../applications/misc/gosmore { stdenv = gcc10StdenvCompat; };
-
   gossa = callPackage ../applications/networking/gossa { };
 
   gpsbabel = libsForQt5.callPackage ../applications/misc/gpsbabel { };
@@ -37172,9 +37173,6 @@ with pkgs;
 
   monero-gui = libsForQt5.callPackage ../applications/blockchains/monero-gui { };
 
-  oxen = callPackage ../applications/blockchains/oxen
-    { stdenv = gcc10StdenvCompat; boost = boost179; };
-
   masari = callPackage ../applications/blockchains/masari { };
 
   napari = with python3Packages; toPythonApplication napari;
@@ -37520,21 +37518,6 @@ with pkgs;
   airshipper = callPackage ../games/airshipper { };
 
   airstrike = callPackage ../games/airstrike { };
-
-  alephone = callPackage ../games/alephone { };
-  alephone-apotheosis-x = callPackage ../games/alephone/apotheosis-x { };
-  alephone-durandal = callPackage ../games/alephone/durandal { };
-  alephone-eternal = callPackage ../games/alephone/eternal { };
-  alephone-evil = callPackage ../games/alephone/evil { };
-  alephone-infinity = callPackage ../games/alephone/infinity { };
-  alephone-marathon = callPackage ../games/alephone/marathon { };
-  alephone-pheonix = callPackage ../games/alephone/pheonix { };
-  alephone-red = callPackage ../games/alephone/red { };
-  alephone-rubicon-x = callPackage ../games/alephone/rubicon-x { };
-  alephone-pathways-into-darkness =
-    callPackage ../games/alephone/pathways-into-darkness { };
-  alephone-yuge =
-    callPackage ../games/alephone/yuge { };
 
   alienarena = callPackage ../games/alienarena { };
 
