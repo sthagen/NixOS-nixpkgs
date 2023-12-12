@@ -3764,7 +3764,7 @@ with pkgs;
 
   dfmt = callPackage ../tools/text/dfmt { };
 
-  diopser = callPackage ../applications/audio/diopser { stdenv = gcc10StdenvCompat; };
+  diopser = callPackage ../applications/audio/diopser { };
 
   diskonaut = callPackage ../tools/misc/diskonaut { };
 
@@ -4822,8 +4822,6 @@ with pkgs;
   swayrbar = callPackage ../tools/wayland/swayrbar { };
 
   swaysome = callPackage ../tools/wayland/swaysome { };
-
-  swayimg = callPackage ../tools/wayland/swayimg { };
 
   swaytools = python3Packages.callPackage ../tools/wayland/swaytools { };
 
@@ -8006,7 +8004,7 @@ with pkgs;
 
   eris-go = callPackage ../servers/eris-go { };
 
-  ericw-tools = callPackage ../applications/misc/ericw-tools { stdenv = gcc10StdenvCompat; };
+  ericw-tools = callPackage ../applications/misc/ericw-tools { };
 
   cryfs = callPackage ../tools/filesystems/cryfs { };
 
@@ -8330,8 +8328,6 @@ with pkgs;
   fontforge-fonttools = callPackage ../tools/misc/fontforge/fontforge-fonttools.nix { };
 
   fontmatrix = libsForQt5.callPackage ../applications/graphics/fontmatrix { };
-
-  footswitch = callPackage ../tools/inputmethods/footswitch { };
 
   foremost = callPackage ../tools/system/foremost { };
 
@@ -8983,7 +8979,7 @@ with pkgs;
   gsmartcontrol = callPackage ../tools/misc/gsmartcontrol { };
 
   gsmlib = callPackage ../development/libraries/gsmlib
-    { stdenv = gcc10StdenvCompat; autoreconfHook = buildPackages.autoreconfHook269; };
+    { autoreconfHook = buildPackages.autoreconfHook269; };
 
   gssdp = callPackage ../development/libraries/gssdp { };
 
@@ -10939,7 +10935,7 @@ with pkgs;
 
   mkclean = callPackage ../applications/video/mkclean { };
 
-  mkcue = callPackage ../tools/cd-dvd/mkcue { stdenv = gcc10StdenvCompat; };
+  mkcue = callPackage ../tools/cd-dvd/mkcue { };
 
   mkp224o = callPackage ../tools/security/mkp224o { };
 
@@ -12180,9 +12176,7 @@ with pkgs;
     python = null;
   };
 
-  ploticus = callPackage ../tools/graphics/ploticus {
-    libpng = libpng12;
-  };
+  ploticus = callPackage ../tools/graphics/ploticus { };
 
   plotinus = callPackage ../tools/misc/plotinus { };
 
@@ -13215,7 +13209,8 @@ with pkgs;
 
   sigil = libsForQt5.callPackage ../applications/editors/sigil { };
 
-  signalbackup-tools = callPackage ../applications/networking/instant-messengers/signalbackup-tools { };
+  signalbackup-tools = darwin.apple_sdk_11_0.callPackage
+    ../applications/networking/instant-messengers/signalbackup-tools { };
 
   signald = callPackage ../applications/networking/instant-messengers/signald { };
 
@@ -17939,8 +17934,6 @@ with pkgs;
 
   pypi-mirror = callPackage ../development/tools/pypi-mirror { };
 
-  setupcfg2nix = python3Packages.callPackage ../development/tools/setupcfg2nix { };
-
   svg2tikz = with python3.pkgs; toPythonApplication svg2tikz;
 
   svg2pdf = callPackage ../tools/graphics/svg2pdf { };
@@ -20207,7 +20200,7 @@ with pkgs;
 
   c3c = callPackage ../development/compilers/c3c { };
 
-  swfmill = callPackage ../tools/video/swfmill { stdenv = gcc10StdenvCompat; };
+  swfmill = callPackage ../tools/video/swfmill { };
 
   swftools = callPackage ../tools/video/swftools {
     stdenv = gccStdenv;
@@ -20389,7 +20382,7 @@ with pkgs;
     lua = lua5_4;
   };
 
-  xc3sprog = callPackage ../development/embedded/xc3sprog { stdenv = gcc10StdenvCompat; };
+  xc3sprog = callPackage ../development/embedded/xc3sprog { };
 
   xcb-imdkit = callPackage ../development/libraries/xcb-imdkit { };
 
@@ -20670,9 +20663,7 @@ with pkgs;
 
   belr = callPackage ../development/libraries/belr { };
 
-  bencode = callPackage ../development/libraries/bencode {
-    stdenv = gcc10StdenvCompat;
-  };
+  bencode = callPackage ../development/libraries/bencode { };
 
   bencodetools = callPackage ../development/libraries/bencodetools { };
 
@@ -20958,7 +20949,7 @@ with pkgs;
 
   ustream-ssl-mbedtls = callPackage ../development/libraries/ustream-ssl { ssl_implementation = mbedtls_2; };
 
-  uri = callPackage ../development/libraries/uri { stdenv = gcc10StdenvCompat; };
+  uri = callPackage ../development/libraries/uri { };
 
   cppcms = callPackage ../development/libraries/cppcms { };
 
@@ -24354,7 +24345,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks)
       AVFoundation Cocoa VideoDecodeAcceleration CoreMedia MediaToolbox Accelerate;
     pythonPackages = python3Packages;
-    ffmpeg = ffmpeg_4;
   };
 
   opencv4WithoutCuda = opencv4.override {
@@ -33007,8 +32997,6 @@ with pkgs;
 
   jgmenu = callPackage ../applications/misc/jgmenu { };
 
-  jigdo = callPackage ../applications/misc/jigdo { stdenv = gcc10StdenvCompat; };
-
   jitsi = callPackage ../applications/networking/instant-messengers/jitsi { };
 
   joe = callPackage ../applications/editors/joe { };
@@ -37324,8 +37312,6 @@ with pkgs;
 
   _90secondportraits = callPackage ../games/90secondportraits { love = love_0_10; };
 
-  aaaaxy = callPackage ../games/aaaaxy { };
-
   ace-of-penguins = callPackage ../games/ace-of-penguins { };
 
   among-sus = callPackage ../games/among-sus { };
@@ -38118,7 +38104,7 @@ with pkgs;
 
   openlierox = callPackage ../games/openlierox { };
 
-  openclonk = callPackage ../games/openclonk { stdenv = gcc10StdenvCompat; };
+  openclonk = callPackage ../games/openclonk { };
 
   openjk = callPackage ../games/openjk { };
 
@@ -39120,7 +39106,7 @@ with pkgs;
 
   star = callPackage ../applications/science/biology/star { };
 
-  strelka = callPackage ../applications/science/biology/strelka { stdenv = gcc10StdenvCompat; };
+  strelka = callPackage ../applications/science/biology/strelka { };
 
   inherit (callPackages ../applications/science/biology/sumatools {})
       sumalibs
