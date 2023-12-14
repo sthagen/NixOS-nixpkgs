@@ -61,7 +61,7 @@ with pkgs;
   };
 
   stdenvNoLibs =
-    if stdenv.hostPlatform != stdenv.buildPlatform && (stdenv.hostPlatform.isDarwin || stdenv.hostPlatform.isDarwin.useLLVM or false)
+    if stdenv.hostPlatform != stdenv.buildPlatform && (stdenv.hostPlatform.isDarwin || stdenv.hostPlatform.useLLVM or false)
     then
       # We cannot touch binutils or cc themselves, because that will cause
       # infinite recursion. So instead, we just choose a libc based on the
@@ -6893,8 +6893,9 @@ with pkgs;
     citrix_workspace_23_02_0
     citrix_workspace_23_07_0
     citrix_workspace_23_09_0
+    citrix_workspace_23_11_0
   ;
-  citrix_workspace = citrix_workspace_23_09_0;
+  citrix_workspace = citrix_workspace_23_11_0;
 
   clima = callPackage ../tools/text/clima { };
 
@@ -12198,9 +12199,7 @@ with pkgs;
 
   pngoptimizer = callPackage ../tools/graphics/pngoptimizer { };
 
-  pngtoico = callPackage ../tools/graphics/pngtoico {
-    libpng = libpng12;
-  };
+  pngtoico = callPackage ../tools/graphics/pngtoico { };
 
   pngpaste = callPackage ../os-specific/darwin/pngpaste {
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
@@ -12773,7 +12772,7 @@ with pkgs;
 
   restool = callPackage ../os-specific/linux/restool { };
 
-  reuse = callPackage ../tools/package-management/reuse { };
+  reuse = with python3.pkgs; toPythonApplication reuse;
 
   reveal-md = callPackage ../tools/text/reveal-md { };
 
@@ -13347,9 +13346,7 @@ with pkgs;
 
   snet = callPackage ../tools/networking/snet { };
 
-  sng = callPackage ../tools/graphics/sng {
-    libpng = libpng12;
-  };
+  sng = callPackage ../tools/graphics/sng { };
 
   snmpcheck = callPackage ../tools/networking/snmpcheck { };
 
@@ -19389,7 +19386,7 @@ with pkgs;
   img = callPackage ../development/tools/img { };
 
   include-what-you-use = callPackage ../development/tools/analysis/include-what-you-use {
-    llvmPackages = llvmPackages_15;
+    llvmPackages = llvmPackages_17;
   };
 
   indent = callPackage ../development/tools/misc/indent { };
@@ -21458,7 +21455,9 @@ with pkgs;
     stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_14.stdenv else stdenv;
   };
 
-  geos39 = callPackage ../development/libraries/geos/3.9.nix { };
+  geos_3_9 = callPackage ../development/libraries/geos/3.9.nix { };
+
+  geos_3_11 = callPackage ../development/libraries/geos/3.11.nix { };
 
   getdata = callPackage ../development/libraries/getdata { };
 
@@ -35483,9 +35482,7 @@ with pkgs;
 
   skrooge = libsForQt5.callPackage ../applications/office/skrooge { };
 
-  smartgithg = callPackage ../applications/version-management/smartgithg {
-    jre = openjdk11;
-  };
+  smartgithg = callPackage ../applications/version-management/smartgithg { };
 
   smartdeblur = libsForQt5.callPackage ../applications/graphics/smartdeblur { };
 
@@ -37729,9 +37726,7 @@ with pkgs;
 
   endless-sky = callPackage ../games/endless-sky { };
 
-  extremetuxracer = callPackage ../games/extremetuxracer {
-    libpng = libpng12;
-  };
+  extremetuxracer = callPackage ../games/extremetuxracer { };
 
   exult = callPackage ../games/exult { };
 
@@ -38554,9 +38549,7 @@ with pkgs;
 
   vms-empire = callPackage ../games/vms-empire { };
 
-  voxelands = callPackage ../games/voxelands {
-    libpng = libpng12;
-  };
+  voxelands = callPackage ../games/voxelands { };
 
   vvvvvv = callPackage ../games/vvvvvv {
     inherit (darwin.apple_sdk.frameworks) Foundation IOKit;
@@ -41389,7 +41382,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreFoundation SystemConfiguration Security;
   };
 
-  wavm = callPackage ../development/interpreters/wavm { };
+  wavm = callPackage ../development/interpreters/wavm {
+    llvmPackages = llvmPackages_12;
+  };
 
   yabasic = callPackage ../development/interpreters/yabasic { };
 
