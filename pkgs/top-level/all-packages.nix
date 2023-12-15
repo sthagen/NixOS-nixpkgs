@@ -9137,10 +9137,6 @@ with pkgs;
     llvmPackages = llvmPackages_16;
   };
 
-  hare = callPackage ../development/compilers/hare { };
-
-  harec = callPackage ../development/compilers/harec { };
-
   hareThirdParty = recurseIntoAttrs (callPackage ./hare-third-party.nix { });
 
   ham = pkgs.perlPackages.ham;
@@ -11215,7 +11211,7 @@ with pkgs;
   grocy = callPackage ../servers/grocy { };
 
   inherit (callPackage ../servers/nextcloud {})
-    nextcloud25 nextcloud26 nextcloud27;
+    nextcloud25 nextcloud26 nextcloud27 nextcloud28;
 
   nextcloud25Packages = throw "Nextcloud25 is EOL!";
   nextcloud26Packages = callPackage ../servers/nextcloud/packages {
@@ -11223,6 +11219,9 @@ with pkgs;
   };
   nextcloud27Packages = callPackage ../servers/nextcloud/packages {
     apps = lib.importJSON ../servers/nextcloud/packages/27.json;
+  };
+  nextcloud28Packages = callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/28.json;
   };
 
   nextcloud-client = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
@@ -22661,6 +22660,8 @@ with pkgs;
   libdecor = callPackage ../development/libraries/libdecor { };
 
   libdex = callPackage ../development/libraries/libdex { };
+
+  libdicom = callPackage ../development/libraries/libdicom { };
 
   libdigidocpp = callPackage ../development/libraries/libdigidocpp { };
 
@@ -34230,7 +34231,7 @@ with pkgs;
 
   shod = callPackage ../applications/window-managers/shod { };
 
-  shotcut = libsForQt5.callPackage ../applications/video/shotcut { };
+  shotcut = qt6Packages.callPackage ../applications/video/shotcut { };
 
   shogun = callPackage ../applications/science/machine-learning/shogun {
     protobuf = protobuf_21;
@@ -35111,6 +35112,8 @@ with pkgs;
   restique = libsForQt5.callPackage ../applications/backup/restique { };
 
   retroshare = libsForQt5.callPackage ../applications/networking/p2p/retroshare { };
+
+  revanced-cli = callPackage ../applications/misc/revanced-cli { };
 
   rgp = libsForQt5.callPackage ../development/tools/rgp { };
 
@@ -40934,7 +40937,12 @@ with pkgs;
     gtk2 = gtk2-x11;
   };
 
-  qMasterPassword = libsForQt5.callPackage ../applications/misc/qMasterPassword { };
+  qMasterPassword = qt6Packages.callPackage ../applications/misc/qMasterPassword { };
+
+  qMasterPassword-wayland = qt6Packages.callPackage ../applications/misc/qMasterPassword {
+    x11Support = false;
+    waylandSupport = true;
+  };
 
   qmake2cmake = python3Packages.callPackage ../tools/misc/qmake2cmake { };
 
