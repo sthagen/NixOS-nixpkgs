@@ -2161,7 +2161,7 @@ with pkgs;
   vrrtest = callPackage ../tools/video/vrrtest { };
 
   winbox = callPackage ../tools/admin/winbox {
-    wine = wineWowPackages.staging;
+    wine = wineWowPackages.stable;
   };
 
   wtwitch = callPackage ../tools/video/wtwitch { };
@@ -5304,8 +5304,6 @@ with pkgs;
   esphome = callPackage ../tools/misc/esphome { };
 
   esptool = callPackage ../tools/misc/esptool { };
-
-  esptool_3 = callPackage ../tools/misc/esptool/3.nix { };
 
   esptool-ck = callPackage ../tools/misc/esptool-ck { };
 
@@ -27843,10 +27841,6 @@ with pkgs;
 
   fwts = callPackage ../os-specific/linux/fwts { };
 
-  gasket = callPackage ../os-specific/linux/gasket {
-    inherit (linuxPackages) kernel;
-  };
-
   gobi_loader = callPackage ../os-specific/linux/gobi_loader { };
 
   libossp_uuid = callPackage ../development/libraries/libossp-uuid { };
@@ -40439,8 +40433,6 @@ with pkgs;
   };
 
   hjson = with python3Packages; toPythonApplication hjson;
-
-  hjson-go = callPackage ../development/tools/hjson-go { };
 
   epkowa = callPackage ../misc/drivers/epkowa { };
 
