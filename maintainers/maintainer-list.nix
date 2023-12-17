@@ -11346,6 +11346,12 @@
     githubId = 585424;
     name = "Massimo Gengarelli";
   };
+  matdibu = {
+    email = "contact@mateidibu.dev";
+    github = "matdibu";
+    githubId = 24750154;
+    name = "Matei Dibu";
+  };
   matejc = {
     email = "cotman.matej@gmail.com";
     github = "matejc";
@@ -13134,6 +13140,15 @@
     github = "nico202";
     githubId = 8214542;
     name = "Nicolò Balzarotti";
+  };
+  nicolas-goudry = {
+    email = "goudry.nicolas@gmail.com";
+    github = "nicolas-goudry";
+    githubId = 8753998;
+    name = "Nicolas Goudry";
+    keys = [{
+      fingerprint = "21B6 A59A 4E89 0B1B 83E3 0CDB 01C8 8C03 5450 9AA9";
+    }];
   };
   nicoo = {
     email = "nicoo@debian.org";
