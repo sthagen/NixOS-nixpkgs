@@ -5,12 +5,15 @@
 , lxml
 , pytestCheckHook
 , pythonOlder
+, python
 , pytz
 , recurring-ical-events
 , requests
 , setuptools
+, toPythonModule
 , tzlocal
 , vobject
+, xandikos
 }:
 
 buildPythonPackage rec {
@@ -43,14 +46,8 @@ buildPythonPackage rec {
 
   nativeCheckInputs = [
     pytestCheckHook
+    (toPythonModule (xandikos.override { python3Packages = python.pkgs; }))
   ];
-
-  # xandikos and radicale are only optional test dependencies, not available for python3
-  postPatch = ''
-    substituteInPlace setup.py \
-      --replace xandikos "" \
-      --replace radicale ""
-  '';
 
   pythonImportsCheck = [ "caldav" ];
 
