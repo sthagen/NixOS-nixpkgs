@@ -620,7 +620,9 @@ with pkgs;
 
   dec-decode = callPackage ../development/tools/dec-decode { };
 
-  dnf4 =  with python3Packages; toPythonApplication dnf4;
+  dnf-plugins-core = with python3Packages; toPythonApplication dnf-plugins-core;
+
+  dnf4 = python3Packages.callPackage ../development/python-modules/dnf4/wrapper.nix { };
 
   dnf5 = callPackage ../tools/package-management/dnf5 { };
 
@@ -11747,6 +11749,8 @@ with pkgs;
   openvswitch = callPackage ../os-specific/linux/openvswitch { };
 
   openvswitch-lts = callPackage ../os-specific/linux/openvswitch/lts.nix { };
+
+  ovn-lts = callPackage ../by-name/ov/ovn/lts.nix { };
 
   optifinePackages = callPackage ../tools/games/minecraft/optifine { };
 
@@ -30003,9 +30007,7 @@ with pkgs;
 
   stdmanpages = callPackage ../data/documentation/std-man-pages { };
 
-  star-history = callPackage ../tools/misc/star-history {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  star-history = callPackage ../tools/misc/star-history { };
 
   starfetch = callPackage ../tools/misc/starfetch { };
 
@@ -32672,9 +32674,7 @@ with pkgs;
 
   rootbar = callPackage ../applications/misc/rootbar { };
 
-  waybar = callPackage ../applications/misc/waybar {
-    wlroots = wlroots_0_15;
-  };
+  waybar = callPackage ../applications/misc/waybar { };
 
   waycorner = callPackage ../applications/misc/waycorner { };
 
