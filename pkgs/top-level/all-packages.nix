@@ -13586,8 +13586,6 @@ with pkgs;
 
   svu = callPackage ../tools/misc/svu { };
 
-  ssb = callPackage ../tools/security/ssb { };
-
   ssb-patchwork = callPackage ../applications/networking/ssb-patchwork { };
 
   ssdeep = callPackage ../tools/security/ssdeep { };
@@ -22425,7 +22423,7 @@ with pkgs;
   libagar_test = callPackage ../development/libraries/libagar/libagar_test.nix { };
 
   libao = callPackage ../development/libraries/libao {
-    usePulseAudio = config.pulseaudio or lib.meta.availableOn stdenv.hostPlatform libpulseaudio;
+    usePulseAudio = config.pulseaudio or (lib.meta.availableOn stdenv.hostPlatform libpulseaudio);
     inherit (darwin.apple_sdk.frameworks) CoreAudio CoreServices AudioUnit;
   };
 
@@ -37913,6 +37911,7 @@ with pkgs;
 
   katagoWithCuda = katago.override {
     backend = "cuda";
+    cudaPackages = cudaPackages_12;
   };
 
   katagoCPU = katago.override {
@@ -37921,6 +37920,7 @@ with pkgs;
 
   katagoTensorRT = katago.override {
     backend = "tensorrt";
+    cudaPackages = cudaPackages_12;
   };
 
   klavaro = callPackage ../games/klavaro { };
