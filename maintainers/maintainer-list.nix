@@ -16965,6 +16965,11 @@
     githubId = 50401154;
     name = "Simone Ruffini";
   };
+  simonhammes = {
+    github = "simonhammes";
+    githubId = 10352679;
+    name = "Simon Hammes";
+  };
   simonkampe = {
     email = "simon.kampe+nix@gmail.com";
     github = "simonkampe";
@@ -19021,7 +19026,7 @@
   };
   uakci = {
     name = "uakci";
-    email = "uakci@uakci.pl";
+    email = "git@uakci.space";
     github = "uakci";
     githubId = 6961268;
   };
