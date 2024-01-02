@@ -7067,6 +7067,8 @@ with pkgs;
 
     bamboo = callPackage ../tools/inputmethods/ibus-engines/ibus-bamboo { };
 
+    cangjie = callPackage ../tools/inputmethods/ibus-engines/ibus-cangjie { };
+
     hangul = callPackage ../tools/inputmethods/ibus-engines/ibus-hangul { };
 
     kkc = callPackage ../tools/inputmethods/ibus-engines/ibus-kkc { };
@@ -27128,6 +27130,8 @@ with pkgs;
 
   postgresqlTestHook = callPackage ../build-support/setup-hooks/postgresql-test-hook { };
 
+  postgrest = haskellPackages.postgrest.bin;
+
   redshift_jdbc = callPackage ../development/java-modules/redshift_jdbc { };
 
   liquibase_redshift_extension = callPackage ../development/java-modules/liquibase_redshift_extension { };
@@ -35409,7 +35413,7 @@ with pkgs;
   super-slicer-latest = super-slicer.latest;
 
   bambu-studio = callPackage ../applications/misc/bambu-studio {
-    inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-bad;
+    inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-bad gst-plugins-good;
 
     glew = glew-egl;
 
