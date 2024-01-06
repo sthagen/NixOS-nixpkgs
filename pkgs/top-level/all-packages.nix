@@ -24980,8 +24980,6 @@ with pkgs;
 
   simpleitk = callPackage ../development/libraries/simpleitk { lua = lua5_4; };
 
-  sioclient = callPackage ../development/libraries/sioclient { };
-
   sfml = callPackage ../development/libraries/sfml {
     inherit (darwin.apple_sdk.frameworks) IOKit Foundation AppKit OpenAL;
   };
@@ -26035,9 +26033,7 @@ with pkgs;
 
   # GNU Common Lisp
   gcl = wrapLisp {
-    pkg = callPackage ../development/compilers/gcl {
-      gmp = gmp4;
-    };
+    pkg = callPackage ../development/compilers/gcl { };
     faslExt = "o";
   };
 
@@ -26834,9 +26830,8 @@ with pkgs;
 
   rspamd = callPackage ../servers/mail/rspamd { };
 
-  pfixtools = callPackage ../servers/mail/postfix/pfixtools.nix {
-    gperf = gperf_3_0;
-  };
+  pfixtools = callPackage ../servers/mail/postfix/pfixtools.nix { };
+
   pflogsumm = callPackage ../servers/mail/postfix/pflogsumm.nix { };
 
   pomerium = callPackage ../servers/http/pomerium { };
@@ -40860,7 +40855,7 @@ with pkgs;
   pwntools = with python3Packages; toPythonApplication pwntools;
 
   putty = callPackage ../applications/networking/remote/putty {
-    gtk2 = gtk2-x11;
+    gtk3 = if stdenv.isDarwin then gtk3-x11 else gtk3;
   };
 
   qMasterPassword = qt6Packages.callPackage ../applications/misc/qMasterPassword { };
