@@ -4331,8 +4331,6 @@ self: super: with self; {
 
   fritzconnection = callPackage ../development/python-modules/fritzconnection { };
 
-  fritzprofiles = callPackage ../development/python-modules/fritzprofiles { };
-
   frozendict = callPackage ../development/python-modules/frozendict { };
 
   frozenlist = callPackage ../development/python-modules/frozenlist { };
@@ -5177,8 +5175,6 @@ self: super: with self; {
   home-assistant-chip-clusters = callPackage ../development/python-modules/home-assistant-chip-clusters { };
 
   home-assistant-chip-core = callPackage ../development/python-modules/home-assistant-chip-core { };
-
-  homeassistant-pyozw = callPackage ../development/python-modules/homeassistant-pyozw { };
 
   homeassistant-stubs = callPackage ../servers/home-assistant/stubs.nix { };
 
@@ -9545,8 +9541,6 @@ self: super: with self; {
 
   python-opensky = callPackage ../development/python-modules/python-opensky { };
 
-  python-openzwave-mqtt = callPackage ../development/python-modules/python-openzwave-mqtt { };
-
   python-owasp-zap-v2-4 = callPackage ../development/python-modules/python-owasp-zap-v2-4 { };
 
   python-pptx = callPackage ../development/python-modules/python-pptx { };
@@ -10505,8 +10499,6 @@ self: super: with self; {
   pyhomepilot = callPackage ../development/python-modules/pyhomepilot { };
 
   pyhomeworks = callPackage ../development/python-modules/pyhomeworks { };
-
-  pyhs100 = callPackage ../development/python-modules/pyhs100 { };
 
   pyheif = callPackage ../development/python-modules/pyheif { };
 
@@ -12121,8 +12113,6 @@ self: super: with self; {
   pyworld = callPackage ../development/python-modules/pyworld { };
 
   pyx = callPackage ../development/python-modules/pyx { };
-
-  pyxb = callPackage ../development/python-modules/pyxb { };
 
   pyxbe = callPackage ../development/python-modules/pyxbe { };
 
@@ -15525,8 +15515,6 @@ self: super: with self; {
 
   ukpostcodeparser = callPackage ../development/python-modules/ukpostcodeparser { };
 
-  ukrainealarm = callPackage ../development/python-modules/ukrainealarm { };
-
   ulid-transform = callPackage ../development/python-modules/ulid-transform { };
 
   ultraheat-api = callPackage ../development/python-modules/ultraheat-api { };
@@ -16428,8 +16416,6 @@ self: super: with self; {
   zipp = callPackage ../development/python-modules/zipp { };
 
   zipstream = callPackage ../development/python-modules/zipstream { };
-
-  zipstream-new = callPackage ../development/python-modules/zipstream-new { };
 
   zipstream-ng = callPackage ../development/python-modules/zipstream-ng { };
 
