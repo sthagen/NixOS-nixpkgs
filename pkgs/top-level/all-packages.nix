@@ -9858,8 +9858,6 @@ with pkgs;
 
   krakenx = callPackage ../tools/system/krakenx { };
 
-  partition-manager = libsForQt5.callPackage ../tools/misc/partition-manager { };
-
   kpcli = callPackage ../tools/security/kpcli { };
 
   kphotoalbum = libsForQt5.callPackage ../applications/graphics/kphotoalbum { };
@@ -28374,6 +28372,8 @@ with pkgs;
 
   go-outline = callPackage ../development/tools/go-outline { };
 
+  gocode = callPackage ../development/tools/gocode { };
+
   gocode-gomod = callPackage ../development/tools/gocode-gomod { };
 
   goconst = callPackage ../development/tools/goconst { };
@@ -30290,7 +30290,7 @@ with pkgs;
   aaxtomp3 = callPackage ../applications/audio/aaxtomp3 { };
 
   abcde = callPackage ../applications/audio/abcde {
-    inherit (python3Packages) eyeD3;
+    inherit (python3Packages) eyed3;
   };
 
   abiword = callPackage ../applications/office/abiword { };
