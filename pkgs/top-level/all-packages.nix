@@ -379,7 +379,7 @@ with pkgs;
 
   bloom = qt6Packages.callPackage ../development/tools/bloom { };
 
-  bloodhound-py = callPackage ../tools/security/bloodhound-py { };
+  bloodhound-py = with python3Packages; toPythonApplication bloodhound-py;
 
   bodyclose = callPackage ../development/tools/bodyclose { };
 
@@ -9373,8 +9373,6 @@ with pkgs;
     irods
     irods-icommands;
 
-  ignite = callPackage ../applications/virtualization/ignite { };
-
   igmpproxy = callPackage ../tools/networking/igmpproxy { };
 
   ihaskell = callPackage ../development/tools/haskell/ihaskell/wrapper.nix {
@@ -10266,6 +10264,8 @@ with pkgs;
   nbutools = callPackage ../tools/security/nbutools { };
 
   ncrack = callPackage ../tools/security/ncrack { };
+
+  netexec = python3Packages.callPackage ../tools/security/netexec { };
 
   nerdctl = callPackage ../applications/networking/cluster/nerdctl { };
 
@@ -13684,8 +13684,6 @@ with pkgs;
   swiften = callPackage ../development/libraries/swiften { };
 
   squeekboard = callPackage ../applications/accessibility/squeekboard { };
-
-  sx = callPackage ../tools/X11/sx { };
 
   systemdgenie = libsForQt5.callPackage ../applications/system/systemdgenie { };
 
@@ -19695,7 +19693,7 @@ with pkgs;
   openai-whisper = with python3.pkgs; toPythonApplication openai-whisper;
 
   openai-whisper-cpp = darwin.apple_sdk_11_0.callPackage ../tools/audio/openai-whisper-cpp {
-    inherit (darwin.apple_sdk_11_0.frameworks) Accelerate CoreGraphics CoreML CoreVideo;
+    inherit (darwin.apple_sdk_11_0.frameworks) Accelerate CoreGraphics CoreML CoreVideo MetalKit;
   };
 
   opengrok = callPackage ../development/tools/misc/opengrok { };
@@ -20476,6 +20474,8 @@ with pkgs;
 
   adslib = callPackage ../development/libraries/adslib { };
 
+  aemu = callPackage ../development/libraries/aemu { };
+
   afflib = callPackage ../development/libraries/afflib { };
 
   aften = callPackage ../development/libraries/aften { };
@@ -20639,10 +20639,6 @@ with pkgs;
   bencode = callPackage ../development/libraries/bencode { };
 
   bencodetools = callPackage ../development/libraries/bencodetools { };
-
-  beignet = callPackage ../development/libraries/beignet {
-    inherit (llvmPackages_6) libllvm libclang;
-  };
 
   belle-sip = callPackage ../development/libraries/belle-sip { };
 
@@ -21054,7 +21050,6 @@ with pkgs;
       mesa
       libvdpau-va-gl
       vaapiVdpau
-      beignet
       glxinfo
       vdpauinfo;
   };
@@ -21446,6 +21441,8 @@ with pkgs;
 
   gf2x = callPackage ../development/libraries/gf2x { };
 
+  gfxstream = callPackage ../development/libraries/gfxstream { };
+
   gd = callPackage ../development/libraries/gd {
     automake = automake115x;
   };
@@ -21563,10 +21560,7 @@ with pkgs;
   mtrace = callPackage ../development/libraries/glibc/mtrace.nix { };
 
   # Provided by libc on Operating Systems that use the Extensible Linker Format.
-  elf-header =
-    if stdenv.hostPlatform.parsed.kernel.execFormat.name == "elf"
-    then null
-    else elf-header-real;
+  elf-header = if stdenv.hostPlatform.isElf then null else elf-header-real;
 
   elf-header-real = callPackage ../development/libraries/elf-header { };
 
@@ -24837,6 +24831,8 @@ with pkgs;
   rttr = callPackage ../development/libraries/rttr { };
 
   rubberband = callPackage ../development/libraries/rubberband { };
+
+  rutabaga_gfx = callPackage ../development/libraries/rutabaga_gfx { };
 
   rure = callPackage ../development/libraries/rure { };
 
@@ -34275,8 +34271,6 @@ with pkgs;
 
   ncdu_1 = callPackage ../tools/misc/ncdu/1.nix { };
 
-  ncdc = callPackage ../applications/networking/p2p/ncdc { };
-
   ncspot = callPackage ../applications/audio/ncspot {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
 
@@ -34555,9 +34549,7 @@ with pkgs;
 
   pcloud = callPackage ../applications/networking/pcloud { };
 
-  jpsxdec = callPackage ../tools/games/jpsxdec {
-    jdk = openjdk8;
-  };
+  jpsxdec = callPackage ../tools/games/jpsxdec { };
 
   pdfslicer = callPackage ../applications/misc/pdfslicer { };
 
@@ -41246,7 +41238,6 @@ with pkgs;
   vimUtils = callPackage ../applications/editors/vim/plugins/vim-utils.nix { };
 
   vimPlugins = recurseIntoAttrs (callPackage ../applications/editors/vim/plugins {
-    llvmPackages = llvmPackages_6;
     luaPackages = lua51Packages;
   });
 

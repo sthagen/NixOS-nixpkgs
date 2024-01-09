@@ -1556,6 +1556,8 @@ self: super: with self; {
 
   blocksat-cli = callPackage ../development/python-modules/blocksat-cli { };
 
+  bloodhound-py = callPackage ../development/python-modules/bloodhound-py { };
+
   blosc2 = callPackage ../development/python-modules/blosc2 { };
 
   bluemaestro-ble = callPackage ../development/python-modules/bluemaestro-ble { };
@@ -3550,6 +3552,8 @@ self: super: with self; {
     inherit (pkgs) edlib;
   };
 
+  eduvpn-common = callPackage ../development/python-modules/eduvpn-common { };
+
   edward = callPackage ../development/python-modules/edward { };
 
   effdet = callPackage ../development/python-modules/effdet { };
@@ -3677,6 +3681,8 @@ self: super: with self; {
   ephem = callPackage ../development/python-modules/ephem { };
 
   ephemeral-port-reserve = callPackage ../development/python-modules/ephemeral-port-reserve { };
+
+  epion = callPackage ../development/python-modules/epion { };
 
   epson-projector = callPackage ../development/python-modules/epson-projector { };
 
@@ -11345,6 +11351,8 @@ self: super: with self; {
 
   pyte = callPackage ../development/python-modules/pyte { };
 
+  pytedee-async = callPackage ../development/python-modules/pytedee-async { };
+
   pytenable = callPackage ../development/python-modules/pytenable { };
 
   pytensor = callPackage ../development/python-modules/pytensor { };
@@ -12135,6 +12143,8 @@ self: super: with self; {
   pyyaml-include = callPackage ../development/python-modules/pyyaml-include { };
 
   pyyardian = callPackage ../development/python-modules/pyyardian { };
+
+  pyzabbix = callPackage ../development/python-modules/pyzabbix { };
 
   pyzerproc = callPackage ../development/python-modules/pyzerproc { };
 
