@@ -3022,7 +3022,7 @@ with pkgs;
   ### APPLICATIONS/TERMINAL-EMULATORS
 
   alacritty = callPackage ../applications/terminal-emulators/alacritty {
-    inherit (darwin.apple_sdk.frameworks) AppKit CoreGraphics CoreServices CoreText Foundation OpenGL;
+    inherit (darwin.apple_sdk_11_0.frameworks) AppKit CoreGraphics CoreServices CoreText Foundation OpenGL;
   };
 
   blackbox-terminal = callPackage ../applications/terminal-emulators/blackbox-terminal { };
@@ -8987,6 +8987,8 @@ with pkgs;
   gtkdatabox = callPackage ../development/libraries/gtkdatabox { };
 
   gtdialog = callPackage ../development/libraries/gtdialog { };
+
+  gtkclipblock = callPackage ../by-name/gt/gtkclipblock/package.nix { stdenv = gcc13Stdenv; };
 
   gtkd = callPackage ../development/libraries/gtkd { dcompiler = ldc; };
 
@@ -22169,8 +22171,6 @@ with pkgs;
   ios-cross-compile = callPackage ../development/compilers/ios-cross-compile/9.2.nix { };
 
   ip2location-c = callPackage ../development/libraries/ip2location-c { };
-
-  iir1 = callPackage ../development/libraries/iir1 { };
 
   irrlicht = if !stdenv.isDarwin then
     callPackage ../development/libraries/irrlicht { }
@@ -39704,6 +39704,14 @@ with pkgs;
   kicad = callPackage ../applications/science/electronics/kicad { };
   # this is the same but without the (sizable) 3D models library
   kicad-small = kicad.override { pname = "kicad-small"; with3d = false; };
+  # this is the stable branch at whatever point update.sh last updated versions.nix
+  kicad-testing = kicad.override { pname = "kicad-testing"; testing = true; };
+  # and a small version of that
+  kicad-testing-small = kicad.override {
+    pname = "kicad-testing-small";
+    testing = true;
+    with3d = false;
+  };
   # this is the master branch at whatever point update.sh last updated versions.nix
   kicad-unstable = kicad.override { pname = "kicad-unstable"; stable = false; };
   # and a small version of that
@@ -41424,6 +41432,8 @@ with pkgs;
 
   xpad = callPackage ../applications/misc/xpad { };
 
+  xpipe = callPackage ../applications/networking/xpipe { };
+
   xsane = callPackage ../applications/graphics/sane/xsane.nix { };
 
   xsser = python3Packages.callPackage ../tools/security/xsser { };
@@ -41801,6 +41811,10 @@ with pkgs;
   verifpal = callPackage ../tools/security/verifpal { };
 
   nix-store-gcs-proxy = callPackage ../tools/nix/nix-store-gcs-proxy { };
+
+  weasis = callPackage ../by-name/we/weasis/package.nix {
+    jre = jdk21;
+  };
 
   webwormhole = callPackage ../tools/networking/webwormhole { };
 

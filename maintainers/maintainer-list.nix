@@ -3864,6 +3864,12 @@
     githubId = 6821729;
     github = "criyle";
   };
+  crschnick = {
+    email = "crschnick@xpipe.io";
+    name = "Christopher Schnick";
+    github = "crschnick";
+    githubId = 72509152;
+  };
   CRTified = {
     email = "carl.schneider+nixos@rub.de";
     matrix = "@schnecfk:ruhr-uni-bochum.de";
@@ -19119,6 +19125,12 @@
     email = "git@uakci.space";
     github = "uakci";
     githubId = 6961268;
+  };
+  uartman = {
+    name = "Anton Gusev";
+    email = "uartman@mail.ru";
+    github = "UARTman";
+    githubId = 21099202;
   };
   udono = {
     email = "udono@virtual-things.biz";
