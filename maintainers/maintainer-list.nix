@@ -2508,6 +2508,12 @@
     githubId = 5700358;
     name = "Thomas Blank";
   };
+  blinry = {
+    name = "blinry";
+    email = "mail@blinry.org";
+    github = "blinry";
+    githubId = 81277;
+  };
   blitz = {
     email = "js@alien8.de";
     matrix = "@js:ukvly.org";
@@ -18189,6 +18195,12 @@
     github = "tckmn";
     githubId = 2389333;
     name = "Andy Tockman";
+  };
+  teatwig = {
+    email = "nix@teatwig.net";
+    name = "tea";
+    github = "teatwig";
+    githubId = 18734648;
   };
   techknowlogick = {
     email = "techknowlogick@gitea.com";

@@ -7007,7 +7007,7 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) Security CoreServices SystemConfiguration;
   };
 
-  gebaar-libinput = callPackage ../tools/inputmethods/gebaar-libinput { stdenv = gcc10StdenvCompat; };
+  gebaar-libinput = callPackage ../tools/inputmethods/gebaar-libinput { };
 
   kime = callPackage ../tools/inputmethods/kime { };
 
@@ -15614,7 +15614,6 @@ with pkgs;
   };
 
   clang = llvmPackages.clang;
-  clang_6  = llvmPackages_6.clang;
   clang_8  = llvmPackages_8.clang;
   clang_9  = llvmPackages_9.clang;
   clang_10 = llvmPackages_10.clang;
@@ -15627,10 +15626,6 @@ with pkgs;
   clang_17 = llvmPackages_17.clang;
 
   clang-tools = callPackage ../development/tools/clang-tools { };
-
-  clang-tools_6 = callPackage ../development/tools/clang-tools {
-    llvmPackages = llvmPackages_6;
-  };
 
   clang-tools_8 = callPackage ../development/tools/clang-tools {
     llvmPackages = llvmPackages_8;
@@ -16187,8 +16182,6 @@ with pkgs;
     inherit (llvmPackages_15) llvm;
   };
 
-  gcl_2_6_13_pre = callPackage ../development/compilers/gcl/2.6.13-pre.nix { };
-
   gcc-arm-embedded-6 = callPackage ../development/compilers/gcc-arm-embedded/6 { };
   gcc-arm-embedded-7 = callPackage ../development/compilers/gcc-arm-embedded/7 { };
   gcc-arm-embedded-8 = callPackage ../development/compilers/gcc-arm-embedded/8 { };
@@ -16570,7 +16563,6 @@ with pkgs;
   };
 
   lld = llvmPackages.lld;
-  lld_6 = llvmPackages_6.lld;
   lld_8 = llvmPackages_8.lld;
   lld_9 = llvmPackages_9.lld;
   lld_10 = llvmPackages_10.lld;
@@ -16583,7 +16575,6 @@ with pkgs;
   lld_17 = llvmPackages_17.lld;
 
   lldb = llvmPackages.lldb;
-  lldb_6 = llvmPackages_6.lldb;
   lldb_8 = llvmPackages_8.lldb;
   lldb_9 = llvmPackages_9.lldb;
   lldb_10 = llvmPackages_10.lldb;
@@ -16596,7 +16587,6 @@ with pkgs;
   lldb_17 = llvmPackages_17.lldb;
 
   llvm = llvmPackages.llvm;
-  llvm_6  = llvmPackages_6.llvm;
   llvm_8  = llvmPackages_8.llvm;
   llvm_9  = llvmPackages_9.llvm;
   llvm_10 = llvmPackages_10.llvm;
@@ -16627,13 +16617,6 @@ with pkgs;
     minSupported = toString (lib.trivial.max (choose stdenv.hostPlatform) (choose
       stdenv.targetPlatform));
   in pkgs.${"llvmPackages_${minSupported}"};
-
-  llvmPackages_6 = recurseIntoAttrs (callPackage ../development/compilers/llvm/6 {
-    inherit (stdenvAdapters) overrideCC;
-    buildLlvmTools = buildPackages.llvmPackages_6.tools;
-    targetLlvm = targetPackages.llvmPackages_6.llvm or llvmPackages_6.llvm;
-    targetLlvmLibraries = targetPackages.llvmPackages_6.libraries or llvmPackages_6.libraries;
-  });
 
   llvmPackages_8 = recurseIntoAttrs (callPackage ../development/compilers/llvm/8 {
     inherit (stdenvAdapters) overrideCC;
@@ -20670,6 +20653,7 @@ with pkgs;
     boost181
     boost182
     boost183
+    boost184
   ;
 
   boost = boost181;
@@ -24182,31 +24166,13 @@ with pkgs;
   nv-codec-headers-11 = callPackage ../development/libraries/nv-codec-headers/11_x.nix { };
   nv-codec-headers-12 = callPackage ../development/libraries/nv-codec-headers/12_x.nix { };
 
-  mkNvidiaContainerPkg = { name, containerRuntimePath, configTemplate, additionalPaths ? [] }:
-    let
-      nvidia-container-toolkit = callPackage ../applications/virtualization/nvidia-container-toolkit {
-        inherit containerRuntimePath configTemplate;
-      };
-    in symlinkJoin {
-      inherit name;
-      paths = [
-        libnvidia-container
-        nvidia-container-toolkit
-      ] ++ additionalPaths;
-    };
-
-  nvidia-docker = mkNvidiaContainerPkg {
-    name = "nvidia-docker";
-    containerRuntimePath = "${docker}/libexec/docker/runc";
-    configTemplate = ../applications/virtualization/nvidia-docker/config.toml;
-    additionalPaths = [ (callPackage ../applications/virtualization/nvidia-docker { }) ];
-  };
-
-  nvidia-podman = mkNvidiaContainerPkg {
-    name = "nvidia-podman";
-    containerRuntimePath = "${runc}/bin/runc";
-    configTemplate = ../applications/virtualization/nvidia-podman/config.toml;
-  };
+  nvidiaCtkPackages =
+    callPackage ../applications/virtualization/nvidia-container-toolkit/packages.nix
+      { };
+  inherit (nvidiaCtkPackages)
+    nvidia-docker
+    nvidia-podman
+    ;
 
   nvidia-vaapi-driver = lib.hiPrio (callPackage ../development/libraries/nvidia-vaapi-driver { });
 
@@ -31554,8 +31520,6 @@ with pkgs;
   };
 
   freebayes = callPackage ../applications/science/biology/freebayes { };
-
-  freefilesync = callPackage ../applications/networking/freefilesync { };
 
   freewheeling = callPackage ../applications/audio/freewheeling { };
 
@@ -41579,9 +41543,7 @@ with pkgs;
 
   tomb = callPackage ../os-specific/linux/tomb { };
 
-  sccache = callPackage ../development/tools/misc/sccache {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  sccache = callPackage ../development/tools/misc/sccache { };
 
   scip = callPackage ../development/tools/misc/scip { };
 
