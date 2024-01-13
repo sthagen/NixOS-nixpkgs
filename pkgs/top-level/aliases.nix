@@ -546,6 +546,7 @@ mapAliases ({
   linuxPackages_6_4 = linuxKernel.packages.linux_6_4;
   linuxPackages_6_5 = linuxKernel.packages.linux_6_5;
   linuxPackages_6_6 = linuxKernel.packages.linux_6_6;
+  linuxPackages_6_7 = linuxKernel.packages.linux_6_7;
   linuxPackages_rpi0 = linuxKernel.packages.linux_rpi1;
   linuxPackages_rpi02w = linuxKernel.packages.linux_rpi3;
   linuxPackages_rpi1 = linuxKernel.packages.linux_rpi1;
@@ -571,6 +572,7 @@ mapAliases ({
   linux_6_4 = linuxKernel.kernels.linux_6_4;
   linux_6_5 = linuxKernel.kernels.linux_6_5;
   linux_6_6 = linuxKernel.kernels.linux_6_6;
+  linux_6_7 = linuxKernel.kernels.linux_6_7;
   linux_rpi0 = linuxKernel.kernels.linux_rpi1;
   linux_rpi02w = linuxKernel.kernels.linux_rpi3;
   linux_rpi1 = linuxKernel.kernels.linux_rpi1;
@@ -728,6 +730,7 @@ mapAliases ({
   noto-fonts-cjk = noto-fonts-cjk-sans; # Added 2021-12-16
   noto-fonts-emoji = noto-fonts-color-emoji; # Added 2023-09-09
   noto-fonts-extra = noto-fonts; # Added 2023-04-08
+  NSPlist = nsplist; # Added 2024-01-05
   nvidia-thrust = throw "nvidia-thrust has been removed because the project was deprecated; use cudaPackages.cuda_cccl";
 
   ### O ###
@@ -817,6 +820,7 @@ mapAliases ({
   pinentry_gtk2 = throw "'pinentry_gtk2' has been renamed to/replaced by 'pinentry-gtk2'"; # Converted to throw 2023-09-10
   pinentry_qt = throw "'pinentry_qt' has been renamed to/replaced by 'pinentry-qt'"; # Converted to throw 2023-09-10
   pinentry_qt5 = pinentry-qt; # Added 2020-02-11
+  PlistCpp = plistcpp; # Added 2024-01-05
   poetry2nix = throw "poetry2nix is now maintained out-of-tree. Please use https://github.com/nix-community/poetry2nix/"; # Added 2023-10-26
   prayer = throw "prayer has been removed from nixpkgs"; # Added 2023-11-09
   privacyidea = throw "privacyidea has been removed from nixpkgs"; # Added 2023-10-31
