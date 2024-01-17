@@ -847,6 +847,7 @@ with pkgs;
 
   octodns-providers = recurseIntoAttrs {
     bind = python3Packages.callPackage ../tools/networking/octodns/providers/bind { };
+    gandi = python3Packages.callPackage ../tools/networking/octodns/providers/gandi { };
     hetzner = python3Packages.callPackage ../tools/networking/octodns/providers/hetzner { };
     powerdns = python3Packages.callPackage ../tools/networking/octodns/providers/powerdns { };
   };
@@ -5233,7 +5234,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_27;
+    electron = electron_28;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -5699,6 +5700,10 @@ with pkgs;
   hyprland-per-window-layout = callPackage ../tools/wayland/hyprland-per-window-layout { };
 
   hyprland-protocols = callPackage ../applications/window-managers/hyprwm/hyprland-protocols { };
+
+  hyprlang = callPackage ../by-name/hy/hyprlang/package.nix {
+    stdenv = gcc13Stdenv;
+  };
 
   hyprnome = callPackage ../applications/misc/hyprnome { };
 
@@ -16312,12 +16317,12 @@ with pkgs;
   inherit (callPackage ../development/compilers/haxe {
     inherit (darwin.apple_sdk.frameworks) Security;
   })
-    haxe_4_2
+    haxe_4_3
     haxe_4_1
     haxe_4_0
     ;
 
-  haxe = haxe_4_2;
+  haxe = haxe_4_3;
   haxePackages = recurseIntoAttrs (callPackage ./haxe-packages.nix { });
   inherit (haxePackages) hxcpp;
 
@@ -31715,7 +31720,7 @@ with pkgs;
 
   gomuks = callPackage ../applications/networking/instant-messengers/gomuks { };
 
-  inherit (ocaml-ng.ocamlPackages_4_12) google-drive-ocamlfuse;
+  inherit (ocamlPackages) google-drive-ocamlfuse;
 
   googler = callPackage ../applications/misc/googler {
     python = python3;
@@ -34111,10 +34116,6 @@ with pkgs;
   portfolio = callPackage ../applications/office/portfolio {
     jre = openjdk17;
   };
-
-  prevo = callPackage ../applications/misc/prevo { };
-  prevo-data = callPackage ../applications/misc/prevo/data.nix { };
-  prevo-tools = callPackage ../applications/misc/prevo/tools.nix { };
 
   psi-notify = callPackage ../applications/misc/psi-notify { };
 
