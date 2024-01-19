@@ -1721,8 +1721,6 @@ with pkgs;
 
   audible-cli = callPackage ../tools/misc/audible-cli { };
 
-  audiobookshelf = callPackage ../servers/audiobookshelf { };
-
   auditwheel = with python3Packages; toPythonApplication auditwheel;
 
   amidst = callPackage ../tools/games/minecraft/amidst { };
@@ -6880,7 +6878,7 @@ with pkgs;
 
   cirrusgo = callPackage ../tools/security/cirrusgo { };
 
-  inherit (callPackages ../applications/networking/remote/citrix-workspace { })
+  inherit (callPackage ../applications/networking/remote/citrix-workspace { })
     citrix_workspace_23_02_0
     citrix_workspace_23_07_0
     citrix_workspace_23_09_0
@@ -11136,12 +11134,16 @@ with pkgs;
 
   netbootxyz-efi = callPackage ../tools/misc/netbootxyz-efi { };
 
-  inherit (callPackages ../servers/web-apps/netbox { })
+  inherit (callPackage ../servers/web-apps/netbox { })
     netbox netbox_3_5 netbox_3_6;
 
   netbox2netshot = callPackage ../tools/admin/netbox2netshot { };
 
-  netcat = libressl.nc;
+  netcat = libressl.nc.overrideAttrs (old: {
+    meta = old.meta // {
+      mainProgram = "nc";
+    };
+  });
 
   netcat-gnu = callPackage ../tools/networking/netcat { };
 
@@ -12142,7 +12144,7 @@ with pkgs;
 
   plujain-ramp = callPackage ../applications/audio/plujain-ramp { };
 
-  inherit (callPackages ../servers/plik { })
+  inherit (callPackage ../servers/plik { })
     plik plikd;
 
   plex = callPackage ../servers/plex { };
@@ -15515,7 +15517,7 @@ with pkgs;
   asciigraph = callPackage ../tools/text/asciigraph { };
 
   autocorrect = callPackage ../tools/text/autocorrect {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
   as31 = callPackage ../development/compilers/as31 { };
@@ -23856,8 +23858,6 @@ with pkgs;
       withIcu = true;
     };
   };
-
-  manticoresearch = callPackage ../servers/search/manticoresearch { };
 
   marisa = callPackage ../development/libraries/marisa { };
 
@@ -41142,6 +41142,8 @@ with pkgs;
   tf-summarize = callPackage ../applications/networking/cluster/tf-summarize { };
 
   tfswitch = callPackage ../applications/networking/cluster/tfswitch { };
+
+  tftui = python3Packages.callPackage ../applications/networking/cluster/tftui { };
 
   tfupdate = callPackage ../applications/networking/cluster/tfupdate { };
 
