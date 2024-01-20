@@ -849,6 +849,7 @@
   ./services/monitoring/vmagent.nix
   ./services/monitoring/vmalert.nix
   ./services/monitoring/vnstat.nix
+  ./services/monitoring/watchdogd.nix
   ./services/monitoring/zabbix-agent.nix
   ./services/monitoring/zabbix-proxy.nix
   ./services/monitoring/zabbix-server.nix
@@ -1339,6 +1340,7 @@
   ./services/web-apps/restya-board.nix
   ./services/web-apps/rimgo.nix
   ./services/web-apps/sftpgo.nix
+  ./services/web-apps/suwayomi-server.nix
   ./services/web-apps/rss-bridge.nix
   ./services/web-apps/selfoss.nix
   ./services/web-apps/shiori.nix

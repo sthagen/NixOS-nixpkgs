@@ -3848,6 +3848,8 @@ with pkgs;
 
   fluffychat = callPackage  ../applications/networking/instant-messengers/fluffychat { };
 
+  fluffychat-web = fluffychat.override { targetFlutterPlatform = "web"; };
+
   fxlinuxprintutil = callPackage ../tools/misc/fxlinuxprintutil { };
 
   gbl = callPackage ../tools/archivers/gbl {
@@ -8806,7 +8808,7 @@ with pkgs;
   goreplay = callPackage ../tools/networking/goreplay { };
 
   gost = callPackage ../tools/networking/gost {
-    buildGoModule = buildGo119Module; # go 1.20 build failure
+    buildGoModule = buildGo120Module; # go 1.21 build failure
   };
 
   gource = callPackage ../applications/version-management/gource { };
@@ -26648,8 +26650,6 @@ with pkgs;
   inherit (callPackages ../servers/mpd {
     inherit (darwin.apple_sdk.frameworks) AudioToolbox AudioUnit;
   }) mpd mpd-small mpdWithFeatures;
-
-  libmpdclient = callPackage ../servers/mpd/libmpdclient.nix { };
 
   mpdscribble = callPackage ../tools/misc/mpdscribble { };
 
