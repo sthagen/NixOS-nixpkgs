@@ -1333,7 +1333,7 @@ self: super: with self; {
   bangla = callPackage ../development/python-modules/bangla { };
 
   bap = callPackage ../development/python-modules/bap {
-    inherit (pkgs.ocaml-ng.ocamlPackages) bap;
+    inherit (pkgs.ocaml-ng.ocamlPackages_4_14) bap;
   };
 
   barectf = callPackage ../development/python-modules/barectf { };
@@ -13705,6 +13705,8 @@ self: super: with self; {
   spyder-kernels = callPackage ../development/python-modules/spyder-kernels { };
 
   spyse-python = callPackage ../development/python-modules/spyse-python { };
+
+  spython = callPackage ../development/python-modules/spython { };
 
   sqids = callPackage ../development/python-modules/sqids { };
 
