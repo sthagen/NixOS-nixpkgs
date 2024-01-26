@@ -242,7 +242,7 @@ in {
   discourse = handleTest ./discourse.nix {};
   dnscrypt-proxy2 = handleTestOn ["x86_64-linux"] ./dnscrypt-proxy2.nix {};
   dnscrypt-wrapper = runTestOn ["x86_64-linux"] ./dnscrypt-wrapper;
-  dnsdist = handleTest ./dnsdist.nix {};
+  dnsdist = import ./dnsdist.nix { inherit pkgs runTest; };
   doas = handleTest ./doas.nix {};
   docker = handleTestOn ["aarch64-linux" "x86_64-linux"] ./docker.nix {};
   docker-rootless = handleTestOn ["aarch64-linux" "x86_64-linux"] ./docker-rootless.nix {};
@@ -451,6 +451,7 @@ in {
   kerberos = handleTest ./kerberos/default.nix {};
   kernel-generic = handleTest ./kernel-generic.nix {};
   kernel-latest-ath-user-regd = handleTest ./kernel-latest-ath-user-regd.nix {};
+  kernel-rust = runTestOn ["x86_64-linux"] ./kernel-rust.nix;
   keter = handleTest ./keter.nix {};
   kexec = handleTest ./kexec.nix {};
   keycloak = discoverTests (import ./keycloak.nix);
