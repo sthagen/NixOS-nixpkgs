@@ -2795,6 +2795,12 @@
     githubId = 40476330;
     name = "brokenpip3";
   };
+  brpaz = {
+    email = "oss@brunopaz.dev";
+    github = "brpaz";
+    githubId = 184563;
+    name = "Bruno Paz";
+  };
   bryanasdev000 = {
     email = "bryanasdev000@gmail.com";
     matrix = "@bryanasdev000:matrix.org";
@@ -5258,6 +5264,13 @@
     email = "edli.merkaj@identinet.io";
     github = "edlimerkaj";
     githubId = 71988351;
+  };
+  edmundmiller = {
+    name = "Edmund Miller";
+    email = "git@edmundmiller.dev";
+    matrix = "@emiller:beeper.com";
+    github = "edmundmiller";
+    githubId = 20095261;
   };
   edrex = {
     email = "ericdrex@gmail.com";
@@ -11230,6 +11243,15 @@
     github = "maaslalani";
     githubId = 42545625;
     name = "Maas Lalani";
+  };
+  mabster314 = {
+    name = "Max Haland";
+    email = "max@haland.org";
+    github = "mabster314";
+    githubId = 5741741;
+    keys = [{
+      fingerprint = "71EF 8F1F 0C24 8B4D 5CDC 1B47 74B3 D790 77EE 37A8";
+    }];
   };
   macalinao = {
     email = "me@ianm.com";
@@ -20435,7 +20457,6 @@
   };
   xfix = {
     email = "kamila@borowska.pw";
-    matrix = "@xfix:matrix.org";
     github = "KamilaBorowska";
     githubId = 1297598;
     name = "Kamila Borowska";
@@ -20608,6 +20629,13 @@
     github = "linyinfeng";
     githubId = 11229748;
     name = "Lin Yinfeng";
+  };
+  yisraeldov = {
+    email = "lebow@lebowtech.com";
+    name = "Yisrael Dov Lebow";
+    github = "yisraeldov";
+    githubId = 138219;
+    matrix = "@yisraeldov:matrix.org";
   };
   yisuidenghua = {
     email = "bileiner@gmail.com";
