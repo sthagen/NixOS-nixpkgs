@@ -6945,6 +6945,12 @@
     email = "nix@quidecco.pl";
     name = "Isidor Zeuner";
   };
+  gmacon = {
+    name = "George Macon";
+    matrix = "@gmacon:matrix.org";
+    github = "gmacon";
+    githubId = 238853;
+  };
   gmemstr = {
     email = "git@gmem.ca";
     github = "gmemstr";
@@ -20442,6 +20448,22 @@
     github = "xbreak";
     githubId = 13489144;
     name = "Calle Rosenquist";
+  };
+  xbz = {
+    email = "renatochavez7@gmail.com";
+    github = "Xbz-24";
+    githubId = 68678258;
+    name = "Renato German Chavez Chicoma";
+  };
+  xddxdd = {
+    email = "b980120@hotmail.com";
+    github = "xddxdd";
+    githubId = 5778879;
+    keys = [
+      { fingerprint = "2306 7C13 B6AE BDD7 C0BB  5673 27F3 1700 E751 EC22"; }
+      { fingerprint = "B195 E8FB 873E 6020 DCD1  C0C6 B50E C319 385F CB0D"; }
+    ];
+    name = "Yuhui Xu";
   };
   xdhampus = {
     name = "Hampus";
