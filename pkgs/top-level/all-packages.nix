@@ -648,14 +648,7 @@ with pkgs;
   eclipse-mat = callPackage ../development/tools/eclipse-mat { };
 
   ebpf-verifier = callPackage ../tools/networking/ebpf-verifier {
-    # Replace this to `catch2 = catch2_3` when catch2 3.4.0 is merged
-    # https://github.com/NixOS/nixpkgs/pull/243485
-    catch2.src = fetchFromGitHub {
-      owner = "catchorg";
-      repo = "Catch2";
-      rev = "v3.4.0";
-      hash = "sha256-DqGGfNjKPW9HFJrX9arFHyNYjB61uoL6NabZatTWrr0=";
-    };
+    catch2 = catch2_3;
   };
 
   edgedb = callPackage ../tools/networking/edgedb {
@@ -2698,7 +2691,7 @@ with pkgs;
 
   emulationstation = callPackage ../applications/emulators/emulationstation { };
 
-  fceux = libsForQt5.callPackage ../applications/emulators/fceux { lua = lua5_1; };
+  fceux = libsForQt5.callPackage ../applications/emulators/fceux { };
 
   firebird-emu = libsForQt5.callPackage ../applications/emulators/firebird-emu { };
 
@@ -3921,8 +3914,6 @@ with pkgs;
   gopacked = callPackage ../applications/misc/gopacked { };
 
   goperf = callPackage ../development/tools/goperf { };
-
-  graphite-cli = nodePackages.graphite-cli;
 
   gucci = callPackage ../tools/text/gucci { };
 
@@ -6440,8 +6431,6 @@ with pkgs;
   syscall_limiter = callPackage ../os-specific/linux/syscall_limiter { };
 
   skeema = callPackage ../tools/system/skeema { };
-
-  syslogng = callPackage ../tools/system/syslog-ng { };
 
   svt-av1 = callPackage ../tools/video/svt-av1 { };
 
@@ -15609,9 +15598,7 @@ with pkgs;
   };
 
   clang = llvmPackages.clang;
-  clang_8  = llvmPackages_8.clang;
   clang_9  = llvmPackages_9.clang;
-  clang_10 = llvmPackages_10.clang;
   clang_11 = llvmPackages_11.clang;
   clang_12 = llvmPackages_12.clang;
   clang_13 = llvmPackages_13.clang;
@@ -15622,16 +15609,8 @@ with pkgs;
 
   clang-tools = callPackage ../development/tools/clang-tools { };
 
-  clang-tools_8 = callPackage ../development/tools/clang-tools {
-    llvmPackages = llvmPackages_8;
-  };
-
   clang-tools_9 = callPackage ../development/tools/clang-tools {
     llvmPackages = llvmPackages_9;
-  };
-
-  clang-tools_10 = callPackage ../development/tools/clang-tools {
-    llvmPackages = llvmPackages_10;
   };
 
   clang-tools_11 = callPackage ../development/tools/clang-tools {
@@ -16583,9 +16562,7 @@ with pkgs;
   };
 
   lld = llvmPackages.lld;
-  lld_8 = llvmPackages_8.lld;
   lld_9 = llvmPackages_9.lld;
-  lld_10 = llvmPackages_10.lld;
   lld_11 = llvmPackages_11.lld;
   lld_12 = llvmPackages_12.lld;
   lld_13 = llvmPackages_13.lld;
@@ -16595,9 +16572,7 @@ with pkgs;
   lld_17 = llvmPackages_17.lld;
 
   lldb = llvmPackages.lldb;
-  lldb_8 = llvmPackages_8.lldb;
   lldb_9 = llvmPackages_9.lldb;
-  lldb_10 = llvmPackages_10.lldb;
   lldb_11 = llvmPackages_11.lldb;
   lldb_12 = llvmPackages_12.lldb;
   lldb_13 = llvmPackages_13.lldb;
@@ -16607,9 +16582,7 @@ with pkgs;
   lldb_17 = llvmPackages_17.lldb;
 
   llvm = llvmPackages.llvm;
-  llvm_8  = llvmPackages_8.llvm;
   llvm_9  = llvmPackages_9.llvm;
-  llvm_10 = llvmPackages_10.llvm;
   llvm_11 = llvmPackages_11.llvm;
   llvm_12 = llvmPackages_12.llvm;
   llvm_13 = llvmPackages_13.llvm;
@@ -16639,27 +16612,11 @@ with pkgs;
       stdenv.targetPlatform));
   in pkgs.${"llvmPackages_${minSupported}"};
 
-  llvmPackages_8 = recurseIntoAttrs (callPackage ../development/compilers/llvm/8 {
-    inherit (stdenvAdapters) overrideCC;
-    buildLlvmTools = buildPackages.llvmPackages_8.tools;
-    targetLlvm = targetPackages.llvmPackages_8.llvm or llvmPackages_8.llvm;
-    targetLlvmLibraries = targetPackages.llvmPackages_8.libraries or llvmPackages_8.libraries;
-    stdenv = if stdenv.cc.cc.isGNU or false then gcc12Stdenv else stdenv; # does not build with gcc13
-  });
-
   llvmPackages_9 = recurseIntoAttrs (callPackage ../development/compilers/llvm/9 {
     inherit (stdenvAdapters) overrideCC;
     buildLlvmTools = buildPackages.llvmPackages_9.tools;
     targetLlvm = targetPackages.llvmPackages_9.llvm or llvmPackages_9.llvm;
     targetLlvmLibraries = targetPackages.llvmPackages_9.libraries or llvmPackages_9.libraries;
-    stdenv = if stdenv.cc.cc.isGNU or false then gcc12Stdenv else stdenv; # does not build with gcc13
-  });
-
-  llvmPackages_10 = recurseIntoAttrs (callPackage ../development/compilers/llvm/10 {
-    inherit (stdenvAdapters) overrideCC;
-    buildLlvmTools = buildPackages.llvmPackages_10.tools;
-    targetLlvm = targetPackages.llvmPackages_10.llvm or llvmPackages_10.llvm;
-    targetLlvmLibraries = targetPackages.llvmPackages_10.libraries or llvmPackages_10.libraries;
     stdenv = if stdenv.cc.cc.isGNU or false then gcc12Stdenv else stdenv; # does not build with gcc13
   });
 
@@ -23866,8 +23823,6 @@ with pkgs;
   mbedtls = callPackage ../development/libraries/mbedtls/3.nix { };
 
   mdctags = callPackage ../development/tools/misc/mdctags { };
-
-  md4c = callPackage ../development/libraries/md4c { };
 
   mdds = callPackage ../development/libraries/mdds { };
 
@@ -37726,8 +37681,6 @@ with pkgs;
 
   gav = callPackage ../games/gav { };
 
-  gcs = callPackage ../games/gcs { };
-
   gcompris = libsForQt5.callPackage ../games/gcompris { };
 
   gemrb = callPackage ../games/gemrb { };
@@ -38856,7 +38809,7 @@ with pkgs;
     python3 = python311;
   };
 
-  deeptools = callPackage ../applications/science/biology/deeptools { python = python3; };
+  deeptools = callPackage ../applications/science/biology/deeptools { };
 
   deep-translator = with python3Packages; toPythonApplication deep-translator;
 
@@ -39640,7 +39593,7 @@ with pkgs;
 
   avy = callPackage ../applications/science/logic/avy { };
 
-  btor2tools = pin-to-gcc12-if-gcc13 (callPackage ../applications/science/logic/btor2tools { });
+  btor2tools = callPackage ../applications/science/logic/btor2tools { };
 
   boolector = callPackage ../applications/science/logic/boolector {
     stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_14.stdenv else stdenv;
@@ -40479,7 +40432,7 @@ with pkgs;
   loop = callPackage ../tools/misc/loop { };
 
   mailcore2 = callPackage ../development/libraries/mailcore2 {
-    icu = icu58;
+    icu = icu71;
   };
 
   mamba = callPackage ../applications/audio/mamba { };
