@@ -11672,8 +11672,7 @@ with pkgs;
 
   opentsdb = callPackage ../tools/misc/opentsdb { };
 
-  inherit (callPackages ../tools/networking/openvpn {})
-    openvpn;
+  openvpn = callPackage ../tools/networking/openvpn {};
 
   openvpn3 = callPackage ../tools/networking/openvpn3 { };
 
@@ -26027,17 +26026,17 @@ with pkgs;
   };
 
   # Steel Bank Common Lisp
-  sbcl_2_3_11 = wrapLisp {
-    pkg = callPackage ../development/compilers/sbcl/2.x.nix { version = "2.3.11"; };
-    faslExt = "fasl";
-    flags = [ "--dynamic-space-size" "3000" ];
-  };
   sbcl_2_4_0 = wrapLisp {
-    pkg = callPackage ../development/compilers/sbcl/2.x.nix { version = "2.4.0"; };
+    pkg = callPackage ../by-name/sb/sbcl/package.nix { version = "2.4.0"; };
     faslExt = "fasl";
     flags = [ "--dynamic-space-size" "3000" ];
   };
-  sbcl = sbcl_2_4_0;
+  sbcl_2_4_1 = wrapLisp {
+    pkg = callPackage ../by-name/sb/sbcl/package.nix { version = "2.4.1"; };
+    faslExt = "fasl";
+    flags = [ "--dynamic-space-size" "3000" ];
+  };
+  sbcl = sbcl_2_4_1;
 
   sbclPackages = recurseIntoAttrs sbcl.pkgs;
 
@@ -31763,8 +31762,6 @@ with pkgs;
 
   gthumb = callPackage ../applications/graphics/gthumb { };
 
-  gtimelog = with python3Packages; toPythonApplication gtimelog;
-
   inherit (gnome) gucharmap;
 
   guitarix = callPackage ../applications/audio/guitarix {
@@ -32396,9 +32393,7 @@ with pkgs;
 
   ht = callPackage ../applications/editors/ht { };
 
-  xh = callPackage ../tools/networking/xh {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  xh = callPackage ../tools/networking/xh { };
 
   hubstaff = callPackage ../applications/misc/hubstaff { };
 
@@ -34872,8 +34867,6 @@ with pkgs;
   };
 
   qtpass = libsForQt5.callPackage ../applications/misc/qtpass { };
-
-  qtractor = libsForQt5.callPackage ../applications/audio/qtractor { };
 
   quantomatic = callPackage ../applications/science/physics/quantomatic { };
 

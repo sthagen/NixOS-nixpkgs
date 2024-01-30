@@ -3398,6 +3398,8 @@ self: super: with self; {
 
   dpkt = callPackage ../development/python-modules/dpkt { };
 
+  dploot = callPackage ../development/python-modules/dploot { };
+
   draftjs-exporter = callPackage ../development/python-modules/draftjs-exporter { };
 
   dragonfly = callPackage ../development/python-modules/dragonfly { };
@@ -4994,8 +4996,6 @@ self: super: with self; {
 
   gtfs-realtime-bindings = callPackage ../development/python-modules/gtfs-realtime-bindings { };
 
-  gtimelog = callPackage ../development/python-modules/gtimelog { };
-
   gto = callPackage ../development/python-modules/gto { };
 
   gtts = callPackage ../development/python-modules/gtts { };
@@ -6124,6 +6124,8 @@ self: super: with self; {
   keyboard = callPackage ../development/python-modules/keyboard { };
 
   keyring = callPackage ../development/python-modules/keyring { };
+
+  keyring-pass = callPackage ../development/python-modules/keyring-pass { };
 
   keyrings-cryptfile = callPackage ../development/python-modules/keyrings-cryptfile { };
 
