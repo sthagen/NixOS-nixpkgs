@@ -258,8 +258,6 @@ with pkgs;
 
   ariang = callPackage ../servers/ariang { };
 
-  mov-cli = callPackage ../applications/video/mov-cli { };
-
   ani-cli = callPackage ../applications/video/ani-cli { };
 
   dra-cla = callPackage ../applications/video/dra-cla { };
@@ -2768,8 +2766,6 @@ with pkgs;
 
   mupen64plus = callPackage ../applications/emulators/mupen64plus { };
 
-  nestopia = callPackage ../applications/emulators/nestopia { };
-
   np2kai = callPackage ../applications/emulators/np2kai { };
 
   nuked-md = callPackage ../applications/emulators/nuked-md { };
@@ -4939,8 +4935,6 @@ with pkgs;
   csvdiff = callPackage ../tools/text/csvdiff { };
 
   csview = callPackage ../tools/text/csview { };
-
-  csvkit = callPackage ../tools/text/csvkit { };
 
   csvquote = callPackage ../tools/text/csvquote { };
 
@@ -8244,8 +8238,6 @@ with pkgs;
   faraday-agent-dispatcher = callPackage ../tools/security/faraday-agent-dispatcher { };
 
   faraday-cli = callPackage ../tools/security/faraday-cli { };
-
-  farge = callPackage ../tools/misc/farge { };
 
   fastlane = callPackage ../tools/admin/fastlane { };
 
@@ -13320,8 +13312,6 @@ with pkgs;
 
   snmpcheck = callPackage ../tools/networking/snmpcheck { };
 
-  sniffglue = callPackage ../tools/networking/sniffglue { };
-
   snobol4 = callPackage ../development/interpreters/snobol4 { };
 
   snort = callPackage ../applications/networking/ids/snort { };
@@ -15395,9 +15385,6 @@ with pkgs;
   scponly = callPackage ../shells/scponly { };
 
   rush = callPackage ../shells/rush { };
-
-  xonsh = callPackage ../shells/xonsh/wrapper.nix { };
-  xonsh-unwrapped = callPackage ../shells/xonsh { };
 
   zsh = callPackage ../shells/zsh { };
 
@@ -24342,8 +24329,6 @@ with pkgs;
     buildPythonPackage buildPythonApplication setuptools pycsdr pydigiham;
   };
 
-  optparse-bash = callPackage ../development/libraries/optparse-bash { };
-
   oras = callPackage ../development/tools/oras { };
 
   orcania = callPackage ../development/libraries/orcania { };
@@ -25224,8 +25209,6 @@ with pkgs;
   tdb = callPackage ../development/libraries/tdb { };
 
   tdlib = callPackage ../development/libraries/tdlib { };
-
-  tecla = callPackage ../development/libraries/tecla { };
 
   tectonic = callPackage ../tools/typesetting/tectonic/wrapper.nix { };
 
@@ -28991,8 +28974,6 @@ with pkgs;
   baekmuk-ttf = callPackage ../data/fonts/baekmuk-ttf { };
 
   bakoma_ttf = callPackage ../data/fonts/bakoma-ttf { };
-
-  banana-cursor = callPackage ../data/icons/banana-cursor { };
 
   barlow = callPackage ../data/fonts/barlow { };
 
@@ -34754,6 +34735,13 @@ with pkgs;
     inherit (darwin.stubs) rez setfile;
     inherit (darwin) sigtool;
   };
+
+  qemu-python-utils = python3Packages.toPythonApplication (
+    python3Packages.qemu.override {
+      fuseSupport = true;
+      tuiSupport = true;
+    }
+  );
 
   qemu-utils = qemu.override {
     toolsOnly = true;
