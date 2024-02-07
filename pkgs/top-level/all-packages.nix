@@ -3226,8 +3226,6 @@ with pkgs;
 
   apfs-fuse = callPackage ../tools/filesystems/apfs-fuse { };
 
-  apfsprogs = callPackage ../tools/filesystems/apfsprogs { };
-
   api-linter = callPackage ../development/tools/api-linter { };
 
   apk-tools = callPackage ../tools/package-management/apk-tools {
@@ -9085,7 +9083,9 @@ with pkgs;
 
   hatch = python3Packages.callPackage ../development/tools/hatch { };
 
-  hal-hardware-analyzer = libsForQt5.callPackage ../applications/science/electronics/hal-hardware-analyzer { };
+  hal-hardware-analyzer = libsForQt5.callPackage ../applications/science/electronics/hal-hardware-analyzer {
+    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
+  };
 
   half = callPackage ../development/libraries/half { };
 
@@ -10752,10 +10752,6 @@ with pkgs;
     libXNVCtrl = linuxPackages.nvidia_x11.settings.libXNVCtrl;
     mangohud32 = pkgsi686Linux.mangohud;
     inherit (python3Packages) mako;
-  };
-
-  manix = callPackage ../tools/nix/manix {
-    inherit (darwin.apple_sdk.frameworks) Security;
   };
 
   marktext = callPackage ../applications/misc/marktext { };
@@ -34611,8 +34607,6 @@ with pkgs;
   pothos = libsForQt5.callPackage ../applications/radio/pothos { };
 
   potrace = callPackage ../applications/graphics/potrace { };
-
-  posterazor = callPackage ../applications/misc/posterazor { };
 
   pqiv = callPackage ../applications/graphics/pqiv { };
 
