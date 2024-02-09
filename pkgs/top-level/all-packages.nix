@@ -3553,6 +3553,8 @@ with pkgs;
 
   bitwarden-cli = callPackage ../tools/security/bitwarden/cli.nix { };
 
+  inherit (callPackages ../tools/security/bitwarden-directory-connector { }) bitwarden-directory-connector-cli bitwarden-directory-connector;
+
   bitwarden-menu = python3Packages.callPackage ../applications/misc/bitwarden-menu { };
 
   inherit (nodePackages) concurrently;
@@ -10682,8 +10684,6 @@ with pkgs;
 
   lzip = callPackage ../tools/compression/lzip { };
 
-  plzip = callPackage ../tools/compression/plzip { };
-
   lziprecover = callPackage ../tools/compression/lziprecover { };
 
   xz = callPackage ../tools/compression/xz { };
@@ -16858,10 +16858,6 @@ with pkgs;
   buildRustCrateHelpers = callPackage ../build-support/rust/build-rust-crate/helpers.nix { };
 
   cargo2junit = callPackage ../development/tools/rust/cargo2junit { };
-
-  cargo-espflash = callPackage ../development/tools/rust/cargo-espflash {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
 
   cargo-web = callPackage ../development/tools/rust/cargo-web {
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
@@ -23762,8 +23758,6 @@ with pkgs;
   };
 
   lyra = callPackage ../development/libraries/lyra { };
-
-  lzlib = callPackage ../development/libraries/lzlib { };
 
   lzo = callPackage ../development/libraries/lzo { };
 
@@ -31064,7 +31058,7 @@ with pkgs;
 
   dunst = callPackage ../applications/misc/dunst { };
 
-  du-dust = callPackage ../tools/misc/dust {
+  dust = callPackage ../by-name/du/dust/package.nix {
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit;
   };
 
@@ -31243,7 +31237,7 @@ with pkgs;
 
   espeakup = callPackage ../applications/accessibility/espeakup { };
 
-  espflash = callPackage ../development/embedded/espflash {
+  espflash = callPackage ../by-name/es/espflash/package.nix {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
