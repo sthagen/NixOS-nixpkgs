@@ -9617,6 +9617,10 @@ with pkgs;
 
   go-jira = callPackage ../applications/misc/go-jira { };
 
+  jogl = callPackage ../by-name/jo/jogl/package.nix {
+    stdenv = if stdenv.isDarwin && stdenv.isx86_64 then overrideSDK stdenv "11.0" else stdenv;
+  };
+
   john = callPackage ../tools/security/john { };
 
   joomscan = callPackage ../tools/security/joomscan { };
@@ -26687,7 +26691,7 @@ with pkgs;
 
   openxr-loader = callPackage ../development/libraries/openxr-loader { };
 
-  osrm-backend = disable-warnings-if-gcc13 (callPackage ../servers/osrm-backend { });
+  osrm-backend = callPackage ../servers/osrm-backend { };
 
   oven-media-engine = callPackage ../servers/misc/oven-media-engine { };
 
@@ -27134,8 +27138,6 @@ with pkgs;
 
   restic-integrity = callPackage ../applications/backup/restic-integrity { };
   restic-rest-server = callPackage ../tools/backup/restic/rest-server.nix { };
-
-  restya-board = callPackage ../servers/web-apps/restya-board { };
 
   rethinkdb = callPackage ../servers/nosql/rethinkdb {
     stdenv = clangStdenv;
