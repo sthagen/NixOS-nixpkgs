@@ -897,7 +897,9 @@ with pkgs;
 
   docker-slim = callPackage ../applications/virtualization/docker-slim { };
 
-  doc2go = callPackage ../development/tools/doc2go { };
+  doc2go = callPackage ../development/tools/doc2go {
+    buildGoModule = buildGo122Module;
+  };
 
   docker-sync = callPackage ../tools/misc/docker-sync { };
 
@@ -1247,6 +1249,8 @@ with pkgs;
   fetchgx = callPackage ../build-support/fetchgx { };
 
   fetchPypi = callPackage ../build-support/fetchpypi { };
+
+  fetchPypiLegacy = callPackage ../build-support/fetchpypilegacy { };
 
   resolveMirrorURLs = {url}: fetchurl {
     showURLs = true;
@@ -2230,7 +2234,9 @@ with pkgs;
 
   commitlint = nodePackages."@commitlint/cli";
 
-  conform = callPackage ../applications/version-management/conform { };
+  conform = callPackage ../applications/version-management/conform {
+    buildGoModule = buildGo122Module;
+  };
 
   datalad = callPackage ../applications/version-management/datalad { };
 
@@ -11530,6 +11536,7 @@ with pkgs;
 
   opendht = callPackage ../development/libraries/opendht  {
     inherit (darwin.apple_sdk.frameworks) Security;
+    restinio = restinio_0_6;
   };
 
   opendkim = callPackage ../development/libraries/opendkim { };
@@ -15725,6 +15732,7 @@ with pkgs;
 
   flutterPackages = recurseIntoAttrs (callPackage ../development/compilers/flutter { });
   flutter = flutterPackages.stable;
+  flutter319 = flutterPackages.v3_19;
   flutter316 = flutterPackages.v3_16;
   flutter313 = flutterPackages.v3_13;
 
@@ -35661,9 +35669,9 @@ with pkgs;
 
   tofi = callPackage ../applications/misc/tofi { };
 
-  tokyo-night-gtk = tokyo-night-gtk-variants.full;
+  tokyonight-gtk-theme = tokyonight-gtk-theme-variants.full;
 
-  tokyo-night-gtk-variants = recurseIntoAttrs (callPackage ../data/themes/tokyo-night-gtk { });
+  tokyonight-gtk-theme-variants = recurseIntoAttrs (callPackage ../data/themes/tokyonight-gtk-theme { });
 
   topydo = callPackage ../applications/misc/topydo { };
 
@@ -41724,6 +41732,7 @@ with pkgs;
     # TODO: remove once `udev` is `systemdMinimal` everywhere.
     udev = systemdMinimal;
     jack = libjack2;
+    restinio = restinio_0_6;
   };
 
   jitsi-meet-electron = callPackage ../applications/networking/instant-messengers/jitsi-meet-electron { };
