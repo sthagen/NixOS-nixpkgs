@@ -4972,8 +4972,6 @@ with pkgs;
 
   dapr-cli = callPackage ../development/tools/dapr/cli { };
 
-  das = callPackage ../tools/security/das { };
-
   dasel = callPackage ../applications/misc/dasel { };
 
   dasher = callPackage ../applications/accessibility/dasher { };
@@ -23681,8 +23679,6 @@ with pkgs;
 
   libwacom-surface = callPackage ../development/libraries/libwacom/surface.nix { };
 
-  lightning = callPackage ../development/libraries/lightning { };
-
   lightlocker = callPackage ../misc/screensavers/light-locker { };
 
   lightspark = callPackage ../misc/lightspark { };
@@ -24058,7 +24054,7 @@ with pkgs;
   nv-codec-headers-12 = callPackage ../development/libraries/nv-codec-headers/12_x.nix { };
 
   nvidiaCtkPackages =
-    callPackage ../applications/virtualization/nvidia-container-toolkit/packages.nix
+    callPackage ../by-name/nv/nvidia-container-toolkit/packages.nix
       { };
   inherit (nvidiaCtkPackages)
     nvidia-docker
