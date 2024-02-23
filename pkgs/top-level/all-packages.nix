@@ -6614,15 +6614,7 @@ with pkgs;
 
   beanstalkd = callPackage ../servers/beanstalkd { };
 
-  bee = callPackage ../applications/networking/bee/bee.nix {
-    version = "release";
-  };
-
-  bee-unstable = bee.override {
-    version = "unstable";
-  };
-
-  bee-clef = callPackage ../applications/networking/bee/bee-clef.nix { };
+  bee = callPackage ../applications/networking/bee/bee.nix { };
 
   beetsPackages = lib.recurseIntoAttrs (callPackage ../tools/audio/beets { });
   inherit (beetsPackages) beets beets-unstable;
@@ -30073,8 +30065,6 @@ with pkgs;
     stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
   };
 
-  openorienteering-mapper = libsForQt5.callPackage ../applications/gis/openorienteering-mapper { };
-
   qgis-ltr = callPackage ../applications/gis/qgis/ltr.nix { };
 
   qgis = callPackage ../applications/gis/qgis { };
@@ -33382,8 +33372,6 @@ with pkgs;
 
   mediathekview = callPackage ../applications/video/mediathekview { jre = temurin-bin-20; };
 
-  megapixels = callPackage ../applications/graphics/megapixels { };
-
   meteo = callPackage ../applications/networking/weather/meteo { };
 
   meld = callPackage ../applications/version-management/meld { };
@@ -34172,7 +34160,7 @@ with pkgs;
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix { };
 
   obsidian = callPackage ../applications/misc/obsidian {
-    electron = electron_25;
+    electron = electron_28;
   };
 
   octoprint = callPackage ../applications/misc/octoprint { };
