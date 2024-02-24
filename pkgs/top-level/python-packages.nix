@@ -8974,6 +8974,8 @@ self: super: with self; {
 
   osc-lib = callPackage ../development/python-modules/osc-lib { };
 
+  osc-sdk-python = callPackage ../development/python-modules/osc-sdk-python { };
+
   oscpy = callPackage ../development/python-modules/oscpy { };
 
   oscrypto = callPackage ../development/python-modules/oscrypto { };
@@ -14318,6 +14320,8 @@ self: super: with self; {
   tempora = callPackage ../development/python-modules/tempora { };
 
   tenacity = callPackage ../development/python-modules/tenacity { };
+
+  tencentcloud-sdk-python = callPackage ../development/python-modules/tencentcloud-sdk-python { };
 
   tensorboard-data-server = callPackage ../development/python-modules/tensorboard-data-server { };
 

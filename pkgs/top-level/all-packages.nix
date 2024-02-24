@@ -3227,8 +3227,6 @@ with pkgs;
 
   apfs-fuse = callPackage ../tools/filesystems/apfs-fuse { };
 
-  api-linter = callPackage ../development/tools/api-linter { };
-
   apk-tools = callPackage ../tools/package-management/apk-tools {
     lua = lua5_3;
   };
@@ -8629,7 +8627,6 @@ with pkgs;
     jdk = graalvm-ce;
   };
 
-  gnucap = callPackage ../applications/science/electronics/gnucap { };
   gnucap-full = gnucap.withPlugins(p: [ p.verilog ]);
 
   gnu-cim = callPackage ../development/compilers/gnu-cim { };
@@ -9401,8 +9398,6 @@ with pkgs;
   internetarchive = with python3Packages; toPythonApplication internetarchive;
 
   invidious = callPackage ../servers/invidious {
-    # needs a specific version of lsquic
-    lsquic = callPackage ../servers/invidious/lsquic.nix { };
     # normally video.js is downloaded at build time
     videojs = callPackage ../servers/invidious/videojs.nix { };
   };
@@ -11989,8 +11984,6 @@ with pkgs;
   pg_flame = callPackage ../tools/misc/pg_flame { };
 
   pg_top = callPackage ../tools/misc/pg_top { };
-
-  pgagroal = callPackage ../development/tools/database/pgagroal { };
 
   pgcenter = callPackage ../tools/misc/pgcenter { };
 
@@ -14705,11 +14698,6 @@ with pkgs;
   unicorn = callPackage ../development/libraries/unicorn {
     inherit (darwin.apple_sdk.frameworks) IOKit;
     inherit (darwin) cctools;
-  };
-
-  units = callPackage ../tools/misc/units {
-    enableCurrenciesUpdater = true;
-    pythonPackages = python3Packages;
   };
 
   unittest-cpp = callPackage ../development/libraries/unittest-cpp { };
@@ -21047,8 +21035,6 @@ with pkgs;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
 
-  fastcdr = callPackage ../development/libraries/fastcdr { };
-
   fbthrift = callPackage ../development/libraries/fbthrift { };
 
   fb303 = callPackage ../development/libraries/fb303 { };
@@ -27355,16 +27341,14 @@ with pkgs;
     server-mysql = (callPackages ../servers/monitoring/zabbix/server.nix { mysqlSupport = true; }).${version};
     server-pgsql = (callPackages ../servers/monitoring/zabbix/server.nix { postgresqlSupport = true; }).${version};
     web = (callPackages ../servers/monitoring/zabbix/web.nix {}).${version};
+    agent2 = (callPackages ../servers/monitoring/zabbix/agent2.nix {}).${version};
 
     # backwards compatibility
     server = server-pgsql;
-  } // lib.optionalAttrs ( version != "v40" ) {  # agent2 is not supported in v4
-    agent2 = (callPackages ../servers/monitoring/zabbix/agent2.nix {}).${version};
   };
 
   zabbix60 = recurseIntoAttrs (zabbixFor "v60");
   zabbix50 = recurseIntoAttrs (zabbixFor "v50");
-  zabbix40 = dontRecurseIntoAttrs (zabbixFor "v40");
 
   zabbix = zabbix60;
 
@@ -29375,8 +29359,6 @@ with pkgs;
 
   lmodern = callPackage ../data/fonts/lmodern { };
 
-  logiops = callPackage ../misc/drivers/logiops { };
-
   # ltunifi and solaar both provide udev rules but solaar's rules are more
   # up-to-date so we simply use that instead of having to maintain our own rules
   logitech-udev-rules = solaar.udev;
@@ -30618,8 +30600,6 @@ with pkgs;
   catt = callPackage ../applications/video/catt { };
 
   cava = callPackage ../applications/audio/cava { };
-
-  cavalier = callPackage ../applications/audio/cavalier { };
 
   cb2bib = libsForQt5.callPackage ../applications/office/cb2bib { };
 
