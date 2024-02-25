@@ -1743,6 +1743,12 @@
     githubId = 113123021;
     name = "Ashvith Shetty";
   };
+  asininemonkey = {
+    email = "nixpkgs@asininemonkey.com";
+    github = "asininemonkey";
+    githubId = 65740649;
+    name = "Jose Cardoso";
+  };
   aske = {
     email = "aske@fmap.me";
     github = "aske";
@@ -15934,6 +15940,12 @@
     github = "rardiol";
     githubId = 11351304;
     name = "Ricardo Ardissone";
+  };
+  raroh73 = {
+    email = "me@raroh73.com";
+    github = "Raroh73";
+    githubId = 96078496;
+    name = "Raroh73";
   };
   rasendubi = {
     email = "rasen.dubi@gmail.com";
