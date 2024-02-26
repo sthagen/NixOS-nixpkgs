@@ -1732,7 +1732,7 @@ with pkgs;
 
   btc-rpc-explorer = callPackage ../tools/misc/btc-rpc-explorer { };
 
-  butler = callPackage ../games/itch/butler.nix {
+  butler = callPackage ../by-name/bu/butler/package.nix {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
     buildGoModule = buildGo120Module;
   };
@@ -3976,8 +3976,6 @@ with pkgs;
   ipgrep = callPackage ../tools/networking/ipgrep { };
 
   ipp-usb = callPackage ../os-specific/linux/ipp-usb { };
-
-  itch = callPackage ../games/itch { };
 
   itchiodl = callPackage ../games/itchiodl { };
 
@@ -13747,8 +13745,6 @@ with pkgs;
 
   teler = callPackage ../tools/security/teler { };
 
-  telescope = callPackage ../applications/networking/browsers/telescope { };
-
   termcolor = callPackage ../development/libraries/termcolor { };
 
   termscp = callPackage ../tools/networking/termscp {
@@ -18947,8 +18943,6 @@ with pkgs;
   drip = callPackage ../development/tools/drip { };
 
   drm_info = callPackage ../development/tools/drm_info { };
-
-  drush = callPackage ../development/tools/misc/drush { };
 
   dura = callPackage ../development/tools/misc/dura {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -30885,7 +30879,7 @@ with pkgs;
   dnglab = callPackage ../tools/graphics/dnglab { };
 
   inherit (callPackage ../applications/virtualization/docker {})
-    docker_20_10 docker_24;
+    docker_20_10 docker_24 docker_25;
 
   docker = docker_24;
   docker-client = docker.override { clientOnly = true; };
@@ -31142,9 +31136,6 @@ with pkgs;
   evilpixie = libsForQt5.callPackage ../applications/graphics/evilpixie { };
 
   eww = callPackage ../applications/window-managers/eww { };
-  eww-wayland = callPackage ../applications/window-managers/eww {
-    withWayland = true;
-  };
 
   exaile = callPackage ../applications/audio/exaile { };
 
