@@ -537,6 +537,7 @@ in {
   mobilizon = handleTest ./mobilizon.nix {};
   mod_perl = handleTest ./mod_perl.nix {};
   molly-brown = handleTest ./molly-brown.nix {};
+  monado = handleTest ./monado.nix {};
   monica = handleTest ./web-apps/monica.nix {};
   mongodb = handleTest ./mongodb.nix {};
   moodle = handleTest ./moodle.nix {};
@@ -694,6 +695,7 @@ in {
   plantuml-server = handleTest ./plantuml-server.nix {};
   plasma-bigscreen = handleTest ./plasma-bigscreen.nix {};
   plasma5 = handleTest ./plasma5.nix {};
+  plasma6 = handleTest ./plasma6.nix {};
   plasma5-systemd-start = handleTest ./plasma5-systemd-start.nix {};
   plausible = handleTest ./plausible.nix {};
   please = handleTest ./please.nix {};

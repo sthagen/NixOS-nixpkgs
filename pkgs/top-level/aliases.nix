@@ -102,6 +102,7 @@ mapAliases ({
   beignet = throw "beignet was removed as it was never ported from old llvmPackages_6 upstream"; # added 2024-01-08
   binance = throw "binance has been removed, because it depends on a very outdated and insecure version of electron"; # Added 2023-11-09
   bird2 = bird; # Added 2022-02-21
+  bitwarden = bitwarden-desktop; # Added 2024-02-25
   bitwig-studio1 = throw "bitwig-studio1 has been removed, you can upgrade to 'bitwig-studio'"; # Added 2023-01-03
   bitwig-studio2 = throw "bitwig-studio2 has been removed, you can upgrade to 'bitwig-studio'"; # Added 2023-01-03
   blender-with-packages = args:
@@ -411,6 +412,9 @@ mapAliases ({
   govendor = throw "'govendor' has been removed as it is no longer maintained upstream, please use Go modules instead"; # Added 2023-12-26
   gometer = throw "gometer has been removed from nixpkgs because goLance stopped offering Linux support"; # Added 2023-02-10
   gprbuild-boot = gnatPackages.gprbuild-boot; # Added 2024-02-25;
+
+  gpt4all-chat = throw "gpt4all-chat has been renamed to gpt4all"; # Added 2024-02-27
+
   graalvm11-ce = throw "graalvm11-ce has been removed because upstream dropped support to different JDK versions for each GraalVM release. Please use graalvm-ce instead"; # Added 2023-09-26
   graalvm17-ce = throw "graalvm17-ce has been removed because upstream dropped support to different JDK versions for each GraalVM release. Please use graalvm-ce instead"; # Added 2023-09-26
   graalvm19-ce = throw "graalvm19-ce has been removed because upstream dropped support to different JDK versions for each GraalVM release. Please use graalvm-ce instead"; # Added 2023-09-26

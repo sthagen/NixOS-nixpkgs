@@ -726,6 +726,8 @@ with pkgs;
 
   inspec = callPackage ../tools/misc/inspec { };
 
+  kdePackages = callPackage ../kde { };
+
   buildcatrust = with python3.pkgs; toPythonApplication buildcatrust;
 
   probe-rs = callPackage ../development/tools/rust/probe-rs {
@@ -3551,10 +3553,6 @@ with pkgs;
   bic = callPackage ../development/interpreters/bic { };
 
   biscuit-cli = callPackage ../tools/security/biscuit-cli { };
-
-  bitwarden = callPackage ../tools/security/bitwarden { };
-
-  bitwarden-cli = callPackage ../tools/security/bitwarden/cli.nix { };
 
   inherit (callPackages ../tools/security/bitwarden-directory-connector { }) bitwarden-directory-connector-cli bitwarden-directory-connector;
 
@@ -13261,8 +13259,6 @@ with pkgs;
 
   smpq = callPackage ../applications/misc/smpq { };
 
-  sn0int = callPackage ../tools/security/sn0int { };
-
   snabb = callPackage ../tools/networking/snabb { };
 
   snallygaster = callPackage ../tools/security/snallygaster { };
@@ -14513,8 +14509,6 @@ with pkgs;
   wifish = callPackage ../tools/networking/wifish { };
 
   wimboot = callPackage ../tools/misc/wimboot { };
-
-  wit-bindgen = callPackage ../tools/misc/wit-bindgen { };
 
   wire = callPackage ../development/tools/wire { };
 
@@ -16975,7 +16969,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   };
   cargo-limit = callPackage ../development/tools/rust/cargo-limit { };
-  cargo-make = callPackage ../development/tools/rust/cargo-make { };
   cargo-modules = callPackage ../development/tools/rust/cargo-modules { };
   cargo-mommy = callPackage ../development/tools/rust/cargo-mommy { };
   cargo-msrv = callPackage ../development/tools/rust/cargo-msrv {
@@ -19380,8 +19373,6 @@ with pkgs;
   lemon = callPackage ../development/tools/parsing/lemon { };
 
   lenmus = callPackage ../applications/misc/lenmus { };
-
-  lightningcss = callPackage ../development/tools/lightningcss { };
 
   libtool = libtool_2;
 
@@ -26413,7 +26404,7 @@ with pkgs;
 
   matrix-alertmanager = callPackage ../servers/monitoring/matrix-alertmanager { };
 
-  mattermost = callPackage ../servers/mattermost { };
+  mattermost = callPackage ../servers/mattermost { buildGoModule = buildGo122Module; };
   matterircd = callPackage ../servers/mattermost/matterircd.nix { };
   matterbridge = callPackage ../servers/matterbridge { };
 
@@ -27890,8 +27881,6 @@ with pkgs;
   linux_5_15_hardened = linuxKernel.kernels.linux_5_15_hardened;
   linuxPackages_6_1_hardened = linuxKernel.packages.linux_6_1_hardened;
   linux_6_1_hardened = linuxKernel.kernels.linux_6_1_hardened;
-  linuxPackages_6_5_hardened = linuxKernel.packages.linux_6_5_hardened;
-  linux_6_5_hardened = linuxKernel.kernels.linux_6_5_hardened;
   linuxPackages_6_6_hardened = linuxKernel.packages.linux_6_6_hardened;
   linux_6_6_hardened = linuxKernel.kernels.linux_6_6_hardened;
   linuxPackages_6_7_hardened = linuxKernel.packages.linux_6_7_hardened;
@@ -32114,7 +32103,9 @@ with pkgs;
 
   hexedit = callPackage ../applications/editors/hexedit { };
 
-  himalaya = callPackage ../applications/networking/mailreaders/himalaya { };
+  himalaya = callPackage ../applications/networking/mailreaders/himalaya {
+    inherit (darwin.apple_sdk.frameworks) AppKit Cocoa Security;
+  };
 
   hydrogen-web-unwrapped = callPackage ../applications/networking/instant-messengers/hydrogen-web/unwrapped.nix { };
 
@@ -35331,6 +35322,10 @@ with pkgs;
     plasmoidSupport = false;
     systemdSupport = true;
   };
+  syncthingtray-qt6 = kdePackages.callPackage ../applications/misc/syncthingtray {
+    # renamed in KF5 -> KF6
+    plasma-framework = kdePackages.libplasma;
+  };
 
   synergy = libsForQt5.callPackage ../applications/misc/synergy {
     stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
@@ -35567,8 +35562,6 @@ with pkgs;
     inherit (linuxPackages) x86_energy_perf_policy;
   };
 
-  tippecanoe = callPackage ../applications/misc/tippecanoe { };
-
   tmatrix = callPackage ../applications/misc/tmatrix { };
 
   tnef = callPackage ../applications/misc/tnef { };
@@ -35771,11 +35764,6 @@ with pkgs;
   unigine-superposition = libsForQt5.callPackage ../applications/graphics/unigine-superposition { };
 
   unipicker = callPackage ../applications/misc/unipicker { };
-
-  unison = callPackage ../applications/networking/sync/unison {
-    enableX11 = config.unison.enableX11 or true;
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
 
   unpaper = callPackage ../tools/graphics/unpaper { };
 
@@ -36814,11 +36802,11 @@ with pkgs;
 
   lightning-pool = callPackage ../applications/blockchains/lightning-pool { };
 
-  litecoin  = disable-warnings-if-gcc13 (libsForQt5.callPackage ../applications/blockchains/litecoin {
+  litecoin  = libsForQt5.callPackage ../applications/blockchains/litecoin {
     inherit (darwin.apple_sdk.frameworks) AppKit;
     boost = pkgs.boost177;
-  });
-  litecoind = disable-warnings-if-gcc13 (litecoin.override { withGui = false; });
+  };
+  litecoind = litecoin.override { withGui = false; };
 
   livedl = callPackage ../tools/misc/livedl { };
 
