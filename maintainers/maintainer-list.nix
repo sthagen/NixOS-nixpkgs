@@ -203,6 +203,15 @@
       fingerprint = "D292 365E 3C46 A5AA 75EE  B30B 78DB 7EDE 3540 794B";
     }];
   };
+  _6543 = {
+    email = "6543@obermui.de";
+    github = "6543";
+    githubId = 24977596;
+    name = "6543";
+    keys = [{
+      fingerprint = "8722 B61D 7234 1082 553B  201C B8BE 6D61 0E61 C862";
+    }];
+  };
   _6AA4FD = {
     email = "f6442954@gmail.com";
     github = "6AA4FD";
@@ -7038,6 +7047,15 @@
     github = "ghostbuster91";
     githubId = 5662622;
   };
+  ghthor = {
+    email = "ghthor@gmail.com";
+    github = "ghthor";
+    githubId = 160298;
+    name = "Will Owens";
+    keys = [{
+      fingerprint = "8E98 BB01 BFF8 AEA4 E303  FC4C 8074 09C9 2CE2 3033";
+    }];
+  };
   ghuntley = {
     email = "ghuntley@ghuntley.com";
     github = "ghuntley";
@@ -10824,6 +10842,15 @@
     githubId = 77865363;
     name = "Leonid Belyaev";
   };
+  leonm1 = {
+    github = "leonm1";
+    githubId = 32306579;
+    keys = [{
+      fingerprint = "C12D F14B DC9D 64E1 44C3  4D8A 755C DA4E 5923 416A";
+    }];
+    matrix = "@mattleon:matrix.org";
+    name = "Matt Leon";
+  };
   leshainc = {
     email = "leshainc@fomalhaut.me";
     github = "LeshaInc";
@@ -12476,6 +12503,12 @@
     name = "Michael Brunner";
     github = "MichaelBrunn3r";
     githubId = 19626539;
+  };
+  MichaelCDormann = {
+    email = "michael.c.dormann@gmail.com";
+    name = "Michael Dormann";
+    github = "MichaelCDormann";
+    githubId = 12633081;
   };
   michaelCTS = {
     email = "michael.vogel@cts.co";
@@ -14160,7 +14193,8 @@
     githubId = 332423;
   };
   nu-nu-ko = {
-    email = "host@nuko.city";
+    email = "nuko@shimeji.cafe";
+    matrix = "@nuko:shimeji.cafe";
     github = "nu-nu-ko";
     githubId = 153512689;
     name = "nuko";
@@ -16563,6 +16597,11 @@
     keys = [{
       fingerprint = "1401 1B63 393D 16C1 AA9C  C521 8526 B757 4A53 6236";
     }];
+  };
+  rosehobgoblin = {
+    name = "J. L. Bowden";
+    github = "rosehobgoblin";
+    githubId = 84164410;
   };
   rossabaker = {
     name = "Ross A. Baker";

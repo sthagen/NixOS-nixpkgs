@@ -8042,13 +8042,9 @@ with pkgs;
 
   chewing-editor = libsForQt5.callPackage ../applications/misc/chewing-editor { };
 
-  fcitx5 = libsForQt5.callPackage ../tools/inputmethods/fcitx5 { };
-
-  fcitx5-with-addons = libsForQt5.callPackage ../tools/inputmethods/fcitx5/with-addons.nix { };
+  fcitx5 = callPackage ../tools/inputmethods/fcitx5 { };
 
   fcitx5-bamboo = callPackage ../tools/inputmethods/fcitx5/fcitx5-bamboo.nix { };
-
-  fcitx5-chinese-addons = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-chinese-addons.nix { };
 
   fcitx5-mozc = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-mozc.nix {
     abseil-cpp = abseil-cpp.override {
@@ -8056,15 +8052,7 @@ with pkgs;
     };
   };
 
-  fcitx5-skk = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-skk.nix { };
-
-  fcitx5-skk-qt = fcitx5-skk.override {
-    enableQt = true;
-  };
-
-  fcitx5-unikey = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-unikey.nix { };
-
-  fcitx5-configtool = libsForQt5.callPackage ../tools/inputmethods/fcitx5/fcitx5-configtool.nix { };
+  fcitx5-skk = qt6Packages.callPackage ../tools/inputmethods/fcitx5/fcitx5-skk.nix { };
 
   fcitx5-anthy = callPackage ../tools/inputmethods/fcitx5/fcitx5-anthy.nix { };
 
@@ -9382,7 +9370,7 @@ with pkgs;
 
   inql = callPackage ../tools/security/inql { };
 
-  intel-media-sdk = disable-warnings-if-gcc13 (callPackage ../development/libraries/intel-media-sdk { });
+  intel-media-sdk = callPackage ../development/libraries/intel-media-sdk { };
 
   intermodal = callPackage ../tools/misc/intermodal { };
 
@@ -12410,8 +12398,6 @@ with pkgs;
   openmpi = callPackage ../development/libraries/openmpi { };
 
   ouch = callPackage ../tools/compression/ouch { };
-
-  outils = callPackage ../tools/misc/outils { };
 
   mpi = openmpi; # this attribute should used to build MPI applications
   mpiCheckPhaseHook = callPackage ../build-support/setup-hooks/mpi-check-hook { };
@@ -20119,7 +20105,22 @@ with pkgs;
   ttyd = callPackage ../servers/ttyd { };
 
   turbogit = callPackage ../development/tools/turbogit {
-    libgit2 = libgit2_1_3_0;
+    libgit2 = libgit2.overrideAttrs rec {
+      version = "1.3.0";
+      src = pkgs.fetchFromGitHub {
+        owner = "libgit2";
+        repo = "libgit2";
+        rev = "v${version}";
+        hash = "sha256-7atNkOBzX+nU1gtFQEaE+EF1L+eex+Ajhq2ocoJY920=";
+      };
+      patches = [];
+      # tests fail on old version
+      doCheck = false;
+      meta = libgit2.meta // {
+        maintainers = [];
+        knownVulnerabilities = [ "CVE-2024-24575" "CVE-2024-24577" "CVE-2022-29187" "CVE 2022-24765" ];
+      };
+    };
   };
 
   tweak = callPackage ../applications/editors/tweak { };
@@ -21340,39 +21341,6 @@ with pkgs;
 
   libgit2 = callPackage ../development/libraries/libgit2 {
     inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
-  libgit2_1_3_0 = libgit2.overrideAttrs rec {
-    version = "1.3.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "libgit2";
-      repo = "libgit2";
-      rev = "v${version}";
-      hash = "sha256-7atNkOBzX+nU1gtFQEaE+EF1L+eex+Ajhq2ocoJY920=";
-    };
-    patches = [];
-  };
-
-  libgit2_1_5 = libgit2.overrideAttrs rec {
-    version = "1.5.1";
-    src = pkgs.fetchFromGitHub {
-      owner = "libgit2";
-      repo = "libgit2";
-      rev = "v${version}";
-      hash = "sha256-KzBMwpqn6wUFhgB3KDclBS0BvZSVcasM5AG/y+L91xM=";
-    };
-    patches = [];
-  };
-
-  libgit2_1_6 = libgit2.overrideAttrs rec {
-    version = "1.6.5";
-    src = fetchFromGitHub {
-      owner = "libgit2";
-      repo = "libgit2";
-      rev = "v${version}";
-      hash = "sha256-2tgXnrB85dEfxu7giETqMuFxfm0RH5MicHZqO3ezGu0=";
-    };
-    patches = [ ];
   };
 
   libgit2-glib = callPackage ../development/libraries/libgit2-glib { };
@@ -24430,7 +24398,7 @@ with pkgs;
   qt6 = recurseIntoAttrs (callPackage ../development/libraries/qt-6 { });
 
   qt6Packages = recurseIntoAttrs (import ./qt6-packages.nix {
-    inherit lib __splicedPackages makeScopeWithSplicing' generateSplicesForMkScope pkgsHostTarget;
+    inherit lib __splicedPackages makeScopeWithSplicing' generateSplicesForMkScope pkgsHostTarget kdePackages;
     stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
   });
 
@@ -25808,17 +25776,17 @@ with pkgs;
   };
 
   # Steel Bank Common Lisp
-  sbcl_2_4_0 = wrapLisp {
-    pkg = callPackage ../development/compilers/sbcl { version = "2.4.0"; };
-    faslExt = "fasl";
-    flags = [ "--dynamic-space-size" "3000" ];
-  };
   sbcl_2_4_1 = wrapLisp {
     pkg = callPackage ../development/compilers/sbcl { version = "2.4.1"; };
     faslExt = "fasl";
     flags = [ "--dynamic-space-size" "3000" ];
   };
-  sbcl = sbcl_2_4_1;
+  sbcl_2_4_2 = wrapLisp {
+    pkg = callPackage ../development/compilers/sbcl { version = "2.4.2"; };
+    faslExt = "fasl";
+    flags = [ "--dynamic-space-size" "3000" ];
+  };
+  sbcl = sbcl_2_4_2;
 
   sbclPackages = recurseIntoAttrs sbcl.pkgs;
 
@@ -25962,10 +25930,6 @@ with pkgs;
   apacheHttpdPackages = apacheHttpdPackages_2_4;
 
   appdaemon = callPackage ../servers/home-assistant/appdaemon.nix { };
-
-  archiveopteryx = callPackage ../servers/mail/archiveopteryx {
-    openssl = openssl_1_1;
-  };
 
   asouldocs = callPackage ../servers/asouldocs { };
 
@@ -28715,16 +28679,22 @@ with pkgs;
 
   zenmonitor = callPackage ../os-specific/linux/zenmonitor { };
 
-  zfs_2_1 = callPackage ../os-specific/linux/zfs/2_1.nix {
-    configFile = "user";
-  };
-  zfsStable = callPackage ../os-specific/linux/zfs/stable.nix {
-    configFile = "user";
-  };
-  zfsUnstable = callPackage ../os-specific/linux/zfs/unstable.nix {
-    configFile = "user";
-  };
-  zfs = zfsStable;
+  inherit
+    ({
+      zfs_2_1 = callPackage ../os-specific/linux/zfs/2_1.nix {
+        configFile = "user";
+      };
+      zfs_2_2 = callPackage ../os-specific/linux/zfs/2_2.nix {
+        configFile = "user";
+      };
+      zfs_unstable = callPackage ../os-specific/linux/zfs/unstable.nix {
+        configFile = "user";
+      };
+    })
+    zfs_2_1
+    zfs_2_2
+    zfs_unstable;
+  zfs = zfs_2_2;
 
   ### DATA
 
@@ -39035,7 +39005,7 @@ with pkgs;
 
   ipopt = callPackage ../development/libraries/science/math/ipopt { };
 
-  gmsh = disable-warnings-if-gcc13 (callPackage ../applications/science/math/gmsh { });
+  gmsh = callPackage ../applications/science/math/gmsh { };
 
   wcpg = callPackage ../development/libraries/science/math/wcpg { };
 
@@ -40165,7 +40135,7 @@ with pkgs;
   jack-autoconnect = libsForQt5.callPackage ../applications/audio/jack-autoconnect { };
   jack_autoconnect = jack-autoconnect;
 
-  jacktrip = libsForQt5.callPackage ../applications/audio/jacktrip { };
+  jacktrip = callPackage ../applications/audio/jacktrip { };
 
   j2cli = with python3Packages; toPythonApplication j2cli;
 

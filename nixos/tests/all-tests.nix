@@ -128,6 +128,7 @@ in {
   appliance-repart-image = runTest ./appliance-repart-image.nix;
   apparmor = handleTest ./apparmor.nix {};
   archi = handleTest ./archi.nix {};
+  armagetronad = handleTest ./armagetronad.nix {};
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   atuin = handleTest ./atuin.nix {};
@@ -511,6 +512,7 @@ in {
   mastodon = discoverTests (import ./web-apps/mastodon { inherit handleTestOn; });
   pixelfed = discoverTests (import ./web-apps/pixelfed { inherit handleTestOn; });
   mate = handleTest ./mate.nix {};
+  matter-server = handleTest ./matter-server.nix {};
   matomo = handleTest ./matomo.nix {};
   matrix-appservice-irc = handleTest ./matrix/appservice-irc.nix {};
   matrix-conduit = handleTest ./matrix/conduit.nix {};
@@ -915,6 +917,7 @@ in {
   tor = handleTest ./tor.nix {};
   traefik = handleTestOn ["aarch64-linux" "x86_64-linux"] ./traefik.nix {};
   trafficserver = handleTest ./trafficserver.nix {};
+  transfer-sh = handleTest ./transfer-sh.nix {};
   transmission = handleTest ./transmission.nix { transmission = pkgs.transmission; };
   transmission_4 = handleTest ./transmission.nix { transmission = pkgs.transmission_4; };
   # tracee requires bpf
