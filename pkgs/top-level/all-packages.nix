@@ -13022,8 +13022,6 @@ with pkgs;
 
   seqdiag = with python3Packages; toPythonApplication seqdiag;
 
-  sequoia-sq = callPackage ../tools/security/sequoia-sq { };
-
   sequoia-sqv = callPackage ../tools/security/sequoia-sqv { };
 
   sequoia-sqop = callPackage ../tools/security/sequoia-sqop { };
@@ -19476,15 +19474,6 @@ with pkgs;
 
   haskell-ci = haskell.lib.compose.justStaticExecutables haskellPackages.haskell-ci;
 
-  neoload = callPackage ../development/tools/neoload {
-    licenseAccepted = (config.neoload.accept_license or false);
-    fontsConf = makeFontsConf {
-      fontDirectories = [
-        dejavu_fonts.minimal
-      ];
-    };
-  };
-
   nailgun = callPackage ../development/tools/nailgun { };
 
   nap = callPackage ../development/tools/nap { };
@@ -24033,7 +24022,7 @@ with pkgs;
 
   opencl-clhpp = callPackage ../development/libraries/opencl-clhpp { };
 
-  opencollada = disable-warnings-if-gcc13 (callPackage ../development/libraries/opencollada { });
+  opencollada = callPackage ../development/libraries/opencollada { };
 
   opencore-amr = callPackage ../development/libraries/opencore-amr { };
 
@@ -26978,9 +26967,9 @@ with pkgs;
     protobuf = protobuf_21;
   };
 
-  rippled = disable-warnings-if-gcc13 (callPackage ../servers/rippled {
+  rippled = callPackage ../servers/rippled {
     boost = boost177;
-  });
+  };
 
   rippled-validator-keys-tool = callPackage ../servers/rippled/validator-keys-tool.nix { };
 
@@ -29398,8 +29387,6 @@ with pkgs;
   nasin-nanpa = callPackage ../data/fonts/nasin-nanpa { };
 
   national-park-typeface = callPackage ../data/fonts/national-park { };
-
-  netease-music-tui = callPackage ../applications/audio/netease-music-tui { };
 
   nordic = libsForQt5.callPackage ../data/themes/nordic { };
 
@@ -35871,10 +35858,10 @@ with pkgs;
 
   virtual-ans = callPackage ../applications/audio/virtual-ans { };
 
-  virtualbox = disable-warnings-if-gcc13 (libsForQt5.callPackage ../applications/virtualization/virtualbox {
+  virtualbox = libsForQt5.callPackage ../applications/virtualization/virtualbox {
     stdenv = stdenv_32bit;
     inherit (gnome2) libIDL;
-  });
+  };
 
   virtualboxHardened = lowPrio (virtualbox.override {
     enableHardening = true;
@@ -41712,7 +41699,7 @@ with pkgs;
 
   udict = callPackage ../applications/misc/udict { };
 
-  duden = callPackage ../applications/misc/duden { };
+  duden = python3Packages.toPythonApplication python3Packages.duden;
 
   zf = callPackage ../tools/misc/zf { };
 
