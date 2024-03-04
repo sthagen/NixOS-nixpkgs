@@ -559,6 +559,8 @@ with pkgs;
 
   containerpilot = callPackage ../applications/networking/cluster/containerpilot { };
 
+  coolercontrol = recurseIntoAttrs (callPackage ../applications/system/coolercontrol { });
+
   coost = callPackage ../development/libraries/coost { };
 
   confetty = callPackage ../applications/misc/confetty { };
@@ -35055,12 +35057,12 @@ with pkgs;
 
   slic3r = callPackage ../applications/misc/slic3r { };
 
-  curaengine_stable = disable-warnings-if-gcc13 (callPackage ../applications/misc/curaengine/stable.nix { });
+  curaengine_stable = callPackage ../applications/misc/curaengine/stable.nix { };
 
-  curaengine = disable-warnings-if-gcc13 (callPackage ../applications/misc/curaengine {
+  curaengine = callPackage ../applications/misc/curaengine {
     inherit (python3.pkgs) libarcus;
     protobuf = protobuf_21;
-  });
+  };
 
   cura = libsForQt5.callPackage ../applications/misc/cura { };
 
@@ -40971,9 +40973,6 @@ with pkgs;
 
   vimb-unwrapped = callPackage ../applications/networking/browsers/vimb { };
   vimb = wrapFirefox vimb-unwrapped { };
-
-  vikunja-api = callPackage ../servers/web-apps/vikunja/api.nix { };
-  vikunja-frontend = callPackage ../servers/web-apps/vikunja/frontend.nix { };
 
   vips = callPackage ../tools/graphics/vips {
     inherit (darwin.apple_sdk.frameworks) ApplicationServices Foundation;

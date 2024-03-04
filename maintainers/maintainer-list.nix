@@ -8231,6 +8231,13 @@
     github = "ilyakooo0";
     githubId = 6209627;
   };
+  imadnyc = {
+    email = "me@imad.nyc";
+    github = "imadnyc";
+    githubId = 113966166;
+    name = "Abdullah Imad";
+    matrix = "@dre:imad.nyc";
+  };
   imalison = {
     email = "IvanMalison@gmail.com";
     github = "colonelpanic8";
@@ -9134,6 +9141,12 @@
     github = "magnusjonsson";
     githubId = 8900;
     name = "Johan Magnus Jonsson";
+  };
+  jmarmstrong1207 = {
+    name = "James Armstrong";
+    email = "jm.armstrong1207@gmail.com";
+    github = "jmarmstrong1207";
+    githubId = 32995055;
   };
   jmbaur = {
     email = "jaredbaur@fastmail.com";
@@ -13927,6 +13940,11 @@
     github = "nioncode";
     githubId = 3159451;
     name = "Nicolas Schneider";
+  };
+  NIS = {
+    name = "NSC IT Solutions";
+    github = "dev-nis";
+    githubId = 132921300;
   };
   nitsky = {
     name = "nitsky";
