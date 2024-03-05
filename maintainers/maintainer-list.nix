@@ -681,7 +681,7 @@
   };
   ajs124 = {
     email = "nix@ajs124.de";
-    matrix = "@andreas.schraegle:helsinki-systems.de";
+    matrix = "@ajs124:ajs124.de";
     github = "ajs124";
     githubId = 1229027;
     name = "Andreas Schrägle";
@@ -10532,6 +10532,15 @@
     github = "KUD-00";
     githubId = 70764075;
     name = "kud";
+  };
+  kugland = {
+    email = "kugland@gmail.com";
+    github = "kugland";
+    githubId = 1173932;
+    name = "André Kugland";
+    keys = [{
+      fingerprint = "6A62 5E60 E3FF FCAE B3AA  50DC 1DA9 3817 80CD D833";
+    }];
   };
   kupac = {
     github = "Kupac";
