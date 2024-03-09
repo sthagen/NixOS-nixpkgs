@@ -3581,8 +3581,8 @@ with pkgs;
   bucklespring-libinput = callPackage ../applications/audio/bucklespring { };
   bucklespring-x11 = callPackage ../applications/audio/bucklespring { legacy = true; };
 
-  inherit (python3.pkgs.callPackage ../development/tools/continuous-integration/buildbot {})
-    buildbot buildbot-ui buildbot-full buildbot-plugins buildbot-worker;
+  buildbotPackages = recurseIntoAttrs (python3.pkgs.callPackage ../development/tools/continuous-integration/buildbot { });
+  inherit (buildbotPackages) buildbot buildbot-ui buildbot-full buildbot-plugins buildbot-worker;
 
   bunyan-rs = callPackage ../development/tools/bunyan-rs { };
 
@@ -7297,7 +7297,7 @@ with pkgs;
     builtins.mapAttrs (_: pin-to-gcc12-if-gcc13)
       (darwin.apple_sdk_11_0.callPackage ../tools/networking/curl-impersonate { });
   curl-impersonate-ff = pin-to-gcc12-if-gcc13 curl-impersonate.curl-impersonate-ff;
-  curl-impersonate-chrom = pin-to-gcc12-if-gcc13 curl-impersonate.curl-impersonate-chrome;
+  curl-impersonate-chrome = pin-to-gcc12-if-gcc13 curl-impersonate.curl-impersonate-chrome;
 
   curlie = callPackage ../tools/networking/curlie { };
 
@@ -9381,6 +9381,8 @@ with pkgs;
   ioccheck = callPackage ../tools/security/ioccheck { };
 
   iocextract = with python3Packages; toPythonApplication iocextract;
+
+  iocsearcher = with python3Packages; toPythonApplication iocsearcher;
 
   ioping = callPackage ../tools/system/ioping { };
 
@@ -15219,8 +15221,6 @@ with pkgs;
 
   zsv = callPackage ../development/tools/zsv { };
 
-  zsync = callPackage ../tools/compression/zsync { };
-
   zxing = callPackage ../tools/graphics/zxing { };
 
   zkar = callPackage ../tools/security/zkar { };
@@ -15344,8 +15344,8 @@ with pkgs;
   temurin-bin-8 = javaPackages.compiler.temurin-bin.jdk-8;
   temurin-jre-bin-8 = javaPackages.compiler.temurin-bin.jre-8;
 
-  temurin-bin = temurin-bin-19;
-  temurin-jre-bin = temurin-jre-bin-19;
+  temurin-bin = temurin-bin-21;
+  temurin-jre-bin = temurin-jre-bin-21;
 
   semeru-bin-17 = javaPackages.compiler.semeru-bin.jdk-17;
   semeru-jre-bin-17 = javaPackages.compiler.semeru-bin.jre-17;
@@ -16342,8 +16342,8 @@ with pkgs;
   jdk21_headless = openjdk21_headless;
 
   /* default JDK */
-  jdk = jdk19;
-  jdk_headless = jdk19_headless;
+  jdk = jdk21;
+  jdk_headless = jdk21_headless;
 
   # Since the introduction of the Java Platform Module System in Java 9, Java
   # no longer ships a separate JRE package.
@@ -26043,11 +26043,11 @@ with pkgs;
 
   engelsystem = callPackage ../servers/web-apps/engelsystem { php = php81; };
 
-  envoy = pin-to-gcc12-if-gcc13 (callPackage ../servers/http/envoy {
+  envoy = callPackage ../servers/http/envoy {
     go = go_1_20;
     jdk = openjdk11_headless;
     gn = gn1924;
-  });
+  };
 
   ergochat = callPackage ../servers/irc/ergochat { };
 
@@ -36522,7 +36522,7 @@ with pkgs;
 
   zerobin = callPackage ../applications/networking/zerobin { };
 
-  zeroc-ice = disable-warnings-if-gcc13 (callPackage ../development/libraries/zeroc-ice { });
+  zeroc-ice = callPackage ../development/libraries/zeroc-ice { };
 
   zeroc-ice-cpp11 = zeroc-ice.override { cpp11 = true; };
 
