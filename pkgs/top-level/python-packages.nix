@@ -13166,6 +13166,8 @@ self: super: with self; {
 
   safety = callPackage ../development/python-modules/safety { };
 
+  safety-schemas = callPackage ../development/python-modules/safety-schemas { };
+
   sagemaker = callPackage ../development/python-modules/sagemaker { };
 
   salmon-mail = callPackage ../development/python-modules/salmon-mail { };
@@ -14972,7 +14974,9 @@ self: super: with self; {
 
   treq = callPackage ../development/python-modules/treq { };
 
-  trezor-agent = callPackage ../development/python-modules/trezor-agent { };
+  trezor-agent = callPackage ../development/python-modules/trezor-agent {
+    pinentry = pkgs.pinentry-curses;
+  };
 
   trezor = callPackage ../development/python-modules/trezor { };
 
