@@ -18338,35 +18338,28 @@ with pkgs;
 
   bazel = bazel_6;
 
-  bazel_4 = callPackage ../development/tools/build-managers/bazel/bazel_4 {
-    inherit (darwin) cctools;
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation CoreServices Foundation;
-    buildJdk = jdk11_headless;
-    buildJdkName = "java11";
-    runJdk = jdk11_headless;
-    stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else gcc10StdenvCompat;
-    bazel_self = bazel_4;
-  };
-
-  bazel_5 = pin-to-gcc12-if-gcc13 (callPackage ../development/tools/build-managers/bazel/bazel_5 {
+  bazel_5 = callPackage ../development/tools/build-managers/bazel/bazel_5 {
     inherit (darwin) cctools sigtool;
     inherit (darwin.apple_sdk.frameworks) CoreFoundation CoreServices Foundation;
     buildJdk = jdk11_headless;
     runJdk = jdk11_headless;
-    stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
+    stdenv = if stdenv.cc.isClang then llvmPackages.stdenv
+      else if stdenv.cc.isGNU then gcc12Stdenv
+      else stdenv;
     bazel_self = bazel_5;
-  });
+  };
 
-  bazel_6 = pin-to-gcc12-if-gcc13 (darwin.apple_sdk_11_0.callPackage ../development/tools/build-managers/bazel/bazel_6 {
+  bazel_6 = darwin.apple_sdk_11_0.callPackage ../development/tools/build-managers/bazel/bazel_6 {
     inherit (darwin) cctools;
     inherit (darwin.apple_sdk_11_0.frameworks) CoreFoundation CoreServices Foundation;
     buildJdk = jdk11_headless;
     runJdk = jdk11_headless;
-    stdenv = if stdenv.isDarwin then
-      darwin.apple_sdk_11_0.stdenv else
-      if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
+    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv
+      else if stdenv.cc.isClang then llvmPackages.stdenv
+      else if stdenv.cc.isGNU then gcc12Stdenv
+      else stdenv;
     bazel_self = bazel_6;
-  });
+  };
 
   bazel_7 = darwin.apple_sdk_11_0.callPackage ../development/tools/build-managers/bazel/bazel_7 {
     inherit (darwin) cctools sigtool;
@@ -26659,7 +26652,9 @@ with pkgs;
 
   azuredatastudio = callPackage ../applications/misc/azuredatastudio { };
 
-  miniflux = callPackage ../servers/miniflux { };
+  miniflux = callPackage ../servers/miniflux {
+    buildGoModule = buildGo122Module;
+  };
 
   mir = callPackage ../servers/mir { };
 
@@ -26923,8 +26918,6 @@ with pkgs;
   redli = callPackage ../tools/networking/redli { };
 
   redstore = callPackage ../servers/http/redstore { };
-
-  reproxy = callPackage ../servers/reproxy { };
 
   repro-get = callPackage ../tools/package-management/repro-get { };
 
@@ -37709,7 +37702,9 @@ with pkgs;
 
   pacvim = callPackage ../games/pacvim { };
 
-  papermc = callPackage ../games/papermc { };
+  papermcServers = callPackages ../games/papermc { };
+
+  papermc = papermcServers.papermc;
 
   path-of-building = qt6Packages.callPackage ../games/path-of-building {};
 
