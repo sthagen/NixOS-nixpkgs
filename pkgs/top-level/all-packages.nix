@@ -278,8 +278,6 @@ with pkgs;
 
   asitop = pkgs.python3Packages.callPackage ../os-specific/darwin/asitop { };
 
-  asn = callPackage ../applications/networking/asn { };
-
   asnmap = callPackage ../tools/security/asnmap { };
 
   astrolog = callPackage ../applications/science/astronomy/astrolog { };
@@ -31068,8 +31066,6 @@ with pkgs;
 
   gspeech = callPackage ../applications/audio/gspeech { };
 
-  gtkcord4 = callPackage ../applications/audio/gtkcord4 { };
-
   haruna = libsForQt5.callPackage ../applications/video/haruna { };
 
   hdrmerge = libsForQt5.callPackage ../applications/graphics/hdrmerge { };
@@ -36214,8 +36210,6 @@ with pkgs;
   xdg-desktop-portal-wlr = callPackage ../development/libraries/xdg-desktop-portal-wlr { };
 
   xdg-desktop-portal-xapp = callPackage ../development/libraries/xdg-desktop-portal-xapp { };
-
-  xdg-user-dirs = callPackage ../tools/X11/xdg-user-dirs { };
 
   xdg-utils = callPackage ../tools/X11/xdg-utils {};
 
