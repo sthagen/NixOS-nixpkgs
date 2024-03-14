@@ -3452,6 +3452,12 @@
     githubId = 1118859;
     name = "Scott Worley";
   };
+  ChlorideCull = {
+    email = "nixrelated@chcl.se";
+    github = "ChlorideCull";
+    githubId = 4977063;
+    name = "Sebastian Johansson";
+  };
   choochootrain = {
     email = "hurshal@imap.cc";
     github = "choochootrain";
@@ -6261,16 +6267,6 @@
     githubId = 541748;
     name = "Felipe Espinoza";
   };
-  federicoschonborn = {
-    name = "Federico Damián Schonborn";
-    email = "fdschonborn@gmail.com";
-    github = "FedericoSchonborn";
-    githubId = 62166915;
-    matrix = "@FedericoDSchonborn:matrix.org";
-    keys = [
-      { fingerprint = "517A 8A6A 09CA A11C 9667  CEE3 193F 70F1 5C9A B0A0"; }
-    ];
-  };
   fedx-sudo = {
     email = "fedx-sudo@pm.me";
     github = "FedX-sudo";
@@ -7053,6 +7049,12 @@
     matrix = "@getpsyched:matrix.org";
     github = "getpsyched";
     githubId = 43472218;
+  };
+  getreu = {
+    email = "getreu@web.de";
+    github = "getreu";
+    githubId = 579082;
+    name = "Jens Getreu";
   };
   gfrascadorio = {
     email = "gfrascadorio@tutanota.com";
@@ -10022,14 +10024,6 @@
     github = "keldu";
     githubId = 15373888;
     name = "Claudius Holeksa";
-  };
-  ken-matsui = {
-    github = "ken-matsui";
-    githubId = 26405363;
-    name = "Ken Matsui";
-    keys = [{
-      fingerprint = "3611 8CD3 6DE8 3334 B44A  DDE4 1033 60B3 298E E433";
-    }];
   };
   kennyballou = {
     email = "kb@devnulllabs.io";
