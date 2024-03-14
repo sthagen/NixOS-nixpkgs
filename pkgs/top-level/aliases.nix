@@ -451,6 +451,7 @@ mapAliases ({
   grub2_full = grub2; # Added 2022-11-18
   grub = throw "grub1 was removed after not being maintained upstream for a decade. Please switch to another bootloader"; # Added 2023-04-11
   gtkcord4 = dissent; # Added 2024-03-10
+  gtkpod = throw "'gtkpod' was removed due to one of its dependencies, 'anjuta' being unmaintained"; # Added 2024-01-16
   guile-disarchive = disarchive; # Added 2023-10-27
   guile-lint = throw "'guile-lint' has been removed, please use 'guild lint' instead"; # Added 2023-10-16
 
@@ -520,6 +521,8 @@ mapAliases ({
 
   ### K ###
 
+  k3s_1_24 = throw "'k3s_1_24' has been removed from nixpkgs as it has reached end of life"; # Added 2024-03-14
+  k3s_1_25 = throw "'k3s_1_25' has been removed from nixpkgs as it has reached end of life"; # Added 2024-03-14
   # k3d was a 3d editing software k-3d - "k3d has been removed because it was broken and has seen no release since 2016" Added 2022-01-04
   # now kube3d/k3d will take it's place
   kube3d = k3d; # Added 2022-0705
@@ -559,6 +562,7 @@ mapAliases ({
   libayatana-appindicator-gtk3 = libayatana-appindicator; # Added 2022-10-18
   libbencodetools = bencodetools; # Added 2022-07-30
   libbpf_1 = libbpf; # Added 2022-12-06
+  libbson = mongoc; # Added 2024-03-11
   libcap_pam = throw "'libcap_pam' has been replaced with 'libcap'"; # Converted to throw 2023-09-10
   libclc = llvmPackages_latest.libclc; # Added 2023-10-28
   libgme = game-music-emu; # Added 2022-07-20

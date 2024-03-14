@@ -889,7 +889,7 @@ with pkgs;
 
   tarsum = callPackage ../build-support/docker/tarsum.nix { };
 
-  snapTools = callPackage ../build-support/snap { };
+  snapTools = throw "snapTools was removed because makeSnap produced broken snaps and it was the only function in snapTools. See https://github.com/NixOS/nixpkgs/issues/100618 for more details."; # 2024-03-04;
 
   nix-prefetch-docker = callPackage ../build-support/docker/nix-prefetch-docker.nix { };
 
@@ -22176,8 +22176,6 @@ with pkgs;
 
   libbs2b = callPackage ../development/libraries/audio/libbs2b { };
 
-  libbson = callPackage ../development/libraries/libbson { };
-
   libbytesize = callPackage ../development/libraries/libbytesize { };
 
   libcaca = callPackage ../development/libraries/libcaca { };
@@ -31830,8 +31828,6 @@ with pkgs;
 
   gscreenshot = callPackage ../applications/graphics/gscreenshot { };
 
-  gtkpod = callPackage ../applications/audio/gtkpod { };
-
   guacamole-client = callPackage ../servers/guacamole-client { };
 
   guacamole-server = callPackage ../servers/guacamole-server { };
@@ -34391,8 +34387,6 @@ with pkgs;
 
   eiskaltdcpp = libsForQt5.callPackage ../applications/networking/p2p/eiskaltdcpp { };
 
-  qdirstat = libsForQt5.callPackage ../applications/misc/qdirstat { };
-
   qemu = callPackage ../applications/virtualization/qemu {
     inherit (darwin.apple_sdk.frameworks) CoreServices Cocoa Hypervisor vmnet;
     inherit (darwin.stubs) rez setfile;
@@ -34987,8 +34981,6 @@ with pkgs;
   routedns = callPackage ../tools/networking/routedns { };
 
   skrooge = libsForQt5.callPackage ../applications/office/skrooge { };
-
-  smartgithg = callPackage ../applications/version-management/smartgithg { };
 
   smartdeblur = libsForQt5.callPackage ../applications/graphics/smartdeblur { };
 
@@ -36003,7 +35995,7 @@ with pkgs;
   wgnord = callPackage ../applications/networking/wgnord/default.nix { };
 
   whalebird = callPackage ../applications/misc/whalebird {
-    electron = electron_21;
+    electron = electron_27;
   };
 
   windowlab = callPackage ../applications/window-managers/windowlab { };
