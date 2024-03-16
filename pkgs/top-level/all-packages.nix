@@ -1085,6 +1085,8 @@ with pkgs;
 
   ruler = callPackage ../tools/security/ruler { };
 
+  magika = with python3Packages; toPythonApplication magika;
+
   mblock-mlink = callPackage ../development/tools/mblock-mlink { };
 
   mod = callPackage ../development/tools/mod { };
@@ -3552,8 +3554,6 @@ with pkgs;
   bkyml = callPackage ../tools/misc/bkyml { };
 
   blackmagic-desktop-video = callPackage ../tools/video/blackmagic-desktop-video { };
-
-  blockbench-electron = callPackage ../applications/graphics/blockbench-electron { };
 
   blocksat-cli = with python3Packages; toPythonApplication blocksat-cli;
 
