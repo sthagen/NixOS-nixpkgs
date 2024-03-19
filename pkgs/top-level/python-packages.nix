@@ -2355,6 +2355,8 @@ self: super: with self; {
 
   compressai = callPackage ../development/python-modules/compressai { };
 
+  compressed-rtf = callPackage ../development/python-modules/compressed-rtf { };
+
   concurrent-log-handler = callPackage ../development/python-modules/concurrent-log-handler { };
 
   conda = callPackage ../development/python-modules/conda { };
@@ -3602,6 +3604,8 @@ self: super: with self; {
 
   ebaysdk = callPackage ../development/python-modules/ebaysdk { };
 
+  ebcdic = callPackage ../development/python-modules/ebcdic { };
+
   ebooklib = callPackage ../development/python-modules/ebooklib { };
 
   ec2instanceconnectcli = callPackage ../tools/virtualization/ec2instanceconnectcli { };
@@ -3634,6 +3638,8 @@ self: super: with self; {
   editdistance = callPackage ../development/python-modules/editdistance { };
 
   editdistance-s = callPackage ../development/python-modules/editdistance-s { };
+
+  editdistpy = callPackage ../development/python-modules/editdistpy { };
 
   editorconfig = callPackage ../development/python-modules/editorconfig { };
 
@@ -3901,6 +3907,8 @@ self: super: with self; {
   exrex = callPackage ../development/python-modules/exrex { };
 
   exitcode = callPackage ../development/python-modules/exitcode { };
+
+  extract-msg = callPackage ../development/python-modules/extract-msg { };
 
   extractcode = callPackage ../development/python-modules/extractcode { };
 
@@ -6253,6 +6261,8 @@ self: super: with self; {
     inherit (pkgs) keyutils;
   };
 
+  khanaa = callPackage ../development/python-modules/khanaa {};
+
   kicad = toPythonModule (pkgs.kicad.override {
     python3 = python;
   }).src;
@@ -6781,6 +6791,8 @@ self: super: with self; {
 
   lmtpd = callPackage ../development/python-modules/lmtpd { };
 
+  lnkparse3 = callPackage ../development/python-modules/lnkparse3 { };
+
   loca = callPackage ../development/python-modules/loca { };
 
   localimport = callPackage ../development/python-modules/localimport { };
@@ -6929,6 +6941,8 @@ self: super: with self; {
 
   mailmanclient = callPackage ../development/python-modules/mailmanclient { };
 
+  rtfde = callPackage ../development/python-modules/rtfde { };
+
   rtfunicode = callPackage ../development/python-modules/rtfunicode { };
 
   rtmixer = callPackage ../development/python-modules/rtmixer { };
@@ -6945,7 +6959,7 @@ self: super: with self; {
 
   mako = callPackage ../development/python-modules/mako { };
 
-  malduck= callPackage ../development/python-modules/malduck { };
+  malduck = callPackage ../development/python-modules/malduck { };
 
   managesieve = callPackage ../development/python-modules/managesieve { };
 
@@ -12773,6 +12787,8 @@ self: super: with self; {
   recurring-ical-events = callPackage ../development/python-modules/recurring-ical-events { };
 
   recursive-pth-loader = toPythonModule (callPackage ../development/python-modules/recursive-pth-loader { });
+
+  red-black-tree-mod = callPackage ../development/python-modules/red-black-tree-mod { };
 
   redbaron = callPackage ../development/python-modules/redbaron { };
 
