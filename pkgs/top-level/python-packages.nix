@@ -5118,10 +5118,8 @@ self: super: with self; {
 
   guppy3 = callPackage ../development/python-modules/guppy3 { };
 
-  gurobipy = if stdenv.hostPlatform.system == "x86_64-darwin" then
-    callPackage ../development/python-modules/gurobipy/darwin.nix {
-      inherit (pkgs.darwin) cctools insert_dylib;
-    }
+  gurobipy = if stdenv.hostPlatform.isDarwin then
+    callPackage ../development/python-modules/gurobipy/darwin.nix { }
   else if stdenv.hostPlatform.system == "x86_64-linux" then
     callPackage ../development/python-modules/gurobipy/linux.nix { }
   else
@@ -7000,6 +6998,8 @@ self: super: with self; {
   mapbox-earcut = callPackage ../development/python-modules/mapbox-earcut { };
 
   mariadb = callPackage ../development/python-modules/mariadb { };
+
+  marimo = callPackage ../development/python-modules/marimo { };
 
   marisa = callPackage ../development/python-modules/marisa {
     inherit (pkgs) marisa;

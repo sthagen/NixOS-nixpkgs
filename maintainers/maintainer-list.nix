@@ -761,6 +761,11 @@
     githubId = 786394;
     name = "Alexander Krupenkin ";
   };
+  akshayka = {
+    github = "akshayka";
+    githubId = 1994308;
+    name = "Akshay Agrawal";
+  };
   akshgpt7 = {
     email = "akshgpt7@gmail.com";
     github = "akshgpt7";
@@ -2936,6 +2941,12 @@
     githubId = 37375448;
     name = "Buildit";
   };
+  bwc9876 = {
+    email = "bwc9876@gmail.com";
+    github = "Bwc9876";
+    githubId = 25644444;
+    name = "Ben C";
+  };
   bwlang = {
     email = "brad@langhorst.com";
     github = "bwlang";
@@ -3428,7 +3439,7 @@
     name = "Philipp Dargel";
   };
   chito = {
-    email = "iamchito@protonmail.com";
+    email = "chitochi@proton.me";
     github = "chitochi";
     githubId = 153365419;
     matrix = "@chito:nichijou.dev";
@@ -5004,6 +5015,12 @@
     github = "dlip";
     githubId = 283316;
     name = "Dane Lipscombe";
+  };
+  dmadisetti = {
+    email = "nix@madisetti.me";
+    github = "dmadisetti";
+    githubId = 2689338;
+    name = "Dylan Madisetti";
   };
   dmalikov = {
     email = "malikov.d.y@gmail.com";
@@ -18391,6 +18408,11 @@
     github = "spinus";
     githubId = 950799;
     name = "Tomasz Czyż";
+  };
+  spoonbaker = {
+    github = "Spoonbaker";
+    githubId = 47164123;
+    name = "Spoonbaker";
   };
   sprock = {
     email = "rmason@mun.ca";

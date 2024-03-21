@@ -1861,8 +1861,6 @@ with pkgs;
 
   gofu = callPackage ../applications/misc/gofu { };
 
-  godns = callPackage ../tools/networking/godns { };
-
   godspeed = callPackage ../tools/networking/godspeed { };
 
   goodhosts = callPackage ../tools/networking/goodhosts { };
@@ -6119,8 +6117,6 @@ with pkgs;
   optar = callPackage ../tools/graphics/optar { };
 
 
-  obinskit = callPackage ../applications/misc/obinskit { };
-
   ockam = callPackage ../tools/networking/ockam {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -7723,8 +7719,6 @@ with pkgs;
   sonota = callPackage ../tools/misc/sonota { };
 
   sonobuoy = callPackage ../applications/networking/cluster/sonobuoy { };
-
-  soupault = callPackage ../tools/typesetting/soupault { };
 
   stratisd = callPackage ../tools/filesystems/stratisd { };
 
@@ -10689,6 +10683,8 @@ with pkgs;
     mangohud32 = pkgsi686Linux.mangohud;
     inherit (python3Packages) mako;
   };
+
+  marimo = with python3Packages; toPythonApplication marimo;
 
   marktext = callPackage ../applications/misc/marktext { };
 
@@ -26953,8 +26949,6 @@ with pkgs;
 
   sipwitch = callPackage ../servers/sip/sipwitch { };
 
-  slimserver = callPackage ../servers/slimserver { };
-
   smcroute = callPackage ../servers/smcroute { };
 
   snipe-it = callPackage ../by-name/sn/snipe-it/package.nix {
@@ -34585,10 +34579,6 @@ with pkgs;
 
   rofi-systemd = callPackage ../tools/system/rofi-systemd { };
 
-  rofimoji = callPackage ../applications/misc/rofimoji {
-    inherit (python3Packages) buildPythonApplication configargparse;
-  };
-
   rootlesskit = callPackage ../tools/virtualization/rootlesskit { };
 
   rsclock = callPackage ../applications/misc/rsclock { };
@@ -39147,8 +39137,6 @@ with pkgs;
 
   jflap = callPackage ../applications/science/engineering/jflap { };
 
-  strictdoc = python3.pkgs.callPackage ../applications/science/engineering/strictdoc { };
-
   ### SCIENCE / ELECTRONICS
 
   adms = callPackage ../applications/science/electronics/adms { };
@@ -40271,10 +40259,6 @@ with pkgs;
     pcre = pcre-cpp;
     jre = openjdk19; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   });
-
-  owmods-cli = callPackage ../applications/misc/owmods-cli {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
 
   r128gain = callPackage ../applications/audio/r128gain { };
 
