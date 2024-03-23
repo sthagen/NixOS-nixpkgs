@@ -6252,8 +6252,6 @@ with pkgs;
 
   reg = callPackage ../tools/virtualization/reg { };
 
-  retool = callPackage ../applications/misc/retool { };
-
   rex = callPackage ../tools/system/rex { };
 
   river = callPackage ../applications/window-managers/river { };
@@ -15544,7 +15542,7 @@ with pkgs;
     ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
 
-  inherit (coqPackages_8_17) compcert;
+  inherit (coqPackages) compcert;
 
   computecpp-unwrapped = callPackage ../development/compilers/computecpp { };
   computecpp = wrapCCWith rec {
@@ -33833,12 +33831,7 @@ with pkgs;
 
   opentimestamps-client = python3Packages.callPackage ../tools/misc/opentimestamps-client { };
 
-  opentoonz = let
-    opentoonz-libtiff = callPackage ../applications/graphics/opentoonz/libtiff.nix { };
-  in qt5.callPackage ../applications/graphics/opentoonz {
-    libtiff = opentoonz-libtiff;
-    opencv = opencv.override { libtiff = opentoonz-libtiff; };
-  };
+  opentoonz = libsForQt5.callPackage ../applications/graphics/opentoonz { };
 
   opentabletdriver = callPackage ../tools/X11/opentabletdriver { };
 
