@@ -17175,8 +17175,6 @@ with pkgs;
   vcard = python3Packages.toPythonApplication python3Packages.vcard;
 
   inherit (callPackage ../development/compilers/vala { })
-    vala_0_48
-    vala_0_54
     vala_0_56
     vala;
 
@@ -26856,6 +26854,8 @@ with pkgs;
   sambaFull = samba4Full;
 
   sampler = callPackage ../applications/misc/sampler { };
+
+  scalene = with python3Packages; toPythonApplication scalene;
 
   scalr-cli = callPackage ../tools/admin/scalr-cli { };
 
