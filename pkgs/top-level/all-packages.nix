@@ -816,7 +816,7 @@ with pkgs;
 
   enum4linux = callPackage ../tools/security/enum4linux { };
 
-  enum4linux-ng = python3Packages.callPackage ../tools/security/enum4linux-ng { };
+  enum4linux-ng = callPackage ../tools/security/enum4linux-ng { };
 
   enumerepo = callPackage ../tools/security/enumerepo {};
 
@@ -7835,7 +7835,10 @@ with pkgs;
 
   choose = callPackage ../tools/text/choose { };
 
-  d2 = callPackage ../tools/text/d2 { };
+  d2 = callPackage ../tools/text/d2 {
+    # Failed tests
+    buildGoModule = buildGo121Module;
+  };
 
   ddev = callPackage ../applications/virtualization/ddev { };
 
@@ -24134,18 +24137,28 @@ with pkgs;
 
   protobuf = protobuf_24;
 
-  protobuf_25 = callPackage ../development/libraries/protobuf/25.nix { };
-  protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
-  protobuf_23 = callPackage ../development/libraries/protobuf/23.nix {
-    abseil-cpp = abseil-cpp_202301;
-  };
-  protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
-    abseil-cpp = abseil-cpp_202103;
-  };
-
-  protobuf3_20 = callPackage ../development/libraries/protobuf/3.20.nix {
-    abseil-cpp = abseil-cpp_202103;
-  };
+  inherit
+    ({
+      protobuf_26 = callPackage ../development/libraries/protobuf/26.nix { };
+      protobuf_25 = callPackage ../development/libraries/protobuf/25.nix { };
+      protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
+      protobuf_23 = callPackage ../development/libraries/protobuf/23.nix {
+        abseil-cpp = abseil-cpp_202301;
+      };
+      protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
+        abseil-cpp = abseil-cpp_202103;
+      };
+      protobuf3_20 = callPackage ../development/libraries/protobuf/3.20.nix {
+        abseil-cpp = abseil-cpp_202103;
+      };
+    })
+    protobuf_26
+    protobuf_25
+    protobuf_24
+    protobuf_23
+    protobuf_21
+    protobuf3_20
+    ;
 
   protobufc = callPackage ../development/libraries/protobufc { };
 
@@ -35770,7 +35783,7 @@ with pkgs;
   weave-gitops = callPackage ../applications/networking/cluster/weave-gitops { };
 
   wayfire = callPackage ../applications/window-managers/wayfire/default.nix {
-    wlroots = wlroots_0_16;
+    wlroots = wlroots_0_17;
   };
   wf-config = callPackage ../applications/window-managers/wayfire/wf-config.nix { };
 
