@@ -8775,8 +8775,6 @@ with pkgs;
 
   halftone = callPackage ../applications/graphics/halftone { };
 
-  halloy = callPackage ../applications/networking/irc/halloy { };
-
   harminv = callPackage ../development/libraries/science/chemistry/harminv { };
 
   igrep = callPackage ../tools/text/igrep {
@@ -29846,8 +29844,6 @@ with pkgs;
 
   anilibria-winmaclinux = libsForQt5.callPackage ../applications/video/anilibria-winmaclinux { };
 
-  masterpdfeditor = libsForQt5.callPackage ../applications/misc/masterpdfeditor { };
-
   masterpdfeditor4 = libsForQt5.callPackage ../applications/misc/masterpdfeditor4 { };
 
   master_me = callPackage ../applications/audio/master_me {
@@ -34165,8 +34161,6 @@ with pkgs;
   ponymix = callPackage ../applications/audio/ponymix { };
 
   pop-launcher = callPackage ../applications/misc/pop-launcher { };
-
-  pot = callPackage ../applications/misc/pot { };
 
   pothos = libsForQt5.callPackage ../applications/radio/pothos { };
 
