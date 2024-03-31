@@ -2738,6 +2738,7 @@ with pkgs;
     # Dependency twain requires an older version of http2, and we cannot mix
     # versions of transitive dependencies.
     http2 = final.http2_3_0_3;
+    warp = final.warp_3_3_30;
   });
 
   mame = libsForQt5.callPackage ../applications/emulators/mame { };
@@ -11373,8 +11374,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  onthespot = libsForQt5.callPackage ../applications/misc/onthespot { };
-
   opencorsairlink = callPackage ../tools/misc/opencorsairlink { };
 
   openfpgaloader = callPackage ../development/embedded/fpga/openfpgaloader { };
@@ -16877,7 +16876,6 @@ with pkgs;
   cargo-diet = callPackage ../development/tools/rust/cargo-diet { };
   cargo-dist = callPackage ../development/tools/rust/cargo-dist { };
   cargo-espmonitor = callPackage ../development/tools/rust/cargo-espmonitor { };
-  cargo-expand = callPackage ../development/tools/rust/cargo-expand { };
   cargo-hakari = callPackage ../development/tools/rust/cargo-hakari { };
   cargo-feature = callPackage ../development/tools/rust/cargo-feature { };
   cargo-fund = callPackage ../development/tools/rust/cargo-fund {
@@ -25599,17 +25597,17 @@ with pkgs;
   };
 
   # Steel Bank Common Lisp
-  sbcl_2_4_1 = wrapLisp {
-    pkg = callPackage ../development/compilers/sbcl { version = "2.4.1"; };
-    faslExt = "fasl";
-    flags = [ "--dynamic-space-size" "3000" ];
-  };
   sbcl_2_4_2 = wrapLisp {
     pkg = callPackage ../development/compilers/sbcl { version = "2.4.2"; };
     faslExt = "fasl";
     flags = [ "--dynamic-space-size" "3000" ];
   };
-  sbcl = sbcl_2_4_2;
+  sbcl_2_4_3 = wrapLisp {
+    pkg = callPackage ../development/compilers/sbcl { version = "2.4.3"; };
+    faslExt = "fasl";
+    flags = [ "--dynamic-space-size" "3000" ];
+  };
+  sbcl = sbcl_2_4_3;
 
   sbclPackages = recurseIntoAttrs sbcl.pkgs;
 
@@ -30538,7 +30536,7 @@ with pkgs;
   daktilo = callPackage ../tools/misc/daktilo { };
 
   darcs = haskell.lib.compose.disableCabalFlag "library"
-    (haskell.lib.compose.justStaticExecutables haskell.packages.ghc94.darcs);
+    (haskell.lib.compose.justStaticExecutables haskellPackages.darcs);
 
   darkman = callPackage ../applications/misc/darkman { };
 
@@ -32059,7 +32057,6 @@ with pkgs;
   super-productivity = callPackage ../applications/office/super-productivity { };
 
   inherit (callPackages ../development/libraries/wlroots {})
-    wlroots_0_15
     wlroots_0_16
     wlroots_0_17
     wlroots;
@@ -32089,10 +32086,6 @@ with pkgs;
   waylevel = callPackage ../tools/misc/waylevel { };
 
   wbg = callPackage ../applications/misc/wbg { };
-
-  hikari = callPackage ../applications/window-managers/hikari {
-    wlroots = wlroots_0_15;
-  };
 
   i3 = callPackage ../applications/window-managers/i3 {
     xcb-util-cursor = if stdenv.isDarwin then xcb-util-cursor-HEAD else xcb-util-cursor;
@@ -37180,9 +37173,7 @@ with pkgs;
 
   hase = callPackage ../games/hase { };
 
-  hedgewars = libsForQt5.callPackage ../games/hedgewars {
-    inherit (haskellPackages) ghcWithPackages;
-  };
+  hedgewars = libsForQt5.callPackage ../games/hedgewars { };
 
   hikounomizu = callPackage ../games/hikounomizu { };
 
@@ -41328,8 +41319,6 @@ with pkgs;
   xsos = callPackage ../os-specific/linux/xsos { };
 
   xmcp = callPackage ../tools/X11/xmcp { };
-
-  yesplaymusic = callPackage ../applications/audio/yesplaymusic { };
 
   ymuse = callPackage ../applications/audio/ymuse { };
 
