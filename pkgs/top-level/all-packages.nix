@@ -3831,8 +3831,6 @@ with pkgs;
 
   github-copilot-intellij-agent = callPackage ../development/tools/github-copilot-intellij-agent { };
 
-  github-desktop = callPackage ../applications/version-management/github-desktop { };
-
   github-to-sqlite = with python3Packages; toPythonApplication github-to-sqlite;
 
   gistyc = with python3Packages; toPythonApplication gistyc;
@@ -5179,7 +5177,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_28;
+    electron = electron_29;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -6556,8 +6554,6 @@ with pkgs;
   };
 
   beanstalkd = callPackage ../servers/beanstalkd { };
-
-  bee = callPackage ../applications/networking/bee/bee.nix { };
 
   beetsPackages = lib.recurseIntoAttrs (callPackage ../tools/audio/beets { });
   inherit (beetsPackages) beets beets-unstable;
@@ -12518,8 +12514,6 @@ with pkgs;
 
   redir = callPackage ../tools/networking/redir { };
 
-  redmine = callPackage ../applications/version-management/redmine { };
-
   redpanda-client = callPackage ../servers/redpanda { };
 
   redpanda-server = redpanda-client.server;
@@ -13655,9 +13649,7 @@ with pkgs;
 
   teip = callPackage ../tools/text/teip { };
 
-  telegraf = callPackage ../servers/monitoring/telegraf {
-    buildGoModule = buildGo122Module;
-  };
+  telegraf = callPackage ../servers/monitoring/telegraf { };
 
   teleport_12 = callPackage ../servers/teleport/12 {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
@@ -18581,8 +18573,6 @@ with pkgs;
 
   cloudfoundry-cli = callPackage ../applications/networking/cluster/cloudfoundry-cli { };
 
-  clpm = callPackage ../development/tools/clpm { };
-
   coan = callPackage ../development/tools/analysis/coan { };
 
   coder = callPackage ../development/tools/coder { };
@@ -23144,8 +23134,6 @@ with pkgs;
   };
 
   libtorrent-rasterbar = libtorrent-rasterbar-2_0_x;
-
-  libtoxcore = callPackage ../development/libraries/libtoxcore { };
 
   libtpms = callPackage ../tools/security/libtpms { };
 
@@ -29098,8 +29086,6 @@ with pkgs;
   luna-icons = callPackage ../data/icons/luna-icons {
     inherit (plasma5Packages) breeze-icons;
   };
-
-  lxgw-neoxihei = callPackage ../data/fonts/lxgw-neoxihei { };
 
   lxgw-wenkai = callPackage ../data/fonts/lxgw-wenkai { };
 
@@ -35265,8 +35251,6 @@ with pkgs;
 
   toipe = callPackage ../applications/misc/toipe { };
 
-  toxic = callPackage ../applications/networking/instant-messengers/toxic { };
-
   toxiproxy = callPackage ../development/tools/toxiproxy { };
 
   tqsl = callPackage ../applications/radio/tqsl { };
@@ -36233,8 +36217,6 @@ with pkgs;
   ytcast = callPackage ../tools/misc/ytcast { };
 
   ytcc = callPackage ../tools/networking/ytcc { };
-
-  ytmdesktop = callPackage ../applications/audio/ytmdesktop { };
 
   ytmdl = callPackage ../tools/misc/ytmdl { };
 
