@@ -404,6 +404,13 @@
     '';
   };
 
+  competitest-nvim = super.competitest-nvim.overrideAttrs {
+    dependencies = [ self.nui-nvim ];
+
+    doInstallCheck = true;
+    nvimRequireCheck = "competitest";
+  };
+
   compe-tabnine = super.compe-tabnine.overrideAttrs {
     buildInputs = [ tabnine ];
 
@@ -955,7 +962,7 @@
   };
 
   neotest = super.neotest.overrideAttrs {
-    dependencies = with self; [ plenary-nvim ];
+    dependencies = with self; [ nvim-nio plenary-nvim ];
   };
 
   neotest-gradle = super.neotest-gradle.overrideAttrs {
