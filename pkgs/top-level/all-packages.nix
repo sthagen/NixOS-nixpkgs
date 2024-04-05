@@ -2962,8 +2962,6 @@ with pkgs;
 
   spaceFM = callPackage ../applications/file-managers/spacefm { };
 
-  tuifimanager = callPackage ../applications/file-managers/tuifimanager { };
-
   vifm = callPackage ../applications/file-managers/vifm { };
 
   vifm-full = vifm.override {
@@ -7552,6 +7550,9 @@ with pkgs;
   dt-schema = callPackage ../development/tools/dt-schema { };
 
   dub = callPackage ../development/tools/build-managers/dub { };
+
+  inherit (import ../build-support/dlang/dub-support.nix { inherit callPackage; })
+    buildDubPackage dub-to-nix;
 
   duc = callPackage ../tools/misc/duc { };
 
@@ -18920,8 +18921,6 @@ with pkgs;
 
   funzzy = callPackage ../development/tools/misc/funzzy { };
 
-  fzf-make = callPackage ../development/tools/misc/fzf-make { };
-
   gede = libsForQt5.callPackage ../development/tools/misc/gede { };
 
   gdbgui = python3Packages.callPackage ../development/tools/misc/gdbgui { };
@@ -27619,8 +27618,6 @@ with pkgs;
   linux_6_1_hardened = linuxKernel.kernels.linux_6_1_hardened;
   linuxPackages_6_6_hardened = linuxKernel.packages.linux_6_6_hardened;
   linux_6_6_hardened = linuxKernel.kernels.linux_6_6_hardened;
-  linuxPackages_6_7_hardened = linuxKernel.packages.linux_6_7_hardened;
-  linux_6_7_hardened = linuxKernel.kernels.linux_6_7_hardened;
 
   # GNU Linux-libre kernels
   linuxPackages-libre = linuxKernel.packages.linux_libre;
