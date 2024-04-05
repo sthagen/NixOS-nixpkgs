@@ -1708,8 +1708,6 @@ with pkgs;
 
   arubaotp-seed-extractor = callPackage ../tools/security/arubaotp-seed-extractor { };
 
-  audible-cli = callPackage ../tools/misc/audible-cli { };
-
   auditwheel = with python3Packages; toPythonApplication auditwheel;
 
   amidst = callPackage ../tools/games/minecraft/amidst { };
@@ -1829,6 +1827,12 @@ with pkgs;
   };
 
   github-copilot-cli = callPackage ../tools/misc/github-copilot-cli { };
+
+  # This is to workaround gfal2-python broken against Python 3.12 or later.
+  # TODO: Remove these lines after solving the breakage.
+  gfal2-util = callPackage ../by-name/gf/gfal2-util/package.nix (lib.optionalAttrs python3Packages.gfal2-python.meta.broken {
+    python3Packages = python311Packages;
+  });
 
   gfshare = callPackage ../tools/security/gfshare { };
 
@@ -17091,7 +17095,7 @@ with pkgs;
   swiPrologWithGui = swiProlog.override { withGui = true; };
 
   tbb_2020_3 = callPackage ../development/libraries/tbb/2020_3.nix { };
-  tbb_2021_8 = callPackage ../development/libraries/tbb { };
+  tbb_2021_11 = callPackage ../development/libraries/tbb { };
   # many packages still fail with latest version
   tbb = tbb_2020_3;
 
@@ -19083,7 +19087,7 @@ with pkgs;
 
   ikos = callPackage ../development/tools/analysis/ikos {
     inherit (llvmPackages_14) stdenv clang llvm;
-    tbb = tbb_2021_8;
+    tbb = tbb_2021_11;
   };
 
   img = callPackage ../development/tools/img { };
@@ -19329,7 +19333,7 @@ with pkgs;
 
   mold = callPackage ../development/tools/mold {
     stdenv = if stdenv.isDarwin then overrideLibcxx darwin.apple_sdk_11_0.llvmPackages_16.stdenv else stdenv;
-    tbb = tbb_2021_8;
+    tbb = tbb_2021_11;
   };
 
   mold-wrapped = wrapBintoolsWith {
@@ -20477,7 +20481,7 @@ with pkgs;
   ccrtp = callPackage ../development/libraries/ccrtp { };
 
   cctag = callPackage ../development/libraries/cctag {
-    tbb = tbb_2021_8;
+    tbb = tbb_2021_11;
   };
 
   cctz = callPackage ../development/libraries/cctz {
@@ -31712,8 +31716,6 @@ with pkgs;
     withGUI = true;
     withDoc = true;
   };
-
-  gpscorrelate = callPackage ../applications/misc/gpscorrelate { };
 
   gpsd = callPackage ../servers/gpsd { };
 
