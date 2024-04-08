@@ -4553,6 +4553,7 @@ with pkgs;
   candle = libsForQt5.callPackage ../applications/misc/candle { };
 
   capstone = callPackage ../development/libraries/capstone { };
+  capstone_4 = callPackage ../development/libraries/capstone/4.nix { };
 
   keystone = callPackage ../development/libraries/keystone { };
 
@@ -12248,8 +12249,6 @@ with pkgs;
 
   pwnat = callPackage ../tools/networking/pwnat { };
 
-  pwndbg = callPackage ../development/tools/misc/pwndbg { };
-
   pwninit = callPackage ../development/tools/misc/pwninit {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -19087,7 +19086,7 @@ with pkgs;
   img = callPackage ../development/tools/img { };
 
   include-what-you-use = callPackage ../development/tools/analysis/include-what-you-use {
-    llvmPackages = llvmPackages_17;
+    llvmPackages = llvmPackages_18;
   };
 
   indent = callPackage ../development/tools/misc/indent { };
@@ -32491,7 +32490,7 @@ with pkgs;
 
   krane = callPackage ../applications/networking/cluster/krane { };
 
-  krita = libsForQt5.callPackage ../applications/graphics/krita { };
+  krita = callPackage ../applications/graphics/krita/wrapper.nix { };
 
   ksuperkey = callPackage ../tools/X11/ksuperkey { };
 
