@@ -9183,8 +9183,6 @@ with pkgs;
 
   i2c-tools = callPackage ../os-specific/linux/i2c-tools { };
 
-  i2p = callPackage ../tools/networking/i2p { };
-
   i2pd = callPackage ../tools/networking/i2pd { };
 
   iannix = libsForQt5.callPackage ../applications/audio/iannix { };
@@ -28332,6 +28330,7 @@ with pkgs;
     ubootROCPCRK3399
     ubootSheevaplug
     ubootSopine
+    ubootTuringRK1
     ubootUtilite
     ubootWandboard
     ;
@@ -36453,8 +36452,6 @@ with pkgs;
   stellar-core = callPackage ../applications/blockchains/stellar-core { };
 
   sumokoin = callPackage ../applications/blockchains/sumokoin { };
-
-  solana-cli = callPackage ../applications/blockchains/solana { };
 
   solana-validator = callPackage ../applications/blockchains/solana-validator { };
 
