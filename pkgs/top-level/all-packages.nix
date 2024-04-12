@@ -717,6 +717,8 @@ with pkgs;
 
   inspec = callPackage ../tools/misc/inspec { };
 
+  lshw-gui = lshw.override { withGUI = true; };
+
   kdePackages = callPackage ../kde { };
 
   buildcatrust = with python3.pkgs; toPythonApplication buildcatrust;
@@ -1751,8 +1753,6 @@ with pkgs;
   colorless = callPackage ../tools/misc/colorless { };
 
   configurable-http-proxy = callPackage ../tools/networking/configurable-http-proxy { };
-
-  cope = callPackage ../tools/misc/cope { };
 
   crypto-tracker = callPackage ../tools/misc/crypto-tracker { };
 
@@ -27230,7 +27230,7 @@ with pkgs;
 
   dmraid = callPackage ../os-specific/linux/dmraid { lvm2 = lvm2_dmeventd; };
 
-  drbd = callPackage ../os-specific/linux/drbd { };
+  drbd = callPackage ../os-specific/linux/drbd/utils.nix { };
 
   dropwatch = callPackage ../os-specific/linux/dropwatch { };
 
@@ -29843,7 +29843,7 @@ with pkgs;
   apache-directory-studio = callPackage ../applications/networking/apache-directory-studio { };
 
   apkeep = callPackage ../tools/misc/apkeep {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
   apngasm = callPackage ../applications/graphics/apngasm { };

@@ -312,12 +312,17 @@ in let
       stdenv = overrideCC stdenv buildLlvmTools.clangNoLibcxx;
     };
 
-    libunwind = callPackage ./libunwind {
+    libunwind = callPackage ../common/libunwind {
       inherit llvm_meta;
       stdenv = overrideCC stdenv buildLlvmTools.clangNoLibcxx;
     };
 
-    openmp = callPackage ./openmp {
+    openmp = callPackage ../common/openmp {
+      patches = [
+        ./openmp/fix-find-tool.patch
+        ./openmp/gnu-install-dirs.patch
+        ./openmp/run-lit-directly.patch
+      ];
       inherit llvm_meta targetLlvm;
     };
   });
