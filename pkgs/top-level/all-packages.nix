@@ -18020,13 +18020,6 @@ with pkgs;
       hash = "sha256-JfmxtaWvPAmGvTko7QhurduGdSf7XIOv7xoDz60080U=";
     };
   }));
-  ansible_2_14 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
-    version = "2.14.13";
-    src = oldAttrs.src.override {
-      inherit version;
-      hash = "sha256-ThuzNPDDImq0jFme/knNX+A/JdRVi8BsJ0reK6PiV2o=";
-    };
-  }));
 
   ansible-builder = with python3Packages; toPythonApplication ansible-builder;
 
@@ -23903,9 +23896,10 @@ with pkgs;
   inherit (callPackages ../development/libraries/libressl { })
     libressl_3_6
     libressl_3_7
-    libressl_3_8;
+    libressl_3_8
+    libressl_3_9;
 
-  libressl = libressl_3_8;
+  libressl = libressl_3_9;
 
   boringssl = callPackage ../development/libraries/boringssl { };
 
@@ -26416,13 +26410,6 @@ with pkgs;
 
   mongodb = hiPrio mongodb-6_0;
 
-  mongodb-4_4 = callPackage ../servers/nosql/mongodb/4.4.nix {
-    sasl = cyrus_sasl;
-    boost = boost179.override { enableShared = false; };
-    inherit (darwin) cctools;
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
-  };
-
   mongodb-5_0 = callPackage ../servers/nosql/mongodb/5.0.nix {
     sasl = cyrus_sasl;
     boost = boost179.override { enableShared = false; };
@@ -26915,9 +26902,6 @@ with pkgs;
   axis2 = callPackage ../servers/http/tomcat/axis2 { };
 
   inherit (callPackages ../servers/unifi { })
-    unifiLTS
-    unifi5
-    unifi6
     unifi7
     unifi8;
 
@@ -28145,8 +28129,6 @@ with pkgs;
   smem = callPackage ../os-specific/linux/smem { };
 
   smimesign = callPackage ../os-specific/darwin/smimesign { };
-
-  solo5 = callPackage ../os-specific/solo5 { };
 
   statik = callPackage ../development/tools/statik { };
 
@@ -30386,10 +30368,6 @@ with pkgs;
 
   coriander = callPackage ../applications/video/coriander {
     inherit (gnome2) libgnomeui GConf;
-  };
-
-  corrscope = libsForQt5.callPackage ../applications/video/corrscope {
-    ffmpeg = ffmpeg-full;
   };
 
   cpeditor = libsForQt5.callPackage ../applications/editors/cpeditor { };
@@ -40716,7 +40694,7 @@ with pkgs;
   wmutils-opt = callPackage ../tools/X11/wmutils-opt { };
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress6_3 wordpress6_4;
+    wordpress wordpress6_3 wordpress6_4 wordpress6_5;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;
