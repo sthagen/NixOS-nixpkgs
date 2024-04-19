@@ -10523,6 +10523,12 @@
     githubId = 845652;
     name = "Kier Davis";
   };
+  kiike = {
+    email = "me@enric.me";
+    github = "kiike";
+    githubId = 464625;
+    name = "Enric Morales";
+  };
   kilianar = {
     email = "mail@kilianar.de";
     github = "kilianar";
@@ -16930,6 +16936,13 @@
     github = "rguevara84";
     githubId = 12279531;
     name = "Ricardo Guevara";
+  };
+  rhelmot = {
+    name = "Audrey Dutcher";
+    github = "rhelmot";
+    githubId = 2498805;
+    email = "audrey@rhelmot.io";
+    matrix = "@rhelmot:matrix.org";
   };
   rhendric = {
     name = "Ryan Hendrickson";
