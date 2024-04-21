@@ -2750,12 +2750,6 @@ with pkgs;
     description = mame.meta.description + " (tools only)";
   } (lib.getOutput "tools" mame);
 
-  mednafen = callPackage ../applications/emulators/mednafen { };
-
-  mednafen-server = callPackage ../applications/emulators/mednafen/server.nix { };
-
-  mednaffe = callPackage ../applications/emulators/mednaffe { };
-
   melonDS = libsForQt5.callPackage ../applications/emulators/melonDS { };
 
   mgba = libsForQt5.callPackage ../applications/emulators/mgba { };
@@ -5129,8 +5123,6 @@ with pkgs;
   earthly = callPackage ../development/tools/earthly { };
 
   earlybird = callPackage ../tools/security/earlybird { };
-
-  earlyoom = callPackage ../os-specific/linux/earlyoom { };
 
   easyabc = callPackage ../applications/audio/easyabc { };
 
@@ -24924,6 +24916,8 @@ with pkgs;
   vaapiVdpau = callPackage ../development/libraries/vaapi-vdpau { };
 
   vale = callPackage ../tools/text/vale { };
+
+  valeStyles = recurseIntoAttrs (callPackages ../tools/text/vale/styles.nix { });
 
   valhalla = callPackage ../development/libraries/valhalla {
     boost = boost.override { enablePython = true; python = python3; };
