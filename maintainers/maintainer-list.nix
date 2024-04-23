@@ -1448,6 +1448,12 @@
     githubId = 4194320;
     name = "Anton Schirg";
   };
+  anytimetraveler = {
+    email = "simon@simonscode.org";
+    github = "AnyTimeTraveler";
+    githubId = 19378309;
+    name = "Simon Struck";
+  };
   aorith = {
     email = "aomanu+nixpkgs@gmail.com";
     github = "aorith";
@@ -11656,6 +11662,12 @@
     github = "LongerHV";
     githubId = 46924944;
   };
+  lonyelon = {
+    email = "sergio@lony.xyz";
+    name = "Sergio Miguéns Iglesias";
+    github = "lonyelon";
+    githubId = 18664655;
+  };
   lopsided98 = {
     email = "benwolsieffer@gmail.com";
     github = "lopsided98";
@@ -16508,6 +16520,13 @@
     keys = [{
       fingerprint = "7573 56D7 79BB B888 773E  415E 736C CDF9 EF51 BD97";
     }];
+  };
+  qyriad = {
+    email = "qyriad@qyriad.me";
+    github = "Qyriad";
+    githubId = 1542224;
+    matrix = "@qyriad:katesiria.org";
+    name = "Qyriad";
   };
   r3dl3g = {
     email = "redleg@rothfuss-web.de";
