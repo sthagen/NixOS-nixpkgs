@@ -2700,6 +2700,8 @@ self: super: with self; {
 
   dask-awkward = callPackage ../development/python-modules/dask-awkward { };
 
+  dask-expr = callPackage ../development/python-modules/dask-expr { };
+
   dask-gateway = callPackage ../development/python-modules/dask-gateway { };
 
   dask-gateway-server = callPackage ../development/python-modules/dask-gateway-server { };
@@ -8531,6 +8533,8 @@ self: super: with self; {
   nameko = callPackage ../development/python-modules/nameko { };
 
   nampa = callPackage ../development/python-modules/nampa { };
+
+  nanobind = callPackage ../development/python-modules/nanobind { };
 
   nanoid = callPackage ../development/python-modules/nanoid { };
 
