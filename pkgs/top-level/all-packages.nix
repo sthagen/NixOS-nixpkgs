@@ -2795,9 +2795,7 @@ with pkgs;
 
   simplenes = callPackage ../applications/emulators/simplenes { };
 
-  snes9x = callPackage ../applications/emulators/snes9x { };
-
-  snes9x-gtk = callPackage ../applications/emulators/snes9x {
+  snes9x-gtk = snes9x.override {
     withGtk = true;
   };
 
@@ -4757,8 +4755,6 @@ with pkgs;
   wdt = callPackage ../applications/networking/sync/wdt { };
 
   wlay = callPackage ../tools/wayland/wlay { };
-
-  wl-clip-persist = callPackage ../tools/wayland/wl-clip-persist { };
 
   wl-clipboard = callPackage ../tools/wayland/wl-clipboard { };
 
