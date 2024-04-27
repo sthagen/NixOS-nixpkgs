@@ -9385,6 +9385,8 @@ self: super: with self; {
 
   panflute = callPackage ../development/python-modules/panflute { };
 
+  panphon = callPackage ../development/python-modules/panphon { };
+
   papermill = callPackage ../development/python-modules/papermill { };
 
   openpaperwork-core = callPackage ../applications/office/paperwork/openpaperwork-core.nix { };
@@ -9933,6 +9935,8 @@ self: super: with self; {
   pynobo = callPackage ../development/python-modules/pynobo { };
 
   pynose = callPackage ../development/python-modules/pynose { };
+
+  pynotifier = callPackage ../development/python-modules/pynotifier { };
 
   pynuki = callPackage ../development/python-modules/pynuki { };
 
@@ -12685,6 +12689,8 @@ self: super: with self; {
   pywatchman = callPackage ../development/python-modules/pywatchman { };
 
   pywaterkotte = callPackage ../development/python-modules/pywaterkotte { };
+
+  pywavefront = callPackage ../development/python-modules/pywavefront { };
 
   pywavelets = callPackage ../development/python-modules/pywavelets { };
 
