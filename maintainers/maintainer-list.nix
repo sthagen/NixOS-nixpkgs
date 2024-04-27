@@ -1086,12 +1086,6 @@
     githubId = 153175;
     name = "Andrew Marshall";
   };
-  amaxine = {
-    email = "max@ine.dev";
-    github = "amaxine";
-    githubId = 35892750;
-    name = "Maxine Aubrey";
-  };
   ambroisie = {
     email = "bruno.nixpkgs@belanyi.fr";
     github = "ambroisie";
@@ -1246,12 +1240,6 @@
     github = "andrewchambers";
     githubId = 962885;
     name = "Andrew Chambers";
-  };
-  andrew-d = {
-    email = "andrew@du.nham.ca";
-    github = "andrew-d";
-    githubId = 1079173;
-    name = "Andrew Dunham";
   };
   andrewrk = {
     email = "superjoe30@gmail.com";
@@ -4780,12 +4768,6 @@
     githubId = 150736012;
     email = "me+git@delliott.xyz";
   };
-  delroth = {
-    email = "delroth@gmail.com";
-    github = "delroth";
-    githubId = 202798;
-    name = "Pierre Bourdon";
-  };
   delta = {
     email = "d4delta@outlook.fr";
     github = "D4Delta";
@@ -6735,12 +6717,6 @@
     github = "fmthoma";
     githubId = 5918766;
     name = "Franz Thoma";
-  };
-  fogti = {
-    name = "Alain Fogtia Zscheile";
-    email = "fogti+devel@ytrizja.de";
-    github = "fogti";
-    githubId = 1618343;
   };
   foo-dogsquared = {
     email = "foodogsquared@foodogsquared.one";
@@ -19053,12 +19029,6 @@
     githubId = 16364318;
     name = "Jeffrey Harmon";
   };
-  srapenne = {
-    email = "solene@perso.pw";
-    github = "rapenne-s";
-    githubId = 248016;
-    name = "Solène Rapenne";
-  };
   srghma = {
     email = "srghma@gmail.com";
     github = "srghma";
@@ -20709,12 +20679,6 @@
     githubId = 131159000;
     name = "Nitin Passa";
   };
-  twitchyliquid64 = {
-    name = "Tom";
-    email = "twitchyliquid64@ciphersink.net";
-    github = "twitchyliquid64";
-    githubId = 6328589;
-  };
   twz123 = {
     name = "Tom Wieczorek";
     email = "tom@bibbu.net";
@@ -22305,6 +22269,12 @@
     githubId = 179548;
     name = "Yves Fischer";
   };
+  YvesStraten = {
+    email = "yves.straten@gmail.com";
+    github = "YvesStraten";
+    githubId = 65394961;
+    name = "Yves Straten";
+  };
   yvt = {
     email = "i@yvt.jp";
     github = "yvt";
@@ -22579,12 +22549,6 @@
     github = "ztzg";
     githubId = 393108;
     name = "Damien Diederen";
-  };
-  zumorica = {
-    name = "Vera Aguilera Puerto";
-    email = "gradientvera+nix@outlook.com";
-    github = "Zumorica";
-    githubId = 6766154;
   };
   zupo = {
     name = "Nejc Zupan";
