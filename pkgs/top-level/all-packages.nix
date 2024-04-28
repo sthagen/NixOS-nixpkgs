@@ -13510,9 +13510,6 @@ with pkgs;
 
   tailer = callPackage ../tools/misc/tailer { };
 
-  inherit (callPackages ../applications/networking/taler { })
-    taler-exchange taler-merchant;
-
   tandoor-recipes = callPackage ../applications/misc/tandoor-recipes { };
 
   tango = callPackage ../applications/misc/tango { };
@@ -20346,10 +20343,6 @@ with pkgs;
   captive-browser = callPackage ../applications/networking/browsers/captive-browser { };
 
   catboost = callPackage ../development/libraries/catboost {
-    # catboost requires clang 12+ for build
-    # after bumping the default version of llvm, check for compatibility with the cuda backend and pin it.
-    inherit (llvmPackages_12) stdenv;
-
     # https://github.com/catboost/catboost/issues/2540
     cudaPackages = cudaPackages_11;
   };
@@ -32308,7 +32301,7 @@ with pkgs;
   kid3-qt = qt6Packages.callPackage ../applications/audio/kid3 { withCLI = true; withKDE = false; withQt = true; };
   kid3 = kid3-kde;
 
-  kile = libsForQt5.callPackage ../applications/editors/kile { };
+  kile = callPackage ../applications/editors/kile { };
 
   kitsas = libsForQt5.callPackage ../applications/office/kitsas { };
 
@@ -33551,7 +33544,9 @@ with pkgs;
 
   netcoredbg = callPackage ../development/tools/misc/netcoredbg { };
 
-  ncdu = callPackage ../tools/misc/ncdu { };
+  ncdu = callPackage ../tools/misc/ncdu {
+    zig = zig_0_12;
+  };
 
   ncdu_1 = callPackage ../tools/misc/ncdu/1.nix { };
 

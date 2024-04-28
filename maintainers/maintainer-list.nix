@@ -5945,12 +5945,6 @@
     name = "Zhenbo Li";
     matrix = "@zhenbo:matrix.org";
   };
-  endocrimes = {
-    email = "dani@builds.terrible.systems";
-    github = "endocrimes";
-    githubId = 1330683;
-    name = "Danielle Lancashire";
-  };
   enorris = {
     name = "Eric Norris";
     email = "erictnorris@gmail.com";
@@ -13719,15 +13713,6 @@
     github = "mschwaig";
     githubId = 3856390;
     email = "mschwaig+nixpkgs@eml.cc";
-  };
-  msfjarvis = {
-    github = "msfjarvis";
-    githubId = 13348378;
-    name = "Harsh Shandilya";
-    email = "nixos@msfjarvis.dev";
-    keys = [{
-      fingerprint = "8F87 050B 0F9C B841 1515  7399 B784 3F82 3355 E9B9";
-    }];
   };
   msiedlarek = {
     email = "mikolaj@siedlarek.pl";
