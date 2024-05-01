@@ -5363,8 +5363,6 @@ with pkgs;
 
   fx-cast-bridge = callPackage ../tools/misc/fx-cast-bridge { };
 
-  fzf = callPackage ../tools/misc/fzf { };
-
   fzf-obc = callPackage ../shells/bash/fzf-obc { };
 
   fzf-zsh = callPackage ../shells/zsh/fzf-zsh { };
@@ -11004,17 +11002,18 @@ with pkgs;
   grocy = callPackage ../servers/grocy { };
 
   inherit (callPackages ../servers/nextcloud {})
-    nextcloud26 nextcloud27 nextcloud28;
+    nextcloud27 nextcloud28 nextcloud29;
 
-  nextcloud26Packages = callPackage ../servers/nextcloud/packages {
-    apps = lib.importJSON ../servers/nextcloud/packages/26.json;
-  };
   nextcloud27Packages = callPackage ../servers/nextcloud/packages {
     apps = lib.importJSON ../servers/nextcloud/packages/27.json;
   };
   nextcloud28Packages = callPackage ../servers/nextcloud/packages {
     apps = lib.importJSON ../servers/nextcloud/packages/28.json;
   };
+  nextcloud29Packages = callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/29.json;
+  };
+
 
   nextcloud-client = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
 
@@ -23811,7 +23810,8 @@ with pkgs;
   inherit (callPackages ../development/libraries/openssl { })
     openssl_1_1
     openssl_3
-    openssl_3_2;
+    openssl_3_2
+    openssl_3_3;
 
   opensubdiv = callPackage ../development/libraries/opensubdiv { };
 
@@ -30700,8 +30700,6 @@ with pkgs;
 
   evilpixie = libsForQt5.callPackage ../applications/graphics/evilpixie { };
 
-  eww = callPackage ../applications/window-managers/eww { };
-
   exaile = callPackage ../applications/audio/exaile { };
 
   exercism = callPackage ../applications/misc/exercism { };
@@ -35880,8 +35878,6 @@ with pkgs;
   };
 
   xplugd = callPackage ../tools/X11/xplugd { };
-
-  xpointerbarrier = callPackage ../tools/X11/xpointerbarrier { };
 
   xkb-switch = callPackage ../tools/X11/xkb-switch { };
 
