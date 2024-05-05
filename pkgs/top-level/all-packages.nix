@@ -2986,8 +2986,6 @@ with pkgs;
 
   cool-retro-term = libsForQt5.callPackage ../applications/terminal-emulators/cool-retro-term { };
 
-  darklua = callPackage ../development/tools/darklua { };
-
   darktile = callPackage ../applications/terminal-emulators/darktile { };
 
   dterm = callPackage ../applications/terminal-emulators/dterm { };
@@ -7452,8 +7450,6 @@ with pkgs;
   domoticz = callPackage ../servers/domoticz { };
 
   dorkscout = callPackage ../tools/security/dorkscout { };
-
-  downonspot = callPackage ../applications/misc/downonspot { };
 
   sl1-to-photon = python3Packages.callPackage ../applications/misc/sl1-to-photon { };
 
@@ -18096,12 +18092,14 @@ with pkgs;
     electron_24-bin
     electron_27-bin
     electron_28-bin
-    electron_29-bin;
+    electron_29-bin
+    electron_30-bin;
 
   electron_24 = electron_24-bin;
   electron_27 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_27 then electron-source.electron_27 else electron_27-bin;
   electron_28 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_28 then electron-source.electron_28 else electron_28-bin;
   electron_29 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_29 then electron-source.electron_29 else electron_29-bin;
+  electron_30 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_30 then electron-source.electron_30 else electron_30-bin;
   electron = electron_29;
   electron-bin = electron_29-bin;
 
@@ -26582,9 +26580,7 @@ with pkgs;
   };
 
   radicale2 = callPackage ../servers/radicale/2.x.nix { };
-  radicale3 = callPackage ../servers/radicale/3.x.nix { };
-
-  radicale = radicale3;
+  radicale3 = radicale;
 
   qcal = callPackage ../tools/networking/qcal/default.nix { };
 
