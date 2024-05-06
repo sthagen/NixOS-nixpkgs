@@ -780,6 +780,12 @@
     github = "akgrant43";
     githubId = 2062166;
   };
+  akhilmhdh = {
+    email = "akhilmhdh@infisical.com";
+    github = "akhilmhdh";
+    githubId = 31166322;
+    name = "Akhil Mohan";
+  };
   akho = {
     name = "Alexander Khodyrev";
     email = "a@akho.name";
@@ -5694,6 +5700,11 @@
     githubId = 54799;
     name = "Edward Tjörnhammar";
   };
+  eeedean = {
+    github = "eeedean";
+    githubId = 8173116;
+    name = "Dean Eckert";
+  };
   eelco = {
     email = "edolstra+nixpkgs@gmail.com";
     github = "edolstra";
@@ -9420,12 +9431,6 @@
     github = "jglukasik";
     githubId = 6445082;
     name = "Joseph Lukasik";
-  };
-  jgoux = {
-    email = "hi@jgoux.dev";
-    github = "jgoux";
-    githubId = 1443499;
-    name = "Julien Goux";
   };
   jhh = {
     email = "jeff@j3ff.io";
@@ -15393,6 +15398,12 @@
     github = "PassiveLemon";
     githubId = 72527881;
     name = "PassiveLemon";
+  };
+  patka = {
+    email = "patka@patka.dev";
+    github = "patka-123";
+    githubId = 69802930;
+    name = "patka";
   };
   patricksjackson = {
     email = "patrick@jackson.dev";
