@@ -231,8 +231,6 @@ with pkgs;
   # Post 24.11 branch-off, this should throw an error in aliases.nix.
   addOpenGLRunpath = callPackage ../build-support/add-opengl-runpath { };
 
-  quickemu = callPackage ../development/quickemu { };
-
   quickgui = callPackage ../applications/virtualization/quickgui { };
 
   adcli = callPackage ../os-specific/linux/adcli { };
@@ -541,8 +539,6 @@ with pkgs;
   containerpilot = callPackage ../applications/networking/cluster/containerpilot { };
 
   coolercontrol = recurseIntoAttrs (callPackage ../applications/system/coolercontrol { });
-
-  coost = callPackage ../development/libraries/coost { };
 
   confetty = callPackage ../applications/misc/confetty { };
 
@@ -2559,13 +2555,6 @@ with pkgs;
   pass-git-helper = python3Packages.callPackage ../applications/version-management/pass-git-helper { };
 
   qgit = qt5.callPackage ../applications/version-management/qgit { };
-
-  radicle-cli = callPackage ../applications/version-management/radicle-cli {
-    inherit (darwin) DarwinTools;
-    inherit (darwin.apple_sdk.frameworks) AppKit;
-  };
-
-  radicle-upstream = callPackage ../applications/version-management/radicle-upstream { };
 
   rs-git-fsmonitor = callPackage ../applications/version-management/rs-git-fsmonitor { };
 
@@ -5557,10 +5546,7 @@ with pkgs;
   hypr = callPackage ../applications/window-managers/hyprwm/hypr {
     cairo = cairo.override { xcbSupport = true; };  };
 
-  hyprland = callPackage ../applications/window-managers/hyprwm/hyprland {
-    wlroots-hyprland = callPackage ../applications/window-managers/hyprwm/hyprland/wlroots.nix { };
-    udis86-hyprland = callPackage ../applications/window-managers/hyprwm/hyprland/udis86.nix { };
-  };
+  hyprland = callPackage ../applications/window-managers/hyprwm/hyprland { };
 
   hyprland-autoname-workspaces = callPackage ../applications/misc/hyprland-autoname-workspaces { };
 
@@ -6122,8 +6108,6 @@ with pkgs;
   pouf = callPackage ../tools/misc/pouf { };
 
   poweralertd = callPackage ../tools/misc/poweralertd { };
-
-  ps_mem = callPackage ../tools/system/ps_mem { };
 
   pscale = callPackage ../development/tools/pscale { };
 
@@ -15791,6 +15775,13 @@ with pkgs;
          && stdenv.buildPlatform == stdenv.hostPlatform
       then buildPackages.gnat-bootstrap11
       else buildPackages.gnat11;
+    stdenv =
+      if stdenv.hostPlatform == stdenv.targetPlatform
+         && stdenv.buildPlatform == stdenv.hostPlatform
+         && stdenv.buildPlatform.isDarwin
+         && stdenv.buildPlatform.isx86_64
+      then overrideCC stdenv gnat-bootstrap11
+      else stdenv;
   });
 
   gnat12 = wrapCC (gcc12.cc.override {
@@ -20573,12 +20564,6 @@ with pkgs;
 
   digiham = callPackage ../applications/radio/digiham { };
 
-  dillo = callPackage ../applications/networking/browsers/dillo {
-    fltk = fltk13;
-  };
-
-  dillong = callPackage ../applications/networking/browsers/dillong { };
-
   directfb = callPackage ../development/libraries/directfb { };
 
   discord-gamesdk = callPackage ../development/libraries/discord-gamesdk { };
@@ -24796,8 +24781,6 @@ with pkgs;
 
   unixODBCDrivers = recurseIntoAttrs (callPackages ../development/libraries/unixODBCDrivers { });
 
-  ustr = callPackage ../development/libraries/ustr { };
-
   usrsctp = callPackage ../development/libraries/usrsctp { };
 
   usbredir = callPackage ../development/libraries/usbredir { };
@@ -25146,8 +25129,6 @@ with pkgs;
   zitadel-tools = callPackage ../tools/misc/zitadel-tools { };
 
   zix = callPackage ../development/libraries/audio/zix { };
-
-  zz = callPackage ../development/compilers/zz { };
 
   zziplib = callPackage ../development/libraries/zziplib { };
 
@@ -40968,8 +40949,6 @@ with pkgs;
 
   gpio-utils = callPackage ../os-specific/linux/kernel/gpio-utils.nix { };
 
-  navidrome = callPackage ../servers/misc/navidrome { };
-
   zalgo = callPackage ../tools/misc/zalgo { };
 
   inherit (callPackage ../applications/misc/zettlr { }) zettlr;
@@ -41119,4 +41098,8 @@ with pkgs;
   insulator2 = callPackage ../applications/misc/insulator2 {};
 
   animdl = python3Packages.callPackage ../applications/video/animdl { };
+
+  dillo = callPackage ../by-name/di/dillo/package.nix {
+    fltk = fltk13;
+  };
 }
