@@ -17819,6 +17819,12 @@
       fingerprint = "E628 C811 6FB8 1657 F706  4EA4 F251 ADDC 9D04 1C7E";
     }];
   };
+  sailord = {
+    name = "Sailord";
+    email = "sailord328@gmail.com";
+    github = "Sail0rd";
+    githubId = 55802415;
+  };
   samalws = {
     email = "sam@samalws.com";
     name = "Sam Alws";
@@ -21896,6 +21902,12 @@
     email = "wrobel.jakub@protonmail.com";
     github = "wr0belj";
     githubId = 40501814;
+  };
+  wr7 = {
+    name = "wr7";
+    email = "d-wr7@outlook.com";
+    github = "wr7";
+    githubId = 53203261;
   };
   wraithm = {
     name = "Matthew Wraith";
