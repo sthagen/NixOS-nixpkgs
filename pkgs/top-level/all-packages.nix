@@ -498,10 +498,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  codeberg-cli = callPackage ../applications/version-management/codeberg-cli {
-    inherit (darwin.apple_sdk.frameworks) Security CoreServices;
-  };
-
   conftest = callPackage ../development/tools/conftest { };
 
   coldsnap = callPackage ../tools/admin/coldsnap {
@@ -7806,8 +7802,6 @@ with pkgs;
   enc = callPackage ../tools/security/enc { };
 
   endlessh = callPackage ../servers/endlessh { };
-
-  endlessh-go = callPackage ../servers/endlessh-go { };
 
   ericw-tools = callPackage ../applications/misc/ericw-tools { };
 
@@ -19528,8 +19522,6 @@ with pkgs;
 
   scala-cli = callPackage ../development/tools/build-managers/scala-cli { };
 
-  scc = callPackage ../development/tools/misc/scc { };
-
   scss-lint = callPackage ../development/tools/scss-lint { };
 
   segger-ozone = callPackage ../development/tools/misc/segger-ozone { };
@@ -20473,8 +20465,6 @@ with pkgs;
   cracklib = callPackage ../development/libraries/cracklib { };
 
   cre2 = callPackage ../development/libraries/cre2 { };
-
-  criterion = callPackage ../development/libraries/criterion { };
 
   croaring = callPackage ../development/libraries/croaring { };
 
@@ -22520,7 +22510,7 @@ with pkgs;
 
   # GNU libc provides libiconv so systems with glibc don't need to
   # build libiconv separately. Additionally, Apple forked/repackaged
-  # libiconv so we use that instead of the vanilla version on that OS,
+  # libiconv, so build and use the upstream one with a compatible ABI,
   # and BSDs include libiconv in libc.
   #
   # We also provide `libiconvReal`, which will always be a standalone libiconv,
@@ -22531,7 +22521,7 @@ with pkgs;
         then libcCross
         else stdenv.cc.libc)
     else if stdenv.hostPlatform.isDarwin
-      then darwin.libiconv
+      then libiconv-darwin
     else libiconvReal;
 
   libcIconv = libc: let
@@ -22548,7 +22538,7 @@ with pkgs;
     if lib.elem stdenv.hostPlatform.libc [ "glibc" "musl" ] then
       lib.getBin stdenv.cc.libc
     else if stdenv.hostPlatform.isDarwin then
-      lib.getBin darwin.libiconv
+      lib.getBin libiconv
     else
       lib.getBin libiconvReal;
 
@@ -32946,8 +32936,6 @@ with pkgs;
     withConplay = false;
   };
 
-  mpg321 = callPackage ../applications/audio/mpg321 { };
-
   mpc-cli = callPackage ../applications/audio/mpc {
     inherit (python3Packages) sphinx;
   };
@@ -35256,7 +35244,9 @@ with pkgs;
   virtualbox = libsForQt5.callPackage ../applications/virtualization/virtualbox {
     stdenv = stdenv_32bit;
     inherit (gnome2) libIDL;
-    jdk = openjdk17;
+
+    # VirtualBox uses wsimport, which was removed after JDK 8.
+    jdk = jdk8;
   };
 
   virtualboxKvm = lowPrio (virtualbox.override {
@@ -36228,8 +36218,6 @@ with pkgs;
   zecwallet-lite = callPackage ../applications/blockchains/zecwallet-lite { };
 
   lightwalletd = callPackage ../applications/blockchains/lightwalletd { };
-
-  openethereum = callPackage ../applications/blockchains/openethereum { };
 
   polkadot = callPackage ../applications/blockchains/polkadot {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
@@ -39588,6 +39576,16 @@ with pkgs;
   nix = nixVersions.stable;
 
   nixStatic = pkgsStatic.nix;
+
+  lixVersions = recurseIntoAttrs (callPackage ../tools/package-management/lix {
+    storeDir = config.nix.storeDir or "/nix/store";
+    stateDir = config.nix.stateDir or "/nix/var";
+    inherit (darwin.apple_sdk.frameworks) Security;
+  });
+
+  lix = lixVersions.stable;
+
+  lixStatic = pkgsStatic.lix;
 
   inherit (callPackages ../applications/networking/cluster/nixops { })
     nixops_unstable_minimal
