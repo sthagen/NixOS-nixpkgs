@@ -193,7 +193,6 @@ with pkgs;
       pythonInterpreter = "${python3.withPackages (ps: [ ps.pyelftools ])}/bin/python";
       autoPatchelfScript = ../build-support/setup-hooks/auto-patchelf.py;
     };
-    meta.platforms = lib.platforms.linux ++ lib.platforms.freebsd;
   } ../build-support/setup-hooks/auto-patchelf.sh;
 
   tomato-c = callPackage ../applications/misc/tomato-c { };
@@ -1082,7 +1081,7 @@ with pkgs;
     antlr = antlr4_10;
     boost = boost177; # Configure checks for specific version.
     icu =  icu73;
-    protobuf = protobuf_21;
+    protobuf = protobuf_24;
   };
 
   mysql-shell-innovation = callPackage ../development/tools/mysql-shell/innovation.nix {
@@ -1757,8 +1756,6 @@ with pkgs;
   dolbybcsoftwaredecode = callPackage ../applications/audio/dolbybcsoftwaredecode { };
 
   donkey = callPackage ../tools/security/donkey { };
-
-  dualsensectl = callPackage ../tools/games/dualsensectl { };
 
   dwarfs = callPackage ../tools/filesystems/dwarfs { };
 
@@ -4768,8 +4765,6 @@ with pkgs;
 
   wtype = callPackage ../tools/wayland/wtype { };
 
-  ydotool = callPackage ../tools/wayland/ydotool { };
-
   cambalache = callPackage ../development/tools/cambalache { };
 
   cambrinary = python3Packages.callPackage ../applications/misc/cambrinary { };
@@ -6477,8 +6472,6 @@ with pkgs;
 
   bfs = callPackage ../tools/system/bfs { };
 
-  bevelbar = callPackage ../tools/X11/bevelbar { };
-
   bgs = callPackage ../tools/X11/bgs { };
 
   bibclean = callPackage ../tools/typesetting/bibclean { };
@@ -7131,10 +7124,6 @@ with pkgs;
   cudaPackages_12_2 = callPackage ./cuda-packages.nix { cudaVersion = "12.2"; };
   cudaPackages_12_3 = callPackage ./cuda-packages.nix { cudaVersion = "12.3"; };
   cudaPackages_12 = cudaPackages_12_2; # Latest supported by cudnn
-
-  # Use the older cudaPackages for tensorflow and jax, as determined by cudnn
-  # compatibility: https://www.tensorflow.org/install/source#gpu
-  cudaPackagesGoogle = cudaPackages_11;
 
   cudaPackages = recurseIntoAttrs cudaPackages_12;
 
@@ -26045,8 +26034,6 @@ with pkgs;
 
   olaris-server = callPackage ../servers/olaris { };
 
-  onagre = callPackage ../applications/misc/onagre { };
-
   onlyoffice-documentserver = callPackage ../servers/onlyoffice-documentserver { };
 
   outline = callPackage ../servers/web-apps/outline (lib.fix (super: {
@@ -26690,8 +26677,6 @@ with pkgs;
   unstructured-api = callPackage ../servers/unstructured-api { };
 
   urserver = callPackage ../servers/urserver { };
-
-  uxplay = callPackage ../servers/uxplay { };
 
   vouch-proxy = callPackage ../servers/vouch-proxy { };
 
@@ -30184,8 +30169,6 @@ with pkgs;
 
   cplay-ng = callPackage ../applications/audio/cplay-ng { };
 
-  cq-editor = libsForQt5.callPackage ../applications/graphics/cq-editor { };
-
   cqrlog = callPackage ../applications/radio/cqrlog {
     hamlib = hamlib_4;
   };
@@ -32652,8 +32635,6 @@ with pkgs;
   };
 
   makeself = callPackage ../applications/misc/makeself { };
-
-  mako = callPackage ../applications/misc/mako { };
 
   mandelbulber = libsForQt5.callPackage ../applications/graphics/mandelbulber { };
 
@@ -40953,8 +40934,6 @@ with pkgs;
   fac-build = callPackage ../development/tools/build-managers/fac {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
-
-  treefmt = callPackage ../development/tools/treefmt { };
 
   nufmt = callPackage ../development/tools/nufmt { };
 
