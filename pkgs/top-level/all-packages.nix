@@ -2441,8 +2441,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  git-standup = callPackage ../applications/version-management/git-standup { };
-
   git-stree = callPackage ../applications/version-management/git-stree { };
 
   git-subrepo = callPackage ../applications/version-management/git-subrepo { };
@@ -5345,8 +5343,6 @@ with pkgs;
   g2o = libsForQt5.callPackage ../development/libraries/g2o { };
 
   gb-backup = callPackage ../tools/backup/gamerbackup { };
-
-  gbsplay = callPackage ../applications/audio/gbsplay { };
 
   gdrive = callPackage ../applications/networking/gdrive { };
 
@@ -20278,6 +20274,7 @@ with pkgs;
   ccrtp = callPackage ../development/libraries/ccrtp { };
 
   cctag = callPackage ../development/libraries/cctag {
+    stdenv = clangStdenv;
     tbb = tbb_2021_11;
   };
 
@@ -31184,8 +31181,6 @@ with pkgs;
     python3Packages = python39Packages;
   };
 
-  fte = callPackage ../applications/editors/fte { };
-
   g933-utils = callPackage ../tools/misc/g933-utils { };
 
   gavrasm = callPackage ../development/compilers/gavrasm { };
@@ -31504,8 +31499,6 @@ with pkgs;
   hexcurse = callPackage ../applications/editors/hexcurse { };
 
   hexdino = callPackage ../applications/editors/hexdino { };
-
-  hexedit = callPackage ../applications/editors/hexedit { };
 
   hydrogen-web-unwrapped = callPackage ../applications/networking/instant-messengers/hydrogen-web/unwrapped.nix { };
 
@@ -35073,8 +35066,6 @@ with pkgs;
 
   unigine-superposition = libsForQt5.callPackage ../applications/graphics/unigine-superposition { };
 
-  unipicker = callPackage ../applications/misc/unipicker { };
-
   unpaper = callPackage ../tools/graphics/unpaper { };
 
   unison-ucm = callPackage ../development/compilers/unison { };
@@ -35725,7 +35716,7 @@ with pkgs;
 
   xlife = callPackage ../applications/graphics/xlife { };
 
-  xmobar = haskellPackages.xmobar;
+  xmobar = haskellPackages.xmobar.bin;
 
   xmonad-log = callPackage ../tools/misc/xmonad-log { };
 

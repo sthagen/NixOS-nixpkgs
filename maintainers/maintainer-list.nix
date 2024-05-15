@@ -7777,6 +7777,12 @@
     githubId = 10654650;
     name = "Guillaume Koenig";
   };
+  guillaumematheron = {
+    email = "guillaume_nix@matheron.eu";
+    github = "guillaumematheron";
+    githubId = 1949438;
+    name = "Guillaume Matheron";
+  };
   guitargeek = {
     email = "jonas.rembser@cern.ch";
     github = "guitargeek";
@@ -15481,6 +15487,15 @@
     github = "patka-123";
     githubId = 69802930;
     name = "patka";
+  };
+  patrickdag = {
+    email = "patrick-nixos@failmail.dev";
+    github = "PatrickDaG";
+    githubId = 58092422;
+    name = "Patrick";
+    keys = [{
+      fingerprint = "5E4C 3D74 80C2 35FE 2F0B  D23F 7DD6 A72E C899 617D";
+    }];
   };
   patricksjackson = {
     email = "patrick@jackson.dev";

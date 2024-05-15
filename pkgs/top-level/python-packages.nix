@@ -4189,6 +4189,8 @@ self: super: with self; {
 
   filecheck = callPackage ../development/python-modules/filecheck { };
 
+  filedate = callPackage ../development/python-modules/filedate { };
+
   filedepot = callPackage ../development/python-modules/filedepot { };
 
   filelock = callPackage ../development/python-modules/filelock { };
@@ -10598,6 +10600,8 @@ self: super: with self; {
   pyairnow = callPackage ../development/python-modules/pyairnow { };
 
   pyairvisual = callPackage ../development/python-modules/pyairvisual { };
+
+  pyais = callPackage ../development/python-modules/pyais { };
 
   pyalgotrade = callPackage ../development/python-modules/pyalgotrade { };
 
