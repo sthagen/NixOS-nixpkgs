@@ -4570,8 +4570,6 @@ self: super: with self; {
 
   functiontrace = callPackage ../development/python-modules/functiontrace { };
 
-  functools32 = callPackage ../development/python-modules/functools32 { };
-
   funcy = callPackage ../development/python-modules/funcy { };
 
   funsor = callPackage ../development/python-modules/funsor { };
@@ -16836,6 +16834,8 @@ self: super: with self; {
   wavefile = callPackage ../development/python-modules/wavefile { };
 
   wavinsentio = callPackage ../development/python-modules/wavinsentio { };
+
+  waybackpy = callPackage ../development/python-modules/waybackpy {};
 
   wazeroutecalculator = callPackage ../development/python-modules/wazeroutecalculator { };
 
