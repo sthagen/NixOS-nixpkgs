@@ -6839,6 +6839,12 @@
       fingerprint = "B722 6464 838F 8BDB 2BEA  C8C8 5B0E FDDF BA81 6105";
     }];
   };
+  Forden = {
+    email = "forden@zuku.tech";
+    github = "Forden";
+    githubId = 24463229;
+    name = "Forden";
+  };
   forkk = {
     email = "forkk@forkk.net";
     github = "Forkk";
@@ -10479,6 +10485,12 @@
     github = "kbdharun";
     githubId = 26346867;
     name = "K.B.Dharun Krishna";
+  };
+  kbudde = {
+    email = "kris@budd.ee";
+    github = "kbudde";
+    githubId = 1072181;
+    name = "Kris Budde";
   };
   kcalvinalvin = {
     email = "calvin@kcalvinalvin.info";
@@ -14973,6 +14985,13 @@
     email = "nyawox.git@gmail.com";
     github = "nyawox";
     githubId = 93813719;
+  };
+  nydragon = {
+    name = "nydragon";
+    github = "nydragon";
+    email = "nix@ccnlc.eu";
+    githubId = 56591727;
+    keys = [ { fingerprint = "25FF 8464 F062 7EC0 0129 6A43 14AA 30A8 65EA 1209"; } ];
   };
   nzbr = {
     email = "nixos@nzbr.de";
@@ -20596,6 +20615,12 @@
     keys = [{
       fingerprint = "7944 74B7 D236 DAB9 C9EF  E7F9 5CCE 6F14 66D4 7C9E";
     }];
+  };
+  toasteruwu = {
+    email = "Aki@ToasterUwU.com";
+    github = "ToasterUwU";
+    githubId = 43654377;
+    name = "Aki";
   };
   tobiasBora = {
     email = "tobias.bora.list@gmail.com";
