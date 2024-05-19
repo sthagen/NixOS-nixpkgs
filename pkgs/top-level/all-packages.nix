@@ -820,8 +820,6 @@ with pkgs;
 
   oletools = with python3.pkgs; toPythonApplication oletools;
 
-  ollama = callPackage ../tools/misc/ollama {  };
-
   ots = callPackage ../tools/security/ots {  };
 
   credential-detector = callPackage ../tools/security/credential-detector { };
@@ -1146,7 +1144,7 @@ with pkgs;
             fetchurl = stdenv.fetchurlBoot;
           };
         });
-        perl = buildPackages.perl.override { fetchurl = stdenv.fetchurlBoot; };
+        perl = buildPackages.perl.override { inherit zlib; fetchurl = stdenv.fetchurlBoot; };
         openssl = buildPackages.openssl.override {
           fetchurl = stdenv.fetchurlBoot;
           buildPackages = {
@@ -1154,7 +1152,7 @@ with pkgs;
               fetchurl = stdenv.fetchurlBoot;
               inherit perl;
               xz = buildPackages.xz.override { fetchurl = stdenv.fetchurlBoot; };
-              gmp = null;
+              gmpSupport = false;
               aclSupport = false;
               attrSupport = false;
             };
@@ -9361,8 +9359,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
 
-  stalwart-mail = callPackage ../servers/mail/stalwart { };
-
   jmespath = callPackage ../development/tools/jmespath { };
 
   juicefs = callPackage ../tools/filesystems/juicefs { };
@@ -15436,6 +15432,7 @@ with pkgs;
 
   flutterPackages = recurseIntoAttrs (callPackage ../development/compilers/flutter { });
   flutter = flutterPackages.stable;
+  flutter322 = flutterPackages.v3_22;
   flutter319 = flutterPackages.v3_19;
   flutter316 = flutterPackages.v3_16;
   flutter313 = flutterPackages.v3_13;
@@ -20443,9 +20440,7 @@ with pkgs;
 
   cypress = callPackage ../development/web/cypress { };
 
-  cyrus_sasl = callPackage ../development/libraries/cyrus-sasl {
-    libkrb5 = if stdenv.isFreeBSD then heimdal else libkrb5;
-  };
+  cyrus_sasl = callPackage ../development/libraries/cyrus-sasl { };
 
   cyrus-sasl-xoauth2 = callPackage ../development/libraries/cyrus-sasl-xoauth2 { };
 
@@ -22486,6 +22481,8 @@ with pkgs;
       lib.getBin stdenv.cc.libc
     else if stdenv.hostPlatform.isDarwin then
       lib.getBin libiconv
+    else if stdenv.hostPlatform.isFreeBSD then
+      lib.getBin freebsd.iconv
     else
       lib.getBin libiconvReal;
 
@@ -24084,6 +24081,17 @@ with pkgs;
   rlottie = callPackage ../development/libraries/rlottie { };
 
   rocksdb = callPackage ../development/libraries/rocksdb { };
+
+  rocksdb_8_11 = rocksdb.overrideAttrs rec {
+    pname = "rocksdb";
+    version = "8.11.4";
+    src = fetchFromGitHub {
+      owner = "facebook";
+      repo = pname;
+      rev = "v${version}";
+      hash = "sha256-ZrU7G3xeimF3H2LRGBDHOq936u5pH/3nGecM4XEoWc8=";
+    };
+  };
 
   rocksdb_8_3 = rocksdb.overrideAttrs rec {
     pname = "rocksdb";
@@ -26565,6 +26573,23 @@ with pkgs;
   sslh = callPackage ../servers/sslh { };
 
   thttpd = callPackage ../servers/http/thttpd { };
+
+  stalwart-mail_0_6 = (stalwart-mail.override { rocksdb_8_11 = rocksdb_8_3; }).overrideAttrs (old: rec {
+    pname = "stalwart-mail_0_6";
+    version = "0.6.0";
+    src = fetchFromGitHub {
+      owner = "stalwartlabs";
+      repo = "mail-server";
+      rev = "v${version}";
+      hash = "sha256-OHwUWSUW6ovLQTxnuUrolQGhxbhp4YqKSH+ZTpe2WXc=";
+      fetchSubmodules = true;
+    };
+    cargoDeps = old.cargoDeps.overrideAttrs (_: {
+      inherit src;
+      name = "${pname}-${version}-vendor.tar.gz";
+      outputHash = "sha256-mW3OXQj6DcIMO1YlTG3G+a1ORRcuvp5/h7BU+b4QbnE=";
+    });
+  });
 
   static-web-server = callPackage ../servers/static-web-server { };
 
@@ -32047,12 +32072,12 @@ with pkgs;
   inherit (callPackage ../applications/networking/cluster/k3s {
     buildGoModule = buildGo121Module;
     go = go_1_21;
-  }) k3s_1_26 k3s_1_27 k3s_1_28 k3s_1_29;
+  }) k3s_1_27 k3s_1_28 k3s_1_29;
   inherit (callPackage ../applications/networking/cluster/k3s {
     buildGoModule = buildGo122Module;
     go = go_1_22;
   }) k3s_1_30;
-  k3s = k3s_1_29;
+  k3s = k3s_1_30;
 
   k3sup = callPackage ../applications/networking/cluster/k3sup { };
 
