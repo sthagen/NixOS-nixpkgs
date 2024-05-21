@@ -229,6 +229,7 @@ mapAliases ({
   imgaug = throw "imgaug has been removed as it is no longer maintained"; # added 2023-07-10
   intreehook =  throw "intreehooks has been removed because it is obsolete as a backend-path key was added to PEP 517"; # added 2023-04-11
   ipaddress = throw "ipaddress has been removed because it is no longer required since python 2.7."; # added 2022-05-30
+  ipdbplugin = throw "ipdbplugin has been removed because it has no longer maintained for 6 years";  # added 2024-05-21
   ipython_genutils = ipython-genutils; # added 2023-10-12
   influxgraph = throw "influxgraph has been removed because it is no longer maintained"; # added 2022-07-10
   itanium_demangler = itanium-demangler; # added 2022-10-17
@@ -303,6 +304,7 @@ mapAliases ({
   ninja-python = ninja; # add 2022-08-03
   nosejs = throw "nosejs has been removed since it has not been maintained for 15 years and there are no dependent packages"; # added 2024-05-21
   nose-cover3 = throw "nose-cover3 has been removed, it was using setuptools 2to3 translation feature, which has been removed in setuptools 58"; # added 2022-02-16
+  nose-cprof = throw "nose-cprof has been removed since it has not been maintained for 7 years and there are no dependent packages"; # added 2024-05-21
   nose_progressive = throw "nose_progressive has been removed, it was using setuptools 2to3 translation feature, which has been removed in setuptools 58"; #added 2023-02-21
   nose_warnings_filters = nose-warnings-filters; # added 2024-01-07
   notifymuch = throw "notifymuch has been promoted to a top-level attribute name: `pkgs.notifymuch`"; # added 2022-10-02
@@ -485,6 +487,7 @@ mapAliases ({
   setuptools_scm = setuptools-scm; # added 2021-06-03
   setuptoolsTrial = setuptools-trial; # added 2023-11-11
   sharkiqpy = sharkiq; # added 2022-05-21
+  shouldbe = throw "shouldbe was removed, because it was disabled on all python version since 3.8 and last updated in 2019."; # added 2024-05-12
   sip_4 = sip4; # added 2024-01-07
   ssh-mitm = throw "ssh-mitm was removed in favor of the top-level ssh-mitm"; # added 2023-05-09
   smart_open = smart-open; # added 2021-03-14
