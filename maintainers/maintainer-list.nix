@@ -9963,6 +9963,12 @@
     githubId = 8580434;
     name = "Jonny Bolton";
   };
+  jonochang = {
+    name = "Jono Chang";
+    email = "j.g.chang@gmail.com";
+    github = "jonochang";
+    githubId = 13179;
+  };
   jonringer = {
     email = "jonringer117@gmail.com";
     matrix = "@jonringer:matrix.org";
@@ -13017,6 +13023,12 @@
     github = "meain";
     githubId = 14259816;
     name = "Abin Simon";
+  };
+  me-and = {
+    name = "Adam Dinwoodie";
+    email = "nix.thunder.wayne@post.dinwoodie.org";
+    github = "me-and";
+    githubId = 1397507;
   };
   meatcar = {
     email = "nixpkgs@denys.me";
@@ -18404,6 +18416,11 @@
     email = "sei40kr@gmail.com";
     github = "sei40kr";
     githubId = 11665236;
+  };
+  seineeloquenz = {
+    name = "Alexander Linder";
+    github = "SeineEloquenz";
+    githubId = 34923333;
   };
   seirl = {
     name = "Antoine Pietri";
