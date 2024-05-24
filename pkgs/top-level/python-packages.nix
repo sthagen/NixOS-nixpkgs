@@ -13631,10 +13631,6 @@ self: super: with self; {
 
   scikits-odes = callPackage ../development/python-modules/scikits-odes { };
 
-  scikits-samplerate = callPackage ../development/python-modules/scikits-samplerate {
-    inherit (pkgs) libsamplerate;
-  };
-
   scikit-tda = callPackage ../development/python-modules/scikit-tda { };
 
   scipy = callPackage ../development/python-modules/scipy { };
@@ -14318,6 +14314,8 @@ self: super: with self; {
   sphinxcontrib-confluencebuilder = callPackage ../development/python-modules/sphinxcontrib-confluencebuilder { };
 
   sphinxcontrib-devhelp = callPackage ../development/python-modules/sphinxcontrib-devhelp { };
+
+  sphinxcontrib-ditaa = callPackage ../development/python-modules/sphinxcontrib-ditaa { };
 
   sphinxcontrib-excel-table = callPackage ../development/python-modules/sphinxcontrib-excel-table { };
 
@@ -16843,6 +16841,8 @@ self: super: with self; {
   weasel = callPackage ../development/python-modules/weasel { };
 
   weasyprint = callPackage ../development/python-modules/weasyprint { };
+
+  weatherflow4py = callPackage ../development/python-modules/weatherflow4py { };
 
   weaviate-client = callPackage ../development/python-modules/weaviate-client { };
 

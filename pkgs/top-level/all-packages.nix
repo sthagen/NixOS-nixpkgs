@@ -1497,8 +1497,6 @@ with pkgs;
 
   abduco = callPackage ../tools/misc/abduco { };
 
-  ablog = callPackage ../applications/misc/ablog { };
-
   acct = callPackage ../tools/system/acct { };
 
   accuraterip-checksum = callPackage ../tools/audio/accuraterip-checksum { };
@@ -3928,8 +3926,6 @@ with pkgs;
 
   mobilecoin-wallet = callPackage ../applications/misc/mobilecoin-wallet { };
 
-  mpdevil = callPackage ../applications/audio/mpdevil { };
-
   pacparser = callPackage ../tools/networking/pacparser { };
 
   pairdrop = callPackage ../applications/misc/pairdrop { };
@@ -6193,8 +6189,6 @@ with pkgs;
   snowcat = callPackage ../tools/security/snowcat { };
 
   socklog = callPackage ../tools/system/socklog { };
-
-  soju = callPackage ../applications/networking/soju { };
 
   spacevim = callPackage ../applications/editors/spacevim { };
 
@@ -16018,10 +16012,6 @@ with pkgs;
 
   gocover-cobertura = callPackage ../development/tools/gocover-cobertura { };
 
-  gobang = callPackage ../development/tools/database/gobang {
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security SystemConfiguration;
-  };
-
   goblob = callPackage ../tools/security/goblob { };
 
   gogetdoc = callPackage ../development/tools/gogetdoc { };
@@ -16543,8 +16533,6 @@ with pkgs;
   prqlc = callPackage ../development/tools/database/prqlc { };
 
   qbe = callPackage ../development/compilers/qbe { };
-
-  rasm = callPackage ../development/compilers/rasm { };
 
   replibyte = callPackage ../development/tools/database/replibyte {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
@@ -39836,7 +39824,6 @@ with pkgs;
     };
     mysql = mysql;
     pcre = pcre-cpp;
-    jre = openjdk19; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   });
 
   r128gain = callPackage ../applications/audio/r128gain { };

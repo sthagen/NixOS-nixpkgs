@@ -1787,6 +1787,12 @@
     githubId = 816777;
     name = "Ashley Gillman";
   };
+  ashgoldofficial = {
+    email = "ashley.goldwater@gmail.com";
+    github = "ASHGOLDOFFICIAL";
+    githubId = 104313094;
+    name = "Andrey Shaat";
+  };
   ashkitten = {
     email = "ashlea@protonmail.com";
     github = "ashkitten";
@@ -7737,6 +7743,14 @@
       fingerprint = "7FC7 98AB 390E 1646 ED4D  8F1F 797F 6238 68CD 00C2";
     }];
   };
+  greaka = {
+    email = "git@greaka.de";
+    github = "greaka";
+    githubId = 2805834;
+    name = "Greaka";
+    keys =
+      [{ fingerprint = "6275 FB5C C9AC 9D85 FF9E  44C5 EE92 A5CD C367 118C"; }];
+  };
   greg = {
     email = "greg.hellings@gmail.com";
     github = "greg-hellings";
@@ -11932,6 +11946,14 @@
     githubId = 10626;
     name = "Andreas Wagner";
   };
+  lpostula = {
+    email = "lois@postu.la";
+    github = "loispostula";
+    githubId = 1423612;
+    name = "Loïs Postula";
+    keys =
+      [{ fingerprint = "0B4A E7C7 D3B7 53F5 3B3D  774C 3819 3C6A 09C3 9ED1"; }];
+  };
   lrewega = {
     email = "lrewega@c32.ca";
     github = "lrewega";
@@ -12426,6 +12448,11 @@
     github = "MalteJanz";
     githubId = 18661391;
     name = "Malte Janz";
+  };
+  malteneuss = {
+    github = "malteneuss";
+    githubId = 5301202;
+    name = "Malte Neuss";
   };
   malte-v = {
     email = "nixpkgs@mal.tc";
@@ -17083,6 +17110,15 @@
     github = "r-burns";
     githubId = 52847440;
     name = "Ryan Burns";
+  };
+  rconybea = {
+    email = "n1xpkgs@hushmail.com";
+    github = "rconybea";
+    githubId = 8570969;
+    name = "Roland Conybeare";
+    keys = [{
+      fingerprint = "bw5Cr/4ul1C2UvxopphbZbFI1i5PCSnOmPID7mJ/Ogo";
+    }];
   };
   rdnetto = {
     email = "rdnetto@gmail.com";
