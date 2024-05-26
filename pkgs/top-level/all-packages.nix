@@ -2897,8 +2897,6 @@ with pkgs;
     inherit (qt5) wrapQtAppsHook;
   };
 
-  felix-fm = callPackage ../applications/file-managers/felix-fm { };
-
   krusader = libsForQt5.callPackage ../applications/file-managers/krusader { };
 
   lesscpy = callPackage ../development/compilers/lesscpy { };
@@ -3483,8 +3481,6 @@ with pkgs;
   bashcards = callPackage ../tools/misc/bashcards { };
 
   bazarr = callPackage ../servers/bazarr { };
-
-  bcachefs-tools = callPackage ../tools/filesystems/bcachefs-tools { };
 
   bisq-desktop = callPackage ../applications/blockchains/bisq-desktop {
     openjdk11 = openjdk11.override { enableJavaFX = true; };
@@ -35408,6 +35404,8 @@ with pkgs;
   webcamoid = libsForQt5.callPackage ../applications/video/webcamoid { };
 
   webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_30; };
+
+  webcord-vencord = callPackage ../by-name/we/webcord-vencord/package.nix { electron = electron_29; };
 
   webex = callPackage ../applications/networking/instant-messengers/webex { };
 
