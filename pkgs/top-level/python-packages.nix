@@ -12667,6 +12667,8 @@ self: super: with self; {
 
   pytube = callPackage ../development/python-modules/pytube { };
 
+  pytubefix = callPackage ../development/python-modules/pytubefix { };
+
   pytun = callPackage ../development/python-modules/pytun { };
 
   pyturbojpeg = callPackage ../development/python-modules/pyturbojpeg { };
@@ -16715,6 +16717,8 @@ self: super: with self; {
   vmprof = callPackage ../development/python-modules/vmprof { };
 
   vncdo = callPackage ../development/python-modules/vncdo { };
+
+  vnoise = callPackage ../development/python-modules/vnoise { };
 
   vobject = callPackage ../development/python-modules/vobject { };
 
