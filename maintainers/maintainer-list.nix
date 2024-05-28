@@ -272,6 +272,12 @@
     githubId = 381298;
     name = "9R";
   };
+  _9yokuro = {
+    email = "xzstd099@protonmail.com";
+    github = "9yokuro";
+    githubId = 119095935;
+    name = "9yokuro";
+  };
   A1ca7raz = {
     email = "aya@wtm.moe";
     github = "A1ca7raz";
@@ -1173,6 +1179,15 @@
     github = "amz-x";
     githubId = 18249234;
     name = "Christopher Crouse";
+  };
+  anas = {
+    email = "anas.elgarhy.dev@gmail.com";
+    github = "0x61nas";
+    githubId = 44965145;
+    name = "Anas Elgarhy";
+    keys = [{
+      fingerprint = "E10B D192 9231 08C7 3C35 7EC3 83E0 3DC6 F383 4086";
+    }];
   };
   AnatolyPopov = {
     email = "aipopov@live.ru";
@@ -9397,6 +9412,12 @@
     githubId = 2377;
     name = "Jonathan del Strother";
   };
+  jdev082 = {
+    email = "jdev0894@gmail.com";
+    github = "jdev082";
+    githubId = 92550746;
+    name = "jdev082";
+  };
   jdreaver = {
     email = "johndreaver@gmail.com";
     github = "jdreaver";
@@ -12909,6 +12930,12 @@
     keys = [{
       fingerprint = "1DE4 424D BF77 1192 5DC4  CF5E 9AED 8814 81D8 444E";
     }];
+  };
+  maxstrid = {
+    email = "mxwhenderson@gmail.com";
+    github = "maxstrid";
+    githubId = 115441224;
+    name = "Maxwell Henderson";
   };
   maxux = {
     email = "root@maxux.net";
@@ -16728,6 +16755,12 @@
     email = "philipp.woelfel@gmail.com";
     github = "PhilippWoelfel";
     githubId = 19400064;
+  };
+  pyle = {
+    name = "Adam Pyle";
+    email = "adam@pyle.dev";
+    github = "pyle";
+    githubId = 7279609;
   };
   pyrolagus = {
     email = "pyrolagus@gmail.com";
@@ -20833,11 +20866,14 @@
     name = "Tomkoid";
   };
   tomodachi94 = {
-    email = "tomodachi94+nixpkgs@protonmail.com";
+    email = "tomodachi94@protonmail.com";
     matrix = "@tomodachi94:matrix.org";
     github = "tomodachi94";
     githubId = 68489118;
     name = "Tomodachi94";
+    keys = [{
+      fingerprint = "B208 D6E5 B8ED F47D 5687  627B 2E27 5F21 C4D5 54A3";
+    }];
   };
   tomsiewert = {
     email = "tom@siewert.io";
@@ -22919,6 +22955,12 @@
     github = "zimbatm";
     githubId = 3248;
     name = "zimbatm";
+  };
+  zimeg = {
+    email = "zim@o526.net";
+    github = "zimeg";
+    githubId = 18134219;
+    name = "zimeg";
   };
   Zimmi48 = {
     email = "theo.zimmermann@telecom-paris.fr";
