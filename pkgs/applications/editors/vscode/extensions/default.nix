@@ -3294,6 +3294,21 @@ let
         };
       };
 
+      phind.phind = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "phind";
+          publisher = "phind";
+          version = "0.22.2";
+          hash = "sha256-nN/7IVa4WaA5V39CHx0nrvWBmBNtISvAINTQzk02x1w=";
+        };
+        meta = {
+          description = "Using Phind AI service to provide answers based on the code context";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=phind.phind";
+          license = lib.licenses.unfree;
+          maintainers = [ lib.maintainers.onny ];
+        };
+      };
+
       phoenixframework.phoenix = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "phoenix";
@@ -3913,8 +3928,8 @@ let
         mktplcRef = {
           name = "code-spell-checker";
           publisher = "streetsidesoftware";
-          version = "4.0.0";
-          hash = "sha256-RUQQV+r1JNUuLxIRfi9IaOtpBubySNPL5a5Vy6bA+q4=";
+          version = "4.0.1";
+          hash = "sha256-Vxk+PpwwRV7dH8A9hI+DSzPMqH2l//VtrgUV+w8at4g=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/streetsidesoftware.code-spell-checker/changelog";
@@ -4730,6 +4745,23 @@ let
         meta = {
           license = lib.licenses.mit;
           maintainers = [ lib.maintainers.zeratax ];
+        };
+      };
+
+      xdebug.php-debug = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "php-debug";
+          publisher = "xdebug";
+          version = "1.34.0";
+          hash = "sha256-WAcXWCMmvuw7nkfGcOgmK+s+Nw6XpvNR4POXD85E/So=";
+        };
+        meta = {
+          description = "PHP Debug Adapter";
+          license = lib.licenses.mit;
+          homepage = "https://github.com/xdebug/vscode-php-debug";
+          changelog = "https://github.com/xdebug/vscode-php-debug/blob/main/CHANGELOG.md";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug";
+          maintainers = [ lib.maintainers.onny ];
         };
       };
 
