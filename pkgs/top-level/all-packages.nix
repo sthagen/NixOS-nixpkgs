@@ -5511,9 +5511,7 @@ with pkgs;
 
   hyprpaper = callPackage ../applications/window-managers/hyprwm/hyprpaper { };
 
-  hyprpicker = callPackage ../applications/window-managers/hyprwm/hyprpicker {
-    wlroots = wlroots_0_16;
-  };
+  hyprpicker = callPackage ../applications/window-managers/hyprwm/hyprpicker { };
 
   hyprshade = python311Packages.callPackage ../applications/window-managers/hyprwm/hyprshade { };
 
@@ -21466,7 +21464,9 @@ with pkgs;
 
   ilmbase = callPackage ../development/libraries/ilmbase { };
 
-  imgui = callPackage ../development/libraries/imgui { };
+  imgui = callPackage ../development/libraries/imgui {
+    stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  };
 
   imtui = callPackage ../development/libraries/imtui { };
 
@@ -25047,24 +25047,22 @@ with pkgs;
   libzra = callPackage ../development/libraries/libzra { };
 
   # requires a newer Apple SDK
-  zig_0_9 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.9.nix {
+  zig_0_9 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.9 {
     llvmPackages = llvmPackages_13;
   };
   # requires a newer Apple SDK
-  zig_0_10 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.10.nix {
+  zig_0_10 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.10 {
     llvmPackages = llvmPackages_15;
   };
   # requires a newer Apple SDK
-  zig_0_11 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.11.nix {
+  zig_0_11 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.11 {
     llvmPackages = llvmPackages_16;
   };
   # requires a newer Apple SDK
-  zig_0_12 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.12.nix {
+  zig_0_12 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.12 {
     llvmPackages = llvmPackages_17;
   };
   zig = zig_0_12;
-
-  zig-shell-completions = callPackage ../development/compilers/zig/shell-completions.nix { };
 
   zimlib = callPackage ../development/libraries/zimlib { };
 
@@ -27153,8 +27151,6 @@ with pkgs;
   irqbalance = callPackage ../os-specific/linux/irqbalance { };
 
   itpp = callPackage ../development/libraries/science/math/itpp { };
-
-  iw = callPackage ../os-specific/linux/iw { };
 
   iwd = callPackage ../os-specific/linux/iwd { };
 
