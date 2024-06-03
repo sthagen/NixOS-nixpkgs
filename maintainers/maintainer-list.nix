@@ -2195,15 +2195,6 @@
       fingerprint = "6309 E212 29D4 DA30 AF24  BDED 754B 5C09 63C4 2C50";
     }];
   };
-  babariviere = {
-    email = "me@babariviere.com";
-    github = "babariviere";
-    githubId = 12128029;
-    name = "Bastien Rivière";
-    keys = [{
-      fingerprint = "74AA 9AB4 E6FF 872B 3C5A  CB3E 3903 5CC0 B75D 1142";
-    }];
-  };
   babbaj = {
     name = "babbaj";
     email = "babbaj45@gmail.com";
@@ -8396,6 +8387,12 @@
     githubId = 896431;
     name = "Chris Hodapp";
   };
+  hogcycle = {
+    email = "nate@gysli.ng";
+    github = "hogcycle";
+    githubId = 57007241;
+    name = "hogcycle";
+  };
   holgerpeters = {
     name = "Holger Peters";
     email = "holger.peters@posteo.de";
@@ -9807,6 +9804,12 @@
     githubId = 54179289;
     name = "Jason Miller";
   };
+  jn-sena = {
+    email = "jn-sena@proton.me";
+    github = "jn-sena";
+    githubId = 45771313;
+    name = "Sena";
+  };
   jnsgruk = {
     email = "jon@sgrs.uk";
     github = "jnsgruk";
@@ -9989,6 +9992,12 @@
     github = "JohnTitor";
     githubId = 25030997;
     name = "Yuki Okushi";
+  };
+  johnylpm = {
+    email = "joaoluisparreira@gmail.com";
+    github = "Johny-LPM";
+    githubId = 168684553;
+    name = "João Marques";
   };
   jojosch = {
     name = "Johannes Schleifenbaum";
@@ -18179,6 +18188,12 @@
     githubId = 6022042;
     name = "Sam Parkinson";
   };
+  samemrecebi = {
+    name = "Emre Çebi";
+    email = "emre@cebi.io";
+    github = "samemrecebi";
+    githubId = 64419750;
+  };
   samhug = {
     email = "s@m-h.ug";
     github = "samhug";
@@ -20482,6 +20497,12 @@
     matrix = "@thefossguy:matrix.org";
     github = "thefossguy";
     githubId = 44400303;
+  };
+  thehans255 = {
+    name = "Hans Jorgensen";
+    email = "foss-contact@thehans255.com";
+    github = "thehans255";
+    githubId = 15896573;
   };
   thekostins = {
     name = "Konstantin";
