@@ -2909,6 +2909,8 @@ with pkgs;
 
   portfolio-filemanager = callPackage ../applications/file-managers/portfolio-filemanager { };
 
+  pot = callPackage ../by-name/po/pot/package.nix { pnpm = pnpm_8; };
+
   potreeconverter = callPackage ../applications/graphics/potreeconverter { };
 
   ranger = callPackage ../applications/file-managers/ranger { };
@@ -11895,6 +11897,10 @@ with pkgs;
 
   pngquant = callPackage ../tools/graphics/pngquant { };
 
+  inherit (callPackages ../development/tools/pnpm { })
+    pnpm_8 pnpm_9;
+  pnpm = pnpm_9;
+
   po4a = perlPackages.Po4a;
 
   poac = callPackage ../development/tools/poac {
@@ -14077,6 +14083,8 @@ with pkgs;
   vial = callPackage ../tools/misc/vial { };
 
   viking = callPackage ../applications/misc/viking { };
+
+  vikunja = callPackage ../by-name/vi/vikunja/package.nix { pnpm = pnpm_8; };
 
   vim-vint = callPackage ../development/tools/vim-vint { };
 
@@ -19154,6 +19162,10 @@ with pkgs;
     jre_headless = jre8_headless;
   };
 
+  nexusmods-app-unfree = callPackage ../by-name/ne/nexusmods-app/package.nix {
+    enableUnfree = true;
+  };
+
   nmrpflash = callPackage ../development/embedded/nmrpflash { };
 
   norminette = callPackage ../development/tools/norminette { };
@@ -20823,7 +20835,7 @@ with pkgs;
   gecode_6 = qt5.callPackage ../development/libraries/gecode { };
   gecode = gecode_6;
 
-  geph = recurseIntoAttrs (callPackages ../applications/networking/geph { });
+  geph = recurseIntoAttrs (callPackages ../applications/networking/geph { pnpm = pnpm_8; });
 
   gephi = callPackage ../applications/science/misc/gephi { };
 
@@ -24772,6 +24784,8 @@ with pkgs;
   vcg = callPackage ../development/libraries/vcg { };
 
   vencord-web-extension = callPackage ../by-name/ve/vencord/package.nix { buildWebExtension = true; };
+
+  vesktop = callPackage ../by-name/ve/vesktop/package.nix { pnpm = pnpm_8; };
 
   vid-stab = callPackage ../development/libraries/vid-stab {
     inherit (llvmPackages) openmp;
@@ -32112,6 +32126,8 @@ with pkgs;
 
   kitsas = libsForQt5.callPackage ../applications/office/kitsas { };
 
+  kiwitalk = callPackage ../by-name/ki/kiwitalk/package.nix { pnpm = pnpm_8; };
+
   kiwix = libsForQt5.callPackage ../applications/misc/kiwix { };
 
   kiwix-tools = callPackage ../applications/misc/kiwix/tools.nix { };
@@ -33885,8 +33901,6 @@ with pkgs;
   qnotero = libsForQt5.callPackage ../applications/office/qnotero { };
 
   qpwgraph = qt6Packages.callPackage ../applications/audio/qpwgraph { };
-
-  qrcode = callPackage ../tools/graphics/qrcode { };
 
   qsampler = libsForQt5.callPackage ../applications/audio/qsampler { };
 
@@ -35813,7 +35827,7 @@ with pkgs;
 
   youtube-dl-light = with python3Packages; toPythonApplication youtube-dl-light;
 
-  youtube-music = callPackage ../applications/audio/youtube-music { };
+  youtube-music = callPackage ../applications/audio/youtube-music { pnpm = pnpm_8; };
 
   youtube-tui = callPackage ../applications/video/youtube-tui {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
@@ -35891,7 +35905,7 @@ with pkgs;
 
   zotero = callPackage ../applications/office/zotero { };
 
-  zotero_7 = callPackage ../applications/office/zotero/zotero_7.nix { };
+  zotero_7 = pkgs.zotero-beta;
 
   zscroll = callPackage ../applications/misc/zscroll { };
 
@@ -38186,6 +38200,8 @@ with pkgs;
   mathematica11 = callPackage ../applications/science/math/mathematica {
     version = "11";
   };
+
+  mathmod = libsForQt5.callPackage ../applications/science/math/mathmod { };
 
   metis = callPackage ../development/libraries/science/math/metis { };
 
