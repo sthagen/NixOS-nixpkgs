@@ -3650,6 +3650,8 @@ with pkgs;
 
   deterministic-uname = callPackage ../build-support/deterministic-uname { };
 
+  deterministic-host-uname = deterministic-uname.override { forPlatform = stdenv.hostPlatform; };
+
   dfmt = callPackage ../tools/text/dfmt { };
 
   diopser = callPackage ../applications/audio/diopser { };
@@ -5622,8 +5624,6 @@ with pkgs;
   klipperscreen = callPackage ../applications/misc/klipperscreen { };
 
   klog = qt5.callPackage ../applications/radio/klog { };
-
-  knxd = callPackage ../servers/knxd { };
 
   komga = callPackage ../servers/komga { };
 
@@ -23666,10 +23666,6 @@ with pkgs;
 
   openpa = callPackage ../development/libraries/openpa { };
 
-  openpgp-card-tools = callPackage ../tools/security/openpgp-card-tools {
-    inherit (darwin.apple_sdk.frameworks) PCSC;
-  };
-
   opensaml-cpp = callPackage ../development/libraries/opensaml-cpp { };
 
   openscenegraph = callPackage ../development/libraries/openscenegraph {
@@ -35176,7 +35172,7 @@ with pkgs;
   };
 
   virt-manager-qt = libsForQt5.callPackage ../applications/virtualization/virt-manager/qt.nix {
-    qtermwidget = lxqt.qtermwidget;
+    qtermwidget = lxqt.qtermwidget_1_4;
   };
 
   virtscreen = callPackage ../tools/admin/virtscreen { };
