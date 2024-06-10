@@ -9987,6 +9987,8 @@ self: super: with self; {
 
   pycrdt-websocket = callPackage ../development/python-modules/pycrdt-websocket { };
 
+  pycycling = callPackage ../development/python-modules/pycycling { };
+
   pyfibaro = callPackage ../development/python-modules/pyfibaro { };
 
   pyfireservicerota = callPackage ../development/python-modules/pyfireservicerota { };
@@ -15052,6 +15054,8 @@ self: super: with self; {
   terminado = callPackage ../development/python-modules/terminado { };
 
   terminaltables = callPackage ../development/python-modules/terminaltables { };
+
+  terminaltexteffects = callPackage ../development/python-modules/terminaltexteffects { };
 
   termplotlib = callPackage ../development/python-modules/termplotlib { };
 
