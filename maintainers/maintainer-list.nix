@@ -20823,6 +20823,12 @@
     githubId = 14172;
     name = "Tim Cuthbertson";
   };
+  timhae = {
+    email = "tim.haering@posteo.net";
+    githubId = 6264882;
+    github = "timhae";
+    name = "Tim Häring";
+  };
   timma = {
     email = "kunduru.it.iitb@gmail.com";
     github = "ktrsoft";
@@ -21618,6 +21624,12 @@
     github = "varunpatro";
     githubId = 6943308;
     name = "Varun Patro";
+  };
+  vasissualiyp = {
+    email = "vaspust@gmail.com";
+    github = "vasissualiyp";
+    githubId = 110242808;
+    name = "Vasilii Pustovoit";
   };
   vbgl = {
     email = "Vincent.Laporte@gmail.com";
@@ -23075,6 +23087,16 @@
     githubId = 19512674;
     keys = [{
       fingerprint = "1127 F188 280A E312 3619  3329 87E1 7EEF 9B18 B6C9";
+    }];
+  };
+  zeorin = {
+    name = "Xandor Schiefer";
+    email = "me@xandor.co.za";
+    matrix = "@zeorin:matrix.org";
+    github = "zeorin";
+    githubId = 1187078;
+    keys = [{
+      fingerprint = "863F 093A CF82 D2C8 6FD7  FB74 5E1C 0971 FE4F 665A";
     }];
   };
   zeratax = {
