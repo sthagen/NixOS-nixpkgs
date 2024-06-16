@@ -1917,12 +1917,6 @@
     githubId = 7745457;
     name = "Astavie";
   };
-  astindev = {
-    email = "astindev@pm.me";
-    github = "astindev";
-    githubId = 52360869;
-    name = "Astin";
-  };
   astro = {
     email = "astro@spaceboyz.net";
     github = "astro";
@@ -5233,6 +5227,12 @@
     email = "diniamo53@gmail.com";
     github = "diniamo";
     githubId = 55629891;
+  };
+  diogomdp = {
+    email = "me@diogodp.dev";
+    github = "diogomdp";
+    githubId = 52360869;
+    name = "Diogo";
   };
   diogotcorreia = {
     name = "Diogo Correia";
@@ -13932,6 +13932,12 @@
     github = "moaxcp";
     githubId = 7831184;
     name = "John Mercier";
+  };
+  modderme123 = {
+    email = "modderme123@gmail.com";
+    github = "modderme123";
+    githubId = 14153763;
+    name = "modderme123";
   };
   modulistic = {
     email = "modulistic@gmail.com";

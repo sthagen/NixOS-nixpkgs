@@ -4068,7 +4068,7 @@ with pkgs;
   adbfs-rootless = callPackage ../development/mobile/adbfs-rootless { };
 
   adb-sync = callPackage ../development/mobile/adb-sync {
-    inherit (androidenv.androidPkgs_9_0) platform-tools;
+    inherit (androidenv.androidPkgs) platform-tools;
   };
 
   amoco = callPackage ../tools/security/amoco { };
@@ -4084,7 +4084,7 @@ with pkgs;
   androidndkPkgs_23b = (callPackage ../development/androidndk-pkgs {})."23b";
   androidndkPkgs_24 = (callPackage ../development/androidndk-pkgs {})."24";
 
-  androidsdk_9_0 = androidenv.androidPkgs_9_0.androidsdk;
+  androidsdk = androidenv.androidPkgs.androidsdk;
 
   webos = recurseIntoAttrs {
     cmake-modules = callPackage ../development/mobile/webos/cmake-modules.nix { };
@@ -7575,7 +7575,7 @@ with pkgs;
 
   tracker = callPackage ../development/libraries/tracker { };
 
-  tracy = callPackage ../development/tools/tracy { };
+  tracy-x11 = callPackage ../by-name/tr/tracy/package.nix { withWayland = false; };
 
   trivy = callPackage ../tools/admin/trivy { };
 
@@ -15367,7 +15367,9 @@ with pkgs;
 
   fluidd = callPackage ../applications/misc/fluidd { };
 
-  flutterPackages = recurseIntoAttrs (callPackage ../development/compilers/flutter { });
+  flutterPackages-bin = recurseIntoAttrs (callPackage ../development/compilers/flutter { });
+  flutterPackages-source = recurseIntoAttrs (callPackage ../development/compilers/flutter { useNixpkgsEngine = true; });
+  flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
   flutter323 = flutterPackages.v3_23;
   flutter322 = flutterPackages.v3_22;
@@ -20565,8 +20567,6 @@ with pkgs;
   enet = callPackage ../development/libraries/enet { };
 
   entt = callPackage ../development/libraries/entt { };
-
-  epoll-shim = callPackage ../development/libraries/epoll-shim { };
 
   libepoxy = callPackage ../development/libraries/libepoxy {
     inherit (darwin.apple_sdk.frameworks) Carbon OpenGL;
@@ -29515,6 +29515,7 @@ with pkgs;
   androidStudioPackages = recurseIntoAttrs
     (callPackage ../applications/editors/android-studio { });
   android-studio = androidStudioPackages.stable;
+  android-studio-full = android-studio.full;
 
   antfs-cli = callPackage ../applications/misc/antfs-cli { };
 
