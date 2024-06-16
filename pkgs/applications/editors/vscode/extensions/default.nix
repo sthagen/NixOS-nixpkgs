@@ -406,8 +406,8 @@ let
         mktplcRef = {
           name = "vscode-neovim";
           publisher = "asvetliakov";
-          version = "1.15.2";
-          hash = "sha256-gurh2DSLH/gM/EZCUACHGlzOf0LPwkc+zYxw7AOcb1E=";
+          version = "1.17.2";
+          hash = "sha256-IA09vUleY7hazu65kadES4iq3XojyJ3sXOOGaw0vJnU=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/asvetliakov.vscode-neovim/changelog";
@@ -567,6 +567,22 @@ let
         };
         meta = {
           license = lib.licenses.mit;
+        };
+      };
+
+      bierner.github-markdown-preview = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "github-markdown-preview";
+          publisher = "bierner";
+          version = "0.3.0";
+          hash = "sha256-7pbl5OgvJ6S0mtZWsEyUzlg+lkUhdq3rkCCpLsvTm4g=";
+        };
+        meta = {
+          description = "A VSCode extension that changes the markdown preview to support GitHub markdown features";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview";
+          homepage = "https://github.com/mjbvz/vscode-github-markdown-preview";
+          license = lib.licenses.mit;
+          maintainers = [ lib.maintainers.pandapip1 ];
         };
       };
 
@@ -1767,6 +1783,22 @@ let
         };
       };
 
+      garlicbreadcleric.pandoc-markdown-syntax = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "pandoc-markdown-syntax";
+          publisher = "garlicbreadcleric";
+          version = "0.0.2";
+          hash = "sha256-YAMH5smLyBuoTdlxSCTPyMIKOWTSIdf2MQVZuOO2V1w=";
+        };
+        meta = {
+          description = "A VSCode extension that adds syntax highlighting for Pandoc-flavored Markdown";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=garlicbreadcleric.pandoc-markdown-syntax";
+          homepage = "https://github.com/garlicbreadcleric/vscode-pandoc-markdown";
+          license = lib.licenses.mit;
+          maintainers = [ lib.maintainers.pandapip1 ];
+        };
+      };
+
       gencer.html-slim-scss-css-class-completion = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "html-slim-scss-css-class-completion";
@@ -2573,6 +2605,22 @@ let
         };
         meta = {
           license = lib.licenses.asl20;
+        };
+      };
+
+      lapo.asn1js = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "asn1js";
+          publisher = "lapo";
+          version = "0.1.4";
+          hash = "sha256-utbIKlwNHnJZj/51f8hEDmUA/A26De/gY73iT4tXKRU=";
+        };
+        meta = {
+          description = "Decode ASN.1 content inside VSCode";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=lapo.asn1js";
+          homepage = "https://github.com/lapo-luchini/vscode-asn1js";
+          maintainers = with lib.maintainers; [ katexochen ];
+          license = lib.licenses.isc;
         };
       };
 
@@ -3943,8 +3991,8 @@ let
         mktplcRef = {
           name = "code-spell-checker";
           publisher = "streetsidesoftware";
-          version = "4.0.2";
-          hash = "sha256-k3FxRAtW9Fdhm7jD3ingFXONiBsOia1Whs7OPeDmlSw=";
+          version = "4.0.3";
+          hash = "sha256-CEGwbw5RpFsfB/g2inScIqWB7/3oxgxz7Yuc6V3OiHg=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/streetsidesoftware.code-spell-checker/changelog";
@@ -4590,8 +4638,8 @@ let
         mktplcRef = {
           name = "vscode-icons";
           publisher = "vscode-icons-team";
-          version = "12.2.0";
-          sha256 = "12s5br0s9n99vjn6chivzdsjb71p0lai6vnif7lv13x497dkw4rz";
+          version = "12.8.0";
+          hash = "sha256-2+Wf0AL9C5xOQCjA9maMt/W/kviNuiyMfaOFDU82KxM=";
         };
         meta = {
           description = "Bring real icons to your Visual Studio Code";
@@ -4826,6 +4874,22 @@ let
           homepage = "https://github.com/yzhang-gh/vscode-markdown";
           license = lib.licenses.mit;
           maintainers = [ lib.maintainers.raroh73 ];
+        };
+      };
+
+      zaaack.markdown-editor = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "markdown-editor";
+          publisher = "zaaack";
+          version = "0.1.10";
+          hash = "sha256-K1nczR059BsiHpT1xdtJjpFLl5krt4H9+CrEsIycq9U=";
+        };
+        meta = {
+          description = "Visual Studio Code extension for WYSIWYG markdown editing";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor";
+          homepage = "https://github.com/zaaack/vscode-markdown-editor";
+          license = lib.licenses.mit;
+          maintainers = [ lib.maintainers.pandapip1 ];
         };
       };
 

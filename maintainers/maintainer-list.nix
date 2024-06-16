@@ -10652,6 +10652,12 @@
     githubId = 56224949;
     name = "Mia Kanashi";
   };
+  kanielrkirby = {
+    email = "kanielrkirby@runbox.com";
+    github = "kanielrkirby";
+    githubId = 77940607;
+    name = "Kaniel Kirby";
+  };
   karantan = {
     name = "Gasper Vozel";
     email = "karantan@gmail.com";
@@ -23017,6 +23023,15 @@
     github = "yvt";
     githubId = 5253988;
     name = "yvt";
+  };
+  yzx9 = {
+    email = "yuan.zx@outlook.com";
+    github = "yzx9";
+    githubId = 41458459;
+    name = "Zexin Yuan";
+    keys = [{
+      fingerprint = "FE16 B281 90EF 6C3F F661  6441 C2DD 1916 FE47 1BE2";
+    }];
   };
   zachcoyle = {
     email = "zach.coyle@gmail.com";

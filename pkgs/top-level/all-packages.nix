@@ -4197,8 +4197,6 @@ with pkgs;
 
   beats = callPackage ../tools/misc/beats { };
 
-  BeatSaberModManager = callPackage ../games/BeatSaberModManager/default.nix { };
-
   beauty-line-icon-theme = callPackage ../data/icons/beauty-line-icon-theme {
     inherit (plasma5Packages) breeze-icons;
   };
@@ -5502,8 +5500,6 @@ with pkgs;
   hypr = callPackage ../applications/window-managers/hyprwm/hypr {
     cairo = cairo.override { xcbSupport = true; };  };
 
-  hyprland = callPackage ../applications/window-managers/hyprwm/hyprland { };
-
   hyprland-autoname-workspaces = callPackage ../applications/misc/hyprland-autoname-workspaces { };
 
   hyprland-per-window-layout = callPackage ../tools/wayland/hyprland-per-window-layout { };
@@ -5516,7 +5512,7 @@ with pkgs;
 
   hyprshade = python311Packages.callPackage ../applications/window-managers/hyprwm/hyprshade { };
 
-  hyprlandPlugins = recurseIntoAttrs (callPackage ../applications/window-managers/hyprwm/hyprland/plugins.nix { });
+  hyprlandPlugins = recurseIntoAttrs (callPackage ../applications/window-managers/hyprwm/hyprland-plugins { });
 
   hysteria = callPackage ../tools/networking/hysteria { };
 
@@ -20333,8 +20329,6 @@ with pkgs;
 
   soxt = callPackage ../development/libraries/soxt { };
 
-  CoinMP = callPackage ../development/libraries/CoinMP { };
-
   coinlive = callPackage ../tools/misc/coinlive {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -33049,8 +33043,6 @@ with pkgs;
 
   nwg-menu = callPackage ../applications/misc/nwg-menu { };
 
-  nwg-panel = callPackage ../applications/misc/nwg-panel { };
-
   nwg-wrapper = callPackage ../applications/misc/nwg-wrapper { };
 
   ocm = callPackage ../applications/networking/cluster/ocm { };
@@ -34221,8 +34213,6 @@ with pkgs;
   };
 
   skypeforlinux = callPackage ../applications/networking/instant-messengers/skypeforlinux { };
-
-  SkypeExport = callPackage ../applications/networking/instant-messengers/SkypeExport { };
 
   slingshot = callPackage ../tools/misc/slingshot { };
 
