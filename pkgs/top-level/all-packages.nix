@@ -417,8 +417,6 @@ with pkgs;
 
   catatonit = callPackage ../applications/virtualization/catatonit { };
 
-  catppuccin-gtk = callPackage ../data/themes/catppuccin-gtk { };
-
   catppuccin-kde = callPackage ../data/themes/catppuccin-kde { };
 
   catppuccin-kvantum = callPackage ../data/themes/catppuccin-kvantum { };
@@ -21520,7 +21518,7 @@ with pkgs;
 
   ispc = callPackage ../development/compilers/ispc {
     xcode = darwin.xcode_14;
-    llvmPackages = llvmPackages_15;
+    llvmPackages = llvmPackages_17;
   };
 
   isso = callPackage ../servers/isso {
@@ -23286,7 +23284,7 @@ with pkgs;
 
   micropython = callPackage ../development/interpreters/micropython { };
 
-  MIDIVisualizer = darwin.apple_sdk_11_0.callPackage ../applications/audio/midi-visualizer {
+  midivisualizer = darwin.apple_sdk_11_0.callPackage ../applications/audio/midivisualizer {
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit Cocoa Carbon CoreAudio CoreMIDI CoreServices Kernel;
   };
 
@@ -29569,8 +29567,6 @@ with pkgs;
 
   asap = callPackage ../tools/audio/asap { };
 
-  aseprite = callPackage ../applications/editors/aseprite { };
-
   assign-lb-ip = callPackage ../applications/networking/cluster/assign-lb-ip { };
 
   astroid = callPackage ../applications/networking/mailreaders/astroid {
@@ -30362,10 +30358,6 @@ with pkgs;
     ed edUnstable;
 
   edlin = callPackage ../applications/editors/edlin { };
-
-  orbiton = callPackage ../applications/editors/orbiton {
-    buildGoModule = buildGo122Module;
-  };
 
   oed = callPackage ../applications/editors/oed { };
 
@@ -36219,7 +36211,9 @@ with pkgs;
 
   keeperrl = callPackage ../games/keeperrl { };
 
-  shipwright = callPackage ../games/shipwright { };
+  shipwright = callPackage ../games/shipwright {
+    stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  };
 
   wipeout-rewrite = callPackage ../games/wipeout-rewrite {
     inherit (darwin.apple_sdk.frameworks) Foundation;
@@ -39356,8 +39350,6 @@ with pkgs;
   kompute = callPackage ../development/libraries/kompute {
     fmt = fmt_8;
   };
-
-  kontemplate = callPackage ../applications/networking/cluster/kontemplate { };
 
   # In general we only want keep the last three minor versions around that
   # correspond to the last three supported kubernetes versions:
