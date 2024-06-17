@@ -373,6 +373,7 @@ mapAliases ({
   fastnlo_toolkit = fastnlo-toolkit; # Added 2024-01-03
   inherit (luaPackages) fennel; # Added 2022-09-24
   fetchFromGithub = throw "You meant fetchFromGitHub, with a capital H"; # preserve
+  FIL-plugins = fil-plugins; # Added 2024-06-12
   findimagedupes = throw "findimagedupes has been removed because the perl bindings are no longer compatible"; # Added 2023-07-10
   finger_bsd = bsd-finger;
   fingerd_bsd = bsd-fingerd;
@@ -692,6 +693,7 @@ mapAliases ({
   lispPackages_new = throw "Lisp packages have been redesigned. See 'lisp-modules' in the nixpkgs manual."; # Added 2024-05-07
   lispPackages = throw "Lisp packages have been redesigned. See 'lisp-modules' in the nixpkgs manual."; # Added 2024-05-07
   lispPackagesFor = throw "Lisp packages have been redesigned. See 'lisp-modules' in the nixpkgs manual."; # Added 2024-05-07
+  Literate = literate; # Added 2024-06-12
   llama = walk; # Added 2023-01-23
 
   # Linux kernels
@@ -1226,6 +1228,7 @@ mapAliases ({
   solr = throw "'solr' has been removed from nixpkgs, as it was broken and unmaintained"; # Added 2023-03-16
   soundOfSorting = sound-of-sorting; # Added 2023-07-07
   soundux = throw "'soundux' has been removed, as it is unmaintained."; # Added on 2024-02-14
+  SPAdes = spades; # Added 2024-06-12
   spark2 = throw "'spark2' is no longer supported nixpkgs, please use 'spark'"; # Added 2023-05-08
   spark_2_4 = throw "'spark_2_4' is no longer supported nixpkgs, please use 'spark'"; # Added 2023-05-08
   spark_3_1 = throw "'spark_3_1' is no longer supported nixpkgs, please use 'spark'"; # Added 2023-05-08
@@ -1274,6 +1277,7 @@ mapAliases ({
   supertux-editor = throw "'supertux-editor' has been removed, as it was broken and unmaintained"; # Added 2023-12-22
   swift-im = throw "swift-im has been removed as it is unmaintained and depends on deprecated Python 2 / Qt WebKit"; # Added 2023-01-06
   swtpm-tpm2 = swtpm; # Added 2021-02-26
+  Sylk = sylk; # Added 2024-06-12
   syncthing-cli = syncthing; # Added 2021-04-06
   syncthingtray-qt6 = syncthingtray; # Added 2024-03-06
 

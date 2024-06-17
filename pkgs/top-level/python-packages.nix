@@ -10087,6 +10087,8 @@ self: super: with self; {
 
   pyrender = callPackage ../development/python-modules/pyrender { };
 
+  pyreqwest-impersonate = callPackage ../development/python-modules/pyreqwest-impersonate { };
+
   pyrevolve = callPackage ../development/python-modules/pyrevolve { };
 
   pyrfxtrx = callPackage ../development/python-modules/pyrfxtrx { };
@@ -11057,8 +11059,6 @@ self: super: with self; {
   pyfantom = callPackage ../development/python-modules/pyfantom { };
 
   pyfcm = callPackage ../development/python-modules/pyfcm { };
-
-  pyfftw = callPackage ../development/python-modules/pyfftw { };
 
   pyfido = callPackage ../development/python-modules/pyfido { };
 

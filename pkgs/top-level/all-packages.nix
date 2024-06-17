@@ -13325,8 +13325,6 @@ with pkgs;
 
   systrayhelper = callPackage ../tools/misc/systrayhelper { };
 
-  Sylk = callPackage ../applications/networking/Sylk { };
-
   privoxy = callPackage ../tools/networking/privoxy {
     w3m = w3m-batch;
   };
@@ -18606,8 +18604,6 @@ with pkgs;
   license_finder = callPackage ../development/tools/license_finder { };
 
   license-scanner = callPackage ../development/tools/license-scanner { };
-
-  Literate = callPackage ../development/tools/literate-programming/Literate { };
 
   md-tangle = callPackage ../development/tools/literate-programming/md-tangle { };
 
@@ -25828,7 +25824,7 @@ with pkgs;
 
   matrix-alertmanager = callPackage ../servers/monitoring/matrix-alertmanager { };
 
-  mattermost = callPackage ../servers/mattermost { buildGoModule = buildGo122Module; };
+  mattermost = callPackage ../servers/mattermost { };
   matterircd = callPackage ../servers/mattermost/matterircd.nix { };
   matterbridge = callPackage ../servers/matterbridge { };
 
@@ -30592,8 +30588,6 @@ with pkgs;
 
   fig2dev = callPackage ../applications/graphics/fig2dev { };
 
-  FIL-plugins = callPackage ../applications/audio/FIL-plugins { };
-
   finalfrontier = callPackage ../applications/science/machine-learning/finalfrontier {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -32593,8 +32587,6 @@ with pkgs;
   mdzk = callPackage ../applications/misc/mdzk {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
-
-  media-downloader = libsForQt5.callPackage ../applications/video/media-downloader { };
 
   mediaelch = mediaelch-qt5;
   mediaelch-qt5 = libsForQt5.callPackage ../applications/misc/mediaelch { };
@@ -37948,8 +37940,6 @@ with pkgs;
       sumatra;
 
   seaview = callPackage ../applications/science/biology/seaview { };
-
-  SPAdes = callPackage ../applications/science/biology/spades { };
 
   svaba = callPackage ../applications/science/biology/svaba { };
 

@@ -964,26 +964,26 @@ let
             sources = {
               "x86_64-linux" = {
                 arch = "linux-x64";
-                hash = "sha256-GQH+KKteWbCz18AlTWjLWrVpPRxumi+iDPS5n+5xy/0=";
+                hash = "sha256-ZlbPRFQwvZNCp8K/rbHqVa3coXa2dT4nOrNChC9naC8=";
               };
               "x86_64-darwin" = {
                 arch = "darwin-x64";
-                hash = "sha256-xBwuAtvRdOgYkfxP0JaxhAQZx5AJWymDVQ50piTx608=";
+                hash = "sha256-hSRdvno8VZNi48rckaqWbAgDXT6RXEcPnkNOT8DV1wA=";
               };
               "aarch64-linux" = {
                 arch = "linux-arm64";
-                hash = "sha256-oLLKnNZ+E06PbUrhj5Y0HOdHhUs/fXd+3lZXX/P2C10=";
+                hash = "sha256-rimE7dKT6zajHo6E42z7IyfP35xBXThIwMHhZjaZwHk=";
               };
               "aarch64-darwin" = {
                 arch = "darwin-arm64";
-                hash = "sha256-nWuyqOIELp8MrjzCFH3yu4pWm5KsNxmx3eacgStWKG0=";
+                hash = "sha256-7TeUAZLiEnqi5i5nHLhtv5aMxIcw7iiABOAkwP1YYqM=";
               };
             };
           in
           {
             name = "continue";
             publisher = "Continue";
-            version = "0.8.25";
+            version = "0.8.40";
           }
           // sources.${stdenv.system};
         nativeBuildInputs = lib.optionals stdenv.isLinux [ autoPatchelfHook ];
@@ -3165,6 +3165,22 @@ let
       };
 
       ms-vscode-remote.remote-ssh = callPackage ./ms-vscode-remote.remote-ssh { };
+
+      ms-vscode-remote.remote-ssh-edit = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "remote-ssh-edit";
+          publisher = "ms-vscode-remote";
+          version = "0.86.0";
+          hash = "sha256-JsbaoIekUo2nKCu+fNbGlh5d1Tt/QJGUuXUGP04TsDI=";
+        };
+        meta = {
+          description = "A Visual Studio Code extension that complements the Remote SSH extension with syntax colorization, keyword intellisense, and simple snippets when editing SSH configuration files";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh-edit";
+          homepage = "https://code.visualstudio.com/docs/remote/ssh";
+          license = lib.licenses.unfree;
+          maintainers = [ lib.maintainers.pandapip1 ];
+        };
+      };
 
       ms-vsliveshare.vsliveshare = callPackage ./ms-vsliveshare.vsliveshare { };
 

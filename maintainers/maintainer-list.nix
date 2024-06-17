@@ -4041,7 +4041,7 @@
   };
   coffeeispower = {
     email = "tiagodinis33@proton.me";
-    github = "coffee-is-power";
+    github = "coffeeispower";
     name = "Tiago Dinis";
     githubId = 92828847;
   };
@@ -11369,6 +11369,16 @@
     github = "kvendingoldo";
     githubId = 11614750;
     name = "Alexander Sharov";
+  };
+  kwaa = {
+    name = "藍+85CD";
+    email = "kwa@kwaa.dev";
+    matrix = "@kwaa:matrix.org";
+    github = "kwaa";
+    githubId = 50108258;
+    keys = [{
+      fingerprint = "ABCB A12F 1A8E 3CCC F10B  5109 4444 7777 3333 4444";
+    }];
   };
   kwohlfahrt = {
     email = "kai.wohlfahrt@gmail.com";
