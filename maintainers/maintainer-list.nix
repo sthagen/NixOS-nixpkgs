@@ -8228,7 +8228,7 @@
     name = "Akshat Agarwal";
   };
   hummeltech = {
-    email = "hummeltech2024@gmail.com";
+    email = "hummeltech@sherpaguru.com";
     github = "hummeltech";
     githubId = 6109326;
     name = "David Hummel";
@@ -13874,6 +13874,12 @@
     githubId = 1009523;
     name = "Ashijit Pramanik";
   };
+  Name = {
+    name = "Name";
+    email = "lasagna@garfunkles.space";
+    github = "namescode";
+    githubId = 86119896;
+  };
   name-snrl = {
     github = "name-snrl";
     githubId = 72071763;
@@ -16717,6 +16723,12 @@
     github = "redfish64";
     githubId = 1922770;
     name = "Tim Engler";
+  };
+  redhawk = {
+    email = "redhawk76767676@gmail.com";
+    github = "Redhawk18";
+    githubId = 77415970;
+    name = "Redhawk";
   };
   redvers = {
     email = "red@infect.me";
@@ -19614,12 +19626,6 @@
     github = "tckmn";
     githubId = 2389333;
     name = "Andy Tockman";
-  };
-  tcmal = {
-    email = "me@aria.rip";
-    github = "tcmal";
-    githubId = 4183876;
-    name = "Aria Shrimpton";
   };
   teatwig = {
     email = "nix@teatwig.net";
