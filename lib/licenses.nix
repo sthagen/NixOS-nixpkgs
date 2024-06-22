@@ -530,6 +530,13 @@ in mkLicense lset) ({
     fullName = "Unspecified free software license";
   };
 
+  fsl11Mit = {
+    fullName = "Functional Source License, Version 1.1, MIT Future License";
+    url = "https://fsl.software/FSL-1.1-MIT.template.md";
+    free = false;
+    redistributable = true;
+  };
+
   ftl = {
     spdxId = "FTL";
     fullName = "Freetype Project License";
@@ -1278,9 +1285,19 @@ in mkLicense lset) ({
     fullName = "xinetd License";
   };
 
+  xskat = {
+    spdxId = "XSkat";
+    fullName = "XSkat License";
+  };
+
   zlib = {
     spdxId = "Zlib";
     fullName = "zlib License";
+  };
+
+  zsh = {
+    url = "https://github.com/zsh-users/zsh/blob/master/LICENCE";
+    fulllName = "Zsh License";
   };
 
   zpl20 = {
@@ -1293,10 +1310,6 @@ in mkLicense lset) ({
     fullName = "Zope Public License 2.1";
   };
 
-  xskat = {
-    spdxId = "XSkat";
-    fullName = "XSkat License";
-  };
 } // {
   # TODO: remove legacy aliases
   apsl10 = {
