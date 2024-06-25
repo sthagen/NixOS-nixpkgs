@@ -96,7 +96,6 @@ nixos/modules/installer/tools/nix-fallback-paths.nix  @raitobezarius
 /nixos/default.nix                                    @infinisil
 /nixos/lib/from-env.nix                               @infinisil
 /nixos/lib/eval-config.nix                            @infinisil
-/nixos/modules/system                                 @dasJ
 /nixos/modules/system/activation/bootspec.nix         @grahamc @cole-h @raitobezarius
 /nixos/modules/system/activation/bootspec.cue         @grahamc @cole-h @raitobezarius
 
@@ -128,7 +127,7 @@ nixos/modules/installer/tools/nix-fallback-paths.nix  @raitobezarius
 
 # Python-related code and docs
 /doc/languages-frameworks/python.section.md                 @mweinelt
-/pkgs/development/interpreters/python/hooks                 @jonringer
+/pkgs/development/interpreters/python/hooks
 
 # Haskell
 /doc/languages-frameworks/haskell.section.md  @sternenseemann @maralorn @ncfavier
@@ -140,9 +139,9 @@ nixos/modules/installer/tools/nix-fallback-paths.nix  @raitobezarius
 /pkgs/top-level/haskell-packages.nix          @sternenseemann @maralorn @ncfavier
 
 # Perl
-/pkgs/development/interpreters/perl @stigtsp @zakame @dasJ @marcusramberg
-/pkgs/top-level/perl-packages.nix   @stigtsp @zakame @dasJ @marcusramberg
-/pkgs/development/perl-modules      @stigtsp @zakame @dasJ @marcusramberg
+/pkgs/development/interpreters/perl @stigtsp @zakame @marcusramberg
+/pkgs/top-level/perl-packages.nix   @stigtsp @zakame @marcusramberg
+/pkgs/development/perl-modules      @stigtsp @zakame @marcusramberg
 
 # R
 /pkgs/applications/science/math/R   @jbedo
@@ -263,13 +262,13 @@ nixos/modules/services/networking/networkmanager.nix @Janik-Haag
 /pkgs/top-level/emacs-packages.nix              @adisbladis
 
 # Neovim
-/pkgs/applications/editors/neovim      @figsoda @jonringer @teto
+/pkgs/applications/editors/neovim      @figsoda @teto
 
 # VimPlugins
-/pkgs/applications/editors/vim/plugins         @figsoda @jonringer
+/pkgs/applications/editors/vim/plugins         @figsoda
 
 # VsCode Extensions
-/pkgs/applications/editors/vscode/extensions   @jonringer
+/pkgs/applications/editors/vscode/extensions
 
 # PHP interpreter, packages, extensions, tests and documentation
 /doc/languages-frameworks/php.section.md          @aanderse @drupol @globin @ma27 @talyz
@@ -379,4 +378,3 @@ pkgs/os-specific/linux/lxc/             @adamcstephens
 /pkgs/os-specific/linux/checkpolicy @RossComputerGuy
 /pkgs/os-specific/linux/libselinux  @RossComputerGuy
 /pkgs/os-specific/linux/libsepol    @RossComputerGuy
-
