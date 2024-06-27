@@ -5487,6 +5487,10 @@ with pkgs;
   hypr = callPackage ../applications/window-managers/hyprwm/hypr {
     cairo = cairo.override { xcbSupport = true; };  };
 
+  hyprland = callPackage ../by-name/hy/hyprland/package.nix {
+    libliftoff = libliftoff_0_4;
+  };
+
   hyprland-autoname-workspaces = callPackage ../applications/misc/hyprland-autoname-workspaces { };
 
   hyprland-per-window-layout = callPackage ../tools/wayland/hyprland-per-window-layout { };
@@ -6285,8 +6289,6 @@ with pkgs;
   mcrypt = callPackage ../tools/misc/mcrypt { };
 
   mongoaudit = callPackage ../tools/security/mongoaudit { };
-
-  mongodb-compass = callPackage ../tools/misc/mongodb-compass { };
 
   mongodb-tools = callPackage ../tools/misc/mongodb-tools { };
 
@@ -10208,10 +10210,6 @@ with pkgs;
 
   libnids = callPackage ../tools/networking/libnids { };
 
-  rtorrent = callPackage ../applications/networking/p2p/rakshasa-rtorrent {
-    libtorrent = callPackage ../applications/networking/p2p/rakshasa-rtorrent/libtorrent.nix { };
-  };
-
   jesec-rtorrent = callPackage ../applications/networking/p2p/jesec-rtorrent {
     libtorrent = callPackage ../applications/networking/p2p/jesec-rtorrent/libtorrent.nix { };
   };
@@ -10828,11 +10826,8 @@ with pkgs;
   grocy = callPackage ../servers/grocy { };
 
   inherit (callPackages ../servers/nextcloud {})
-    nextcloud27 nextcloud28 nextcloud29;
+    nextcloud28 nextcloud29;
 
-  nextcloud27Packages = callPackage ../servers/nextcloud/packages {
-    apps = lib.importJSON ../servers/nextcloud/packages/27.json;
-  };
   nextcloud28Packages = callPackage ../servers/nextcloud/packages {
     apps = lib.importJSON ../servers/nextcloud/packages/28.json;
   };
@@ -11472,8 +11467,6 @@ with pkgs;
   pagmo2 = callPackage ../development/libraries/pagmo2 { };
 
   paho-mqtt-c = callPackage ../development/libraries/paho-mqtt-c { };
-
-  paho-mqtt-cpp = callPackage ../development/libraries/paho-mqtt-cpp { };
 
   pakcs = callPackage ../development/compilers/pakcs {
     # Doesn't compile with GHC 9.0 due to whitespace syntax changes
@@ -16176,7 +16169,7 @@ with pkgs;
       else if platform.isLinux then 17
       else if platform.isWasm then 16
       # For unknown systems, assume the latest version is required.
-      else 17;
+      else 18;
     # We take the "max of the mins". Why? Since those are lower bounds of the
     # supported version set, this is like intersecting those sets and then
     # taking the min bound of that.
@@ -17867,14 +17860,11 @@ with pkgs;
   apacheAnt = callPackage ../development/tools/build-managers/apache-ant { };
   ant = apacheAnt;
 
-  apacheKafka = apacheKafka_3_5;
-  apacheKafka_2_8 = callPackage ../servers/apache-kafka { majorVersion = "2.8"; };
-  apacheKafka_3_0 = callPackage ../servers/apache-kafka { majorVersion = "3.0"; };
-  apacheKafka_3_1 = callPackage ../servers/apache-kafka { majorVersion = "3.1"; };
-  apacheKafka_3_2 = callPackage ../servers/apache-kafka { majorVersion = "3.2"; };
-  apacheKafka_3_3 = callPackage ../servers/apache-kafka { majorVersion = "3.3"; };
-  apacheKafka_3_4 = callPackage ../servers/apache-kafka { majorVersion = "3.4"; };
-  apacheKafka_3_5 = callPackage ../servers/apache-kafka { majorVersion = "3.5"; };
+  inherit (callPackages ../servers/apache-kafka { })
+    apacheKafka_3_6
+    apacheKafka_3_7;
+
+  apacheKafka = apacheKafka_3_7;
 
   apng2gif = callPackage ../tools/graphics/apng2gif { };
 
@@ -18325,8 +18315,6 @@ with pkgs;
   cflow = callPackage ../development/tools/misc/cflow { };
 
   cov-build = callPackage ../development/tools/analysis/cov-build { };
-
-  cppcheck = callPackage ../development/tools/analysis/cppcheck { };
 
   cpplint = callPackage ../development/tools/analysis/cpplint { };
 
@@ -22216,7 +22204,8 @@ with pkgs;
 
   liblc3 = callPackage ../development/libraries/liblc3 { };
 
-  libliftoff = callPackage ../development/libraries/libliftoff { };
+  inherit (callPackages ../development/libraries/libliftoff { }) libliftoff_0_4 libliftoff_0_5;
+  libliftoff = libliftoff_0_5;
 
   liblqr1 = callPackage ../development/libraries/liblqr-1 {
     inherit (darwin.apple_sdk.frameworks) Carbon AppKit;
@@ -36682,8 +36671,6 @@ with pkgs;
   legendary-gl = python3Packages.callPackage ../games/legendary-gl { };
 
   left4gore-bin = callPackage ../games/left4gore { };
-
-  lgogdownloader = libsForQt5.callPackage ../games/lgogdownloader { };
 
   liberal-crime-squad = callPackage ../games/liberal-crime-squad { };
 
