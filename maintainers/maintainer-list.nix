@@ -8763,12 +8763,6 @@
     githubId = 650601;
     name = "Ivan Tkatchev";
   };
-  ivar = {
-    email = "ivar.scholten@protonmail.com";
-    github = "IvarWithoutBones";
-    githubId = 41924494;
-    name = "Ivar";
-  };
   ivarmedi = {
     email = "ivar@larsson.me";
     github = "ivarmedi";
@@ -11462,6 +11456,12 @@
     github = "limeytexan";
     githubId = 36448130;
     name = "Michael Brantley";
+  };
+  linbreux = {
+    email = "linbreux@gmail.com";
+    github = "linbreux";
+    githubId = 29354411;
+    name = "linbreux";
   };
   linc01n = {
     email = "git@lincoln.hk";
