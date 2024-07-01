@@ -12961,7 +12961,7 @@
     name = "Merlin Humml";
   };
   mguentner = {
-    email = "code@klandest.in";
+    email = "code@mguentner.de";
     github = "mguentner";
     githubId = 668926;
     name = "Maximilian Güntner";
@@ -15518,12 +15518,6 @@
     github = "penguwin";
     githubId = 13225611;
     name = "Nicolas Martin";
-  };
-  pennae = {
-    name = "pennae";
-    email = "github@quasiparticle.net";
-    github = "pennae";
-    githubId = 82953136;
   };
   perchun = {
     name = "Perchun Pak";
@@ -22014,6 +22008,12 @@
     github = "ydlr";
     githubId = 58453832;
     keys = [ { fingerprint = "FD0A C425 9EF5 4084 F99F 9B47 2ACC 9749 7C68 FAD4"; } ];
+  };
+  yelite = {
+    name = "Lite Ye";
+    email = "yelite958@gmail.com";
+    github = "yelite";
+    githubId = 3517225;
   };
   YellowOnion = {
     name = "Daniel Hill";
