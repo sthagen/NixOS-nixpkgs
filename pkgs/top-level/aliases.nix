@@ -133,6 +133,7 @@ mapAliases ({
   bitwarden = bitwarden-desktop; # Added 2024-02-25
   bitwig-studio1 = throw "bitwig-studio1 has been removed, you can upgrade to 'bitwig-studio'"; # Added 2023-01-03
   bitwig-studio2 = throw "bitwig-studio2 has been removed, you can upgrade to 'bitwig-studio'"; # Added 2023-01-03
+  blackmagic-desktop-video = throw "blackmagic-desktop-video has been due to being unmaintained"; # Added 2024-07-02
   blender-with-packages = args:
     lib.warn "blender-with-packages is deprecated in favor of blender.withPackages, e.g. `blender.withPackages(ps: [ ps.foobar ])`"
       (blender.withPackages (_: args.packages)).overrideAttrs
@@ -156,6 +157,7 @@ mapAliases ({
   bro = throw "'bro' has been renamed to/replaced by 'zeek'"; # Converted to throw 2023-09-10
   inherit (libsForQt5.mauiPackages) buho; # added 2022-05-17
   bukut = throw "bukut has been removed since it has been archived by upstream"; # Added 2023-05-24
+  butler = throw "butler was removed because it was broken and abandoned upstream"; # added 2024-06-18
   # Shorter names; keep the longer name for back-compat. Added 2023-04-11
   buildFHSUserEnv = buildFHSEnv;
   buildFHSUserEnvChroot = buildFHSEnvChroot;
@@ -1353,6 +1355,7 @@ mapAliases ({
   tkcvs = tkrev; # Added 2022-03-07
   tokodon = plasma5Packages.tokodon;
   tokyo-night-gtk = tokyonight-gtk-theme; # Added 2024-01-28
+  tomcat_connectors = apacheHttpdPackages.mod_jk; # Added 2024-06-07
   tootle = throw "'tootle' has been removed as it is not maintained upstream. Consider using 'tuba' instead"; # Added 2024-02-11
   tor-browser-bundle-bin = tor-browser; # Added 2023-09-23
   transmission = lib.warn (transmission3Warning {}) transmission_3; # Added 2024-06-10

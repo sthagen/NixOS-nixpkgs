@@ -837,6 +837,8 @@ with pkgs;
 
   grsync = callPackage ../applications/misc/grsync { };
 
+  devShellTools = callPackage ../build-support/dev-shell-tools { };
+
   dockerTools = callPackage ../build-support/docker {
     writePython3 = buildPackages.writers.writePython3;
   };
@@ -1687,10 +1689,6 @@ with pkgs;
   basez = callPackage ../tools/misc/basez { };
 
   btc-rpc-explorer = callPackage ../tools/misc/btc-rpc-explorer { };
-
-  butler = callPackage ../by-name/bu/butler/package.nix {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
 
   carbon-now-cli = callPackage ../tools/typesetting/carbon-now-cli { };
 
@@ -3471,8 +3469,6 @@ with pkgs;
   bkt = callPackage ../tools/misc/bkt {  };
 
   bkyml = callPackage ../tools/misc/bkyml { };
-
-  blackmagic-desktop-video = callPackage ../tools/video/blackmagic-desktop-video { };
 
   blocksat-cli = with python3Packages; toPythonApplication blocksat-cli;
 
@@ -9463,8 +9459,6 @@ with pkgs;
   keychain = callPackage ../tools/misc/keychain { };
 
   keyfuzz = callPackage ../tools/inputmethods/keyfuzz { };
-
-  keymapp = callPackage ../applications/misc/keymapp { };
 
   keyscope = callPackage ../tools/security/keyscope {
     inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation IOKit Security;
@@ -25240,39 +25234,26 @@ with pkgs;
 
   apacheHttpdPackagesFor = apacheHttpd: self: let callPackage = newScope self; in {
     inherit apacheHttpd;
-
     mod_auth_mellon = callPackage ../servers/http/apache-modules/mod_auth_mellon { };
-
-    # Redwax collection
     mod_ca = callPackage ../servers/http/apache-modules/mod_ca { };
     mod_crl = callPackage ../servers/http/apache-modules/mod_crl { };
-    mod_csr = callPackage ../servers/http/apache-modules/mod_csr { };
     mod_cspnonce = callPackage ../servers/http/apache-modules/mod_cspnonce { };
-    mod_ocsp = callPackage ../servers/http/apache-modules/mod_ocsp{ };
-    mod_scep = callPackage ../servers/http/apache-modules/mod_scep { };
-    mod_pkcs12 = callPackage ../servers/http/apache-modules/mod_pkcs12 { };
-    mod_spkac= callPackage ../servers/http/apache-modules/mod_spkac { };
-    mod_timestamp = callPackage ../servers/http/apache-modules/mod_timestamp { };
-
+    mod_csr = callPackage ../servers/http/apache-modules/mod_csr { };
     mod_dnssd = callPackage ../servers/http/apache-modules/mod_dnssd { };
-
-
-    mod_perl = callPackage ../servers/http/apache-modules/mod_perl { };
-
     mod_fastcgi = callPackage ../servers/http/apache-modules/mod_fastcgi { };
-
-    mod_python = callPackage ../servers/http/apache-modules/mod_python { };
-
-    mod_tile = callPackage ../servers/http/apache-modules/mod_tile { };
-
-    mod_wsgi3 = callPackage ../servers/http/apache-modules/mod_wsgi { };
-
     mod_itk = callPackage ../servers/http/apache-modules/mod_itk { };
-
+    mod_jk = callPackage ../servers/http/apache-modules/mod_jk { };
     mod_mbtiles = callPackage ../servers/http/apache-modules/mod_mbtiles { };
-
+    mod_ocsp = callPackage ../servers/http/apache-modules/mod_ocsp { };
+    mod_perl = callPackage ../servers/http/apache-modules/mod_perl { };
+    mod_pkcs12 = callPackage ../servers/http/apache-modules/mod_pkcs12 { };
+    mod_python = callPackage ../servers/http/apache-modules/mod_python { };
+    mod_scep = callPackage ../servers/http/apache-modules/mod_scep { };
+    mod_spkac = callPackage ../servers/http/apache-modules/mod_spkac { };
+    mod_tile = callPackage ../servers/http/apache-modules/mod_tile { };
+    mod_timestamp = callPackage ../servers/http/apache-modules/mod_timestamp { };
+    mod_wsgi3 = callPackage ../servers/http/apache-modules/mod_wsgi { };
     php = pkgs.php.override { inherit apacheHttpd; };
-
     subversion = pkgs.subversion.override { httpServer = true; inherit apacheHttpd; };
   } // lib.optionalAttrs config.allowAliases {
     mod_evasive = throw "mod_evasive is not supported on Apache httpd 2.4";
@@ -25492,6 +25473,7 @@ with pkgs;
   freeradius = callPackage ../servers/freeradius { };
 
   freshrss = callPackage ../servers/web-apps/freshrss { };
+  freshrss-extensions = recurseIntoAttrs (callPackage ../servers/web-apps/freshrss/extensions { });
 
   freeswitch = callPackage ../servers/sip/freeswitch {
     inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
@@ -25953,8 +25935,6 @@ with pkgs;
   };
 
   pulseeffects-legacy = callPackage ../applications/audio/pulseeffects-legacy { };
-
-  tomcat_connectors = callPackage ../servers/http/apache-modules/tomcat-connectors { };
 
   tomcat-native = callPackage ../servers/http/tomcat/tomcat-native.nix { };
 
@@ -27650,6 +27630,8 @@ with pkgs;
   schedtool = callPackage ../os-specific/linux/schedtool { };
 
   sddm-chili-theme = libsForQt5.callPackage ../data/themes/chili-sddm { };
+
+  sddm-sugar-dark = libsForQt5.callPackage ../data/themes/sddm-sugar-dark { };
 
   sdparm = callPackage ../os-specific/linux/sdparm { };
 
@@ -29382,6 +29364,10 @@ with pkgs;
   android-studio = androidStudioPackages.stable;
   android-studio-full = android-studio.full;
 
+  androidStudioForPlatformPackages = recurseIntoAttrs
+    (callPackage ../applications/editors/android-studio-for-platform { });
+  android-studio-for-platform = androidStudioForPlatformPackages.stable;
+
   antfs-cli = callPackage ../applications/misc/antfs-cli { };
 
   antimony = libsForQt5.callPackage ../applications/graphics/antimony { };
@@ -31063,8 +31049,8 @@ with pkgs;
 
   metacubexd = callPackage ../by-name/me/metacubexd/package.nix {
     pnpm = callPackage ../development/tools/pnpm/generic.nix {
-      version = "9.1.4";
-      hash = "sha256-MKGAGsTnI3ee/tE6IfTDn562yfu0ztEBvOBrQiWT18k=";
+      version = "9.4.0";
+      hash = "sha256-tv0L/aVV5+WErX5WswxosB1aBPnuk5ifS5PKhHPEnHQ=";
     };
   };
 
@@ -34829,7 +34815,11 @@ with pkgs;
 
   vimiv-qt = callPackage ../applications/graphics/vimiv-qt { };
 
-  macvim = callPackage ../applications/editors/vim/macvim-configurable.nix { stdenv = clangStdenv; };
+  macvim = let
+    macvimUtils = callPackage ../applications/editors/vim/macvim-configurable.nix { };
+  in macvimUtils.makeCustomizable (callPackage ../applications/editors/vim/macvim.nix {
+    stdenv = clangStdenv;
+  });
 
   vim-full = vimUtils.makeCustomizable (callPackage ../applications/editors/vim/full.nix {
     inherit (darwin.apple_sdk.frameworks) CoreServices Cocoa Foundation CoreData;
@@ -40231,8 +40221,6 @@ with pkgs;
   spdlog = callPackage ../development/libraries/spdlog { };
 
   dart = callPackage ../development/compilers/dart { };
-
-  dart-sass = callPackage ../development/tools/misc/dart-sass { };
 
   pub2nix = recurseIntoAttrs (callPackage ../build-support/dart/pub2nix { });
 
