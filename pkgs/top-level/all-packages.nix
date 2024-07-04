@@ -2349,8 +2349,6 @@ with pkgs;
 
   git-mit = callPackage ../applications/version-management/git-mit { };
 
-  git-my = callPackage ../applications/version-management/git-my { };
-
   git-machete = python3Packages.callPackage ../applications/version-management/git-machete { };
 
   git-nomad = callPackage ../applications/version-management/git-nomad { };
@@ -3331,8 +3329,6 @@ with pkgs;
   bashblog = callPackage ../tools/text/bashblog { };
 
   berglas = callPackage ../tools/admin/berglas { };
-
-  betterdiscordctl = callPackage ../tools/misc/betterdiscordctl { };
 
   betterdiscord-installer = callPackage ../tools/misc/betterdiscord-installer { };
 
@@ -7652,7 +7648,7 @@ with pkgs;
   easeprobe = callPackage ../tools/misc/easeprobe { };
 
   emscripten = callPackage ../development/compilers/emscripten {
-    llvmPackages = llvmPackages_17;
+    llvmPackages = llvmPackages_18;
   };
 
   emscriptenPackages = recurseIntoAttrs (callPackage ./emscripten-packages.nix { });
@@ -12679,6 +12675,8 @@ with pkgs;
   securefs = darwin.apple_sdk_11_0.callPackage ../tools/filesystems/securefs { };
 
   seehecht = callPackage ../tools/text/seehecht { };
+
+  segger-jlink-headless = callPackage ../by-name/se/segger-jlink/package.nix { headless = true; };
 
   selectdefaultapplication = libsForQt5.callPackage ../applications/misc/selectdefaultapplication { };
 
@@ -24980,8 +24978,7 @@ with pkgs;
 
   smack = callPackage ../development/libraries/java/smack { };
 
-  swt = callPackage ../development/libraries/java/swt { };
-  swt_jdk8 = callPackage ../development/libraries/java/swt {
+  swt_jdk8 = callPackage ../by-name/sw/swt/package.nix {
     jdk = jdk8;
   };
 
@@ -30236,7 +30233,7 @@ with pkgs;
 
   em = callPackage ../applications/editors/em { };
 
-  inherit (recurseIntoAttrs (darwin.apple_sdk_11_0.callPackage ../applications/editors/emacs { }))
+  inherit (recurseIntoAttrs (callPackage ../applications/editors/emacs { }))
     emacs28
     emacs28-gtk2
     emacs28-gtk3
