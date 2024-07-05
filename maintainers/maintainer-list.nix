@@ -2985,12 +2985,6 @@
     githubId = 2379774;
     name = "Sean Buckley";
   };
-  buffet = {
-    email = "niclas@countingsort.com";
-    github = "buffet";
-    githubId = 33751841;
-    name = "Niclas Meyer";
-  };
   bugworm = {
     email = "bugworm@zoho.com";
     github = "bugworm";
@@ -5100,6 +5094,12 @@
     github = "dixslyf";
     githubId = 56017218;
     keys = [ { fingerprint = "E6F4 BFB4 8DE3 893F 68FC  A15F FF5F 4B30 A41B BAC8"; } ];
+  };
+  Djabx = {
+    email = "alexandre@badez.eu";
+    github = "Djabx";
+    githubId = 69534;
+    name = "Alexandre Badez";
   };
   djacu = {
     email = "daniel.n.baker@gmail.com";
@@ -8049,6 +8049,12 @@
     name = "Nova Witterick";
     keys = [ { fingerprint = "4304 6B43 8D83 078E 3DF7  10D6 DEB0 E15C 6D2A 5A7C"; } ];
   };
+  heywoodlh = {
+    email = "nixpkgs@heywoodlh.io";
+    github = "heywoodlh";
+    githubId = 18178614;
+    name = "Spencer Heywood";
+  };
   hh = {
     email = "hh@m-labs.hk";
     github = "HarryMakes";
@@ -8965,6 +8971,13 @@
     name = "Jinnah Ali-Clarke";
     github = "jali-clarke";
     githubId = 17733984;
+  };
+  jamalam = {
+    email = "james@jamalam.tech";
+    name = "jamalam";
+    github = "Jamalam360";
+    githubId = 56727311;
+    keys = [ { fingerprint = "B1B2 2BA0 FC39 D4B4 2240  5F55 D86C D68E 8DB2 E368"; } ];
   };
   james-atkins = {
     name = "James Atkins";
@@ -11434,6 +11447,13 @@
     github = "Lilacious";
     githubId = 101508537;
     name = "Yuchen He";
+  };
+  LilleAila = {
+    name = "Olai";
+    email = "olai@olai.dev";
+    github = "LilleAila";
+    githubId = 67327023;
+    keys = [ { fingerprint = "8185 29F9 BB4C 33F0 69BB  9782 D1AC CDCF 2B9B 9799"; } ];
   };
   lillycham = {
     email = "lillycat332@gmail.com";
@@ -19510,13 +19530,6 @@
     github = "t4sm5n";
     githubId = 28858039;
     name = "Tuomas Mäkinen";
-  };
-  tadeokondrak = {
-    email = "me@tadeo.ca";
-    github = "tadeokondrak";
-    githubId = 4098453;
-    name = "Tadeo Kondrak";
-    keys = [ { fingerprint = "0F2B C0C7 E77C 5B42 AC5B  4C18 FBE6 07FC C495 16D3"; } ];
   };
   tadfisher = {
     email = "tadfisher@gmail.com";
