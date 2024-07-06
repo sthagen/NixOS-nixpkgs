@@ -27033,15 +27033,6 @@ let
         sha512 = "v7w209VPj4L6pPn/ftFRJu31Oa8QagwcVw7BZmLCUWU4AQoc954rX9ogSIahDf67Pg+GjPbkW/Kn9XWnlWJG0g==";
       };
     };
-    "fraction.js-4.3.7" = {
-      name = "fraction.js";
-      packageName = "fraction.js";
-      version = "4.3.7";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/fraction.js/-/fraction.js-4.3.7.tgz";
-        sha512 = "ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==";
-      };
-    };
     "fragment-cache-0.2.1" = {
       name = "fragment-cache";
       packageName = "fragment-cache";
@@ -63305,39 +63296,6 @@ in
     bypassCache = true;
     reconstructLock = true;
   };
-  autoprefixer = nodeEnv.buildNodePackage {
-    name = "autoprefixer";
-    packageName = "autoprefixer";
-    version = "10.4.19";
-    src = fetchurl {
-      url = "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.19.tgz";
-      sha512 = "BaENR2+zBZ8xXhM4pUaKUxlVdxZ0EZhjvbopwnXmxRUfqDmwSpC2lAi/QXvx7NRdPCo1WKEcEF6mV64si1z4Ew==";
-    };
-    dependencies = [
-      sources."browserslist-4.23.1"
-      sources."caniuse-lite-1.0.30001634"
-      sources."electron-to-chromium-1.4.802"
-      sources."escalade-3.1.2"
-      sources."fraction.js-4.3.7"
-      sources."nanoid-3.3.7"
-      sources."node-releases-2.0.14"
-      sources."normalize-range-0.1.2"
-      sources."picocolors-1.0.1"
-      sources."postcss-8.4.38"
-      sources."postcss-value-parser-4.2.0"
-      sources."source-map-js-1.2.0"
-      sources."update-browserslist-db-1.0.16"
-    ];
-    buildInputs = globalBuildInputs;
-    meta = {
-      description = "Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website";
-      homepage = "https://github.com/postcss/autoprefixer#readme";
-      license = "MIT";
-    };
-    production = true;
-    bypassCache = true;
-    reconstructLock = true;
-  };
   aws-cdk = nodeEnv.buildNodePackage {
     name = "aws-cdk";
     packageName = "aws-cdk";
@@ -90152,23 +90110,6 @@ in
       description = "Convert TTF font to EOT";
       homepage = "https://github.com/fontello/ttf2eot#readme";
       license = "MIT";
-    };
-    production = true;
-    bypassCache = true;
-    reconstructLock = true;
-  };
-  typescript-language-server = nodeEnv.buildNodePackage {
-    name = "typescript-language-server";
-    packageName = "typescript-language-server";
-    version = "4.3.3";
-    src = fetchurl {
-      url = "https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-4.3.3.tgz";
-      sha512 = "3QLj57Ru9S6zv10sa4z1pA3TIR1Rdkd04Ke0EszbO4fx5PLdlYhlC/PMxwlyxls9wrZs7wPCME1Ru0s1Gabz4Q==";
-    };
-    buildInputs = globalBuildInputs;
-    meta = {
-      description = "Language Server Protocol (LSP) implementation for TypeScript using tsserver";
-      license = "Apache-2.0";
     };
     production = true;
     bypassCache = true;
