@@ -6483,6 +6483,8 @@ self: super: with self; {
 
   keyring = callPackage ../development/python-modules/keyring { };
 
+  keyring_24 = callPackage ../development/python-modules/keyring_24 { };
+
   keyring-pass = callPackage ../development/python-modules/keyring-pass { };
 
   keyrings-cryptfile = callPackage ../development/python-modules/keyrings-cryptfile { };
@@ -14715,6 +14717,8 @@ self: super: with self; {
   sslib = callPackage ../development/python-modules/sslib { };
 
   ssg = callPackage ../development/python-modules/ssg { };
+
+  ssort = callPackage ../development/python-modules/ssort { };
 
   stack-data = callPackage ../development/python-modules/stack-data { };
 
