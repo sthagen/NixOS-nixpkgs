@@ -2487,6 +2487,8 @@ self: super: with self; {
 
   construct-classes = callPackage ../development/python-modules/construct-classes { };
 
+  construct-typing = callPackage ../development/python-modules/construct-typing { };
+
   consul = callPackage ../development/python-modules/consul { };
 
   container-inspector = callPackage ../development/python-modules/container-inspector { };
@@ -3928,6 +3930,8 @@ self: super: with self; {
 
   epson-projector = callPackage ../development/python-modules/epson-projector { };
 
+  eq3btsmart = callPackage ../development/python-modules/eq3btsmart { };
+
   equinox = callPackage ../development/python-modules/equinox { };
 
   eradicate = callPackage ../development/python-modules/eradicate { };
@@ -4148,8 +4152,6 @@ self: super: with self; {
   faraday-plugins = callPackage ../development/python-modules/faraday-plugins { };
 
   farama-notifications = callPackage ../development/python-modules/farama-notifications { };
-
-  farm-haystack = callPackage ../development/python-modules/farm-haystack { };
 
   fastai = callPackage ../development/python-modules/fastai { };
 
@@ -5406,6 +5408,8 @@ self: super: with self; {
 
   hawkauthlib = callPackage ../development/python-modules/hawkauthlib { };
 
+  haystack-ai = callPackage ../development/python-modules/haystack-ai { };
+
   hcloud = callPackage ../development/python-modules/hcloud { };
 
   hcs-utils = callPackage ../development/python-modules/hcs-utils { };
@@ -6323,6 +6327,10 @@ self: super: with self; {
 
   junos-eznc = callPackage ../development/python-modules/junos-eznc { };
 
+  jupysql-plugin = callPackage ../development/python-modules/jupysql-plugin { };
+
+  jupysql = callPackage ../development/python-modules/jupysql { };
+
   jupyter = callPackage ../development/python-modules/jupyter { };
 
   jupyter-book = callPackage ../development/python-modules/jupyter-book { };
@@ -6881,7 +6889,7 @@ self: super: with self; {
 
   libtmux = callPackage ../development/python-modules/libtmux { };
 
-  libtorrent-rasterbar = (toPythonModule (pkgs.libtorrent-rasterbar.override { inherit python; })).python;
+  libtorrent-rasterbar = (toPythonModule (pkgs.libtorrent-rasterbar.override { python3 = python; })).python;
 
   libusb1 = callPackage ../development/python-modules/libusb1 {
     inherit (pkgs) libusb1;
@@ -9290,7 +9298,6 @@ self: super: with self; {
 
   openai-triton = callPackage ../development/python-modules/openai-triton {
     llvm = pkgs.openai-triton-llvm;
-    cudaPackages = pkgs.cudaPackages_12_1;
   };
 
   openai-triton-cuda = self.openai-triton.override {
@@ -10016,6 +10023,8 @@ self: super: with self; {
 
   pip-api = callPackage ../development/python-modules/pip-api { };
 
+  pip-chill = callPackage ../development/python-modules/pip-chill { };
+
   pip-tools = callPackage ../development/python-modules/pip-tools { };
 
   pip-requirements-parser = callPackage ../development/python-modules/pip-requirements-parser { };
@@ -10358,6 +10367,10 @@ self: super: with self; {
   });
 
   plone-testing = callPackage ../development/python-modules/plone-testing { };
+
+  ploomber-core = callPackage ../development/python-modules/ploomber-core { };
+
+  ploomber-extension = callPackage ../development/python-modules/ploomber-extension { };
 
   plotext = callPackage ../development/python-modules/plotext { };
 

@@ -20923,7 +20923,10 @@ with pkgs;
     autoconf = buildPackages.autoconf269;
   };
 
-  gpac = callPackage ../applications/video/gpac { };
+  gpac = callPackage ../applications/video/gpac {
+    inherit (darwin) cctools;
+    inherit (darwin.apple_sdk.frameworks) Carbon;
+  };
 
   gpgme = callPackage ../development/libraries/gpgme { };
 
@@ -22626,16 +22629,6 @@ with pkgs;
   libtommath = callPackage ../development/libraries/libtommath { };
 
   libtomcrypt = callPackage ../development/libraries/libtomcrypt { };
-
-  libtorrent-rasterbar-2_0_x = callPackage ../development/libraries/libtorrent-rasterbar {
-    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
-    python = python3;
-  };
-
-  libtorrent-rasterbar-1_2_x = callPackage ../development/libraries/libtorrent-rasterbar/1.2.nix {
-    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
-    python = python3;
-  };
 
   libtorrent-rasterbar = libtorrent-rasterbar-2_0_x;
 
@@ -30478,7 +30471,7 @@ with pkgs;
   gnuradio = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio {
       inherit (darwin.apple_sdk.frameworks) CoreAudio;
-      python = python3;
+      python = python311;
     };
   };
   gnuradioPackages = lib.recurseIntoAttrs gnuradio.pkgs;
@@ -30511,7 +30504,7 @@ with pkgs;
   gnuradio3_9 = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio/3.9.nix {
       inherit (darwin.apple_sdk.frameworks) CoreAudio;
-      python = python3;
+      python = python311;
     };
   };
   gnuradio3_9Packages = lib.recurseIntoAttrs gnuradio3_9.pkgs;
@@ -30544,7 +30537,7 @@ with pkgs;
   gnuradio3_8 = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio/3.8.nix ({
       inherit (darwin.apple_sdk.frameworks) CoreAudio;
-      python = python3;
+      python = python311;
     } // lib.optionalAttrs stdenv.isLinux {
       stdenv = pkgs.stdenvAdapters.useLibsFrom stdenv pkgs.gcc12Stdenv;
     });
@@ -35668,7 +35661,7 @@ with pkgs;
 
   fulcrum = libsForQt5.callPackage ../applications/blockchains/fulcrum { };
 
-  go-ethereum = callPackage ../applications/blockchains/go-ethereum {
+  go-ethereum = callPackage ../by-name/go/go-ethereum/package.nix {
     inherit (darwin) libobjc;
     inherit (darwin.apple_sdk.frameworks) IOKit;
   };
