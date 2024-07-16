@@ -12044,8 +12044,6 @@ with pkgs;
 
   qlog = qt6Packages.callPackage ../applications/radio/qlog { };
 
-  qnial = callPackage ../development/interpreters/qnial { };
-
   quickbms = pkgsi686Linux.callPackage ../tools/archivers/quickbms { };
 
   q-text-as-data = callPackage ../tools/misc/q-text-as-data { };
@@ -29684,7 +29682,9 @@ with pkgs;
 
   chatty = callPackage ../applications/networking/instant-messengers/chatty { };
 
-  chirp = callPackage ../applications/radio/chirp { };
+  chirp = callPackage ../applications/radio/chirp {
+    python3 = python311;
+  };
 
   browsh = callPackage ../applications/networking/browsers/browsh { };
 
@@ -30357,7 +30357,7 @@ with pkgs;
 
   font-manager = callPackage ../by-name/fo/font-manager/package.nix {
     libsoup = libsoup_3;
-    webkitgtk = webkitgtk_4_1;
+    webkitgtk = webkitgtk_6_0;
   };
 
   fontfinder = callPackage ../applications/misc/fontfinder { };
@@ -31340,13 +31340,6 @@ with pkgs;
   spectrwm = callPackage ../applications/window-managers/spectrwm { };
 
   spotify-cli-linux = callPackage ../applications/audio/spotify-cli-linux { };
-
-  spotifyd = callPackage ../applications/audio/spotifyd {
-    withALSA = stdenv.isLinux;
-    withPulseAudio = config.pulseaudio or stdenv.isLinux;
-    withPortAudio = stdenv.isDarwin;
-    withMpris = stdenv.isLinux;
-  };
 
   srain = callPackage ../applications/networking/irc/srain { };
 
@@ -32406,8 +32399,6 @@ with pkgs;
   mod-distortion = callPackage ../applications/audio/mod-distortion { };
 
   monitorcontrol = callPackage ../applications/misc/monitorcontrol { };
-
-  xmr-stak = callPackage ../applications/misc/xmr-stak { };
 
   xmrig = darwin.apple_sdk_11_0.callPackage ../applications/misc/xmrig { };
 
@@ -37734,10 +37725,10 @@ with pkgs;
     inherit (darwin) DarwinTools;
     stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
     python = python3;
-    protobuf = protobuf_21;
+    protobuf = protobuf_23;
     # or-tools builds with -std=c++20, so abseil-cpp must
     # also be built that way
-    abseil-cpp = abseil-cpp.override {
+    abseil-cpp = abseil-cpp_202301.override {
       static = true;
       cxxStandard = "20";
     };
