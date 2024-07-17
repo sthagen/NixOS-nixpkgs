@@ -1302,6 +1302,8 @@ self: super: with self; {
 
   azure-monitor-ingestion = callPackage ../development/python-modules/azure-monitor-ingestion { };
 
+  azure-monitor-query = callPackage ../development/python-modules/azure-monitor-query { };
+
   azure-multiapi-storage = callPackage ../development/python-modules/azure-multiapi-storage { };
 
   azure-nspkg = callPackage ../development/python-modules/azure-nspkg { };
@@ -1770,6 +1772,10 @@ self: super: with self; {
   braceexpand = callPackage ../development/python-modules/braceexpand { };
 
   bracex = callPackage ../development/python-modules/bracex { };
+
+  brainflow = callPackage ../development/python-modules/brainflow {
+    inherit (pkgs) brainflow;
+  };
 
   braintree = callPackage ../development/python-modules/braintree { };
 
@@ -4536,10 +4542,12 @@ self: super: with self; {
 
   fontfeatures = callPackage ../development/python-modules/fontfeatures { };
 
-  fontforge = toPythonModule (pkgs.fontforge.override {
-    withPython = true;
-    inherit python;
-  });
+  fontforge = disabledIf
+    (pythonOlder "3.10")
+    (toPythonModule (pkgs.fontforge.override {
+      withPython = true;
+      inherit python;
+    }));
 
   fontmath = callPackage ../development/python-modules/fontmath { };
 
@@ -10104,6 +10112,8 @@ self: super: with self; {
 
   prodict = callPackage ../development/python-modules/prodict { };
 
+  prometheus-async = callPackage ../development/python-modules/prometheus-async { };
+
   prometheus-pandas = callPackage ../development/python-modules/prometheus-pandas { };
 
   prophet = callPackage ../development/python-modules/prophet { };
@@ -10305,6 +10315,8 @@ self: super: with self; {
   python-djvulibre = callPackage ../development/python-modules/python-djvulibre { };
 
   python-ecobee-api = callPackage ../development/python-modules/python-ecobee-api { };
+
+  python-ffmpeg = callPackage ../development/python-modules/python-ffmpeg { };
 
   python-flirt = callPackage ../development/python-modules/python-flirt { };
 
@@ -14776,6 +14788,8 @@ self: super: with self; {
   ssort = callPackage ../development/python-modules/ssort { };
 
   stack-data = callPackage ../development/python-modules/stack-data { };
+
+  stamina = callPackage ../development/python-modules/stamina { };
 
   stanio = callPackage ../development/python-modules/stanio { };
 

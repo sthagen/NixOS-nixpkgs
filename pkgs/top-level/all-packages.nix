@@ -3257,7 +3257,7 @@ with pkgs;
 
   authenticator = callPackage ../applications/misc/authenticator { };
 
-  authelia = callPackage ../servers/authelia { };
+  authelia = callPackage ../servers/authelia { pnpm = pnpm_9; };
 
   authentik-outposts = recurseIntoAttrs (callPackages ../by-name/au/authentik/outposts.nix { });
 
@@ -6185,8 +6185,6 @@ with pkgs;
 
   razergenie = libsForQt5.callPackage ../applications/misc/razergenie { };
 
-  replay-sorcery = callPackage ../tools/video/replay-sorcery { };
-
   recyclarr = callPackage ../tools/video/recyclarr { };
 
   tsduck = callPackage ../tools/video/tsduck { };
@@ -8477,8 +8475,6 @@ with pkgs;
   gpodder = callPackage ../applications/audio/gpodder { };
 
   gpp = callPackage ../development/tools/gpp { };
-
-  gnuastro = callPackage ../applications/science/astronomy/gnuastro { };
 
   gpredict = callPackage ../applications/science/astronomy/gpredict {
     hamlib = hamlib_4;
@@ -14436,8 +14432,7 @@ with pkgs;
 
   wireguard-go = callPackage ../tools/networking/wireguard-go { };
 
-  wkhtmltopdf-bin = callPackage ../tools/graphics/wkhtmltopdf-bin { };
-  wkhtmltopdf = wkhtmltopdf-bin;
+  wkhtmltopdf = callPackage ../tools/graphics/wkhtmltopdf { };
 
   wml = callPackage ../development/web/wml { };
 
@@ -20079,8 +20074,6 @@ with pkgs;
   clipp  = callPackage ../development/libraries/clipp { };
 
   clipper = callPackage ../development/libraries/clipper { };
-
-  clipper2 = callPackage ../development/libraries/clipper2 { };
 
   cln = callPackage ../development/libraries/cln { };
 
@@ -28987,8 +28980,6 @@ with pkgs;
   tzdata = callPackage ../data/misc/tzdata { };
 
   ubuntu-themes = callPackage ../data/themes/ubuntu-themes { };
-
-  ubuntu_font_family = callPackage ../data/fonts/ubuntu-font-family { };
 
   ucs-fonts = callPackage ../data/fonts/ucs-fonts { };
 
