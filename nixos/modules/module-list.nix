@@ -376,6 +376,7 @@
   ./services/audio/mopidy.nix
   ./services/audio/mpd.nix
   ./services/audio/mpdscribble.nix
+  ./services/audio/music-assistant.nix
   ./services/audio/mympd.nix
   ./services/audio/navidrome.nix
   ./services/audio/networkaudiod.nix
@@ -991,6 +992,7 @@
   ./services/networking/dante.nix
   ./services/networking/deconz.nix
   ./services/networking/ddclient.nix
+  ./services/networking/ddns-updater.nix
   ./services/networking/dhcpcd.nix
   ./services/networking/dnscache.nix
   ./services/networking/dnscrypt-proxy2.nix
