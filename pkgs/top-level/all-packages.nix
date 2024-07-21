@@ -5504,8 +5504,6 @@ with pkgs;
 
   iotools = callPackage ../tools/misc/iotools { };
 
-  irpf = callPackage ../applications/finance/irpf { };
-
   jellycli = callPackage ../applications/audio/jellycli { };
 
   jellyfin-ffmpeg = callPackage ../development/libraries/jellyfin-ffmpeg { };
@@ -14782,8 +14780,6 @@ with pkgs;
   runtimeShellPackage = bash;
 
   agdsn-zsh-config = callPackage ../shells/zsh/agdsn-zsh-config { };
-
-  any-nix-shell = callPackage ../shells/any-nix-shell { };
 
   nix-your-shell = callPackage ../shells/nix-your-shell { };
 
@@ -30300,8 +30296,6 @@ with pkgs;
   flacon = libsForQt5.callPackage ../applications/audio/flacon { };
 
   flamp = callPackage ../applications/radio/flamp { };
-
-  flexget = callPackage ../applications/networking/flexget { };
 
   fldigi = callPackage ../applications/radio/fldigi {
     hamlib = hamlib_4;
