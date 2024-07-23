@@ -1001,8 +1001,6 @@ with pkgs;
 
   graph-easy = callPackage ../tools/graphics/graph-easy { };
 
-  mangal = callPackage ../applications/misc/mangal { };
-
   mermaid-filter = callPackage ../tools/misc/mermaid-filter { };
 
   graphw00f = callPackage ../tools/security/graphw00f { };
@@ -11903,8 +11901,6 @@ with pkgs;
 
   pure-prompt = callPackage ../shells/zsh/pure-prompt { };
 
-  pv = callPackage ../tools/misc/pv { };
-
   pwgen = callPackage ../tools/security/pwgen { };
 
   pwgen-secure = callPackage ../tools/security/pwgen-secure { };
@@ -22653,8 +22649,6 @@ with pkgs;
   };
 
   libusbgx = callPackage ../development/libraries/libusbgx { };
-
-  libusbmuxd = callPackage ../development/libraries/libusbmuxd { };
 
   libusbsio = callPackage ../development/libraries/libusbsio { };
 
@@ -34810,7 +34804,7 @@ with pkgs;
   };
 
   code-server = callPackage ../servers/code-server {
-    nodejs = nodejs_18;
+    nodejs = nodejs_20;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa CoreServices Security;
     inherit (darwin) cctools;
     inherit (nodePackages) node-gyp;
