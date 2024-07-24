@@ -629,6 +629,8 @@ self: super: with self; {
 
   ansimarkup = callPackage ../development/python-modules/ansimarkup { };
 
+  ansitable = callPackage ../development/python-modules/ansitable { };
+
   ansiwrap = callPackage ../development/python-modules/ansiwrap { };
 
   anthemav = callPackage ../development/python-modules/anthemav { };
@@ -13761,6 +13763,8 @@ self: super: with self; {
   };
 
   rtoml = callPackage ../development/python-modules/rtoml { };
+
+  rtb-data = callPackage ../development/python-modules/rtb-data { };
 
   rtp = callPackage ../development/python-modules/rtp { };
 
