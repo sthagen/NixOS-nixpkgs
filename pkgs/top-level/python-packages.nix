@@ -2557,8 +2557,6 @@ self: super: with self; {
 
   cpyparsing = callPackage ../development/python-modules/cpyparsing { };
 
-  craft-application-1 = callPackage ../development/python-modules/craft-application-1 { };
-
   craft-application = callPackage ../development/python-modules/craft-application { };
 
   craft-archives = callPackage ../development/python-modules/craft-archives { };
@@ -4001,6 +3999,8 @@ self: super: with self; {
   eth-typing = callPackage ../development/python-modules/eth-typing { };
 
   eth-utils = callPackage ../development/python-modules/eth-utils { };
+
+  ethtool = callPackage ../development/python-modules/ethtool { };
 
   etils = callPackage ../development/python-modules/etils { };
 
@@ -10652,6 +10652,8 @@ self: super: with self; {
 
   prometheus-client = callPackage ../development/python-modules/prometheus-client { };
 
+  prometheus-fastapi-instrumentator = callPackage ../development/python-modules/prometheus-fastapi-instrumentator { };
+
   prometheus-flask-exporter = callPackage ../development/python-modules/prometheus-flask-exporter { };
 
   prometrix = callPackage ../development/python-modules/prometrix { };
@@ -11110,7 +11112,7 @@ self: super: with self; {
 
   pydantic-settings = callPackage ../development/python-modules/pydantic-settings { };
 
-  pydantic-yaml-0 = callPackage ../development/python-modules/pydantic-yaml-0 { };
+  pydantic-yaml = callPackage ../development/python-modules/pydantic-yaml { };
 
   pydash = callPackage ../development/python-modules/pydash { };
 
@@ -12645,8 +12647,6 @@ self: super: with self; {
   python-engineio = callPackage ../development/python-modules/python-engineio { };
 
   python-etcd = callPackage ../development/python-modules/python-etcd { };
-
-  python-ethtool = callPackage ../development/python-modules/python-ethtool { };
 
   python-ev3dev2 = callPackage ../development/python-modules/python-ev3dev2 { };
 
@@ -14537,6 +14537,8 @@ self: super: with self; {
   sparse = callPackage ../development/python-modules/sparse { };
 
   spatial-image = callPackage ../development/python-modules/spatial-image { };
+
+  spatialmath-python = callPackage ../development/python-modules/spatialmath-python { };
 
   spdx = callPackage ../development/python-modules/spdx { };
 
@@ -17058,6 +17060,8 @@ self: super: with self; {
   voip-utils = callPackage ../development/python-modules/voip-utils { };
 
   volatile = callPackage ../development/python-modules/volatile { };
+
+  volkswagencarnet = callPackage ../development/python-modules/volkswagencarnet { };
 
   volkszaehler = callPackage ../development/python-modules/volkszaehler { };
 

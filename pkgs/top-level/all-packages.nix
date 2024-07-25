@@ -1849,8 +1849,6 @@ with pkgs;
 
   hsd = callPackage ../tools/misc/hsd { };
 
-  httm = darwin.apple_sdk_11_0.callPackage ../tools/filesystems/httm { };
-
   hyperpotamus = callPackage ../tools/misc/hyperpotamus { };
 
   immich-cli = callPackage ../tools/misc/immich-cli { };
@@ -4497,10 +4495,6 @@ with pkgs;
   clash-geoip = callPackage ../data/misc/clash-geoip { };
 
   clevercsv = with python3Packages; toPythonApplication clevercsv;
-
-  clevis = callPackage ../tools/security/clevis {
-    asciidoc = asciidoc-full;
-  };
 
   cli53 = callPackage ../tools/admin/cli53 { };
 
@@ -10913,11 +10907,7 @@ with pkgs;
 
   npth = callPackage ../development/libraries/npth { };
 
-  nmap = callPackage ../tools/security/nmap { };
-
   nmap-formatter = callPackage ../tools/security/nmap-formatter { };
-
-  nmapsi4 = libsForQt5.callPackage ../tools/security/nmap/qt.nix { };
 
   noise-repellent = callPackage ../applications/audio/noise-repellent { };
 
@@ -34474,7 +34464,7 @@ with pkgs;
 
   tudu = callPackage ../applications/office/tudu { };
 
-  tuna = python3Packages.callPackage ../os-specific/linux/tuna { };
+  tuna = callPackage ../os-specific/linux/tuna { };
 
   tunefish = callPackage ../applications/audio/tunefish {
     stdenv = clangStdenv; # https://github.com/jpcima/tunefish/issues/4
@@ -39960,8 +39950,6 @@ with pkgs;
   httraqt = libsForQt5.callPackage ../tools/backup/httrack/qt.nix { };
 
   mg = callPackage ../applications/editors/mg { };
-
-  mpvc = callPackage ../applications/misc/mpvc { };
 
   # Overriding does not work when using callPackage on discord using import instead. (https://github.com/NixOS/nixpkgs/pull/179906)
   discord = import ../applications/networking/instant-messengers/discord {
