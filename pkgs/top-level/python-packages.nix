@@ -8017,6 +8017,8 @@ self: super: with self; {
 
   multiprocess = callPackage ../development/python-modules/multiprocess { };
 
+  multiscale-spatial-image = callPackage ../development/python-modules/multiscale-spatial-image { };
+
   multiset = callPackage ../development/python-modules/multiset { };
 
   multitasking = callPackage ../development/python-modules/multitasking { };
@@ -9288,6 +9290,8 @@ self: super: with self; {
 
   od = callPackage ../development/python-modules/od { };
 
+  oddsprout = callPackage ../development/python-modules/oddsprout { };
+
   odfpy = callPackage ../development/python-modules/odfpy { };
 
   odp-amsterdam = callPackage ../development/python-modules/odp-amsterdam { };
@@ -9666,6 +9670,8 @@ self: super: with self; {
 
   pandoc-attributes = callPackage ../development/python-modules/pandoc-attributes { };
 
+  pandoc-latex-environment = callPackage ../development/python-modules/pandoc-latex-environment { };
+
   pandoc-xnos = callPackage ../development/python-modules/pandoc-xnos { };
 
   pandocfilters = callPackage ../development/python-modules/pandocfilters { };
@@ -9789,6 +9795,8 @@ self: super: with self; {
   paypalhttp = callPackage ../development/python-modules/paypalhttp { };
 
   paypalrestsdk = callPackage ../development/python-modules/paypalrestsdk { };
+
+  pbar = callPackage ../development/python-modules/pbar { };
 
   pbkdf2 = callPackage ../development/python-modules/pbkdf2 { };
 
@@ -11388,8 +11396,6 @@ self: super: with self; {
 
   pygobject-stubs = callPackage ../development/python-modules/pygobject-stubs { };
 
-  pygogo = callPackage ../development/python-modules/pygogo { };
-
   pygpgme = callPackage ../development/python-modules/pygpgme { };
 
   pygraphviz = callPackage ../development/python-modules/pygraphviz {
@@ -11641,6 +11647,8 @@ self: super: with self; {
   pymediaroom = callPackage ../development/python-modules/pymediaroom { };
 
   pymedio = callPackage ../development/python-modules/pymedio { };
+
+  pymee = callPackage ../development/python-modules/pymee { };
 
   pymeeus = callPackage ../development/python-modules/pymeeus { };
 
@@ -12606,6 +12614,8 @@ self: super: with self; {
 
   python-axolotl-curve25519 = callPackage ../development/python-modules/python-axolotl-curve25519 { };
 
+  python-barbicanclient = callPackage ../development/python-modules/python-barbicanclient { };
+
   python-barcode = callPackage ../development/python-modules/python-barcode { };
 
   python-baseconv = callPackage ../development/python-modules/python-baseconv { };
@@ -12639,6 +12649,8 @@ self: super: with self; {
   python-dbusmock = callPackage ../development/python-modules/python-dbusmock { };
 
   python-decouple = callPackage ../development/python-modules/python-decouple { };
+
+  python-designateclient = callPackage ../development/python-modules/python-designateclient { };
 
   pythondialog = callPackage ../development/python-modules/pythondialog { };
 
@@ -13868,7 +13880,7 @@ self: super: with self; {
 
   saneyaml = callPackage ../development/python-modules/saneyaml { };
 
-  sampledata = callPackage ../development/python-modules/sampledata { };
+  samarium = callPackage ../development/python-modules/samarium { };
 
   samplerate = callPackage ../development/python-modules/samplerate {
     inherit (pkgs) libsamplerate;
@@ -14043,8 +14055,6 @@ self: super: with self; {
   segyio = callPackage ../development/python-modules/segyio {
     inherit (pkgs) cmake ninja;
   };
-
-  selectors2 = callPackage ../development/python-modules/selectors2 { };
 
   selenium = callPackage ../development/python-modules/selenium { };
 
@@ -17027,6 +17037,8 @@ self: super: with self; {
 
   veryprettytable = callPackage ../development/python-modules/veryprettytable { };
 
+  vfblib = callPackage ../development/python-modules/vfblib { };
+
   vg = callPackage ../development/python-modules/vg { };
 
   vharfbuzz = callPackage ../development/python-modules/vharfbuzz { };
@@ -17422,6 +17434,8 @@ self: super: with self; {
 
   xarray-dataclasses = callPackage ../development/python-modules/xarray-dataclasses { };
 
+  xarray-datatree = callPackage ../development/python-modules/xarray-datatree { };
+
   xarray-einstats = callPackage ../development/python-modules/xarray-einstats { };
 
   xattr = callPackage ../development/python-modules/xattr { };
@@ -17564,8 +17578,6 @@ self: super: with self; {
 
   yamlordereddictloader = callPackage ../development/python-modules/yamlordereddictloader { };
 
-  yanc = callPackage ../development/python-modules/yanc { };
-
   yangson = callPackage ../development/python-modules/yangson { };
 
   yapf = callPackage ../development/python-modules/yapf { };
@@ -17628,15 +17640,15 @@ self: super: with self; {
 
   yoyo-migrations = callPackage ../development/python-modules/yoyo-migrations { };
 
-  yt-dlp = callPackage ../tools/misc/yt-dlp {
-    ffmpeg = pkgs.ffmpeg-headless;
-  };
+  yt-dlp = toPythonModule (pkgs.yt-dlp.override {
+    python3Packages = self;
+  });
 
-  yt-dlp-light = callPackage ../tools/misc/yt-dlp {
-    atomicparsleySupport = false;
-    ffmpegSupport = false;
-    rtmpSupport = false;
-  };
+  yt-dlp-light = toPythonModule (pkgs.yt-dlp-light.override {
+    python3Packages = self;
+  });
+
+  yt-dlp-dearrow = callPackage ../development/python-modules/yt-dlp-dearrow { };
 
   youtube-search = callPackage ../development/python-modules/youtube-search { };
 
