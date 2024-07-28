@@ -336,6 +336,7 @@ mapAliases ({
   nose-randomly = throw "nose-randomly has been removed, it was archived and unmaintained since 2019"; # added 2024-05-22
   nose-pattern-exclude = throw "nose-pattern-exclude has been removed as it has been unmaintained since 2014"; # added 2024-07-27
   nose_progressive = throw "nose_progressive has been removed, it was using setuptools 2to3 translation feature, which has been removed in setuptools 58"; #added 2023-02-21
+  nose-timer = throw "nose-timer has been removed as it depends on the abandoned nose test framework"; # added 2024-07-27
   nose-warnings-filters = throw "nose-warnings-filters has been removed as it has been unmaintained since 2016"; # added 2024-07-27
   nose_warnings_filters = nose-warnings-filters; # added 2024-01-07
   notifymuch = throw "notifymuch has been promoted to a top-level attribute name: `pkgs.notifymuch`"; # added 2022-10-02
@@ -494,6 +495,7 @@ mapAliases ({
   radicale_infcloud = radicale-infcloud; # added 2024-01-07
   radio_beam = radio-beam; # added 2023-11-04
   ratelimiter = throw "ratelimiter has been removed, since it is unmaintained and broken"; # added 2023-10-21
+  rauth = throw "rauth has beed removed, since it is unmaintained upstream"; # added 2024-07-27
   rdflib-jsonld = throw "rdflib-jsonld is not compatible with rdflib 6"; # added 2021-11-05
   readme_renderer = readme-renderer; # added 2024-01-07
   recaptcha_client = throw "recaptcha_client has been removed since it is no longer maintained"; # added 2023-10-20
@@ -598,6 +600,7 @@ mapAliases ({
   update_checker = update-checker; # added 2024-01-07
   uproot3 = throw "uproot3 has been removed, use uproot instead"; # added 2022-12-13
   uproot3-methods = throw "uproot3-methods has been removed"; # added 2022-12-13
+  urwid-mitmproxy-mitmproxy = throw "urwid-mitmproxy has been removed because mitmproxy no longer uses it"; # Added 2024-07-26
   uuid = throw "uuid is a Python standard module"; # added 2024-04-18
   validictory = throw "validictory has been removed, since it abandoned"; # added 2023-07-07
   vega_datasets = vega-datasets; # added 2023-11-04
@@ -609,6 +612,7 @@ mapAliases ({
   weakrefmethod = throw "weakrefmethod was removed since it's not needed in Python >= 3.4"; # added 2022-12-01
   webapp2 = throw "webapp2 is unmaintained since 2012"; # added 2022-05-29
   weboob = throw "weboob has been removed, please use woob instead"; # added 2024-07-27
+  webhelpers = throw "webhelpers has been removed because it is unmaintained and upstream is gone"; # added 2024-07-27
   websocket_client = websocket-client; # added 2021-06-15
   word2vec = throw "word2vec has been removed because it is abandoned"; # added 2023-05-22
   wxPython_4_0 = throw "wxPython_4_0 has been removed, use wxpython instead"; # added 2023-03-19
