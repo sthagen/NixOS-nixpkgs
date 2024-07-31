@@ -581,6 +581,7 @@ mapAliases ({
   google-chrome-dev = throw "'google-chrome-dev' has been removed due to the lack of maintenance in nixpkgs. Consider using 'google-chrome' instead."; # Added 2023-10-18
   google-gflags = throw "'google-gflags' has been renamed to/replaced by 'gflags'"; # Converted to throw 2023-09-10
   go-thumbnailer = thud; # Added 2023-09-21
+  go-upower-notify = upower-notify; # Added 2024-07-21
   gocode = throw "'gocode' has been removed as the upstream project was archived. 'gopls' is suggested as replacement"; # Added 2023-12-26
   govendor = throw "'govendor' has been removed as it is no longer maintained upstream, please use Go modules instead"; # Added 2023-12-26
   gometer = throw "gometer has been removed from nixpkgs because goLance stopped offering Linux support"; # Added 2023-02-10
@@ -1234,6 +1235,7 @@ mapAliases ({
   radicle-upstream = throw "'radicle-upstream' was sunset, see <https://community.radworks.org/t/2962>"; # Added 2024-05-04
   railway-travel = diebahn; # Added 2024-04-01
   rambox-pro = rambox; # Added 2022-12-12
+  rapidjson-unstable = lib.warn "'rapidjson-unstable' has been renamed to 'rapidjson'" rapidjson; # Added 2024-07-28
   rarian = throw "rarian has been removed as unused"; # Added 2023-07-05
   rccl = throw "'rccl' has been replaced with 'rocmPackages.rccl'"; # Added 2023-10-08
   rdc = throw "'rdc' has been replaced with 'rocmPackages.rdc'"; # Added 2023-10-08
@@ -1295,6 +1297,7 @@ mapAliases ({
   # The alias for linuxPackages*.rtlwifi_new is defined in ./all-packages.nix,
   # due to it being inside the linuxPackagesFor function.
   rtlwifi_new-firmware = rtw88-firmware; # Added 2021-03-14
+  rtw88-firmware = throw "rtw88-firmware has been removed because linux-firmware now contains it."; # Added 2024-06-28
   rtw89-firmware = throw "rtw89-firmware has been removed because linux-firmware now contains it."; # Added 2023-02-19
 
   ### S ###
@@ -1519,6 +1522,7 @@ mapAliases ({
   wkhtmltopdf-bin = wkhtmltopdf; # Added 2024-07-17
   wlroots_0_14 = throw "'wlroots_0_14' has been removed in favor of newer versions"; # Added 2023-07-29
   wlroots_0_15 = throw "'wlroots_0_15' has been removed in favor of newer versions"; # Added 2024-03-28
+  wlroots = wlroots_0_18; # wlroots is unstable, we must keep depending on 'wlroots_0_*', convert to package after a stable(1.x) release
   wordpress6_1 = throw "'wordpress6_1' has been removed in favor of the latest version"; # Added 2023-10-10
   wordpress6_2 = throw "'wordpress6_2' has been removed in favor of the latest version"; # Added 2023-10-10
   wormhole-rs = magic-wormhole-rs; # Added 2022-05-30. preserve, reason: Arch package name, main binary name
