@@ -5605,6 +5605,8 @@ self: super: with self; {
 
   homepluscontrol = callPackage ../development/python-modules/homepluscontrol { };
 
+  homf = callPackage ../development/python-modules/homf { };
+
   hoomd-blue = callPackage ../development/python-modules/hoomd-blue { };
 
   hopcroftkarp = callPackage ../development/python-modules/hopcroftkarp { };
@@ -7187,6 +7189,8 @@ self: super: with self; {
     # llvmlite always requires a specific version of llvm.
     llvm = pkgs.llvm_14;
   };
+
+  lm-format-enforcer = callPackage ../development/python-modules/lm-format-enforcer { };
 
   lmcloud = callPackage ../development/python-modules/lmcloud { };
 
@@ -10935,6 +10939,8 @@ self: super: with self; {
   pyahocorasick = callPackage ../development/python-modules/pyahocorasick { };
 
   pyairnow = callPackage ../development/python-modules/pyairnow { };
+
+  pyairports = callPackage ../development/python-modules/pyairports { };
 
   pyairvisual = callPackage ../development/python-modules/pyairvisual { };
 
