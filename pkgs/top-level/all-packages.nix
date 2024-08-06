@@ -3442,8 +3442,6 @@ with pkgs;
 
   bitwarden-menu = python3Packages.callPackage ../applications/misc/bitwarden-menu { };
 
-  inherit (nodePackages) concurrently;
-
   bklk = callPackage ../applications/misc/bklk { };
 
   bkt = callPackage ../tools/misc/bkt {  };
@@ -4469,8 +4467,6 @@ with pkgs;
   chisel = callPackage ../tools/networking/chisel { };
 
   cht-sh = callPackage ../tools/misc/cht.sh { };
-
-  cinny = callPackage ../applications/networking/instant-messengers/cinny { };
 
   cinny-desktop = callPackage ../applications/networking/instant-messengers/cinny-desktop { };
 
@@ -16432,7 +16428,7 @@ with pkgs;
   tinycc = darwin.apple_sdk_11_0.callPackage ../development/compilers/tinycc { };
 
   tinygo = callPackage ../development/compilers/tinygo {
-    llvmPackages = llvmPackages_17;
+    llvmPackages = llvmPackages_18;
   };
 
   tinyscheme = callPackage ../development/interpreters/tinyscheme { };
@@ -26183,11 +26179,7 @@ with pkgs;
 
   fit-trackee = callPackage ../servers/geospatial/fit-trackee { };
 
-  mapcache = callPackage ../servers/geospatial/mapcache { };
-
   mapproxy = callPackage ../servers/geospatial/mapproxy { };
-
-  mapserver = callPackage ../servers/geospatial/mapserver { };
 
   martin = callPackage ../servers/geospatial/martin {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
@@ -39487,7 +39479,7 @@ with pkgs;
   wmutils-opt = callPackage ../tools/X11/wmutils-opt { };
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress6_3 wordpress6_4 wordpress6_5;
+    wordpress wordpress_6_5 wordpress_6_6;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;
