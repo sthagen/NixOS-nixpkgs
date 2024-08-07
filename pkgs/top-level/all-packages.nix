@@ -1041,8 +1041,6 @@ with pkgs;
 
   mod = callPackage ../development/tools/mod { };
 
-  mongosh = callPackage ../development/tools/mongosh { };
-
   mya = callPackage ../applications/misc/mya { };
 
   mysql-shell = mysql-shell_8;
@@ -2877,8 +2875,6 @@ with pkgs;
   pcmanfm = callPackage ../applications/file-managers/pcmanfm { };
 
   portfolio-filemanager = callPackage ../applications/file-managers/portfolio-filemanager { };
-
-  pot = callPackage ../by-name/po/pot/package.nix { pnpm = pnpm_8; };
 
   potreeconverter = callPackage ../applications/graphics/potreeconverter { };
 
@@ -7972,7 +7968,7 @@ with pkgs;
     wxGTK = wxGTK32;
   };
 
-  frescobaldi = python3Packages.callPackage ../misc/frescobaldi { };
+  frescobaldi = callPackage ../misc/frescobaldi { };
 
   freshfetch = callPackage ../tools/misc/freshfetch {
     inherit (darwin.apple_sdk.frameworks) AppKit CoreFoundation DiskArbitration Foundation IOKit;
@@ -12298,8 +12294,6 @@ with pkgs;
   rpm2targz = callPackage ../tools/archivers/rpm2targz { };
 
   rpmextract = callPackage ../tools/archivers/rpmextract { };
-
-  rrdtool = callPackage ../tools/misc/rrdtool { };
 
   rscw = callPackage ../applications/radio/rscw { };
 
