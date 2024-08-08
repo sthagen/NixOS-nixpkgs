@@ -10,7 +10,7 @@
 
 buildPythonPackage rec {
   pname = "botocore-stubs";
-  version = "1.34.154";
+  version = "1.34.156";
   pyproject = true;
 
   disabled = pythonOlder "3.7";
@@ -18,7 +18,7 @@ buildPythonPackage rec {
   src = fetchPypi {
     pname = "botocore_stubs";
     inherit version;
-    hash = "sha256-nu9OVrcr/Hw3KFBKO1CtgPCLEv4u6Syj1uHjTQXJzls=";
+    hash = "sha256-u1rRaHzTYwNcPwAIVFQkdgQEVWKUY9Tk2x6/QQSKTAY=";
   };
 
   nativeBuildInputs = [ poetry-core ];
