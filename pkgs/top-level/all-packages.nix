@@ -10324,8 +10324,6 @@ with pkgs;
 
   microbin = callPackage ../servers/microbin { };
 
-  microdnf = callPackage ../tools/package-management/microdnf { };
-
   microplane = callPackage ../tools/misc/microplane { };
 
   microserver = callPackage ../servers/microserver { };
@@ -23689,8 +23687,6 @@ with pkgs;
   };
   csfml = callPackage ../development/libraries/csfml { };
 
-  shapelib = callPackage ../development/libraries/shapelib { };
-
   sharness = callPackage ../development/libraries/sharness { };
 
   shibboleth-sp = callPackage ../development/libraries/shibboleth-sp { };
@@ -27112,7 +27108,11 @@ with pkgs;
   prototool = callPackage ../development/tools/prototool { };
 
   qemu_kvm = lowPrio (qemu.override { hostCpuOnly = true; });
-  qemu_full = lowPrio (qemu.override { smbdSupport = true; cephSupport = true; glusterfsSupport = true; });
+  qemu_full = lowPrio (qemu.override {
+    smbdSupport = lib.meta.availableOn stdenv.hostPlatform samba;
+    cephSupport = lib.meta.availableOn stdenv.hostPlatform ceph;
+    glusterfsSupport = lib.meta.availableOn stdenv.hostPlatform glusterfs && lib.meta.availableOn stdenv.hostPlatform libuuid;
+  });
 
   # See `xenPackages` source for explanations.
   # Building with `xen` instead of `xen-slim` is possible, but makes no sense.
@@ -38852,8 +38852,6 @@ with pkgs;
   robo3t = callPackage ../applications/misc/robo3t { };
 
   rucksack = callPackage ../development/tools/rucksack { };
-
-  ruff = callPackage ../development/tools/ruff { };
 
   sam-ba = callPackage ../tools/misc/sam-ba { };
 
