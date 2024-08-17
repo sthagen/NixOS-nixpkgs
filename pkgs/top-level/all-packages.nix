@@ -643,8 +643,6 @@ with pkgs;
 
   firefly-desktop = callPackage ../applications/misc/firefly-desktop { };
 
-  flaca = callPackage ../applications/graphics/flaca { };
-
   frece = callPackage ../development/tools/frece { };
 
   frida-tools = callPackage ../tools/security/frida-tools { };
@@ -7868,8 +7866,6 @@ with pkgs;
 
   flintlock = callPackage ../applications/virtualization/flintlock { };
 
-  flip-link = callPackage ../development/tools/flip-link { };
-
   flips = callPackage ../tools/compression/flips { };
 
   flowblade = callPackage ../applications/video/flowblade { };
@@ -11008,6 +11004,8 @@ with pkgs;
   opendkim = callPackage ../development/libraries/opendkim { };
 
   openfec = callPackage ../development/libraries/openfec { };
+
+  ophcrack-cli = ophcrack.override { enableGui = false; };
 
   ophis = python3Packages.callPackage ../development/compilers/ophis { };
 
@@ -17382,8 +17380,6 @@ with pkgs;
 
   postgres-lsp = callPackage ../development/tools/language-servers/postgres-lsp { };
 
-  ruff-lsp = python3Packages.callPackage ../development/tools/language-servers/ruff-lsp { };
-
   rune-languageserver = callPackage ../development/tools/language-servers/rune-languageserver { };
 
   svls = callPackage ../development/tools/language-servers/svls { };
@@ -19588,7 +19584,7 @@ with pkgs;
 
   # TODO(@Ericson2314): Build bionic libc from source
   bionic = if stdenv.hostPlatform.useAndroidPrebuilt
-    then pkgs."androidndkPkgs_${stdenv.hostPlatform.ndkVer}".libraries
+    then pkgs."androidndkPkgs_${stdenv.hostPlatform.androidNdkVer}".libraries
     else callPackage ../os-specific/linux/bionic-prebuilt { };
 
   boolstuff = callPackage ../development/libraries/boolstuff { };
