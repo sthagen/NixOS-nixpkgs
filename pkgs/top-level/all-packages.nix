@@ -14333,8 +14333,6 @@ with pkgs;
 
   xe-guest-utilities = callPackage ../tools/virtualization/xe-guest-utilities { };
 
-  xen-guest-agent = callPackage ../tools/virtualization/xen-guest-agent { };
-
   xflux = callPackage ../tools/misc/xflux { };
   xflux-gui = python3Packages.callPackage ../tools/misc/xflux/gui.nix { };
 
@@ -22035,8 +22033,6 @@ with pkgs;
 
   libmp3splt = callPackage ../development/libraries/libmp3splt { };
 
-  libmrss = callPackage ../development/libraries/libmrss { };
-
   libmspack = callPackage ../development/libraries/libmspack { };
 
   libmusicbrainz3 = callPackage ../development/libraries/libmusicbrainz { };
@@ -22072,8 +22068,6 @@ with pkgs;
   libnftnl = callPackage ../development/libraries/libnftnl { };
 
   libnova = callPackage ../development/libraries/science/astronomy/libnova { };
-
-  libnxml = callPackage ../development/libraries/libnxml { };
 
   libodfgen = callPackage ../development/libraries/libodfgen { };
 
@@ -33184,8 +33178,6 @@ with pkgs;
   };
 
   qxw = callPackage ../applications/editors/qxw { };
-
-  rabbitvcs = callPackage ../applications/version-management/rabbitvcs { };
 
   rakarrack = callPackage ../applications/audio/rakarrack {
     fltk = fltk13;

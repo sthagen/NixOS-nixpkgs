@@ -7289,9 +7289,10 @@
     name = "Gavin Rogers";
   };
   gaykitty = {
+    email = "sasha@noraa.gay";
     github = "gaykitty";
     githubId = 126119280;
-    name = "Kitty Pride";
+    name = "Sashanoraa";
   };
   gazally = {
     email = "gazally@runbox.com";
@@ -9595,6 +9596,12 @@
     github = "jhillyerd";
     githubId = 2502736;
     name = "James Hillyerd";
+  };
+  jhollowe = {
+    email = "jhollowe@johnhollowell.com";
+    github = "jhollowe";
+    githubId = 2881268;
+    name = "John Hollowell";
   };
   j-hui = {
     email = "j-hui@cs.columbia.edu";
@@ -22778,6 +22785,11 @@
     githubId = 19897088;
     name = "Yusuf Bera Ertan";
     keys = [ { fingerprint = "9270 66BD 8125 A45B 4AC4 0326 6180 7181 F60E FCB2"; } ];
+  };
+  yusuf-duran = {
+    github = "yusuf-duran";
+    githubId = 37774475;
+    name = "Yusuf Duran";
   };
   yuu = {
     email = "yuunix@grrlz.net";
