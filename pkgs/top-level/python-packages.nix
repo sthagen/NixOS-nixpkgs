@@ -101,6 +101,8 @@ self: super: with self; {
 
   aeppl = callPackage ../development/python-modules/aeppl { };
 
+  aerosandbox = callPackage ../development/python-modules/aerosandbox { };
+
   aesara = callPackage ../development/python-modules/aesara { };
 
   aesedb = callPackage ../development/python-modules/aesedb { };
@@ -3028,6 +3030,8 @@ self: super: with self; {
   delorean = callPackage ../development/python-modules/delorean { };
 
   deltachat = callPackage ../development/python-modules/deltachat { };
+
+  deltachat-rpc-client = callPackage ../development/python-modules/deltachat-rpc-client { };
 
   deltachat2 = callPackage ../development/python-modules/deltachat2 { };
 
@@ -6740,6 +6744,10 @@ self: super: with self; {
 
   lakeside = callPackage ../development/python-modules/lakeside { };
 
+  lammps = callPackage ../development/python-modules/lammps {
+    inherit (pkgs) lammps;
+  };
+
   lancedb = callPackage ../development/python-modules/lancedb { };
 
   langchain = callPackage ../development/python-modules/langchain { };
@@ -7723,6 +7731,8 @@ self: super: with self; {
   meteocalc = callPackage ../development/python-modules/meteocalc { };
 
   meteofrance-api = callPackage ../development/python-modules/meteofrance-api { };
+
+  methodtools = callPackage ../development/python-modules/methodtools { };
 
   mezzanine = callPackage ../development/python-modules/mezzanine { };
 
@@ -9092,6 +9102,8 @@ self: super: with self; {
 
   networkx = callPackage ../development/python-modules/networkx { };
 
+  neuralfoil = callPackage ../development/python-modules/neuralfoil { };
+
   neuron-full = pkgs.neuron-full.override { python3 = python; };
 
   neuronpy = toPythonModule neuron-full;
@@ -9684,6 +9696,8 @@ self: super: with self; {
   osc-lib = callPackage ../development/python-modules/osc-lib { };
 
   osc-sdk-python = callPackage ../development/python-modules/osc-sdk-python { };
+
+  oschmod = callPackage ../development/python-modules/oschmod { };
 
   oscpy = callPackage ../development/python-modules/oscpy { };
 
@@ -13315,6 +13329,8 @@ self: super: with self; {
   pyzerproc = callPackage ../development/python-modules/pyzerproc { };
 
   pyzmq = callPackage ../development/python-modules/pyzmq { };
+
+  pyzx = callPackage ../development/python-modules/pyzx { };
 
   qbittorrent-api = callPackage ../development/python-modules/qbittorrent-api { };
 
@@ -17547,6 +17563,8 @@ self: super: with self; {
   winacl = callPackage ../development/python-modules/winacl { };
 
   winsspi = callPackage ../development/python-modules/winsspi { };
+
+  wirerope = callPackage ../development/python-modules/wirerope { };
 
   withings-api = callPackage ../development/python-modules/withings-api { };
 
