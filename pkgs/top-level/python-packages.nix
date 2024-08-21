@@ -4657,6 +4657,8 @@ self: super: with self; {
 
   openllm-core = callPackage ../development/python-modules/openllm-core { };
 
+  openstep-parser = callPackage ../development/python-modules/openstep-parser { };
+
   openstep-plist = callPackage ../development/python-modules/openstep-plist { };
 
   glyphsets = callPackage ../development/python-modules/glyphsets { };
@@ -6767,6 +6769,8 @@ self: super: with self; {
   langchain-mongodb = callPackage ../development/python-modules/langchain-mongodb { };
 
   langchain-openai = callPackage ../development/python-modules/langchain-openai { };
+
+  langchain-standard-tests = callPackage ../development/python-modules/langchain-standard-tests { };
 
   langchain-text-splitters = callPackage ../development/python-modules/langchain-text-splitters { };
 
