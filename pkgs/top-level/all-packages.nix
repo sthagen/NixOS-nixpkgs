@@ -6108,8 +6108,6 @@ with pkgs;
 
   razergenie = libsForQt5.callPackage ../applications/misc/razergenie { };
 
-  recyclarr = callPackage ../tools/video/recyclarr { };
-
   tsduck = callPackage ../tools/video/tsduck { };
 
   turso-cli = callPackage ../development/tools/turso-cli {};
@@ -6875,8 +6873,6 @@ with pkgs;
   convimg = callPackage ../tools/misc/convimg { };
 
   convfont = callPackage ../tools/misc/convfont { };
-
-  convmv = callPackage ../tools/misc/convmv { };
 
   cpcfs = callPackage ../tools/filesystems/cpcfs { };
 
@@ -10877,8 +10873,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security CoreServices;
   };
 
-  nzbget = callPackage ../tools/networking/nzbget { };
-
   oapi-codegen = callPackage ../tools/networking/oapi-codegen { };
 
   oath-toolkit = callPackage ../tools/security/oath-toolkit { };
@@ -11215,8 +11209,6 @@ with pkgs;
   payload_dumper = callPackage ../tools/archivers/payload_dumper { };
 
   payload-dumper-go = callPackage ../tools/archivers/payload-dumper-go { };
-
-  p2pvc = callPackage ../applications/video/p2pvc { };
 
   p3x-onenote = callPackage ../applications/office/p3x-onenote { };
 
@@ -16746,8 +16738,6 @@ with pkgs;
   maude = callPackage ../development/interpreters/maude { };
 
   me_cleaner = callPackage ../tools/misc/me_cleaner { };
-
-  mesos-dns = callPackage ../servers/mesos-dns { };
 
   metamath = callPackage ../development/interpreters/metamath { };
 
@@ -23014,19 +23004,6 @@ with pkgs;
 
   openct = callPackage ../development/libraries/openct { };
 
-  opencv2 = callPackage ../development/libraries/opencv {
-    inherit (darwin.apple_sdk.frameworks) AVFoundation Cocoa QTKit Accelerate;
-    ffmpeg = ffmpeg_4;
-  };
-
-  opencv3 = callPackage ../development/libraries/opencv/3.x.nix {
-    inherit (darwin.apple_sdk.frameworks)
-      AVFoundation Cocoa VideoDecodeAcceleration CoreMedia MediaToolbox Accelerate;
-    ffmpeg = ffmpeg_4;
-    # OpenCV3 won't build with anything newer than CUDA 11 due to API changes.
-    cudaPackages = cudaPackages_11;
-  };
-
   opencv4 = callPackage ../development/libraries/opencv/4.x.nix {
     inherit (darwin.apple_sdk.frameworks)
       AVFoundation Cocoa VideoDecodeAcceleration CoreMedia MediaToolbox Accelerate;
@@ -23188,6 +23165,8 @@ with pkgs;
     physfs;
 
   pico-sdk = callPackage ../development/libraries/pico-sdk { };
+
+  pingvin-share =  callPackage ../servers/pingvin-share { };
 
   pinocchio = callPackage ../development/libraries/pinocchio { };
 
@@ -25401,11 +25380,6 @@ with pkgs;
   petidomo = callPackage ../servers/mail/petidomo { };
 
   pict-rs = callPackage ../servers/web-apps/pict-rs { };
-
-  pict-rs_0_3 = callPackage ../servers/web-apps/pict-rs/0.3.nix {
-    inherit (darwin.apple_sdk.frameworks) Security;
-    ffmpeg = ffmpeg_4;
-  };
 
   popa3d = callPackage ../servers/mail/popa3d { };
 
@@ -31507,10 +31481,6 @@ with pkgs;
 
   lame = callPackage ../development/libraries/lame { };
 
-  labwc = callPackage ../by-name/la/labwc/package.nix {
-    wlroots = wlroots_0_17;
-  };
-
   larswm = callPackage ../applications/window-managers/larswm { };
 
   lash = callPackage ../applications/audio/lash { };
@@ -37207,18 +37177,6 @@ with pkgs;
   mathematica-webdoc-cuda = callPackage ../applications/science/math/mathematica {
     webdoc = true;
     cudaSupport = true;
-  };
-
-  mathematica9 = callPackage ../applications/science/math/mathematica {
-    version = "9";
-  };
-
-  mathematica10 = callPackage ../applications/science/math/mathematica {
-    version = "10";
-  };
-
-  mathematica11 = callPackage ../applications/science/math/mathematica {
-    version = "11";
   };
 
   mathmod = libsForQt5.callPackage ../applications/science/math/mathmod { };
