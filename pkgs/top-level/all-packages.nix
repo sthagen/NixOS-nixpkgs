@@ -7896,10 +7896,6 @@ with pkgs;
 
   fprintd-tod = callPackage ../tools/security/fprintd/tod.nix { };
 
-  ferdi = callPackage ../applications/networking/instant-messengers/ferdi {
-    mkFranzDerivation = callPackage ../applications/networking/instant-messengers/franz/generic.nix { };
-  };
-
   ferdium = callPackage ../applications/networking/instant-messengers/ferdium {
     mkFranzDerivation = callPackage ../applications/networking/instant-messengers/franz/generic.nix { };
   };
@@ -17265,12 +17261,20 @@ with pkgs;
 
   autoadb = callPackage ../misc/autoadb { };
 
-  ansible = ansible_2_16;
-  ansible_2_16 = python3Packages.toPythonApplication python3Packages.ansible-core;
+  ansible = ansible_2_17;
+  ansible_2_17 = python3Packages.toPythonApplication python3Packages.ansible-core;
+  ansible_2_16 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
+    version = "2.16.8";
+    src = oldAttrs.src.override {
+      inherit version;
+      hash = "sha256-WeSqQO1azbTvm789BYkY//k/ZqFJNz2BWciilgRBC9o=";
+    };
+  }));
   ansible_2_15 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
     version = "2.15.9";
     src = oldAttrs.src.override {
       inherit version;
+      pname = "ansible-core";
       hash = "sha256-JfmxtaWvPAmGvTko7QhurduGdSf7XIOv7xoDz60080U=";
     };
   }));
@@ -17352,8 +17356,6 @@ with pkgs;
   rune-languageserver = callPackage ../development/tools/language-servers/rune-languageserver { };
 
   svls = callPackage ../development/tools/language-servers/svls { };
-
-  typst-lsp = callPackage ../development/tools/language-servers/typst-lsp { };
 
   vala-language-server = callPackage ../development/tools/language-servers/vala-language-server { };
 
@@ -22923,7 +22925,6 @@ with pkgs;
       { };
   inherit (nvidiaCtkPackages)
     nvidia-docker
-    nvidia-podman
     ;
 
   nvidia-vaapi-driver = lib.hiPrio (callPackage ../development/libraries/nvidia-vaapi-driver { });
@@ -30463,13 +30464,6 @@ with pkgs;
 
   manuskript = libsForQt5.callPackage ../applications/editors/manuskript {
     python3Packages = python311Packages;
-  };
-
-  metacubexd = callPackage ../by-name/me/metacubexd/package.nix {
-    pnpm = callPackage ../development/tools/pnpm/generic.nix {
-      version = "9.4.0";
-      hash = "sha256-tv0L/aVV5+WErX5WswxosB1aBPnuk5ifS5PKhHPEnHQ=";
-    };
   };
 
   minari = python3Packages.toPythonApplication python3Packages.minari;
@@ -39169,8 +39163,6 @@ with pkgs;
   };
 
   vhs = callPackage ../applications/misc/vhs { };
-
-  vgmstream = callPackage ../applications/audio/vgmstream { };
 
   viddy = callPackage ../tools/misc/viddy { };
 
