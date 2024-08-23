@@ -3996,6 +3996,8 @@ self: super: with self; {
 
   ephemeral-port-reserve = callPackage ../development/python-modules/ephemeral-port-reserve { };
 
+  epicstore-api = callPackage ../development/python-modules/epicstore-api { };
+
   epion = callPackage ../development/python-modules/epion { };
 
   epitran = callPackage ../development/python-modules/epitran { };
@@ -10606,6 +10608,8 @@ self: super: with self; {
 
   pytomorrowio = callPackage ../development/python-modules/pytomorrowio { };
 
+  pytouchlinesl = callPackage ../development/python-modules/pytouchlinesl { };
+
   pyuca = callPackage ../development/python-modules/pyuca { };
 
   pyunpack = callPackage ../development/python-modules/pyunpack { };
@@ -11554,8 +11558,6 @@ self: super: with self; {
   pygccxml = callPackage ../development/python-modules/pygccxml { };
 
   pygdbmi = callPackage ../development/python-modules/pygdbmi { };
-
-  pygeoip = callPackage ../development/python-modules/pygeoip { };
 
   pygetwindow = callPackage ../development/python-modules/pygetwindow { };
 
@@ -16002,8 +16004,6 @@ self: super: with self; {
 
   trezor = callPackage ../development/python-modules/trezor { };
 
-  trfl = callPackage ../development/python-modules/trfl { };
-
   trimesh = callPackage ../development/python-modules/trimesh { };
 
   trino-python-client = callPackage ../development/python-modules/trino-python-client { };
@@ -16991,6 +16991,8 @@ self: super: with self; {
   ueberzug = callPackage ../development/python-modules/ueberzug {
     inherit (pkgs.xorg) libX11 libXext;
   };
+
+  ufal-chu-liu-edmonds = callPackage ../development/python-modules/ufal-chu-liu-edmonds { };
 
   ufmt = callPackage ../development/python-modules/ufmt { };
 
