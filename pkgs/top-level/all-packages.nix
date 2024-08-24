@@ -2642,13 +2642,6 @@ with pkgs;
 
   mainsail = callPackage ../applications/misc/mainsail { };
 
-  mailctl = (haskellPackages.callPackage ../tools/networking/mailctl {}).overrideScope (final: prev: {
-    # Dependency twain requires an older version of http2, and we cannot mix
-    # versions of transitive dependencies.
-    http2 = final.http2_3_0_3;
-    warp = final.warp_3_3_30;
-  });
-
   mame = libsForQt5.callPackage ../applications/emulators/mame { };
 
   mame-tools = lib.addMetaAttrs {
@@ -22141,8 +22134,6 @@ with pkgs;
 
   librttopo = callPackage ../development/libraries/librttopo { };
 
-  libs3 = callPackage ../development/libraries/libs3 { };
-
   libschrift = callPackage ../development/libraries/libschrift { };
 
   libsciter = callPackage ../development/libraries/libsciter { };
@@ -34710,9 +34701,7 @@ with pkgs;
     inherit (gnome2) libglade GConf;
   };
 
-  xiphos = callPackage ../applications/misc/xiphos {
-    gtkhtml = gnome.gtkhtml;
-  };
+  xiphos = callPackage ../applications/misc/xiphos { };
 
   xournal = callPackage ../applications/graphics/xournal {
     inherit (gnome2) libgnomecanvas;
@@ -36602,8 +36591,6 @@ with pkgs;
     gnome45Extensions
     gnome46Extensions
   ;
-
-  gnome-connections = callPackage ../desktops/gnome/apps/gnome-connections { };
 
   gnome-extensions-cli = python3Packages.callPackage ../desktops/gnome/misc/gnome-extensions-cli { };
 
