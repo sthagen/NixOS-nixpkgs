@@ -8126,8 +8126,6 @@ with pkgs;
 
   glogg = libsForQt5.callPackage ../tools/text/glogg { };
 
-  glxinfo = callPackage ../tools/graphics/glxinfo { };
-
   gmrender-resurrect = callPackage ../tools/networking/gmrender-resurrect {
     inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav;
   };
@@ -14917,6 +14915,7 @@ with pkgs;
   flutterPackages-source = recurseIntoAttrs (callPackage ../development/compilers/flutter { useNixpkgsEngine = true; });
   flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
+  flutter324 = flutterPackages.v3_24;
   flutter323 = flutterPackages.v3_23;
   flutter322 = flutterPackages.v3_22;
   flutter319 = flutterPackages.v3_19;
@@ -19867,9 +19866,9 @@ with pkgs;
       intel-media-driver
       intel-vaapi-driver
       mesa
+      mesa-demos
       libva-vdpau-driver
       libvdpau-va-gl
-      glxinfo
       vdpauinfo;
   };
 
@@ -19999,8 +19998,6 @@ with pkgs;
     ffmpeg-full;
 
   ffmpegthumbnailer = callPackage ../development/libraries/ffmpegthumbnailer { };
-
-  ffmpeg-normalize = python3Packages.callPackage ../applications/video/ffmpeg-normalize { };
 
   ffms = callPackage ../development/libraries/ffms { };
 
@@ -26133,7 +26130,7 @@ with pkgs;
 
   cpustat = callPackage ../os-specific/linux/cpustat { };
 
-  cockroachdb-bin = callPackage ../servers/sql/cockroachdb/cockroachdb-bin.nix { };
+  cockroachdb = callPackage ../servers/sql/cockroachdb { };
 
   coconutbattery = callPackage ../os-specific/darwin/coconutbattery { };
 
@@ -26217,7 +26214,9 @@ with pkgs;
 
   firmware-manager = callPackage ../os-specific/linux/firmware/firmware-manager { };
 
-  firmware-updater = callPackage ../os-specific/linux/firmware/firmware-updater { };
+  firmware-updater = callPackage ../os-specific/linux/firmware/firmware-updater {
+    flutter = flutterPackages.v3_22;
+  };
 
   fwts = callPackage ../os-specific/linux/fwts { };
 
@@ -28568,7 +28567,7 @@ with pkgs;
 
   whitesur-icon-theme = callPackage ../data/icons/whitesur-icon-theme { };
 
-  whitesur-kde = libsForQt5.callPackage ../data/themes/whitesur-kde { };
+  whitesur-kde = kdePackages.callPackage ../data/themes/whitesur-kde { };
 
   wireless-regdb = callPackage ../data/misc/wireless-regdb { };
 
@@ -32786,8 +32785,6 @@ with pkgs;
   };
 
   ponymix = callPackage ../applications/audio/ponymix { };
-
-  pop-launcher = callPackage ../applications/misc/pop-launcher { };
 
   pothos = libsForQt5.callPackage ../applications/radio/pothos { };
 
