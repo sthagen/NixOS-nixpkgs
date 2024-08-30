@@ -11070,7 +11070,7 @@ with pkgs;
   openvpn_learnaddress = callPackage ../tools/networking/openvpn/openvpn_learnaddress.nix { };
 
   openvpn-auth-ldap = callPackage ../tools/networking/openvpn/openvpn-auth-ldap.nix {
-    stdenv = clangStdenv;
+    inherit (llvmPackages_17) stdenv;
   };
 
   namespaced-openvpn = python3Packages.callPackage ../tools/networking/namespaced-openvpn { };
@@ -19021,9 +19021,7 @@ with pkgs;
 
   szyszka = callPackage ../tools/misc/szyszka { };
 
-  taplo = callPackage ../development/tools/taplo {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  taplo = callPackage ../development/tools/taplo { };
 
   taoup = callPackage ../tools/misc/taoup { };
 

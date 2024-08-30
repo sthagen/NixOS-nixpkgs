@@ -12284,6 +12284,12 @@
     githubId = 44469719;
     name = "Jussi Kuokkanen";
   };
+  lutzberger = {
+    email = "lutz.berger@airbus.com";
+    github = "lutzberger";
+    githubId = 115777584;
+    name = "Lutz Berger";
+  };
   lux = {
     email = "lux@lux.name";
     github = "luxzeitlos";
@@ -18229,6 +18235,13 @@
     github = "rzetterberg";
     githubId = 766350;
     name = "Richard Zetterberg";
+  };
+  s0me1newithhand7s = {
+    name = "hand7s";
+    email = "s0me1newithhand7s@gmail.com";
+    matrix = "@s0me1newithhand7s:matrix.org";
+    github = "s0me1newithhand7s";
+    githubId = 117505144;
   };
   s1341 = {
     email = "s1341@shmarya.net";
