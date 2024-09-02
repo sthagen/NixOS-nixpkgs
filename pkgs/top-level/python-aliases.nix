@@ -98,6 +98,7 @@ mapAliases ({
   chiavdf = throw "chiavdf has been removed. see https://github.com/NixOS/nixpkgs/pull/270254"; # added 2023-11-26
   chia-rs = throw "chia-rs has been removed. see https://github.com/NixOS/nixpkgs/pull/270254"; # added 2023-11-26
   class-registry = phx-class-registry; # added 2021-10-05
+  cirq-ft = throw "cirq-ft is not longer provieded by cirq upstream"; # added 2024-08-31
   cld2-cffi = throw "cld2-cffi has been removed, as the last release was in 2016"; # added 2024-05-20
   clvm = throw "clvm has been removed. see https://github.com/NixOS/nixpkgs/pull/270254"; # added 2023-11-26
   clvm-rs = throw "clvm-rs has been removed. see https://github.com/NixOS/nixpkgs/pull/270254"; # added 2023-11-26
@@ -326,6 +327,7 @@ mapAliases ({
   mitmproxy-wireguard = throw "mitmproxy-wireguard has been removed because it was replaced by upstream with mitmproxy-rs"; # added 2023-11-06
   mkdocs-minify = mkdocs-minify-plugin; # added 2023-11-28
   mox = throw "mox was removed because it is unmaintained"; # added 2023-02-21
+  mox3 = throw "mox3 was removed because it is unmaintained"; # added 2024-08-30
   mrkd = throw "mrkd has been promoted to a top-level attribute name: `pkgs.mrkd`"; # added 2023-08-01
   multi_key_dict = multi-key-dict; # added 2023-11-05
   mutmut = throw "mutmut has been promoted to a top-level attribute name: `pkgs.mutmut`"; # added 2022-10-02

@@ -735,8 +735,8 @@ let
         mktplcRef = {
           name = "vscode-intelephense-client";
           publisher = "bmewburn";
-          version = "1.10.4";
-          hash = "sha256-bD7AL4x0yL5S+MzQXMBrSZs1pVclfvsTfUbImP1oQok=";
+          version = "1.12.5";
+          hash = "sha256-2Tamwag4KovIOKTe/g4qePVDFxm0mgsLtPNdWcKzigI=";
         };
         meta = {
           description = "PHP code intelligence for Visual Studio Code";
@@ -2671,6 +2671,22 @@ let
           sha256 = "1z9crpz025ha9hgc9mxxg3vyrsfpf9d16zm1vrf4q592j9156d2m";
         };
         meta = {
+          license = lib.licenses.mit;
+        };
+      };
+
+      jgclark.vscode-todo-highlight = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-todo-highlight";
+          publisher = "jgclark";
+          version = "2.0.8";
+          hash = "sha256-/CctaLcG+dA2Cf69/ACeDKdRLsu/VUGbAxUbyhI0VyA=";
+        };
+        meta = {
+          changelog = "https://marketplace.visualstudio.com/items/wayou.vscode-todo-highlight/changelog";
+          description = "highlight TODOs, FIXMEs, and any keywords, annotations...";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=jgclark.vscode-todo-highlight";
+          homepage = "https://github.com/jgclark/vscode-todo-highlight";
           license = lib.licenses.mit;
         };
       };
