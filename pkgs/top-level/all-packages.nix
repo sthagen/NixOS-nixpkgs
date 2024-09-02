@@ -3411,8 +3411,6 @@ with pkgs;
 
   blocksat-cli = with python3Packages; toPythonApplication blocksat-cli;
 
-  bmap-tools = callPackage ../tools/misc/bmap-tools { };
-
   bolliedelayxt-lv2 = callPackage ../applications/audio/bolliedelayxt.lv2 { };
 
   bonnmotion = callPackage ../development/tools/misc/bonnmotion { };
@@ -7726,8 +7724,6 @@ with pkgs;
   };
 
   filegive = callPackage ../tools/networking/filegive { };
-
-  fileschanged = callPackage ../tools/misc/fileschanged { };
 
   filet = callPackage ../applications/misc/filet { };
 
@@ -19925,8 +19921,6 @@ with pkgs;
 
   libesmtp = callPackage ../development/libraries/libesmtp { };
 
-  liberasurecode = callPackage ../applications/misc/liberasurecode { };
-
   example-robot-data = callPackage ../development/libraries/example-robot-data { };
 
   exiv2 = callPackage ../development/libraries/exiv2 { };
@@ -20123,9 +20117,6 @@ with pkgs;
 
   game-music-emu = callPackage ../development/libraries/audio/game-music-emu { };
 
-  gamin = callPackage ../development/libraries/gamin { };
-  fam = gamin; # added 2018-04-25
-
   ganv = callPackage ../development/libraries/ganv { };
 
   garble = callPackage ../development/tools/garble { };
@@ -20260,10 +20251,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AGL OpenGL;
   };
   glfw = glfw3;
-  glfw-wayland-minecraft = callPackage ../development/libraries/glfw/3.x-wayland-minecraft.nix {};
   glfw2 = callPackage ../development/libraries/glfw/2.x.nix { };
-  glfw3 = callPackage ../development/libraries/glfw/3.x.nix {
-    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa Kernel;
+
+  glfw3-minecraft = callPackage ../by-name/gl/glfw3/package.nix {
+    withMinecraftPatch = true;
   };
 
   glibc = callPackage ../development/libraries/glibc {
@@ -25974,8 +25965,6 @@ with pkgs;
 
   fit-trackee = callPackage ../servers/geospatial/fit-trackee { };
 
-  mapproxy = callPackage ../servers/geospatial/mapproxy { };
-
   martin = callPackage ../servers/geospatial/martin {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
@@ -29166,10 +29155,6 @@ with pkgs;
   centerim = callPackage ../applications/networking/instant-messengers/centerim { };
 
   chatty = callPackage ../applications/networking/instant-messengers/chatty { };
-
-  chirp = callPackage ../applications/radio/chirp {
-    python3 = python311;
-  };
 
   browsh = callPackage ../applications/networking/browsers/browsh { };
 
