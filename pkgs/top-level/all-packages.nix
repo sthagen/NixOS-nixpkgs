@@ -16906,8 +16906,6 @@ with pkgs;
 
   pw-volume = callPackage ../tools/audio/pw-volume { };
 
-  pyradio = callPackage ../applications/audio/pyradio { };
-
   racket = callPackage ../development/interpreters/racket {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation;
   };
@@ -17597,7 +17595,9 @@ with pkgs;
 
   bob = callPackage ../development/tools/build-managers/bob { };
 
-  buck = callPackage ../development/tools/build-managers/buck { };
+  buck = callPackage ../development/tools/build-managers/buck {
+    python3 = python311;
+  };
 
   buck2 = callPackage ../development/tools/build-managers/buck2 { };
 
@@ -20335,8 +20335,6 @@ with pkgs;
   wasilibc = callPackage ../development/libraries/wasilibc {
     stdenv = crossLibcStdenv;
   };
-
-  relibc = callPackage ../development/libraries/relibc { };
 
   # Only supported on Linux and only on glibc
   glibcLocales =
