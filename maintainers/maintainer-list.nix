@@ -2279,6 +2279,11 @@
     github = "barinov274";
     githubId = 54442153;
   };
+  BarrOff = {
+    name = "BarrOff";
+    github = "BarrOff";
+    githubId = 58253563;
+  };
   barrucadu = {
     email = "mike@barrucadu.co.uk";
     github = "barrucadu";
@@ -20667,6 +20672,13 @@
     githubId = 3512122;
     keys = [ { fingerprint = "5F29 132D EFA8 5DA0 B598  5BF2 5941 754C 1CDE 33BB"; } ];
   };
+  TheColorman = {
+    name = "colorman";
+    email = "nixpkgs@colorman.me";
+    github = "TheColorman";
+    githubId = 18369995;
+    keys = [ { fingerprint = "3D8C A43C FBA2 5D28 0196  19F0 AB11 0475 B417 291D"; } ];
+  };
   thedavidmeister = {
     email = "thedavidmeister@gmail.com";
     github = "thedavidmeister";
@@ -20989,6 +21001,14 @@
     name = "Theodor-Alexandru Irimia";
     github = "tirimia";
     githubId = 11174371;
+  };
+  titaniumtown = {
+    email = "titaniumtown@proton.me";
+    name = "Simon Gardling";
+    github = "titaniumtown";
+    githubId = 11786225;
+    matrix = "@titaniumtown:envs.net";
+    keys = [ { fingerprint = "D15E 4754 FE1A EDA1 5A6D  4702 9AB2 8AC1 0ECE 533D"; } ];
   };
   tjni = {
     email = "43ngvg@masqt.com";
@@ -21500,6 +21520,13 @@
     github = "ufUNnxagpM";
     githubId = 12422133;
     name = "Chromo-residuum-opec";
+  };
+  uku3lig = {
+    name = "uku";
+    email = "hi@uku.moe";
+    matrix = "@uku:m.uku.moe";
+    github = "uku3lig";
+    githubId = 61147779;
   };
   ulrikstrid = {
     email = "ulrik.strid@outlook.com";

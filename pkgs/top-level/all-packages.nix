@@ -5274,12 +5274,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  gpu-burn = callPackage ../applications/misc/gpu-burn {
-    # gpu-burn doesn't build on gcc11. CUDA 11.3 is the last version to use
-    # pre-gcc11, in particular gcc9.
-    stdenv = gcc9Stdenv;
-  };
-
   gpu-viewer = callPackage ../applications/misc/gpu-viewer { };
 
   greg = callPackage ../applications/audio/greg {
@@ -13781,11 +13775,6 @@ with pkgs;
   wasm-text-gen = nodePackages."@webassemblyjs/wasm-text-gen-1.11.1";
   wast-refmt = nodePackages."@webassemblyjs/wast-refmt-1.11.1";
 
-  wasm-bindgen-cli = callPackage ../development/tools/wasm-bindgen-cli {
-    inherit (darwin.apple_sdk.frameworks) Security;
-    nodejs = nodejs_latest;
-  };
-
   wasm-tools = callPackage ../tools/misc/wasm-tools { };
 
   wasmedge = callPackage ../development/tools/wasmedge {
@@ -18853,8 +18842,6 @@ with pkgs;
   shellcheck-minimal = haskell.lib.compose.justStaticExecutables shellcheck.unwrapped;
 
   shellharden = callPackage ../development/tools/shellharden { };
-
-  schemaspy = callPackage ../development/tools/database/schemaspy { };
 
   scenebuilder = callPackage ../development/tools/scenebuilder { };
 
@@ -25953,8 +25940,6 @@ with pkgs;
 
   ### SERVERS / GEOSPATIAL
 
-  fit-trackee = callPackage ../servers/geospatial/fit-trackee { };
-
   martin = callPackage ../servers/geospatial/martin {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
@@ -28907,7 +28892,7 @@ with pkgs;
 
   backintime-common = callPackage ../applications/networking/sync/backintime/common.nix { };
 
-  backintime-qt = libsForQt5.callPackage ../applications/networking/sync/backintime/qt.nix { };
+  backintime-qt = qt6.callPackage ../applications/networking/sync/backintime/qt.nix { };
 
   backintime = backintime-qt;
 
@@ -31080,12 +31065,13 @@ with pkgs;
 
   jwm-settings-manager = callPackage ../applications/window-managers/jwm/jwm-settings-manager.nix { };
 
-  inherit (callPackage ../applications/networking/cluster/k3s {
-    buildGoModule = buildGo121Module;
-    go = go_1_21;
-  }) k3s_1_28 k3s_1_29;
-  inherit (callPackage ../applications/networking/cluster/k3s { }) k3s_1_30;
-  k3s = k3s_1_30;
+  inherit (callPackage ../applications/networking/cluster/k3s { })
+    k3s_1_28
+    k3s_1_29
+    k3s_1_30
+    k3s_1_31
+    ;
+  k3s = k3s_1_31;
 
   k3sup = callPackage ../applications/networking/cluster/k3sup { };
 
@@ -31880,10 +31866,6 @@ with pkgs;
   };
 
   clerk = callPackage ../applications/audio/clerk { };
-
-  jujutsu = callPackage ../applications/version-management/jujutsu {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
 
   nbstripout = callPackage ../applications/version-management/nbstripout { };
 
@@ -32823,9 +32805,17 @@ with pkgs;
   eiskaltdcpp = libsForQt5.callPackage ../applications/networking/p2p/eiskaltdcpp { };
 
   qemu = callPackage ../applications/virtualization/qemu {
-    inherit (darwin.apple_sdk.frameworks) CoreServices Cocoa Hypervisor vmnet;
+    inherit (darwin.apple_sdk_12_3.frameworks) CoreServices Cocoa Hypervisor Kernel vmnet;
     inherit (darwin.stubs) rez setfile;
     inherit (darwin) sigtool;
+    stdenv =
+      if stdenv.hostPlatform.isDarwin then
+        overrideSDK stdenv {
+          darwinSdkVersion = "12.3";
+          darwinMinVersion = "12.0";
+        }
+      else
+        stdenv;
   };
 
   qemu-python-utils = python3Packages.toPythonApplication (

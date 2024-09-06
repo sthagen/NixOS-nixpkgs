@@ -2706,6 +2706,8 @@ self: super: with self; {
     ctranslate2-cpp = pkgs.ctranslate2;
   };
 
+  ctypesgen = callPackage ../development/python-modules/ctypesgen { };
+
   cu2qu = callPackage ../development/python-modules/cu2qu { };
 
   customtkinter = callPackage ../development/python-modules/customtkinter { };
@@ -4355,6 +4357,8 @@ self: super: with self; {
   fhir-py = callPackage ../development/python-modules/fhir-py { };
 
   fiblary3-fork = callPackage ../development/python-modules/fiblary3-fork { };
+
+  fickling = callPackage ../development/python-modules/fickling { };
 
   fido2 = callPackage ../development/python-modules/fido2 { };
 
@@ -6615,6 +6619,8 @@ self: super: with self; {
   kajiki = callPackage ../development/python-modules/kajiki { };
 
   kaldi-active-grammar = callPackage ../development/python-modules/kaldi-active-grammar { };
+
+  kaleido = callPackage ../development/python-modules/kaleido { };
 
   kanidm = callPackage ../development/python-modules/kanidm { };
 
@@ -10108,6 +10114,8 @@ self: super: with self; {
   pynobo = callPackage ../development/python-modules/pynobo { };
 
   pynotifier = callPackage ../development/python-modules/pynotifier { };
+
+  pynslookup = callPackage ../development/python-modules/pynslookup { };
 
   pynuki = callPackage ../development/python-modules/pynuki { };
 
