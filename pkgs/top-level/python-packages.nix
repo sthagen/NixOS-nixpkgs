@@ -5523,6 +5523,8 @@ self: super: with self; {
 
   hap-python = callPackage ../development/python-modules/hap-python { };
 
+  hass-client = callPackage ../development/python-modules/hass-client { };
+
   hass-nabucasa = callPackage ../development/python-modules/hass-nabucasa { };
 
   hass-splunk = callPackage ../development/python-modules/hass-splunk { };
@@ -6888,6 +6890,8 @@ self: super: with self; {
   ld2410-ble = callPackage ../development/python-modules/ld2410-ble { };
 
   ldap3 = callPackage ../development/python-modules/ldap3 { };
+
+  ldap3-bleeding-edge = callPackage ../development/python-modules/ldap3-bleeding-edge { };
 
   ldapdomaindump = callPackage ../development/python-modules/ldapdomaindump { };
 
