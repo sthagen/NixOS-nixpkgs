@@ -2155,6 +2155,10 @@ with pkgs;
 
   delta = darwin.apple_sdk_11_0.callPackage ../applications/version-management/delta { };
 
+  debase = callPackage ../by-name/de/debase/package.nix {
+    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
+  };
+
   diff-so-fancy = callPackage ../applications/version-management/diff-so-fancy { };
 
   forgejo-lts = callPackage ../by-name/fo/forgejo/lts.nix { };
@@ -3648,6 +3652,10 @@ with pkgs;
   gammaray = qt6Packages.callPackage ../development/tools/gammaray { };
 
   gams = callPackage ../tools/misc/gams (config.gams or {});
+
+  gancioPlugins = recurseIntoAttrs (
+    callPackage ../by-name/ga/gancio/plugins.nix { inherit (gancio) nodejs; }
+  );
 
   gem = callPackage ../applications/audio/pd-plugins/gem { };
 
@@ -5337,7 +5345,7 @@ with pkgs;
     cairo = cairo.override { xcbSupport = true; };  };
 
   hyprland = callPackage ../by-name/hy/hyprland/package.nix {
-    libliftoff = libliftoff_0_4;
+    stdenv = gcc14Stdenv;
   };
 
   hyprland-autoname-workspaces = callPackage ../applications/misc/hyprland-autoname-workspaces { };
@@ -5536,11 +5544,6 @@ with pkgs;
   loadwatch = callPackage ../tools/system/loadwatch { };
 
   loccount = callPackage ../development/tools/misc/loccount { };
-
-  logseq = callPackage ../by-name/lo/logseq/package.nix {
-    # electron version from: https://github.com/logseq/logseq/blob/0.10.9/package.json#L116
-    electron = electron_27;
-  };
 
   long-shebang = callPackage ../misc/long-shebang { };
 
@@ -8476,7 +8479,7 @@ with pkgs;
   gvproxy = callPackage ../tools/networking/gvproxy { };
 
   gyroflow = qt6Packages.callPackage ../applications/video/gyroflow {
-    ffmpeg = ffmpeg_6;
+    ffmpeg = ffmpeg_7;
   };
 
   gzip = callPackage ../tools/compression/gzip { };
@@ -13068,7 +13071,7 @@ with pkgs;
     extraFonts = true;
   };
 
-  texmaker = libsForQt5.callPackage ../applications/editors/texmaker { };
+  texmaker = qt6Packages.callPackage ../applications/editors/texmaker { };
 
   texstudio = qt6Packages.callPackage ../applications/editors/texstudio { };
 
@@ -20678,8 +20681,6 @@ with pkgs;
 
   hound = callPackage ../development/tools/misc/hound { };
 
-  hpp-fcl = callPackage ../development/libraries/hpp-fcl { };
-
   hpx = callPackage ../development/libraries/hpx {
     boost = boost179;
     asio = asio.override { boost = boost179; };
@@ -26918,7 +26919,6 @@ with pkgs;
   qemu_xen_4_19 = lowPrio (qemu.override { hostCpuOnly = true; xenSupport = true; xen = xenPackages.xen_4_19-slim; });
   qemu_xen_4_18 = lowPrio (qemu.override { hostCpuOnly = true; xenSupport = true; xen = xenPackages.xen_4_18-slim; });
   qemu_xen_4_17 = lowPrio (qemu.override { hostCpuOnly = true; xenSupport = true; xen = xenPackages.xen_4_17-slim; });
-  qemu_xen_4_16 = lowPrio (qemu.override { hostCpuOnly = true; xenSupport = true; xen = xenPackages.xen_4_16-slim; });
   qemu_xen = qemu_xen_4_19;
 
   qemu_test = lowPrio (qemu.override { hostCpuOnly = true; nixosTestRunner = true; });
@@ -34926,7 +34926,7 @@ with pkgs;
   lndmanage = callPackage ../applications/blockchains/lndmanage { };
 
   monero-cli = callPackage ../applications/blockchains/monero-cli {
-    inherit (darwin.apple_sdk.frameworks) CoreData IOKit PCSC;
+    inherit (darwin.apple_sdk.frameworks) CoreData IOKit;
   };
 
   haven-cli = callPackage ../applications/blockchains/haven-cli {
