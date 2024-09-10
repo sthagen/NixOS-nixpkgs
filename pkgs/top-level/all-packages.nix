@@ -13289,8 +13289,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices SystemConfiguration;
   };
 
-  trunk-io = callPackage ../development/tools/trunk-io { };
-
   trunk-ng = callPackage ../by-name/tr/trunk-ng/package.nix {
     inherit (darwin.apple_sdk.frameworks) CoreServices Security SystemConfiguration;
   };
@@ -19118,7 +19116,7 @@ with pkgs;
     inherit (buildPackages.darwin) xnu bootstrap_cmds;
   };
   valgrind-light = (res.valgrind.override { gdb = null; }).overrideAttrs (oldAttrs: {
-    meta.description = "${oldAttrs.meta.description} (without GDB)";
+    meta = oldAttrs.meta // { description = "${oldAttrs.meta.description} (without GDB)"; };
   });
 
   qcachegrind = libsForQt5.callPackage ../development/tools/analysis/qcachegrind { };
@@ -26701,8 +26699,8 @@ with pkgs;
 
   ginkgo = callPackage ../development/tools/ginkgo { };
 
-  gdlv = darwin.apple_sdk_11_0.callPackage ../development/tools/gdlv {
-    inherit (darwin.apple_sdk_11_0.frameworks) Foundation CoreGraphics Metal AppKit;
+  gdlv = callPackage ../by-name/gd/gdlv/package.nix {
+    inherit (darwin.apple_sdk_11_0.frameworks) AppKit CoreGraphics Foundation Metal;
   };
 
   go-bindata = callPackage ../development/tools/go-bindata { };
@@ -29510,10 +29508,6 @@ with pkgs;
 
   oed = callPackage ../applications/editors/oed { };
 
-  ekho = callPackage ../applications/audio/ekho {
-    inherit (darwin.apple_sdk.frameworks) AudioUnit;
-  };
-
   electron-cash = libsForQt5.callPackage ../applications/misc/electron-cash { };
 
   electrum = libsForQt5.callPackage ../applications/misc/electrum { };
@@ -31201,8 +31195,6 @@ with pkgs;
   kubectl-example = callPackage ../applications/networking/cluster/kubectl-example { };
 
   kubectl-explore = callPackage ../applications/networking/cluster/kubectl-explore { };
-
-  kubectl-gadget = callPackage ../applications/networking/cluster/kubectl-gadget { };
 
   kubectl-images = callPackage ../applications/networking/cluster/kubectl-images { };
 
