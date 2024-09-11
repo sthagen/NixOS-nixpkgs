@@ -243,6 +243,12 @@
     github = "48cf";
     githubId = 32851089;
   };
+  _4ever2 = {
+    email = "eske@cs.au.dk";
+    github = "4ever2";
+    githubId = 3417013;
+    name = "Eske Nielsen";
+  };
   _6543 = {
     email = "6543@obermui.de";
     github = "6543";
@@ -1895,6 +1901,13 @@
     github = "astavie";
     githubId = 7745457;
     name = "Astavie";
+  };
+  asterismono = {
+    email = "cmiki@amono.me";
+    github = "AsterisMono";
+    githubId = 54884471;
+    name = "Chatnoir Miki";
+    matrix = "@mikiiki:matrix.org";
   };
   astro = {
     email = "astro@spaceboyz.net";
@@ -8076,6 +8089,12 @@
     github = "hagl";
     githubId = 1162118;
     name = "Harald Gliebe";
+  };
+  hakan-demirli = {
+    email = "ehdemirli@proton.me";
+    github = "hakan-demirli";
+    githubId = 78746991;
+    name = "Emre Hakan Demirli";
   };
   hakuch = {
     email = "hakuch@gmail.com";
