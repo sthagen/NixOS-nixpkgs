@@ -243,8 +243,6 @@ with pkgs;
 
   anders = callPackage ../applications/science/logic/anders { };
 
-  ankisyncd = callPackage ../servers/ankisyncd { };
-
   ariang = callPackage ../servers/ariang { };
 
   ani-cli = callPackage ../applications/video/ani-cli { };
@@ -8024,7 +8022,9 @@ with pkgs;
 
   ggobi = callPackage ../tools/graphics/ggobi { };
 
-  ggshield = callPackage ../tools/security/ggshield { };
+  ggshield = callPackage ../tools/security/ggshield {
+    python3 = python311;
+  };
 
   ghost = callPackage ../tools/security/ghost { };
 
@@ -10745,10 +10745,6 @@ with pkgs;
   };
 
   notify-osd = callPackage ../applications/misc/notify-osd { };
-
-  notes = qt6Packages.callPackage ../applications/office/notes {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
 
   notes-up = callPackage ../applications/office/notes-up { };
 
@@ -15016,7 +15012,7 @@ with pkgs;
   };
 
   inherit (callPackage ../development/compilers/gcc/all.nix { inherit noSysDirs; })
-    gcc48 gcc49 gcc6 gcc7 gcc8 gcc9 gcc10 gcc11 gcc12 gcc13 gcc14;
+    gcc49 gcc6 gcc7 gcc8 gcc9 gcc10 gcc11 gcc12 gcc13 gcc14;
 
   gcc_latest = gcc14;
 
@@ -18959,11 +18955,6 @@ with pkgs;
 
   systemfd = callPackage ../development/tools/systemfd { };
 
-  swig3 = callPackage ../development/tools/misc/swig/3.x.nix { };
-  swig4 = callPackage ../development/tools/misc/swig/4.nix { };
-  swig = swig4;
-  swigWithJava = swig;
-
   c2ffi = callPackage ../development/tools/misc/c2ffi { };
 
   c0 = callPackage ../development/compilers/c0 {
@@ -19016,7 +19007,6 @@ with pkgs;
   texinfoPackages = callPackages ../development/tools/misc/texinfo/packages.nix { };
   inherit (texinfoPackages)
     texinfo413
-    texinfo5 # needed for gcc48
     texinfo6_5 # needed for allegro
     texinfo6_7 # needed for gpm, iksemel and fwknop
     texinfo6
@@ -29291,7 +29281,7 @@ with pkgs;
 
   darkman = callPackage ../applications/misc/darkman { };
 
-  darktable = callPackage ../applications/graphics/darktable {
+  darktable = callPackage ../by-name/da/darktable/package.nix {
     lua = lua5_4;
     pugixml = pugixml.override { shared = true; };
     stdenv = if stdenv.isDarwin && stdenv.isx86_64 then overrideSDK llvmPackages_18.stdenv { darwinMinVersion = "10.14"; darwinSdkVersion = "11.0"; } else stdenv;
@@ -31411,8 +31401,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa Foundation;
   };
 
-  libvmi = callPackage ../development/libraries/libvmi { };
-
   libutp = callPackage ../applications/networking/p2p/libutp { };
   libutp_3_4 = callPackage ../applications/networking/p2p/libutp/3.4.nix { };
 
@@ -31628,8 +31616,6 @@ with pkgs;
   };
 
   mercurialFull = mercurial.override { fullBuild = true; };
-
-  merkaartor = libsForQt5.callPackage ../applications/misc/merkaartor { };
 
   mepo = callPackage ../applications/misc/mepo { };
 
@@ -32036,9 +32022,7 @@ with pkgs;
 
   open-policy-agent = callPackage ../development/tools/open-policy-agent { };
 
-  openmm = callPackage ../development/libraries/science/chemistry/openmm {
-    swig = swig4;
-  };
+  openmm = callPackage ../development/libraries/science/chemistry/openmm { };
 
   openshift = callPackage ../applications/networking/cluster/openshift { };
 
@@ -32598,10 +32582,6 @@ with pkgs;
 
   picard = callPackage ../applications/audio/picard { };
 
-  picocom = callPackage ../tools/misc/picocom {
-    inherit (darwin.apple_sdk.frameworks) IOKit;
-  };
-
   picoloop = callPackage ../applications/audio/picoloop { };
 
   picosnitch = callPackage ../tools/networking/picosnitch { };
@@ -33012,11 +32992,7 @@ with pkgs;
 
   rke = callPackage ../applications/networking/cluster/rke { };
 
-  inherit (callPackage ../applications/networking/cluster/rke2 {
-    buildGoModule = buildGo121Module;
-    go = go_1_21;
-  }) rke2_stable;
-  inherit (callPackage ../applications/networking/cluster/rke2 { }) rke2_latest rke2_testing;
+  inherit (callPackage ../applications/networking/cluster/rke2 { }) rke2_stable rke2_latest rke2_testing;
   rke2 = rke2_stable;
 
   rocketchat-desktop = callPackage ../applications/networking/instant-messengers/rocketchat-desktop { };
@@ -35995,8 +35971,6 @@ with pkgs;
     openjdk = openjdk8;
   };
 
-  sauerbraten = callPackage ../games/sauerbraten { };
-
   scid = callPackage ../games/scid { };
 
   scid-vs-pc = callPackage ../games/scid-vs-pc { };
@@ -37645,9 +37619,6 @@ with pkgs;
 
   faiss = callPackage ../development/libraries/science/math/faiss {
     pythonPackages = python3Packages;
-    # faiss wants the "-doxygen" option
-    # available only since swig4
-    swig = swig4;
   };
 
   faissWithCuda = faiss.override {

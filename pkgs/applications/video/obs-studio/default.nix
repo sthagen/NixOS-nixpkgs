@@ -29,7 +29,7 @@
 , wrapGAppsHook3
 , scriptingSupport ? true
 , luajit
-, swig4
+, swig
 , python3
 , alsaSupport ? stdenv.isLinux
 , alsa-lib
@@ -94,7 +94,7 @@ stdenv.mkDerivation (finalAttrs: {
     wrapGAppsHook3
     wrapQtAppsHook
   ]
-  ++ optional scriptingSupport swig4;
+  ++ optional scriptingSupport swig;
 
   buildInputs = [
     curl
@@ -201,7 +201,7 @@ stdenv.mkDerivation (finalAttrs: {
       video content, efficiently
     '';
     homepage = "https://obsproject.com";
-    maintainers = with maintainers; [ eclairevoyant jb55 materus fpletz ];
+    maintainers = with maintainers; [ jb55 materus fpletz ];
     license = with licenses; [ gpl2Plus ] ++ optional withFdk fraunhofer-fdk;
     platforms = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
     mainProgram = "obs";
