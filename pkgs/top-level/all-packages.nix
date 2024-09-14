@@ -4463,6 +4463,10 @@ with pkgs;
 
   cz-cli = callPackage ../applications/version-management/cz-cli { };
 
+  czkawka-full = czkawka.wrapper.override {
+    extraPackages = [ ffmpeg ];
+  };
+
   comma = callPackage ../tools/package-management/comma { };
 
   commitizen = with python3Packages; toPythonApplication commitizen;
@@ -6691,8 +6695,6 @@ with pkgs;
   brotli = callPackage ../tools/compression/brotli { };
 
   biodiff = callPackage ../development/tools/biodiff { };
-
-  biome = callPackage ../development/tools/biome { };
 
   biosdevname = callPackage ../tools/networking/biosdevname { };
 
@@ -12139,8 +12141,6 @@ with pkgs;
 
   rpPPPoE = callPackage ../tools/networking/rp-pppoe { };
 
-  rpi-imager = libsForQt5.callPackage ../tools/misc/rpi-imager { };
-
   rpiboot = callPackage ../development/misc/rpiboot { };
 
   rpm = callPackage ../tools/package-management/rpm {
@@ -14912,7 +14912,6 @@ with pkgs;
       extraBuildInputs = lib.optional stdenv.hostPlatform.isDarwin clang.cc;
     };
 
-  gcc49Stdenv = overrideCC gccStdenv buildPackages.gcc49;
   gcc6Stdenv = overrideCC gccStdenv buildPackages.gcc6;
   gcc7Stdenv = overrideCC gccStdenv buildPackages.gcc7;
   gcc8Stdenv = overrideCC gccStdenv buildPackages.gcc8;
@@ -15007,7 +15006,7 @@ with pkgs;
   };
 
   inherit (callPackage ../development/compilers/gcc/all.nix { inherit noSysDirs; })
-    gcc49 gcc6 gcc7 gcc8 gcc9 gcc10 gcc11 gcc12 gcc13 gcc14;
+    gcc6 gcc7 gcc8 gcc9 gcc10 gcc11 gcc12 gcc13 gcc14;
 
   gcc_latest = gcc14;
 
@@ -22915,6 +22914,8 @@ with pkgs;
   mistralclient = with python311Packages; toPythonApplication python-mistralclient;
   swiftclient = with python311Packages; toPythonApplication python-swiftclient;
   troveclient = with python311Packages; toPythonApplication python-troveclient;
+  watcherclient = with python311Packages; toPythonApplication python-watcherclient;
+  zunclient = with python311Packages; toPythonApplication python-zunclient;
 
   openvdb = callPackage ../development/libraries/openvdb { };
 
@@ -39532,8 +39533,6 @@ with pkgs;
   ldid = callPackage ../development/tools/ldid {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
   };
-
-  ldid-procursus = callPackage ../development/tools/ldid-procursus { };
 
   xcolor = callPackage ../tools/graphics/xcolor { };
 
