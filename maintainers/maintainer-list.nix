@@ -742,6 +742,12 @@
     githubId = 45179933;
     name = "Alex Jackson";
   };
+  ajgon = {
+    email = "igor@rzegocki.pl";
+    github = "ajgon";
+    githubId = 150545;
+    name = "Igor Rzegocki";
+  };
   ajgrf = {
     email = "a@ajgrf.com";
     github = "ajgrf";
@@ -2248,6 +2254,12 @@
     name = "Baitinq";
     github = "Baitinq";
     githubId = 30861839;
+  };
+  baksa = {
+    email = "baksa@pm.me";
+    name = "Kryštof Baksa";
+    github = "Golbinex";
+    githubId = 62813600;
   };
   balodja = {
     email = "balodja@gmail.com";
