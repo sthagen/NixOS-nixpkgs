@@ -3277,7 +3277,10 @@
     github = "callumio";
     githubId = 16057677;
     name = "Callum Leslie";
-    keys = [ { fingerprint = "BC82 4BB5 1656 D144 285E  A0EC D382 C4AF EECE AA90"; } ];
+    keys = [
+      { fingerprint = "BC82 4BB5 1656 D144 285E  A0EC D382 C4AF EECE AA90"; }
+      { fingerprint = "890B 06FB 209A 3E44 9491  C028 03B0 1F42 7831 BCFD"; }
+    ];
   };
   calvertvl = {
     email = "calvertvl@gmail.com";
@@ -10885,13 +10888,6 @@
     github = "Unkn0wnCat";
     githubId = 8211181;
     name = "Kevin Kandlbinder";
-  };
-  kfears = {
-    email = "kfearsoff@gmail.com";
-    github = "KFearsoff";
-    githubId = 66781795;
-    matrix = "@kfears:matrix.org";
-    name = "KFears";
   };
   kfollesdal = {
     email = "kfollesdal@gmail.com";
