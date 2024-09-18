@@ -139,7 +139,7 @@ with pkgs;
 
   unstableGitUpdater = callPackage ../common-updater/unstable-updater.nix { };
 
-  nix-update-script = callPackage ../common-updater/nix-update.nix { };
+  inherit (nix-update) nix-update-script;
 
   ### Push NixOS tests inside the fixed point
 
@@ -8832,8 +8832,6 @@ with pkgs;
 
   ipv6calc = callPackage ../tools/networking/ipv6calc { };
 
-  ipxe = callPackage ../tools/misc/ipxe { };
-
   irker = callPackage ../servers/irker { };
 
   iroh = callPackage ../applications/networking/iroh { };
@@ -17152,7 +17150,8 @@ with pkgs;
   inherit (callPackages ../development/tools/electron/chromedriver { })
     electron-chromedriver_29
     electron-chromedriver_30
-    electron-chromedriver_31;
+    electron-chromedriver_31
+    electron-chromedriver_32;
 
   electron_24 = electron_24-bin;
   electron_27 = electron_27-bin;
@@ -21828,8 +21827,6 @@ with pkgs;
   libstroke = callPackage ../development/libraries/libstroke { };
 
   libspatialaudio = callPackage ../development/libraries/libspatialaudio { };
-
-  libspatialindex = callPackage ../development/libraries/libspatialindex { };
 
   libspatialite = callPackage ../development/libraries/libspatialite { };
 
