@@ -521,6 +521,11 @@ self: super: with self; {
 
   algebraic-data-types = callPackage ../development/python-modules/algebraic-data-types { };
 
+  aligator = toPythonModule (pkgs.aligator.override {
+    python3Packages = self;
+    pythonSupport = true;
+  });
+
   alive-progress = callPackage ../development/python-modules/alive-progress { };
 
   aliyun-python-sdk-cdn = callPackage ../development/python-modules/aliyun-python-sdk-cdn { };
@@ -17858,6 +17863,8 @@ self: super: with self; {
   };
 
   zulip = callPackage ../development/python-modules/zulip { };
+
+  zulip-emoji-mapping = callPackage ../development/python-modules/zulip-emoji-mapping { };
 
   zwave-me-ws = callPackage ../development/python-modules/zwave-me-ws { };
 

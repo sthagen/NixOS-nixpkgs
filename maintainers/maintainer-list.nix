@@ -4050,6 +4050,12 @@
     email = "jupiter@m.rdis.dev";
     name = "Scott Little";
   };
+  codgician = {
+    email = "codgician@outlook.com";
+    github = "codgician";
+    githubId = 15964984;
+    name = "codgician";
+  };
   codifryed = {
     email = "gb@guyboldon.com";
     name = "Guy Boldon";
@@ -15310,19 +15316,19 @@
     githubId = 5047052;
     name = "Niclas Hirschfeld";
   };
+  nyabinary = {
+    name = "Niko Cantero";
+    email = "nyanbinary@keemail.me";
+    matrix = "@niko:conduit.rs";
+    github = "nyabinary";
+    githubId = 97130632;
+  };
   nyadiia = {
     email = "nyadiia@pm.me";
     github = "nyadiia";
     githubId = 43252360;
     name = "Nadia";
     keys = [ { fingerprint = "6B51 E324 238A F455 2381  313A 9254 1B0C D2A9 3AD8"; } ];
-  };
-  nyanbinary = {
-    email = "nyanbinary@keemail.me";
-    matrix = "@niko:conduit.rs";
-    github = "nyabinary";
-    githubId = 97130632;
-    name = "Niko";
   };
   nyanloutre = {
     email = "paul@nyanlout.re";
@@ -16901,6 +16907,12 @@
     github = "progval";
     githubId = 406946;
     name = "Valentin Lorentz";
+  };
+  projectinitiative = {
+    name = "ProjectInitiative";
+    github = "ProjectInitiative";
+    githubId = 6314611;
+    keys = [ { fingerprint = "EEC7 53FC EAAA FD9E 4DC0  9BB5 CAEB 4185 C226 D76B"; } ];
   };
   prominentretail = {
     email = "me@jakepark.me";
