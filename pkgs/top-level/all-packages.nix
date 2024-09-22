@@ -2116,7 +2116,7 @@ with pkgs;
 
   bitbucket-server-cli = callPackage ../applications/version-management/bitbucket-server-cli { };
 
-  bump2version = python3Packages.callPackage ../applications/version-management/bump2version { };
+  bump2version = with python3Packages; toPythonApplication bump2version;
 
   cgit = callPackage ../applications/version-management/cgit { };
 
@@ -6552,7 +6552,18 @@ with pkgs;
 
     m17n = callPackage ../tools/inputmethods/ibus-engines/ibus-m17n { };
 
-    mozc = callPackage ../tools/inputmethods/ibus-engines/ibus-mozc { };
+    inherit mozc;
+
+    mozc-ut = mozc.override { dictionaries = [
+      mozcdic-ut-alt-cannadic
+      mozcdic-ut-edict2
+      mozcdic-ut-jawiki
+      mozcdic-ut-neologd
+      mozcdic-ut-personal-names
+      mozcdic-ut-place-names
+      mozcdic-ut-skk-jisyo
+      mozcdic-ut-sudachidict
+    ]; };
 
     openbangla-keyboard = libsForQt5.callPackage ../applications/misc/openbangla-keyboard { withIbusSupport = true; };
 
@@ -9513,7 +9524,7 @@ with pkgs;
     pythonPackages = python3Packages;
   };
 
-  nanoemoji = python3Packages.callPackage ../tools/misc/nanoemoji { };
+  nanoemoji = with python3Packages; toPythonApplication nanoemoji;
 
   nagelfar = callPackage ../development/tools/nagelfar { };
 
@@ -13547,8 +13558,6 @@ with pkgs;
 
   inherit (openconnectPackages) openconnect openconnect_openssl;
 
-  globalprotect-openconnect = libsForQt5.callPackage ../tools/networking/globalprotect-openconnect { };
-
   ding-libs = callPackage ../tools/misc/ding-libs { };
 
   sssd = callPackage ../os-specific/linux/sssd {
@@ -15420,18 +15429,12 @@ with pkgs;
   libllvm = llvmPackages.libllvm;
   llvm-manpages = llvmPackages.llvm-manpages;
 
+  # Please remove all this logic when bumping to LLVM 19 and make this
+  # a simple alias.
   llvmPackages = let
     # This returns the minimum supported version for the platform. The
     # assumption is that or any later version is good.
-    choose = platform:
-      /**/ if platform.isDarwin then 16
-      else if platform.isFreeBSD then 18
-      else if platform.isOpenBSD then 18
-      else if platform.isAndroid then 12
-      else if platform.isLinux then 18
-      else if platform.isWasm then 16
-      # For unknown systems, assume the latest version is required.
-      else 18;
+    choose = platform: if platform.isDarwin then 16 else 18;
     # We take the "max of the mins". Why? Since those are lower bounds of the
     # supported version set, this is like intersecting those sets and then
     # taking the min bound of that.
