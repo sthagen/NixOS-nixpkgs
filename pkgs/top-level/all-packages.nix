@@ -1306,9 +1306,20 @@ with pkgs;
 
   substituteAllFiles = callPackage ../build-support/substitute-files/substitute-all-files.nix { };
 
-  replaceDependency = callPackage ../build-support/replace-dependency.nix { };
+  replaceDependencies = callPackage ../build-support/replace-dependencies.nix { };
+
+  replaceDependency = { drv, oldDependency, newDependency, verbose ? true }: replaceDependencies {
+    inherit drv verbose;
+    replacements = [{
+      inherit oldDependency newDependency;
+    }];
+    # When newDependency depends on drv, instead of causing infinite recursion, keep it as is.
+    cutoffPackages = [ newDependency ];
+  };
 
   replaceVars = callPackage ../build-support/replace-vars { };
+
+  replaceDirectDependencies = callPackage ../build-support/replace-direct-dependencies.nix { };
 
   nukeReferences = callPackage ../build-support/nuke-references {
     inherit (darwin) signingUtils;
@@ -1795,8 +1806,6 @@ with pkgs;
   hsd = callPackage ../tools/misc/hsd { };
 
   hyperpotamus = callPackage ../tools/misc/hyperpotamus { };
-
-  immich-cli = callPackage ../tools/misc/immich-cli { };
 
   inherit (callPackages ../tools/networking/ivpn/default.nix {}) ivpn ivpn-service;
 
@@ -6609,7 +6618,7 @@ with pkgs;
 
   bbin = callPackage ../development/tools/bbin { };
 
-  blacken-docs = callPackage ../tools/misc/blacken-docs { };
+  blacken-docs = with python3Packages; toPythonApplication blacken-docs;
 
   bore = callPackage ../tools/networking/bore {
     inherit (darwin) Libsystem;
@@ -13250,8 +13259,6 @@ with pkgs;
 
   tvm = callPackage ../development/compilers/tvm { };
 
-  oysttyer = callPackage ../applications/networking/instant-messengers/oysttyer { };
-
   ttfb = callPackage ../development/tools/ttfb { };
 
   twilight = callPackage ../tools/graphics/twilight {
@@ -15754,6 +15761,7 @@ with pkgs;
     cargo-pgrx_0_10_2
     cargo-pgrx_0_11_2
     cargo-pgrx_0_11_3
+    cargo-pgrx_0_12_0_alpha_1
     ;
   cargo-pgrx = cargo-pgrx_0_11_2;
 

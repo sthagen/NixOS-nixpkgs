@@ -131,6 +131,7 @@
   hurl
 , # must be lua51Packages
   luajitPackages
+, aider-chat
 ,
 }: self: super:
 let
@@ -1238,9 +1239,7 @@ in
     dependencies = with self; [ plenary-nvim ];
   };
 
-  neorg = super.neorg.overrideAttrs {
-    dependencies = with self; [ plenary-nvim ];
-  };
+  neorg = neovimUtils.buildNeovimPlugin { luaAttr = luaPackages.neorg; };
 
   neotest = super.neotest.overrideAttrs {
     dependencies = with self; [ nvim-nio plenary-nvim ];
@@ -1494,6 +1493,15 @@ in
 
     postPatch = ''
       substituteInPlace lua/ranger-nvim.lua --replace '@ranger@' ${ranger}/bin/ranger
+    '';
+  };
+
+  aider-nvim = super.aider-nvim.overrideAttrs {
+    patches = [ ./patches/aider.nvim/fix-paths.patch ];
+
+    postPatch = ''
+      substituteInPlace lua/aider.lua --replace '@aider@' ${aider-chat}/bin/aider
+      substituteInPlace lua/helpers.lua --replace '@aider@' ${aider-chat}/bin/aider
     '';
   };
 
