@@ -307,8 +307,6 @@ with pkgs;
 
   atomic-swap = callPackage ../applications/blockchains/atomic-swap { };
 
-  avro-tools = callPackage ../development/tools/avro-tools { };
-
   bacnet-stack = callPackage ../tools/networking/bacnet-stack { };
 
   bada-bib = callPackage ../applications/science/misc/bada-bib { };
@@ -3169,11 +3167,6 @@ with pkgs;
   aws-iam-authenticator = callPackage ../tools/security/aws-iam-authenticator { };
 
   awscli = callPackage ../tools/admin/awscli { };
-
-  awscli2 = callPackage ../by-name/aw/awscli2/package.nix {
-    # change when https://github.com/aws/aws-cli/issues/8342 resolved
-    python3 = python311;
-  };
 
   okta-aws-cli = callPackage ../tools/admin/okta-aws-cli { };
 
@@ -13297,8 +13290,6 @@ with pkgs;
 
   ubpm = libsForQt5.callPackage ../applications/misc/ubpm { };
 
-  ubridge = callPackage ../tools/networking/ubridge { };
-
   ubertooth = callPackage ../applications/radio/ubertooth { };
 
   ucarp = callPackage ../servers/ucarp { };
@@ -18103,8 +18094,6 @@ with pkgs;
 
   lcov = callPackage ../development/tools/analysis/lcov { };
 
-  leiningen = callPackage ../development/tools/build-managers/leiningen { };
-
   lemon = callPackage ../development/tools/parsing/lemon { };
 
   lenmus = callPackage ../applications/misc/lenmus { };
@@ -18458,8 +18447,6 @@ with pkgs;
   redis-plus-plus = callPackage ../development/libraries/redis-plus-plus { };
 
   redisinsight = callPackage ../development/tools/redisinsight { };
-
-  redo = callPackage ../development/tools/build-managers/redo { };
 
   redo-apenwarr = callPackage ../development/tools/build-managers/redo-apenwarr { };
 
@@ -18889,8 +18876,8 @@ with pkgs;
 
   webdis = callPackage ../development/tools/database/webdis { };
 
-  xmake = callPackage ../development/tools/build-managers/xmake {
-    lua = lua5_4;
+  xmake = darwin.apple_sdk_11_0.callPackage ../development/tools/build-managers/xmake {
+    inherit (darwin.apple_sdk_11_0.frameworks) CoreServices;
   };
 
   xc3sprog = callPackage ../development/embedded/xc3sprog { };
@@ -25588,8 +25575,6 @@ with pkgs;
 
   xwayland = callPackage ../servers/x11/xorg/xwayland.nix { };
 
-  xwaylandvideobridge = libsForQt5.callPackage ../tools/wayland/xwaylandvideobridge { };
-
   yaws = callPackage ../servers/http/yaws { };
 
   zabbixFor = version: rec {
@@ -28946,8 +28931,6 @@ with pkgs;
   cyberduck = callPackage ../applications/networking/cyberduck { };
 
   cyclone = callPackage ../applications/audio/pd-plugins/cyclone  { };
-
-  dablin = callPackage ../applications/radio/dablin { };
 
   daktilo = callPackage ../tools/misc/daktilo { };
 
