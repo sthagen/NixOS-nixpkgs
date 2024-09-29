@@ -1048,8 +1048,6 @@ self: super: with self; {
 
   autoslot = callPackage ../development/python-modules/autoslot { };
 
-  autotrash = callPackage ../development/python-modules/autotrash { };
-
   avahi = toPythonModule (pkgs.avahi.override {
     inherit python;
     withPython = true;
@@ -7508,6 +7506,8 @@ self: super: with self; {
   macfsevents = callPackage ../development/python-modules/macfsevents {
     inherit (pkgs.darwin.apple_sdk.frameworks) CoreFoundation CoreServices;
   };
+
+  macholib = callPackage ../development/python-modules/macholib { };
 
   macropy = callPackage ../development/python-modules/macropy { };
 
