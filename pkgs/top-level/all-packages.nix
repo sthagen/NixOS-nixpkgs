@@ -1133,9 +1133,7 @@ with pkgs;
 
   fetchRepoProject = callPackage ../build-support/fetchrepoproject { };
 
-  fetchipfs = import ../build-support/fetchipfs {
-    inherit curl stdenv;
-  };
+  fetchipfs = callPackage ../build-support/fetchipfs { };
 
   fetchit = callPackage ../applications/networking/cluster/fetchit { };
 
@@ -6504,7 +6502,7 @@ with pkgs;
   netplan = callPackage ../tools/admin/netplan { };
 
   skktools = callPackage ../tools/inputmethods/skk/skktools { };
-  skk-dicts = callPackage ../tools/inputmethods/skk/skk-dicts { };
+  skkDictionaries = callPackages ../tools/inputmethods/skk/skk-dicts { };
 
   libkkc-data = callPackage ../data/misc/libkkc-data { };
 
@@ -10084,8 +10082,6 @@ with pkgs;
 
   midisheetmusic = callPackage ../applications/audio/midisheetmusic { };
 
-  mikutter = callPackage ../applications/networking/instant-messengers/mikutter { };
-
   mimeo = callPackage ../tools/misc/mimeo { };
 
   mimetic = callPackage ../development/libraries/mimetic { };
@@ -10407,10 +10403,6 @@ with pkgs;
   networkmanager_dmenu = callPackage ../tools/networking/networkmanager/dmenu  { };
 
   nm-tray = libsForQt5.callPackage ../tools/networking/networkmanager/tray.nix { };
-
-  newsboat = callPackage ../applications/networking/feedreaders/newsboat {
-    inherit (darwin.apple_sdk.frameworks) Security Foundation;
-  };
 
   grocy = callPackage ../servers/grocy { };
 
@@ -13845,10 +13837,6 @@ with pkgs;
   varnish = varnishPackages.varnish;
 
   hitch = callPackage ../servers/hitch { };
-
-  veracrypt = callPackage ../applications/misc/veracrypt {
-    wxGTK = wxGTK32;
-  };
 
   veryfasttree = callPackage ../applications/science/biology/veryfasttree { };
 
@@ -22589,7 +22577,7 @@ with pkgs;
 
   openstackclient = with python311Packages; toPythonApplication python-openstackclient;
   openstackclient-full = openstackclient.overridePythonAttrs (oldAttrs: {
-    dependencies = oldAttrs.dependencies ++ oldAttrs.passthru.optional-dependencies.cli-plugins;
+    dependencies = oldAttrs.dependencies ++ oldAttrs.optional-dependencies.cli-plugins;
   });
   barbicanclient = with python311Packages; toPythonApplication python-barbicanclient;
   glanceclient = with python311Packages; toPythonApplication python-glanceclient;
@@ -25050,7 +25038,9 @@ with pkgs;
 
   azuredatastudio = callPackage ../applications/misc/azuredatastudio { };
 
-  miniflux = callPackage ../servers/miniflux { };
+  miniflux = callPackage ../by-name/mi/miniflux/package.nix {
+    buildGoModule = buildGo123Module;
+  };
 
   inherit (callPackage ../servers/mir { })
     mir
@@ -30136,8 +30126,6 @@ with pkgs;
 
   hpack = haskell.lib.compose.justStaticExecutables haskellPackages.hpack;
 
-  hpcg = callPackage ../tools/misc/hpcg { };
-
   hpl = callPackage ../tools/misc/hpl { };
 
   hpmyroom = libsForQt5.callPackage ../applications/networking/hpmyroom { };
@@ -32654,8 +32642,6 @@ with pkgs;
   scribus = scribus_1_5;
 
   seafile-client = libsForQt5.callPackage ../applications/networking/seafile-client { };
-
-  seahub = callPackage ../applications/networking/seahub { };
 
   seatd = callPackage ../applications/misc/seatd { };
 
@@ -36556,10 +36542,6 @@ with pkgs;
 
   dl-poly-classic-mpi = callPackage ../applications/science/molecular-dynamics/dl-poly-classic { };
 
-  lammps = callPackage ../applications/science/molecular-dynamics/lammps {
-    fftw = fftw;
-  };
-
   lammps-mpi = lowPrio (lammps.override {
     extraBuildInputs = [
       mpi
@@ -38250,8 +38232,6 @@ with pkgs;
   };
 
   sct = callPackage ../tools/X11/sct { };
-
-  seafile-server = callPackage ../servers/seafile-server { };
 
   seafile-shared = callPackage ../misc/seafile-shared { };
 
