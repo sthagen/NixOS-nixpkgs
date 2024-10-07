@@ -235,8 +235,6 @@ with pkgs;
 
   althttpd = callPackage ../servers/althttpd { };
 
-  amqpcat = callPackage ../development/tools/amqpcat { };
-
   anders = callPackage ../applications/science/logic/anders { };
 
   ariang = callPackage ../servers/ariang { };
@@ -328,8 +326,6 @@ with pkgs;
   bililiverecorder = callPackage ../servers/bililiverecorder { };
 
   binbloom = callPackage ../tools/security/binbloom { };
-
-  bingo = callPackage ../development/tools/bingo { };
 
   bin2c = callPackage ../development/tools/bin2c { };
 
@@ -641,8 +637,6 @@ with pkgs;
   gobble = callPackage ../tools/X11/gobble { };
 
   gokrazy = callPackage ../development/misc/gokrazy { };
-
-  gojq = callPackage ../development/tools/gojq { };
 
   govulncheck = callPackage ../tools/security/govulncheck { };
 
@@ -5925,8 +5919,6 @@ with pkgs;
 
   syscall_limiter = callPackage ../os-specific/linux/syscall_limiter { };
 
-  skeema = callPackage ../tools/system/skeema { };
-
   svt-av1 = callPackage ../tools/video/svt-av1 { };
 
   inherit (callPackages ../servers/rainloop { })
@@ -6960,8 +6952,6 @@ with pkgs;
   difftastic = callPackage ../tools/text/difftastic { };
 
   diffutils = callPackage ../tools/text/diffutils { };
-
-  dsp = callPackage ../tools/audio/dsp { };
 
   dirdiff = callPackage ../tools/text/dirdiff { };
 
@@ -11422,8 +11412,6 @@ with pkgs;
 
   proot = callPackage ../tools/system/proot { };
 
-  protoscope = callPackage ../development/tools/protoscope { };
-
   prototypejs = callPackage ../development/libraries/prototypejs { };
 
   proxmark3 = libsForQt5.callPackage ../tools/security/proxmark3/default.nix {
@@ -14581,11 +14569,7 @@ with pkgs;
   flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
   flutter324 = flutterPackages.v3_24;
-  flutter323 = flutterPackages.v3_23;
-  flutter322 = flutterPackages.v3_22;
   flutter319 = flutterPackages.v3_19;
-  flutter316 = flutterPackages.v3_16;
-  flutter313 = flutterPackages.v3_13;
 
   fnm = callPackage ../development/tools/fnm {
     inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation Security;
@@ -20279,7 +20263,7 @@ with pkgs;
 
   hwloc = callPackage ../development/libraries/hwloc { };
 
-  hydra = callPackage ../by-name/hy/hydra/package.nix { nix = nixVersions.nix_2_22; };
+  hydra = callPackage ../by-name/hy/hydra/package.nix { nix = nixVersions.nix_2_23; };
 
   hydra-cli = callPackage ../development/tools/misc/hydra-cli { };
 
@@ -20464,8 +20448,6 @@ with pkgs;
   jsonnet-bundler = callPackage ../development/tools/jsonnet-bundler { };
 
   jrsonnet = callPackage ../development/compilers/jrsonnet { };
-
-  go-jsonnet = callPackage ../development/compilers/go-jsonnet { };
 
   jsonrpc-glib = callPackage ../development/libraries/jsonrpc-glib { };
 
@@ -24851,13 +24833,7 @@ with pkgs;
   mariadb = mariadb_1011;
   mariadb-embedded = mariadb.override { withEmbedded = true; };
 
-  mongodb = hiPrio mongodb-6_0;
-
-  mongodb-5_0 = callPackage ../servers/nosql/mongodb/5.0.nix {
-    sasl = cyrus_sasl;
-    boost = boost179.override { enableShared = false; };
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
-  };
+  mongodb = hiPrio mongodb-7_0;
 
   mongodb-6_0 = darwin.apple_sdk_11_0.callPackage ../servers/nosql/mongodb/6.0.nix {
     sasl = cyrus_sasl;
@@ -25336,14 +25312,11 @@ with pkgs;
     matomo-beta;
 
   inherit (callPackages ../servers/unifi { })
-    unifi7
     unifi8;
 
-  unifi = unifi7;
+  unifi = unifi8;
 
   unifi-protect-backup = callPackage ../applications/backup/unifi-protect-backup { };
-
-  unifi-video = callPackage ../servers/unifi-video { };
 
   unpackerr = callPackage ../servers/unpackerr {
     inherit (darwin.apple_sdk.frameworks) Cocoa WebKit;
@@ -25662,9 +25635,7 @@ with pkgs;
 
   firmware-manager = callPackage ../os-specific/linux/firmware/firmware-manager { };
 
-  firmware-updater = callPackage ../os-specific/linux/firmware/firmware-updater {
-    flutter = flutterPackages.v3_22;
-  };
+  firmware-updater = callPackage ../os-specific/linux/firmware/firmware-updater { };
 
   fwts = callPackage ../os-specific/linux/fwts { };
 
@@ -26408,13 +26379,6 @@ with pkgs;
     cephSupport = lib.meta.availableOn stdenv.hostPlatform ceph;
     glusterfsSupport = lib.meta.availableOn stdenv.hostPlatform glusterfs && lib.meta.availableOn stdenv.hostPlatform libuuid;
   });
-
-  # See `xenPackages` source for explanations.
-  # Building with `xen` instead of `xen-slim` is possible, but makes no sense.
-  qemu_xen_4_19 = lowPrio (qemu.override { hostCpuTargets = [ "i386-softmmu" ]; xenSupport = true; xen = xenPackages.xen_4_19-slim; });
-  qemu_xen_4_18 = lowPrio (qemu.override { hostCpuTargets = [ "i386-softmmu" ]; xenSupport = true; xen = xenPackages.xen_4_18-slim; });
-  qemu_xen_4_17 = lowPrio (qemu.override { hostCpuTargets = [ "i386-softmmu" ]; xenSupport = true; xen = xenPackages.xen_4_17-slim; });
-  qemu_xen = qemu_xen_4_19;
 
   qemu_test = lowPrio (qemu.override { hostCpuOnly = true; nixosTestRunner = true; });
 
@@ -30470,8 +30434,6 @@ with pkgs;
 
   k3sup = callPackage ../applications/networking/cluster/k3sup { };
 
-  kconf = callPackage ../applications/networking/cluster/kconf { };
-
   kail = callPackage ../tools/networking/kail {  };
 
   kapitonov-plugins-pack = callPackage ../applications/audio/kapitonov-plugins-pack { };
@@ -31903,8 +31865,6 @@ with pkgs;
   packet-sd = callPackage ../development/tools/packet-sd { };
 
   metal-cli = callPackage ../development/tools/metal-cli { };
-
-  pb = callPackage ../tools/misc/pb { };
 
   pb_cli = callPackage ../tools/misc/pb_cli { };
 
@@ -33843,10 +33803,7 @@ with pkgs;
 
   xdotool = callPackage ../tools/X11/xdotool { };
 
-  xenPackages = recurseIntoAttrs (callPackage ../applications/virtualization/xen/packages.nix {});
-
-  xen = xenPackages.xen_4_19;
-  xen-slim = xenPackages.xen_4_19-slim;
+  buildXenPackage = callPackage ../build-support/xen { };
 
   xkbset = callPackage ../tools/X11/xkbset { };
 
