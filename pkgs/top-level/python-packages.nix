@@ -9403,6 +9403,8 @@ self: super: with self; {
 
   opentelemetry-instrumentation-requests = callPackage ../development/python-modules/opentelemetry-instrumentation-requests { };
 
+  opentelemetry-instrumentation-redis = callPackage ../development/python-modules/opentelemetry-instrumentation-redis { };
+
   opentelemetry-instrumentation-wsgi = callPackage ../development/python-modules/opentelemetry-instrumentation-wsgi { };
 
   opentelemetry-proto = callPackage ../development/python-modules/opentelemetry-proto { };
@@ -14853,6 +14855,8 @@ self: super: with self; {
   spidev = callPackage ../development/python-modules/spidev { };
 
   splinter = callPackage ../development/python-modules/splinter { };
+
+  spotifyaio = callPackage ../development/python-modules/spotifyaio { };
 
   spotipy = callPackage ../development/python-modules/spotipy { };
 

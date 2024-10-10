@@ -3824,8 +3824,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon;
   };
 
-  waydroid = callPackage ../os-specific/linux/waydroid { };
-
   wgo = callPackage ../development/tools/wgo { };
 
   wiiload = callPackage ../development/tools/wiiload { };
@@ -10171,8 +10169,6 @@ with pkgs;
   };
 
   ms-sys = callPackage ../tools/misc/ms-sys { };
-
-  mtdutils = callPackage ../tools/filesystems/mtdutils { };
 
   mtools = callPackage ../tools/filesystems/mtools { };
 
@@ -26379,8 +26375,6 @@ with pkgs;
 
   rojo = callPackage ../development/tools/rojo { };
 
-  mediamtx = callPackage ../servers/mediamtx { };
-
   rtkit = callPackage ../os-specific/linux/rtkit { };
 
   rt-tests = callPackage ../os-specific/linux/rt-tests { };
@@ -27332,8 +27326,6 @@ with pkgs;
   luna-icons = callPackage ../data/icons/luna-icons {
     inherit (plasma5Packages) breeze-icons;
   };
-
-  lxgw-wenkai = callPackage ../data/fonts/lxgw-wenkai { };
 
   maia-icon-theme = libsForQt5.callPackage ../data/icons/maia-icon-theme { };
 
@@ -28452,7 +28444,7 @@ with pkgs;
   cardo = callPackage ../data/fonts/cardo { };
 
   cage = callPackage ../applications/window-managers/cage {
-    wlroots = wlroots_0_17;
+    wlroots = wlroots_0_18;
   };
 
   calf = callPackage ../applications/audio/calf {
