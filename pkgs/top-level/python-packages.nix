@@ -3734,6 +3734,8 @@ self: super: with self; {
 
   dremel3dpy = callPackage ../development/python-modules/dremel3dpy { };
 
+  drf-extra-fields = callPackage ../development/python-modules/drf-extra-fields { };
+
   drf-jwt = callPackage ../development/python-modules/drf-jwt { };
 
   drf-nested-routers = callPackage ../development/python-modules/drf-nested-routers { };
@@ -4574,6 +4576,8 @@ self: super: with self; {
   flask-security = callPackage ../development/python-modules/flask-security { };
 
   flask-silk = callPackage ../development/python-modules/flask-silk { };
+
+  flask-simpleldap = callPackage ../development/python-modules/flask-simpleldap { };
 
   flask-sock = callPackage ../development/python-modules/flask-sock { };
 
@@ -8859,6 +8863,8 @@ self: super: with self; {
 
   netapp-ontap = callPackage ../development/python-modules/netapp-ontap { };
 
+  netbox-documents = callPackage ../development/python-modules/netbox-documents { };
+
   netbox-reorder-rack = callPackage ../development/python-modules/netbox-reorder-rack { };
 
   netcdf4 = callPackage ../development/python-modules/netcdf4 { };
@@ -9388,6 +9394,8 @@ self: super: with self; {
   opentelemetry-instrumentation-aiohttp-client = callPackage ../development/python-modules/opentelemetry-instrumentation-aiohttp-client { };
 
   opentelemetry-instrumentation-asgi = callPackage ../development/python-modules/opentelemetry-instrumentation-asgi { };
+
+  opentelemetry-instrumentation-celery = callPackage ../development/python-modules/opentelemetry-instrumentation-celery { };
 
   opentelemetry-instrumentation-dbapi = callPackage ../development/python-modules/opentelemetry-instrumentation-dbapi { };
 
