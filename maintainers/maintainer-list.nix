@@ -11710,6 +11710,13 @@
     githubId = 168301;
     name = "Victor Engmark";
   };
+  l33tname = {
+    name = "l33tname";
+    email = "hi@l33t.name";
+
+    github = "Fliiiix";
+    githubId = 1682954;
+  };
   l3af = {
     email = "L3afMeAlon3@gmail.com";
     matrix = "@L3afMe:matrix.org";
@@ -18402,6 +18409,18 @@
     github = "romildo";
     githubId = 1217934;
     name = "José Romildo Malaquias";
+  };
+  romner-set = {
+    email = "admin@cynosure.red";
+    github = "romner-set";
+    githubId = 41077433;
+    name = "romner-set";
+    keys = [
+      {
+        # uploaded to https://keys.openpgp.org
+        fingerprint = "4B75 244B 0279 9598 FF3B  C21F 95FC 58F1 8CFD FAB0";
+      }
+    ];
   };
   ronanmacf = {
     email = "macfhlar@tcd.ie";
