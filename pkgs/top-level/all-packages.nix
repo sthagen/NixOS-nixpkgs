@@ -13784,10 +13784,6 @@ with pkgs;
 
   wget2 = callPackage ../tools/networking/wget2 { };
 
-  wgpu-utils = callPackage ../tools/graphics/wgpu-utils {
-    inherit (darwin.apple_sdk.frameworks) QuartzCore;
-  };
-
   wg-bond = callPackage ../applications/networking/wg-bond { };
 
   wgcf = callPackage ../applications/networking/wgcf { };
@@ -28154,8 +28150,6 @@ with pkgs;
 
   ax25-tools = callPackage ../applications/radio/ax25-tools { };
 
-  azpainter = callPackage ../applications/graphics/azpainter { };
-
   bambootracker = libsForQt5.callPackage ../applications/audio/bambootracker {
     stdenv = if stdenv.hostPlatform.isDarwin then
       darwin.apple_sdk_11_0.stdenv
@@ -32322,8 +32316,6 @@ with pkgs;
   secrets-extractor = callPackage ../tools/security/secrets-extractor { };
 
   secretscanner = callPackage ../tools/security/secretscanner { };
-
-  setconf = python3.pkgs.callPackage ../tools/misc/setconf { };
 
   semiphemeral = callPackage ../tools/misc/semiphemeral { };
 
@@ -38642,8 +38634,6 @@ with pkgs;
   fac-build = callPackage ../development/tools/build-managers/fac {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
-
-  nufmt = callPackage ../development/tools/nufmt { };
 
   bottom = darwin.apple_sdk_11_0.callPackage ../tools/system/bottom { };
 
