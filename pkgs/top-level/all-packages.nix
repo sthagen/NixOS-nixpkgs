@@ -13096,8 +13096,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  russ = callPackage ../applications/networking/feedreaders/russ { };
-
   tunnelto = callPackage ../tools/networking/tunnelto {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -20672,8 +20670,6 @@ with pkgs;
 
   libcomps = callPackage ../tools/package-management/libcomps { python = python3; };
 
-  libcpr = callPackage ../development/libraries/libcpr { };
-
   libcredis = callPackage ../development/libraries/libcredis { };
 
   libctb = callPackage ../development/libraries/libctb { };
@@ -24296,8 +24292,6 @@ with pkgs;
 
   grafana-loki = callPackage ../servers/monitoring/loki { };
   promtail = callPackage ../servers/monitoring/loki/promtail.nix { };
-
-  mimir = callPackage ../servers/monitoring/mimir { };
 
   phlare = callPackage ../servers/monitoring/phlare { };
 
@@ -30184,10 +30178,6 @@ with pkgs;
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
 
-  imhex = callPackage ../by-name/im/imhex/package.nix {
-    llvm = llvm_17;
-  };
-
   inframap = callPackage ../applications/networking/cluster/inframap { };
 
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
@@ -33212,8 +33202,6 @@ with pkgs;
   virt-manager-qt = libsForQt5.callPackage ../applications/virtualization/virt-manager/qt.nix {
     qtermwidget = lxqt.qtermwidget_1_4;
   };
-
-  virtscreen = callPackage ../tools/admin/virtscreen { };
 
   virtual-ans = callPackage ../applications/audio/virtual-ans { };
 
@@ -36764,7 +36752,6 @@ with pkgs;
         curl
       ];
     });
-    perl = perl540;
   };
 
   megam = callPackage ../applications/science/misc/megam {

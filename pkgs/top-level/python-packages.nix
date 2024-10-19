@@ -1902,8 +1902,6 @@ self: super: with self; {
 
   bugz = callPackage ../development/python-modules/bugz { };
 
-  bugzilla = callPackage ../development/python-modules/bugzilla { };
-
   buienradar = callPackage ../development/python-modules/buienradar { };
 
   build = callPackage ../development/python-modules/build { };
@@ -9135,6 +9133,8 @@ self: super: with self; {
 
   plugp100 = callPackage ../development/python-modules/plugp100 {};
 
+  python-bugzilla = callPackage ../development/python-modules/python-bugzilla { };
+
   python-hcl2 = callPackage ../development/python-modules/python-hcl2 { };
 
   python-ndn = callPackage ../development/python-modules/python-ndn { };
@@ -13328,8 +13328,6 @@ self: super: with self; {
   quadprog = callPackage ../development/python-modules/quadprog { };
 
   qualysclient = callPackage ../development/python-modules/qualysclient { };
-
-  quamash = callPackage ../development/python-modules/quamash { };
 
   quandl = callPackage ../development/python-modules/quandl { };
 
