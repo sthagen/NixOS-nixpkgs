@@ -12168,8 +12168,6 @@ with pkgs;
 
   shotwell = callPackage ../applications/graphics/shotwell { };
 
-  shout = nodePackages.shout;
-
   shrikhand = callPackage ../data/fonts/shrikhand { };
 
   shunit2 = callPackage ../tools/misc/shunit2 { };
@@ -16543,7 +16541,8 @@ with pkgs;
     mkRuby
     ruby_3_1
     ruby_3_2
-    ruby_3_3;
+    ruby_3_3
+    ruby_3_4;
 
   ruby = ruby_3_3;
   rubyPackages = rubyPackages_3_3;
@@ -16551,6 +16550,7 @@ with pkgs;
   rubyPackages_3_1 = recurseIntoAttrs ruby_3_1.gems;
   rubyPackages_3_2 = recurseIntoAttrs ruby_3_2.gems;
   rubyPackages_3_3 = recurseIntoAttrs ruby_3_3.gems;
+  rubyPackages_3_4 = recurseIntoAttrs ruby_3_4.gems;
 
   mruby = callPackage ../development/compilers/mruby { };
 
@@ -28365,7 +28365,7 @@ with pkgs;
 
   calculix = callPackage ../applications/science/math/calculix { };
 
-  calibre = qt6Packages.callPackage ../applications/misc/calibre {
+  calibre = callPackage ../by-name/ca/calibre/package.nix {
     podofo = podofo010;
   };
 
