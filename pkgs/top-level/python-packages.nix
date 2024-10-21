@@ -5578,6 +5578,8 @@ self: super: with self; {
 
   hakuin = callPackage ../development/python-modules/hakuin { };
 
+  halide = toPythonModule (pkgs.halide.override { pythonSupport = true; python3Packages = self; });
+
   halo = callPackage ../development/python-modules/halo { };
 
   halohome = callPackage ../development/python-modules/halohome { };
@@ -6058,8 +6060,6 @@ self: super: with self; {
   imgdiff = callPackage ../development/python-modules/imgdiff { };
 
   imgsize = callPackage ../development/python-modules/imgsize { };
-
-  imgtool = callPackage ../development/python-modules/imgtool { };
 
   imgw-pib = callPackage ../development/python-modules/imgw-pib { };
 
@@ -10742,27 +10742,9 @@ self: super: with self; {
 
   proton-keyring-linux = callPackage ../development/python-modules/proton-keyring-linux { };
 
-  proton-keyring-linux-secretservice = callPackage ../development/python-modules/proton-keyring-linux-secretservice { };
-
   proton-vpn-api-core = callPackage ../development/python-modules/proton-vpn-api-core { };
 
-  proton-vpn-connection = callPackage ../development/python-modules/proton-vpn-connection { };
-
-  proton-vpn-killswitch = callPackage ../development/python-modules/proton-vpn-killswitch { };
-
-  proton-vpn-killswitch-network-manager = callPackage ../development/python-modules/proton-vpn-killswitch-network-manager { };
-
-  proton-vpn-killswitch-network-manager-wireguard = callPackage ../development/python-modules/proton-vpn-killswitch-network-manager-wireguard { };
-
-  proton-vpn-logger = callPackage ../development/python-modules/proton-vpn-logger { };
-
   proton-vpn-network-manager = callPackage ../development/python-modules/proton-vpn-network-manager { };
-
-  proton-vpn-network-manager-openvpn = callPackage ../development/python-modules/proton-vpn-network-manager-openvpn { };
-
-  proton-vpn-network-manager-wireguard = callPackage ../development/python-modules/proton-vpn-network-manager-wireguard { };
-
-  proton-vpn-session = callPackage ../development/python-modules/proton-vpn-session { };
 
   protonup-ng = callPackage ../development/python-modules/protonup-ng { };
 

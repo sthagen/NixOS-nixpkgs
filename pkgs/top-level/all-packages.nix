@@ -8360,7 +8360,7 @@ with pkgs;
   halibut = callPackage ../tools/typesetting/halibut { };
 
   halide = callPackage ../development/compilers/halide {
-    llvmPackages = llvmPackages_16;
+    llvmPackages = llvmPackages_18;
   };
 
   hareThirdParty = recurseIntoAttrs (callPackage ./hare-third-party.nix { });
@@ -10886,7 +10886,7 @@ with pkgs;
 
   oxlint = callPackage ../development/tools/oxlint { };
 
-  ovito = libsForQt5.callPackage ../applications/graphics/ovito {
+  ovito = qt6Packages.callPackage ../applications/graphics/ovito {
     inherit (darwin.apple_sdk.frameworks) VideoDecodeAcceleration;
   };
 
@@ -13330,8 +13330,7 @@ with pkgs;
 
   vimwiki-markdown = python3Packages.callPackage ../tools/misc/vimwiki-markdown { };
 
-  visidata = (newScope python3Packages) ../applications/misc/visidata {
-  };
+  visidata = python3Packages.callPackage ../applications/misc/visidata { };
 
   vit = callPackage ../applications/misc/vit { };
 
@@ -14314,7 +14313,7 @@ with pkgs;
     inherit (python3Packages) filecheck;
   };
 
-  bluespec = callPackage ../development/compilers/bluespec {
+  bluespec = callPackage ../by-name/bl/bluespec/package.nix {
     gmp-static = gmp.override { withStatic = true; };
   };
 
@@ -14375,8 +14374,8 @@ with pkgs;
   clang-tools = llvmPackages.clang-tools;
 
   clang-analyzer = callPackage ../development/tools/analysis/clang-analyzer {
-    llvmPackages = llvmPackages_14;
-    inherit (llvmPackages_14) clang;
+    llvmPackages = llvmPackages;
+    inherit (llvmPackages) clang;
   };
 
   clazy = callPackage ../development/tools/analysis/clazy {
@@ -17023,13 +17022,11 @@ with pkgs;
   bingrep = callPackage ../development/tools/analysis/bingrep { };
 
   binutils-unwrapped = callPackage ../development/tools/misc/binutils {
-    autoreconfHook = autoreconfHook269;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     # FHS sys dirs presumably only have stuff for the build platform
     noSysDirs = (stdenv.targetPlatform != stdenv.hostPlatform) || noSysDirs;
   };
   binutils-unwrapped-all-targets = callPackage ../development/tools/misc/binutils {
-    autoreconfHook = if targetPlatform.isiOS then autoreconfHook269 else autoreconfHook;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     # FHS sys dirs presumably only have stuff for the build platform
     noSysDirs = (stdenv.targetPlatform != stdenv.hostPlatform) || noSysDirs;
@@ -20214,6 +20211,7 @@ with pkgs;
     icu73
     icu74
     icu75
+    icu76
   ;
 
   icu = icu74;
@@ -24186,7 +24184,7 @@ with pkgs;
   etcd_3_4 = callPackage ../servers/etcd/3.4.nix { };
   etcd_3_5 = callPackage ../servers/etcd/3.5 { };
 
-  ejabberd = callPackage ../servers/xmpp/ejabberd { erlang = erlang_24; };
+  ejabberd = callPackage ../servers/xmpp/ejabberd { };
 
   exhaustive = callPackage ../development/tools/exhaustive { };
 
@@ -29491,8 +29489,6 @@ with pkgs;
 
   gitolite = callPackage ../applications/version-management/gitolite { };
 
-  gmrun = callPackage ../applications/misc/gmrun { };
-
   goffice = callPackage ../development/libraries/goffice { };
 
   gtkterm = callPackage ../tools/misc/gtkterm { };
@@ -30533,8 +30529,6 @@ with pkgs;
     stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit Cocoa Foundation OpenGL;
   };
-
-  lazpaint = callPackage ../applications/graphics/lazpaint { };
 
   caps = callPackage ../applications/audio/caps { };
 
@@ -34546,6 +34540,10 @@ with pkgs;
 
   factorio-demo = factorio.override { releaseType = "demo"; };
 
+  factorio-space-age = factorio.override { releaseType = "expansion"; };
+
+  factorio-space-age-experimental = factorio.override { releaseType = "expansion"; experimental = true; };
+
   factorio-mods = callPackage ../games/factorio/mods.nix { };
 
   factorio-utils = callPackage ../games/factorio/utils.nix { };
@@ -34655,8 +34653,6 @@ with pkgs;
   graphwar = callPackage ../games/graphwar { };
 
   gtypist = callPackage ../games/gtypist { };
-
-  gweled = callPackage ../games/gweled { };
 
   harmonist = callPackage ../games/harmonist { };
 
