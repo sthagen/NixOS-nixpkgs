@@ -9401,6 +9401,18 @@ final: prev:
     meta.homepage = "https://github.com/RRethy/nvim-treesitter-endwise/";
   };
 
+  nvim-treesitter-pairs = buildVimPlugin {
+    pname = "nvim-treesitter-pairs";
+    version = "2024-10-20";
+    src = fetchFromGitHub {
+      owner = "theHamsta";
+      repo = "nvim-treesitter-pairs";
+      rev = "f8c195d4d8464cba6971bf8de2d6a5c8c109b37a";
+      sha256 = "sha256-VHq7ohBDThkBwqUIEVBb4RujBkftu96DQe/y6l7egzM=";
+    };
+    meta.homepage = "https://github.com/theHamsta/nvim-treesitter-pairs/";
+  };
+
   nvim-treesitter-pyfold = buildVimPlugin {
     pname = "nvim-treesitter-pyfold";
     version = "2023-04-11";
@@ -9423,6 +9435,18 @@ final: prev:
       sha256 = "0n5aygram7wfmhsy3sb68g4adpkx6z1z31cl0780zbdgs5k3785b";
     };
     meta.homepage = "https://github.com/nvim-treesitter/nvim-treesitter-refactor/";
+  };
+
+  nvim-treesitter-sexp = buildVimPlugin {
+    pname = "nvim-treesitter-sexp";
+    version = "2024-06-07";
+    src = fetchFromGitHub {
+      owner = "PaterJason";
+      repo = "nvim-treesitter-sexp";
+      rev = "32509f4071f9c8ba5655bf2e1ccf1f1cd8447da0";
+      sha256 = "1mfayp49nglk4xv1zmzdc8d6dxkjn3dqlywhwwkcdnyqg6y4c6ks";
+    };
+    meta.homepage = "https://github.com/PaterJason/nvim-treesitter-sexp/";
   };
 
   nvim-treesitter-textobjects = buildVimPlugin {
@@ -18670,6 +18694,18 @@ final: prev:
       sha256 = "0s5fxlc7igmvgpmpry1vkrl4xav37cx94ay1sg246y7y2j4j5l56";
     };
     meta.homepage = "https://github.com/samodostal/image.nvim/";
+  };
+
+  scretch-nvim = buildVimPlugin {
+    pname = "scretch.nvim";
+    version = "2024-10-20";
+    src = fetchFromGitHub {
+      owner = "0xJohnnyboy";
+      repo = "scretch.nvim";
+      rev = "0b2fbd0ed285f74baab7396a4a08c7bb7a3653c1";
+      sha256 = "sha256-BqCVe7dY6WNJZS2XTNcnvB9d+HoM0wUItmmVskEaVHQ=";
+    };
+    meta.homepage = "https://github.com/0xJohnnyboy/scretch.nvim/";
   };
 
   tinykeymap = buildVimPlugin {

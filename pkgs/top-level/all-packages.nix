@@ -311,6 +311,12 @@ with pkgs;
 
   banana-accounting = callPackage ../applications/office/banana-accounting { };
 
+  basalt-monado = callPackage ../by-name/ba/basalt-monado/package.nix {
+    tbb = tbb_2021_11;
+    cereal = cereal_1_3_2;
+    opencv = opencv.override { enableGtk3 = true; };
+  };
+
   beebeep = libsForQt5.callPackage ../applications/office/beebeep { };
 
   beeper = callPackage ../applications/networking/instant-messengers/beeper { };
@@ -5356,8 +5362,6 @@ with pkgs;
   libnss-mysql = callPackage ../os-specific/linux/libnss-mysql { };
 
   libnvme = callPackage ../os-specific/linux/libnvme { };
-
-  libnvidia-container = callPackage ../applications/virtualization/libnvidia-container { };
 
   librenms = callPackage ../servers/monitoring/librenms { };
 
@@ -16913,13 +16917,16 @@ with pkgs;
     electron_30-bin
     electron_31-bin
     electron_32-bin
+    electron_33-bin
     ;
 
   inherit (callPackages ../development/tools/electron/chromedriver { })
     electron-chromedriver_29
     electron-chromedriver_30
     electron-chromedriver_31
-    electron-chromedriver_32;
+    electron-chromedriver_32
+    electron-chromedriver_33
+    ;
 
   electron_24 = electron_24-bin;
   electron_27 = electron_27-bin;
@@ -16928,6 +16935,7 @@ with pkgs;
   electron_30 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_30 then electron-source.electron_30 else electron_30-bin;
   electron_31 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_31 then electron-source.electron_31 else electron_31-bin;
   electron_32 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_32 then electron-source.electron_32 else electron_32-bin;
+  electron_33 = electron_33-bin;
   electron = electron_32;
   electron-bin = electron_32-bin;
   electron-chromedriver = electron-chromedriver_32;
@@ -24311,10 +24319,10 @@ with pkgs;
   home-assistant = callPackage ../servers/home-assistant { };
 
   buildHomeAssistantComponent = callPackage ../servers/home-assistant/build-custom-component { };
-  home-assistant-custom-components = lib.recurseIntoAttrs
-    (callPackage ../servers/home-assistant/custom-components {
-      inherit (home-assistant.python.pkgs) callPackage;
-    });
+  home-assistant-custom-components = lib.recurseIntoAttrs (lib.packagesFromDirectoryRecursive {
+    inherit (home-assistant.python.pkgs) callPackage;
+    directory = ../servers/home-assistant/custom-components;
+  });
   home-assistant-custom-lovelace-modules = lib.recurseIntoAttrs
     (callPackage ../servers/home-assistant/custom-lovelace-modules {});
 
@@ -25145,10 +25153,6 @@ with pkgs;
   slurm-spank-x11 = callPackage ../servers/computing/slurm-spank-x11 { };
 
   systemd-journal2gelf = callPackage ../tools/system/systemd-journal2gelf { };
-
-  tailscale = callPackage ../servers/tailscale {
-    buildGoModule = buildGo123Module;
-  };
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
@@ -28876,8 +28880,6 @@ with pkgs;
   epgstation = callPackage ../applications/video/epgstation { };
 
   ephemeral = callPackage ../applications/networking/browsers/ephemeral { };
-
-  epic5 = callPackage ../applications/networking/irc/epic5 { };
 
   epick = callPackage ../applications/graphics/epick {
     inherit (darwin.apple_sdk.frameworks) AppKit;
