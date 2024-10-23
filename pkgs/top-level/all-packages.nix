@@ -196,6 +196,8 @@ with pkgs;
 
   appimageTools = callPackage ../build-support/appimage { };
 
+  appimageupdate-qt = appimageupdate.override { withQtUI = true; };
+
   appindicator-sharp = callPackage ../development/libraries/appindicator-sharp { };
 
   bindle = callPackage ../servers/bindle {
@@ -449,6 +451,10 @@ with pkgs;
   ciel = callPackage ../tools/package-management/ciel { };
 
   circt = callPackage ../development/compilers/circt { };
+
+  clang-uml = callPackage ../by-name/cl/clang-uml/package.nix {
+    stdenv = clangStdenv;
+  };
 
   classicube = callPackage ../games/classicube { };
 
@@ -1912,7 +1918,7 @@ with pkgs;
 
   scarab = callPackage ../tools/games/scarab { };
 
-  sdbus-cpp = callPackage ../development/libraries/sdbus-cpp { };
+  inherit (callPackage ../development/libraries/sdbus-cpp { }) sdbus-cpp sdbus-cpp_2;
 
   sdlookup = callPackage ../tools/security/sdlookup { };
 
@@ -11165,7 +11171,9 @@ with pkgs;
 
   pingtcp = callPackage ../tools/networking/pingtcp { };
 
-  pingu = callPackage ../tools/networking/pingu { };
+  pingu = callPackage ../tools/networking/pingu {
+    buildGoModule = buildGo122Module;
+  };
 
   pinnwand = callPackage ../servers/pinnwand { };
 
@@ -12737,6 +12745,7 @@ with pkgs;
 
   inherit (callPackages ../servers/teleport {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security AppKit;
+    buildGoModule = buildGo122Module;
   }) teleport_15 teleport_16 teleport;
 
   telepresence = callPackage ../tools/networking/telepresence {
@@ -13805,7 +13814,9 @@ with pkgs;
 
   wipe = callPackage ../tools/security/wipe { };
 
-  wireguard-go = callPackage ../tools/networking/wireguard-go { };
+  wireguard-go = callPackage ../tools/networking/wireguard-go {
+    buildGoModule = buildGo122Module;
+  };
 
   wkhtmltopdf = callPackage ../tools/graphics/wkhtmltopdf { };
 
@@ -22556,9 +22567,6 @@ with pkgs;
       protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
         abseil-cpp = abseil-cpp_202103;
       };
-      protobuf3_20 = callPackage ../development/libraries/protobuf/3.20.nix {
-        abseil-cpp = abseil-cpp_202103;
-      };
     })
     protobuf_28
     protobuf_27
@@ -22567,7 +22575,6 @@ with pkgs;
     protobuf_24
     protobuf_23
     protobuf_21
-    protobuf3_20
     ;
 
   protobufc = callPackage ../development/libraries/protobufc { };
@@ -33562,8 +33569,6 @@ with pkgs;
 
   xchainkeys = callPackage ../tools/X11/xchainkeys { };
 
-  xchm = callPackage ../applications/misc/xchm { };
-
   inherit (xorg) xcompmgr;
 
   x-create-mouse-void = callPackage ../applications/window-managers/x-create-mouse-void { };
@@ -34532,7 +34537,7 @@ with pkgs;
     fltk = fltk-minimal;
   };
 
-  factorio = callPackage ../games/factorio { releaseType = "alpha"; };
+  factorio = callPackage ../by-name/fa/factorio/package.nix { releaseType = "alpha"; };
 
   factorio-experimental = factorio.override { releaseType = "alpha"; experimental = true; };
 
@@ -34546,9 +34551,9 @@ with pkgs;
 
   factorio-space-age-experimental = factorio.override { releaseType = "expansion"; experimental = true; };
 
-  factorio-mods = callPackage ../games/factorio/mods.nix { };
+  factorio-mods = callPackage ../by-name/fa/factorio/mods.nix { };
 
-  factorio-utils = callPackage ../games/factorio/utils.nix { };
+  factorio-utils = callPackage ../by-name/fa/factorio/utils.nix { };
 
   fairymax = callPackage ../games/fairymax { };
 

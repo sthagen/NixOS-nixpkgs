@@ -9493,6 +9493,12 @@
     githubId = 1318743;
     name = "Ivar";
   };
+  ivyfanchiang = {
+    email = "dev@ivyfanchiang.ca";
+    github = "hexadecimalDinosaur";
+    githubId = 36890802;
+    name = "Ivy Fan-Chiang";
+  };
   iwanb = {
     email = "tracnar@gmail.com";
     github = "iwanb";
@@ -15368,12 +15374,6 @@
     matrix = "@niklaskorz:korz.dev";
     github = "niklaskorz";
     githubId = 590517;
-  };
-  NikolaMandic = {
-    email = "nikola@mandic.email";
-    github = "NikolaMandic";
-    githubId = 4368690;
-    name = "Ratko Mladic";
   };
   nikstur = {
     email = "nikstur@outlook.com";

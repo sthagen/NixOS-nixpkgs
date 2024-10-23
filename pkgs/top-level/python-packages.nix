@@ -3518,6 +3518,8 @@ self: super: with self; {
 
   djangorestframework-camel-case = callPackage ../development/python-modules/djangorestframework-camel-case { };
 
+  djangorestframework-csv = callPackage ../development/python-modules/djangorestframework-csv { };
+
   djangorestframework-guardian = callPackage ../development/python-modules/djangorestframework-guardian { };
 
   djangorestframework-guardian2 = callPackage ../development/python-modules/djangorestframework-guardian2 { };
@@ -3623,6 +3625,8 @@ self: super: with self; {
   };
 
   dnachisel = callPackage ../development/python-modules/dnachisel { };
+
+  dncil = callPackage ../development/python-modules/dncil { };
 
   dnf-plugins-core = callPackage ../development/python-modules/dnf-plugins-core { };
 
@@ -9890,6 +9894,8 @@ self: super: with self; {
 
   pescea = callPackage ../development/python-modules/pescea { };
 
+  pesq = callPackage ../development/python-modules/pesq { };
+
   pex = callPackage ../development/python-modules/pex { };
 
   pexif = callPackage ../development/python-modules/pexif { };
@@ -10717,11 +10723,6 @@ self: super: with self; {
   protego = callPackage ../development/python-modules/protego { };
 
   proto-plus = callPackage ../development/python-modules/proto-plus { };
-
-  # Protobuf 3.x
-  protobuf3 = callPackage ../development/python-modules/protobuf/3.nix {
-    protobuf = pkgs.protobuf3_20;
-  };
 
   # Protobuf 4.x
   protobuf4 = callPackage ../development/python-modules/protobuf/4.nix {
