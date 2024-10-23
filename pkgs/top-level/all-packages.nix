@@ -21027,10 +21027,6 @@ with pkgs;
 
   libhugetlbfs = callPackage ../development/libraries/libhugetlbfs { };
 
-  libhv = callPackage ../development/libraries/libhv {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   libhwy = callPackage ../development/libraries/libhwy { };
 
   libHX = callPackage ../development/libraries/libHX { };
@@ -24371,8 +24367,6 @@ with pkgs;
   ircdog = callPackage ../applications/networking/irc/ircdog { };
 
   ircdHybrid = callPackage ../servers/irc/ircd-hybrid { };
-
-  janus-gateway = callPackage ../servers/janus-gateway { };
 
   janusgraph = callPackage ../servers/nosql/janusgraph { };
 
@@ -30236,7 +30230,7 @@ with pkgs;
 
   jaeles = callPackage ../tools/security/jaeles { };
 
-  jalv = callPackage ../applications/audio/jalv { };
+  jalv-qt = jalv.override { useQt = true; };
 
   jameica = callPackage ../applications/office/jameica {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
@@ -32245,8 +32239,6 @@ with pkgs;
   scantailor-universal = libsForQt5.callPackage ../applications/graphics/scantailor/universal.nix { };
 
   sc-im = callPackage ../applications/misc/sc-im { };
-
-  scite = callPackage ../applications/editors/scite { };
 
   scli = callPackage ../applications/misc/scli { };
 
@@ -37086,13 +37078,9 @@ with pkgs;
 
   gummi = callPackage ../applications/misc/gummi { };
 
-  gummy = callPackage ../tools/misc/gummy { };
-
   hashpump = callPackage ../tools/misc/hashpump { };
 
   hck = callPackage ../tools/text/hck { };
-
-  helm = callPackage ../applications/audio/helm { };
 
   helmfile = callPackage ../applications/networking/cluster/helmfile { };
 
