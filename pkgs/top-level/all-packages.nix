@@ -468,6 +468,11 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
 
+  cope = callPackage ../by-name/co/cope/package.nix {
+    perl = perl538;
+    perlPackages = perl538Packages;
+  };
+
   cmark = callPackage ../development/libraries/cmark { };
 
   cmark-gfm = callPackage ../development/libraries/cmark-gfm { };
@@ -2037,11 +2042,6 @@ with pkgs;
   xcd = callPackage ../tools/misc/xcd { };
 
   xpaste = callPackage ../tools/text/xpaste { };
-
-  xrootd = callPackage ../tools/networking/xrootd {
-    # Workaround systemd static build breakage
-    systemd = if systemd.meta.broken then null else systemd;
-  };
 
   yabridge = callPackage ../tools/audio/yabridge {
     wine = wineWowPackages.staging;
@@ -4169,8 +4169,6 @@ with pkgs;
 
   btrbk = callPackage ../tools/backup/btrbk { };
 
-  buildpack = callPackage ../development/tools/buildpack { };
-
   bonk = callPackage ../tools/misc/bonk { };
 
   bottom-rs = callPackage ../tools/misc/bottom-rs { };
@@ -4809,7 +4807,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_31;
+    electron = electron_32;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -9165,7 +9163,9 @@ with pkgs;
 
   lksctp-tools = callPackage ../os-specific/linux/lksctp-tools { };
 
-  lldpd = callPackage ../tools/networking/lldpd { };
+  lldpd = callPackage ../tools/networking/lldpd {
+    inherit (darwin.apple_sdk.frameworks) Foundation;
+  };
 
   llm = with python3Packages; toPythonApplication llm;
 
@@ -10274,8 +10274,10 @@ with pkgs;
 
   netbootxyz-efi = callPackage ../tools/misc/netbootxyz-efi { };
 
-  inherit (callPackage ../servers/web-apps/netbox { })
-    netbox netbox_3_6 netbox_3_7;
+  inherit (callPackage ../servers/web-apps/netbox { }) netbox_3_7;
+
+  # Not in aliases because it wouldn't get picked up by callPackage
+  netbox = netbox_4_1;
 
   netbox2netshot = callPackage ../tools/admin/netbox2netshot { };
 
@@ -11874,8 +11876,6 @@ with pkgs;
   rowhammer-test = callPackage ../tools/system/rowhammer-test { };
 
   rpPPPoE = callPackage ../tools/networking/rp-pppoe { };
-
-  rpiboot = callPackage ../development/misc/rpiboot { };
 
   rpm = callPackage ../tools/package-management/rpm {
     python = python3;
@@ -14506,8 +14506,6 @@ with pkgs;
 
   flasm = callPackage ../development/compilers/flasm { };
 
-  flyctl = callPackage ../development/web/flyctl { };
-
   fluidd = callPackage ../applications/misc/fluidd { };
 
   flutterPackages-bin = recurseIntoAttrs (callPackage ../development/compilers/flutter { });
@@ -14776,6 +14774,7 @@ with pkgs;
 
   gnat12Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat12; });
   gnat13Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat13; });
+  gnat14Packages = recurseIntoAttrs (callPackage ./ada-packages.nix { gnat = buildPackages.gnat14; });
   gnatPackages   = gnat12Packages;
 
   inherit (gnatPackages)
@@ -17893,8 +17892,6 @@ with pkgs;
 
   lemon = callPackage ../development/tools/parsing/lemon { };
 
-  lenmus = callPackage ../applications/misc/lenmus { };
-
   libtool = libtool_2;
 
   libtool_1_5 = callPackage ../development/tools/misc/libtool { };
@@ -18557,8 +18554,6 @@ with pkgs;
   };
 
   time-ghc-modules = callPackage ../development/tools/time-ghc-modules { };
-
-  tflint = callPackage ../development/tools/analysis/tflint { };
 
   tflint-plugins = recurseIntoAttrs (
     callPackage ../development/tools/analysis/tflint-plugins { }
@@ -24811,7 +24806,7 @@ with pkgs;
 
   nagios = callPackage ../servers/monitoring/nagios { };
 
-  nagiosPlugins = callPackages ../servers/monitoring/nagios-plugins { };
+  nagiosPlugins = recurseIntoAttrs (callPackages ../servers/monitoring/nagios-plugins { });
 
   monitoring-plugins = callPackage ../servers/monitoring/plugins { };
 
@@ -28314,8 +28309,6 @@ with pkgs;
   bottles-unwrapped = callPackage ../applications/misc/bottles { };
 
   buzztrax = callPackage ../applications/audio/buzztrax { };
-
-  brave = callPackage ../applications/networking/browsers/brave { };
 
   break-time = callPackage ../applications/misc/break-time { };
 
@@ -36243,7 +36236,9 @@ with pkgs;
   };
   cvc4 = callPackage ../applications/science/logic/cvc4 { };
 
-  cvc5 = callPackage ../applications/science/logic/cvc5 { };
+  cvc5 = callPackage ../applications/science/logic/cvc5 {
+    cadical = pkgs.cadical.override { version = "2.0.0"; };
+  };
 
   drat-trim = callPackage ../applications/science/logic/drat-trim { };
 
@@ -37094,8 +37089,6 @@ with pkgs;
 
   hplipWithPlugin = hplip.override { withPlugin = true; };
 
-  hyfetch = callPackage ../tools/misc/hyfetch { };
-
   hyperfine = callPackage ../tools/misc/hyperfine {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -37584,8 +37577,6 @@ with pkgs;
   pykms = callPackage ../tools/networking/pykms { };
 
   pyupgrade = with python3Packages; toPythonApplication pyupgrade;
-
-  pwncat = python3Packages.callPackage ../tools/security/pwncat { };
 
   pwntools = with python3Packages; toPythonApplication pwntools;
 
@@ -38106,8 +38097,6 @@ with pkgs;
   x2x = callPackage ../tools/X11/x2x { };
 
   xboxdrv = callPackage ../misc/drivers/xboxdrv { };
-
-  xortool = python3Packages.callPackage ../tools/security/xortool { };
 
   xorex = callPackage ../tools/security/xorex { };
 

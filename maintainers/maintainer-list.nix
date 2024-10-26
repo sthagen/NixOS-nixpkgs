@@ -18870,6 +18870,12 @@
     githubId = 10908495;
     name = "Ran Xiao";
   };
+  ryan4yin = {
+    email = "xiaoyin_c@qq.com";
+    github = "ryan4yin";
+    githubId = 22363274;
+    name = "Ryan Yin";
+  };
   ryanartecona = {
     email = "ryanartecona@gmail.com";
     github = "ryanartecona";
@@ -23172,6 +23178,17 @@
     github = "witchof0x20";
     githubId = 36118348;
     keys = [ { fingerprint = "69C9 876B 5797 1B2E 11C5  7C39 80A1 F76F C9F9 54AE"; } ];
+  };
+  wizardlink = {
+    name = "wizardlink";
+    email = "contact@thewizard.link";
+    github = "wizardlink";
+    githubId = 26727907;
+    keys = [
+      {
+        fingerprint = "A1D3 A2B4 E14B D7C0 445B  B749 A576 7B54 367C FBDF";
+      }
+    ];
   };
   wizeman = {
     email = "rcorreia@wizy.org";
