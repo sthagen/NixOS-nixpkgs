@@ -8625,6 +8625,12 @@
     githubId = 6430643;
     name = "Henry Till";
   };
+  hensoko = {
+    email = "hensoko@pub.solar";
+    github = "hensoko";
+    githubId = 13552930;
+    name = "hensoko";
+  };
   heph2 = {
     email = "srht@mrkeebs.eu";
     github = "heph2";
@@ -19720,6 +19726,12 @@
     email = "stp.tjeerd@gmail.com";
     github = "shhht";
     githubId = 118352823;
+  };
+  shift = {
+    name = "Vincent Palmer";
+    email = "shift@someone.section.me";
+    github = "shift";
+    githubId = 1653;
   };
   shikanime = {
     name = "William Phetsinorath";
