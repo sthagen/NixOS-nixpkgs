@@ -1476,6 +1476,8 @@ self: super: with self; {
 
   basemap-data = callPackage ../development/python-modules/basemap-data { };
 
+  basemap-data-hires = callPackage ../development/python-modules/basemap-data-hires { };
+
   bases = callPackage ../development/python-modules/bases { };
 
   bash-kernel = callPackage ../development/python-modules/bash-kernel { };
@@ -9521,6 +9523,8 @@ self: super: with self; {
   orderedmultidict = callPackage ../development/python-modules/orderedmultidict { };
 
   ordered-set = callPackage ../development/python-modules/ordered-set { };
+
+  orderly-set = callPackage ../development/python-modules/orderly-set { };
 
   orderedset = callPackage ../development/python-modules/orderedset { };
 
