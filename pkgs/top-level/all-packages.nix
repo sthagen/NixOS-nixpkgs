@@ -8127,11 +8127,6 @@ with pkgs;
 
   groff = callPackage ../tools/text/groff { };
 
-  gromit-mpx = callPackage ../tools/graphics/gromit-mpx {
-    gtk = gtk3;
-    libappindicator = libappindicator-gtk3;
-  };
-
   gron = callPackage ../development/tools/gron { };
 
   groonga = callPackage ../servers/search/groonga { };
@@ -10336,8 +10331,6 @@ with pkgs;
   nomad-autoscaler = callPackage ../applications/networking/cluster/nomad-autoscaler { };
 
   nomad-driver-podman = callPackage ../applications/networking/cluster/nomad-driver-podman { };
-
-  nomad-pack = callPackage ../applications/networking/cluster/nomad-pack { };
 
   nova = callPackage ../applications/networking/cluster/nova { };
 
@@ -14452,6 +14445,7 @@ with pkgs;
   flutterPackages-source = recurseIntoAttrs (callPackage ../development/compilers/flutter { useNixpkgsEngine = true; });
   flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
+  flutter327 = flutterPackages.v3_27;
   flutter326 = flutterPackages.v3_26;
   flutter324 = flutterPackages.v3_24;
   flutter319 = flutterPackages.v3_19;
@@ -19789,7 +19783,6 @@ with pkgs;
   gmm = callPackage ../development/libraries/gmm { };
 
   gmp4 = callPackage ../development/libraries/gmp/4.3.2.nix { }; # required by older GHC versions
-  gmp5 = callPackage ../development/libraries/gmp/5.1.x.nix { };
   gmp6 = callPackage ../development/libraries/gmp/6.x.nix { };
   gmp = gmp6;
   gmpxx = gmp.override { cxx = true; };
@@ -26238,8 +26231,8 @@ with pkgs;
 
   sdparm = callPackage ../os-specific/linux/sdparm { };
 
-  sdrangel = libsForQt5.callPackage ../applications/radio/sdrangel {
-    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  sdrangel = qt6Packages.callPackage ../applications/radio/sdrangel {
+    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "12.3" else stdenv;
   };
 
   setools = callPackage ../os-specific/linux/setools { };
@@ -27850,6 +27843,7 @@ with pkgs;
 
   inherit (qt6Packages.callPackage ../applications/office/activitywatch { })
     aw-qt
+    aw-notify
     aw-server-rust
     aw-watcher-afk
     aw-watcher-window;
@@ -28584,7 +28578,7 @@ with pkgs;
   dmenu = callPackage ../applications/misc/dmenu { };
   dmenu-wayland = callPackage ../applications/misc/dmenu/wayland.nix { };
 
-  dmenu-rs = callPackage ../applications/misc/dmenu-rs { };
+  dmenu-rs-enable-plugins = dmenu-rs.override { enablePlugins = true; };
 
   dmensamenu = callPackage ../applications/misc/dmensamenu {
     inherit (python3Packages) buildPythonApplication requests;
@@ -31227,6 +31221,8 @@ with pkgs;
 
   scudcloud = callPackage ../applications/networking/instant-messengers/scudcloud { };
 
+  scx = recurseIntoAttrs (callPackage ../os-specific/linux/scx { });
+
   shod = callPackage ../applications/window-managers/shod { };
 
   shogun = callPackage ../applications/science/machine-learning/shogun {
@@ -33578,8 +33574,6 @@ with pkgs;
   xrectsel = callPackage ../tools/X11/xrectsel { };
 
   xrestop = callPackage ../tools/X11/xrestop { };
-
-  xrgears = callPackage ../applications/graphics/xrgears { };
 
   xsd = callPackage ../development/libraries/xsd {
     stdenv = gcc9Stdenv;
@@ -36585,8 +36579,6 @@ with pkgs;
   gildas = callPackage ../applications/science/astronomy/gildas { };
 
   gplates = libsForQt5.callPackage ../applications/science/misc/gplates { };
-
-  grap = callPackage ../tools/security/grap { };
 
   gravit = callPackage ../applications/science/astronomy/gravit { };
 
