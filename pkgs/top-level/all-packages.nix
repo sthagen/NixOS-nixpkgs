@@ -597,8 +597,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   };
 
-  edge-runtime = callPackage ../development/web/edge-runtime { };
-
   efficient-compression-tool = callPackage ../tools/compression/efficient-compression-tool { };
 
   eludris = callPackage ../tools/misc/eludris {
@@ -2118,7 +2116,7 @@ with pkgs;
 
   degit = callPackage ../applications/version-management/degit { };
 
-  delta = darwin.apple_sdk_11_0.callPackage ../applications/version-management/delta { };
+  delta = callPackage ../applications/version-management/delta { };
 
   debase = callPackage ../by-name/de/debase/package.nix {
     stdenv = if stdenv.hostPlatform.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
@@ -2227,8 +2225,6 @@ with pkgs;
 
   git-fame = callPackage ../applications/version-management/git-fame { };
 
-  git-fast-export = callPackage ../applications/version-management/fast-export { };
-
   git-fire = callPackage ../applications/version-management/git-fire { };
 
   git-ftp = callPackage ../applications/version-management/git-ftp { };
@@ -2247,9 +2243,7 @@ with pkgs;
 
   git-imerge = python3Packages.callPackage ../applications/version-management/git-imerge { };
 
-  git-interactive-rebase-tool = callPackage ../applications/version-management/git-interactive-rebase-tool {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  git-interactive-rebase-tool = callPackage ../applications/version-management/git-interactive-rebase-tool { };
 
   git-lfs = lowPrio (callPackage ../applications/version-management/git-lfs { });
 
@@ -2791,9 +2785,7 @@ with pkgs;
 
   ### APPLICATIONS/TERMINAL-EMULATORS
 
-  alacritty = callPackage ../applications/terminal-emulators/alacritty {
-    inherit (darwin.apple_sdk_11_0.frameworks) AppKit CoreGraphics CoreServices CoreText Foundation OpenGL;
-  };
+  alacritty = callPackage ../applications/terminal-emulators/alacritty { };
 
   blackbox-terminal = callPackage ../applications/terminal-emulators/blackbox-terminal { };
 
@@ -4620,8 +4612,6 @@ with pkgs;
     inherit (haskellPackages) ghcWithPackages diagrams-builder;
   };
 
-  dialect = callPackage ../applications/misc/dialect { };
-
   dialogbox = libsForQt5.callPackage ../tools/misc/dialogbox { };
 
   dieharder = callPackage ../tools/security/dieharder { };
@@ -5260,8 +5250,6 @@ with pkgs;
   jwt-hack = callPackage ../tools/security/jwt-hack { } ;
 
   jwx = callPackage ../tools/security/jwx { } ;
-
-  kapacitor = callPackage ../servers/monitoring/kapacitor { };
 
   karma = callPackage ../servers/monitoring/karma { };
 
@@ -8080,9 +8068,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  ripgrep = callPackage ../tools/text/ripgrep {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  ripgrep = callPackage ../tools/text/ripgrep { };
 
   ripgrep-all = callPackage ../tools/text/ripgrep-all {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -12107,10 +12093,6 @@ with pkgs;
 
   silc_server = callPackage ../servers/silc-server { };
 
-  sile = callPackage ../tools/typesetting/sile {
-    lua = lua5_3;
-  };
-
   silenthound = callPackage ../tools/security/silenthound { };
 
   silice = callPackage ../development/compilers/silice { };
@@ -13611,11 +13593,11 @@ with pkgs;
   valum = callPackage ../development/web/valum { };
 
   inherit (callPackages ../servers/varnish { })
-    varnish60 varnish74 varnish75;
+    varnish60 varnish75;
   inherit (callPackages ../servers/varnish/packages.nix { })
-    varnish60Packages varnish74Packages varnish75Packages;
+    varnish60Packages varnish75Packages;
 
-  varnishPackages = varnish74Packages;
+  varnishPackages = varnish75Packages;
   varnish = varnishPackages.varnish;
 
   hitch = callPackage ../servers/hitch { };
@@ -17882,7 +17864,6 @@ with pkgs;
   nimbo = with python3Packages; callPackage ../applications/misc/nimbo { };
 
   gn = callPackage ../development/tools/build-managers/gn { };
-  gn1924 = callPackage ../development/tools/build-managers/gn/rev1924.nix { };
 
   nixbang = callPackage ../development/tools/misc/nixbang {
     pythonPackages = python3Packages;
@@ -23198,8 +23179,6 @@ with pkgs;
     stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
   };
 
-  intel-vaapi-driver = callPackage ../development/libraries/intel-vaapi-driver { };
-
   vaapi-intel-hybrid = callPackage ../development/libraries/vaapi-intel-hybrid { };
 
   libva-vdpau-driver = callPackage ../development/libraries/libva-vdpau-driver { };
@@ -24969,8 +24948,6 @@ with pkgs;
   seyren = callPackage ../servers/monitoring/seyren { };
 
   ruby-zoom = callPackage ../tools/text/ruby-zoom { };
-
-  sensu = callPackage ../servers/monitoring/sensu { };
 
   inherit (callPackages ../servers/monitoring/sensu-go { })
     sensu-go-agent
@@ -28265,6 +28242,8 @@ with pkgs;
 
   cbc = callPackage ../applications/science/math/cbc { };
 
+  cbconvert-gui = cbconvert.gui;
+
   cddiscid = callPackage ../applications/audio/cd-discid {
     inherit (darwin) IOKit;
   };
@@ -30198,8 +30177,6 @@ with pkgs;
   kondo = callPackage ../applications/misc/kondo { };
 
   kotatogram-desktop = callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop { };
-
-  kotatogram-desktop-with-webkit = callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop/with-webkit.nix { };
 
   kpt = callPackage ../applications/networking/cluster/kpt { };
 
@@ -32585,6 +32562,13 @@ with pkgs;
   thunderbird-unwrapped = thunderbirdPackages.thunderbird;
   thunderbird = wrapThunderbird thunderbird-unwrapped { };
 
+  thunderbird-latest-unwrapped = thunderbirdPackages.thunderbird-latest;
+  thunderbird-latest = wrapThunderbird thunderbird-latest-unwrapped { };
+
+  thunderbird-esr-unwrapped = thunderbirdPackages.thunderbird-esr;
+  thunderbird-esr = wrapThunderbird thunderbird-esr-unwrapped { };
+
+  thunderbird-128-unwrapped = thunderbirdPackages.thunderbird-128;
   thunderbird-128 = wrapThunderbird thunderbirdPackages.thunderbird-128 { };
 
   thunderbird-bin = wrapThunderbird thunderbird-bin-unwrapped {
@@ -32916,9 +32900,7 @@ with pkgs;
 
   vimv = callPackage ../tools/misc/vimv { };
 
-  vimv-rs = callPackage ../tools/misc/vimv-rs {
-    inherit (darwin.apple_sdk.frameworks) Foundation;
-  };
+  vimv-rs = callPackage ../tools/misc/vimv-rs { };
 
   qpdfview = libsForQt5.callPackage ../applications/office/qpdfview { };
 
@@ -36757,8 +36739,6 @@ with pkgs;
   depotdownloader = callPackage ../tools/misc/depotdownloader { };
 
   dbacl = callPackage ../tools/misc/dbacl { };
-
-  dbus-map = callPackage ../tools/misc/dbus-map { };
 
   dell-530cdn = callPackage ../misc/drivers/dell-530cdn { };
 
