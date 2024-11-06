@@ -2351,7 +2351,7 @@
     email = "baduhai@pm.me";
     github = "baduhai";
     githubId = 31864305;
-    name = "William";
+    name = "William Hai";
   };
   baitinq = {
     email = "manuelpalenzuelamerino@gmail.com";
@@ -9150,12 +9150,6 @@
     github = "ianliu";
     githubId = 30196;
     name = "Ian Liu Rodrigues";
-  };
-  ianmjones = {
-    email = "ian@ianmjones.com";
-    github = "ianmjones";
-    githubId = 4710;
-    name = "Ian M. Jones";
   };
   ianwookim = {
     email = "ianwookim@gmail.com";
