@@ -10444,6 +10444,8 @@ self: super: with self; {
 
   pysyncthru = callPackage ../development/python-modules/pysyncthru { };
 
+  pytask = callPackage ../development/python-modules/pytask { };
+
   pytest-mockito = callPackage ../development/python-modules/pytest-mockito { };
 
   pytest-pudb = callPackage ../development/python-modules/pytest-pudb { };
@@ -17737,6 +17739,8 @@ self: super: with self; {
   wtforms = callPackage ../development/python-modules/wtforms { };
 
   wtforms-bootstrap5 = callPackage ../development/python-modules/wtforms-bootstrap5 { };
+
+  wtforms-sqlalchemy = callPackage ../development/python-modules/wtforms-sqlalchemy { };
 
   wunsen = callPackage ../development/python-modules/wunsen { };
 

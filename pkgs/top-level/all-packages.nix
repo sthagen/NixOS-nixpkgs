@@ -446,8 +446,6 @@ with pkgs;
 
   ciel = callPackage ../tools/package-management/ciel { };
 
-  circt = callPackage ../development/compilers/circt { };
-
   clang-uml = callPackage ../by-name/cl/clang-uml/package.nix {
     stdenv = clangStdenv;
   };
@@ -1633,8 +1631,6 @@ with pkgs;
   asar = callPackage ../tools/compression/asar { };
 
   askalono = callPackage ../tools/misc/askalono { };
-
-  asleap = callPackage ../tools/networking/asleap { };
 
   awsbck = callPackage ../tools/backup/awsbck {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -3122,8 +3118,6 @@ with pkgs;
   awslogs = callPackage ../tools/admin/awslogs { };
 
   awsume = python3Packages.callPackage ../tools/admin/awsume { };
-
-  aws-assume-role = callPackage ../tools/admin/aws-assume-role { };
 
   aws-lambda-rie = callPackage ../tools/admin/aws-lambda-runtime-interface-emulator { };
 
@@ -9788,8 +9782,6 @@ with pkgs;
 
   maildrop = callPackage ../tools/networking/maildrop { };
 
-  mailhog = callPackage ../servers/mail/mailhog { };
-
   mailnag = callPackage ../applications/networking/mailreaders/mailnag {
     availablePlugins = {
       # More are listed here: https://github.com/pulb/mailnag/#desktop-integration
@@ -10000,7 +9992,7 @@ with pkgs;
   mole = callPackage ../tools/networking/mole { };
 
   morgen = callPackage ../applications/office/morgen {
-    electron = electron_30;
+    electron = electron_32;
   };
 
   mosh = callPackage ../tools/networking/mosh { };
@@ -10268,6 +10260,7 @@ with pkgs;
     nomad_1_6
     nomad_1_7
     nomad_1_8
+    nomad_1_9
     ;
 
   nomad-autoscaler = callPackage ../applications/networking/cluster/nomad-autoscaler { };
@@ -12371,8 +12364,6 @@ with pkgs;
 
   strip-nondeterminism = perlPackages.strip-nondeterminism;
 
-  structorizer = callPackage ../applications/graphics/structorizer { };
-
   subberthehut = callPackage ../tools/misc/subberthehut { };
 
   subedit = callPackage ../tools/text/subedit { };
@@ -14172,7 +14163,6 @@ with pkgs;
   aspectj = callPackage ../development/compilers/aspectj { };
 
   ats = callPackage ../development/compilers/ats { };
-  ats2 = callPackage ../development/compilers/ats2 { };
 
   ats-acc = callPackage ../development/tools/ats-acc { };
 
@@ -15992,6 +15982,8 @@ with pkgs;
     fetchHex
     lfe lfe_2_1;
   beamPackages = beam.packages.erlang // { __attrsFailEvaluation = true; };
+
+  erlang_language_platform = callPackage ../by-name/er/erlang-language-platform/package.nix { };
 
   expr = callPackage ../development/interpreters/expr { };
 
@@ -25004,8 +24996,6 @@ with pkgs;
 
   tailscale-systray = callPackage ../applications/misc/tailscale-systray { };
 
-  tailspin = callPackage ../tools/misc/tailspin { };
-
   trafficserver = callPackage ../servers/http/trafficserver { };
 
   inherit (callPackages ../servers/http/tomcat { })
@@ -25373,8 +25363,6 @@ with pkgs;
   libuuid = if stdenv.hostPlatform.isLinux
     then util-linuxMinimal
     else null;
-
-  light = callPackage ../os-specific/linux/light { };
 
   lightum = callPackage ../os-specific/linux/lightum { };
 
@@ -32160,8 +32148,6 @@ with pkgs;
     curses = ncurses;
   };
 
-  linuxstopmotion = libsForQt5.callPackage ../applications/video/linuxstopmotion { };
-
   sweethome3d = recurseIntoAttrs (
     (callPackage ../applications/misc/sweethome3d { }) //
     (callPackage ../applications/misc/sweethome3d/editors.nix {
@@ -33925,9 +33911,7 @@ with pkgs;
 
   colobot = callPackage ../games/colobot { };
 
-  corsix-th = callPackage ../games/corsix-th {
-    inherit (darwin.apple_sdk.frameworks) Cocoa CoreVideo CoreMedia VideoToolbox;
-  };
+  corsix-th = callPackage ../games/corsix-th { };
 
   enigma = callPackage ../games/enigma { };
 
@@ -33965,9 +33949,7 @@ with pkgs;
 
   keeperrl = callPackage ../games/keeperrl { };
 
-  shipwright = callPackage ../games/shipwright {
-    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
-  };
+  shipwright = callPackage ../games/shipwright { };
 
   wipeout-rewrite = callPackage ../games/wipeout-rewrite {
     inherit (darwin.apple_sdk.frameworks) Foundation;
@@ -38237,8 +38219,6 @@ with pkgs;
   qubes-core-vchan-xen = callPackage ../applications/qubes/qubes-core-vchan-xen { };
 
   sieveshell = with python3.pkgs; toPythonApplication managesieve;
-
-  gortr = callPackage ../servers/gortr { };
 
   stayrtr = callPackage ../servers/stayrtr { };
 
