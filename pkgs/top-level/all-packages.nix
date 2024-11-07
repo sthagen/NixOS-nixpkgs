@@ -1756,8 +1756,6 @@ with pkgs;
 
   grizzly = callPackage ../tools/misc/grizzly { };
 
-  guestfs-tools = callPackage ../tools/virtualization/guestfs-tools { };
-
   fabs = callPackage ../tools/backup/fabs { };
 
   fm = callPackage ../applications/file-managers/fm { };
@@ -1782,7 +1780,7 @@ with pkgs;
 
   hyperpotamus = callPackage ../tools/misc/hyperpotamus { };
 
-  inherit (callPackages ../tools/networking/ivpn/default.nix {}) ivpn ivpn-service;
+  inherit (callPackages ../tools/networking/ivpn/default.nix { buildGoModule = buildGo122Module; }) ivpn ivpn-service;
 
   jobber = callPackage ../tools/system/jobber { };
 
@@ -6119,8 +6117,6 @@ with pkgs;
 
   davix-copy = davix.override { enableThirdPartyCopy = true; };
 
-  cantata = libsForQt5.callPackage ../applications/audio/cantata { };
-
   cantoolz = callPackage ../tools/networking/cantoolz { };
 
   can-utils = callPackage ../os-specific/linux/can-utils { };
@@ -6467,10 +6463,6 @@ with pkgs;
   };
 
   age-plugin-tpm = callPackage ../tools/security/age-plugin-tpm { };
-
-  age-plugin-yubikey = darwin.apple_sdk_11_0.callPackage ../tools/security/age-plugin-yubikey {
-    inherit (darwin.apple_sdk_11_0.frameworks) Foundation PCSC IOKit;
-  };
 
   artim-dark = callPackage ../data/themes/artim-dark { };
 
@@ -17447,8 +17439,6 @@ with pkgs;
 
   gnome-desktop-testing = callPackage ../development/tools/gnome-desktop-testing { };
 
-  gnome-firmware = callPackage ../applications/misc/gnome-firmware { };
-
   gnome-tecla = callPackage ../applications/misc/gnome-tecla { };
 
   gnome-usage = callPackage ../applications/misc/gnome-usage { };
@@ -23816,8 +23806,6 @@ with pkgs;
 
   ### SERVERS
 
-  _389-ds-base = callPackage ../servers/ldap/389 { };
-
   _5etools = callPackage ../servers/web-apps/5etools { };
 
   adguardhome = callPackage ../servers/adguardhome { };
@@ -25647,6 +25635,8 @@ with pkgs;
   linux_6_1_hardened = linuxKernel.kernels.linux_6_1_hardened;
   linuxPackages_6_6_hardened = linuxKernel.packages.linux_6_6_hardened;
   linux_6_6_hardened = linuxKernel.kernels.linux_6_6_hardened;
+  linuxPackages_6_11_hardened = linuxKernel.packages.linux_6_11_hardened;
+  linux_6_11_hardened = linuxKernel.kernels.linux_6_11_hardened;
 
   # GNU Linux-libre kernels
   linuxPackages-libre = linuxKernel.packages.linux_libre;
@@ -28747,8 +28737,6 @@ with pkgs;
   input-leap = qt6Packages.callPackage ../applications/misc/input-leap {
     avahi = avahi.override { withLibdnssdCompat = true; };
   };
-
-  karlender = callPackage ../applications/office/karlender { };
 
   keepassxc = libsForQt5.callPackage ../applications/misc/keepassxc {
     inherit (darwin.apple_sdk_11_0.frameworks) LocalAuthentication;
@@ -38382,5 +38370,9 @@ with pkgs;
 
   dillo = callPackage ../by-name/di/dillo/package.nix {
     fltk = fltk13;
+  };
+
+  cantata = callPackage ../by-name/ca/cantata/package.nix {
+    ffmpeg = ffmpeg_6;
   };
 }
