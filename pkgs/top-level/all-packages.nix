@@ -1768,8 +1768,6 @@ with pkgs;
 
   headset-charge-indicator = callPackage ../tools/audio/headset-charge-indicator { };
 
-  heh = callPackage ../applications/editors/heh { };
-
   hexdiff = callPackage ../tools/misc/hexdiff { };
 
   hexo-cli = callPackage ../development/tools/hexo-cli { };
@@ -2242,8 +2240,6 @@ with pkgs;
   git-mit = callPackage ../applications/version-management/git-mit { };
 
   git-machete = python3Packages.callPackage ../applications/version-management/git-machete { };
-
-  git-nomad = callPackage ../applications/version-management/git-nomad { };
 
   git-octopus = callPackage ../applications/version-management/git-octopus { };
 
@@ -13823,6 +13819,9 @@ with pkgs;
 
   ytfzf = callPackage ../tools/misc/ytfzf { };
 
+  # To expose more packages for Yi, override the extraPackages arg.
+  yi = callPackage ../applications/editors/yi/wrapper.nix { };
+
   yaydl = callPackage ../tools/video/yaydl {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -13852,10 +13851,6 @@ with pkgs;
   zdelta = callPackage ../tools/compression/zdelta { };
 
   zed = callPackage ../development/tools/zed { };
-
-  zellij = callPackage ../tools/misc/zellij {
-    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation;
-  };
 
   zenith = callPackage ../tools/system/zenith {
     inherit (darwin.apple_sdk.frameworks) IOKit;
@@ -15469,7 +15464,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-readme = callPackage ../development/tools/rust/cargo-readme { };
-  cargo-risczero = callPackage ../development/tools/rust/cargo-risczero { };
   cargo-run-bin = callPackage ../development/tools/rust/cargo-run-bin {};
   cargo-semver-checks = callPackage ../development/tools/rust/cargo-semver-checks { };
 
@@ -22178,6 +22172,7 @@ with pkgs;
   zunclient = with python311Packages; toPythonApplication python-zunclient;
 
   openvdb = callPackage ../development/libraries/openvdb { };
+  openvdb_11 = callPackage ../development/libraries/openvdb/11.nix { };
 
   openvr = callPackage ../by-name/op/openvr/package.nix {
     inherit (darwin.apple_sdk.frameworks) Foundation AppKit;
@@ -27896,10 +27891,6 @@ with pkgs;
 
   av-98 = callPackage ../applications/networking/browsers/av-98 { };
 
-  avalanchego = callPackage ../applications/networking/avalanchego {
-    inherit (darwin.apple_sdk.frameworks) IOKit;
-  };
-
   avizo = callPackage ../applications/misc/avizo { };
 
   avocode = callPackage ../applications/graphics/avocode { };
@@ -30954,6 +30945,8 @@ with pkgs;
 
   node-problem-detector = callPackage ../applications/networking/cluster/node-problem-detector { };
 
+  ninja_1_11 = callPackage ../by-name/ni/ninja/package.nix { ninjaRelease = "1.11"; };
+
   ninjas2 = callPackage ../applications/audio/ninjas2 { };
 
   nootka = qt5.callPackage ../applications/audio/nootka { };
@@ -30967,8 +30960,6 @@ with pkgs;
   nwg-displays = callPackage ../applications/misc/nwg-displays { };
 
   nwg-dock = callPackage ../applications/misc/nwg-dock { };
-
-  nwg-dock-hyprland = callPackage ../applications/misc/nwg-dock-hyprland { };
 
   nwg-launchers = callPackage ../applications/misc/nwg-launchers { };
 
@@ -34678,8 +34669,6 @@ with pkgs;
   path-of-building = qt6Packages.callPackage ../games/path-of-building {};
 
   pentobi = libsForQt5.callPackage ../games/pentobi { };
-
-  performous = callPackage ../games/performous { };
 
   pinball = callPackage ../games/pinball { };
 
