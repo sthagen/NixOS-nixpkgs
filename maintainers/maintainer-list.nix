@@ -12543,6 +12543,12 @@
     githubId = 40217331;
     name = "LizeLive";
   };
+  llakala = {
+    email = "elevenaka11@gmail.com";
+    github = "llakala";
+    githubId = 78693624;
+    name = "llakala";
+  };
   lluchs = {
     email = "lukas.werling@gmail.com";
     github = "lluchs";
@@ -13502,6 +13508,12 @@
     github = "Mathnerd314";
     githubId = 322214;
     name = "Mathnerd314";
+  };
+  mathstlouis = {
+    email = "matfino+gh@gmail.com";
+    github = "mathstlouis";
+    githubId = 35696151;
+    name = "mathstlouis";
   };
   matklad = {
     email = "aleksey.kladov@gmail.com";
@@ -18601,6 +18613,16 @@
       { fingerprint = "C0A7 A9BB 115B C857 4D75  EA99 BBB7 A680 1DF1 E03F"; }
     ];
   };
+  ritiek = {
+    name = "Ritiek Malhotra";
+    email = "ritiekmalhotra123@gmail.com";
+    matrix = "@ritiek:matrix.org";
+    github = "ritiek";
+    githubId = 20314742;
+    keys = [
+      { fingerprint = "66FF 6099 7B04 845F F4C0  CB4F EB6F C9F9 FC96 4257"; }
+    ];
+  };
   rixed = {
     email = "rixed-github@happyleptic.org";
     github = "rixed";
@@ -21766,6 +21788,12 @@
     githubId = 57180880;
     name = "Ansh Tyagi";
   };
+  therealgramdalf = {
+    email = "gramdalftech@gmail.com";
+    github = "TheRealGramdalf";
+    githubId = 79593869;
+    name = "Gramdalf";
+  };
   therealr5 = {
     email = "rouven@rfive.de";
     github = "therealr5";
@@ -21895,6 +21923,12 @@
     github = "Thra11";
     githubId = 1391883;
     name = "Tom Hall";
+  };
+  thtrf = {
+    email = "thtrf@proton.me";
+    github = "thtrf";
+    githubId = 82712122;
+    name = "thtrf";
   };
   Thunderbottom = {
     email = "chinmaydpai@gmail.com";

@@ -2024,11 +2024,6 @@ with pkgs;
 
   xcodeenv = callPackage ../development/mobile/xcodeenv { };
 
-  xcodes = swiftPackages.callPackage ../development/tools/xcodes {
-    inherit (swiftPackages.apple_sdk.frameworks) CryptoKit LocalAuthentication;
-    inherit (swiftPackages.apple_sdk) libcompression;
-  };
-
   gomobile = callPackage ../development/mobile/gomobile { };
 
   titaniumenv = callPackage ../development/mobile/titaniumenv { };
@@ -9931,6 +9926,7 @@ with pkgs;
 
   libbass = (callPackage ../development/libraries/audio/libbass { }).bass;
   libbass_fx = (callPackage ../development/libraries/audio/libbass { }).bass_fx;
+  libbassmidi = (callPackage ../development/libraries/audio/libbass { }).bassmidi;
   libbassmix = (callPackage ../development/libraries/audio/libbass { }).bassmix;
 
   libbluray = callPackage ../development/libraries/libbluray {
@@ -12215,7 +12211,8 @@ with pkgs;
     asciidoc = asciidoc-full;
   };
 
-  inherit (import ../servers/sql/postgresql pkgs)
+  postgresqlVersions = import ../servers/sql/postgresql pkgs;
+  inherit (postgresqlVersions)
     postgresql_12
     postgresql_13
     postgresql_14
@@ -16084,7 +16081,6 @@ with pkgs;
 
   tamgamp.lv2 = callPackage ../applications/audio/tamgamp.lv2 { };
 
-  teamspeak_client = libsForQt5.callPackage ../applications/networking/instant-messengers/teamspeak/client.nix { };
   teamspeak5_client = callPackage ../applications/networking/instant-messengers/teamspeak/client5.nix { };
   teamspeak_server = callPackage ../applications/networking/instant-messengers/teamspeak/server.nix { };
 
