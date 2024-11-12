@@ -1250,9 +1250,7 @@ with pkgs;
 
   gita = python3Packages.callPackage ../applications/version-management/gita { };
 
-  gitoxide = darwin.apple_sdk_11_0.callPackage ../applications/version-management/gitoxide {
-    inherit (darwin.apple_sdk_11_0.frameworks) Security SystemConfiguration;
-  };
+  gitoxide = callPackage ../applications/version-management/gitoxide { };
 
   github-cli = gh;
   git-absorb = callPackage ../applications/version-management/git-absorb {
@@ -10502,9 +10500,7 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit Cocoa Carbon CoreAudio CoreMIDI CoreServices Kernel;
   };
 
-  mkvtoolnix = qt6Packages.callPackage ../applications/video/mkvtoolnix {
-    stdenv = if stdenv.hostPlatform.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
-  };
+  mkvtoolnix = qt6Packages.callPackage ../applications/video/mkvtoolnix { };
 
   mkvtoolnix-cli = mkvtoolnix.override {
     withGUI = false;
@@ -13873,10 +13869,6 @@ with pkgs;
   drawterm-wayland = callPackage ../tools/admin/drawterm { config = "linux";  };
 
   droopy = python3Packages.callPackage ../applications/networking/droopy { };
-
-  dust = callPackage ../by-name/du/dust/package.nix {
-    inherit (darwin.apple_sdk_11_0.frameworks) AppKit;
-  };
 
   dexed = darwin.apple_sdk_11_0.callPackage ../applications/audio/dexed {
     inherit (darwin.apple_sdk_11_0.frameworks) Accelerate Cocoa WebKit MetalKit DiscRecording CoreAudioKit;
@@ -19093,6 +19085,8 @@ with pkgs;
   yandex-browser-beta = yandex-browser.override { edition = "beta"; };
 
   yandex-browser-corporate = yandex-browser.override { edition = "corporate"; };
+
+  zap-chip-gui = zap-chip.override { withGui = true; };
 
   myEnvFun = callPackage ../misc/my-env {
     inherit (stdenv) mkDerivation;
