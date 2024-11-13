@@ -1603,6 +1603,8 @@ self: super: with self; {
 
   bids-validator = callPackage ../development/python-modules/bids-validator { };
 
+  bidsschematools = callPackage ../development/python-modules/bidsschematools { };
+
   biliass = callPackage ../development/python-modules/biliass { };
 
   bilibili-api-python = callPackage ../development/python-modules/bilibili-api-python { };
@@ -9123,6 +9125,8 @@ self: super: with self; {
 
   nlpcloud = callPackage ../development/python-modules/nlpcloud { };
 
+  nlpo3 =  callPackage ../development/python-modules/nlpo3 { };
+
   nltk = callPackage ../development/python-modules/nltk { };
 
   nnpdf = toPythonModule (pkgs.nnpdf.override {
@@ -10172,6 +10176,8 @@ self: super: with self; {
 
   picobox = callPackage ../development/python-modules/picobox { };
 
+  picologging = callPackage ../development/python-modules/picologging { };
+
   picos = callPackage ../development/python-modules/picos { };
 
   picosvg = callPackage ../development/python-modules/picosvg { };
@@ -10737,6 +10743,8 @@ self: super: with self; {
 
   polyline = callPackage ../development/python-modules/polyline { };
 
+  polyfactory = callPackage ../development/python-modules/polyfactory { };
+
   polygon3 = callPackage ../development/python-modules/polygon3 { };
 
   polyswarm-api = callPackage ../development/python-modules/polyswarm-api { };
@@ -11153,6 +11161,8 @@ self: super: with self; {
   pybigwig = callPackage ../development/python-modules/pybigwig { };
 
   pybind11 = callPackage ../development/python-modules/pybind11 { };
+
+  pybind11-stubgen = callPackage ../development/python-modules/pybind11-stubgen { };
 
   pybindgen = callPackage ../development/python-modules/pybindgen { };
 
@@ -14914,6 +14924,8 @@ self: super: with self; {
   sphinx-better-theme = callPackage ../development/python-modules/sphinx-better-theme { };
 
   sphinx-book-theme = callPackage ../development/python-modules/sphinx-book-theme { };
+
+  sphinx-click = callPackage ../development/python-modules/sphinx-click { };
 
   sphinx-codeautolink = callPackage ../development/python-modules/sphinx-codeautolink { };
 
