@@ -1616,6 +1616,7 @@ with pkgs;
 
   kitty = darwin.apple_sdk_11_0.callPackage ../applications/terminal-emulators/kitty {
     harfbuzz = harfbuzz.override { withCoreText = stdenv.hostPlatform.isDarwin; };
+    inherit (darwin) autoSignDarwinBinariesHook;
     inherit (darwin.apple_sdk_11_0) Libsystem;
     inherit (darwin.apple_sdk_11_0.frameworks)
       Cocoa
@@ -7929,7 +7930,6 @@ with pkgs;
 
   inherit (callPackages ../development/tools/language-servers/nixd {
     llvmPackages = llvmPackages_16;
-    nix = nixVersions.nix_2_19;
   }) nixf nixt nixd;
 
   ansible-later = callPackage ../tools/admin/ansible/later.nix { };
@@ -8047,8 +8047,8 @@ with pkgs;
   bazel_7 = darwin.apple_sdk_11_0.callPackage ../development/tools/build-managers/bazel/bazel_7 {
     inherit (darwin) sigtool;
     inherit (darwin.apple_sdk_11_0.frameworks) CoreFoundation CoreServices Foundation IOKit;
-    buildJdk = jdk17_headless;
-    runJdk = jdk17_headless;
+    buildJdk = jdk21_headless;
+    runJdk = jdk21_headless;
     stdenv = if stdenv.hostPlatform.isDarwin then darwin.apple_sdk_11_0.stdenv
       else if stdenv.cc.isClang then llvmPackages.stdenv
       else stdenv;
@@ -16658,10 +16658,6 @@ with pkgs;
     stdenv = gcc9Stdenv;
   };
 
-  xmlcopyeditor = callPackage ../applications/editors/xmlcopyeditor {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
-
   xmp = callPackage ../applications/audio/xmp {
     inherit (darwin.apple_sdk.frameworks) AudioUnit CoreAudio;
   };
@@ -19039,7 +19035,7 @@ with pkgs;
   });
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress_6_5 wordpress_6_6;
+    wordpress wordpress_6_6;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;

@@ -1834,6 +1834,12 @@
     githubId = 10587952;
     name = "Armijn Hemel";
   };
+  arminius-smh = {
+    email = "armin@sprejz.de";
+    github = "arminius-smh";
+    githubId = 159054879;
+    name = "Armin Manfred Sprejz";
+  };
   arnarg = {
     email = "arnarg@fastmail.com";
     github = "arnarg";
@@ -10297,6 +10303,13 @@
     githubId = 2502736;
     name = "James Hillyerd";
   };
+  jhol = {
+    name = "Joel Holdsworth";
+    email = "joel@airwebreathe.org.uk";
+    github = "jhol";
+    githubId = 1449493;
+    keys = [ { fingerprint = "08F7 2546 95DE EAEF 03DE  B0E4 D874 562D DC99 D889"; } ];
+  };
   jhollowe = {
     email = "jhollowe@johnhollowell.com";
     github = "jhollowe";
@@ -11937,6 +11950,13 @@
     githubId = 1173932;
     name = "André Kugland";
     keys = [ { fingerprint = "6A62 5E60 E3FF FCAE B3AA  50DC 1DA9 3817 80CD D833"; } ];
+  };
+  kuglimon = {
+    name = "Tatu Argillander";
+    email = "tatu.argillander@kouralabs.com";
+    github = "kuglimon";
+    githubId = 629430;
+    keys = [ { fingerprint = "2843 750C B1AB E256 94BE  40E2 D843 D30B 42CA 0E2D"; } ];
   };
   kupac = {
     github = "Kupac";
@@ -16536,6 +16556,13 @@
     github = "paepckehh";
     githubId = 120342602;
     name = "Michael Paepcke";
+  };
+  pagedMov = {
+    email = "kylerclay@proton.me";
+    github = "pagedMov";
+    githubId = 19557376;
+    name = "Kyler Clay";
+    keys = [ { fingerprint = "784B 3623 94E7 8F11 0B9D AE0F 56FD CFA6 2A93 B51E"; } ];
   };
   paholg = {
     email = "paho@paholg.com";
@@ -23457,6 +23484,12 @@
     github = "whonore";
     githubId = 7121530;
     name = "Wolf Honoré";
+  };
+  whtsht = {
+    email = "whiteshirt0079@gmail.com";
+    github = "whtsht";
+    githubId = 85547207;
+    name = "Hinata Toma";
   };
   wietsedv = {
     email = "wietsedv@proton.me";
