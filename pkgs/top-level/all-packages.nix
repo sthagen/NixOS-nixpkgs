@@ -4752,10 +4752,6 @@ with pkgs;
 
   openrgb-plugin-hardwaresync = libsForQt5.callPackage ../applications/misc/openrgb-plugins/hardwaresync { };
 
-  opensc = callPackage ../tools/security/opensc {
-    inherit (darwin.apple_sdk.frameworks) Carbon PCSC;
-  };
-
   toastify = darwin.apple_sdk_11_0.callPackage ../tools/misc/toastify {};
 
   opensshPackages = dontRecurseIntoAttrs (callPackage ../tools/networking/openssh {});
@@ -5896,6 +5892,9 @@ with pkgs;
   yamlfix = with python3Packages; toPythonApplication yamlfix;
 
   yamllint = with python3Packages; toPythonApplication yamllint;
+
+  # To expose more packages for Yi, override the extraPackages arg.
+  yi = callPackage ../applications/editors/yi/wrapper.nix { };
 
   yaydl = callPackage ../tools/video/yaydl {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -7607,15 +7606,25 @@ with pkgs;
     bluezSupport = lib.meta.availableOn stdenv.hostPlatform bluez;
     x11Support = true;
   };
+  python314Full = python314.override {
+    self = python314Full;
+    pythonAttr = "python314Full";
+    bluezSupport = lib.meta.availableOn stdenv.hostPlatform bluez;
+    x11Support = true;
+  };
 
   # https://py-free-threading.github.io
   python313FreeThreading = python313.override {
     pythonAttr = "python313FreeThreading";
     enableGIL = false;
   };
+  python314FreeThreading = python314.override {
+    pythonAttr = "python313FreeThreading";
+    enableGIL = false;
+  };
 
   pythonInterpreters = callPackage ./../development/interpreters/python { };
-  inherit (pythonInterpreters) python27 python39 python310 python311 python312 python313 python3Minimal pypy27 pypy310 pypy39 rustpython;
+  inherit (pythonInterpreters) python27 python39 python310 python311 python312 python313 python314 python3Minimal pypy27 pypy310 pypy39 rustpython;
 
   # List of extensions with overrides to apply to all Python package sets.
   pythonPackagesExtensions = [ ];
@@ -7627,6 +7636,7 @@ with pkgs;
   python311Packages = recurseIntoAttrs python311.pkgs;
   python312Packages = recurseIntoAttrs python312.pkgs;
   python313Packages = python313.pkgs;
+  python314Packages = python314.pkgs;
   pypyPackages = pypy.pkgs;
   pypy2Packages = pypy2.pkgs;
   pypy27Packages = pypy27.pkgs;
@@ -10723,9 +10733,7 @@ with pkgs;
     utils = true;
   };
 
-  portaudio = callPackage ../development/libraries/portaudio {
-    inherit (darwin.apple_sdk.frameworks) AudioToolbox AudioUnit CoreAudio CoreServices Carbon;
-  };
+  portaudio = callPackage ../development/libraries/portaudio { };
 
   portmidi = callPackage ../development/libraries/portmidi {
     inherit (darwin.apple_sdk.frameworks) Carbon CoreAudio CoreFoundation CoreMIDI CoreServices;
@@ -11763,10 +11771,6 @@ with pkgs;
   };
 
   eventstore = callPackage ../servers/nosql/eventstore { };
-
-  rustus = callPackage ../servers/networking/rustus {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
 
   fedigroups = callPackage ../servers/fedigroups {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -13646,10 +13650,7 @@ with pkgs;
 
   cdparanoia = cdparanoiaIII;
 
-  cdparanoiaIII = callPackage ../applications/audio/cdparanoia {
-    inherit (darwin) IOKit;
-    inherit (darwin.apple_sdk.frameworks) Carbon;
-  };
+  cdparanoiaIII = callPackage ../applications/audio/cdparanoia { };
 
   brotab = callPackage ../tools/misc/brotab {
     python = python3;
@@ -14383,14 +14384,6 @@ with pkgs;
   gpxsee-qt6 = qt6Packages.callPackage ../applications/misc/gpxsee { };
 
   gpxsee = gpxsee-qt5;
-
-  gtklock = callPackage ../tools/wayland/gtklock { };
-
-  gtklock-playerctl-module = callPackage ../tools/wayland/gtklock/playerctl-module.nix { };
-
-  gtklock-powerbar-module = callPackage ../tools/wayland/gtklock/powerbar-module.nix { };
-
-  gtklock-userinfo-module = callPackage ../tools/wayland/gtklock/userinfo-module.nix { };
 
   guvcview = libsForQt5.callPackage ../os-specific/linux/guvcview { };
 
@@ -16126,8 +16119,6 @@ with pkgs;
   tinywl = callPackage ../applications/window-managers/tinywl {
     wlroots = wlroots_0_18;
   };
-
-  tree-from-tags = callPackage ../applications/audio/tree-from-tags { };
 
   treesheets = callPackage ../applications/office/treesheets {
     wxGTK = wxGTK32;
@@ -18681,9 +18672,7 @@ with pkgs;
 
   nix-linter = haskell.lib.compose.justStaticExecutables (haskellPackages.nix-linter);
 
-  nixos-option = callPackage ../tools/nix/nixos-option {
-    nix = nixVersions.nix_2_18;
-  };
+  nixos-option = callPackage ../tools/nix/nixos-option { };
 
   nix-pin = callPackage ../tools/package-management/nix-pin { };
 
@@ -19263,5 +19252,9 @@ with pkgs;
 
   cantata = callPackage ../by-name/ca/cantata/package.nix {
     ffmpeg = ffmpeg_6;
+  };
+
+  tree-from-tags = callPackage ../by-name/tr/tree-from-tags/package.nix {
+    ruby = ruby_3_1;
   };
 }
