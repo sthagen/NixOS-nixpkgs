@@ -5650,6 +5650,8 @@ with pkgs;
 
   inherit (openconnectPackages) openconnect openconnect_openssl;
 
+  globalprotect-openconnect = libsForQt5.callPackage ../tools/networking/globalprotect-openconnect { };
+
   sssd = callPackage ../os-specific/linux/sssd {
     inherit (perlPackages) Po4a;
     # python312Packages.python-ldap is broken
@@ -7682,7 +7684,7 @@ with pkgs;
   nqp = callPackage  ../development/interpreters/rakudo/nqp.nix { };
   zef = callPackage ../development/interpreters/rakudo/zef.nix { };
 
-  inherit (ocamlPackages) reason;
+  inherit (ocamlPackages) reason rtop;
 
   buildRubyGem = callPackage ../development/ruby-modules/gem {
     inherit (darwin) libobjc;
@@ -12146,14 +12148,12 @@ with pkgs;
 
   postgresqlVersions = import ../servers/sql/postgresql pkgs;
   inherit (postgresqlVersions)
-    postgresql_12
     postgresql_13
     postgresql_14
     postgresql_15
     postgresql_16
     postgresql_17
 
-    postgresql_12_jit
     postgresql_13_jit
     postgresql_14_jit
     postgresql_15_jit
@@ -12164,13 +12164,11 @@ with pkgs;
   postgresql_jit = postgresql_16_jit;
   postgresqlPackages = recurseIntoAttrs postgresql.pkgs;
   postgresqlJitPackages = recurseIntoAttrs postgresql_jit.pkgs;
-  postgresql12Packages = recurseIntoAttrs postgresql_12.pkgs;
   postgresql13Packages = recurseIntoAttrs postgresql_13.pkgs;
   postgresql14Packages = recurseIntoAttrs postgresql_14.pkgs;
   postgresql15Packages = recurseIntoAttrs postgresql_15.pkgs;
   postgresql16Packages = recurseIntoAttrs postgresql_16.pkgs;
   postgresql17Packages = recurseIntoAttrs postgresql_17.pkgs;
-  postgresql12JitPackages = recurseIntoAttrs postgresql_12_jit.pkgs;
   postgresql13JitPackages = recurseIntoAttrs postgresql_13_jit.pkgs;
   postgresql14JitPackages = recurseIntoAttrs postgresql_14_jit.pkgs;
   postgresql15JitPackages = recurseIntoAttrs postgresql_15_jit.pkgs;
@@ -12309,6 +12307,10 @@ with pkgs;
   scalene = with python3Packages; toPythonApplication scalene;
 
   shairplay = callPackage ../servers/shairplay { avahi = avahi-compat; };
+
+  shairport-sync-airplay2 = shairport-sync.override {
+    enableAirplay2 = true;
+  };
 
   showoff = callPackage ../servers/http/showoff { };
 
