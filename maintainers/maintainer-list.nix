@@ -4507,7 +4507,7 @@
     name = "Chris Ostrouchov";
   };
   cottand = {
-    email = "nico@dcotta.eu";
+    email = "nico@dcotta.com";
     github = "cottand";
     githubId = 45274424;
     name = "Nico D'Cotta";
@@ -7140,6 +7140,12 @@
     github = "felixsinger";
     githubId = 628359;
     name = "Felix Singer";
+  };
+  felixzieger = {
+    name = "Felix Zieger";
+    github = "felixzieger";
+    githubId = 67903933;
+    email = "nixpkgs@felixzieger.de";
   };
   felschr = {
     email = "dev@felschr.com";
