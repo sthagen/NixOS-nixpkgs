@@ -15206,6 +15206,13 @@
     githubId = 1234956;
     "keys" = [ { "fingerprint" = "F21A 6194 C9DB 9899 CD09 E24E 434B 2C14 B8C3 3422"; } ];
   };
+  nadiaholmquist = {
+    name = "Nadia Holmquist Pedersen";
+    email = "nadia@nhp.sh";
+    matrix = "@nhp:matrix.org";
+    github = "nadiaholmquist";
+    githubId = 893884;
+  };
   nadir-ishiguro = {
     github = "nadir-ishiguro";
     githubId = 23151917;
@@ -16894,6 +16901,12 @@
     github = "pcboy";
     githubId = 943430;
     name = "David Hagege";
+  };
+  peat-psuwit = {
+    name = "Ratchanan Srirattanamet";
+    email = "peat@peat-network.xyz";
+    github = "peat-psuwit";
+    githubId = 6771175;
   };
   pedohorse = {
     github = "pedohorse";
@@ -18823,6 +18836,12 @@
     github = "robberer";
     githubId = 6204883;
     name = "Longrin Wischnewski";
+  };
+  robbiebuxton = {
+    email = "robbiesbuxton@gmail.com";
+    github = "robbiebuxton";
+    githubId = 67549526;
+    name = "Robbie Buxton";
   };
   robbinch = {
     email = "robbinch33@gmail.com";

@@ -431,9 +431,9 @@ with pkgs;
   dotnet-aspnetcore_7 = dotnetCorePackages.aspnetcore_7_0;
   dotnet-aspnetcore_8 = dotnetCorePackages.aspnetcore_8_0;
 
-  dotnet-sdk = dotnetCorePackages.sdk_6_0;
-  dotnet-runtime = dotnetCorePackages.runtime_6_0;
-  dotnet-aspnetcore = dotnetCorePackages.aspnetcore_6_0;
+  dotnet-sdk = dotnetCorePackages.sdk_8_0;
+  dotnet-runtime = dotnetCorePackages.runtime_8_0;
+  dotnet-aspnetcore = dotnetCorePackages.aspnetcore_8_0;
 
   inherit (dotnetCorePackages) buildDotnetModule buildDotnetGlobalTool mkNugetSource mkNugetDeps;
 
@@ -4246,9 +4246,7 @@ with pkgs;
     hdf5 = hdf5.override { usev110Api = true; };
   };
 
-  meilisearch = callPackage ../servers/search/meilisearch {
-    inherit (darwin.apple_sdk_11_0.frameworks) Security SystemConfiguration;
-  };
+  meilisearch = callPackage ../servers/search/meilisearch { };
 
   mhonarc = perlPackages.MHonArc;
 
@@ -7845,14 +7843,6 @@ with pkgs;
       hash = "sha256-WeSqQO1azbTvm789BYkY//k/ZqFJNz2BWciilgRBC9o=";
     };
   }));
-  ansible_2_15 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
-    version = "2.15.9";
-    src = oldAttrs.src.override {
-      inherit version;
-      pname = "ansible-core";
-      hash = "sha256-JfmxtaWvPAmGvTko7QhurduGdSf7XIOv7xoDz60080U=";
-    };
-  }));
 
   ansible-builder = with python3Packages; toPythonApplication ansible-builder;
 
@@ -11424,21 +11414,14 @@ with pkgs;
   # the unversioned attributes should always point to the same go version
   go = go_1_23;
   buildGoModule = buildGo123Module;
-  buildGoPackage = buildGo123Package;
 
   go_1_22 = callPackage ../development/compilers/go/1.22.nix { };
   buildGo122Module = callPackage ../build-support/go/module.nix {
     go = buildPackages.go_1_22;
   };
-  buildGo122Package = callPackage ../build-support/go/package.nix {
-    go = buildPackages.go_1_22;
-  };
 
   go_1_23 = callPackage ../development/compilers/go/1.23.nix { };
   buildGo123Module = callPackage ../build-support/go/module.nix {
-    go = buildPackages.go_1_23;
-  };
-  buildGo123Package = callPackage ../build-support/go/package.nix {
     go = buildPackages.go_1_23;
   };
 
@@ -17344,10 +17327,6 @@ with pkgs;
     buildShareware = true;
   };
 
-  space-cadet-pinball = callPackage ../games/space-cadet-pinball {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
-
   starsector = callPackage ../games/starsector {
     openjdk = openjdk8;
   };
@@ -18234,15 +18213,6 @@ with pkgs;
 
   ns-3 = callPackage ../development/libraries/science/networking/ns-3 { python = python3; };
 
-  root = callPackage ../applications/science/misc/root {
-    python = python3;
-    inherit (darwin.apple_sdk.frameworks) Cocoa CoreSymbolication OpenGL;
-  };
-
-  root5 = lowPrio (callPackage ../applications/science/misc/root/5.nix {
-    inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL;
-  });
-
   rink = callPackage ../applications/science/misc/rink {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -18954,7 +18924,7 @@ with pkgs;
   });
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress_6_6;
+    wordpress wordpress_6_7;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;
