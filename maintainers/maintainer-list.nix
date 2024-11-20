@@ -4186,7 +4186,7 @@
     matrix = "@clot27:matrix.org";
   };
   cloudripper = {
-    email = "other.wing8806@fastmail.com";
+    email = "dev+nixpkgs@cldrpr.com";
     github = "cloudripper";
     githubId = 70971768;
     name = "cloudripper";
@@ -6043,6 +6043,12 @@
     github = "dwarfmaster";
     githubId = 2025623;
     name = "Luc Chabassier";
+  };
+  dwrege = {
+    email = "email@dwrege.de";
+    github = "dominicwrege";
+    githubId = 7389000;
+    name = "Dominic Wrege";
   };
   dxf = {
     email = "dingxiangfei2009@gmail.com";
@@ -23059,6 +23065,12 @@
     github = "velovix";
     githubId = 2856634;
     name = "Tyler Compton";
+  };
+  venikx = {
+    email = "code@venikx.com";
+    github = "venikx";
+    githubId = 24815061;
+    name = "Kevin De Baerdemaeker";
   };
   veprbl = {
     email = "veprbl@gmail.com";
