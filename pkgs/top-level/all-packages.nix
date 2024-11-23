@@ -1480,12 +1480,7 @@ with pkgs;
 
   retroarch-joypad-autoconfig = callPackage ../applications/emulators/retroarch/retroarch-joypad-autoconfig.nix { };
 
-  libretranslate = with python3.pkgs; toPythonApplication libretranslate;
-
-  libretro = recurseIntoAttrs
-    (callPackage ../applications/emulators/retroarch/cores.nix {
-      retroarch = retroarchBare;
-    });
+  libretro = recurseIntoAttrs (callPackage ../applications/emulators/retroarch/cores.nix { });
 
   libretro-core-info = callPackage ../applications/emulators/retroarch/libretro-core-info.nix { };
 
@@ -4957,7 +4952,7 @@ with pkgs;
     beamPackages = beamPackages.extend (self: super: { elixir = elixir_1_17; });
   };
 
-  plfit = callPackage ../tools/misc/plfit {
+  plfit = callPackage ../by-name/pl/plfit/package.nix {
     python = null;
   };
 
@@ -6640,7 +6635,7 @@ with pkgs;
   openjdk = jdk;
   openjdk_headless = jdk_headless;
 
-  graalvmCEPackages = callPackage ../development/compilers/graalvm/community-edition { };
+  graalvmCEPackages = recurseIntoAttrs (callPackage ../development/compilers/graalvm/community-edition { });
   graalvm-ce = graalvmCEPackages.graalvm-ce;
   buildGraalvmNativeImage = (callPackage ../build-support/build-graalvm-native-image {
     graalvmDrv = graalvm-ce;
@@ -10011,6 +10006,8 @@ with pkgs;
   librepo = callPackage ../tools/package-management/librepo {
     python = python3;
   };
+
+  libretranslate = with python3.pkgs; toPythonApplication libretranslate;
 
   librsb = callPackage ../development/libraries/librsb {
     # Taken from https://build.opensuse.org/package/view_file/science/librsb/librsb.spec
@@ -16280,11 +16277,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa CoreServices Security;
   };
 
-  vuze = callPackage ../applications/networking/p2p/vuze {
-    jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
-    jdk = jdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
-  };
-
   whispers = with python3Packages; toPythonApplication whispers;
 
   warp = callPackage ../applications/networking/warp {
@@ -19010,9 +19002,7 @@ with pkgs;
 
   compressDrvWeb = callPackage ../build-support/compress-drv/web.nix { };
 
-  duti = callPackage ../os-specific/darwin/duti {
-    inherit (darwin.apple_sdk.frameworks) ApplicationServices;
-  };
+  duti = callPackage ../os-specific/darwin/duti { };
 
   dnstracer = callPackage ../tools/networking/dnstracer {
     inherit (darwin) libresolv;
@@ -19147,7 +19137,15 @@ with pkgs;
     ffmpeg = ffmpeg_6;
   };
 
+  libkazv = callPackage ../by-name/li/libkazv/package.nix {
+    libcpr = libcpr_1_10_5;
+  };
+
   tree-from-tags = callPackage ../by-name/tr/tree-from-tags/package.nix {
     ruby = ruby_3_1;
+  };
+
+  biblioteca = callPackage ../by-name/bi/biblioteca/package.nix {
+    webkitgtk = webkitgtk_6_0;
   };
 }
