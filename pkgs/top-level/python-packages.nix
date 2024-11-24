@@ -7925,8 +7925,6 @@ self: super: with self; {
 
   mdutils = callPackage ../development/python-modules/mdutils { };
 
-  mdp = callPackage ../development/python-modules/mdp { };
-
   mean-average-precision = callPackage ../development/python-modules/mean-average-precision { };
 
   measurement = callPackage ../development/python-modules/measurement { };
@@ -15773,6 +15771,8 @@ self: super: with self; {
 
   texsoup = callPackage ../development/python-modules/texsoup { };
 
+  textblob = callPackage ../development/python-modules/textblob { };
+
   textfsm = callPackage ../development/python-modules/textfsm { };
 
   textile = callPackage ../development/python-modules/textile { };
@@ -17260,7 +17260,7 @@ self: super: with self; {
   unicode-slugify = callPackage ../development/python-modules/unicode-slugify { };
 
   unicorn = callPackage ../development/python-modules/unicorn {
-    unicorn-emu = pkgs.unicorn;
+    inherit (pkgs) unicorn;
   };
 
   unicurses = callPackage ../development/python-modules/unicurses { };

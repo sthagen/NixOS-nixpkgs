@@ -1197,6 +1197,12 @@
     name = "alyaeanyx";
     keys = [ { fingerprint = "1F73 8879 5E5A 3DFC E2B3 FA32 87D1 AADC D25B 8DEE"; } ];
   };
+  amadaluzia = {
+    email = "amad@atl.tools";
+    github = "amadaluzia";
+    githubId = 188314694;
+    name = "Artur Manuel";
+  };
   amadejkastelic = {
     email = "amadejkastelic7@gmail.com";
     github = "amadejkastelic";
@@ -20167,6 +20173,13 @@
     githubId = 251028;
     name = "Shell Turner";
   };
+  shelvacu = {
+    name = "Shelvacu";
+    email = "nix-maint@shelvacu.com";
+    matrix = "@s:consortium.chat";
+    github = "shelvacu";
+    githubId = 1731537;
+  };
   shhht = {
     name = "shhht";
     email = "stp.tjeerd@gmail.com";
@@ -23137,6 +23150,12 @@
     github = "vidister";
     githubId = 11413574;
     name = "Fiona Weber";
+  };
+  vieta = {
+    email = "xyzVieta@gmail.com";
+    github = "yVieta";
+    githubId = 94648307;
+    name = "Thanh Viet Nguyen";
   };
   vifino = {
     email = "vifino@tty.sh";

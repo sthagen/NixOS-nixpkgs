@@ -1532,12 +1532,9 @@ with pkgs;
 
   ### APPLICATIONS/TERMINAL-EMULATORS
 
-  contour = qt6.callPackage ../applications/terminal-emulators/contour {
-    inherit (darwin.apple_sdk_11_0.libs) utmp;
-    inherit (darwin) sigtool;
-    stdenv = if stdenv.hostPlatform.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
-    catch2 = catch2_3;
-    fmt = fmt_9;
+  contour = callPackage ../by-name/co/contour/package.nix {
+    inherit (darwin) libutil sigtool;
+    stdenv = if stdenv.hostPlatform.isDarwin then llvmPackages_17.stdenv else stdenv;
   };
 
   cool-retro-term = libsForQt5.callPackage ../applications/terminal-emulators/cool-retro-term { };
@@ -1751,8 +1748,6 @@ with pkgs;
   bashate = python3Packages.callPackage ../development/tools/bashate {
     python3Packages = python311Packages;
   };
-
-  bisq-desktop = callPackage ../applications/blockchains/bisq-desktop { };
 
   inherit (callPackages ../tools/security/bitwarden-directory-connector { }) bitwarden-directory-connector-cli bitwarden-directory-connector;
 
@@ -2316,7 +2311,6 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_32;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -3232,9 +3226,7 @@ with pkgs;
 
   kramdown-asciidoc = callPackage ../tools/typesetting/kramdown-asciidoc { };
 
-  lychee = callPackage ../tools/networking/lychee {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
+  lychee = callPackage ../tools/networking/lychee { };
 
   mozwire = callPackage ../tools/networking/mozwire {
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
@@ -5256,8 +5248,6 @@ with pkgs;
 
   sigil = libsForQt5.callPackage ../applications/editors/sigil { };
 
-  inherit (callPackage ../applications/networking/instant-messengers/signal-desktop {}) signal-desktop;
-
   slither-analyzer = with python3Packages; toPythonApplication slither-analyzer;
 
   # aka., pgp-tools
@@ -6106,9 +6096,7 @@ with pkgs;
   flutter324 = flutterPackages.v3_24;
   flutter319 = flutterPackages.v3_19;
 
-  fnm = callPackage ../development/tools/fnm {
-    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation Security;
-  };
+  fnm = callPackage ../development/tools/fnm { };
 
   fpc = callPackage ../development/compilers/fpc { };
 
@@ -6971,6 +6959,7 @@ with pkgs;
   };
   inherit (callPackages ../development/tools/rust/cargo-pgrx { })
     cargo-pgrx_0_12_0_alpha_1
+    cargo-pgrx_0_12_5
     cargo-pgrx_0_12_6
     ;
   cargo-pgrx = cargo-pgrx_0_12_6;
@@ -7449,7 +7438,7 @@ with pkgs;
   # PHP interpreters, packages and extensions.
   #
   # Set default PHP interpreter, extensions and packages
-  php = php82;
+  php = php83;
   phpExtensions = php.extensions;
   phpPackages = php.packages;
 
@@ -10188,9 +10177,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) IOKit Security;
   };
 
-  libunicode = callPackage ../development/libraries/libunicode {
-    catch2 = catch2_3;
-    fmt = fmt_9;
+  libunicode = callPackage ../by-name/li/libunicode/package.nix {
+    stdenv = if stdenv.hostPlatform.isDarwin then llvmPackages_17.stdenv else stdenv;
   };
 
   libunwind =
@@ -11089,7 +11077,9 @@ with pkgs;
     harfbuzz = harfbuzzFull;
   };
 
-  termbench-pro = callPackage ../development/libraries/termbench-pro { fmt = fmt_8; };
+  termbench-pro = callPackage ../by-name/te/termbench-pro/package.nix {
+    stdenv = if stdenv.hostPlatform.isDarwin then llvmPackages_17.stdenv else stdenv;
+  };
 
   texpresso = callPackage ../tools/typesetting/tex/texpresso {
     texpresso-tectonic = callPackage ../tools/typesetting/tex/texpresso/tectonic.nix { };
@@ -15791,10 +15781,6 @@ with pkgs;
   super-slicer-beta = super-slicer.beta;
 
   super-slicer-latest = super-slicer.latest;
-
-  bambu-studio = callPackage ../applications/misc/bambu-studio { };
-
-  orca-slicer = callPackage ../applications/misc/bambu-studio/orca-slicer.nix {};
 
   skrooge = libsForQt5.callPackage ../applications/office/skrooge { };
 
