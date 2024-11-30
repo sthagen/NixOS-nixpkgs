@@ -779,6 +779,8 @@ with pkgs;
 
   referencesByPopularity = callPackage ../build-support/references-by-popularity { };
 
+  dockerMakeLayers = callPackage ../build-support/docker/make-layers.nix { };
+
   removeReferencesTo = callPackage ../build-support/remove-references-to {
     inherit (darwin) signingUtils;
   };
@@ -2148,7 +2150,7 @@ with pkgs;
   cloudflared = callPackage ../applications/networking/cloudflared {
     # https://github.com/cloudflare/cloudflared/issues/1151#issuecomment-1888819250
     buildGoModule = buildGoModule.override {
-      go = go_1_22.overrideAttrs {
+      go = buildPackages.go_1_22.overrideAttrs {
         pname = "cloudflare-go";
         version = "1.22.2-devel-cf";
         src = fetchFromGitHub {
@@ -4199,10 +4201,6 @@ with pkgs;
   };
 
   mx-puppet-discord = callPackage ../servers/mx-puppet-discord { };
-
-  nagstamon = callPackage ../tools/misc/nagstamon {
-    pythonPackages = python3Packages;
-  };
 
   nanoemoji = with python3Packages; toPythonApplication nanoemoji;
 
@@ -7807,8 +7805,6 @@ with pkgs;
   antlr4 = antlr4_13;
 
   antlr = antlr4;
-
-  ant = apacheAnt;
 
   inherit (callPackages ../servers/apache-kafka { })
     apacheKafka_3_6
@@ -13432,8 +13428,6 @@ with pkgs;
   bluefish = callPackage ../applications/editors/bluefish {
     gtk = gtk3;
   };
-
-  bluejeans-gui = callPackage ../applications/networking/instant-messengers/bluejeans { };
 
   breezy = with python3Packages; toPythonApplication breezy;
 
