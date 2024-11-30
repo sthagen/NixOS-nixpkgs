@@ -2345,10 +2345,6 @@ with pkgs;
 
   fdroidcl = pkgs.callPackage ../development/mobile/fdroidcl { };
 
-  fedimint = callPackage ../by-name/fe/fedimint/package.nix {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
-
   flowgger = callPackage ../tools/misc/flowgger {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
   };
@@ -11518,9 +11514,7 @@ with pkgs;
 
   alerta-server = callPackage ../servers/monitoring/alerta { };
 
-  apacheHttpd_2_4 = callPackage ../servers/http/apache-httpd/2.4.nix {
-    inherit (darwin.apple_sdk.frameworks) Foundation;
-  };
+  apacheHttpd_2_4 = callPackage ../servers/http/apache-httpd/2.4.nix { };
   apacheHttpd = apacheHttpd_2_4;
 
   apacheHttpdPackagesFor = apacheHttpd: self: let callPackage = newScope self; in {
@@ -11805,8 +11799,6 @@ with pkgs;
 
   inherit (callPackage ../applications/networking/mullvad { })
     mullvad;
-
-  mullvad-vpn = callPackage ../applications/networking/mullvad-vpn { };
 
   mullvad-closest = with python3Packages; toPythonApplication mullvad-closest;
 
@@ -12137,12 +12129,10 @@ with pkgs;
 
   qremotecontrol-server = libsForQt5.callPackage ../servers/misc/qremotecontrol-server { };
 
-  rabbitmq-server = callPackage ../servers/amqp/rabbitmq-server {
-    erlang = erlang_26;
+  rabbitmq-server = callPackage ../by-name/ra/rabbitmq-server/package.nix rec {
+    erlang = erlang_27;
+    elixir = pkgs.elixir.override { inherit erlang; };
   };
-
-  radicale2 = callPackage ../servers/radicale/2.x.nix { };
-  radicale3 = radicale;
 
   qcal = callPackage ../tools/networking/qcal/default.nix { };
 
@@ -15192,8 +15182,6 @@ with pkgs;
   opentimestamps-client = python3Packages.callPackage ../tools/misc/opentimestamps-client { };
 
   opentoonz = libsForQt5.callPackage ../applications/graphics/opentoonz { };
-
-  opentabletdriver = callPackage ../tools/X11/opentabletdriver { };
 
   opentx = libsForQt5.callPackage ../applications/misc/opentx { };
 

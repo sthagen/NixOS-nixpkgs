@@ -473,6 +473,8 @@ self: super: with self; {
 
   aiowebostv = callPackage ../development/python-modules/aiowebostv { };
 
+  aiowmi = callPackage ../development/python-modules/aiowmi { };
+
   aiowinreg = callPackage ../development/python-modules/aiowinreg { };
 
   aiowithings = callPackage ../development/python-modules/aiowithings { };
@@ -6564,6 +6566,8 @@ self: super: with self; {
 
   jenkins-job-builder = callPackage ../development/python-modules/jenkins-job-builder { };
 
+  jh2 = callPackage ../development/python-modules/jh2 { };
+
   jianpu-ly = callPackage ../development/python-modules/jianpu-ly { };
 
   jieba = callPackage ../development/python-modules/jieba { };
@@ -7471,6 +7475,8 @@ self: super: with self; {
   livereload = callPackage ../development/python-modules/livereload { };
 
   lizard = callPackage ../development/python-modules/lizard { };
+
+  llama-cpp-python = callPackage ../development/python-modules/llama-cpp-python { };
 
   llama-cloud = callPackage ../development/python-modules/llama-cloud { };
 
