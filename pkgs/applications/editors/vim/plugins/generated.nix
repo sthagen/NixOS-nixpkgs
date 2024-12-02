@@ -11388,12 +11388,12 @@ final: prev:
 
   snacks-nvim = buildVimPlugin {
     pname = "snacks.nvim";
-    version = "2024-11-26";
+    version = "2024-12-01";
     src = fetchFromGitHub {
       owner = "folke";
       repo = "snacks.nvim";
-      rev = "985be4a759f6fe83e569679da431eeb7d2db5286";
-      sha256 = "0s0mr8s47m99dj9adrrr73kjvb11v5q74dsd89wzmv8v4m1kvg2a";
+      rev = "5f768f8584e5247e3283201bfa068fa394ed0c4b";
+      sha256 = "05pf9ljs8xwnbqd6zdgfgv386pjmj8k4y0mjdb815fkik428sm3w";
     };
     meta.homepage = "https://github.com/folke/snacks.nvim/";
   };
@@ -18549,6 +18549,18 @@ final: prev:
       sha256 = "0sqhx4h2qchihf37g5fpa3arpxrnzsfpjj34ca3sdn4db89a0c8n";
     };
     meta.homepage = "https://github.com/mattn/webapi-vim/";
+  };
+
+  wezterm-nvim = buildVimPlugin {
+    pname = "wezterm.nvim";
+    version = "2024-09-26";
+    src = fetchFromGitHub {
+      owner = "willothy";
+      repo = "wezterm.nvim";
+      rev = "032c33b621b96cc7228955b4352b48141c482098";
+      sha256 = "16a3x84yh6p9i4h3fic59q29cbb6cwmqfx3051g9lxhh3r9dk0xb";
+    };
+    meta.homepage = "https://github.com/willothy/wezterm.nvim/";
   };
 
   wgsl-vim = buildVimPlugin {

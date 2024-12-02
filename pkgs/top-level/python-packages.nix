@@ -245,6 +245,8 @@ self: super: with self; {
 
   aiohasupervisor = callPackage ../development/python-modules/aiohasupervisor { };
 
+  aiohomeconnect = callPackage ../development/python-modules/aiohomeconnect { };
+
   aiohomekit = callPackage ../development/python-modules/aiohomekit { };
 
   aiohttp = callPackage ../development/python-modules/aiohttp { };
@@ -9064,6 +9066,8 @@ self: super: with self; {
 
   netbox-reorder-rack = callPackage ../development/python-modules/netbox-reorder-rack { };
 
+  netbox-plugin-prometheus-sd = callPackage ../development/python-modules/netbox-plugin-prometheus-sd { };
+
   netcdf4 = callPackage ../development/python-modules/netcdf4 { };
 
   netdata = callPackage ../development/python-modules/netdata { };
@@ -10570,6 +10574,8 @@ self: super: with self; {
 
   pysuez = callPackage ../development/python-modules/pysuez { };
 
+  pysuezv2 = callPackage ../development/python-modules/pysuezv2 { };
+
   pysqlitecipher = callPackage ../development/python-modules/pysqlitecipher { };
 
   pysyncthru = callPackage ../development/python-modules/pysyncthru { };
@@ -10857,6 +10863,8 @@ self: super: with self; {
   potr = callPackage ../development/python-modules/potr { };
 
   power = callPackage ../development/python-modules/power { };
+
+  powerapi = callPackage ../development/python-modules/powerapi { };
 
   powerline = callPackage ../development/python-modules/powerline { };
 
