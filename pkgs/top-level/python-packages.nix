@@ -2835,6 +2835,8 @@ self: super: with self; {
 
   cyclopts = callPackage ../development/python-modules/cyclopts { };
 
+  cyipopt = callPackage ../development/python-modules/cyipopt { };
+
   cymem = callPackage ../development/python-modules/cymem { };
 
   cymruwhois = callPackage ../development/python-modules/cymruwhois { };
@@ -7979,6 +7981,8 @@ self: super: with self; {
 
   medpy = callPackage ../development/python-modules/medpy { };
 
+  medvol = callPackage ../development/python-modules/medvol { };
+
   meeko = callPackage ../development/python-modules/meeko { };
 
   meep = callPackage ../development/python-modules/meep { };
@@ -8967,6 +8971,8 @@ self: super: with self; {
   };
 
   napari-console = callPackage ../development/python-modules/napari-console { };
+
+  napari-nifti = callPackage ../development/python-modules/napari-nifti { };
 
   napari-npe2 = callPackage ../development/python-modules/napari-npe2 { };
 

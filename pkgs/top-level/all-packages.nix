@@ -2859,8 +2859,9 @@ with pkgs;
     citrix_workspace_23_11_0
     citrix_workspace_24_02_0
     citrix_workspace_24_05_0
+    citrix_workspace_24_08_0
   ;
-  citrix_workspace = citrix_workspace_24_05_0;
+  citrix_workspace = citrix_workspace_24_08_0;
 
   cmst = libsForQt5.callPackage ../tools/networking/cmst { };
 
@@ -3006,7 +3007,7 @@ with pkgs;
 
   bluetooth_battery = python3Packages.callPackage ../applications/misc/bluetooth_battery { };
 
-  calyx-vpn = libsForQt5.callPackage ../tools/networking/bitmask-vpn {
+  calyx-vpn = qt6Packages.callPackage ../tools/networking/bitmask-vpn {
     provider = "calyx";
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
   };
@@ -4929,10 +4930,6 @@ with pkgs;
 
   po4a = perlPackages.Po4a;
 
-  poac = callPackage ../development/tools/poac {
-    inherit (llvmPackages_14) stdenv;
-  };
-
   podman-compose = python3Packages.callPackage ../applications/virtualization/podman-compose { };
 
   podman-desktop = callPackage ../applications/virtualization/podman-desktop {
@@ -5584,10 +5581,6 @@ with pkgs;
 
   watchexec = callPackage ../tools/misc/watchexec {
     inherit (darwin.apple_sdk.frameworks) Cocoa AppKit;
-  };
-
-  watchman = darwin.apple_sdk_11_0.callPackage ../development/tools/watchman {
-    inherit (darwin.apple_sdk_11_0.frameworks) CoreServices;
   };
 
   webassemblyjs-cli = nodePackages."@webassemblyjs/cli-1.11.1";
@@ -6680,16 +6673,10 @@ with pkgs;
       stdenv.targetPlatform));
   in pkgs.${"llvmPackages_${minSupported}"};
 
-  llvmPackages_12 = recurseIntoAttrs (callPackage ../development/compilers/llvm/12 {
-    inherit (stdenvAdapters) overrideCC;
-    buildLlvmTools = buildPackages.llvmPackages_12.tools;
-    targetLlvmLibraries = targetPackages.llvmPackages_12.libraries or llvmPackages_12.libraries;
-    targetLlvm = targetPackages.llvmPackages_12.llvm or llvmPackages_12.llvm;
-  });
-
   inherit (rec {
     llvmPackagesSet = recurseIntoAttrs (callPackages ../development/compilers/llvm { });
 
+    llvmPackages_12 = llvmPackagesSet."12";
     llvmPackages_13 = llvmPackagesSet."13";
     llvmPackages_14 = llvmPackagesSet."14";
     llvmPackages_15 = llvmPackagesSet."15";
@@ -6708,7 +6695,8 @@ with pkgs;
     lldb_19 = llvmPackages_19.lldb;
     llvm_19 = llvmPackages_19.llvm;
     bolt_19 = llvmPackages_19.bolt;
-  }) llvmPackages_13
+  }) llvmPackages_12
+    llvmPackages_13
     llvmPackages_14
     llvmPackages_15
     llvmPackages_16
@@ -7244,8 +7232,7 @@ with pkgs;
   };
 
   inherit (callPackage ../applications/editors/jupyter-kernels/xeus-cling { })
-    cpp11-kernel cpp14-kernel cpp17-kernel cpp2a-kernel;
-  xeus-cling = callPackage ../applications/editors/jupyter-kernels/xeus-cling/xeus-cling.nix { };
+    cpp11-kernel cpp14-kernel cpp17-kernel cpp2a-kernel xeus-cling;
 
   clojure = callPackage ../development/interpreters/clojure {
     # set this to an LTS version of java
@@ -9022,8 +9009,6 @@ with pkgs;
     stdenv = if stdenv.hostPlatform.isDarwin then gccStdenv else stdenv;
   };
 
-  edencommon = darwin.apple_sdk_11_0.callPackage ../development/libraries/edencommon { };
-
   eigen = callPackage ../development/libraries/eigen { };
 
   eigen2 = callPackage ../development/libraries/eigen/2.0.nix { };
@@ -9064,10 +9049,6 @@ with pkgs;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
 
-  fbthrift = darwin.apple_sdk_11_0.callPackage ../development/libraries/fbthrift { };
-
-  fb303 = darwin.apple_sdk_11_0.callPackage ../development/libraries/fb303 { };
-
   inherit (callPackage ../development/libraries/ffmpeg { })
     ffmpeg_4
     ffmpeg_4-headless
@@ -9091,8 +9072,6 @@ with pkgs;
     stdenv = gccStdenv;
   };
   fftwMpi = fftw.override { enableMpi = true; };
-
-  fizz = darwin.apple_sdk_11_0.callPackage ../development/libraries/fizz { };
 
   flint = callPackage ../development/libraries/flint { };
 
@@ -9147,8 +9126,6 @@ with pkgs;
   fontconfig = callPackage ../development/libraries/fontconfig {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation;
   };
-
-  folly = darwin.apple_sdk_11_0.callPackage ../development/libraries/folly { };
 
   makeFontsConf = callPackage ../development/libraries/fontconfig/make-fonts-conf.nix { };
 
@@ -10353,8 +10330,6 @@ with pkgs;
 
   mpich-pmix = mpich.override { pmixSupport = true; withPm = [ ]; };
 
-  mvfst = darwin.apple_sdk_11_0.callPackage ../development/libraries/mvfst { };
-
   mygpoclient = with python3.pkgs; toPythonApplication mygpoclient;
 
   mygui = callPackage ../development/libraries/mygui {
@@ -11106,7 +11081,6 @@ with pkgs;
   vulkan-tools = callPackage ../tools/graphics/vulkan-tools {
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
   };
-  wangle = darwin.apple_sdk_11_0.callPackage ../development/libraries/wangle { };
 
   wayland = darwin.apple_sdk_11_0.callPackage ../development/libraries/wayland { };
   wayland-scanner = callPackage ../development/libraries/wayland/scanner.nix { };
@@ -12329,12 +12303,7 @@ with pkgs;
       overrideCC stdenv buildPackages.llvmPackages.clangNoLibcxx
     else stdenv;
   };
-  busybox-sandbox-shell = callPackage ../os-specific/linux/busybox/sandbox-shell.nix {
-    # musl roadmap has RISC-V support projected for 1.1.20
-    busybox = if !stdenv.hostPlatform.isRiscV && !stdenv.hostPlatform.isLoongArch64 && stdenv.hostPlatform.libc != "bionic"
-              then pkgsStatic.busybox
-              else busybox;
-  };
+  busybox-sandbox-shell = callPackage ../os-specific/linux/busybox/sandbox-shell.nix { };
 
   cm-rgb = python3Packages.callPackage ../tools/system/cm-rgb { };
 
@@ -17869,7 +17838,7 @@ with pkgs;
 
   kicadAddons = recurseIntoAttrs (callPackage ../applications/science/electronics/kicad/addons {});
 
-  librepcb = libsForQt5.callPackage ../applications/science/electronics/librepcb { };
+  librepcb = qt6Packages.callPackage ../applications/science/electronics/librepcb { };
 
   ngspice = libngspice.override {
     withNgshared = false;
@@ -18940,8 +18909,6 @@ with pkgs;
   ldid = callPackage ../development/tools/ldid {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
   };
-
-  zram-generator = callPackage ../tools/system/zram-generator { };
 
   zrythm = callPackage ../applications/audio/zrythm {
     inherit (plasma5Packages) breeze-icons;
