@@ -17984,6 +17984,12 @@
     githubId = 5636;
     name = "Steve Purcell";
   };
+  purpole = {
+    email = "mail@purpole.io";
+    github = "purpole";
+    githubId = 101905225;
+    name = "David Schneider";
+  };
   purrpurrn = {
     email = "scrcpynovideoaudiocodecraw+nixpkgs@gmail.com";
     github = "purrpurrn";
@@ -18650,7 +18656,7 @@
   };
   returntoreality = {
     email = "linus@lotz.li";
-    github = "retuntoreality";
+    github = "returntoreality";
     githubId = 255667;
     name = "Linus Karl";
   };
@@ -21631,6 +21637,17 @@
     github = "TakWolf";
     githubId = 6064962;
     name = "TakWolf";
+  };
+  talhaHavadar = {
+    email = "havadartalha@gmail.com";
+    github = "talhaHavadar";
+    githubId = 6908462;
+    name = "Talha Can Havadar";
+    keys = [
+      {
+        fingerprint = "1E13 12DF 4B71 58B6 EBF9  DE78 2574 3879 62FE B0D1";
+      }
+    ];
   };
   talkara = {
     email = "taito.horiuchi@relexsolutions.com";
