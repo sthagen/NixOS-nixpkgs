@@ -4689,6 +4689,12 @@
     githubId = 490965;
     name = "Craig Swank";
   };
+  cterence = {
+    email = "terence.chateigne@posteo.net";
+    github = "cterence";
+    githubId = 25285508;
+    name = "Térence Chateigné";
+  };
   ctron = {
     email = "ctron@dentrassi.de";
     github = "ctron";
@@ -6339,6 +6345,12 @@
     github = "eikek";
     githubId = 701128;
     name = "Eike Kettner";
+  };
+  eilvelia = {
+    email = "hi@eilvelia.cat";
+    github = "eilvelia";
+    githubId = 10106819;
+    name = "eilvelia";
   };
   eken = {
     email = "edvin.kallstrom@protonmail.com";
@@ -19539,6 +19551,14 @@
     github = "Sail0rd";
     githubId = 55802415;
   };
+  sako = {
+    name = "Sako";
+    email = "sako@cock.email";
+    matrix = "@sako:imagisphe.re";
+    github = "Sakooooo";
+    githubId = 78461130;
+    keys = [ { fingerprint = "CA52 EE7B E681 720E 32B6  6792 FE52 FD65 B76E 4751"; } ];
+  };
   samalws = {
     email = "sam@samalws.com";
     name = "Sam Alws";
@@ -21836,6 +21856,12 @@
     github = "tennox";
     githubId = 2084639;
     name = "Manu";
+  };
+  tensor5 = {
+    github = "tensor5";
+    githubId = 1545895;
+    matrix = "@tensor5:matrix.org";
+    name = "Nicola Squartini";
   };
   teozkr = {
     email = "teo@nullable.se";
