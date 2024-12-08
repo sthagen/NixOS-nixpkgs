@@ -3514,7 +3514,7 @@ with pkgs;
   };
 
   gnome-decoder = callPackage ../applications/graphics/gnome-decoder {
-     inherit (gst_all_1) gstreamer gst-plugins-base;
+     inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-good gst-plugins-rs;
      gst-plugins-bad = gst_all_1.gst-plugins-bad.override { enableZbar = true; };
   };
 
@@ -3697,7 +3697,7 @@ with pkgs;
 
   gvm-tools = with python3.pkgs; toPythonApplication gvm-tools;
 
-  gyroflow = qt6Packages.callPackage ../applications/video/gyroflow { };
+  gyroflow = callPackage ../applications/video/gyroflow { };
 
   gzip = callPackage ../tools/compression/gzip { };
 
@@ -3708,8 +3708,6 @@ with pkgs;
   plplot = callPackage ../development/libraries/plplot {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
-
-  haguichi = callPackage ../tools/networking/haguichi { };
 
   hashcat = callPackage ../tools/security/hashcat {
     inherit (darwin.apple_sdk.frameworks) Foundation IOKit Metal OpenCL;
@@ -9119,8 +9117,6 @@ with pkgs;
 
   geos_3_9 = callPackage ../development/libraries/geos/3.9.nix { };
 
-  geos_3_11 = callPackage ../development/libraries/geos/3.11.nix { };
-
   inherit (callPackages ../development/libraries/getdns { })
     getdns stubby;
 
@@ -13255,10 +13251,6 @@ with pkgs;
       darwin.apple_sdk_11_0.stdenv
     else
       stdenv;
-  };
-
-  milkytracker = callPackage ../applications/audio/milkytracker {
-    inherit (darwin.apple_sdk.frameworks) Cocoa CoreAudio Foundation;
   };
 
   ptcollab = callPackage ../by-name/pt/ptcollab/package.nix {
