@@ -2063,10 +2063,6 @@ with pkgs;
 
   brasero = callPackage ../tools/cd-dvd/brasero/wrapper.nix { };
 
-  broot = callPackage ../tools/misc/broot {
-    inherit (darwin.apple_sdk.frameworks) Foundation Security;
-  };
-
   ssdfs-utils = callPackage ../tools/filesystems/ssdfs-utils { };
 
   btlejack = python3Packages.callPackage ../applications/radio/btlejack { };
@@ -3228,10 +3224,6 @@ with pkgs;
   schleuder = callPackage ../tools/security/schleuder { };
 
   schleuder-cli = callPackage ../tools/security/schleuder/cli { };
-
-  tealdeer = callPackage ../tools/misc/tealdeer {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
 
   teamocil = callPackage ../tools/misc/teamocil { };
 
@@ -5101,8 +5093,6 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.libs) simd;
   };
 
-  rosegarden = libsForQt5.callPackage ../applications/audio/rosegarden { };
-
   rosenpass = callPackage ../tools/networking/rosenpass  { };
 
   rosenpass-tools = callPackage ../tools/networking/rosenpass/tools.nix  { };
@@ -6868,9 +6858,6 @@ with pkgs;
   };
   cargo-cyclonedx = callPackage ../development/tools/rust/cargo-cyclonedx {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration CoreFoundation;
-  };
-  cargo-deadlinks = callPackage ../development/tools/rust/cargo-deadlinks {
-    inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-edit = callPackage ../development/tools/rust/cargo-edit {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -9118,7 +9105,7 @@ with pkgs;
   geoclue2-with-demo-agent = geoclue2.override { withDemoAgent = true; };
 
   geocode-glib_2 = geocode-glib.override {
-    libsoup = libsoup_3;
+    libsoup_2_4 = libsoup_3;
   };
 
   geoipWithDatabase = makeOverridable (callPackage ../development/libraries/geoip) {
@@ -10019,7 +10006,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon AudioToolbox;
   };
 
-  libsoup = callPackage ../development/libraries/libsoup { };
+  libsoup_2_4 = callPackage ../development/libraries/libsoup { };
 
   libsoup_3 = callPackage ../development/libraries/libsoup/3.x.nix { };
 
@@ -10700,6 +10687,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  reposilitePlugins = recurseIntoAttrs (callPackage ../by-name/re/reposilite/plugins.nix {});
+
   rhino = callPackage ../development/libraries/java/rhino {
     javac = jdk8;
     jvm = jre8;
@@ -11048,6 +11037,7 @@ with pkgs;
 
   webkitgtk_4_0 = callPackage ../development/libraries/webkitgtk {
     harfbuzz = harfbuzzFull;
+    libsoup = libsoup_2_4;
     inherit (gst_all_1) gst-plugins-base gst-plugins-bad;
     inherit (darwin) apple_sdk;
   };
@@ -13472,7 +13462,6 @@ with pkgs;
   };
   datadog-process-agent = callPackage ../tools/networking/dd-agent/datadog-process-agent.nix { };
   datadog-integrations-core = extras: callPackage ../tools/networking/dd-agent/integrations-core.nix {
-    python = python3;
     extraIntegrations = extras;
   };
 
@@ -14111,8 +14100,6 @@ with pkgs;
   gpu-screen-recorder = callPackage ../applications/video/gpu-screen-recorder { };
 
   gpu-screen-recorder-gtk = callPackage ../applications/video/gpu-screen-recorder/gpu-screen-recorder-gtk.nix { };
-
-  gpxlab = libsForQt5.callPackage ../applications/misc/gpxlab { };
 
   gpxsee-qt5 = libsForQt5.callPackage ../applications/misc/gpxsee { };
 
@@ -15367,29 +15354,25 @@ with pkgs;
     keybinder3 = null;
     libappindicator-gtk3 = null;
     libmodplug = null;
-    libsoup = libsoup_3;
   };
 
   quodlibet-without-gst-plugins = quodlibet.override {
-    libsoup = libsoup_3;
     tag = "-without-gst-plugins";
     withGstPlugins = false;
   };
 
   quodlibet-xine = quodlibet.override {
-    libsoup = libsoup_3;
     tag = "-xine";
     withGstreamerBackend = false;
     withXineBackend = true;
   };
 
   quodlibet-full = quodlibet.override {
-    inherit gtksourceview webkitgtk_4_0;
+    inherit gtksourceview;
     kakasi = kakasi;
     keybinder3 = keybinder3;
     libappindicator-gtk3 = libappindicator-gtk3;
     libmodplug = libmodplug;
-    libsoup = libsoup_3;
     tag = "-full";
     withDbusPython = true;
     withMusicBrainzNgs = true;
@@ -15399,7 +15382,6 @@ with pkgs;
   };
 
   quodlibet-xine-full = quodlibet-full.override {
-    libsoup = libsoup_3;
     tag = "-xine-full";
     withGstreamerBackend = false;
     withXineBackend = true;
@@ -16236,10 +16218,6 @@ with pkgs;
 
   gxneur = callPackage ../applications/misc/gxneur  {
     inherit (gnome2) libglade GConf;
-  };
-
-  xournal = callPackage ../applications/graphics/xournal {
-    inherit (gnome2) libgnomecanvas;
   };
 
   xournalpp = darwin.apple_sdk_11_0.callPackage ../applications/graphics/xournalpp {
@@ -18545,10 +18523,6 @@ with pkgs;
 
   vokoscreen = libsForQt5.callPackage ../applications/video/vokoscreen {
     ffmpeg = ffmpeg-full;
-  };
-
-  vokoscreen-ng = libsForQt5.callPackage ../applications/video/vokoscreen-ng {
-    inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly;
   };
 
   wacomtablet = libsForQt5.callPackage ../tools/misc/wacomtablet { };
