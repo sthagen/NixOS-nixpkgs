@@ -4746,6 +4746,8 @@ with pkgs;
 
   pakcs = callPackage ../development/compilers/pakcs { };
 
+  pandoc_3_5 = callPackage ../by-name/pa/pandoc/package.nix { selectPandocCLI = (p: p.pandoc-cli_3_5); };
+
   paperwork = callPackage ../applications/office/paperwork/paperwork-gtk.nix { };
 
   parallel = callPackage ../tools/misc/parallel { };
@@ -5605,6 +5607,7 @@ with pkgs;
   unbound-full = unbound.override {
     python = python3;
     withSystemd = true;
+    withDynlibModule = true;
     withPythonModule = true;
     withDoH = true;
     withECS = true;
@@ -9626,10 +9629,6 @@ with pkgs;
 
   lcms = lcms2;
 
-  lib2geom = callPackage ../development/libraries/lib2geom {
-    stdenv = if stdenv.cc.isClang then llvmPackages_13.stdenv else stdenv;
-  };
-
   libacr38u = callPackage ../tools/security/libacr38u {
     inherit (darwin.apple_sdk.frameworks) IOKit;
   };
@@ -12564,7 +12563,13 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  pam = if stdenv.hostPlatform.isLinux then linux-pam else openpam;
+  pam =
+    if stdenv.hostPlatform.isLinux then
+      linux-pam
+    else if stdenv.hostPlatform.isFreeBSD then
+      freebsd.libpam
+    else
+      openpam;
 
   # pam_bioapi ( see http://www.thinkwiki.org/wiki/How_to_enable_the_fingerprint_reader )
 
@@ -18265,7 +18270,7 @@ with pkgs;
     ({ inherit pkgs lib; } // attrs);
 
   nix-eval-jobs = callPackage ../tools/package-management/nix-eval-jobs {
-    nix = nixVersions.nix_2_24;
+    nix = nixVersions.nix_2_25;
   };
 
   nix-delegate = haskell.lib.compose.justStaticExecutables haskellPackages.nix-delegate;
