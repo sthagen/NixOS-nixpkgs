@@ -5102,6 +5102,12 @@
     githubId = 118536343;
     name = "David Hamelin";
   };
+  David-Kopczynski = {
+    name = "David Elias Chris Kopczynski";
+    email = "mail@davidkopczynski.com";
+    github = "David-Kopczynski";
+    githubId = 53194670;
+  };
   david-r-cox = {
     email = "david@integrated-reasoning.com";
     github = "david-r-cox";
@@ -10882,6 +10888,11 @@
     name = "Joonas Rautiola";
     keys = [ { fingerprint = "87EC DD30 6614 E510 5299  F0D4 090E B48A 4669 AA54"; } ];
   };
+  Jojo4GH = {
+    name = "Jonas Broeckmann";
+    github = "Jojo4GH";
+    githubId = 36777568;
+  };
   jojosch = {
     name = "Johannes Schleifenbaum";
     email = "johannes@js-webcoding.de";
@@ -11288,6 +11299,12 @@
     github = "justanotherariel";
     githubId = 31776703;
     name = "Ariel Ebersberger";
+  };
+  justdeeevin = {
+    email = "devin.droddy@gmail.com";
+    github = "justdeeevin";
+    githubId = 90054389;
+    name = "Devin Droddy";
   };
   justinas = {
     email = "justinas@justinas.org";
@@ -13785,6 +13802,17 @@
     github = "materusPL";
     githubId = 28183516;
     name = "Mateusz Słodkowicz";
+  };
+  mateusauler = {
+    email = "mateus@auler.dev";
+    github = "mateusauler";
+    githubId = 24767687;
+    name = "Mateus Auler";
+    keys = [
+      {
+        fingerprint = "A09D C093 3C37 4BFC 2B5A  269F 80A5 D62F 6EB7 D9F0";
+      }
+    ];
   };
   math-42 = {
     email = "matheus.4200@gmail.com";
