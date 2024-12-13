@@ -1429,6 +1429,11 @@ with pkgs;
     withWayland = true;
   };
 
+  shadps4 = callPackage ../by-name/sh/shadps4/package.nix {
+    # relies on std::sinf & co, which was broken in GCC until GCC 14: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=79700
+    stdenv = gcc14Stdenv;
+  };
+
   snes9x-gtk = snes9x.override {
     withGtk = true;
   };
@@ -1990,10 +1995,6 @@ with pkgs;
 
   axel = callPackage ../tools/networking/axel {
     libssl = openssl;
-  };
-
-  bandwhich = callPackage ../tools/networking/bandwhich {
-    inherit (darwin.apple_sdk.frameworks) Security;
   };
 
   base16-builder = callPackage ../misc/base16-builder { };
@@ -15494,7 +15495,7 @@ with pkgs;
 
   sommelier = callPackage ../applications/window-managers/sommelier { };
 
-  spotify-qt = libsForQt5.callPackage ../applications/audio/spotify-qt { };
+  spotify-qt = qt6Packages.callPackage ../applications/audio/spotify-qt { };
 
   squishyball = callPackage ../applications/audio/squishyball {
     ncurses = ncurses5;

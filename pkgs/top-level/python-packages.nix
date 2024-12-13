@@ -2062,6 +2062,8 @@ self: super: with self; {
 
   carbon = callPackage ../development/python-modules/carbon { };
 
+  cardimpose = callPackage ../development/python-modules/cardimpose { };
+
   cart = callPackage ../development/python-modules/cart { };
 
   cartopy = callPackage ../development/python-modules/cartopy { };
@@ -7582,6 +7584,8 @@ self: super: with self; {
 
   llm = callPackage ../development/python-modules/llm { };
 
+  llm-gguf = callPackage ../development/python-modules/llm-gguf { };
+
   llmx = callPackage ../development/python-modules/llmx { };
 
   llvmlite = callPackage ../development/python-modules/llvmlite {
@@ -10814,6 +10818,8 @@ self: super: with self; {
   plux = callPackage ../development/python-modules/plux { };
 
   ply = callPackage ../development/python-modules/ply { };
+
+  plyara = callPackage ../development/python-modules/plyara { };
 
   plyer = callPackage ../development/python-modules/plyer { };
 
