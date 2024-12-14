@@ -48,6 +48,7 @@
   ./config/zram.nix
   ./hardware/acpilight.nix
   ./hardware/all-firmware.nix
+  ./hardware/all-hardware.nix
   ./hardware/apple-touchbar.nix
   ./hardware/bladeRF.nix
   ./hardware/brillo.nix
@@ -71,6 +72,7 @@
   ./hardware/hackrf.nix
   ./hardware/i2c.nix
   ./hardware/infiniband.nix
+  ./hardware/inputmodule.nix
   ./hardware/keyboard/qmk.nix
   ./hardware/keyboard/teck.nix
   ./hardware/keyboard/uhk.nix
