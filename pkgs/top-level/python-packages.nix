@@ -6501,8 +6501,6 @@ self: super: with self; {
 
   jaconv = callPackage ../development/python-modules/jaconv { };
 
-  jaeger-client = callPackage ../development/python-modules/jaeger-client { };
-
   jalali-core = callPackage ../development/python-modules/jalali-core { };
 
   jamo = callPackage ../development/python-modules/jamo { };
@@ -9695,8 +9693,6 @@ self: super: with self; {
     enablePython = true;
   });
 
-  opentracing = callPackage ../development/python-modules/opentracing { };
-
   opentsne = callPackage ../development/python-modules/opentsne { };
 
   opentypespec = callPackage ../development/python-modules/opentypespec { };
@@ -10152,6 +10148,8 @@ self: super: with self; {
   pins = callPackage ../development/python-modules/pins { };
 
   pipetools = callPackage ../development/python-modules/pipetools { };
+
+  piqp = callPackage ../development/python-modules/piqp { };
 
   pg8000 = callPackage ../development/python-modules/pg8000 { };
 
@@ -10954,11 +10952,15 @@ self: super: with self; {
 
   pre-commit-hooks = callPackage ../development/python-modules/pre-commit-hooks { };
 
+  pre-commit-po-hooks = callPackage ../development/python-modules/pre-commit-po-hooks { };
+
   preggy = callPackage ../development/python-modules/preggy { };
 
   preprocess-cancellation = callPackage ../development/python-modules/preprocess-cancellation { };
 
   preshed = callPackage ../development/python-modules/preshed { };
+
+  presenterm-export = callPackage ../development/python-modules/presenterm-export { };
 
   pretend = callPackage ../development/python-modules/pretend { };
 
@@ -13768,6 +13770,8 @@ self: super: with self; {
 
   rchitect = callPackage ../development/python-modules/rchitect { };
 
+  rclone-python = callPackage ../development/python-modules/rclone-python { };
+
   rcssmin = callPackage ../development/python-modules/rcssmin { };
 
   rdflib = callPackage ../development/python-modules/rdflib { };
@@ -15250,6 +15254,8 @@ self: super: with self; {
   spidev = callPackage ../development/python-modules/spidev { };
 
   splinter = callPackage ../development/python-modules/splinter { };
+
+  splunk-sdk = callPackage ../development/python-modules/splunk-sdk { };
 
   spotifyaio = callPackage ../development/python-modules/spotifyaio { };
 
