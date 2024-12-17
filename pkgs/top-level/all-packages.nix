@@ -909,8 +909,8 @@ with pkgs;
   };
 
   akkoma = callPackage ../servers/akkoma {
-    elixir = elixir_1_16;
-    beamPackages = beamPackages.extend (self: super: { elixir = elixir_1_16; });
+    elixir = beam_nox.interpreters.elixir_1_16;
+    beamPackages = beamPackages.extend (self: super: { elixir = beam_nox.interpreters.elixir_1_16; });
   };
   akkoma-frontends = recurseIntoAttrs {
     akkoma-fe = callPackage ../servers/akkoma/akkoma-fe { };
@@ -15987,8 +15987,6 @@ with pkgs;
       then pkgsi686Linux.libglvnd
       else null;
   };
-
-  viper4linux-gui = libsForQt5.callPackage ../applications/audio/viper4linux-gui { };
 
   vlc-bin-universal = vlc-bin.override { variant = "universal"; };
 
