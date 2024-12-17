@@ -3575,7 +3575,7 @@ self: super: with self; {
 
   django-pwa = callPackage ../development/python-modules/django-pwa { };
 
-  django-q = callPackage ../development/python-modules/django-q { };
+  django-q2 = callPackage ../development/python-modules/django-q2 { };
 
   django-scheduler = callPackage ../development/python-modules/django-scheduler { };
 
@@ -5846,6 +5846,8 @@ self: super: with self; {
   highdicom = callPackage ../development/python-modules/highdicom { };
 
   highspy = callPackage ../development/python-modules/highspy { };
+
+  hightime = callPackage ../development/python-modules/hightime { };
 
   hid = callPackage ../development/python-modules/hid {
     inherit (pkgs) hidapi;
@@ -14004,6 +14006,8 @@ self: super: with self; {
   returns = callPackage ../development/python-modules/returns { };
 
   reuse = callPackage ../development/python-modules/reuse { };
+
+  reverse-geocode = callPackage ../development/python-modules/reverse-geocode { };
 
   rfc3339 = callPackage ../development/python-modules/rfc3339 { };
 

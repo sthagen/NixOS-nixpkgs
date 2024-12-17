@@ -1579,8 +1579,8 @@ let
           # semver scheme, contrary to preview versions which are listed on
           # the VSCode Marketplace and use a calver scheme. We should avoid
           # using preview versions, because they expire after two weeks.
-          version = "15.6.0";
-          hash = "sha256-s6ur76DyNhwuZOYma2zPfYEs3lMliRuhdmZhITCSCPE=";
+          version = "16.0.5";
+          hash = "sha256-9xvArjUXxgofGuEg+XcrI5cX32gd9CvPZxWlj4eKavo=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog";
@@ -3246,8 +3246,8 @@ let
         mktplcRef = {
           name = "compare-folders";
           publisher = "moshfeu";
-          version = "0.24.3";
-          hash = "sha256-eaumF2BIqEYoyL7LQ0Wx3+gkkFGpWKQoN3AisI8wTQY=";
+          version = "0.25.1";
+          hash = "sha256-axNTdnSkMkFs7LSZCc7VinjbrDncsRHlRtDG9+eh2qQ=";
         };
 
         meta = {
@@ -5333,8 +5333,8 @@ let
         mktplcRef = {
           name = "vscode-icons";
           publisher = "vscode-icons-team";
-          version = "12.9.0";
-          hash = "sha256-ULjZlbGcVbPiokfnx7d4z7cmVVEfy2d+SUch80rZRA4=";
+          version = "12.10.0";
+          hash = "sha256-GNDLuszuJN3P0V25F4gm7yUJsFEQgFMMPMTFLWLIvSo=";
         };
         meta = {
           description = "Bring real icons to your Visual Studio Code";
