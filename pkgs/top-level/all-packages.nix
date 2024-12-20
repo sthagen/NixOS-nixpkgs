@@ -11225,6 +11225,11 @@ with pkgs;
     go = buildPackages.go_1_23;
   };
 
+  go_1_24 = callPackage ../development/compilers/go/1.24.nix { };
+  buildGo124Module = callPackage ../build-support/go/module.nix {
+    go = buildPackages.go_1_24;
+  };
+
   ### DEVELOPMENT / HARE
 
   hareHook = callPackage ../by-name/ha/hare/hook.nix { };
@@ -16409,8 +16414,6 @@ with pkgs;
 
   pycoin = with python3Packages; toPythonApplication pycoin;
 
-  solana-validator = callPackage ../applications/blockchains/solana-validator { };
-
   snarkos = callPackage ../applications/blockchains/snarkos {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -18745,7 +18748,9 @@ with pkgs;
 
   sieveshell = with python3.pkgs; toPythonApplication managesieve;
 
-  sunshine = callPackage ../servers/sunshine { };
+  sunshine = callPackage ../by-name/su/sunshine/package.nix {
+    boost = boost185;
+  };
 
   jami = qt6Packages.callPackage ../applications/networking/instant-messengers/jami {
     # TODO: remove once `udev` is `systemdMinimal` everywhere.

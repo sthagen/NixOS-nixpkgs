@@ -467,8 +467,8 @@ in {
   iftop = handleTest ./iftop.nix {};
   immich = handleTest ./web-apps/immich.nix {};
   incron = handleTest ./incron.nix {};
-  incus = pkgs.recurseIntoAttrs (handleTest ./incus { inherit handleTestOn; inherit (pkgs) incus; });
-  incus-lts = pkgs.recurseIntoAttrs (handleTest ./incus { inherit handleTestOn; });
+  incus = pkgs.recurseIntoAttrs (handleTest ./incus { lts = false; });
+  incus-lts = pkgs.recurseIntoAttrs (handleTest ./incus { });
   influxdb = handleTest ./influxdb.nix {};
   influxdb2 = handleTest ./influxdb2.nix {};
   initrd-network-openvpn = handleTestOn [ "x86_64-linux" "i686-linux" ] ./initrd-network-openvpn {};
@@ -1095,6 +1095,7 @@ in {
   trilium-server = handleTestOn ["x86_64-linux"] ./trilium-server.nix {};
   tsm-client-gui = handleTest ./tsm-client-gui.nix {};
   ttyd = handleTest ./web-servers/ttyd.nix {};
+  tt-rss = handleTest ./web-apps/tt-rss.nix {};
   txredisapi = handleTest ./txredisapi.nix {};
   tuptime = handleTest ./tuptime.nix {};
   turbovnc-headless-server = handleTest ./turbovnc-headless-server.nix {};

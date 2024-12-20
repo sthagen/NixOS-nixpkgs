@@ -9192,6 +9192,8 @@ self: super: with self; {
 
   nidaqmx = callPackage ../development/python-modules/nidaqmx { };
 
+  nifty8 = callPackage ../development/python-modules/nifty8 { };
+
   nikola = callPackage ../development/python-modules/nikola { };
 
   niko-home-control = callPackage ../development/python-modules/niko-home-control { };
@@ -10388,6 +10390,8 @@ self: super: with self; {
   };
 
   pixel-font-builder = callPackage ../development/python-modules/pixel-font-builder { };
+
+  pixel-font-knife = callPackage ../development/python-modules/pixel-font-knife { };
 
   pixel-ring = callPackage ../development/python-modules/pixel-ring { };
 
@@ -18359,6 +18363,8 @@ self: super: with self; {
   zenoh = callPackage ../development/python-modules/zenoh { };
 
   zephyr-python-api = callPackage ../development/python-modules/zephyr-python-api { };
+
+  zephyr-test-management = callPackage ../development/python-modules/zephyr-test-management { };
 
   zeroc-ice = callPackage ../development/python-modules/zeroc-ice { };
 
