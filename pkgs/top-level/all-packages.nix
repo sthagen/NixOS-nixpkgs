@@ -331,8 +331,6 @@ with pkgs;
     catch2 = catch2_3;
   };
 
-  edgedb = callPackage ../tools/networking/edgedb { };
-
   eludris = callPackage ../tools/misc/eludris { };
 
   enochecker-test = with python3Packages; callPackage ../development/tools/enochecker-test { };
@@ -10894,10 +10892,6 @@ with pkgs;
 
   unixODBCDrivers = recurseIntoAttrs (callPackages ../development/libraries/unixODBCDrivers { });
 
-  v8 = callPackage ../development/libraries/v8 {
-    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
-  };
-
   valeStyles = recurseIntoAttrs (callPackages ../by-name/va/vale/styles.nix { });
 
   valhalla = callPackage ../development/libraries/valhalla {
@@ -11974,7 +11968,7 @@ with pkgs;
 
   rabbitmq-server = callPackage ../by-name/ra/rabbitmq-server/package.nix rec {
     erlang = erlang_27;
-    elixir = pkgs.elixir.override { inherit erlang; };
+    elixir = elixir_1_17.override { inherit erlang; };
   };
 
   qcal = callPackage ../tools/networking/qcal/default.nix { };
@@ -15183,17 +15177,8 @@ with pkgs;
   eiskaltdcpp = libsForQt5.callPackage ../applications/networking/p2p/eiskaltdcpp { };
 
   qemu = callPackage ../applications/virtualization/qemu {
-    inherit (darwin.apple_sdk_12_3.frameworks) CoreServices Cocoa Hypervisor Kernel vmnet;
     inherit (darwin.stubs) rez setfile;
     inherit (darwin) sigtool;
-    stdenv =
-      if stdenv.hostPlatform.isDarwin then
-        overrideSDK stdenv {
-          darwinSdkVersion = "12.3";
-          darwinMinVersion = "12.0";
-        }
-      else
-        stdenv;
   };
 
   qemu-python-utils = python3Packages.toPythonApplication (
@@ -17857,7 +17842,9 @@ with pkgs;
 
   cups-pk-helper = callPackage ../misc/cups/cups-pk-helper.nix { };
 
-  epsonscan2 = pkgs.libsForQt5.callPackage ../misc/drivers/epsonscan2 { };
+  epsonscan2 = callPackage ../by-name/ep/epsonscan2/package.nix {
+    inherit (qt5) wrapQtAppsHook qtbase;
+  };
 
   foomatic-db-ppds-withNonfreeDb = callPackage ../by-name/fo/foomatic-db-ppds/package.nix { withNonfreeDb = true; };
 
