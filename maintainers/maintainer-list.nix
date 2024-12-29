@@ -254,6 +254,14 @@
     githubId = 3417013;
     name = "Eske Nielsen";
   };
+  _4r7if3x = {
+    email = "the.artifex@proton.me";
+    matrix = "@4r7if3x:matrix.org";
+    github = "4r7if3x";
+    githubId = 8606282;
+    name = "4r7if3x";
+    keys = [ { fingerprint = "013C ED4B E769 745A CFC3  0F3C F23C 2613 2266 7A12"; } ];
+  };
   _6543 = {
     email = "6543@obermui.de";
     github = "6543";
@@ -5767,6 +5775,12 @@
     github = "dipinhora";
     githubId = 11946442;
     name = "Dipin Hora";
+  };
+  diredocks = {
+    email = "chensudago@gmail.com";
+    github = "diredocks";
+    githubId = 26994007;
+    name = "Chen Xin";
   };
   dirkx = {
     email = "dirkx@webweaving.org";
@@ -18091,6 +18105,13 @@
     name = "Peïo Thibault";
     github = "potb";
     githubId = 10779093;
+  };
+  pouya = {
+    email = "me@pouyacode.net";
+    github = "pouya-abbassi";
+    githubId = 8519318;
+    name = "Pouya Abbasi";
+    keys = [ { fingerprint = "8CC7 EB15 3563 4205 E9C2  AAD9 AF5A 5A4A D4FD 8797"; } ];
   };
   poweredbypie = {
     name = "poweredbypie";
