@@ -1952,8 +1952,6 @@ self: super: with self; {
 
   bugwarrior = callPackage ../development/python-modules/bugwarrior { };
 
-  bugz = callPackage ../development/python-modules/bugz { };
-
   buienradar = callPackage ../development/python-modules/buienradar { };
 
   build = callPackage ../development/python-modules/build { };
@@ -4879,6 +4877,8 @@ self: super: with self; {
 
   oelint-parser = callPackage ../development/python-modules/oelint-parser { };
 
+  ohmepy = callPackage ../development/python-modules/ohmepy { };
+
   openstep-parser = callPackage ../development/python-modules/openstep-parser { };
 
   openstep-plist = callPackage ../development/python-modules/openstep-plist { };
@@ -4909,7 +4909,7 @@ self: super: with self; {
 
   formulaic = callPackage ../development/python-modules/formulaic { };
 
-  foundationdb71 = callPackage ../servers/foundationdb/python.nix { foundationdb = pkgs.foundationdb71; };
+  foundationdb73 = callPackage ../servers/foundationdb/python.nix { foundationdb = pkgs.foundationdb73; };
 
   fountains = callPackage ../development/python-modules/fountains { };
 
@@ -18372,7 +18372,7 @@ self: super: with self; {
 
   zarr = callPackage ../development/python-modules/zarr { };
 
-  zc-buildout = callPackage ../development/python-modules/buildout { };
+  zc-buildout = callPackage ../development/python-modules/zc-buildout { };
 
   zc-lockfile = callPackage ../development/python-modules/zc-lockfile { };
 

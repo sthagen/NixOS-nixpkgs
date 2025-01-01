@@ -3400,10 +3400,10 @@ with pkgs;
   fdbPackages = dontRecurseIntoAttrs (callPackage ../servers/foundationdb { });
 
   inherit (fdbPackages)
-    foundationdb71
+    foundationdb73
   ;
 
-  foundationdb = foundationdb71;
+  foundationdb = foundationdb73;
 
   fuse-ext2 = darwin.apple_sdk_11_0.callPackage ../tools/filesystems/fuse-ext2 { };
 
@@ -4943,10 +4943,6 @@ with pkgs;
 
   qosmic = libsForQt5.callPackage ../applications/graphics/qosmic { };
 
-  qownnotes = qt6Packages.callPackage ../applications/office/qownnotes {
-    stdenv = if stdenv.hostPlatform.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
-  };
-
   qtikz = libsForQt5.callPackage ../applications/graphics/ktikz { };
 
   qtspim = libsForQt5.callPackage ../development/tools/misc/qtspim { };
@@ -5671,7 +5667,7 @@ with pkgs;
 
   yarn-berry = callPackage ../development/tools/yarn-berry { };
 
-  yarn2nix-moretea = callPackage ../development/tools/yarn2nix-moretea/yarn2nix { pkgs = pkgs.__splicedPackages; };
+  yarn2nix-moretea = callPackage ../development/tools/yarn2nix-moretea { pkgs = pkgs.__splicedPackages; };
 
   inherit (yarn2nix-moretea)
     yarn2nix
@@ -7166,7 +7162,16 @@ with pkgs;
 
   inherit (beam.packages.erlang_26) erlang-ls;
 
-  beamPackages = beam.packages.erlang // { __attrsFailEvaluation = true; };
+  beamPackages = dontRecurseIntoAttrs beam27Packages;
+  beamMinimalPackages = dontRecurseIntoAttrs beamMinimal27Packages;
+
+  beam25Packages = recurseIntoAttrs beam.packages.erlang_25;
+  beam26Packages = recurseIntoAttrs beam.packages.erlang_26;
+  beam27Packages = recurseIntoAttrs beam.packages.erlang_27;
+
+  beamMinimal25Packages = recurseIntoAttrs beam_minimal.packages.erlang_25;
+  beamMinimal26Packages = recurseIntoAttrs beam_minimal.packages.erlang_26;
+  beamMinimal27Packages = recurseIntoAttrs beam_minimal.packages.erlang_27;
 
   erlang_language_platform = callPackage ../by-name/er/erlang-language-platform/package.nix { };
 
@@ -7852,10 +7857,6 @@ with pkgs;
   blackfire = callPackage ../development/tools/misc/blackfire { };
 
   black-macchiato = with python3Packages; toPythonApplication black-macchiato;
-
-  bossa = callPackage ../development/embedded/bossa { };
-
-  bossa-arduino = callPackage ../development/embedded/bossa/arduino.nix { };
 
   buck = callPackage ../development/tools/build-managers/buck {
     python3 = python311;
@@ -9252,7 +9253,7 @@ with pkgs;
 
   grantlee = libsForQt5.callPackage ../development/libraries/grantlee { };
 
-  glib = callPackage ../development/libraries/glib (let
+  glib = callPackage ../by-name/gl/glib/package.nix (let
     glib-untested = glib.overrideAttrs { doCheck = false; };
   in {
     # break dependency cycles
