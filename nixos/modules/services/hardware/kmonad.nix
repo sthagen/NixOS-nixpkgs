@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  utils,
   ...
 }:
 
@@ -118,19 +119,8 @@ let
   # Build a systemd service that starts KMonad:
   mkService =
     keyboard:
-    let
-      cmd =
-        [
-          (lib.getExe cfg.package)
-          "--input"
-          ''device-file "${keyboard.device}"''
-        ]
-        ++ cfg.extraArgs
-        ++ [ "${mkCfg keyboard}" ];
-    in
     lib.nameValuePair (mkName keyboard.name) {
       description = "KMonad for ${keyboard.device}";
-      script = lib.escapeShellArgs cmd;
       unitConfig = {
         # Control rate limiting.
         # Stop the restart logic if we restart more than
@@ -139,6 +129,10 @@ let
         StartLimitBurst = 5;
       };
       serviceConfig = {
+        ExecStart = ''
+          ${lib.getExe cfg.package} ${mkCfg keyboard} \
+            ${utils.escapeSystemdExecArgs cfg.extraArgs}
+        '';
         Restart = "always";
         # Restart at increasing intervals from 2s to 1m
         RestartSec = 2;
@@ -154,6 +148,19 @@ let
           config.users.groups.uinput.name
         ] ++ keyboard.extraGroups;
       };
+      # make sure the new config is used after nixos-rebuild switch
+      # stopIfChanged controls[0] how a service is "restarted" during
+      # nixos-rebuild switch.  By default, stopIfChanged is true, which stops
+      # the old service and then starts the new service after config updates.
+      # Since we use path-based activation[1] here, the service unit will
+      # immediately[2] be started by the path unit.  Probably that start is
+      # before config updates, whcih causes the service unit to use the old
+      # config after nixos-rebuild switch.  Setting stopIfChanged to false works
+      # around this issue by restarting the service after config updates.
+      # [0]: https://nixos.org/manual/nixos/unstable/#sec-switching-systems
+      # [1]: man 7 daemon
+      # [2]: man 5 systemd.path
+      stopIfChanged = false;
     };
 in
 {
@@ -181,6 +188,17 @@ in
 
   config = lib.mkIf cfg.enable {
     hardware.uinput.enable = true;
+
+    services.udev.extraRules =
+      let
+        mkRule = name: ''
+          ACTION=="add", KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="${name}", ATTRS{id/product}=="5679", ATTRS{id/vendor}=="1235", SYMLINK+="input/by-id/${name}"
+        '';
+      in
+      lib.foldlAttrs (
+        rules: _: keyboard:
+        rules + "\n" + mkRule (mkName keyboard.name)
+      ) "" cfg.keyboards;
 
     systemd = {
       paths = lib.mapAttrs' (_: mkPath) cfg.keyboards;
