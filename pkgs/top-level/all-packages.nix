@@ -1906,10 +1906,6 @@ with pkgs;
     inherit (androidenv.androidPkgs) platform-tools;
   };
 
-  anbox = callPackage ../os-specific/linux/anbox {
-    protobuf = protobuf_21;
-  };
-
   androidenv = callPackage ../development/mobile/androidenv { };
 
   androidndkPkgs = androidndkPkgs_26;
@@ -4418,6 +4414,8 @@ with pkgs;
     nomad_1_8
     nomad_1_9
     ;
+
+  nomacs-qt6 = nomacs.override { qtVersion = 6; };
 
   nth = with python3Packages; toPythonApplication name-that-hash;
 
@@ -10231,6 +10229,17 @@ with pkgs;
     ];
   };
 
+  opencascade-occt_7_6_1 = opencascade-occt.overrideAttrs {
+    pname = "opencascade-occt";
+    version = "7.6.1";
+    src = fetchFromGitHub {
+      owner = "Open-Cascade-SAS";
+      repo = "OCCT";
+      rev = "V7_6_1";
+      sha256 = "sha256-C02P3D363UwF0NM6R4D4c6yE5ZZxCcu5CpUaoTOxh7E=";
+    };
+  };
+
   opencsg = callPackage ../development/libraries/opencsg {
     inherit (qt5) qmake;
     inherit (darwin.apple_sdk.frameworks) GLUT;
@@ -10853,7 +10862,9 @@ with pkgs;
     wine = wineWowPackages.staging;
   };
 
-  vtk_9 = libsForQt5.callPackage ../development/libraries/vtk/9.x.nix { };
+  vtk_9 = libsForQt5.callPackage ../development/libraries/vtk/9.x.nix {
+    stdenv = if stdenv.cc.isClang then llvmPackages_17.stdenv else stdenv;
+  };
 
   vtk_9_withQt5 = vtk_9.override { enableQt = true; };
 
@@ -12863,9 +12874,9 @@ with pkgs;
 
   sierra-breeze-enhanced = libsForQt5.callPackage ../data/themes/kwin-decorations/sierra-breeze-enhanced { useQt5 = true; };
 
-  scheherazade = callPackage ../data/fonts/scheherazade { version = "2.100"; };
-
-  scheherazade-new = callPackage ../data/fonts/scheherazade { };
+  scheherazade-new = scheherazade.override {
+    version = "4.300";
+  };
 
   starship = callPackage ../tools/misc/starship {
     inherit (darwin.apple_sdk.frameworks) Security Foundation Cocoa;
@@ -15288,10 +15299,6 @@ with pkgs;
 
   smartdeblur = libsForQt5.callPackage ../applications/graphics/smartdeblur { };
 
-  snd = darwin.apple_sdk_11_0.callPackage ../applications/audio/snd {
-    inherit (darwin.apple_sdk_11_0.frameworks) CoreServices CoreMIDI;
-  };
-
   soci = callPackage ../development/libraries/soci { };
 
   socialscan = with python3.pkgs; toPythonApplication socialscan;
@@ -15862,12 +15869,6 @@ with pkgs;
   wrapThunderbird = callPackage ../applications/networking/mailreaders/thunderbird/wrapper.nix { };
 
   wsjtx = qt5.callPackage ../applications/radio/wsjtx { };
-
-  wxhexeditor = callPackage ../applications/editors/wxhexeditor {
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-    inherit (llvmPackages) openmp;
-    wxGTK = wxGTK32;
-  };
 
   x11basic = callPackage ../development/compilers/x11basic {
     autoconf = buildPackages.autoconf269;
@@ -18240,18 +18241,6 @@ with pkgs;
     openssl = openssl_1_1;
   };
 
-  wxsqlite3 = callPackage ../development/libraries/wxsqlite3 {
-    wxGTK = wxGTK32;
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-    inherit (darwin.stubs) setfile rez derez;
-  };
-
-  wxsqliteplus = callPackage ../development/libraries/wxsqliteplus {
-    wxGTK = wxGTK32;
-    inherit (darwin.apple_sdk.frameworks) Cocoa;
-    inherit (darwin.stubs) setfile;
-  };
-
   xhyve = callPackage ../applications/virtualization/xhyve {
     inherit (darwin.apple_sdk.frameworks) Hypervisor vmnet;
     inherit (darwin.apple_sdk.libs) xpc;
@@ -18526,10 +18515,6 @@ with pkgs;
 
   clash-verge-rev = callPackage ../by-name/cl/clash-verge-rev/package.nix {
     libsoup = libsoup_3;
-  };
-
-  ejabberd = callPackage ../by-name/ej/ejabberd/package.nix {
-    erlang = erlang_26;
   };
 
   wings = callPackage ../by-name/wi/wings/package.nix {
