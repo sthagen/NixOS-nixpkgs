@@ -2138,6 +2138,11 @@
     name = "aszlig";
     keys = [ { fingerprint = "DD52 6BC7 767D BA28 16C0 95E5 6840 89CE 67EB B691"; } ];
   };
+  atagen = {
+    name = "atagen";
+    github = "atagen";
+    githubId = 11548989;
+  };
   atalii = {
     email = "taliauster@gmail.com";
     github = "atalii";
@@ -18541,8 +18546,8 @@
   };
   pwnwriter = {
     name = "Nabeen Tiwaree";
-    email = "hey@pwnwriter.xyz";
-    keys = [ { fingerprint = "B681 763F 9B5B DF27 9A13  9E0C 0544 A89B C519 20AA"; } ];
+    email = "hi@pwnwriter.me";
+    keys = [ { fingerprint = "C153 DE7C 0A0D 432E F033  2B0B A524 11EC 5582 DE3A"; } ];
     github = "pwnwriter";
     githubId = 90331517;
   };
