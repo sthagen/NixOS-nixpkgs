@@ -325,8 +325,6 @@ self: super: with self; {
 
   aiolimiter = callPackage ../development/python-modules/aiolimiter { };
 
-  aiolivisi = callPackage ../development/python-modules/aiolivisi { };
-
   aiolyric = callPackage ../development/python-modules/aiolyric { };
 
   aiomcache = callPackage ../development/python-modules/aiomcache { };
@@ -2644,6 +2642,8 @@ self: super: with self; {
 
   convertertools = callPackage ../development/python-modules/convertertools { };
 
+  cookidoo-api = callPackage ../development/python-modules/cookidoo-api { };
+
   cookiecutter = callPackage ../development/python-modules/cookiecutter { };
 
   cookies = callPackage ../development/python-modules/cookies { };
@@ -4080,6 +4080,8 @@ self: super: with self; {
 
   eggdeps = callPackage ../development/python-modules/eggdeps { };
 
+  eheimdigital = callPackage ../development/python-modules/eheimdigital { };
+
   eigenpy = callPackage ../development/python-modules/eigenpy { };
 
   einops = callPackage ../development/python-modules/einops { };
@@ -4494,10 +4496,7 @@ self: super: with self; {
 
   fastimport = callPackage ../development/python-modules/fastimport { };
 
-  fastjet = toPythonModule (pkgs.fastjet.override {
-    withPython = true;
-    inherit (self) python;
-  });
+  fastjet = callPackage ../development/python-modules/fastjet { };
 
   fastjsonschema = callPackage ../development/python-modules/fastjsonschema { };
 
@@ -6996,11 +6995,11 @@ self: super: with self; {
 
   kitchen = callPackage ../development/python-modules/kitchen { };
 
-  kivy = callPackage ../development/python-modules/kivy {
-    inherit (pkgs.darwin.apple_sdk.frameworks) Accelerate ApplicationServices AVFoundation;
-  };
+  kivy = callPackage ../development/python-modules/kivy { };
 
   kivy-garden = callPackage ../development/python-modules/kivy-garden { };
+
+  kivy-garden-modernmenu = callPackage ../development/python-modules/kivy-garden-modernmenu { };
 
   kiwiki-client = callPackage ../development/python-modules/kiwiki-client { };
 
@@ -7542,6 +7541,8 @@ self: super: with self; {
   livelossplot = callPackage ../development/python-modules/livelossplot { };
 
   livereload = callPackage ../development/python-modules/livereload { };
+
+  livisi = callPackage ../development/python-modules/livisi { };
 
   lizard = callPackage ../development/python-modules/lizard { };
 
@@ -9217,6 +9218,8 @@ self: super: with self; {
 
   nh3 = callPackage ../development/python-modules/nh3 { };
 
+  nhc = callPackage ../development/python-modules/nhc { };
+
   niaaml = callPackage ../development/python-modules/niaaml { };
 
   nianet = callPackage ../development/python-modules/nianet { };
@@ -9242,8 +9245,6 @@ self: super: with self; {
   nifty8 = callPackage ../development/python-modules/nifty8 { };
 
   nikola = callPackage ../development/python-modules/nikola { };
-
-  niko-home-control = callPackage ../development/python-modules/niko-home-control { };
 
   nilearn = callPackage ../development/python-modules/nilearn { };
 
@@ -10563,6 +10564,8 @@ self: super: with self; {
 
   pygelf = callPackage ../development/python-modules/pygelf { };
 
+  pygerber = callPackage ../development/python-modules/pygerber { };
+
   pygments-style-github = callPackage ../development/python-modules/pygments-style-github { };
 
   pygnmi = callPackage ../development/python-modules/pygnmi { };
@@ -10708,6 +10711,8 @@ self: super: with self; {
   pysyncthru = callPackage ../development/python-modules/pysyncthru { };
 
   pytask = callPackage ../development/python-modules/pytask { };
+
+  pytest-lsp = callPackage ../development/python-modules/pytest-lsp { };
 
   pytest-mockito = callPackage ../development/python-modules/pytest-mockito { };
 
@@ -17918,6 +17923,8 @@ self: super: with self; {
   watchgod = callPackage ../development/python-modules/watchgod { };
 
   waterfurnace = callPackage ../development/python-modules/waterfurnace { };
+
+  watergate-local-api = callPackage ../development/python-modules/watergate-local-api { };
 
   watermark = callPackage ../development/python-modules/watermark { };
 

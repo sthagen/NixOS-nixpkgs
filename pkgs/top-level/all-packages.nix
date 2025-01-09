@@ -8679,8 +8679,6 @@ with pkgs;
 
   hci = callPackage ../development/tools/continuous-integration/hci { };
 
-  isa-l = callPackage ../development/libraries/isa-l { };
-
   niv = lib.getBin (haskell.lib.compose.justStaticExecutables haskellPackages.niv);
 
   ormolu = lib.getBin (haskell.lib.compose.justStaticExecutables haskellPackages.ormolu);
@@ -11353,6 +11351,7 @@ with pkgs;
   };
 
   dict = callPackage ../servers/dict {
+    flex = flex_2_5_35;
     libmaa = callPackage ../servers/dict/libmaa.nix { };
   };
 
