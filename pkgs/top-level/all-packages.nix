@@ -1582,10 +1582,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  amber-secret = callPackage ../tools/security/amber {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   inherit (callPackages ../development/tools/ammonite {})
     ammonite_2_12
     ammonite_2_13
@@ -1957,8 +1953,6 @@ with pkgs;
   base16-builder = callPackage ../misc/base16-builder { };
 
   babelfish = callPackage ../shells/fish/babelfish.nix { };
-
-  badchars = python3Packages.callPackage ../tools/security/badchars { };
 
   bat-extras = recurseIntoAttrs (callPackages ../tools/misc/bat-extras { });
 
@@ -2552,8 +2546,8 @@ with pkgs;
 
   patool = with python3Packages; toPythonApplication patool;
 
-  pocket-casts = callPackage ../applications/audio/pocket-casts {
-    electron = electron_31;
+  pocket-casts = callPackage ../by-name/po/pocket-casts/package.nix {
+    electron = electron_32;
   };
 
   pueue = darwin.apple_sdk_11_0.callPackage ../applications/misc/pueue {
@@ -3883,10 +3877,6 @@ with pkgs;
   kbfs = callPackage ../tools/security/keybase/kbfs.nix { };
 
   keybase-gui = callPackage ../tools/security/keybase/gui.nix { };
-
-  keyscope = callPackage ../tools/security/keyscope {
-    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation IOKit Security;
-  };
 
   keystore-explorer = callPackage ../applications/misc/keystore-explorer {
     jdk = jdk11;
@@ -7380,10 +7370,8 @@ with pkgs;
 
   wireplumber = callPackage ../development/libraries/pipewire/wireplumber.nix { };
 
-  racket = callPackage ../development/interpreters/racket {
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation;
-  };
-  racket-minimal = callPackage ../development/interpreters/racket/minimal.nix { };
+  racket = callPackage ../development/interpreters/racket { };
+  racket-minimal = racket.override { isMinimal = true; };
 
   rakudo = callPackage ../development/interpreters/rakudo { };
   moarvm = darwin.apple_sdk_11_0.callPackage ../development/interpreters/rakudo/moarvm.nix {
@@ -9401,9 +9389,7 @@ with pkgs;
 
   isort = with python3Packages; toPythonApplication isort;
 
-  ispc = callPackage ../development/compilers/ispc {
-    llvmPackages = llvmPackages_17;
-  };
+  ispc = callPackage ../development/compilers/ispc { };
 
   isso = callPackage ../servers/isso {
     nodejs = nodejs_20;
@@ -10663,6 +10649,7 @@ with pkgs;
       soapyaudio
       soapybladerf
       soapyhackrf
+      soapyplutosdr
       soapyremote
       soapyrtlsdr
       soapyuhd
