@@ -7933,6 +7933,12 @@
     githubId = 248148;
     name = "Sigrid Solveig Haflínudóttir";
   };
+  ftsimas = {
+    name = "Filippos Tsimas";
+    email = "filippos.tsimas@outlook.com";
+    github = "ftsimas";
+    githubId = 47324723;
+  };
   fuerbringer = {
     email = "severin@fuerbringer.info";
     github = "fuerbringer";
@@ -11061,12 +11067,6 @@
     email = "johnpyp.dev@gmail.com";
     github = "johnpyp";
     githubId = 20625636;
-  };
-  johnramsden = {
-    email = "johnramsden@riseup.net";
-    github = "johnramsden";
-    githubId = 8735102;
-    name = "John Ramsden";
   };
   johnrichardrinehart = {
     email = "johnrichardrinehart@gmail.com";
@@ -15905,6 +15905,12 @@
     githubId = 7277663;
     email = "nathaniel.brough@gmail.com";
     name = "Nathaniel Brough";
+  };
+  nathanregner = {
+    email = "nathanregner@gmail.com";
+    github = "nathanregner";
+    githubId = 9659564;
+    name = "Nathan Regner";
   };
   nathanruiz = {
     email = "nathanruiz@protonmail.com";
