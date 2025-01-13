@@ -13862,6 +13862,13 @@
     githubId = 1678126;
     name = "Marco A L Barbosa";
   };
+  malik = {
+    name = "Malik";
+    email = "abdelmalik.najhi@stud.hs-kempten.de";
+    github = "malikwirin";
+    githubId = 117918464;
+    keys = [ { fingerprint = "B5ED 595C 8C7E 133C 6B68  63C8 CFEF 1E35 0351 F72D"; } ];
+  };
   malo = {
     email = "mbourgon@gmail.com";
     github = "malob";
@@ -15760,6 +15767,12 @@
     github = "myypo";
     githubId = 110892040;
     name = "Mykyta Polchanov";
+  };
+  mzabani = {
+    email = "mzabani@gmail.com";
+    github = "mzabani";
+    githubId = 4662691;
+    name = "Marcelo Zabani";
   };
   mzacho = {
     email = "nixpkgs@martinzacho.net";
@@ -23193,6 +23206,12 @@
     github = "tomberek";
     githubId = 178444;
     name = "Thomas Bereknyei";
+  };
+  tombert = {
+    email = "thomas@gebert.app";
+    github = "tombert";
+    githubId = 2027925;
+    name = "Thomas Gebert";
   };
   tomfitzhenry = {
     email = "tom@tom-fitzhenry.me.uk";
