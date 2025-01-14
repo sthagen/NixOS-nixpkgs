@@ -576,8 +576,6 @@ self: super: with self; {
 
   amcrest = callPackage ../development/python-modules/amcrest { };
 
-  amiibo-py = callPackage ../development/python-modules/amiibo-py { };
-
   amply = callPackage ../development/python-modules/amply { };
 
   amqp = callPackage ../development/python-modules/amqp { };
@@ -4212,6 +4210,8 @@ self: super: with self; {
 
   eradicate = callPackage ../development/python-modules/eradicate { };
 
+  eris = callPackage ../development/python-modules/eris { };
+
   es-client = callPackage ../development/python-modules/es-client { };
 
   esig = callPackage ../development/python-modules/esig { };
@@ -4483,6 +4483,8 @@ self: super: with self; {
   fastentrypoints = callPackage ../development/python-modules/fastentrypoints { };
 
   faster-whisper = callPackage ../development/python-modules/faster-whisper { };
+
+  fastexcel = callPackage ../development/python-modules/fastexcel { };
 
   fastimport = callPackage ../development/python-modules/fastimport { };
 
@@ -6926,6 +6928,8 @@ self: super: with self; {
   kconfiglib = callPackage ../development/python-modules/kconfiglib { };
 
   kde-material-you-colors = callPackage ../development/python-modules/kde-material-you-colors { };
+
+  kdl-py = callPackage ../development/python-modules/kdl-py { };
 
   keba-kecontact = callPackage ../development/python-modules/keba-kecontact { };
 
@@ -14143,8 +14147,6 @@ self: super: with self; {
   riscv-config = callPackage ../development/python-modules/riscv-config { };
 
   riscv-isac = callPackage ../development/python-modules/riscv-isac { };
-
-  rising = callPackage ../development/python-modules/rising { };
 
   ritassist = callPackage ../development/python-modules/ritassist { };
 
