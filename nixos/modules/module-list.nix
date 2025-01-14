@@ -1465,6 +1465,7 @@
   ./services/web-apps/documize.nix
   ./services/web-apps/dokuwiki.nix
   ./services/web-apps/dolibarr.nix
+  ./services/web-apps/echoip.nix
   ./services/web-apps/eintopf.nix
   ./services/web-apps/engelsystem.nix
   ./services/web-apps/ethercalc.nix
@@ -1582,6 +1583,7 @@
   ./services/web-apps/your_spotify.nix
   ./services/web-apps/youtrack.nix
   ./services/web-apps/zabbix.nix
+  ./services/web-apps/zipline.nix
   ./services/web-apps/zitadel.nix
   ./services/web-servers/agate.nix
   ./services/web-servers/apache-httpd/default.nix

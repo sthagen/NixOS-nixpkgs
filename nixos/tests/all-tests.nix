@@ -294,6 +294,7 @@ in {
   early-mount-options = handleTest ./early-mount-options.nix {};
   ec2-config = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-config or {};
   ec2-nixops = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-nixops or {};
+  echoip = handleTest ./echoip.nix {};
   ecryptfs = handleTest ./ecryptfs.nix {};
   fscrypt = handleTest ./fscrypt.nix {};
   fastnetmon-advanced = runTest ./fastnetmon-advanced.nix;
@@ -1195,6 +1196,7 @@ in {
   zeronet-conservancy = handleTest ./zeronet-conservancy.nix {};
   zfs = handleTest ./zfs.nix {};
   zigbee2mqtt = handleTest ./zigbee2mqtt.nix {};
+  zipline = handleTest ./zipline.nix {};
   zoneminder = handleTest ./zoneminder.nix {};
   zookeeper = handleTest ./zookeeper.nix {};
   zram-generator = handleTest ./zram-generator.nix {};
