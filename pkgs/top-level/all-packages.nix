@@ -2328,8 +2328,6 @@ with pkgs;
     inherit (darwin) libobjc libresolv;
   };
 
-  gping = callPackage ../tools/networking/gping { };
-
   greg = callPackage ../applications/audio/greg {
     pythonPackages = python3Packages;
   };
@@ -7605,7 +7603,7 @@ with pkgs;
   electron_28 = electron_28-bin;
   electron_29 = electron_29-bin;
   electron_30 = electron_30-bin;
-  electron_31 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_31 then electron-source.electron_31 else electron_31-bin;
+  electron_31 = electron_31-bin;
   electron_32 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_32 then electron-source.electron_32 else electron_32-bin;
   electron_33 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_33 then electron-source.electron_33 else electron_33-bin;
   electron = electron_33;
@@ -7998,7 +7996,7 @@ with pkgs;
 
   gnumake = callPackage ../development/tools/build-managers/gnumake { };
   gradle-packages = import ../development/tools/build-managers/gradle {
-    inherit jdk11 jdk17 jdk21;
+    inherit jdk17 jdk21;
   };
   gradleGen = gradle-packages.gen;
   wrapGradle = callPackage gradle-packages.wrapGradle { };
