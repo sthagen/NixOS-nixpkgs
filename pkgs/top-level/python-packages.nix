@@ -1595,6 +1595,8 @@ self: super: with self; {
 
   beartype = callPackage ../development/python-modules/beartype { };
 
+  beaupy = callPackage ../development/python-modules/beaupy { };
+
   beautiful-date = callPackage ../development/python-modules/beautiful-date { };
 
   beautifulsoup4 = callPackage ../development/python-modules/beautifulsoup4 { };
@@ -8479,6 +8481,8 @@ self: super: with self; {
 
   mpldatacursor = callPackage ../development/python-modules/mpldatacursor { };
 
+  mplcursors = callPackage ../development/python-modules/mplcursors { };
+
   mplfinance = callPackage ../development/python-modules/mplfinance { };
 
   mplhep = callPackage ../development/python-modules/mplhep { };
@@ -10822,6 +10826,8 @@ self: super: with self; {
   python-troveclient = callPackage ../development/python-modules/python-troveclient { };
 
   python-idzip = callPackage ../development/python-modules/python-idzip { };
+
+  python-yakh = callPackage ../development/python-modules/python-yakh { };
 
   pythonfinder = callPackage ../development/python-modules/pythonfinder { };
 
@@ -13769,6 +13775,8 @@ self: super: with self; {
 
   querystring-parser = callPackage ../development/python-modules/querystring-parser { };
 
+  questo = callPackage ../development/python-modules/questo { };
+
   questionary = callPackage ../development/python-modules/questionary { };
 
   queuelib = callPackage ../development/python-modules/queuelib { };
@@ -14137,6 +14145,8 @@ self: super: with self; {
   rich-theme-manager = callPackage ../development/python-modules/rich-theme-manager { };
 
   riden = callPackage ../development/python-modules/riden { };
+
+  rigour = callPackage ../development/python-modules/rigour { };
 
   ring-doorbell = callPackage ../development/python-modules/ring-doorbell { };
 
