@@ -57,6 +57,7 @@
   tmux,
   tup,
   typescript,
+  typescript-language-server,
   vim,
   which,
   xdg-utils,
@@ -1414,6 +1415,7 @@ in
       "lazyvim.plugins.extras.coding.blink"
       "lazyvim.plugins.extras.coding.luasnip"
       "lazyvim.plugins.extras.editor.fzf"
+      "lazyvim.plugins.extras.editor.snacks_picker"
       "lazyvim.plugins.extras.editor.telescope"
       "lazyvim.plugins.extras.formatting.prettier"
       "lazyvim.plugins.extras.lang.markdown"
@@ -2854,6 +2856,8 @@ in
       "snacks.picker.actions"
       # Optional trouble integration
       "trouble.sources.profiler"
+      # TODO: Plugin requires libsqlite available, create a test for it
+      "snacks.picker.util.db"
     ];
   };
 
@@ -3297,6 +3301,9 @@ in
     dependencies = with self; [
       nvim-lspconfig
       plenary-nvim
+    ];
+    runtimeDeps = [
+      typescript-language-server
     ];
   };
 
