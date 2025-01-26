@@ -411,6 +411,7 @@ mapAliases {
   fmt_8 = throw "fmt_8 has been removed as it is obsolete and was no longer used in the tree"; # Added 2024-11-12
   foldingathome = throw "'foldingathome' has been renamed to/replaced by 'fahclient'"; # Converted to throw 2024-10-17
   forgejo-actions-runner = forgejo-runner; # Added 2024-04-04
+  fornalder = throw "'fornalder' has been removed as it is unmaintained upstream"; # Added 2025-01-25
   foundationdb71 = throw "foundationdb71 has been removed; please upgrade to foundationdb73"; # Added 2024-12-28
 
   fractal-next = fractal; # added 2023-11-25
@@ -455,6 +456,7 @@ mapAliases {
   gfortran7 = throw "gfortran7 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-11-20
   gfortran8 = throw "gfortran8 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-11-20
   ghostwriter = libsForQt5.kdeGear.ghostwriter; # Added 2023-03-18
+  git-codeowners = throw "'git-codeowners' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
   gmp5 = throw "'gmp5' has been removed as it is unmaintained. Consider using 'gmp' instead"; # Added 2024-10-28
   gmpc = throw "'gmpc' has been removed due to lack of maintenance upstream. Consider using 'plattenalbum' instead"; # Added 2024-09-14
   gmtk = throw "'gmtk' has been removed due to lack of maintenance upstream"; # Added 2024-09-14
@@ -525,6 +527,7 @@ mapAliases {
   gnuradio3_8 = throw "gnuradio3_8 has been removed because it was too old and incompatible with a not EOL swig"; # Added 2024-11-18
   gnuradio3_8Minimal = throw "gnuradio3_8Minimal has been removed because it was too old and incompatible with a not EOL swig"; # Added 2024-11-18
   gnuradio3_8Packages = throw "gnuradio3_8Minimal has been removed because it was too old and incompatible with a not EOL swig"; # Added 2024-11-18
+  gnustep = throw "The gnustep scope has been replaced with top-level packages: gnustep-back, -base, -gui, -libobjc, -make, -systempreferences; gorm, gworkspace, projectcenter."; # Added 2025-01-25
   gn1924 = throw "gn1924 has been removed because it was broken and no longer used by envoy."; # Added 2024-11-03
   gobby5 = throw "'gobby5' has been renamed to/replaced by 'gobby'"; # Converted to throw 2024-10-17
   gradle_6 = throw "Gradle 6 has been removed, as it is end-of-life (https://endoflife.date/gradle) and has many vulnerabilities that are not resolved until Gradle 7."; # Added 2024-10-30
@@ -1243,6 +1246,7 @@ mapAliases {
   sequoia = sequoia-sq; # Added 2023-06-26
   sexp = sexpp; # Added 2023-07-03
   inherit (libsForQt5.mauiPackages) shelf; # added 2022-05-17
+  shell-hist = throw "'shell-hist' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
   shipyard = jumppad; # Added 2023-06-06
   siduck76-st = st-snazzy; # Added 2024-12-24
   signal-desktop-beta = throw "signal-desktop-beta has been removed to make the signal-desktop package easier to maintain";
@@ -1371,6 +1375,7 @@ mapAliases {
   tix = tclPackages.tix; # Added 2024-10-02
   tkcvs = tkrev; # Added 2022-03-07
   tkimg = tclPackages.tkimg; # Added 2024-10-02
+  todiff = "'todiff' was removed due to lack of known users"; # Added 2025-01-25
   toil = throw "toil was removed as it was broken and requires obsolete versions of libraries"; # Added 2024-09-22
   tokodon = plasma5Packages.tokodon;
   tokyo-night-gtk = tokyonight-gtk-theme; # Added 2024-01-28
@@ -1395,6 +1400,7 @@ mapAliases {
   tvbrowser-bin = tvbrowser; # Added 2023-03-02
   tvheadend = throw "tvheadend has been removed as it nobody was willing to maintain it and it was stuck on an unmaintained version that required FFmpeg 4; please see https://github.com/NixOS/nixpkgs/pull/332259 if you are interested in maintaining a newer version"; # Added 2024-08-21
   typst-fmt = typstfmt; # Added 2023-07-15
+  typst-lsp = throw "'typst-lsp' has been removed due to lack of upstream maintenance, consider using 'tinymist' instead"; # Added 2025-01-25
   typst-preview = throw "The features of 'typst-preview' have been consolidated to 'tinymist', an all-in-one language server for typst"; # Added 2024-07-07
 
   ### U ###
