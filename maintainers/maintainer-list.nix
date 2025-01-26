@@ -6173,6 +6173,13 @@
     githubId = 20759788;
     name = "JP Lippold";
   };
+  DrakeTDL = {
+    name = "Drake";
+    email = "draketdl@mailbox.org";
+    matrix = "@draketdl:matrix.org";
+    github = "DrakeTDL";
+    githubId = 22124013;
+  };
   dramaturg = {
     email = "seb@ds.ag";
     github = "dramaturg";
@@ -13181,6 +13188,12 @@
     github = "linuxissuper";
     githubId = 74221543;
     name = "Moritz Goltdammer";
+  };
+  linuxmobile = {
+    email = "bdiez19@gmail.com";
+    github = "linuxmobile";
+    githubId = 10554636;
+    name = "Braian A. Diez";
   };
   lionello = {
     email = "lio@lunesu.com";
