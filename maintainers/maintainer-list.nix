@@ -11373,6 +11373,12 @@
     github = "josephsurin";
     githubId = 14977484;
   };
+  joshainglis = {
+    name = "Josha Inglis";
+    email = "joshainglis@gmail.com";
+    github = "joshainglis";
+    githubId = 1281131;
+  };
   joshniemela = {
     name = "Joshua Niemelä";
     email = "josh@jniemela.dk";
@@ -21273,6 +21279,12 @@
     github = "ein-shved";
     githubId = 3513222;
   };
+  ShyAssassin = {
+    name = "[Assassin]";
+    githubId = 49711232;
+    github = "ShyAssassin";
+    email = "ShyAssassin@assassin.dev";
+  };
   shyim = {
     email = "s.sayakci@gmail.com";
     github = "shyim";
@@ -23205,6 +23217,12 @@
     github = "Thra11";
     githubId = 1391883;
     name = "Tom Hall";
+  };
+  three = {
+    email = "eric@ericroberts.dev";
+    github = "three";
+    githubId = 1761259;
+    name = "Eric Roberts";
   };
   thtrf = {
     email = "thtrf@proton.me";
