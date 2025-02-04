@@ -5974,6 +5974,12 @@
     githubId = 523628;
     name = "Jonathan Strickland";
   };
+  djds = {
+    email = "git@djds.dev";
+    github = "djds";
+    githubId = 4218822;
+    name = "djds";
+  };
   Dje4321 = {
     email = "dje4321@gmail.com";
     github = "dje4321";
@@ -25075,6 +25081,12 @@
     github = "wrmilling";
     githubId = 6162814;
     keys = [ { fingerprint = "21E1 6B8D 2EE8 7530 6A6C  9968 D830 77B9 9F8C 6643"; } ];
+  };
+  wrvsrx = {
+    name = "wrvsrx";
+    email = "wrvsrx@outlook.com";
+    github = "wrvsrx";
+    githubId = 42770726;
   };
   wscott = {
     email = "wsc9tt@gmail.com";
