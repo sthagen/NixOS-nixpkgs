@@ -1484,10 +1484,6 @@ with pkgs;
 
   krusader = libsForQt5.callPackage ../applications/file-managers/krusader { };
 
-  lf = callPackage ../applications/file-managers/lf { };
-
-  ctpv = callPackage ../applications/file-managers/lf/ctpv.nix { };
-
   mc = callPackage ../applications/file-managers/mc {
     inherit (darwin) autoSignDarwinBinariesHook;
   };
@@ -7294,7 +7290,7 @@ with pkgs;
   wireplumber = callPackage ../development/libraries/pipewire/wireplumber.nix { };
 
   racket = callPackage ../development/interpreters/racket { };
-  racket-minimal = racket.override { isMinimal = true; };
+  racket-minimal = callPackage ../development/interpreters/racket/minimal.nix { };
 
   rakudo = callPackage ../development/interpreters/rakudo { };
   moarvm = darwin.apple_sdk_11_0.callPackage ../development/interpreters/rakudo/moarvm.nix {
@@ -14639,6 +14635,10 @@ with pkgs;
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins {});
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix { };
 
+  obsidian = callPackage ../by-name/ob/obsidian/package.nix {
+    electron = electron_33;
+  };
+
   okms-cli = callPackage ../by-name/ok/okms-cli/package.nix {
     buildGoModule = buildGo123Module;
   };
@@ -18350,5 +18350,9 @@ with pkgs;
 
   wings = callPackage ../by-name/wi/wings/package.nix {
     erlang = erlang_25;
+  };
+
+  rustdesk-flutter = callPackage ../by-name/ru/rustdesk-flutter/package.nix {
+    flutter = flutter324;
   };
 }
