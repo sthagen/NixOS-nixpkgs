@@ -2747,6 +2747,12 @@
     githubId = 34620799;
     name = "Jacob Bachmann";
   };
+  bcooley = {
+    email = "bradley.m.cooley@gmail.com";
+    github = "Bradley-Cooley";
+    githubId = 5409401;
+    name = "Bradley Cooley";
+  };
   bcyran = {
     email = "bazyli@cyran.dev";
     github = "bcyran";
@@ -16672,6 +16678,13 @@
     github = "nipeharefa";
     githubId = 12620257;
   };
+  niraethm = {
+    name = "Rémi Akirazar";
+    email = "randormi@devcpu.co";
+    matrix = "@lysgonul:bark.lgbt";
+    github = "niraethm";
+    githubId = 20865531;
+  };
   NIS = {
     name = "NSC IT Solutions";
     github = "dev-nis";
@@ -19576,6 +19589,12 @@
     github = "rennsax";
     githubId = 93167100;
     keys = [ { fingerprint = "9075 CEF8 9850 D261 6599  641A A2C9 36D5 B88C 139C"; } ];
+  };
+  renpenguin = {
+    email = "redpenguin777@yahoo.com";
+    github = "renpenguin";
+    githubId = 79577742;
+    name = "ren";
   };
   renzo = {
     email = "renzocarbonara@gmail.com";
