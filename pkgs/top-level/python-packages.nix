@@ -51,6 +51,8 @@ self: super: with self; {
 
   acquire = callPackage ../development/python-modules/acquire { };
 
+  acres = callPackage ../development/python-modules/acres { };
+
   actdiag = callPackage ../development/python-modules/actdiag { };
 
   acunetix = callPackage ../development/python-modules/acunetix { };
@@ -6797,6 +6799,8 @@ self: super: with self; {
 
   jsonpath-ng = callPackage ../development/python-modules/jsonpath-ng { };
 
+  jsonpath-python = callPackage ../development/python-modules/jsonpath-python { };
+
   jsonpickle = callPackage ../development/python-modules/jsonpickle { };
 
   jsonpointer = callPackage ../development/python-modules/jsonpointer { };
@@ -7693,6 +7697,8 @@ self: super: with self; {
 
   llm = callPackage ../development/python-modules/llm { };
 
+  llm-anthropic = callPackage ../development/python-modules/llm-anthropic { };
+
   llm-cmd = callPackage ../development/python-modules/llm-cmd { };
 
   llm-gguf = callPackage ../development/python-modules/llm-gguf { };
@@ -8320,6 +8326,10 @@ self: super: with self; {
   misaka = callPackage ../development/python-modules/misaka { };
 
   misoc = callPackage ../development/python-modules/misoc { };
+
+  miss-hit = callPackage ../development/python-modules/miss-hit { };
+
+  miss-hit-core = callPackage ../development/python-modules/miss-hit-core { };
 
   mistletoe = callPackage ../development/python-modules/mistletoe { };
 
@@ -10339,6 +10349,13 @@ self: super: with self; {
   pescea = callPackage ../development/python-modules/pescea { };
 
   pesq = callPackage ../development/python-modules/pesq { };
+
+  petsc4py = toPythonModule (pkgs.petsc.override {
+    python3 = python;
+    python3Packages = self;
+    withPetsc4py = true;
+    withFullDeps = true;
+  });
 
   pex = callPackage ../development/python-modules/pex { };
 

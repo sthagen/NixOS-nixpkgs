@@ -1521,6 +1521,12 @@
     githubId = 962885;
     name = "Andrew Chambers";
   };
+  andrewgazelka = {
+    email = "andrew@gazelka.com";
+    github = "andrewgazelka";
+    githubId = 7644264;
+    name = "Andrew Gazelka";
+  };
   andrewrk = {
     email = "superjoe30@gmail.com";
     github = "andrewrk";
@@ -23459,6 +23465,12 @@
     email = "mr.trubach@icloud.com";
     github = "tie";
     githubId = 14792994;
+  };
+  tiferrei = {
+    name = "Tiago Ferreira";
+    email = "me@tiferrei.com";
+    github = "tiferrei";
+    githubId = 8849915;
   };
   tilcreator = {
     name = "TilCreator";
