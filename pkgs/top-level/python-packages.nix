@@ -4275,6 +4275,8 @@ self: super: with self; {
 
   esphome-dashboard-api = callPackage ../development/python-modules/esphome-dashboard-api { };
 
+  esphome-glyphsets = callPackage ../development/python-modules/esphome-glyphsets { };
+
   esprima = callPackage ../development/python-modules/esprima { };
 
   escapism = callPackage ../development/python-modules/escapism { };
@@ -8068,7 +8070,9 @@ self: super: with self; {
 
   mayavi = pkgs.libsForQt5.callPackage ../development/python-modules/mayavi {
     inherit buildPythonPackage pythonOlder pythonAtLeast;
-    inherit (self) pyface pygments numpy packaging vtk traitsui envisage apptools pyqt5;
+    # when next release contains numpy2 support unpin
+    # https://github.com/enthought/mayavi/pull/1315
+    inherit (self) pyface pygments numpy_1 packaging vtk traitsui envisage apptools pyqt5;
   };
 
   mayim = callPackage ../development/python-modules/mayim { };
@@ -18628,7 +18632,7 @@ self: super: with self; {
 
   yfinance = callPackage ../development/python-modules/yfinance { };
 
-  yoda = toPythonModule (pkgs.yoda.override { inherit python; });
+  yoda = toPythonModule (pkgs.yoda.override { python3 = python; });
 
   yolink-api = callPackage ../development/python-modules/yolink-api { };
 
