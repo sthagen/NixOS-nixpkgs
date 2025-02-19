@@ -1936,6 +1936,8 @@ self: super: with self; {
 
   browser-cookie3 = callPackage ../development/python-modules/browser-cookie3 { };
 
+  browserforge = callPackage ../development/python-modules/browserforge { };
+
   brunt = callPackage ../development/python-modules/brunt { };
 
   bsddb3 = callPackage ../development/python-modules/bsddb3 { };
@@ -12802,6 +12804,8 @@ self: super: with self; {
   pysigma-backend-sqlite = callPackage ../development/python-modules/pysigma-backend-sqlite { };
 
   pysigma-backend-insightidr = callPackage ../development/python-modules/pysigma-backend-insightidr { };
+
+  pysigma-backend-loki = callPackage ../development/python-modules/pysigma-backend-loki { };
 
   pysigma-pipeline-crowdstrike = callPackage ../development/python-modules/pysigma-pipeline-crowdstrike { };
 
