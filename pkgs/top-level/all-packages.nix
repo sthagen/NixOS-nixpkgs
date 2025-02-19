@@ -15787,7 +15787,7 @@ with pkgs;
   youtube-dl-light = with python3Packages; toPythonApplication youtube-dl-light;
 
   youtube-music = callPackage ../applications/audio/youtube-music {
-    pnpm = pnpm_9;
+    pnpm = pnpm_10;
   };
 
   youtube-tui = callPackage ../applications/video/youtube-tui {
@@ -17362,10 +17362,6 @@ with pkgs;
 
   pythia = callPackage ../development/libraries/physics/pythia {
     hepmc = hepmc2;
-  };
-
-  rivet = callPackage ../development/libraries/physics/rivet {
-    imagemagick = graphicsmagick-imagemagick-compat;
   };
 
   yoda-with-root = lowPrio (yoda.override {
