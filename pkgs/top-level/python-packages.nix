@@ -1589,6 +1589,8 @@ self: super: with self; {
 
   beancount = callPackage ../development/python-modules/beancount { };
 
+  beancount_2 = callPackage ../development/python-modules/beancount/2.nix { };
+
   beancount-black = callPackage ../development/python-modules/beancount-black { };
 
   beancount-parser = callPackage ../development/python-modules/beancount-parser { };
@@ -1596,6 +1598,8 @@ self: super: with self; {
   beancount-docverif = callPackage ../development/python-modules/beancount-docverif { };
 
   beancount-plugin-utils = callPackage ../development/python-modules/beancount-plugin-utils { };
+
+  beangulp = callPackage ../development/python-modules/beangulp { };
 
   beanhub-cli = callPackage ../development/python-modules/beanhub-cli { };
 
@@ -2563,6 +2567,8 @@ self: super: with self; {
   colorlover = callPackage ../development/python-modules/colorlover { };
 
   colormath = callPackage ../development/python-modules/colormath { };
+
+  colormath2 = callPackage ../development/python-modules/colormath2 { };
 
   colorspacious = callPackage ../development/python-modules/colorspacious { };
 
@@ -4682,6 +4688,8 @@ self: super: with self; {
 
   fitbit = callPackage ../development/python-modules/fitbit { };
 
+  fitfile = callPackage ../development/python-modules/fitfile { };
+
   fivem-api = callPackage ../development/python-modules/fivem-api { };
 
   fixerio = callPackage ../development/python-modules/fixerio { };
@@ -6261,6 +6269,8 @@ self: super: with self; {
   icontract = callPackage ../development/python-modules/icontract { };
 
   id = callPackage ../development/python-modules/id { };
+
+  idbutils = callPackage ../development/python-modules/idbutils { };
 
   identify = callPackage ../development/python-modules/identify { };
 
@@ -9580,6 +9590,8 @@ self: super: with self; {
 
   nyt-games = callPackage ../development/python-modules/nyt-games { };
 
+  petl = callPackage ../development/python-modules/petl { };
+
   plugp100 = callPackage ../development/python-modules/plugp100 {};
 
   python-bugzilla = callPackage ../development/python-modules/python-bugzilla { };
@@ -10763,7 +10775,7 @@ self: super: with self; {
 
   pyhepmc = callPackage ../development/python-modules/pyhepmc { };
 
-  pyhiveapi = callPackage ../development/python-modules/pyhiveapi { };
+  pyhive-integration = callPackage ../development/python-modules/pyhive-integration { };
 
   pyhumps = callPackage ../development/python-modules/pyhumps { };
 
@@ -16079,6 +16091,8 @@ self: super: with self; {
 
   tatsu = callPackage ../development/python-modules/tatsu { };
 
+  tatsu-lts = callPackage ../development/python-modules/tatsu-lts { };
+
   taxi = callPackage ../development/python-modules/taxi { };
 
   taxii2-client = callPackage ../development/python-modules/taxii2-client { };
@@ -16094,6 +16108,8 @@ self: super: with self; {
   tbm-utils = callPackage ../development/python-modules/tbm-utils { };
 
   tcolorpy = callPackage ../development/python-modules/tcolorpy { };
+
+  tcxfile = callPackage ../development/python-modules/tcxfile { };
 
   tcxparser = callPackage ../development/python-modules/tcxparser { };
 
