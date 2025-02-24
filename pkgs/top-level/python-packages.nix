@@ -4488,6 +4488,8 @@ self: super: with self; {
 
   factory-boy = callPackage ../development/python-modules/factory-boy { };
 
+  faicons = callPackage ../development/python-modules/faicons { };
+
   fairscale = callPackage ../development/python-modules/fairscale { };
 
   fairseq = callPackage ../development/python-modules/fairseq { };
@@ -5351,6 +5353,8 @@ self: super: with self; {
   github-webhook = callPackage ../development/python-modules/github-webhook { };
 
   github3-py = callPackage ../development/python-modules/github3-py { };
+
+  gitingest = callPackage ../development/python-modules/gitingest { };
 
   gitignore-parser = callPackage ../development/python-modules/gitignore-parser { };
 
@@ -6391,6 +6395,8 @@ self: super: with self; {
   inference-gym = callPackage ../development/python-modules/inference-gym { };
 
   infinity = callPackage ../development/python-modules/infinity { };
+
+  inflate64 = callPackage ../development/python-modules/inflate64 { };
 
   inflect = callPackage ../development/python-modules/inflect { };
 
@@ -8698,6 +8704,8 @@ self: super: with self; {
 
   multitasking = callPackage ../development/python-modules/multitasking { };
 
+  multivolumefile = callPackage ../development/python-modules/multivolumefile { };
+
   munch = callPackage ../development/python-modules/munch { };
 
   mung = callPackage ../development/python-modules/mung { };
@@ -10132,6 +10140,8 @@ self: super: with self; {
 
   pandas-datareader = callPackage ../development/python-modules/pandas-datareader { };
 
+  pandas-ta = callPackage ../development/python-modules/pandas-ta { };
+
   pandera = callPackage ../development/python-modules/pandera { };
 
   pandoc-attributes = callPackage ../development/python-modules/pandoc-attributes { };
@@ -10708,6 +10718,8 @@ self: super: with self; {
 
   py65 = callPackage ../development/python-modules/py65 { };
 
+  py7zr = callPackage ../development/python-modules/py7zr { };
+
   pyabpoa = toPythonModule (pkgs.abpoa.override {
     enablePython = true;
     python3Packages = self;
@@ -10722,6 +10734,8 @@ self: super: with self; {
   pyatem = callPackage ../development/python-modules/pyatem { };
 
   pyatome = callPackage ../development/python-modules/pyatome { };
+
+  pybcj = callPackage ../development/python-modules/pybcj { };
 
   pycketcasts = callPackage ../development/python-modules/pycketcasts { };
 
@@ -10851,6 +10865,8 @@ self: super: with self; {
   pypoint = callPackage ../development/python-modules/pypoint { };
 
   pypoolstation = callPackage ../development/python-modules/pypoolstation { };
+
+  pyppmd = callPackage ../development/python-modules/pyppmd { };
 
   pyrail = callPackage ../development/python-modules/pyrail { };
 
@@ -14864,6 +14880,8 @@ self: super: with self; {
 
   senf = callPackage ../development/python-modules/senf { };
 
+  sensai-utils = callPackage ../development/python-modules/sensai-utils { };
+
   sense-energy = callPackage ../development/python-modules/sense-energy { };
 
   sensirion-ble = callPackage ../development/python-modules/sensirion-ble { };
@@ -16421,6 +16439,8 @@ self: super: with self; {
   tkinter = callPackage ../development/python-modules/tkinter {
     py = python.override (lib.optionalAttrs (!python.isPyPy) { x11Support = true; });
   };
+
+  tianshou = callPackage ../development/python-modules/tianshou { };
 
   tidalapi = callPackage ../development/python-modules/tidalapi { };
 
