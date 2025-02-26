@@ -4162,8 +4162,6 @@ with pkgs;
 
   matrix-sdk-crypto-nodejs = callPackage ../development/libraries/matrix-sdk-crypto-nodejs { };
 
-  makemkv = libsForQt5.callPackage ../applications/video/makemkv { };
-
   man = man-db;
 
   mangohud = callPackage ../tools/graphics/mangohud {
@@ -5096,8 +5094,6 @@ with pkgs;
   };
 
   texmaker = qt6Packages.callPackage ../applications/editors/texmaker { };
-
-  texstudio = qt6Packages.callPackage ../applications/editors/texstudio { };
 
   textadept = libsForQt5.callPackage ../applications/editors/textadept { };
 
@@ -15878,10 +15874,6 @@ with pkgs;
 
   monero-cli = callPackage ../applications/blockchains/monero-cli {
     inherit (darwin.apple_sdk.frameworks) CoreData IOKit;
-  };
-
-  haven-cli = callPackage ../applications/blockchains/haven-cli {
-    inherit (darwin.apple_sdk.frameworks) CoreData IOKit PCSC;
   };
 
   monero-gui = libsForQt5.callPackage ../applications/blockchains/monero-gui { };
