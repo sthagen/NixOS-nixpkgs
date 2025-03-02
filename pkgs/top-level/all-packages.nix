@@ -369,6 +369,7 @@ with pkgs;
     gandi = python3Packages.callPackage ../tools/networking/octodns/providers/gandi { };
     hetzner = python3Packages.callPackage ../tools/networking/octodns/providers/hetzner { };
     powerdns = python3Packages.callPackage ../tools/networking/octodns/providers/powerdns { };
+    cloudflare = python3Packages.callPackage ../tools/networking/octodns/providers/cloudflare { };
   };
 
   oletools = with python3.pkgs; toPythonApplication oletools;
@@ -14397,8 +14398,6 @@ with pkgs;
   mwic = callPackage ../applications/misc/mwic {
     pythonPackages = python3Packages;
   };
-
-  neomutt = darwin.apple_sdk_11_0.callPackage ../applications/networking/mailreaders/neomutt { };
 
   natron = libsForQt5.callPackage ../applications/video/natron { };
 

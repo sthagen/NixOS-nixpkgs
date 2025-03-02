@@ -4111,6 +4111,10 @@ with self; {
     };
     nativeBuildInputs = [ pkgs.ld-is-cc-hook ];
     buildInputs = [ ModuleBuildXSUtil ];
+    #  src/compiler/util/Compiler_double_charactor_operator.cpp:9:54: error: ISO C++17 does not allow 'register' storage class specifier [-Wregister]
+    env = lib.optionalAttrs stdenv.cc.isClang {
+      NIX_CFLAGS_COMPILE = "-Wno-error=register";
+    };
     meta = {
       homepage = "https://github.com/goccy/p5-Compiler-Lexer";
       description = "Lexical Analyzer for Perl5";
@@ -24079,12 +24083,12 @@ with self; {
 
   SysVirt = buildPerlModule rec {
     pname = "Sys-Virt";
-    version = "10.9.0";
+    version = "11.0.0";
     src = fetchFromGitLab {
       owner = "libvirt";
       repo = "libvirt-perl";
-      rev = "v${version}";
-      hash = "sha256-g2HH9Ep5cAa4qXo9/MKJmxeive6oqHQEX9C8qY+u2g4=";
+      tag = "v${version}";
+      hash = "sha256-k1fpVLWbFgZOUvCPLN6EpYgSfpwig5mHiWMRo8iRvZc=";
     };
     nativeBuildInputs = [ pkgs.pkg-config ];
     buildInputs = [ pkgs.libvirt CPANChanges TestPod TestPodCoverage XMLXPath ];
