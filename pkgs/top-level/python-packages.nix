@@ -427,6 +427,8 @@ self: super: with self; {
 
   aiosql = callPackage ../development/python-modules/aiosql { };
 
+  aiosseclient = callPackage ../development/python-modules/aiosseclient { };
+
   aiosenz = callPackage ../development/python-modules/aiosenz { };
 
   aioserial = callPackage ../development/python-modules/aioserial { };
@@ -15639,6 +15641,8 @@ self: super: with self; {
   sphinx-issues = callPackage ../development/python-modules/sphinx-issues { };
 
   sphinx-jinja = callPackage ../development/python-modules/sphinx-jinja { };
+
+  sphinx-markdown-builder = callPackage ../development/python-modules/sphinx-markdown-builder { };
 
   sphinx-markdown-parser = callPackage ../development/python-modules/sphinx-markdown-parser { };
 
