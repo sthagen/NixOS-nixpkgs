@@ -5900,6 +5900,8 @@ self: super: with self; {
 
   hatchling = callPackage ../development/python-modules/hatchling { };
 
+  hatch-babel = callPackage ../development/python-modules/hatch-babel { };
+
   hatch-fancy-pypi-readme = callPackage ../development/python-modules/hatch-fancy-pypi-readme { };
 
   hatch-jupyter-builder = callPackage ../development/python-modules/hatch-jupyter-builder { };
@@ -7756,6 +7758,8 @@ self: super: with self; {
   llm-cmd = callPackage ../development/python-modules/llm-cmd { };
 
   llm-gguf = callPackage ../development/python-modules/llm-gguf { };
+
+  llm-jq = callPackage ../development/python-modules/llm-jq { };
 
   llm-ollama = callPackage ../development/python-modules/llm-ollama { };
 
@@ -10361,6 +10365,8 @@ self: super: with self; {
   pegen = callPackage ../development/python-modules/pegen { };
 
   pebble = callPackage ../development/python-modules/pebble { };
+
+  peblar = callPackage ../development/python-modules/peblar { };
 
   pecan = callPackage ../development/python-modules/pecan { };
 
