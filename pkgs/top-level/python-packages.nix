@@ -3374,6 +3374,8 @@ self: super: with self; {
 
   dissect-ffs = callPackage ../development/python-modules/dissect-ffs { };
 
+  dissect-fve = callPackage ../development/python-modules/dissect-fve { };
+
   dissect-esedb = callPackage ../development/python-modules/dissect-esedb { };
 
   dissect-etl = callPackage ../development/python-modules/dissect-etl { };
@@ -7617,6 +7619,8 @@ self: super: with self; {
 
   license-expression = callPackage ../development/python-modules/license-expression { };
 
+  lida = callPackage ../development/python-modules/lida { };
+
   lief = (toPythonModule (pkgs.lief.override {
     inherit python;
   })).py;
@@ -9382,6 +9386,8 @@ self: super: with self; {
   netbox-qrcode = callPackage ../development/python-modules/netbox-qrcode { };
 
   netbox-reorder-rack = callPackage ../development/python-modules/netbox-reorder-rack { };
+
+  netbox-routing = callPackage ../development/python-modules/netbox-routing { };
 
   netbox-topology-views = callPackage ../development/python-modules/netbox-topology-views { };
 

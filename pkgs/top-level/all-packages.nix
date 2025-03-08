@@ -300,6 +300,10 @@ with pkgs;
 
   coolercontrol = recurseIntoAttrs (callPackage ../applications/system/coolercontrol { });
 
+  curv = callPackage ../by-name/cu/curv/package.nix {
+    openexr = openexr_3;
+  };
+
   databricks-sql-cli = python3Packages.callPackage ../applications/misc/databricks-sql-cli { };
 
   deck = callPackage ../by-name/de/deck/package.nix {
@@ -4133,8 +4137,6 @@ with pkgs;
 
   xz = callPackage ../tools/compression/xz { };
 
-  lzwolf = callPackage ../games/lzwolf { SDL2_mixer = SDL2_mixer_2_0; };
-
   madlang = haskell.lib.compose.justStaticExecutables haskellPackages.madlang;
 
   mailnag = callPackage ../applications/networking/mailreaders/mailnag {
@@ -4256,7 +4258,7 @@ with pkgs;
   inherit (callPackage ../servers/web-apps/netbox { }) netbox_3_7;
 
   # Not in aliases because it wouldn't get picked up by callPackage
-  netbox = netbox_4_1;
+  netbox = netbox_4_2;
 
   netcat = libressl.nc.overrideAttrs (old: {
     meta = old.meta // {
@@ -7486,7 +7488,7 @@ with pkgs;
     electron-chromedriver_34
     ;
 
-  electron_32 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_32 then electron-source.electron_32 else electron_32-bin;
+  electron_32 = electron_32-bin;
   electron_33 = if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_33 then electron-source.electron_33 else electron_33-bin;
   electron_34 = electron_34-bin;
   electron = electron_34;
@@ -8505,7 +8507,11 @@ with pkgs;
   inherit (callPackages ../development/libraries/c-blosc { })
     c-blosc c-blosc2;
 
-  cachix = lib.getBin haskellPackages.cachix;
+  cachix = (lib.getBin haskellPackages.cachix).overrideAttrs (old: {
+    meta = (old.meta or {}) // {
+      mainProgram = old.meta.mainProgram or "cachix";
+    };
+  });
 
   cubeb = callPackage ../development/libraries/audio/cubeb {
     inherit (darwin.apple_sdk.frameworks) AudioUnit CoreAudio CoreServices;
@@ -11432,12 +11438,6 @@ with pkgs;
     tbb = tbb_2021_11;
   };
 
-  postfix = callPackage ../servers/mail/postfix { };
-
-  pfixtools = callPackage ../servers/mail/postfix/pfixtools.nix { };
-
-  pflogsumm = callPackage ../servers/mail/postfix/pflogsumm.nix { };
-
   system-sendmail = lowPrio (callPackage ../servers/mail/system-sendmail { });
 
   # PulseAudio daemons
@@ -13499,11 +13499,6 @@ with pkgs;
   };
 
   gtk-pipe-viewer = perlPackages.callPackage ../applications/video/pipe-viewer { withGtk3 = true; };
-
-  hydrus = python3Packages.callPackage ../applications/graphics/hydrus {
-    inherit miniupnpc swftools;
-    inherit (qt6) wrapQtAppsHook qtbase qtcharts;
-  };
 
   kemai = qt6Packages.callPackage ../applications/misc/kemai { };
 
@@ -15757,6 +15752,8 @@ with pkgs;
   zexy = callPackage ../applications/audio/pd-plugins/zexy {
     autoconf = buildPackages.autoconf269;
   };
+
+  zed-editor-fhs = zed-editor.fhs;
 
   zgv = callPackage ../applications/graphics/zgv {
     # Enable the below line for terminal display. Note
