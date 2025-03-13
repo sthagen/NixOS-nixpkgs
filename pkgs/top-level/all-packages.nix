@@ -3151,9 +3151,7 @@ with pkgs;
 
   vorta = qt6Packages.callPackage ../applications/backup/vorta { };
 
-  worker-build = callPackage ../development/tools/worker-build {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  worker-build = callPackage ../development/tools/worker-build { };
 
   wrangler_1 = callPackage ../development/tools/wrangler_1 {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation CoreServices Security;
@@ -12036,6 +12034,10 @@ with pkgs;
   linux-rt = linuxPackages-rt.kernel;
   linux-rt_latest = linuxPackages-rt_latest.kernel;
 
+  # Amateur Radio kernel
+  linuxPackages_ham = linuxKernel.packages.linux_ham;
+  linux_ham = linuxPackages_ham.kernel;
+
   # hardened kernels
   linuxPackages_hardened = linuxKernel.packages.linux_hardened;
   linux_hardened = linuxPackages_hardened.kernel;
@@ -13139,15 +13141,6 @@ with pkgs;
   };
 
   inherit (recurseIntoAttrs (callPackage ../applications/editors/emacs { }))
-    emacs28
-    emacs28-gtk3
-    emacs28-nox
-
-    emacs29
-    emacs29-gtk3
-    emacs29-nox
-    emacs29-pgtk
-
     emacs30
     emacs30-gtk3
     emacs30-nox
@@ -15622,7 +15615,7 @@ with pkgs;
 
   x32edit = callPackage ../applications/audio/midas/x32edit.nix { };
 
-  xaos = libsForQt5.callPackage ../applications/graphics/xaos { };
+  xaos = callPackage ../applications/graphics/xaos { };
 
   xbindkeys-config = callPackage ../tools/X11/xbindkeys-config {
     gtk = gtk2;
@@ -16325,10 +16318,6 @@ with pkgs;
 
   openra = openraPackages.engines.release;
 
-  openrw = callPackage ../games/openrw {
-    inherit (darwin.apple_sdk.frameworks) Cocoa OpenAL;
-  };
-
   openspades = callPackage ../games/openspades {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
@@ -16861,6 +16850,10 @@ with pkgs;
   mathematica-webdoc-cuda = callPackage ../applications/science/math/mathematica {
     webdoc = true;
     cudaSupport = true;
+  };
+
+  math-preview = callPackage ../by-name/ma/math-preview/package.nix {
+    nodejs = nodejs_20;
   };
 
   or-tools = callPackage ../development/libraries/science/math/or-tools {

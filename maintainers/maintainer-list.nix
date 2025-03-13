@@ -9176,6 +9176,12 @@
     githubId = 1498782;
     name = "Jesse Haber-Kucharsky";
   };
+  hakujin = {
+    email = "colin@hakuj.in";
+    github = "hakujin";
+    githubId = 2192042;
+    name = "Colin King";
+  };
   hamburger1984 = {
     email = "hamburger1984@gmail.com";
     github = "hamburger1984";
@@ -26408,6 +26414,11 @@
     email = "zfnmxt@zfnmxt.com";
     github = "zfnmxt";
     githubId = 37446532;
+  };
+  zh4ngx = {
+    github = "zh4ngx";
+    githubId = 1329212;
+    name = "Andy Zhang";
   };
   zhaofengli = {
     email = "hello@zhaofeng.li";

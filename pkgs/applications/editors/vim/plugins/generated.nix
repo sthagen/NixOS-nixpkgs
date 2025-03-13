@@ -1423,6 +1423,19 @@ final: prev:
     meta.hydraPlatforms = [ ];
   };
 
+  blink-cmp-avante = buildVimPlugin {
+    pname = "blink-cmp-avante";
+    version = "2025-02-19";
+    src = fetchFromGitHub {
+      owner = "Kaiser-Yang";
+      repo = "blink-cmp-avante";
+      rev = "e5a1be4c818520385f95fe2663c04e48f5f0c36a";
+      sha256 = "13rkypddzpgz6a36s38a30qfx0n3jspd788yvgjdb7dkn0zrvqdg";
+    };
+    meta.homepage = "https://github.com/Kaiser-Yang/blink-cmp-avante/";
+    meta.hydraPlatforms = [ ];
+  };
+
   blink-cmp-conventional-commits = buildVimPlugin {
     pname = "blink-cmp-conventional-commits";
     version = "2025-02-18";
@@ -1524,6 +1537,19 @@ final: prev:
       sha256 = "0n4qv2mk7zx910gnwf9ri2w5qxwx8szx99nqqzik4yyvl4axm41d";
     };
     meta.homepage = "https://github.com/moyiz/blink-emoji.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  blink-nerdfont-nvim = buildVimPlugin {
+    pname = "blink-nerdfont.nvim";
+    version = "2025-02-06";
+    src = fetchFromGitHub {
+      owner = "MahanRahmati";
+      repo = "blink-nerdfont.nvim";
+      rev = "2f3cedda78dcf4ef547128ce7f72f7b80e25501d";
+      sha256 = "17cab659iiv6l67xjwk5kj624nhxmmng7xjbgimr4v86yhmirk4m";
+    };
+    meta.homepage = "https://github.com/MahanRahmati/blink-nerdfont.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -8975,7 +9001,7 @@ final: prev:
       rev = "8239023d299a692784176f202f6a4a5e0a698ad2";
       sha256 = "sha256-Fbe7xuu5Qy6GXKsvQbVcE5oG7dgKjghuX470V7sjmqA=";
     };
-    meta.homepage = "https://github.com/adrigzr/neotest-mocha";
+    meta.homepage = "https://github.com/adrigzr/neotest-mocha/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -11329,6 +11355,19 @@ final: prev:
       sha256 = "1rd2ppv5qwfp6ndk0mgizpmh3lhldmvwliifadykrz5vh2a7ix0p";
     };
     meta.homepage = "https://github.com/salkin-mada/openscad.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  org-roam-nvim = buildVimPlugin {
+    pname = "org-roam.nvim";
+    version = "2025-03-12";
+    src = fetchFromGitHub {
+      owner = "chipsenkbeil";
+      repo = "org-roam.nvim";
+      rev = "f92b54eff931982031d5e164482d5e781bb2cd31";
+      sha256 = "sha256-KEmbFGXjOlSPY8wpr5WUzD5+eCUP1hXN2Ty37smLU9M=";
+    };
+    meta.homepage = "https://github.com/chipsenkbeil/org-roam.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
