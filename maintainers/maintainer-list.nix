@@ -2235,6 +2235,13 @@
     name = "tali auster";
     matrix = "@atalii:matrix.org";
   };
+  atar13 = {
+    name = "Anthony Tarbinian";
+    email = "atar137h@gmail.com";
+    github = "atar13";
+    githubId = 42757207;
+    matrix = "@atar13:matrix.org";
+  };
   ataraxiasjel = {
     email = "nix@ataraxiadev.com";
     github = "AtaraxiaSjel";
@@ -9750,6 +9757,12 @@
     githubId = 39689;
     name = "Hugo Tavares Reis";
   };
+  httprafa = {
+    email = "rafael.kienitz@gmail.com";
+    github = "HttpRafa";
+    githubId = 60099368;
+    name = "Rafael Kienitz";
+  };
   huantian = {
     name = "David Li";
     email = "davidtianli@gmail.com";
@@ -16536,11 +16549,6 @@
     github = "Naxdy";
     githubId = 4532582;
     keys = [ { fingerprint = "BDEA AB07 909D B96F 4106 85F1 CC15 0758 46BC E91B"; } ];
-  };
-  nayeko = {
-    name = "nayeko";
-    github = "nayeko";
-    githubId = 196556004;
   };
   nazarewk = {
     name = "Krzysztof Nazarewski";
@@ -23780,6 +23788,12 @@
     github = "ThomasMader";
     githubId = 678511;
     name = "Thomas Mader";
+  };
+  thornoar = {
+    email = "r.a.maksimovich@gmail.com";
+    github = "thornoar";
+    githubId = 84677666;
+    name = "Roman Maksimovich";
   };
   thornycrackers = {
     email = "codyfh@gmail.com";
