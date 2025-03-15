@@ -922,7 +922,7 @@ with pkgs;
     type = "OPN";
   };
 
-  akkoma = callPackage ../servers/akkoma {
+  akkoma = callPackage ../by-name/ak/akkoma/package.nix {
     beamPackages = beam_nox.packages.erlang_26.extend (self: super: {
       elixir = self.elixir_1_16;
       rebar3 = self.rebar3WithPlugins {
@@ -930,16 +930,9 @@ with pkgs;
       };
     });
   };
-  akkoma-frontends = recurseIntoAttrs {
-    akkoma-fe = callPackage ../servers/akkoma/akkoma-fe { };
-    admin-fe = callPackage ../servers/akkoma/admin-fe {
-      nodejs = nodejs_18;
-      yarn = yarn.override { nodejs = nodejs_18; };
-      python3 = python311;
-    };
-  };
-  akkoma-emoji = recurseIntoAttrs {
-    blobs_gg = callPackage ../servers/akkoma/emoji/blobs_gg.nix { };
+
+  akkoma-admin-fe = callPackage ../by-name/ak/akkoma-admin-fe/package.nix {
+    python3 = python311;
   };
 
   aegisub = callPackage ../by-name/ae/aegisub/package.nix ({
@@ -2445,8 +2438,6 @@ with pkgs;
 
   materialx = with python3Packages; toPythonApplication materialx;
 
-  megasync = libsForQt5.callPackage ../applications/misc/megasync { };
-
   # while building documentation meson may want to run binaries for host
   # which needs an emulator
   # example of an error which this fixes
@@ -3035,10 +3026,6 @@ with pkgs;
   deluge-2_x = deluge;
 
   dnsviz = python3Packages.callPackage ../tools/networking/dnsviz { };
-
-  diffoscope = callPackage ../tools/misc/diffoscope {
-    jdk = jdk8;
-  };
 
   diffoscopeMinimal = diffoscope.override {
     enableBloat = false;
@@ -5037,6 +5024,7 @@ with pkgs;
   stutter = haskell.lib.compose.justStaticExecutables haskellPackages.stutter;
 
   strongswanTNC = strongswan.override { enableTNC = true; };
+  strongswanTPM = strongswan.override { enableTPM2 = true; };
   strongswanNM  = strongswan.override { enableNetworkManager = true; };
 
   stylish-haskell = haskell.lib.compose.justStaticExecutables haskellPackages.stylish-haskell;
@@ -8156,6 +8144,10 @@ with pkgs;
 
   inherit (callPackage ../development/tools/replay-io { })
     replay-io replay-node-cli;
+
+  rescript-language-server = callPackage ../by-name/re/rescript-language-server/package.nix {
+    rescript-editor-analysis = vscode-extensions.chenglou92.rescript-vscode.rescript-editor-analysis;
+  };
 
   rnginline = with python3Packages; toPythonApplication rnginline;
 
@@ -11731,7 +11723,7 @@ with pkgs;
   sickgear = callPackage ../servers/sickbeard/sickgear.nix { };
 
   snipe-it = callPackage ../by-name/sn/snipe-it/package.nix {
-    php = php81;
+    php = php84;
   };
 
   spacecookie =
@@ -11936,8 +11928,6 @@ with pkgs;
   htop = callPackage ../tools/system/htop {
     inherit (darwin) IOKit;
   };
-
-  htop-vim = callPackage ../tools/system/htop/htop-vim.nix { };
 
   humility = callPackage ../development/tools/rust/humility {
     inherit (darwin.apple_sdk.frameworks) AppKit;
