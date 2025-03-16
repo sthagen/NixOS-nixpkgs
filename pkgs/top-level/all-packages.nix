@@ -4207,10 +4207,6 @@ with pkgs;
     docbook-xsl = docbook_xsl;
   };
 
-  morgen = callPackage ../applications/office/morgen {
-    electron = electron_32;
-  };
-
   metasploit = callPackage ../tools/security/metasploit { };
 
   mhost = callPackage ../applications/networking/mhost {
@@ -9004,10 +9000,6 @@ with pkgs;
   });
 
   qxmpp = qt6Packages.callPackage ../development/libraries/qxmpp { };
-
-  gnu-efi = if stdenv.hostPlatform.isEfi
-              then callPackage ../development/libraries/gnu-efi { }
-            else null;
 
   gnutls = callPackage ../development/libraries/gnutls {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -16118,6 +16110,8 @@ with pkgs;
   factorio-headless-experimental = factorio.override { releaseType = "headless"; experimental = true; };
 
   factorio-demo = factorio.override { releaseType = "demo"; };
+
+  factorio-demo-experimental = factorio.override { releaseType = "demo"; experimental = true; };
 
   factorio-space-age = factorio.override { releaseType = "expansion"; };
 
