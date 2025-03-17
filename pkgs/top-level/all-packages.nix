@@ -3495,14 +3495,12 @@ with pkgs;
 
   grails = callPackage ../development/web/grails { jdk = null; };
 
-  graylog-5_1 = callPackage ../tools/misc/graylog/5.1.nix { };
-
   graylog-5_2 = callPackage ../tools/misc/graylog/5.2.nix { };
 
   graylog-6_0 = callPackage ../tools/misc/graylog/6.0.nix { };
 
   graylogPlugins = recurseIntoAttrs (
-    callPackage ../tools/misc/graylog/plugins.nix { }
+    callPackage ../tools/misc/graylog/plugins.nix { graylogPackage = graylog-6_0; }
   );
 
   graphviz = callPackage ../tools/graphics/graphviz {
@@ -5746,6 +5744,15 @@ with pkgs;
       };
     }) else ccWrapper;
 
+  gnuStdenv =
+    if stdenv.cc.isGNU
+    then stdenv
+    else gccStdenv.override {
+      cc = gccStdenv.cc.override {
+        bintools = buildPackages.binutils;
+      };
+    };
+
   gccStdenv =
     if stdenv.cc.isGNU
     then stdenv
@@ -7402,10 +7409,10 @@ with pkgs;
     };
   }));
   ansible_2_16 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
-    version = "2.16.8";
+    version = "2.16.14";
     src = oldAttrs.src.override {
       inherit version;
-      hash = "sha256-WeSqQO1azbTvm789BYkY//k/ZqFJNz2BWciilgRBC9o=";
+      hash = "sha256-gCef/9mGhrrfqjLh7HhdmKbfGy/B5Al97AWXZA10ZBU=";
     };
   }));
 
@@ -18140,7 +18147,7 @@ with pkgs;
 
   duden = python3Packages.toPythonApplication python3Packages.duden;
 
-  tremotesf = libsForQt5.callPackage ../applications/networking/p2p/tremotesf { };
+  tremotesf = callPackage ../applications/networking/p2p/tremotesf { };
 
   yazi-unwrapped = callPackage ../by-name/ya/yazi-unwrapped/package.nix { inherit (darwin.apple_sdk.frameworks) Foundation; };
 
