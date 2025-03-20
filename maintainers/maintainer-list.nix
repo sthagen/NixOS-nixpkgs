@@ -10548,6 +10548,12 @@
     githubId = 94313;
     name = "Xianyi Lin";
   };
+  izelnakri = {
+    email = "contact@izelnakri.com";
+    github = "izelnakri";
+    githubId = 1190931;
+    name = "Izel Nakri";
+  };
   izorkin = {
     email = "Izorkin@gmail.com";
     github = "Izorkin";
@@ -14242,6 +14248,17 @@
     github = "lxea";
     githubId = 7910815;
     name = "Alex McGrath";
+  };
+  lykos153 = {
+    email = "silvio.ankermann@cloudandheat.com";
+    github = "Lykos153";
+    githubId = 6453662;
+    name = "Silvio Ankermann";
+    keys = [
+      {
+        fingerprint = "8D47 6294 7205 541C 62A4  9C88 F422 6CA3 971C 4E97";
+      }
+    ];
   };
   lyn = {
     name = "Lyn";
@@ -22031,6 +22048,11 @@
     github = "s1ls";
     githubId = 91412114;
     keys = [ { fingerprint = "C1DA A551 B422 7A6F 3FD9  6B3A 467B 7D12 9EA7 3AC9"; } ];
+  };
+  silvanshade = {
+    github = "silvanshade";
+    githubId = 11022302;
+    name = "silvanshade";
   };
   Silver-Golden = {
     name = "Brendan Golden";
