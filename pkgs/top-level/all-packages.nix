@@ -1000,7 +1000,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) ApplicationServices Carbon Cocoa VideoToolbox;
   };
 
-  inherit (callPackage ../development/tools/genealogos { }) genealogos-cli genealogos-api;
+  genealogos-api = genealogos-cli.override {
+    crate = "api";
+  };
 
   # This is to workaround gfal2-python broken against Python 3.12 or later.
   # TODO: Remove these lines after solving the breakage.
@@ -3144,7 +3146,7 @@ with pkgs;
 
   # The latest version used by elasticsearch, logstash, kibana and the the beats from elastic.
   # When updating make sure to update all plugins or they will break!
-  elk7Version = "7.17.16";
+  elk7Version = "7.17.27";
 
   elasticsearch7 = callPackage ../servers/search/elasticsearch/7.x.nix {
     util-linux = util-linuxMinimal;
@@ -8713,10 +8715,6 @@ with pkgs;
   fplll = callPackage ../development/libraries/fplll { };
   fplll_20160331 = callPackage ../development/libraries/fplll/20160331.nix { };
 
-  freeimage = callPackage ../development/libraries/freeimage {
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-
   freeipa = callPackage ../os-specific/linux/freeipa {
     # NOTE: freeipa and sssd need to be built with the same version of python
     kerberos = krb5.override {
@@ -10430,8 +10428,6 @@ with pkgs;
   slibGuile = callPackage ../development/libraries/slib {
     scheme = guile;
   };
-
-  snac2 = darwin.apple_sdk_11_0.callPackage ../servers/snac2 { };
 
   soapyairspy = callPackage ../applications/radio/soapyairspy {
     inherit (darwin) libobjc;
