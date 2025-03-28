@@ -2701,8 +2701,7 @@ with pkgs;
 
   inherit (nodePackages) uppy-companion;
 
-  usb-modeswitch = callPackage ../development/tools/misc/usb-modeswitch { };
-  usb-modeswitch-data = callPackage ../development/tools/misc/usb-modeswitch/data.nix { };
+  usb-modeswitch-data = callPackage ../by-name/us/usb-modeswitch/data.nix { };
 
   persistent-evdev = python3Packages.callPackage ../servers/persistent-evdev { };
 
@@ -3018,7 +3017,7 @@ with pkgs;
 
   tsm-client-withGui = callPackage ../by-name/ts/tsm-client/package.nix { enableGui = true; };
 
-  tracy = callPackage ../by-name/tr/tracy/package.nix { withWayland = stdenv.isLinux; };
+  tracy = callPackage ../by-name/tr/tracy/package.nix { withWayland = stdenv.hostPlatform.isLinux; };
   tracy-glfw = callPackage ../by-name/tr/tracy/package.nix { withWayland = false; };
   tracy-wayland = callPackage ../by-name/tr/tracy/package.nix { withWayland = true; };
 
@@ -7438,8 +7437,6 @@ with pkgs;
 
   black = with python3Packages; toPythonApplication black;
 
-  blackfire = callPackage ../development/tools/misc/blackfire { };
-
   black-macchiato = with python3Packages; toPythonApplication black-macchiato;
 
   buck = callPackage ../development/tools/build-managers/buck {
@@ -7473,8 +7470,6 @@ with pkgs;
   libbpf_0 = callPackage ../os-specific/linux/libbpf/0.x.nix { };
 
   bundlewrap = with python3.pkgs; toPythonApplication bundlewrap;
-
-  cadre = callPackage ../development/tools/cadre { };
 
   # Wrapper that works as gcc or g++
   # It can be used by setting in nixpkgs config like this, for example:
@@ -7523,8 +7518,6 @@ with pkgs;
   chruby = callPackage ../development/tools/misc/chruby { rubies = null; };
 
   cloudcompare = libsForQt5.callPackage ../applications/graphics/cloudcompare { };
-
-  coder = callPackage ../development/tools/coder { };
 
   cookiecutter = with python3Packages; toPythonApplication cookiecutter;
 
@@ -8129,8 +8122,6 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) CoreServices;
   };
 
-  xcode-install = callPackage ../development/tools/xcode-install { };
-
   xcbuild = callPackage ../by-name/xc/xcbuild/package.nix {
     stdenv =
       # xcbuild is included in the SDK. Avoid an infinite recursion by using a bootstrap stdenv.
@@ -8146,8 +8137,6 @@ with pkgs;
   } ../by-name/xc/xcbuild/setup-hook.sh;
 
   xcodebuild = xcbuild;
-
-  xcpretty = callPackage ../development/tools/xcpretty { };
 
   xxdiff = libsForQt5.callPackage ../development/tools/misc/xxdiff { };
 
@@ -10339,8 +10328,7 @@ with pkgs;
 
   sqlite-interactive = (sqlite.override { interactive = true; }).bin;
 
-  stlink = callPackage ../development/tools/misc/stlink { };
-  stlink-gui = callPackage ../development/tools/misc/stlink { withGUI = true; };
+  stlink-gui = callPackage ../by-name/st/stlink/package.nix { withGUI = true; };
 
   streamlink-twitch-gui-bin = callPackage ../applications/video/streamlink-twitch-gui/bin.nix { };
 
@@ -11022,8 +11010,8 @@ with pkgs;
   jetty_12 = callPackage ../servers/http/jetty/12.x.nix { };
   jetty_11 = callPackage ../servers/http/jetty/11.x.nix { };
 
-  kanidm_1_4 = callPackage ../by-name/ka/kanidm/1_4.nix { };
-  kanidm_1_5 = callPackage ../by-name/ka/kanidm/1_5.nix { };
+  kanidm_1_4 = callPackage ../by-name/ka/kanidm/1_4.nix { kanidm = kanidm_1_4; };
+  kanidm_1_5 = callPackage ../by-name/ka/kanidm/1_5.nix { kanidm = kanidm_1_5; };
 
   kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_5;
 
