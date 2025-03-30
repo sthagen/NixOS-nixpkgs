@@ -1191,10 +1191,6 @@ with pkgs;
 
   git-publish = python3Packages.callPackage ../applications/version-management/git-publish { };
 
-  git-quickfix = callPackage ../applications/version-management/git-quickfix {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
-
   git-recent = callPackage ../applications/version-management/git-recent {
     util-linux = if stdenv.hostPlatform.isLinux then util-linuxMinimal else util-linux;
   };
@@ -3123,10 +3119,6 @@ with pkgs;
   fcitx5-table-other = callPackage ../tools/inputmethods/fcitx5/fcitx5-table-other.nix { };
 
   featherpad = qt5.callPackage ../applications/editors/featherpad { };
-
-  feroxbuster = callPackage ../tools/security/feroxbuster {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
 
   ffsend = callPackage ../tools/misc/ffsend {
     inherit (darwin.apple_sdk.frameworks) Security AppKit;
@@ -6870,7 +6862,7 @@ with pkgs;
   # PHP interpreters, packages and extensions.
   #
   # Set default PHP interpreter, extensions and packages
-  php = php83;
+  php = php84;
   phpExtensions = php.extensions;
   phpPackages = php.packages;
 
@@ -8497,7 +8489,7 @@ with pkgs;
   };
   fftwMpi = fftw.override { enableMpi = true; };
 
-  flint = callPackage ../development/libraries/flint { };
+  flint = flint3;
 
   flint3 = callPackage ../development/libraries/flint/3.nix { };
 
@@ -9725,8 +9717,6 @@ with pkgs;
 
   nettle = import ../development/libraries/nettle { inherit callPackage fetchurl; };
 
-  newt = callPackage ../development/libraries/newt { python = python3; };
-
   libnghttp2 = nghttp2.lib;
 
   nghttp3 = callPackage ../development/libraries/nghttp3 { inherit (darwin.apple_sdk.frameworks) CoreServices; };
@@ -9774,10 +9764,6 @@ with pkgs;
   ogre = ogre_14;
 
   one_gadget = callPackage ../development/tools/misc/one_gadget { };
-
-  oneDNN = callPackage ../development/libraries/oneDNN { };
-
-  oneDNN_2 = callPackage ../development/libraries/oneDNN/2.nix { };
 
   openalSoft = callPackage ../development/libraries/openal-soft {
     inherit (darwin.apple_sdk.frameworks) CoreServices AudioUnit AudioToolbox;
@@ -13801,8 +13787,6 @@ with pkgs;
   luminanceHDR = libsForQt5.callPackage ../applications/graphics/luminance-hdr { };
 
   luddite = with python3Packages; toPythonApplication luddite;
-
-  goobook = with python3Packages; toPythonApplication goobook;
 
   lumail = callPackage ../applications/networking/mailreaders/lumail {
     lua = lua5_1;
