@@ -1073,6 +1073,7 @@ mapAliases {
     first on 24.05 because Nextcloud doesn't support upgrades across multiple major versions!
   ''; # Added 2024-06-25
   nextcloud27Packages = throw "Nextcloud27 is EOL!"; # Added 2024-06-25
+  nextcloud-news-updater = throw "nextcloud-news-updater has been removed because the project is unmaintained"; # Added 2025-03-28
   nagiosPluginsOfficial = monitoring-plugins;
   neochat = makePlasma5Throw "neochat"; # added 2022-05-10
   nerdfonts = throw ''
@@ -1226,6 +1227,7 @@ mapAliases {
   percona-server_lts = percona-server; # Added 2024-10-13
   percona-xtrabackup_innovation = lib.warnOnInstantiate "Percona upstream has decided to skip all Innovation releases of MySQL and only release LTS versions." percona-xtrabackup; # Added 2024-10-13
   percona-xtrabackup_lts = percona-xtrabackup; # Added 2024-10-13
+  peroxide = throw "'peroxide' has been dropped due to lack of upstream maintenance."; # Added 2025-03-31
   pentablet-driver = xp-pen-g430-driver; # Added 2022-06-23
   perldevel = throw "'perldevel' has been dropped due to lack of updates in nixpkgs and lack of consistent support for devel versions by 'perl-cross' releases, use 'perl' instead";
   perldevelPackages = perldevel;
