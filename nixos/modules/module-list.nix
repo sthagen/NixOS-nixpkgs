@@ -1537,6 +1537,7 @@
   ./services/web-apps/guacamole-client.nix
   ./services/web-apps/guacamole-server.nix
   ./services/web-apps/hatsu.nix
+  ./services/web-apps/haven.nix
   ./services/web-apps/healthchecks.nix
   ./services/web-apps/hedgedoc.nix
   ./services/web-apps/hledger-web.nix
@@ -1612,6 +1613,7 @@
   ./services/web-apps/rutorrent.nix
   ./services/web-apps/screego.nix
   ./services/web-apps/sftpgo.nix
+  ./services/web-apps/strfry.nix
   ./services/web-apps/suwayomi-server.nix
   ./services/web-apps/readeck.nix
   ./services/web-apps/rss-bridge.nix

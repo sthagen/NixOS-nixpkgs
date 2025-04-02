@@ -6444,6 +6444,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  jule-nvim = buildVimPlugin {
+    pname = "jule.nvim";
+    version = "2025-02-22";
+    src = fetchFromGitHub {
+      owner = "julelang";
+      repo = "jule.nvim";
+      rev = "11c983f900dc84dca4ae6bcb54a937a1ceba4038";
+      sha256 = "0gajpcg7g3885696aljq7zky8cd0bfsjr7n2fad3d2yf0i999fif";
+    };
+    meta.homepage = "https://github.com/julelang/jule.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   julia-vim = buildVimPlugin {
     pname = "julia-vim";
     version = "2024-05-25";
@@ -20879,6 +20892,19 @@ final: prev: {
       sha256 = "1gbldkajy50x70p0m5wnbd3wvpzb4b79wmgdq8m85iyf5h1phkzf";
     };
     meta.homepage = "https://github.com/liuchengxu/vista.vim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  visual-whitespace-nvim = buildVimPlugin {
+    pname = "visual-whitespace.nvim";
+    version = "2025-03-31";
+    src = fetchFromGitHub {
+      owner = "mcauley-penney";
+      repo = "visual-whitespace.nvim";
+      rev = "2bdf159a49a8ed4e715b81d6e0f975dcc1751c53";
+      sha256 = "1s5iifvwznpf1dflp6y604khrmpkwx49nnv7xmm2c1jbwn0l5nyl";
+    };
+    meta.homepage = "https://github.com/mcauley-penney/visual-whitespace.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
