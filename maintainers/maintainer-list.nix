@@ -4892,6 +4892,12 @@
     githubId = 217918;
     name = "Viktor Kronvall";
   };
+  Continous = {
+    email = "continous159@gmail.com";
+    github = "Continous";
+    githubId = 4413336;
+    name = "Dusty Carrier";
+  };
   contrun = {
     email = "uuuuuu@protonmail.com";
     github = "contrun";
@@ -13551,6 +13557,12 @@
     github = "LEXUGE";
     githubId = 13804737;
     keys = [ { fingerprint = "7FE2 113A A08B 695A C8B8  DDE6 AE53 B4C2 E58E DD45"; } ];
+  };
+  lf- = {
+    name = "Jade Lovelace";
+    github = "lf-";
+    githubId = 6652840;
+    matrix = "@jade_:matrix.org";
   };
   lgbishop = {
     email = "lachlan.bishop@hotmail.com";
@@ -26821,8 +26833,12 @@
     name = "zimward";
     github = "zimward";
     githubId = 96021122;
-    matrix = "@memoryfragmentation:matrix.org";
-    keys = [ { fingerprint = "CBF7 FA5E F4B5 8B68 5977  3E3E 4CAC 61D6 A482 FCD9"; } ];
+    matrix = "@zimward:zimward.moe";
+    email = "zimward@zimward.moe";
+    keys = [
+      { fingerprint = "CBF7 FA5E F4B5 8B68 5977  3E3E 4CAC 61D6 A482 FCD9"; }
+      { fingerprint = "E22F 760E E074 E57A 21CB  1733 8DD2 9BB5 2C25 EA09"; }
+    ];
   };
   zlepper = {
     name = "Rasmus Hansen";
