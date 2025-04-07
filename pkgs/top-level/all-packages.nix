@@ -7916,8 +7916,6 @@ with pkgs;
 
   ansible-builder = with python3Packages; toPythonApplication ansible-builder;
 
-  ansible-doctor = callPackage ../tools/admin/ansible/doctor.nix { };
-
   yakut = python3Packages.callPackage ../development/tools/misc/yakut { };
 
   ### DEVELOPMENT / TOOLS / LANGUAGE-SERVERS
@@ -7929,10 +7927,6 @@ with pkgs;
       { };
 
   inherit (callPackages ../development/tools/language-servers/nixd { }) nixf nixt nixd;
-
-  ansible-later = callPackage ../tools/admin/ansible/later.nix { };
-
-  ansible-lint = callPackage ../tools/admin/ansible/lint.nix { };
 
   antlr2 = callPackage ../development/tools/parsing/antlr/2.7.7.nix { };
   antlr3_4 = callPackage ../development/tools/parsing/antlr/3.4.nix { };
@@ -16431,10 +16425,6 @@ with pkgs;
     inherit (linuxPackages) x86_energy_perf_policy;
   };
 
-  torrenttools = callPackage ../tools/misc/torrenttools {
-    fmt = fmt_9;
-  };
-
   tony = libsForQt5.callPackage ../applications/audio/tony { };
 
   trustedqsl = tqsl; # Alias added 2019-02-10
@@ -17252,10 +17242,6 @@ with pkgs;
   bugdom = callPackage ../games/bugdom {
     stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
     inherit (darwin.apple_sdk_11_0.frameworks) IOKit Foundation OpenGL;
-  };
-
-  bzflag = callPackage ../games/bzflag {
-    inherit (darwin.apple_sdk.frameworks) Carbon CoreServices;
   };
 
   cataclysmDDA = callPackage ../games/cataclysm-dda { };

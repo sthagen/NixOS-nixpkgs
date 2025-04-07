@@ -194,7 +194,7 @@
   };
   _2hexed = {
     name = "n";
-    email = "2hexed@protonmail.com";
+    email = "twohexed@gmail.com";
     github = "2hexed";
     githubId = 54501296;
   };
@@ -3735,6 +3735,12 @@
     github = "c0deaddict";
     githubId = 510553;
     name = "Jos van Bakel";
+  };
+  c31io = {
+    email = "celiogrand@outlook.com";
+    github = "c31io";
+    githubId = 83821760;
+    name = "Celio Grand";
   };
   c4605 = {
     email = "bolasblack@gmail.com";
@@ -10030,6 +10036,12 @@
     name = "I Al Istannen";
     github = "I-Al-Istannen";
     githubId = 20284688;
+  };
+  iamanaws = {
+    email = "nixpkgs.yjzaw@slmail.me";
+    github = "Iamanaws";
+    githubId = 78835633;
+    name = "Angel J";
   };
   iammrinal0 = {
     email = "nixpkgs@mrinalpurohit.in";
@@ -19508,6 +19520,12 @@
     github = "puckipedia";
     githubId = 488734;
     name = "Puck Meerburg";
+  };
+  PuercoPop = {
+    email = "pirata@gmail.com";
+    github = "PuercoPop";
+    githubId = 387111;
+    name = "Javier Olaechea";
   };
   puffnfresh = {
     email = "brian@brianmckenna.org";
