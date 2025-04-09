@@ -125,9 +125,7 @@ with pkgs;
 
   defaultPkgConfigPackages =
     # We don't want nix-env -q to enter this, because all of these are aliases.
-    dontRecurseIntoAttrs (import ./pkg-config/defaultPkgConfigPackages.nix pkgs) // {
-      __attrsFailEvaluation = true;
-    };
+    dontRecurseIntoAttrs (import ./pkg-config/defaultPkgConfigPackages.nix pkgs);
 
   ### Nixpkgs maintainer tools
 
@@ -3069,10 +3067,6 @@ with pkgs;
   code-browser-gtk = callPackage ../applications/editors/code-browser { withGtk3 = true; };
 
   cffconvert = python3Packages.toPythonApplication python3Packages.cffconvert;
-
-  chafa = callPackage ../tools/misc/chafa {
-    inherit (darwin.apple_sdk.frameworks) Foundation;
-  };
 
   ckb-next = libsForQt5.callPackage ../tools/misc/ckb-next { };
 
@@ -9260,8 +9254,17 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon OpenGL;
   };
 
-  factorPackages = callPackage ./factor-packages.nix { };
-  factor-lang = factorPackages.factor-lang;
+  factorPackages-0_99 = callPackage ./factor-packages.nix {
+    factor-unwrapped = callPackage ../development/compilers/factor-lang/0.99.nix { };
+  };
+  factorPackages-0_100 = callPackage ./factor-packages.nix {
+    factor-unwrapped = callPackage ../development/compilers/factor-lang/0.100.nix { };
+  };
+  factorPackages = factorPackages-0_100;
+
+  factor-lang-0_99 = factorPackages-0_99.factor-lang;
+  factor-lang-0_100 = factorPackages-0_100.factor-lang;
+  factor-lang = factor-lang-0_100;
 
   far2l = callPackage ../applications/misc/far2l {
     inherit (darwin.apple_sdk.frameworks)
@@ -9850,7 +9853,7 @@ with pkgs;
   hunspellWithDicts =
     dicts: callPackage ../development/libraries/hunspell/wrapper.nix { inherit dicts; };
 
-  hydra = callPackage ../by-name/hy/hydra/package.nix { nix = nixVersions.nix_2_24; };
+  hydra = callPackage ../by-name/hy/hydra/package.nix { nix = nixVersions.nix_2_28; };
 
   icu-versions = callPackages ../development/libraries/icu { };
   inherit (icu-versions)
@@ -14182,7 +14185,6 @@ with pkgs;
     emacs30-nox
     emacs30-pgtk
 
-    emacs28-macport
     emacs29-macport
     ;
 

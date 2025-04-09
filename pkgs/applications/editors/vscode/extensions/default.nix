@@ -241,6 +241,8 @@ let
         };
       };
 
+      almenon.arepl = callPackage ./almenon.arepl { };
+
       alygin.vscode-tlaplus = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-tlaplus";
@@ -759,6 +761,8 @@ let
           license = lib.licenses.mit;
         };
       };
+
+      bodil.blueprint-gtk = callPackage ./bodil.blueprint-gtk { };
 
       bradgashler.htmltagwrap = buildVscodeMarketplaceExtension {
         mktplcRef = {
