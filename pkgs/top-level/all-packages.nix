@@ -3251,8 +3251,6 @@ with pkgs;
 
   ecryptfs = callPackage ../tools/security/ecryptfs { };
 
-  ecryptfs-helper = callPackage ../tools/security/ecryptfs/helper.nix { };
-
   eid-mw = callPackage ../tools/security/eid-mw {
     autoreconfHook = buildPackages.autoreconfHook269;
   };
@@ -4182,8 +4180,6 @@ with pkgs;
   mx-puppet-discord = callPackage ../servers/mx-puppet-discord { };
 
   nanoemoji = with python3Packages; toPythonApplication nanoemoji;
-
-  netexec = callPackage ../tools/security/netexec { };
 
   netdata = callPackage ../tools/system/netdata {
     protobuf = protobuf_21;
@@ -5667,8 +5663,6 @@ with pkgs;
     inherit (darwin) libobjc;
     inherit (darwin.apple_sdk.frameworks) Foundation IOBluetooth;
   };
-
-  wireguard-go = callPackage ../tools/networking/wireguard-go { };
 
   wring = nodePackages.wring;
 
@@ -13841,8 +13835,7 @@ with pkgs;
 
   av-98 = callPackage ../applications/networking/browsers/av-98 { };
 
-  bambootracker = libsForQt5.callPackage ../applications/audio/bambootracker { };
-  bambootracker-qt6 = qt6Packages.callPackage ../applications/audio/bambootracker { };
+  bambootracker-qt6 = bambootracker.override { withQt6 = true; };
 
   schismtracker = callPackage ../applications/audio/schismtracker {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
@@ -14761,8 +14754,6 @@ with pkgs;
   pixel2svg = python310Packages.callPackage ../tools/graphics/pixel2svg { };
 
   pixinsight = qt6Packages.callPackage ../applications/graphics/pixinsight { };
-
-  protonup-qt = python3Packages.callPackage ../applications/misc/protonup-qt { };
 
   inherit (callPackage ../applications/virtualization/singularity/packages.nix { })
     apptainer
@@ -15777,10 +15768,6 @@ with pkgs;
 
   peaclock = callPackage ../applications/misc/peaclock {
     stdenv = gccStdenv;
-  };
-
-  peertube = callPackage ../servers/peertube {
-    nodejs = nodejs_18;
   };
 
   photoflare = libsForQt5.callPackage ../applications/graphics/photoflare { };
@@ -18155,15 +18142,6 @@ with pkgs;
     nodejs = nodejs_20;
   };
 
-  or-tools = callPackage ../development/libraries/science/math/or-tools {
-    inherit (darwin) DarwinTools;
-    python = python3;
-    protobuf = protobuf_29.override {
-      abseil-cpp = abseil-cpp_202407;
-    };
-    abseil-cpp = abseil-cpp_202407;
-  };
-
   p4est-sc = callPackage ../development/libraries/science/math/p4est-sc {
     p4est-sc-debugEnable = false;
   };
@@ -18506,8 +18484,6 @@ with pkgs;
   openems = callPackage ../applications/science/electronics/openems {
     qcsxcad = libsForQt5.qcsxcad;
   };
-
-  openroad = libsForQt5.callPackage ../applications/science/electronics/openroad { };
 
   qucs-s = qt6Packages.callPackage ../applications/science/electronics/qucs-s { };
 
