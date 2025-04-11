@@ -5618,6 +5618,12 @@ self: super: with self; {
 
   gntp = callPackage ../development/python-modules/gntp { };
 
+  gnucash = toPythonModule (
+    pkgs.gnucash.override {
+      python3 = python;
+    }
+  );
+
   gnureadline = callPackage ../development/python-modules/gnureadline { };
 
   go2rtc-client = callPackage ../development/python-modules/go2rtc-client { };
@@ -15908,6 +15914,10 @@ self: super: with self; {
   smoke-zephyr = callPackage ../development/python-modules/smoke-zephyr { };
 
   smolagents = callPackage ../development/python-modules/smolagents { };
+
+  smp = callPackage ../development/python-modules/smp { };
+
+  smpclient = callPackage ../development/python-modules/smpclient { };
 
   smpp-pdu = callPackage ../development/python-modules/smpp-pdu { };
 
