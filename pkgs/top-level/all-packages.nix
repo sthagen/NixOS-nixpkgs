@@ -5155,8 +5155,6 @@ with pkgs;
 
   shiv = with python3Packages; toPythonApplication shiv;
 
-  sigil = qt6.callPackage ../applications/editors/sigil { };
-
   slither-analyzer = with python3Packages; toPythonApplication slither-analyzer;
 
   # aka., pgp-tools
@@ -5749,8 +5747,6 @@ with pkgs;
 
   zpaq = callPackage ../tools/archivers/zpaq { };
   zpaqd = callPackage ../tools/archivers/zpaq/zpaqd.nix { };
-
-  zint = qt6Packages.callPackage ../development/libraries/zint { };
 
   zstd = callPackage ../tools/compression/zstd {
     cmake = buildPackages.cmakeMinimal;
