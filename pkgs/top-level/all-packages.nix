@@ -282,8 +282,6 @@ with pkgs;
     extraPackages = [ jdk17 ];
   };
 
-  asitop = callPackage ../os-specific/darwin/asitop { };
-
   cve = with python3Packages; toPythonApplication cvelib;
 
   apko = callPackage ../development/tools/apko {
@@ -1027,8 +1025,6 @@ with pkgs;
   _7zz = darwin.apple_sdk_11_0.callPackage ../tools/archivers/7zz { };
   _7zz-rar = _7zz.override { enableUnfree = true; };
 
-  acme-dns = callPackage ../servers/dns/acme-dns/default.nix { };
-
   acquire = with python3Packages; toPythonApplication acquire;
 
   actdiag = with python3.pkgs; toPythonApplication actdiag;
@@ -1674,10 +1670,6 @@ with pkgs;
   twine = with python3Packages; toPythonApplication twine;
 
   amazon-qldb-shell = callPackage ../development/tools/amazon-qldb-shell {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
-  amber = callPackage ../tools/text/amber {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
@@ -2678,7 +2670,7 @@ with pkgs;
   patool = with python3Packages; toPythonApplication patool;
 
   pocket-casts = callPackage ../by-name/po/pocket-casts/package.nix {
-    electron = electron_33;
+    electron = electron_34;
   };
 
   pueue = darwin.apple_sdk_11_0.callPackage ../applications/misc/pueue {
@@ -11355,8 +11347,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon;
   };
 
-  tageditor = libsForQt5.callPackage ../applications/audio/tageditor { };
-
   tclap = tclap_1_2;
 
   tclap_1_2 = callPackage ../development/libraries/tclap/1.2.nix { };
@@ -12716,6 +12706,7 @@ with pkgs;
     server = server-pgsql;
   };
 
+  zabbix72 = recurseIntoAttrs (zabbixFor "v72");
   zabbix70 = recurseIntoAttrs (zabbixFor "v70");
   zabbix60 = recurseIntoAttrs (zabbixFor "v60");
   zabbix64 = recurseIntoAttrs (zabbixFor "v64");
