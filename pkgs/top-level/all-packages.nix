@@ -491,6 +491,7 @@ with pkgs;
     buildDotnetGlobalTool
     mkNugetSource
     mkNugetDeps
+    autoPatchcilHook
     ;
 
   dotnetenv = callPackage ../build-support/dotnet/dotnetenv {
@@ -2520,10 +2521,6 @@ with pkgs;
   };
 
   jellyfin-mpv-shim = python3Packages.callPackage ../applications/video/jellyfin-mpv-shim { };
-
-  juce = callPackage ../development/misc/juce {
-    stdenv = if stdenv.hostPlatform.isDarwin then overrideSDK stdenv "11.0" else stdenv;
-  };
 
   kaldi = callPackage ../tools/audio/kaldi {
     inherit (darwin.apple_sdk.frameworks) Accelerate;
@@ -11067,8 +11064,6 @@ with pkgs;
     haskellLib = haskell.lib.compose;
   };
 
-  librdf_raptor = callPackage ../development/libraries/librdf/raptor.nix { };
-
   librdf_raptor2 = callPackage ../development/libraries/librdf/raptor2.nix { };
 
   librdf_rasqal = callPackage ../development/libraries/librdf/rasqal.nix { };
@@ -12741,6 +12736,7 @@ with pkgs;
     armTrustedFirmwareQemu
     armTrustedFirmwareRK3328
     armTrustedFirmwareRK3399
+    armTrustedFirmwareRK3568
     armTrustedFirmwareRK3588
     armTrustedFirmwareS905
     ;
@@ -13315,6 +13311,7 @@ with pkgs;
     ubootQemuArm
     ubootQemuRiscv64Smode
     ubootQemuX86
+    ubootQuartz64B
     ubootRaspberryPi
     ubootRaspberryPi2
     ubootRaspberryPi3_32bit
@@ -14198,10 +14195,6 @@ with pkgs;
     avahi = avahi.override { withLibdnssdCompat = true; };
   };
 
-  keepassxc = libsForQt5.callPackage ../applications/misc/keepassxc {
-    inherit (darwin.apple_sdk_11_0.frameworks) LocalAuthentication;
-  };
-
   evolution-data-server-gtk4 = evolution-data-server.override {
     withGtk3 = false;
     withGtk4 = true;
@@ -14519,7 +14512,23 @@ with pkgs;
 
   inherit (xorg) xlsfonts;
 
-  gimp = callPackage ../applications/graphics/gimp {
+  gimp3 = callPackage ../applications/graphics/gimp {
+    lcms = lcms2;
+    inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
+  };
+
+  gimp3-with-plugins = callPackage ../applications/graphics/gimp/wrapper.nix {
+    gimpPlugins = gimp3Plugins;
+    plugins = null; # All packaged plugins enabled, if not explicit plugin list supplied
+  };
+
+  gimp3Plugins = recurseIntoAttrs (
+    callPackage ../applications/graphics/gimp/plugins {
+      gimp = gimp3;
+    }
+  );
+
+  gimp = callPackage ../applications/graphics/gimp/2.0 {
     autoreconfHook = buildPackages.autoreconfHook269;
     lcms = lcms2;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
@@ -19437,10 +19446,6 @@ with pkgs;
   netbsd = callPackage ../os-specific/bsd/netbsd { };
 
   openbsd = callPackage ../os-specific/bsd/openbsd { };
-
-  alibuild = callPackage ../development/tools/build-managers/alibuild {
-    python = python3;
-  };
 
   bcompare = libsForQt5.callPackage ../applications/version-management/bcompare { };
 
