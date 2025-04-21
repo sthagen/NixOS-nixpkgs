@@ -2101,10 +2101,11 @@ with pkgs;
 
   birdtray = libsForQt5.callPackage ../applications/misc/birdtray { };
 
-  charles = charles4;
+  charles = charles5;
   inherit (callPackages ../applications/networking/charles { })
     charles3
     charles4
+    charles5
     ;
 
   quaternion-qt5 =
@@ -10871,9 +10872,6 @@ with pkgs;
       protobuf_26 = callPackage ../development/libraries/protobuf/26.nix { };
       protobuf_25 = callPackage ../development/libraries/protobuf/25.nix { };
       protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
-      protobuf_23 = callPackage ../development/libraries/protobuf/23.nix {
-        abseil-cpp = abseil-cpp_202301;
-      };
       protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
         abseil-cpp = abseil-cpp_202103;
       };
@@ -10884,7 +10882,6 @@ with pkgs;
     protobuf_26
     protobuf_25
     protobuf_24
-    protobuf_23
     protobuf_21
     ;
 
