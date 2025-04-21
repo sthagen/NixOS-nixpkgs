@@ -4973,8 +4973,6 @@ with pkgs;
 
   qlcplus = libsForQt5.callPackage ../applications/misc/qlcplus { };
 
-  qlog = qt6Packages.callPackage ../applications/radio/qlog { };
-
   quickbms = pkgsi686Linux.callPackage ../tools/archivers/quickbms { };
 
   qdigidoc = libsForQt5.callPackage ../tools/security/qdigidoc { };
@@ -6484,11 +6482,6 @@ with pkgs;
 
   falcon = callPackage ../development/interpreters/falcon {
     stdenv = gcc10Stdenv;
-  };
-
-  fstar = callPackage ../development/compilers/fstar {
-    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
-    z3 = z3_4_8_5;
   };
 
   dotnetPackages = recurseIntoAttrs (callPackage ./dotnet-packages.nix { });
@@ -9011,15 +9004,6 @@ with pkgs;
     botan2
     botan3
     ;
-
-  box2d = callPackage ../development/libraries/box2d {
-    inherit (darwin.apple_sdk.frameworks)
-      Carbon
-      Cocoa
-      Kernel
-      OpenGL
-      ;
-  };
 
   c-ares = callPackage ../development/libraries/c-ares { };
 
@@ -13822,10 +13806,6 @@ with pkgs;
 
   breezy = with python3Packages; toPythonApplication breezy;
 
-  cage = callPackage ../applications/window-managers/cage {
-    wlroots = wlroots_0_18;
-  };
-
   calf = callPackage ../applications/audio/calf {
     inherit (gnome2) libglade;
   };
@@ -18190,19 +18170,13 @@ with pkgs;
   isabelle = callPackage ../by-name/is/isabelle/package.nix {
     polyml = polyml.overrideAttrs {
       pname = "polyml-for-isabelle";
-      version = "2024";
+      version = "2025";
       configureFlags = [
         "--enable-intinf-as-int"
         "--with-gmp"
         "--disable-shared"
       ];
       buildFlags = [ "compiler" ];
-      src = fetchFromGitHub {
-        owner = "polyml";
-        repo = "polyml";
-        rev = "v5.9.1";
-        hash = "sha256-72wm8dt+Id59A5058mVE5P9TkXW5/LZRthZoxUustVA=";
-      };
     };
 
     java = openjdk21;
@@ -19353,12 +19327,6 @@ with pkgs;
   zrythm = callPackage ../applications/audio/zrythm {
     inherit (plasma5Packages) breeze-icons;
   };
-
-  honeymarker = callPackage ../servers/tracing/honeycomb/honeymarker { };
-
-  honeytail = callPackage ../servers/tracing/honeycomb/honeytail { };
-
-  honeyvent = callPackage ../servers/tracing/honeycomb/honeyvent { };
 
   swift-corelibs-libdispatch = swiftPackages.Dispatch;
 
