@@ -2663,6 +2663,8 @@ self: super: with self; {
 
   colcon = callPackage ../development/python-modules/colcon { };
 
+  colcon-argcomplete = callPackage ../development/python-modules/colcon-argcomplete { };
+
   collections-extended = callPackage ../development/python-modules/collections-extended { };
 
   collidoscope = callPackage ../development/python-modules/collidoscope { };
@@ -16808,8 +16810,6 @@ self: super: with self; {
 
   symbolic = callPackage ../development/python-modules/symbolic { };
 
-  symbolic_10 = callPackage ../development/python-modules/symbolic/10.nix { };
-
   symengine = callPackage ../development/python-modules/symengine { inherit (pkgs) symengine; };
 
   symfc = callPackage ../development/python-modules/symfc { };
@@ -17553,8 +17553,6 @@ self: super: with self; {
   tree-sitter-rust = callPackage ../development/python-modules/tree-sitter-rust { };
 
   tree-sitter-yaml = callPackage ../development/python-modules/tree-sitter-yaml { };
-
-  tree-sitter_0_21 = callPackage ../development/python-modules/tree-sitter/0_21.nix { };
 
   treelib = callPackage ../development/python-modules/treelib { };
 
