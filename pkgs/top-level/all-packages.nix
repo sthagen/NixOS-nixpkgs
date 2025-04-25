@@ -3746,8 +3746,6 @@ with pkgs;
 
   hareThirdParty = recurseIntoAttrs (callPackage ./hare-third-party.nix { });
 
-  ham = pkgs.perlPackages.ham;
-
   hdf5 = callPackage ../tools/misc/hdf5 {
     fortranSupport = false;
     fortran = gfortran;
@@ -13874,8 +13872,6 @@ with pkgs;
 
   dfasma = libsForQt5.callPackage ../applications/audio/dfasma { };
 
-  dfilemanager = libsForQt5.callPackage ../applications/file-managers/dfilemanager { };
-
   direwolf = callPackage ../applications/radio/direwolf {
     hamlib = hamlib_4;
   };
@@ -16751,6 +16747,11 @@ with pkgs;
     inherit (darwin) autoSignDarwinBinariesHook;
   };
 
+  bitcoin-knots = libsForQt5.callPackage ../applications/blockchains/bitcoin-knots {
+    withGui = true;
+    inherit (darwin) autoSignDarwinBinariesHook;
+  };
+
   bitcoind-knots = callPackage ../applications/blockchains/bitcoin-knots {
     withGui = false;
     inherit (darwin) autoSignDarwinBinariesHook;
@@ -18803,8 +18804,6 @@ with pkgs;
   qmake2cmake = python3Packages.callPackage ../tools/misc/qmake2cmake { };
 
   qtrvsim = libsForQt5.callPackage ../applications/science/computer-architecture/qtrvsim { };
-
-  qzdl = libsForQt5.callPackage ../games/qzdl { };
 
   rbspy = darwin.apple_sdk_11_0.callPackage ../development/tools/rbspy { };
 

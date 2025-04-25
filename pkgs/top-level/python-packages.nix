@@ -1758,6 +1758,8 @@ self: super: with self; {
 
   beniget = callPackage ../development/python-modules/beniget { };
 
+  benqprojector = callPackage ../development/python-modules/benqprojector { };
+
   bentoml = callPackage ../development/python-modules/bentoml { };
 
   berkeleydb = callPackage ../development/python-modules/berkeleydb { };
@@ -2963,6 +2965,8 @@ self: super: with self; {
   crytic-compile = callPackage ../development/python-modules/crytic-compile { };
 
   csaf-tool = callPackage ../development/python-modules/csaf-tool { };
+
+  csaps = callPackage ../development/python-modules/csaps { };
 
   cson = callPackage ../development/python-modules/cson { };
 
@@ -6810,6 +6814,8 @@ self: super: with self; {
   ipy = callPackage ../development/python-modules/ipy { };
 
   ipycanvas = callPackage ../development/python-modules/ipycanvas { };
+
+  ipydatagrid = callPackage ../development/python-modules/ipydatagrid { };
 
   ipydatawidgets = callPackage ../development/python-modules/ipydatawidgets { };
 
@@ -11749,6 +11755,8 @@ self: super: with self; {
 
   py2bit = callPackage ../development/python-modules/py2bit { };
 
+  py2vega = callPackage ../development/python-modules/py2vega { };
+
   py3buddy = callPackage ../development/python-modules/py3buddy { };
 
   py3dns = callPackage ../development/python-modules/py3dns { };
@@ -12298,7 +12306,6 @@ self: super: with self; {
 
   pygame-ce = callPackage ../development/python-modules/pygame-ce {
     inherit (pkgs.darwin.apple_sdk.frameworks) AppKit;
-    SDL2_mixer = pkgs.SDL2_mixer_2_0;
   };
 
   pygame-gui = callPackage ../development/python-modules/pygame-gui { };
