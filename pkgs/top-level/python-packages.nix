@@ -1207,9 +1207,7 @@ self: super: with self; {
 
   aws-xray-sdk = callPackage ../development/python-modules/aws-xray-sdk { };
 
-  awscrt = callPackage ../development/python-modules/awscrt {
-    inherit (pkgs.darwin.apple_sdk.frameworks) CoreFoundation Security;
-  };
+  awscrt = callPackage ../development/python-modules/awscrt { };
 
   awsiotpythonsdk = callPackage ../development/python-modules/awsiotpythonsdk { };
 
@@ -5629,6 +5627,8 @@ self: super: with self; {
 
   glueviz = callPackage ../development/python-modules/glueviz { };
 
+  gluonts = callPackage ../development/python-modules/gluonts { };
+
   glymur = callPackage ../development/python-modules/glymur { };
 
   glyphsets = callPackage ../development/python-modules/glyphsets { };
@@ -7940,6 +7940,8 @@ self: super: with self; {
   lightgbm = callPackage ../development/python-modules/lightgbm { };
 
   lightify = callPackage ../development/python-modules/lightify { };
+
+  lightning = callPackage ../development/python-modules/lightning { };
 
   lightning-utilities = callPackage ../development/python-modules/lightning-utilities { };
 
