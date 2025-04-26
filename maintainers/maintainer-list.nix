@@ -12392,6 +12392,12 @@
     github = "kaeeraa";
     githubId = 99148867;
   };
+  kagehisa = {
+    name = "Sven Woelfel";
+    email = "woelfel.pub@gmail.com";
+    github = "kagehisa";
+    githubId = 37015428;
+  };
   kaiha = {
     email = "kai.harries@gmail.com";
     github = "KaiHa";
@@ -15083,6 +15089,17 @@
     github = "matteo-pacini";
     githubId = 3139724;
     name = "Matteo Pacini";
+  };
+  mattfield = {
+    email = "matt@mild.systems";
+    github = "mattfield";
+    githubId = 686826;
+    name = "Matt Field";
+    keys = [
+      {
+        fingerprint = "8BEE 1295 D9EC 9560 0273  7E57 45B8 21B5 CB29 C07A";
+      }
+    ];
   };
   matthewbauer = {
     email = "mjbauer95@gmail.com";
@@ -18207,6 +18224,12 @@
     githubId = 111265;
     name = "Ozan Sener";
   };
+  oskardotglobal = {
+    email = "me@oskar.global";
+    github = "oskardotglobal";
+    githubId = 52569953;
+    name = "Oskar Manhart";
+  };
   osnyx = {
     email = "os@flyingcircus.io";
     github = "osnyx";
@@ -18821,6 +18844,11 @@
     github = "petrosagg";
     githubId = 939420;
     name = "Petros Angelatos";
+  };
+  petrzjunior = {
+    github = "petrzjunior";
+    githubId = 7000918;
+    name = "Petr Zahradnik";
   };
   petterstorvik = {
     email = "petterstorvik@gmail.com";
