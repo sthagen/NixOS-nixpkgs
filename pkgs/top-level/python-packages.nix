@@ -2011,6 +2011,8 @@ self: super: with self; {
 
   bottombar = callPackage ../development/python-modules/bottombar { };
 
+  bot-safe-agents = callPackage ../development/python-modules/bot-safe-agents { };
+
   bpemb = callPackage ../development/python-modules/bpemb { };
 
   bpylist2 = callPackage ../development/python-modules/bpylist2 { };
@@ -4897,6 +4899,8 @@ self: super: with self; {
   findimports = callPackage ../development/python-modules/findimports { };
 
   findpython = callPackage ../development/python-modules/findpython { };
+
+  findspark = callPackage ../development/python-modules/findspark { };
 
   finetuning-scheduler = callPackage ../development/python-modules/finetuning-scheduler { };
 
@@ -10274,6 +10278,8 @@ self: super: with self; {
   openbabel-bindings = callPackage ../development/python-modules/openbabel-bindings {
     openbabel = callPackage ../development/libraries/openbabel { inherit (self) python; };
   };
+
+  opencamlib = callPackage ../development/python-modules/opencamlib { };
 
   opencensus = callPackage ../development/python-modules/opencensus { };
 
@@ -16480,6 +16486,8 @@ self: super: with self; {
   sqlcipher3-wheels = callPackage ../development/python-modules/sqlcipher3-wheels { };
 
   sqlfmt = callPackage ../development/python-modules/sqlfmt { };
+
+  sqlframe = callPackage ../development/python-modules/sqlframe { };
 
   sqlglot = callPackage ../development/python-modules/sqlglot { };
 
