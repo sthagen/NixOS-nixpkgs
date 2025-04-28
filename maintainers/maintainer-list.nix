@@ -11007,6 +11007,12 @@
     githubId = 5579359;
     name = "Jason Yundt";
   };
+  jayrovacsek = {
+    email = "nixpkgs@jay.rovacsek.com";
+    github = "JayRovacsek";
+    githubId = 29395089;
+    name = "Jay Rovacsek";
+  };
   jb55 = {
     email = "jb55@jb55.com";
     github = "jb55";
@@ -11652,6 +11658,12 @@
     githubId = 1385934;
     keys = [ { fingerprint = "3A13 5C15 E1D5 850D 2F90  AB25 6E14 46DD 451C 6BAF"; } ];
   };
+  joblade = {
+    email = "bladeur13@free.fr";
+    github = "Jo-Blade";
+    githubId = 59778661;
+    name = "Jo Blade";
+  };
   jobojeha = {
     email = "jobojeha@jeppener.de";
     github = "jobojeha";
@@ -11953,6 +11965,12 @@
     email = "joshainglis@gmail.com";
     github = "joshainglis";
     githubId = 1281131;
+  };
+  joshheinrichs-shopify = {
+    name = "Josh Heinrichs";
+    email = "josh.heinrichs@shopify.com";
+    github = "joshheinrichs-shopify";
+    githubId = 100245234;
   };
   joshniemela = {
     name = "Joshua Niemelä";
