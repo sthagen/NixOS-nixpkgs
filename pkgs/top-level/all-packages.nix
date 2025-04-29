@@ -419,17 +419,9 @@ with pkgs;
 
   deviceTree = callPackage ../os-specific/linux/device-tree { };
 
-  octodns = python3Packages.callPackage ../tools/networking/octodns { };
+  octodns = callPackage ../tools/networking/octodns { };
 
-  octodns-providers = recurseIntoAttrs {
-    bind = python3Packages.callPackage ../tools/networking/octodns/providers/bind { };
-    gandi = python3Packages.callPackage ../tools/networking/octodns/providers/gandi { };
-    hetzner = python3Packages.callPackage ../tools/networking/octodns/providers/hetzner { };
-    powerdns = python3Packages.callPackage ../tools/networking/octodns/providers/powerdns { };
-    cloudflare = python3Packages.callPackage ../tools/networking/octodns/providers/cloudflare { };
-    ddns = python3Packages.callPackage ../tools/networking/octodns/providers/ddns { };
-    transip = python3Packages.callPackage ../tools/networking/octodns/providers/transip { };
-  };
+  octodns-providers = octodns.providers;
 
   oletools = with python3.pkgs; toPythonApplication oletools;
 
@@ -1644,9 +1636,7 @@ with pkgs;
   xst = callPackage ../applications/terminal-emulators/st/xst.nix { };
   mcaimi-st = callPackage ../applications/terminal-emulators/st/mcaimi-st.nix { };
 
-  stupidterm = callPackage ../applications/terminal-emulators/stupidterm {
-    gtk = gtk3;
-  };
+  stupidterm = callPackage ../applications/terminal-emulators/stupidterm { };
 
   termite = callPackage ../applications/terminal-emulators/termite/wrapper.nix {
     termite = termite-unwrapped;
@@ -2684,7 +2674,7 @@ with pkgs;
 
   steampipePackages = recurseIntoAttrs (callPackage ../tools/misc/steampipe-packages { });
 
-  swappy = callPackage ../applications/misc/swappy { gtk = gtk3; };
+  swappy = callPackage ../applications/misc/swappy { };
 
   synth = callPackage ../tools/misc/synth {
     inherit (darwin.apple_sdk.frameworks) AppKit Security;
@@ -3132,9 +3122,7 @@ with pkgs;
 
   dconf2nix = callPackage ../development/tools/haskell/dconf2nix { };
 
-  devilspie2 = callPackage ../applications/misc/devilspie2 {
-    gtk = gtk3;
-  };
+  devilspie2 = callPackage ../applications/misc/devilspie2 { };
 
   ddcui = libsForQt5.callPackage ../applications/misc/ddcui { };
 
@@ -3484,13 +3472,9 @@ with pkgs;
 
   gawkInteractive = gawk.override { interactive = true; };
 
-  gbdfed = callPackage ../tools/misc/gbdfed {
-    gtk = gtk2-x11;
-  };
+  gbdfed = callPackage ../tools/misc/gbdfed { };
 
-  gftp = callPackage ../applications/networking/ftp/gftp {
-    gtk = gtk2;
-  };
+  gftp = callPackage ../applications/networking/ftp/gftp { };
 
   ggshield = callPackage ../tools/security/ggshield {
     python3 = python311;
@@ -5700,6 +5684,9 @@ with pkgs;
   powerline = with python3Packages; toPythonApplication powerline;
 
   ### DEVELOPMENT / COMPILERS
+
+  temurin-bin-24 = javaPackages.compiler.temurin-bin.jdk-24;
+  temurin-jre-bin-24 = javaPackages.compiler.temurin-bin.jre-24;
 
   temurin-bin-23 = javaPackages.compiler.temurin-bin.jdk-23;
   temurin-jre-bin-23 = javaPackages.compiler.temurin-bin.jre-23;
@@ -9603,9 +9590,7 @@ with pkgs;
 
   gtk-sharp-3_0 = callPackage ../development/libraries/gtk-sharp/3.0.nix { };
 
-  gtk-mac-integration = callPackage ../development/libraries/gtk-mac-integration {
-    gtk = gtk3;
-  };
+  gtk-mac-integration = callPackage ../development/libraries/gtk-mac-integration { };
 
   gtk-mac-integration-gtk2 = gtk-mac-integration.override {
     gtk = gtk2;
@@ -11961,7 +11946,7 @@ with pkgs;
     nodejs-slim = nodejs-slim_22;
     python3 = python311;
     ruby = ruby_3_3;
-    yarn-berry = yarn-berry.override { nodejs = nodejs-slim_22; };
+    yarn-berry = yarn-berry_4.override { nodejs = nodejs-slim_22; };
   };
 
   micro-full = micro.wrapper.override {
@@ -12139,7 +12124,6 @@ with pkgs;
   mariadb-connector-c_3_3 = callPackage ../servers/sql/mariadb/connector-c/3_3.nix { };
 
   inherit (import ../servers/sql/mariadb pkgs)
-    mariadb_105
     mariadb_106
     mariadb_1011
     mariadb_114
@@ -13673,10 +13657,6 @@ with pkgs;
     inherit (haskellPackages) ghcWithPackages;
   };
 
-  bluefish = callPackage ../applications/editors/bluefish {
-    gtk = gtk3;
-  };
-
   breezy = with python3Packages; toPythonApplication breezy;
 
   calf = callPackage ../applications/audio/calf {
@@ -14329,9 +14309,7 @@ with pkgs;
 
   gimpPlugins = recurseIntoAttrs (callPackage ../applications/graphics/gimp/plugins { });
 
-  girara = callPackage ../applications/misc/girara {
-    gtk = gtk3;
-  };
+  girara = callPackage ../applications/misc/girara { };
 
   gtk-pipe-viewer = perlPackages.callPackage ../applications/video/pipe-viewer { withGtk3 = true; };
 
@@ -14410,7 +14388,7 @@ with pkgs;
   graphicsmagick_q16 = graphicsmagick.override { quantumdepth = 16; };
   graphicsmagick-imagemagick-compat = graphicsmagick.imagemagick-compat;
 
-  grisbi = callPackage ../applications/office/grisbi { gtk = gtk3; };
+  grisbi = callPackage ../applications/office/grisbi { };
 
   q4wine = libsForQt5.callPackage ../applications/misc/q4wine { };
 
@@ -16004,7 +15982,7 @@ with pkgs;
     pythonBindings = true;
   };
 
-  surf = callPackage ../applications/networking/browsers/surf { gtk = gtk2; };
+  surf = callPackage ../applications/networking/browsers/surf { };
 
   surge = callPackage ../applications/audio/surge {
     git = gitMinimal;
@@ -17591,9 +17569,7 @@ with pkgs;
   # Needed for elementary's gala, wingpanel and greeter until support for higher versions is provided
   pantheon = recurseIntoAttrs (callPackage ../desktops/pantheon { });
 
-  rox-filer = callPackage ../desktops/rox/rox-filer {
-    gtk = gtk2;
-  };
+  rox-filer = callPackage ../desktops/rox/rox-filer { };
 
   xfce = recurseIntoAttrs (callPackage ../desktops/xfce { });
 

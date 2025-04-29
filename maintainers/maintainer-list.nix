@@ -6641,6 +6641,13 @@
     github = "dsymbol";
     githubId = 88138099;
   };
+  dtomvan = {
+    email = "18gatenmaker6@gmail.com";
+    github = "dtomvan";
+    githubId = 51440893;
+    name = "Tom van Dijk";
+    keys = [ { fingerprint = "D044 F07B 8863 B681 26BD  79FE 7A98 4C82 07AD BA51"; } ];
+  };
   dtzWill = {
     email = "w@wdtz.org";
     github = "dtzWill";
@@ -24051,6 +24058,13 @@
     github = "teto";
     githubId = 886074;
     name = "Matthieu Coudron";
+  };
+  tetov = {
+    email = "anton@tetov.se";
+    github = "tetov";
+    githubId = 14882117;
+    keys = [ { fingerprint = "2B4D 0035 AFF0 F7DA CE5B  29D7 337D DB57 4A88 34DB"; } ];
+    name = "Anton Tetov";
   };
   teutat3s = {
     email = "teutates@mailbox.org";
