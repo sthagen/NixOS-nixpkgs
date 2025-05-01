@@ -5721,10 +5721,6 @@ with pkgs;
     jdk = jdk8;
   };
 
-  alan = callPackage ../development/compilers/alan { };
-
-  alan_2 = callPackage ../development/compilers/alan/2.nix { };
-
   armips = callPackage ../development/compilers/armips {
     stdenv = gcc10Stdenv;
   };
@@ -7813,20 +7809,17 @@ with pkgs;
   electron-source = callPackage ../development/tools/electron { };
 
   inherit (callPackages ../development/tools/electron/binary { })
-    electron_32-bin
     electron_33-bin
     electron_34-bin
     electron_35-bin
     ;
 
   inherit (callPackages ../development/tools/electron/chromedriver { })
-    electron-chromedriver_32
     electron-chromedriver_33
     electron-chromedriver_34
     electron-chromedriver_35
     ;
 
-  electron_32 = electron_32-bin;
   electron_33 = electron_33-bin;
   electron_34 =
     if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_34 then
