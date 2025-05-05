@@ -12302,6 +12302,8 @@ self: super: with self; {
 
   pyfcm = callPackage ../development/python-modules/pyfcm { };
 
+  pyfdt = callPackage ../development/python-modules/pyfdt { };
+
   pyfibaro = callPackage ../development/python-modules/pyfibaro { };
 
   pyfido = callPackage ../development/python-modules/pyfido { };
@@ -15391,8 +15393,6 @@ self: super: with self; {
   s3transfer = callPackage ../development/python-modules/s3transfer { };
 
   sabctools = callPackage ../development/python-modules/sabctools { };
-
-  sabyenc = callPackage ../development/python-modules/sabyenc { };
 
   sabyenc3 = callPackage ../development/python-modules/sabyenc3 { };
 
