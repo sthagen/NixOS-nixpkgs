@@ -405,7 +405,7 @@ with pkgs;
 
   buildcatrust = with python3.pkgs; toPythonApplication buildcatrust;
 
-  mumps_par = callPackage ../by-name/mu/mumps/package.nix { mpiSupport = true; };
+  mumps-mpi = callPackage ../by-name/mu/mumps/package.nix { mpiSupport = true; };
 
   protoc-gen-grpc-web = callPackage ../development/tools/protoc-gen-grpc-web {
     protobuf = protobuf_21;
@@ -2913,7 +2913,7 @@ with pkgs;
   buildEmscriptenPackage = callPackage ../development/em-modules/generic { };
 
   emscripten = callPackage ../development/compilers/emscripten {
-    llvmPackages = llvmPackages_19;
+    llvmPackages = llvmPackages_20;
   };
 
   emscriptenPackages = recurseIntoAttrs (callPackage ./emscripten-packages.nix { });
@@ -7578,8 +7578,6 @@ with pkgs;
     })
   );
 
-  pnpm-lock-export = callPackage ../development/web/pnpm-lock-export { };
-
   portableService = callPackage ../build-support/portable-service { };
 
   polar = callPackage ../tools/misc/polar { };
@@ -8176,11 +8174,6 @@ with pkgs;
 
   geos_3_9 = callPackage ../development/libraries/geos/3.9.nix { };
 
-  inherit (callPackages ../development/libraries/getdns { })
-    getdns
-    stubby
-    ;
-
   gettext = callPackage ../development/libraries/gettext { };
 
   gdalMinimal = gdal.override {
@@ -8192,8 +8185,6 @@ with pkgs;
   };
 
   givaro = callPackage ../development/libraries/givaro { };
-  givaro_3 = callPackage ../development/libraries/givaro/3.nix { };
-  givaro_3_7 = callPackage ../development/libraries/givaro/3.7.nix { };
 
   ghp-import = with python3Packages; toPythonApplication ghp-import;
 
@@ -10954,8 +10945,6 @@ with pkgs;
     enableAirplay2 = true;
   };
 
-  showoff = callPackage ../servers/http/showoff { };
-
   stalwart-mail-webadmin = stalwart-mail.webadmin;
 
   ruby-zoom = callPackage ../tools/text/ruby-zoom { };
@@ -13057,7 +13046,6 @@ with pkgs;
   jwm-settings-manager = callPackage ../applications/window-managers/jwm/jwm-settings-manager.nix { };
 
   inherit (callPackage ../applications/networking/cluster/k3s { })
-    k3s_1_29
     k3s_1_30
     k3s_1_31
     k3s_1_32
@@ -13291,10 +13279,6 @@ with pkgs;
   };
 
   luddite = with python3Packages; toPythonApplication luddite;
-
-  lumail = callPackage ../applications/networking/mailreaders/lumail {
-    lua = lua5_1;
-  };
 
   lutris-unwrapped = python3.pkgs.callPackage ../applications/misc/lutris { };
   lutris = callPackage ../applications/misc/lutris/fhsenv.nix { };
@@ -14855,8 +14839,6 @@ with pkgs;
 
   ledger-agent = with python3Packages; toPythonApplication ledger-agent;
 
-  monero-gui = libsForQt5.callPackage ../applications/blockchains/monero-gui { };
-
   napari = with python3Packages; toPythonApplication napari;
 
   nano-wallet = libsForQt5.callPackage ../applications/blockchains/nano-wallet { };
@@ -14988,9 +14970,13 @@ with pkgs;
     physfs = physfs_2;
   };
 
-  beancount-ing-diba = callPackage ../applications/office/beancount/beancount-ing-diba.nix { };
+  beancount-ing-diba = callPackage ../applications/office/beancount/beancount-ing-diba.nix {
+    inherit (python3Packages) beancount beangulp;
+  };
 
-  beancount-share = callPackage ../applications/office/beancount/beancount_share.nix { };
+  beancount-share = callPackage ../applications/office/beancount/beancount_share.nix {
+    inherit (python3Packages) beancount beancount-plugin-utils;
+  };
 
   cataclysmDDA = callPackage ../games/cataclysm-dda { };
 

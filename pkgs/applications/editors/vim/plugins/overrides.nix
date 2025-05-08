@@ -118,6 +118,8 @@
   # typst-preview dependencies
   tinymist,
   websocat,
+  # luau-lsp-nvim dependencies
+  luau-lsp,
 }:
 self: super:
 let
@@ -1686,6 +1688,11 @@ in
 
   LuaSnip-snippets-nvim = super.LuaSnip-snippets-nvim.overrideAttrs {
     checkInputs = [ self.luasnip ];
+  };
+
+  luau-lsp-nvim = super.luau-lsp-nvim.overrideAttrs {
+    dependencies = [ self.plenary-nvim ];
+    runtimeDeps = [ luau-lsp ];
   };
 
   magma-nvim = super.magma-nvim.overrideAttrs {
