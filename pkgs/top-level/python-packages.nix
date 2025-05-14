@@ -1602,6 +1602,8 @@ self: super: with self; {
 
   backports-tarfile = callPackage ../development/python-modules/backports-tarfile { };
 
+  backtesting = callPackage ../development/python-modules/backtesting { };
+
   bacpypes = callPackage ../development/python-modules/bacpypes { };
 
   bagit = callPackage ../development/python-modules/bagit { };
@@ -1777,6 +1779,8 @@ self: super: with self; {
   better-exceptions = callPackage ../development/python-modules/better-exceptions { };
 
   betterproto = callPackage ../development/python-modules/betterproto { };
+
+  bezier = callPackage ../development/python-modules/bezier { };
 
   beziers = callPackage ../development/python-modules/beziers { };
 
@@ -6492,8 +6496,6 @@ self: super: with self; {
 
   huggingface-hub = callPackage ../development/python-modules/huggingface-hub { };
 
-  huisbaasje-client = callPackage ../development/python-modules/huisbaasje-client { };
-
   human-readable = callPackage ../development/python-modules/human-readable { };
 
   humanfriendly = callPackage ../development/python-modules/humanfriendly { };
@@ -8284,8 +8286,6 @@ self: super: with self; {
   logfury = callPackage ../development/python-modules/logfury { };
 
   logging-journald = callPackage ../development/python-modules/logging-journald { };
-
-  logi-circle = callPackage ../development/python-modules/logi-circle { };
 
   logical-unification = callPackage ../development/python-modules/logical-unification { };
 
@@ -13567,6 +13567,8 @@ self: super: with self; {
   pysubs2 = callPackage ../development/python-modules/pysubs2 { };
 
   pysuezv2 = callPackage ../development/python-modules/pysuezv2 { };
+
+  pysunspec2 = callPackage ../development/python-modules/pysunspec2 { };
 
   pysvg-py3 = callPackage ../development/python-modules/pysvg-py3 { };
 
