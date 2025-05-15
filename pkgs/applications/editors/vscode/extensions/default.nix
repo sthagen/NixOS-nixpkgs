@@ -43,8 +43,8 @@ let
         mktplcRef = {
           publisher = "1Password";
           name = "op-vscode";
-          version = "1.0.4";
-          hash = "sha256-s6acue8kgFLf5fs4A7l+IYfhibdY76cLcIwHl+54WVk=";
+          version = "1.0.5";
+          hash = "sha256-J7vAK2t6fSjm5i6y3+88aO84ipFwekQkJMD7W3EIWrc=";
         };
         meta = {
           changelog = "https://github.com/1Password/op-vscode/releases";
@@ -493,8 +493,8 @@ let
         mktplcRef = {
           publisher = "banacorn";
           name = "agda-mode";
-          version = "0.5.6";
-          hash = "sha256-FKcPJzdhK0QbaG3wBkdGOkiDkZ4qVJh3RBTnD4wLIh8=";
+          version = "0.5.7";
+          hash = "sha256-Lif7fvR2fozQDko0G74/+UhTnlbFjGAQj5eb2IIH61I=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/banacorn.agda-mode/changelog";
@@ -1195,8 +1195,8 @@ let
         mktplcRef = {
           publisher = "DanielGavin";
           name = "ols";
-          version = "0.1.34";
-          hash = "sha256-Xec6UHMe/6ChA4SHCPzMuUAJZejKpGo3YHy9paashmY=";
+          version = "0.1.35";
+          hash = "sha256-Kem8o0gM1+cYohmua17kIlAH1RURgqoc0sPuIFDVU8Q=";
         };
         meta = {
           description = "Visual Studio Code extension for Odin language";
@@ -2527,7 +2527,7 @@ let
         mktplcRef = {
           publisher = "influxdata";
           name = "flux";
-          version = "1.0.4";
+          version = "1.0.5";
           hash = "sha256-KIKROyfkosBS1Resgl+s3VENVg4ibaeIgKjermXESoA=";
         };
         meta = {
@@ -4346,8 +4346,8 @@ let
         mktplcRef = {
           name = "metals";
           publisher = "scalameta";
-          version = "1.49.0";
-          hash = "sha256-/vzQojojvEz0KLebFCE3q4ptqPm40s4UgwxUAwMx8zs=";
+          version = "1.50.0";
+          hash = "sha256-vMO1u8w4uQc0mvgB3az4G+QnwRwsz5d1+LpDGEShyDw=";
         };
         meta = {
           license = lib.licenses.asl20;
@@ -5721,8 +5721,8 @@ let
         mktplcRef = {
           name = "vscode-zig";
           publisher = "ziglang";
-          version = "0.6.8";
-          hash = "sha256-u4Vd2YP47ccpz4ZMOGDN1eFS8qiC7nGIbo6YtvxNHFM=";
+          version = "0.6.9";
+          hash = "sha256-R18NnnsYVLmCNdGU0plIYn2MKrlSedfJoXH/amxKKaY=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/ziglang.vscode-zig/changelog";

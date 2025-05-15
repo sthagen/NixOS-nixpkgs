@@ -1011,12 +1011,7 @@ with pkgs;
 
   actdiag = with python3.pkgs; toPythonApplication actdiag;
 
-  adlplug = callPackage ../applications/audio/adlplug {
-    jack = libjack2;
-  };
-  opnplug = adlplug.override {
-    type = "OPN";
-  };
+  opnplug = adlplug.override { type = "OPN"; };
 
   akkoma = callPackage ../by-name/ak/akkoma/package.nix {
     beamPackages = beam_minimal.packages.erlang_26.extend (
@@ -3864,8 +3859,6 @@ with pkgs;
     hdf5 = hdf5-mpi.override { usev110Api = true; };
   };
 
-  inherit (callPackage ../servers/web-apps/netbox { }) netbox_3_7;
-
   # Not in aliases because it wouldn't get picked up by callPackage
   netbox = netbox_4_2;
 
@@ -4800,12 +4793,10 @@ with pkgs;
 
   inherit (callPackages ../servers/varnish { })
     varnish60
-    varnish76
     varnish77
     ;
   inherit (callPackages ../servers/varnish/packages.nix { })
     varnish60Packages
-    varnish76Packages
     varnish77Packages
     ;
   varnishPackages = varnish77Packages;
@@ -12772,8 +12763,6 @@ with pkgs;
     singularity-overriden-nixos
     ;
 
-  sosreport = python3Packages.callPackage ../applications/logging/sosreport { };
-
   inherit (callPackages ../development/libraries/wlroots { })
     wlroots_0_17
     wlroots_0_18
@@ -13015,8 +13004,6 @@ with pkgs;
   kbibtex = libsForQt5.callPackage ../applications/office/kbibtex { };
 
   kaidan = kdePackages.callPackage ../applications/networking/instant-messengers/kaidan { };
-
-  kdeltachat = libsForQt5.callPackage ../applications/networking/instant-messengers/kdeltachat { };
 
   kexi = libsForQt5.callPackage ../applications/office/kexi { };
 
@@ -14556,11 +14543,6 @@ with pkgs;
 
   worldengine-cli = python3Packages.worldengine;
 
-  wpsoffice = libsForQt5.callPackage ../applications/office/wpsoffice { };
-  wpsoffice-cn = libsForQt5.callPackage ../applications/office/wpsoffice {
-    useChineseVersion = true;
-  };
-
   wrapFirefox = callPackage ../applications/networking/browsers/firefox/wrapper.nix { };
 
   wrapThunderbird = callPackage ../applications/networking/mailreaders/thunderbird/wrapper.nix { };
@@ -14700,7 +14682,7 @@ with pkgs;
     SDL = SDL_sixel;
   };
 
-  zotero_7 = pkgs.zotero-beta;
+  zotero_7 = pkgs.zotero;
 
   zsteg = callPackage ../tools/security/zsteg { };
 
