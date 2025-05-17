@@ -27,8 +27,8 @@ let
         mktplcRef = {
           name = "language-x86-64-assembly";
           publisher = "13xforever";
-          version = "3.1.4";
-          hash = "sha256-FJRDm1H3GLBfSKBSFgVspCjByy9m+j9OStlU+/pMfs8=";
+          version = "3.1.5";
+          hash = "sha256-WIhmAZLR2WOSqQF3ozJ/Vr3Rp6HdSK7L23T3h4AVaGM=";
         };
         meta = {
           description = "Cutting edge x86 and x86_64 assembly syntax highlighting";
@@ -89,8 +89,8 @@ let
         mktplcRef = {
           publisher = "42Crunch";
           name = "vscode-openapi";
-          version = "4.33.1";
-          hash = "sha256-iq0UpVaZMOzh4NIRPLk49ciFuO4A6PDSEMe1KKhfSxA=";
+          version = "4.33.2";
+          hash = "sha256-agCxi2UhJitdQmHIf6rK7WexkfljUQdqK5rLqzV4J6o=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/42Crunch.vscode-openapi/changelog";
@@ -1308,22 +1308,7 @@ let
         };
       };
 
-      dbaeumer.vscode-eslint = buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          name = "vscode-eslint";
-          publisher = "dbaeumer";
-          version = "3.0.13";
-          hash = "sha256-l5VvhQPxPaQsPhXUbFW2yGJjaqnNvijn4QkXPjf1WXo=";
-        };
-        meta = {
-          changelog = "https://marketplace.visualstudio.com/items/dbaeumer.vscode-eslint/changelog";
-          description = "Integrates ESLint JavaScript into VS Code";
-          downloadPage = "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint";
-          homepage = "https://github.com/Microsoft/vscode-eslint";
-          license = lib.licenses.mit;
-          maintainers = [ lib.maintainers.datafoo ];
-        };
-      };
+      dbaeumer.vscode-eslint = callPackage ./dbaeumer.vscode-eslint { };
 
       dendron.adjust-heading-level = callPackage ./dendron.adjust-heading-level { };
 
@@ -1789,22 +1774,7 @@ let
         };
       };
 
-      esbenp.prettier-vscode = buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          name = "prettier-vscode";
-          publisher = "esbenp";
-          version = "11.0.0";
-          hash = "sha256-pNjkJhof19cuK0PsXJ/Q/Zb2H7eoIkfXJMLZJ4lDn7k=";
-        };
-        meta = {
-          changelog = "https://marketplace.visualstudio.com/items/esbenp.prettier-vscode/changelog";
-          description = "Code formatter using prettier";
-          downloadPage = "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode";
-          homepage = "https://github.com/prettier/prettier-vscode";
-          license = lib.licenses.mit;
-          maintainers = [ lib.maintainers.datafoo ];
-        };
-      };
+      esbenp.prettier-vscode = callPackage ./esbenp.prettier-vscode { };
 
       ethansk.restore-terminals = buildVscodeMarketplaceExtension {
         mktplcRef = {
@@ -2107,40 +2077,9 @@ let
         };
       };
 
-      github.copilot = buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          publisher = "github";
-          name = "copilot";
-          # Verify which version is available with nix run nixpkgs#vsce -- show github.copilot --json
-          version = "1.317.0";
-          hash = "sha256-w8HH1ibkOrpuKi3Yhzr+DjVIY7HWZ2L4rYzNYrHkfbc=";
-        };
+      github.copilot = callPackage ./github.copilot { };
 
-        meta = {
-          description = "GitHub Copilot uses OpenAI Codex to suggest code and entire functions in real-time right from your editor";
-          downloadPage = "https://marketplace.visualstudio.com/items?itemName=GitHub.copilot";
-          homepage = "https://github.com/features/copilot";
-          license = lib.licenses.unfree;
-          maintainers = [ lib.maintainers.Zimmi48 ];
-        };
-      };
-
-      github.copilot-chat = buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          publisher = "github";
-          name = "copilot-chat";
-          # Verify which version is available with nix run nixpkgs#vsce -- show github.copilot-chat --json
-          version = "0.26.7"; # latest compatible with vscode ^1.98
-          hash = "sha256-aR6AGU/boDmYef0GWna5sUsyv9KYGCkugWpFIusDMNE=";
-        };
-        meta = {
-          description = "GitHub Copilot Chat is a companion extension to GitHub Copilot that houses experimental chat features";
-          downloadPage = "https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat";
-          homepage = "https://github.com/features/copilot";
-          license = lib.licenses.unfree;
-          maintainers = [ lib.maintainers.laurent-f1z1 ];
-        };
-      };
+      github.copilot-chat = callPackage ./github.copilot-chat { };
 
       github.github-vscode-theme = buildVscodeMarketplaceExtension {
         mktplcRef = {
@@ -4088,8 +4027,8 @@ let
         mktplcRef = {
           publisher = "redhat";
           name = "java";
-          version = "1.41.2025031208";
-          hash = "sha256-0VWLkztB7anIs19QN1yPQvVjNim+DICv43IOMwEaM+E=";
+          version = "1.42.0";
+          hash = "sha256-m6RJm8eleMjDNy5ixfXWtOcPmsjNynCUNuF9lsCB8ho=";
         };
         buildInputs = [ jdk ];
         meta = {
