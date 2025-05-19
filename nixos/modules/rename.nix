@@ -102,6 +102,10 @@ in
       "services"
       "chronos"
     ] "The corresponding package was removed from nixpkgs.")
+    (mkRemovedOptionModule [
+      "services"
+      "clamsmtp"
+    ] "The corresponding package was removed from nixpkgs.")
     (mkRemovedOptionModule [ "services" "confluence" ]
       "Atlassian software has been removed, as support for the Atlassian Server products ended in February 2024 and there was insufficient interest in maintaining the Atlassian Data Center replacements"
     )
@@ -320,6 +324,10 @@ in
     (mkRemovedOptionModule [ "services" "conduwuit" ] ''
       The conduwuit project has been discontinued by upstream.
       See https://github.com/NixOS/nixpkgs/pull/397902 for more information.
+    '')
+    (mkRemovedOptionModule [ "services" "signald" ] ''
+      The signald project is unmaintained and has long been incompatible with the
+      official Signal servers.
     '')
 
     # Do NOT add any option renames here, see top of the file
