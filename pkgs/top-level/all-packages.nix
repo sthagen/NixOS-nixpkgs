@@ -3065,14 +3065,13 @@ with pkgs;
 
   gibberish-detector = with python3Packages; toPythonApplication gibberish-detector;
 
-  gitlab = callPackage ../applications/version-management/gitlab { };
-  gitlab-ee = callPackage ../applications/version-management/gitlab {
+  gitlab-ee = callPackage ../by-name/gi/gitlab/package.nix {
     gitlabEnterprise = true;
   };
 
   gitlab-triage = callPackage ../applications/version-management/gitlab-triage { };
 
-  gitlab-workhorse = callPackage ../applications/version-management/gitlab/gitlab-workhorse { };
+  gitlab-workhorse = callPackage ../by-name/gi/gitlab/gitlab-workhorse { };
 
   gitqlient = libsForQt5.callPackage ../applications/version-management/gitqlient { };
 
@@ -13260,8 +13259,6 @@ with pkgs;
 
   michabo = libsForQt5.callPackage ../applications/misc/michabo { };
 
-  midori = wrapFirefox midori-unwrapped { };
-
   miniaudicle = qt6Packages.callPackage ../applications/audio/miniaudicle { };
 
   minitube = libsForQt5.callPackage ../applications/video/minitube { };
@@ -16223,8 +16220,6 @@ with pkgs;
   lima = callPackage ../applications/virtualization/lima {
     inherit (darwin) sigtool;
   };
-
-  lima-bin = callPackage ../applications/virtualization/lima/bin.nix { };
 
   image_optim = callPackage ../applications/graphics/image_optim { inherit (nodePackages) svgo; };
 

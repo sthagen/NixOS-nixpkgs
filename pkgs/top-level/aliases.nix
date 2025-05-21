@@ -393,6 +393,7 @@ mapAliases {
   callPackage_i686 = pkgsi686Linux.callPackage;
   cargo-asm = throw "'cargo-asm' has been removed due to lack of upstream maintenance. Consider 'cargo-show-asm' as an alternative.";
   cask = emacs.pkgs.cask; # Added 2022-11-12
+  catcli = throw "catcli has been superseded by gocatcli"; # Added 2025-04-19
   canonicalize-jars-hook = stripJavaArchivesHook; # Added 2024-03-17
   cargo-deps = throw "cargo-deps has been removed as the repository is deleted"; # Added 2024-04-09
   cargo-espflash = espflash;
@@ -1041,6 +1042,7 @@ mapAliases {
   licensor = throw "'licensor' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
   lightdm_gtk_greeter = lightdm-gtk-greeter; # Added 2022-08-01
   lightstep-tracer-cpp = throw "lightstep-tracer-cpp is deprecated since 2022-08-29; the upstream recommends migration to opentelemetry projects.";
+  lima-bin = lib.warnOnInstantiate "lima-bin has been replaced by lima" lima; # Added 2025-05-13
   lime3ds = throw "lime3ds is deprecated, use 'azahar' instead."; # Added 2025-03-22
   limesctl = throw "limesctl has been removed because it is insignificant."; # Added 2024-11-25
   linenoise-ng = throw "'linenoise-ng' has been removed as the upstream project was archived. Consider using 'linenoise' instead."; # Added 2025-05-05
@@ -1221,6 +1223,8 @@ mapAliases {
   micropad = throw "micropad has been removed, since it was unmaintained and blocked the Electron 27 removal."; # Added 2025-02-24
   microsoft-edge = throw "microsoft-edge has been removed due to lack of maintenance in nixpkgs"; # Added 2025-05-19
   microsoft_gsl = microsoft-gsl; # Added 2023-05-26
+  midori = throw "'midori' original project has been abandonned upstream and the package was broken for a while in nixpkgs"; # Added 2025-05-19
+  midori-unwrapped = midori; # Added 2025-05-19
   MIDIVisualizer = midivisualizer; # Added 2024-06-12
   mikutter = throw "'mikutter' has been removed because the package was broken and had no maintainers"; # Added 2024-10-01
   mime-types = mailcap; # Added 2022-01-21
@@ -1688,7 +1692,11 @@ mapAliases {
   SDL_gpu = throw "'SDL_gpu' has been removed due to lack of upstream maintenance and known users"; # Added 2025-03-15
   SDL_image_2_0 = throw "'SDL_image_2_0' has been removed in favor of the latest version"; # Added 2025-04-20
   SDL2_mixer_2_0 = throw "'SDL2_mixer_2_0' has been removed in favor of the latest version"; # Added 2025-04-27
+  SDL2_classic = throw "'SDL2_classic' has been removed. Consider upgrading to 'sdl2-compat', also available as 'SDL2'."; # Added 2025-05-20
+  SDL2_classic_image = throw "'SDL2_classic_image' has been removed as part of the deprecation of 'SDL2_classic'. Consider upgrading to 'SDL2_image' built with 'sdl2-compat'."; # Added 2025-05-20
   SDL2_classic_mixer_2_0 = throw "'SDL2_classic_mixer_2_0' has been removed in favor of the latest version"; # Added 2025-04-27
+  SDL2_classic_mixer = throw "'SDL2_classic_mixer' has been removed as part of the deprecation of 'SDL2_classic'. Consider upgrading to 'SDL2_mixer' built with 'sdl2-compat'."; # Added 2025-05-20
+  SDL2_classic_ttf = throw "'SDL2_classic_ttf' has been removed as part of the deprecation of 'SDL2_classic'. Consider upgrading to 'SDL2_ttf' built with 'sdl2-compat'."; # Added 2025-05-20
   s2n = throw "'s2n' has been renamed to/replaced by 's2n-tls'"; # Converted to throw 2024-10-17
   sandboxfs = throw "'sandboxfs' has been removed due to being unmaintained, consider using linux namespaces for sandboxing instead"; # Added 2024-06-06
   sane-backends-git = throw "'sane-backends-git' has been renamed to/replaced by 'sane-backends'"; # Converted to throw 2024-10-17
