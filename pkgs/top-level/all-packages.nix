@@ -2344,7 +2344,7 @@ with pkgs;
 
   mpd-sima = python3Packages.callPackage ../tools/audio/mpd-sima { };
 
-  nltk-data = lib.recurseIntoAttrs (callPackage ../tools/text/nltk-data { });
+  nltk-data = callPackage ../tools/text/nltk-data { };
 
   seabios-coreboot = seabios.override { ___build-type = "coreboot"; };
   seabios-csm = seabios.override { ___build-type = "csm"; };
@@ -4070,9 +4070,9 @@ with pkgs;
   };
 
   osl = libsForQt5.callPackage ../development/compilers/osl {
-    libclang = llvmPackages_15.libclang;
-    clang = clang_15;
-    llvm = llvm_15;
+    libclang = llvmPackages_19.libclang;
+    clang = clang_19;
+    llvm = llvm_19;
   };
 
   ossec-agent = callPackage ../tools/security/ossec/agent.nix { };
@@ -16279,6 +16279,8 @@ with pkgs;
   mailcore2 = callPackage ../development/libraries/mailcore2 {
     icu = icu71;
   };
+
+  meilisearch_1_11 = callPackage ../by-name/me/meilisearch/package.nix { version = "1.11.3"; };
 
   mongocxx = callPackage ../development/libraries/mongocxx/default.nix { };
 
