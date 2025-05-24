@@ -2343,11 +2343,10 @@
     githubId = 11548989;
   };
   atalii = {
-    email = "taliauster@gmail.com";
+    email = "me@tali.network";
     github = "atalii";
     githubId = 120901234;
-    name = "tali auster";
-    matrix = "@atalii:matrix.org";
+    name = "Tali Auster";
   };
   atar13 = {
     name = "Anthony Tarbinian";
@@ -4000,6 +3999,18 @@
     github = "camelpunch";
     githubId = 141733;
     name = "Andrew Bruce";
+  };
+  Cameo007 = {
+    name = "Pascal Dietrich";
+    email = "pascal.1.dietrich@hotmail.com";
+    matrix = "@cameo007:mintux.de";
+    github = "Cameo007";
+    githubId = 80521473;
+    keys = [
+      {
+        fingerprint = "2D62 24B9 1250 86AF E318 12A0 F1D1 5228 0511 FB91";
+      }
+    ];
   };
   camerondugan = {
     email = "cameron.dugan@protonmail.com";
@@ -6578,6 +6589,12 @@
     github = "dottybot";
     githubId = 12519979;
   };
+  douzebis = {
+    email = "fred@atlant.is";
+    github = "douzebis";
+    githubId = 61088438;
+    name = "Frédéric Ruget";
+  };
   dpaetzel = {
     email = "david.paetzel@posteo.de";
     github = "dpaetzel";
@@ -7213,7 +7230,6 @@
     email = "fedi.jamoussi@protonmail.ch";
     github = "eljamm";
     githubId = 83901271;
-    keys = [ { fingerprint = "FF59 E027 4EE2 E792 512B  BDC8 7630 FDF7 C8FB 1F3F"; } ];
   };
   elkowar = {
     email = "thereal.elkowar@gmail.com";
