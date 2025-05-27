@@ -317,6 +317,8 @@ self: super: with self; {
 
   aiohttp-sse = callPackage ../development/python-modules/aiohttp-sse { };
 
+  aiohttp-sse-client = callPackage ../development/python-modules/aiohttp-sse-client { };
+
   aiohttp-sse-client2 = callPackage ../development/python-modules/aiohttp-sse-client2 { };
 
   aiohttp-swagger = callPackage ../development/python-modules/aiohttp-swagger { };
@@ -3831,6 +3833,10 @@ self: super: with self; {
 
   django-ninja = callPackage ../development/python-modules/django-ninja { };
 
+  django-ninja-cursor-pagination =
+    callPackage ../development/python-modules/django-ninja-cursor-pagination
+      { };
+
   django-oauth-toolkit = callPackage ../development/python-modules/django-oauth-toolkit { };
 
   django-organizations = callPackage ../development/python-modules/django-organizations { };
@@ -3858,6 +3864,8 @@ self: super: with self; {
   django-picklefield = callPackage ../development/python-modules/django-picklefield { };
 
   django-polymorphic = callPackage ../development/python-modules/django-polymorphic { };
+
+  django-postgres-partition = callPackage ../development/python-modules/django-postgres-partition { };
 
   django-postgresql-netfields =
     callPackage ../development/python-modules/django-postgresql-netfields
@@ -6414,6 +6422,8 @@ self: super: with self; {
     callPackage ../development/python-modules/home-assistant-chip-wheels { }
   );
 
+  home-connect-async = callPackage ../development/python-modules/home-connect-async { };
+
   homeassistant-stubs = callPackage ../servers/home-assistant/stubs.nix { };
 
   homeconnect = callPackage ../development/python-modules/homeconnect { };
@@ -6982,6 +6992,8 @@ self: super: with self; {
   isoweek = callPackage ../development/python-modules/isoweek { };
 
   israel-rail-api = callPackage ../development/python-modules/israel-rail-api { };
+
+  itables = callPackage ../development/python-modules/itables { };
 
   itanium-demangler = callPackage ../development/python-modules/itanium-demangler { };
 
@@ -10202,6 +10214,8 @@ self: super: with self; {
   oasatelematics = callPackage ../development/python-modules/oasatelematics { };
 
   oath = callPackage ../development/python-modules/oath { };
+
+  oauth2-client = callPackage ../development/python-modules/oauth2-client { };
 
   oauth2client = callPackage ../development/python-modules/oauth2client { };
 

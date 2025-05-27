@@ -3486,6 +3486,11 @@
     githubId = 50839;
     name = "Brian Jones";
   };
+  bokicoder = {
+    github = "bokicoder";
+    githubId = 193465580;
+    name = "bokicoder";
+  };
   boldikoller = {
     email = "boldi.koller@wtss.eu";
     github = "boldikoller";
@@ -13643,6 +13648,12 @@
     email = "behradbadeli@gmail.com";
     github = "L0L1P0P1";
     githubId = 73695812;
+  };
+  l0r3v = {
+    email = "l0r3v@pasqui.casa";
+    github = "l0r3v";
+    githubId = 27364685;
+    name = "Lorenzo Pasqui";
   };
   l1npengtul = {
     email = "l1npengtul@l1npengtul.lol";
