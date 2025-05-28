@@ -22918,6 +22918,11 @@
     matrix = "@c3n21:matrix.org";
     githubId = 37077738;
   };
+  sinjin2300 = {
+    name = "Sinjin";
+    github = "Sinjin2300";
+    githubId = 35543336;
+  };
   sioodmy = {
     name = "Antoni Sokołowski";
     github = "sioodmy";
@@ -26710,6 +26715,12 @@
     github = "wolfgangwalther";
     githubId = 9132420;
     keys = [ { fingerprint = "F943 A0BC 720C 5BEF 73CD E02D B398 93FA 5F65 CAE1"; } ];
+  };
+  womeier = {
+    name = "Wolfgang Meier";
+    email = "womeier@posteo.de";
+    github = "womeier";
+    githubId = 55190123;
   };
   womfoo = {
     email = "kranium@gikos.net";
