@@ -265,6 +265,7 @@
   };
   _6543 = {
     email = "6543@obermui.de";
+    matrix = "@marddl:obermui.de";
     github = "6543";
     githubId = 24977596;
     name = "6543";
@@ -15220,6 +15221,12 @@
     github = "mariuskimmina";
     githubId = 38843153;
   };
+  markasoftware = {
+    name = "Mark Polyakov";
+    email = "mark@markasoftware.com";
+    github = "markasoftware";
+    githubId = 6380084;
+  };
   markbeep = {
     email = "mrkswrn@gmail.com";
     github = "markbeep";
@@ -18685,6 +18692,12 @@
     email = "oughery@gmail.com";
     github = "Oughie";
     githubId = 123173954;
+  };
+  OulipianSummer = {
+    name = "Andrew Benbow";
+    github = "OulipianSummer";
+    githubId = 47955980;
+    email = "abmurrow@duck.com";
   };
   outfoxxed = {
     name = "outfoxxed";
