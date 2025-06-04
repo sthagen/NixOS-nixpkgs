@@ -17895,6 +17895,12 @@
     githubId = 810877;
     name = "Tom Doggett";
   };
+  noiioiu = {
+    github = "noiioiu";
+    githubId = 151288161;
+    name = "noiioiu";
+    keys = [ { fingerprint = "99CC 06D6 1456 3689 CE75  58F3 BF51 F00D 0748 2A89"; } ];
+  };
   noisersup = {
     email = "patryk@kwiatek.xyz";
     github = "noisersup";
@@ -19504,6 +19510,12 @@
     github = "PigeonF";
     githubId = 7536431;
     name = "Jonas Fierlings";
+  };
+  pilz = {
+    name = "Pilz";
+    email = "nix@pilz.foo";
+    github = "pilz0";
+    githubId = 48645439;
   };
   pimeys = {
     email = "julius@nauk.io";
