@@ -1960,6 +1960,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  checkmate-nvim = buildVimPlugin {
+    pname = "checkmate.nvim";
+    version = "2025-06-05";
+    src = fetchFromGitHub {
+      owner = "bngarren";
+      repo = "checkmate.nvim";
+      rev = "aabe87c58d3c30f45aadab4bef38536e9933cd4a";
+      sha256 = "1qc3i32hkp59sha7rxbil1r76krlxgqqxn9wj7qlabc99bh11d3s";
+    };
+    meta.homepage = "https://github.com/bngarren/checkmate.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   ci_dark = buildVimPlugin {
     pname = "ci_dark";
     version = "2022-03-27";
@@ -3609,6 +3622,19 @@ final: prev: {
       sha256 = "1nwhzifnavxx50d2hcabpx2rrbqh8cg9da4khd0x2yijw179s6lb";
     };
     meta.homepage = "https://github.com/JachymPutta/dailies.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  darcubox-nvim = buildVimPlugin {
+    pname = "darcubox-nvim";
+    version = "2025-06-03";
+    src = fetchFromGitHub {
+      owner = "Koalhack";
+      repo = "darcubox-nvim";
+      rev = "59754cb99fee640da1b64730a17476593af92fd3";
+      sha256 = "1xbpisq980hkdybjkd2pxdz8ghhk1a4y33ygpgi311rzx1ijapgs";
+    };
+    meta.homepage = "https://github.com/Koalhack/darcubox-nvim/";
     meta.hydraPlatforms = [ ];
   };
 
