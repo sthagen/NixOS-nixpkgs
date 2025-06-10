@@ -3813,6 +3813,12 @@
     githubId = 2379774;
     name = "Sean Buckley";
   };
+  bugarela = {
+    email = "gabrielamoreira05@gmail.com";
+    github = "bugarela";
+    githubId = 18356186;
+    name = "Gabriela Moreira";
+  };
   bugworm = {
     email = "bugworm@zoho.com";
     github = "bugworm";
@@ -11091,6 +11097,12 @@
     githubId = 7558482;
     name = "Jack Gerrits";
   };
+  jackr = {
+    name = "Jack Rosenberg";
+    email = "nixos@jackr.eu";
+    github = "jackrosenberg";
+    githubId = 56937175;
+  };
   jacobkoziej = {
     name = "Jacob Koziej";
     email = "jacobkoziej@gmail.com";
@@ -12259,6 +12271,11 @@
     github = "joshniemela";
     githubId = 88747315;
   };
+  joshprk = {
+    name = "Joshua Park";
+    github = "joshprk";
+    githubId = 123624726;
+  };
   joshuafern = {
     name = "Joshua Fern";
     email = "joshuafern@protonmail.com";
@@ -12938,6 +12955,13 @@
     github = "Unkn0wnCat";
     githubId = 8211181;
     name = "Kevin Kandlbinder";
+  };
+  keyruu = {
+    name = "Lucas";
+    email = "me@keyruu.de";
+    matrix = "@keyruu:matrix.org";
+    github = "Keyruu";
+    githubId = 53177682;
   };
   keysmashes = {
     email = "x-89cjg9@keysmash.solutions";
@@ -13947,6 +13971,12 @@
     githubId = 567634;
     name = "Daniel Kuehn";
   };
+  leleuvilela = {
+    email = "viniciusvilela19@gmail.com";
+    github = "leleuvilela";
+    githubId = 19839085;
+    name = "Vinicius Vilela";
+  };
   lelgenio = {
     email = "lelgenio@lelgenio.com";
     github = "lelgenio";
@@ -14949,6 +14979,13 @@
     githubId = 42996147;
     name = "Mæve";
     keys = [ { fingerprint = "96C9 D086 CC9D 7BD7 EF24  80E2 9168 796A 1CC3 AEA2"; } ];
+  };
+  maeve-oake = {
+    email = "maeve@oa.ke";
+    matrix = "@maeve:oa.ke";
+    github = "maeve-oake";
+    githubId = 38541651;
+    name = "maeve";
   };
   mafo = {
     email = "Marc.Fontaine@gmx.de";
@@ -23654,6 +23691,12 @@
     github = "StarGate01";
     githubId = 6362238;
     name = "Christoph Honal";
+  };
+  starius = {
+    email = "bnagaev@gmail.com";
+    github = "starius";
+    githubId = 920155;
+    name = "Boris Nagaev";
   };
   starkca90 = {
     email = "starkca90@gmail.com";
