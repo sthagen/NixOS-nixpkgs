@@ -5354,6 +5354,11 @@
     githubId = 16950437;
     name = "cwyc";
   };
+  cybardev = {
+    name = "Sheikh";
+    github = "cybardev";
+    githubId = 50134239;
+  };
   cybershadow = {
     name = "Vladimir Panteleev";
     email = "nixpkgs@cy.md";
@@ -6769,6 +6774,13 @@
     github = "dsalaza4";
     githubId = 11205987;
     name = "Daniel Salazar";
+  };
+  dsalwasser = {
+    name = "Daniel Salwasser";
+    email = "daniel.salwasser@outlook.com";
+    github = "dsalwasser";
+    githubId = 148379503;
+    keys = [ { fingerprint = "DBA9 AE6B 84A9 C08E C4AD  1E46 6CD2 0B2D 0655 BDF6"; } ];
   };
   dschrempf = {
     name = "Dominik Schrempf";
@@ -15492,6 +15504,11 @@
     githubId = 952712;
     name = "Matt Christ";
   };
+  matteobongio = {
+    github = "matteobongio";
+    githubId = 155063357;
+    name = "Matteo Bongiovanni";
+  };
   matteopacini = {
     email = "m@matteopacini.me";
     github = "matteo-pacini";
@@ -20509,6 +20526,11 @@
     githubId = 39039420;
     name = "Quinn Dougherty";
   };
+  QuiNzX = {
+    name = "QuiNz-";
+    github = "QuiNzX";
+    githubId = 76129478;
+  };
   quodlibetor = {
     email = "quodlibetor@gmail.com";
     github = "quodlibetor";
@@ -23673,6 +23695,12 @@
     github = "braaandon";
     githubId = 86573128;
   };
+  stackptr = {
+    name = "Corey Johns";
+    email = "corey@zx.dev";
+    github = "stackptr";
+    githubId = 4542907;
+  };
   stackshadow = {
     email = "stackshadow@evilbrain.de";
     github = "stackshadow";
@@ -25627,6 +25655,12 @@
     githubId = 722482;
     name = "Denny Schäfer";
     keys = [ { fingerprint = "C752 0E49 4D92 1740 D263  C467 B057 455D 1E56 7270"; } ];
+  };
+  tuxy = {
+    email = "lastpass7565@gmail.com";
+    github = "tuxy";
+    githubId = 57819359;
+    name = "Binh Nguyen";
   };
   tv = {
     email = "tv@krebsco.de";
