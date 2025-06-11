@@ -10320,7 +10320,6 @@ with pkgs;
   inherit (callPackages ../servers/firebird { })
     firebird_4
     firebird_3
-    firebird_2_5
     firebird
     ;
 
@@ -11108,8 +11107,7 @@ with pkgs;
 
   projecteur = libsForQt5.callPackage ../os-specific/linux/projecteur { };
 
-  lkl = callPackage ../applications/virtualization/lkl { };
-  lklWithFirewall = callPackage ../applications/virtualization/lkl { firewallSupport = true; };
+  lklWithFirewall = lkl.override { firewallSupport = true; };
 
   inherit (callPackages ../os-specific/linux/kernel-headers { inherit (pkgsBuildBuild) elf-header; })
     linuxHeaders
@@ -12121,7 +12119,6 @@ with pkgs;
 
   djv = callPackage ../by-name/dj/djv/package.nix { openexr = openexr_2; };
 
-  djview = callPackage ../applications/graphics/djview { };
   djview4 = djview;
 
   dmenu = callPackage ../applications/misc/dmenu { };
