@@ -749,6 +749,8 @@ let
 
         hashcons = callPackage ../development/ocaml-modules/hashcons { };
 
+        hc = callPackage ../development/ocaml-modules/hc { };
+
         hex = callPackage ../development/ocaml-modules/hex { };
 
         hidapi = callPackage ../development/ocaml-modules/hidapi { };
@@ -1765,6 +1767,8 @@ let
         ppxlib = callPackage ../development/ocaml-modules/ppxlib { };
 
         pratter = callPackage ../development/ocaml-modules/pratter { };
+
+        prelude = callPackage ../development/ocaml-modules/prelude { };
 
         prettym = callPackage ../development/ocaml-modules/prettym { };
 
