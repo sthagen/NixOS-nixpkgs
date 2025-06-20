@@ -6722,6 +6722,7 @@
   drakon64 = {
     name = "Adam Chance";
     email = "nixpkgs@drakon.cloud";
+    github = "drakon64";
     githubId = 6444703;
   };
   dramaturg = {
@@ -23224,6 +23225,7 @@
     name = "Zhifan";
     email = "nonno.felice69uwu@gmail.com";
     matrix = "@c3n21:matrix.org";
+    github = "c3n21";
     githubId = 37077738;
   };
   sinjin2300 = {
@@ -24954,6 +24956,12 @@
     github = "theobori";
     githubId = 71843723;
     keys = [ { fingerprint = "EEFB CC3A C529 CFD1 943D  A75C BDD5 7BE9 9D55 5965"; } ];
+  };
+  theonlymrcat = {
+    name = "Max Guppy";
+    email = "theonly@mrcat.au";
+    github = "TheOnlyMrCat";
+    githubId = 23222857;
   };
   theoparis = {
     email = "theo@tinted.dev";
@@ -28006,6 +28014,12 @@
       { fingerprint = "CBF7 FA5E F4B5 8B68 5977  3E3E 4CAC 61D6 A482 FCD9"; }
       { fingerprint = "E22F 760E E074 E57A 21CB  1733 8DD2 9BB5 2C25 EA09"; }
     ];
+  };
+  Zirconium419122 = {
+    name = "Rasmus Liaskar";
+    github = "Zirconium419122";
+    email = "rasmus@liaskar.net";
+    githubId = 152716976;
   };
   zlepper = {
     name = "Rasmus Hansen";
