@@ -1606,6 +1606,12 @@
     githubId = 7644264;
     name = "Andrew Gazelka";
   };
+  andrewgigena = {
+    email = "work@andrewgigena.dev";
+    github = "andrewgigena";
+    githubId = 37125554;
+    name = "Andrew Gigena";
+  };
   AndrewKvalheim = {
     email = "andrew@kvalhe.im";
     github = "AndrewKvalheim";
@@ -5701,6 +5707,12 @@
     matrix = "@alexoo:matrix.org";
     github = "DarkOnion0";
     githubId = 68606322;
+  };
+  darkyzhou = {
+    name = "darkyzhou";
+    email = "me@zqy.io";
+    github = "darkyzhou";
+    githubId = 7220778;
   };
   daru-san = {
     name = "Daru";
@@ -11020,6 +11032,13 @@
     github = "iwanb";
     githubId = 4035835;
     name = "Iwan";
+  };
+  ixhby = {
+    email = "phoenix@ixhby.dev";
+    github = "ixhbinphoenix";
+    githubId = 47122082;
+    name = "Emilia Nyx";
+    keys = [ { fingerprint = "91DB 328E 3FAB 8A08 9AF6  5276 3E62 370C 1D77 3013"; } ];
   };
   ixmatus = {
     email = "parnell@digitalmentat.com";
