@@ -3738,10 +3738,6 @@ with pkgs;
     libtool = if stdenv.hostPlatform.isDarwin then cctools else libtool;
   };
 
-  mailutils = callPackage ../tools/networking/mailutils {
-    sasl = gsasl;
-  };
-
   man = man-db;
 
   mangohud = callPackage ../tools/graphics/mangohud {
@@ -9679,7 +9675,9 @@ with pkgs;
     hdf5 = hdf5.override { usev110Api = true; };
   };
 
-  vllm = with python3Packages; toPythonApplication vllm;
+  # Temporarily use python 3.12
+  # See: https://github.com/vllm-project/vllm/issues/12083
+  vllm = with python312Packages; toPythonApplication vllm;
 
   vte-gtk4 = vte.override {
     gtkVersion = "4";
