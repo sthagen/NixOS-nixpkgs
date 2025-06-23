@@ -8494,6 +8494,8 @@ self: super: with self; {
 
   logging-journald = callPackage ../development/python-modules/logging-journald { };
 
+  logging-tree = callPackage ../development/python-modules/logging-tree { };
+
   logical-unification = callPackage ../development/python-modules/logical-unification { };
 
   logilab-common = callPackage ../development/python-modules/logilab/common.nix {
@@ -11976,6 +11978,8 @@ self: super: with self; {
   pvlib = callPackage ../development/python-modules/pvlib { };
 
   pvo = callPackage ../development/python-modules/pvo { };
+
+  pwdlib = callPackage ../development/python-modules/pwdlib { };
 
   pweave = callPackage ../development/python-modules/pweave { };
 
@@ -19428,6 +19432,8 @@ self: super: with self; {
   wsgiproxy2 = callPackage ../development/python-modules/wsgiproxy2 { };
 
   wsgitools = callPackage ../development/python-modules/wsgitools { };
+
+  wslink = callPackage ../development/python-modules/wslink { };
 
   wsme = callPackage ../development/python-modules/wsme { };
 
