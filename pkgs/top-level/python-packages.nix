@@ -7010,6 +7010,8 @@ self: super: with self; {
 
   ipfshttpclient = callPackage ../development/python-modules/ipfshttpclient { };
 
+  iplotx = callPackage ../development/python-modules/iplotx { };
+
   iptools = callPackage ../development/python-modules/iptools { };
 
   ipwhl = callPackage ../development/python-modules/ipwhl { };
@@ -10829,6 +10831,8 @@ self: super: with self; {
 
   optuna = callPackage ../development/python-modules/optuna { };
 
+  optype = callPackage ../development/python-modules/optype { };
+
   opuslib = callPackage ../development/python-modules/opuslib { };
 
   opytimark = callPackage ../development/python-modules/opytimark { };
@@ -13311,10 +13315,6 @@ self: super: with self; {
   pypblib = callPackage ../development/python-modules/pypblib { };
 
   pypca = callPackage ../development/python-modules/pypca { };
-
-  pypcap = callPackage ../development/python-modules/pypcap {
-    inherit (pkgs) libpcap; # Avoid confusion with python package of the same name
-  };
 
   pypck = callPackage ../development/python-modules/pypck { };
 

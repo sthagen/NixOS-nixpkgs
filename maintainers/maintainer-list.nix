@@ -8160,6 +8160,16 @@
     githubId = 26925347;
     keys = [ { fingerprint = "0797 D238 9769 CA1E 57B7 2ED9 2BA7 8116 87C9 0DE4"; } ];
   };
+  felipe-9 = {
+    name = "Felipe Pinto";
+    email = "felipealexandrepinto@icloud.com";
+    github = "Felipe-9";
+    githubId = 32753781;
+    keys = [
+      { fingerprint = "1533 0D57 3312 0936 AB38  3C9B 7D36 1E4B 83CD AEFB"; }
+      { fingerprint = "2BD0 AD01 F91D A0DC 47DF  0AEE 7AA1 649F 6B71 42F2"; }
+    ];
+  };
   felipeqq2 = {
     name = "Felipe Silva";
     email = "nixpkgs@felipeqq2.rocks";
@@ -20752,6 +20762,13 @@
     github = "DaRacci";
     githubId = 90304606;
   };
+  RadxaYuntian = {
+    # This is the work account for @MakiseKurisu
+    name = "ZHANG Yuntian";
+    email = "yt@radxa.com";
+    github = "RadxaYuntian";
+    githubId = 95260730;
+  };
   raehik = {
     email = "thefirstmuffinman@gmail.com";
     github = "raehik";
@@ -25907,6 +25924,12 @@
     name = "Tyberius Prime";
     github = "TyberiusPrime";
     githubId = 1257580;
+  };
+  tye-exe = {
+    name = "Tye";
+    email = "nixpkgs-fr@tye-home.xyz";
+    github = "tye-exe";
+    githubId = 131195812;
   };
   Tygo-van-den-Hurk = {
     name = "Tygo van den Hurk";
