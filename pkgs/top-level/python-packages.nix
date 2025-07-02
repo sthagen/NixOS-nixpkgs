@@ -4884,6 +4884,8 @@ self: super: with self; {
 
   farama-notifications = callPackage ../development/python-modules/farama-notifications { };
 
+  fast-array-utils = callPackage ../development/python-modules/fast-array-utils { };
+
   fast-histogram = callPackage ../development/python-modules/fast-histogram { };
 
   fastai = callPackage ../development/python-modules/fastai { };
@@ -6359,9 +6361,15 @@ self: super: with self; {
 
   hatch-babel = callPackage ../development/python-modules/hatch-babel { };
 
+  hatch-docstring-description =
+    callPackage ../development/python-modules/hatch-docstring-description
+      { };
+
   hatch-fancy-pypi-readme = callPackage ../development/python-modules/hatch-fancy-pypi-readme { };
 
   hatch-jupyter-builder = callPackage ../development/python-modules/hatch-jupyter-builder { };
+
+  hatch-min-requirements = callPackage ../development/python-modules/hatch-min-requirements { };
 
   hatch-nodejs-version = callPackage ../development/python-modules/hatch-nodejs-version { };
 
@@ -7340,7 +7348,10 @@ self: super: with self; {
 
   jsonmerge = callPackage ../development/python-modules/jsonmerge { };
 
-  jsonnet = buildPythonPackage { inherit (pkgs.jsonnet) name src; };
+  jsonnet = buildPythonPackage {
+    inherit (pkgs.jsonnet) name src;
+    format = "setuptools";
+  };
 
   jsonpatch = callPackage ../development/python-modules/jsonpatch { };
 
@@ -7593,6 +7604,8 @@ self: super: with self; {
   keras = callPackage ../development/python-modules/keras { };
 
   kerberos = callPackage ../development/python-modules/kerberos { };
+
+  kernels = callPackage ../development/python-modules/kernels { };
 
   kestra = callPackage ../development/python-modules/kestra { };
 
@@ -18962,6 +18975,8 @@ self: super: with self; {
   usbrelay-py = callPackage ../os-specific/linux/usbrelay/python.nix { };
 
   usbtmc = callPackage ../development/python-modules/usbtmc { };
+
+  useful-types = callPackage ../development/python-modules/useful-types { };
 
   user-agents = callPackage ../development/python-modules/user-agents { };
 
