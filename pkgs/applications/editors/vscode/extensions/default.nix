@@ -3268,6 +3268,8 @@ let
 
       ms-azuretools.vscode-bicep = callPackage ./ms-azuretools.vscode-bicep { };
 
+      ms-azuretools.vscode-containers = callPackage ./ms-azuretools.vscode-containers { };
+
       ms-azuretools.vscode-docker = buildVscodeMarketplaceExtension {
         mktplcRef = {
           publisher = "ms-azuretools";
@@ -3936,8 +3938,8 @@ let
         mktplcRef = {
           name = "prisma";
           publisher = "Prisma";
-          version = "6.10.1";
-          hash = "sha256-3Qx5HAkRnxByRHyX99PIRlHwI7FeenVcK8v9T+d5++4=";
+          version = "6.11.1";
+          hash = "sha256-ev99UhjYYu0aozidnuy30sBSyeQiTFdzMjc3piIBscQ=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Prisma.prisma/changelog";
