@@ -2485,8 +2485,6 @@ with pkgs;
 
   cdist = python3Packages.callPackage ../tools/admin/cdist { };
 
-  cdrtools = callPackage ../tools/cd-dvd/cdrtools { };
-
   cemu-ti = qt5.callPackage ../applications/science/math/cemu-ti { };
 
   libceph = ceph.lib;
@@ -5981,11 +5979,10 @@ with pkgs;
 
   inherit (callPackages ../development/tools/rust/cargo-pgrx { })
     cargo-pgrx_0_12_0_alpha_1
-    cargo-pgrx_0_12_5
     cargo-pgrx_0_12_6
     cargo-pgrx_0_14_1
+    cargo-pgrx
     ;
-  cargo-pgrx = cargo-pgrx_0_14_1;
 
   buildPgrxExtension = callPackage ../development/tools/rust/cargo-pgrx/buildPgrxExtension.nix { };
   opensmalltalk-vm = callPackage ../development/compilers/opensmalltalk-vm { };
@@ -9828,6 +9825,11 @@ with pkgs;
     go = buildPackages.go_1_24;
   };
 
+  go_1_25 = callPackage ../development/compilers/go/1.25.nix { };
+  buildGo125Module = callPackage ../build-support/go/module.nix {
+    go = buildPackages.go_1_25;
+  };
+
   ### DEVELOPMENT / HARE
 
   hareHook = callPackage ../by-name/ha/hare/hook.nix { };
@@ -11900,6 +11902,8 @@ with pkgs;
 
   cdparanoia = cdparanoiaIII;
 
+  cdxj-indexer = with python3Packages; toPythonApplication cdxj-indexer;
+
   chromium = callPackage ../applications/networking/browsers/chromium (config.chromium or { });
 
   chuck = callPackage ../applications/audio/chuck {
@@ -11977,6 +11981,7 @@ with pkgs;
     musical-spectrum = callPackage ../applications/audio/deadbeef/plugins/musical-spectrum.nix { };
     statusnotifier = callPackage ../applications/audio/deadbeef/plugins/statusnotifier.nix { };
     playlist-manager = callPackage ../applications/audio/deadbeef/plugins/playlist-manager.nix { };
+    waveform-seekbar = callPackage ../applications/audio/deadbeef/plugins/waveform-seekbar.nix { };
   };
 
   deadbeef-with-plugins = callPackage ../applications/audio/deadbeef/wrapper.nix {
@@ -15297,10 +15302,6 @@ with pkgs;
     inherit (llvmPackages) openmp;
   };
 
-  kallisto = callPackage ../applications/science/biology/kallisto {
-    autoconf = buildPackages.autoconf269;
-  };
-
   mirtk = callPackage ../development/libraries/science/biology/mirtk { itk = itk_5_2; };
 
   nest = callPackage ../applications/science/biology/nest { };
@@ -15544,6 +15545,8 @@ with pkgs;
     coq_8_20
     coqPackages_9_0
     coq_9_0
+    coqPackages_9_1
+    coq_9_1
     coqPackages
     coq
     ;
@@ -15557,6 +15560,8 @@ with pkgs;
     mkRocqPackages
     rocqPackages_9_0
     rocq-core_9_0
+    rocqPackages_9_1
+    rocq-core_9_1
     rocqPackages
     rocq-core
     ;
@@ -16326,6 +16331,8 @@ with pkgs;
   vokoscreen = libsForQt5.callPackage ../applications/video/vokoscreen {
     ffmpeg = ffmpeg-full;
   };
+
+  py-wacz = with python3Packages; toPythonApplication wacz;
 
   wacomtablet = libsForQt5.callPackage ../tools/misc/wacomtablet { };
 

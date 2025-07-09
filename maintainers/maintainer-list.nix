@@ -4279,13 +4279,6 @@
     githubId = 9086315;
     name = "Connor Brewster";
   };
-  cburstedde = {
-    email = "burstedde@ins.uni-bonn.de";
-    github = "cburstedde";
-    githubId = 109908;
-    name = "Carsten Burstedde";
-    keys = [ { fingerprint = "1127 A432 6524 BF02 737B  544E 0704 CD9E 550A 6BCD"; } ];
-  };
   ccellado = {
     email = "annplague@gmail.com";
     github = "ccellado";
@@ -6248,6 +6241,17 @@
     matrix = "@dettorer:matrix.org";
     github = "Dettorer";
     githubId = 2761682;
+  };
+  deudz = {
+    name = "Danilo Soares";
+    email = "deudzdev@gmail.com";
+    github = "deudz";
+    githubId = 77695632;
+    keys = [
+      {
+        fingerprint = "42B9 5F7C 4FC2 CA13 FD4E  86B6 F0D8 B7CE 0B7E C148";
+      }
+    ];
   };
   developer-guy = {
     name = "Batuhan Apaydın";
