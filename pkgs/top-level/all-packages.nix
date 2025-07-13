@@ -570,7 +570,7 @@ with pkgs;
       mysql-shell_8 = callPackage ../development/tools/mysql-shell/8.nix {
         antlr = antlr4_10;
         icu = icu73;
-        protobuf = protobuf_24;
+        protobuf = protobuf_25;
         stdenv = if stdenv.hostPlatform.isDarwin then llvmPackages_18.stdenv else stdenv;
       };
     })
@@ -580,7 +580,7 @@ with pkgs;
   mysql-shell-innovation = callPackage ../development/tools/mysql-shell/innovation.nix {
     antlr = antlr4_10;
     icu = icu73;
-    protobuf = protobuf_24;
+    protobuf = protobuf_25;
     stdenv = if stdenv.hostPlatform.isDarwin then llvmPackages_18.stdenv else stdenv;
   };
 
@@ -3344,9 +3344,18 @@ with pkgs;
   # ipscan is commonly known under the name angryipscanner
   angryipscanner = ipscan;
 
-  isl = isl_0_20;
-  isl_0_20 = callPackage ../development/libraries/isl/0.20.0.nix { };
-  isl_0_24 = callPackage ../development/libraries/isl/0.24.0.nix { };
+  inherit
+    (rec {
+      isl = isl_0_20;
+      isl_0_20 = callPackage ../development/libraries/isl/0.20.0.nix { };
+      isl_0_23 = callPackage ../development/libraries/isl/0.23.0.nix { };
+      isl_0_24 = callPackage ../development/libraries/isl/0.24.0.nix { };
+    })
+    isl
+    isl_0_20
+    isl_0_23
+    isl_0_24
+    ;
 
   jackett = callPackage ../servers/jackett { };
 
