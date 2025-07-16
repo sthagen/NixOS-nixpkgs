@@ -1,5 +1,8 @@
 {
   lib,
+  callPackage,
+  coreutils,
+  gnugrep,
   stdenv,
   fetchurl,
   pkg-config,
@@ -15,18 +18,9 @@
   scrypt,
   nixosTests,
   writeShellScript,
-
-  # for update.nix
-  writeScript,
-  common-updater-scripts,
-  bash,
-  coreutils,
-  curl,
-  gnugrep,
-  gnupg,
-  gnused,
-  nix,
+  versionCheckHook,
 }:
+
 let
   tor-client-auth-gen = writeShellScript "tor-client-auth-gen" ''
     PATH="${
@@ -48,13 +42,14 @@ let
     base64 -d | tail --bytes=32 | base32 | tr -d =
   '';
 in
-stdenv.mkDerivation rec {
+
+stdenv.mkDerivation (finalAttrs: {
   pname = "tor";
   version = "0.4.8.17";
 
   src = fetchurl {
-    url = "https://dist.torproject.org/${pname}-${version}.tar.gz";
-    sha256 = "sha256-ebRyXh1LiHueaP0JsNIkN3fVzjzUceU4WDvPb52M21Y=";
+    url = "https://dist.torproject.org/tor-${finalAttrs.version}.tar.gz";
+    hash = "sha256-ebRyXh1LiHueaP0JsNIkN3fVzjzUceU4WDvPb52M21Y=";
   };
 
   outputs = [
@@ -63,6 +58,7 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [ pkg-config ];
+
   buildInputs =
     [
       libevent
@@ -86,20 +82,14 @@ stdenv.mkDerivation rec {
     # https://gitlab.torproject.org/tpo/onion-services/onion-support/-/wikis/Documentation/PoW-FAQ#compiling-c-tor-with-the-pow-defense
     [ "--enable-gpl" ]
     ++
-      # cross compiles correctly but needs the following
-      lib.optionals (stdenv.hostPlatform != stdenv.buildPlatform) [ "--disable-tool-name-check" ]
-    ++
-      # sandbox is broken on aarch64-linux https://gitlab.torproject.org/tpo/core/tor/-/issues/40599
-      lib.optionals (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64) [
-        "--disable-seccomp"
-      ];
+    # cross compiles correctly but needs the following
+    lib.optionals (stdenv.hostPlatform != stdenv.buildPlatform) [ "--disable-tool-name-check" ];
 
   NIX_CFLAGS_LINK = lib.optionalString stdenv.cc.isGNU "-lgcc_s";
 
   postPatch = ''
     substituteInPlace contrib/client-tools/torify \
-      --replace 'pathfind torsocks' true          \
-      --replace 'exec torsocks' 'exec ${torsocks}/bin/torsocks'
+      --replace-fail 'exec torsocks' 'exec ${torsocks}/bin/torsocks'
 
     patchShebangs ./scripts/maint/checkShellScripts.sh
   '';
@@ -117,28 +107,18 @@ stdenv.mkDerivation rec {
     ln -s ${tor-client-auth-gen} $out/bin/tor-client-auth-gen
   '';
 
+  doInstallCheck = true;
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "--version";
+
   passthru = {
     tests.tor = nixosTests.tor;
-    updateScript = import ./update.nix {
-      inherit lib;
-      inherit
-        writeScript
-        common-updater-scripts
-        bash
-        coreutils
-        curl
-        gnupg
-        gnugrep
-        gnused
-        nix
-        ;
-    };
+    updateScript = callPackage ./update.nix { };
   };
 
-  meta = with lib; {
+  meta = {
     homepage = "https://www.torproject.org/";
     description = "Anonymizing overlay network";
-
     longDescription = ''
       Tor helps improve your privacy by bouncing your communications around a
       network of relays run by volunteers all around the world: it makes it
@@ -148,17 +128,16 @@ stdenv.mkDerivation rec {
       instant messaging clients, remote login, and other applications based on
       the TCP protocol.
     '';
-
-    license = with licenses; [
+    license = with lib.licenses; [
       bsd3
       gpl3Only
     ];
-
-    maintainers = with maintainers; [
+    mainProgram = "tor";
+    maintainers = with lib.maintainers; [
       thoughtpolice
       joachifm
       prusnak
     ];
-    platforms = platforms.unix;
+    platforms = lib.platforms.unix;
   };
-}
+})
