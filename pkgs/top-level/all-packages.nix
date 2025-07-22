@@ -6855,9 +6855,9 @@ with pkgs;
       electron-source.electron_37
     else
       electron_37-bin;
-  electron = electron_35;
-  electron-bin = electron_35-bin;
-  electron-chromedriver = electron-chromedriver_35;
+  electron = electron_37;
+  electron-bin = electron_37-bin;
+  electron-chromedriver = electron-chromedriver_37;
 
   autoconf = callPackage ../development/tools/misc/autoconf { };
   autoconf213 = callPackage ../development/tools/misc/autoconf/2.13.nix { };
@@ -10741,6 +10741,7 @@ with pkgs;
   };
 
   stalwart-mail-webadmin = stalwart-mail.webadmin;
+  stalwart-mail-spam-filter = stalwart-mail.spam-filter;
 
   stalwart-mail-enterprise = stalwart-mail.override {
     stalwartEnterprise = true;
@@ -13756,8 +13757,6 @@ with pkgs;
   sonic-lineup = libsForQt5.callPackage ../applications/audio/sonic-lineup { };
 
   sonic-visualiser = libsForQt5.callPackage ../applications/audio/sonic-visualiser { };
-
-  spek = callPackage ../applications/audio/spek { };
 
   squeezelite-pulse = callPackage ../by-name/sq/squeezelite/package.nix {
     audioBackend = "pulse";
