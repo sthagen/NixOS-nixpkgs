@@ -230,11 +230,6 @@ with pkgs;
     } ../build-support/setup-hooks/autoreconf.sh
   ) { };
 
-  autoreconfHook264 = autoreconfHook.override {
-    autoconf = autoconf264;
-    automake = automake111x;
-  };
-
   autoreconfHook269 = autoreconfHook.override {
     autoconf = autoconf269;
   };
@@ -884,11 +879,18 @@ with pkgs;
     name = "set-java-classpath-hook";
   } ../build-support/setup-hooks/set-java-classpath.sh;
 
-  fixDarwinDylibNames = makeSetupHook {
-    name = "fix-darwin-dylib-names-hook";
-    substitutions = { inherit (darwin.binutils) targetPrefix; };
-    meta.platforms = lib.platforms.darwin;
-  } ../build-support/setup-hooks/fix-darwin-dylib-names.sh;
+  fixDarwinDylibNames = callPackage (
+    {
+      lib,
+      targetPackages,
+      makeSetupHook,
+    }:
+    makeSetupHook {
+      name = "fix-darwin-dylib-names-hook";
+      substitutions = { inherit (targetPackages.stdenv.cc) targetPrefix; };
+      meta.platforms = lib.platforms.darwin;
+    } ../build-support/setup-hooks/fix-darwin-dylib-names.sh
+  ) { };
 
   writeDarwinBundle = callPackage ../build-support/make-darwin-bundle/write-darwin-bundle.nix { };
 
@@ -1088,16 +1090,12 @@ with pkgs;
 
   gp-saml-gui = python3Packages.callPackage ../tools/networking/gp-saml-gui { };
 
-  fwbuilder = libsForQt5.callPackage ../tools/security/fwbuilder { };
-
   inherit (callPackages ../tools/networking/ivpn/default.nix { })
     ivpn
     ivpn-service
     ;
 
   kanata-with-cmd = kanata.override { withCmd = true; };
-
-  ksnip = libsForQt5.callPackage ../tools/misc/ksnip { };
 
   linux-router-without-wifi = linux-router.override { useWifiDependencies = false; };
 
@@ -1155,8 +1153,6 @@ with pkgs;
   };
 
   ufolint = with python3Packages; toPythonApplication ufolint;
-
-  valeronoi = qt6Packages.callPackage ../tools/misc/valeronoi { };
 
   veikk-linux-driver-gui = libsForQt5.callPackage ../tools/misc/veikk-linux-driver-gui { };
 
@@ -2204,12 +2200,72 @@ with pkgs;
     cairo = cairo.override { xcbSupport = true; };
   };
 
+  aquamarine = callPackage ../by-name/aq/aquamarine/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprcursor = callPackage ../by-name/hy/hyprcursor/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprgraphics = callPackage ../by-name/hy/hyprgraphics/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hypridle = callPackage ../by-name/hy/hypridle/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
   hyprland = callPackage ../by-name/hy/hyprland/package.nix {
     stdenv = gcc15Stdenv;
   };
 
+  hyprland-protocols = callPackage ../by-name/hy/hyprland-protocols/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprland-qt-support = callPackage ../by-name/hy/hyprland-qt-support/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprland-qtutils = callPackage ../by-name/hy/hyprland-qtutils/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprlang = callPackage ../by-name/hy/hyprlang/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprlock = callPackage ../by-name/hy/hyprlock/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprpaper = callPackage ../by-name/hy/hyprpaper/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprpicker = callPackage ../by-name/hy/hyprpicker/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
   hyprpolkitagent = callPackage ../by-name/hy/hyprpolkitagent/package.nix {
-    stdenv = gcc14Stdenv;
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprsunset = callPackage ../by-name/hy/hyprsunset/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprsysteminfo = callPackage ../by-name/hy/hyprsysteminfo/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprutils = callPackage ../by-name/hy/hyprutils/package.nix {
+    stdenv = gcc15Stdenv;
+  };
+
+  hyprwayland-scanner = callPackage ../by-name/hy/hyprwayland-scanner/package.nix {
+    stdenv = gcc15Stdenv;
   };
 
   hyprshade = python3Packages.callPackage ../applications/window-managers/hyprwm/hyprshade { };
@@ -6860,14 +6916,10 @@ with pkgs;
   electron-chromedriver = electron-chromedriver_37;
 
   autoconf = callPackage ../development/tools/misc/autoconf { };
-  autoconf213 = callPackage ../development/tools/misc/autoconf/2.13.nix { };
-  autoconf264 = callPackage ../development/tools/misc/autoconf/2.64.nix { };
   autoconf269 = callPackage ../development/tools/misc/autoconf/2.69.nix { };
   autoconf271 = callPackage ../development/tools/misc/autoconf/2.71.nix { };
 
   automake = automake116x;
-
-  automake111x = callPackage ../development/tools/misc/automake/automake-1.11.x.nix { };
 
   automake116x = callPackage ../development/tools/misc/automake/automake-1.16.x.nix { };
 
@@ -12820,10 +12872,6 @@ with pkgs;
     callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop
       { };
 
-  krane = callPackage ../applications/networking/cluster/krane { };
-
-  krita = callPackage ../applications/graphics/krita/wrapper.nix { };
-
   ktimetracker = libsForQt5.callPackage ../applications/office/ktimetracker { };
 
   kubeval = callPackage ../applications/networking/cluster/kubeval { };
@@ -14311,6 +14359,7 @@ with pkgs;
   xdg-desktop-portal-hyprland =
     callPackage ../applications/window-managers/hyprwm/xdg-desktop-portal-hyprland
       {
+        stdenv = gcc15Stdenv;
         inherit (qt6)
           qtbase
           qttools
@@ -16086,7 +16135,15 @@ with pkgs;
           };
     };
 
-  nixosOptionsDoc = attrs: (import ../../nixos/lib/make-options-doc) ({ inherit pkgs lib; } // attrs);
+  nixosOptionsDoc =
+    attrs:
+    (import ../../nixos/lib/make-options-doc) (
+      {
+        pkgs = pkgs.__splicedPackages;
+        inherit lib;
+      }
+      // attrs
+    );
 
   nix-eval-jobs = callPackage ../tools/package-management/nix-eval-jobs {
     nix = nixVersions.nix_2_29;
@@ -16427,8 +16484,6 @@ with pkgs;
   discord-screenaudio =
     qt6Packages.callPackage ../applications/networking/instant-messengers/discord-screenaudio
       { };
-
-  discordo = callPackage ../applications/networking/discordo/default.nix { };
 
   tomb = callPackage ../by-name/to/tomb/package.nix {
     pinentry = pinentry-curses;

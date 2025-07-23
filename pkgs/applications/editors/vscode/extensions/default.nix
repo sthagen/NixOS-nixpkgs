@@ -123,7 +123,7 @@ let
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/aaron-bond.better-comments/changelog";
-          description = "Improve your code commenting by annotating with alert, informational, TODOs, and more!";
+          description = "Improve your code commenting by annotating with alert, informational, TODOs, and more";
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments";
           homepage = "https://github.com/aaron-bond/better-comments";
           license = lib.licenses.mit;
@@ -808,7 +808,7 @@ let
           hash = "sha256-vVbaHSaBX6QzpnYMQlpPsJU1TQYJEBe8jq95muzwN0o=";
         };
         meta = {
-          description = " A solarized-palenight theme for vscode";
+          description = "Solarized-palenight theme for vscode";
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=BrandonKirbyson.solarized-palenight";
           homepage = "https://github.com/BrandonKirbyson/Solarized-Palenight";
           license = lib.licenses.mit;
@@ -2251,7 +2251,7 @@ let
           hash = "sha256-0CFYL6rBecB8rNnk4IAtg03ZPdSJ9qxwnVdhdQedxsQ=";
         };
         meta = {
-          description = "Ungit in Visual Studio Code.";
+          description = "Ungit in Visual Studio Code";
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=Hirse.vscode-ungit";
           homepage = "https://github.com/hirse/vscode-ungit";
           license = lib.licenses.mit;
