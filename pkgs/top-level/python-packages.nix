@@ -6294,6 +6294,8 @@ self: super: with self; {
 
   gstools = callPackage ../development/python-modules/gstools { };
 
+  gstools-cython = callPackage ../development/python-modules/gstools-cython { };
+
   gtfs-realtime-bindings = callPackage ../development/python-modules/gtfs-realtime-bindings { };
 
   gto = callPackage ../development/python-modules/gto { };
@@ -14781,6 +14783,8 @@ self: super: with self; {
   python-troveclient = callPackage ../development/python-modules/python-troveclient { };
 
   python-trovo = callPackage ../development/python-modules/python-trovo { };
+
+  python-tsp = callPackage ../development/python-modules/python-tsp { };
 
   python-twitch-client = callPackage ../development/python-modules/python-twitch-client { };
 
