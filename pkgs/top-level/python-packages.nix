@@ -2170,6 +2170,8 @@ self: super: with self; {
 
   buildcatrust = callPackage ../development/python-modules/buildcatrust { };
 
+  buildstream-plugins = callPackage ../development/python-modules/buildstream-plugins { };
+
   bump-my-version = callPackage ../development/python-modules/bump-my-version { };
 
   bump2version = callPackage ../development/python-modules/bump2version { };
@@ -3624,6 +3626,8 @@ self: super: with self; {
   discid = callPackage ../development/python-modules/discid { };
 
   discogs-client = callPackage ../development/python-modules/discogs-client { };
+
+  discord-webhook = callPackage ../development/python-modules/discord-webhook { };
 
   discordpy = callPackage ../development/python-modules/discordpy { };
 
@@ -5895,7 +5899,7 @@ self: super: with self; {
 
   gmsh = toPythonModule (
     pkgs.gmsh.override {
-      inherit (self) python;
+      python3Packages = self;
       enablePython = true;
     }
   );
@@ -10679,6 +10683,10 @@ self: super: with self; {
 
   online-judge-tools = callPackage ../development/python-modules/online-judge-tools { };
 
+  online-judge-verify-helper =
+    callPackage ../development/python-modules/online-judge-verify-helper
+      { };
+
   onlykey-solo-python = callPackage ../development/python-modules/onlykey-solo-python { };
 
   onnx = callPackage ../development/python-modules/onnx { };
@@ -12246,6 +12254,8 @@ self: super: with self; {
   py-radix-sr = callPackage ../development/python-modules/py-radix-sr { };
 
   py-rust-stemmers = callPackage ../development/python-modules/py-rust-stemmers { };
+
+  py-schluter = callPackage ../development/python-modules/py-schluter { };
 
   py-scrypt = callPackage ../development/python-modules/py-scrypt { };
 
@@ -17141,6 +17151,8 @@ self: super: with self; {
   sqltrie = callPackage ../development/python-modules/sqltrie { };
 
   squarify = callPackage ../development/python-modules/squarify { };
+
+  srctools = callPackage ../development/python-modules/srctools { };
 
   sre-yield = callPackage ../development/python-modules/sre-yield { };
 
