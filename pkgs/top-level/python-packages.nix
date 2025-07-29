@@ -4872,13 +4872,6 @@ self: super: with self; {
     }
   );
 
-  f3d_egl = toPythonModule (
-    pkgs.f3d_egl.override {
-      withPythonBinding = true;
-      python3Packages = self;
-    }
-  );
-
   f5-icontrol-rest = callPackage ../development/python-modules/f5-icontrol-rest { };
 
   f5-sdk = callPackage ../development/python-modules/f5-sdk { };
@@ -13277,6 +13270,8 @@ self: super: with self; {
 
   pymongo-inmemory = callPackage ../development/python-modules/pymongo-inmemory { };
 
+  pymonoprice = callPackage ../development/python-modules/pymonoprice { };
+
   pymoo = callPackage ../development/python-modules/pymoo { };
 
   pymorphy2 = callPackage ../development/python-modules/pymorphy2 { };
@@ -14577,6 +14572,8 @@ self: super: with self; {
   python-izone = callPackage ../development/python-modules/python-izone { };
 
   python-jenkins = callPackage ../development/python-modules/python-jenkins { };
+
+  python-join-api = callPackage ../development/python-modules/python-join-api { };
 
   python-jose = callPackage ../development/python-modules/python-jose { };
 
@@ -19393,12 +19390,7 @@ self: super: with self; {
 
   vtjp = callPackage ../development/python-modules/vtjp { };
 
-  vtk = toPythonModule (
-    pkgs.vtk_9.override {
-      inherit python;
-      enablePython = true;
-    }
-  );
+  vtk = toPythonModule (pkgs.vtk-full.override { python3Packages = self; });
 
   vttlib = callPackage ../development/python-modules/vttlib { };
 
