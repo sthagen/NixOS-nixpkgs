@@ -8663,6 +8663,8 @@ self: super: with self; {
 
   lomond = callPackage ../development/python-modules/lomond { };
 
+  london-tube-status = callPackage ../development/python-modules/london-tube-status { };
+
   loompy = callPackage ../development/python-modules/loompy { };
 
   loopy = callPackage ../development/python-modules/loopy { };
@@ -8904,8 +8906,6 @@ self: super: with self; {
   materialx = callPackage ../development/python-modules/materialx { };
 
   materialyoucolor = callPackage ../development/python-modules/materialyoucolor { };
-
-  mathlibtools = callPackage ../development/python-modules/mathlibtools { };
 
   mathutils = callPackage ../development/python-modules/mathutils { };
 
@@ -14485,6 +14485,8 @@ self: super: with self; {
 
   python-daemon = callPackage ../development/python-modules/python-daemon { };
 
+  python-dali = callPackage ../development/python-modules/python-dali { };
+
   python-datemath = callPackage ../development/python-modules/python-datemath { };
 
   python-dateutil = callPackage ../development/python-modules/python-dateutil { };
@@ -16386,8 +16388,6 @@ self: super: with self; {
 
   shiny = callPackage ../development/python-modules/shiny { };
 
-  shippai = callPackage ../development/python-modules/shippai { };
-
   shippinglabel = callPackage ../development/python-modules/shippinglabel { };
 
   shiv = callPackage ../development/python-modules/shiv { };
@@ -16509,6 +16509,8 @@ self: super: with self; {
   siphash24 = callPackage ../development/python-modules/siphash24 { };
 
   siphashc = callPackage ../development/python-modules/siphashc { };
+
+  sipsimple = callPackage ../development/python-modules/sipsimple { };
 
   sipyco = callPackage ../development/python-modules/sipyco { };
 
