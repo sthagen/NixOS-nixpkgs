@@ -6584,6 +6584,8 @@ self: super: with self; {
 
   hkavr = callPackage ../development/python-modules/hkavr { };
 
+  hko = callPackage ../development/python-modules/hko { };
+
   hledger-utils = callPackage ../development/python-modules/hledger-utils { };
 
   hlk-sw16 = callPackage ../development/python-modules/hlk-sw16 { };
@@ -16863,6 +16865,8 @@ self: super: with self; {
 
   spdx-tools = callPackage ../development/python-modules/spdx-tools { };
 
+  speak2mary = callPackage ../development/python-modules/speak2mary { };
+
   speaklater = callPackage ../development/python-modules/speaklater { };
 
   speaklater3 = callPackage ../development/python-modules/speaklater3 { };
@@ -18347,6 +18351,8 @@ self: super: with self; {
   };
 
   trie = callPackage ../development/python-modules/trie { };
+
+  triggercmd = callPackage ../development/python-modules/triggercmd { };
 
   trimesh = callPackage ../development/python-modules/trimesh { };
 
