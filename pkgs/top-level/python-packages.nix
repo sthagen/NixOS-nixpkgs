@@ -2759,6 +2759,8 @@ self: super: with self; {
 
   colcon-defaults = callPackage ../development/python-modules/colcon-defaults { };
 
+  colcon-library-path = callPackage ../development/python-modules/colcon-library-path { };
+
   colcon-mixin = callPackage ../development/python-modules/colcon-mixin { };
 
   colcon-notification = callPackage ../development/python-modules/colcon-notification { };
@@ -5052,8 +5054,6 @@ self: super: with self; {
   };
 
   feedparser = callPackage ../development/python-modules/feedparser { };
-
-  fenics = callPackage ../development/python-modules/fenics { hdf5 = pkgs.hdf5_1_10; };
 
   fenics-basix = callPackage ../development/python-modules/fenics-basix { };
 
@@ -7891,6 +7891,8 @@ self: super: with self; {
   langgraph-cli = callPackage ../development/python-modules/langgraph-cli { };
 
   langgraph-prebuilt = callPackage ../development/python-modules/langgraph-prebuilt { };
+
+  langgraph-runtime-inmem = callPackage ../development/python-modules/langgraph-runtime-inmem { };
 
   langgraph-sdk = callPackage ../development/python-modules/langgraph-sdk { };
 
@@ -12272,8 +12274,6 @@ self: super: with self; {
 
   py-schluter = callPackage ../development/python-modules/py-schluter { };
 
-  py-scrypt = callPackage ../development/python-modules/py-scrypt { };
-
   py-serializable = callPackage ../development/python-modules/py-serializable { };
 
   py-slvs = callPackage ../development/python-modules/py-slvs { };
@@ -16271,6 +16271,8 @@ self: super: with self; {
   sensoterra = callPackage ../development/python-modules/sensoterra { };
 
   sentence-splitter = callPackage ../development/python-modules/sentence-splitter { };
+
+  sentence-stream = callPackage ../development/python-modules/sentence-stream { };
 
   sentence-transformers = callPackage ../development/python-modules/sentence-transformers { };
 
