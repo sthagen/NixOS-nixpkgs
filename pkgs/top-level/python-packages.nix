@@ -5536,6 +5536,8 @@ self: super: with self; {
 
   fugashi = callPackage ../development/python-modules/fugashi { };
 
+  fullmoon = callPackage ../development/python-modules/fullmoon { };
+
   func-timeout = callPackage ../development/python-modules/func-timeout { };
 
   funcparserlib = callPackage ../development/python-modules/funcparserlib { };
@@ -8097,6 +8099,8 @@ self: super: with self; {
     (p: p.py)
   ];
 
+  libear = callPackage ../development/python-modules/libear { };
+
   libevdev = callPackage ../development/python-modules/libevdev { };
 
   libfdt = toPythonModule (
@@ -8231,6 +8235,8 @@ self: super: with self; {
       inherit (self) python;
     }
   );
+
+  libscanbuild = callPackage ../development/python-modules/libscanbuild { };
 
   libselinux = lib.pipe pkgs.libselinux [
     toPythonModule
@@ -10408,8 +10414,6 @@ self: super: with self; {
   nix-kernel = callPackage ../development/python-modules/nix-kernel { inherit (pkgs) nix; };
 
   nix-prefetch-github = callPackage ../development/python-modules/nix-prefetch-github { };
-
-  nixpkgs = callPackage ../development/python-modules/nixpkgs { };
 
   nixpkgs-pytools = callPackage ../development/python-modules/nixpkgs-pytools { };
 
@@ -14957,11 +14961,6 @@ self: super: with self; {
 
   pythonfinder = callPackage ../development/python-modules/pythonfinder { };
 
-  pythonix = callPackage ../development/python-modules/pythonix {
-    nix = pkgs.nixVersions.nix_2_3;
-    meson = pkgs.meson.override { python3 = self.python; };
-  };
-
   pythonkuma = callPackage ../development/python-modules/pythonkuma { };
 
   pythonnet = callPackage ../development/python-modules/pythonnet { };
@@ -18046,6 +18045,8 @@ self: super: with self; {
   tidyexc = callPackage ../development/python-modules/tidyexc { };
 
   tidylib = callPackage ../development/python-modules/pytidylib { };
+
+  tiered-debug = callPackage ../development/python-modules/tiered-debug { };
 
   tifffile = callPackage ../development/python-modules/tifffile { };
 

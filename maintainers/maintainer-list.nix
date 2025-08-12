@@ -4186,12 +4186,6 @@
     github = "carlthome";
     githubId = 1595907;
   };
-  carpinchomug = {
-    email = "aki.suda@protonmail.com";
-    github = "carpinchomug";
-    githubId = 101536256;
-    name = "Akiyoshi Suda";
-  };
   cartr = {
     email = "carter.sande@duodecima.technology";
     github = "cartr";
@@ -5920,7 +5914,7 @@
   };
   dblsaiko = {
     email = "me@dblsaiko.net";
-    github = "2xsaiko";
+    github = "dblsaiko";
     githubId = 3987560;
     name = "Katalin Rebhan";
   };
@@ -16751,6 +16745,12 @@
     githubId = 24192522;
     name = "MithicSpirit";
   };
+  miyu = {
+    email = "miyu@allthingslinux.org";
+    github = "fndov";
+    githubId = 168955383;
+    name = "Tommy B";
+  };
   mjm = {
     email = "matt@mattmoriarity.com";
     github = "mjm";
@@ -23000,7 +23000,7 @@
   seylerius = {
     name = "Sable Seyler";
     email = "sable@seyleri.us";
-    github = "seylerius";
+    github = "sableseyler";
     githubId = 1145981;
     keys = [ { fingerprint = "7246 B6E1 ABB9 9A48 4395  FD11 DC26 B921 A9E9 DBDE"; } ];
   };
@@ -24520,6 +24520,12 @@
     github = "swistak35";
     githubId = 332289;
     name = "Rafał Łasocha";
+  };
+  sxmair = {
+    email = "sumairhasan99@gmail.com";
+    github = "sxmair";
+    githubId = 127287939;
+    name = "Syed Sumairul Hasan";
   };
   syberant = {
     email = "sybrand@neuralcoding.com";
@@ -28140,6 +28146,12 @@
     github = "zachcoyle";
     githubId = 908716;
     name = "Zach Coyle";
+  };
+  ZachDavies = {
+    name = "Zach Davies";
+    email = "zdmalta@proton.me";
+    github = "ZachDavies";
+    githubId = 131615861;
   };
   Zaczero = {
     name = "Kamil Monicz";
