@@ -4589,6 +4589,11 @@
     githubId = 399718;
     name = "Chris Martin";
   };
+  chrisheib = {
+    github = "chrisheib";
+    githubId = 6112968;
+    name = "Christoph Heibutzki";
+  };
   chrisjefferson = {
     email = "chris@bubblescope.net";
     github = "ChrisJefferson";
@@ -15454,6 +15459,12 @@
     githubId = 1189862;
     name = "Valter Nazianzeno";
   };
+  mannerbund = {
+    email = "apostalimus@gmail.com";
+    github = "mannerbund";
+    githubId = 110305316;
+    name = "mannerbund";
+  };
   manojkarthick = {
     email = "smanojkarthick@gmail.com";
     github = "manojkarthick";
@@ -22593,6 +22604,12 @@
     githubId = 178904;
     name = "Daniel Ehlers";
   };
+  sarunint = {
+    email = "nixpkgs@sarunint.com";
+    github = "sarunint";
+    githubId = 3850197;
+    name = "Sarun Intaralawan";
+  };
   sascha8a = {
     email = "sascha@localhost.systems";
     github = "sascha8a";
@@ -23077,6 +23094,12 @@
     github = "sestrella";
     githubId = 2049686;
     name = "Sebastián Estrella";
+  };
+  seven_bear = {
+    name = "Edmond Freeman";
+    email = "edmondfreeman7@gmail.com";
+    github = "yueneiqi";
+    githubId = 26707756;
   };
   seylerius = {
     name = "Sable Seyler";
@@ -26289,6 +26312,13 @@
     github = "tymscar";
     githubId = 3742502;
     name = "Oscar Molnar";
+  };
+  typedrat = {
+    name = "Alexis Williams";
+    email = "alexis@typedr.at";
+    github = "typedrat";
+    githubId = 1057789;
+    matrix = "@typedrat:thisratis.gay";
   };
   typetetris = {
     email = "ericwolf42@mail.com";
