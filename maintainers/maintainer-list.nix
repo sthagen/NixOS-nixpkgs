@@ -1335,12 +1335,6 @@
     githubId = 373;
     name = "Alexandre Girard Davila";
   };
-  alxsimon = {
-    email = "alexis.simon@normalesup.org";
-    github = "alxsimon";
-    githubId = 9567176;
-    name = "Alexis Simon";
-  };
   amadaluzia = {
     email = "amad@atl.tools";
     github = "amadaluzia";
@@ -3352,6 +3346,12 @@
     github = "birkb";
     githubId = 10164833;
     name = "Birk Bohne";
+  };
+  bizmyth = {
+    email = "andrew.p.council@gmail.com";
+    github = "bizmythy";
+    githubId = 45700916;
+    name = "Drew Council";
   };
   bjesus = {
     email = "nixpkgs@yoavmoshe.com";
@@ -5378,6 +5378,12 @@
     github = "katjakwast";
     githubId = 176372446;
     name = "Katja Kwast";
+  };
+  cupcakearmy = {
+    name = "Niccolo Borgioli";
+    email = "nix@nicco.io";
+    github = "cupcakearmy";
+    githubId = 14948823;
   };
   curious = {
     email = "curious@curious.host";
@@ -13217,7 +13223,7 @@
   };
   kevincox = {
     email = "kevincox@kevincox.ca";
-    matrix = "@kevincox:matrix.org";
+    matrix = "@kevincox:kevincox.ca";
     github = "kevincox";
     githubId = 494012;
     name = "Kevin Cox";
@@ -16085,6 +16091,12 @@
     githubId = 51356;
     name = "Mathieu Boespflug";
   };
+  mBornand = {
+    email = "dev.mbornand@systemb.ch";
+    github = "mBornand";
+    githubId = 63592189;
+    name = "Marc Bornand";
+  };
   mbprtpmnr = {
     name = "mbprtpmnr";
     email = "mbprtpmnr@pm.me";
@@ -16689,6 +16701,12 @@
     github = "mindstorms6";
     githubId = 92937;
     name = "Breland Miley";
+  };
+  minegameYTB = {
+    name = "Minegame YTB";
+    github = "minegameYTB";
+    githubId = 53137994;
+    matrix = "@minegame2018:matrix.org";
   };
   minersebas = {
     email = "scherthan_sebastian@web.de";
@@ -23669,6 +23687,12 @@
     githubId = 158321;
     name = "Stewart Mackenzie";
   };
+  skaphi = {
+    name = "Oskar Philipsson";
+    email = "oskar.philipsson@gmail.com";
+    github = "skaphi";
+    githubId = 41991455;
+  };
   skeuchel = {
     name = "Steven Keuchel";
     email = "steven.keuchel@gmail.com";
@@ -27092,6 +27116,12 @@
     githubId = 4779365;
     name = "Johannes Mayrhofer";
   };
+  vuks = {
+    email = "vuks@allthingslinux.org";
+    github = "Vuks69";
+    githubId = 51289041;
+    name = "Vuks";
+  };
   vyorkin = {
     email = "vasiliy.yorkin@gmail.com";
     github = "vyorkin";
@@ -27694,6 +27724,12 @@
     github = "xavierzwirtz";
     githubId = 474343;
     name = "Xavier Zwirtz";
+  };
+  xavwe = {
+    email = "git@xavwe.dev";
+    github = "xavwe";
+    githubId = 125409009;
+    name = "Xaver Wenhart";
   };
   XBagon = {
     name = "XBagon";
