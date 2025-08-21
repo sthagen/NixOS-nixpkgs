@@ -2309,6 +2309,8 @@ with pkgs;
 
   rare = python3Packages.callPackage ../games/rare { };
 
+  renpy = callPackage ../by-name/re/renpy/package.nix { python3 = python312; };
+
   rmview = libsForQt5.callPackage ../applications/misc/remarkable/rmview { };
 
   remarkable-mouse = python3Packages.callPackage ../applications/misc/remarkable/remarkable-mouse { };
@@ -2426,10 +2428,6 @@ with pkgs;
   bzip2 = callPackage ../tools/compression/bzip2 { };
 
   bzip2_1_1 = callPackage ../tools/compression/bzip2/1_1.nix { };
-
-  bzip3 = callPackage ../tools/compression/bzip3 {
-    stdenv = clangStdenv;
-  };
 
   davix-copy = davix.override { enableThirdPartyCopy = true; };
 
@@ -6975,7 +6973,7 @@ with pkgs;
   credstash = with python3Packages; toPythonApplication credstash;
 
   creduce = callPackage ../development/tools/misc/creduce {
-    inherit (llvmPackages_16) llvm libclang;
+    inherit (llvmPackages_18) llvm libclang;
   };
 
   inherit (nodePackages) csslint;
@@ -7100,10 +7098,12 @@ with pkgs;
 
   gradle_7-unwrapped = callPackage gradle-packages.gradle_7 { };
   gradle_8-unwrapped = callPackage gradle-packages.gradle_8 { };
+  gradle_9-unwrapped = callPackage gradle-packages.gradle_9 { };
   gradle-unwrapped = gradle_8-unwrapped;
 
   gradle_7 = wrapGradle gradle_7-unwrapped null;
   gradle_8 = wrapGradle gradle_8-unwrapped null;
+  gradle_9 = wrapGradle gradle_9-unwrapped null;
   gradle = wrapGradle gradle-unwrapped "gradle-unwrapped";
 
   griffe = with python3Packages; toPythonApplication griffe;
@@ -11889,18 +11889,6 @@ with pkgs;
           buildMozillaMach
           ;
       };
-  firefox-esr-128-unwrapped =
-    import ../applications/networking/browsers/firefox/packages/firefox-esr-128.nix
-      {
-        inherit
-          stdenv
-          lib
-          callPackage
-          fetchurl
-          nixosTests
-          buildMozillaMach
-          ;
-      };
   firefox-esr-140-unwrapped =
     import ../applications/networking/browsers/firefox/packages/firefox-esr-140.nix
       {
@@ -11921,11 +11909,6 @@ with pkgs;
 
   firefox-mobile = callPackage ../applications/networking/browsers/firefox/mobile-config.nix { };
 
-  firefox-esr-128 = wrapFirefox firefox-esr-128-unwrapped {
-    nameSuffix = "-esr";
-    wmClass = "firefox-esr";
-    icon = "firefox-esr";
-  };
   firefox-esr-140 = wrapFirefox firefox-esr-140-unwrapped {
     nameSuffix = "-esr";
     wmClass = "firefox-esr";
