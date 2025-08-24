@@ -3,7 +3,7 @@
   stdenv,
   addDriverRunpath,
   config,
-  cudaPackages_12_4 ? { },
+  cudaPackages,
   cudaSupport ? config.cudaSupport,
   fetchurl,
   makeWrapper,
@@ -12,6 +12,8 @@
   ocl-icd,
   perl,
   python3,
+  rocmPackages ? { },
+  rocmSupport ? config.rocmSupport,
   xxHash,
   zlib,
   libiconv,
@@ -43,7 +45,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     makeWrapper
   ]
-  ++ lib.optionals cudaSupport [
+  ++ lib.optionals (cudaSupport || rocmSupport) [
     addDriverRunpath
   ];
 
@@ -100,7 +102,10 @@ stdenv.mkDerivation rec {
           "${ocl-icd}/lib"
         ]
         ++ lib.optionals cudaSupport [
-          "${cudaPackages_12_4.cudatoolkit}/lib"
+          "${cudaPackages.cudatoolkit}/lib"
+        ]
+        ++ lib.optionals rocmSupport [
+          "${rocmPackages.clr}/lib"
         ]
       );
     in
@@ -108,7 +113,7 @@ stdenv.mkDerivation rec {
       wrapProgram $out/bin/hashcat \
         --prefix LD_LIBRARY_PATH : ${lib.escapeShellArg LD_LIBRARY_PATH}
     ''
-    + lib.optionalString cudaSupport ''
+    + lib.optionalString (cudaSupport || rocmSupport) ''
       for program in $out/bin/hashcat $out/bin/.hashcat-wrapped; do
         isELF "$program" || continue
         addDriverRunpath "$program"

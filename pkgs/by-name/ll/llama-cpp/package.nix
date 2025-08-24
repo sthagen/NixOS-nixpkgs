@@ -12,6 +12,7 @@
 
   rocmSupport ? config.rocmSupport,
   rocmPackages ? { },
+  rocmGpuTargets ? builtins.concatStringsSep ";" rocmPackages.clr.gpuTargets,
 
   openclSupport ? false,
   clblast,
@@ -40,7 +41,7 @@
 let
   # It's necessary to consistently use backendStdenv when building with CUDA support,
   # otherwise we get libstdc++ errors downstream.
-  # cuda imposes an upper bound on the gcc version, e.g. the latest gcc compatible with cudaPackages_11 is gcc11
+  # cuda imposes an upper bound on the gcc version
   effectiveStdenv = if cudaSupport then cudaPackages.backendStdenv else stdenv;
   inherit (lib)
     cmakeBool
@@ -146,8 +147,7 @@ effectiveStdenv.mkDerivation (finalAttrs: {
   ]
   ++ optionals rocmSupport [
     (cmakeFeature "CMAKE_HIP_COMPILER" "${rocmPackages.clr.hipClangPath}/clang++")
-    # TODO: this should become `clr.gpuTargets` in the future.
-    (cmakeFeature "CMAKE_HIP_ARCHITECTURES" rocmPackages.rocblas.amdgpu_targets)
+    (cmakeFeature "CMAKE_HIP_ARCHITECTURES" rocmGpuTargets)
   ]
   ++ optionals metalSupport [
     (cmakeFeature "CMAKE_C_FLAGS" "-D__ARM_FEATURE_DOTPROD=1")
