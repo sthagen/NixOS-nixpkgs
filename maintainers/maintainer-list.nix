@@ -7790,12 +7790,6 @@
     githubId = 5427394;
     name = "Ersin Akinci";
   };
-  ertes = {
-    email = "esz@posteo.de";
-    github = "ertes";
-    githubId = 1855930;
-    name = "Ertugrul Söylemez";
-  };
   esau79p = {
     github = "EsAu79p";
     githubId = 21313906;
@@ -20494,12 +20488,6 @@
     email = "ppom@ecomail.fr";
     github = "ppom0";
     githubId = 38916722;
-  };
-  pradeepchhetri = {
-    email = "pradeep.chhetri89@gmail.com";
-    github = "pradeepchhetri";
-    githubId = 2232667;
-    name = "Pradeep Chhetri";
   };
   pradyuman = {
     email = "me@pradyuman.co";
