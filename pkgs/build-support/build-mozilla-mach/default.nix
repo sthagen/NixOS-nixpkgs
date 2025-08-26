@@ -89,6 +89,7 @@ in
   nasm,
   nspr,
   nss_esr,
+  nss_3_114,
   nss_latest,
   onnxruntime,
   pango,
@@ -304,7 +305,8 @@ buildStdenv.mkDerivation {
   ];
 
   patches =
-    lib.optionals (lib.versionAtLeast version "139" && lib.versionOlder version "141") [
+    lib.optionals (lib.versionAtLeast version "136") [ ./136-no-buildconfig.patch ]
+    ++ lib.optionals (lib.versionAtLeast version "139" && lib.versionOlder version "141") [
       # https://bugzilla.mozilla.org/show_bug.cgi?id=1955112
       # https://hg-edge.mozilla.org/mozilla-central/rev/aa8a29bd1fb9
       ./139-wayland-drag-animation.patch
@@ -555,7 +557,12 @@ buildStdenv.mkDerivation {
       xorg.xorgproto
       zlib
       (
-        if (lib.versionAtLeast version "129") then nss_latest else nss_esr # 3.90
+        if (lib.versionAtLeast version "143") then
+          nss_latest
+        else if (lib.versionAtLeast version "129") then
+          nss_3_114
+        else
+          nss_esr # 3.90
       )
     ]
     ++ lib.optional alsaSupport alsa-lib
