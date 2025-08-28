@@ -9791,6 +9791,11 @@
     githubId = 28863828;
     name = "guserav";
   };
+  guttermonk = {
+    github = "guttermonk";
+    githubId = 4753752;
+    name = "guttermonk";
+  };
   guyonvarch = {
     github = "guyonvarch";
     githubId = 6768842;
@@ -22353,6 +22358,12 @@
     githubId = 2660;
     name = "Russell Sim";
   };
+  RustyNova = {
+    email = "rusty.nova.jsb@gmail.com";
+    github = "RustyNova016";
+    githubId = 50844553;
+    name = "RustyNova";
+  };
   rutherther = {
     name = "Rutherther";
     email = "rutherther@proton.me";
@@ -22703,6 +22714,12 @@
     github = "Samyak2";
     githubId = 34161949;
     keys = [ { fingerprint = "155C F413 0129 C058 9A5F  5524 3658 73F2 F0C6 153B"; } ];
+  };
+  sandarukasa = {
+    name = "Sandaru Kasa";
+    email = "SandaruKasa+nix@ya.ru";
+    github = "SandaruKasa";
+    githubId = 50824690;
   };
   sander = {
     email = "s.vanderburg@tudelft.nl";
