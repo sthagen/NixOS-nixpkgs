@@ -1801,11 +1801,9 @@ self: super: with self; {
 
   bech32 = callPackage ../development/python-modules/bech32 { };
 
-  beetcamp = callPackage ../development/python-modules/beetcamp {
-    beets = pkgs.beets.override {
-      python3Packages = self;
-    };
-  };
+  beetcamp = callPackage ../development/python-modules/beetcamp { };
+
+  beets = toPythonModule (pkgs.beets.override { python3Packages = self; });
 
   beewi-smartclim = callPackage ../development/python-modules/beewi-smartclim { };
 
@@ -11262,6 +11260,10 @@ self: super: with self; {
 
   pamqp = callPackage ../development/python-modules/pamqp { };
 
+  pan-os-python = callPackage ../development/python-modules/pan-os-python { };
+
+  pan-python = callPackage ../development/python-modules/pan-python { };
+
   panacotta = callPackage ../development/python-modules/panacotta { };
 
   panasonic-viera = callPackage ../development/python-modules/panasonic-viera { };
@@ -13117,6 +13119,8 @@ self: super: with self; {
   pyinsteon = callPackage ../development/python-modules/pyinsteon { };
 
   pyinstrument = callPackage ../development/python-modules/pyinstrument { };
+
+  pyinterp = callPackage ../development/python-modules/pyinterp { };
 
   pyintesishome = callPackage ../development/python-modules/pyintesishome { };
 
@@ -17909,6 +17913,10 @@ self: super: with self; {
 
   telfhash = callPackage ../development/python-modules/telfhash { };
 
+  tellcore-net = callPackage ../development/python-modules/tellcore-net { };
+
+  tellcore-py = callPackage ../development/python-modules/tellcore-py { };
+
   tellduslive = callPackage ../development/python-modules/tellduslive { };
 
   temescal = callPackage ../development/python-modules/temescal { };
@@ -20355,6 +20363,8 @@ self: super: with self; {
   ziamath = callPackage ../development/python-modules/ziamath { };
 
   zict = callPackage ../development/python-modules/zict { };
+
+  ziggo-mediabox-xl = callPackage ../development/python-modules/ziggo-mediabox-xl { };
 
   zigpy = callPackage ../development/python-modules/zigpy { };
 

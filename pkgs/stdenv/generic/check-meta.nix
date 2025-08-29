@@ -11,6 +11,7 @@ let
   inherit (lib)
     all
     attrNames
+    attrValues
     concatMapStrings
     concatMapStringsSep
     concatStrings
@@ -37,6 +38,8 @@ let
 
   inherit (lib.meta)
     availableOn
+    cpeFullVersionWithVendor
+    tryCPEPatchVersionInUpdateWithVendor
     ;
 
   inherit (lib.generators)
@@ -124,6 +127,18 @@ let
     && (attrs.meta.teams or [ ] == [ ]);
 
   isMarkedBroken = attrs: attrs.meta.broken or false;
+
+  # Allow granular checks to allow only some broken packages
+  # Example:
+  # { pkgs, ... }:
+  # {
+  #   allowBroken = false;
+  #   allowBrokenPredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [ "hello" ];
+  # }
+  allowBrokenPredicate = config.allowBrokenPredicate or (x: false);
+
+  hasDeniedBroken =
+    attrs: (attrs.meta.broken or false) && !allowBroken && !allowBrokenPredicate attrs;
 
   hasUnsupportedPlatform = pkg: !(availableOn hostPlatform pkg);
 
@@ -425,6 +440,8 @@ let
       # Used for the original location of the maintainer and team attributes to assist with pings.
       maintainersPosition = any;
       teamsPosition = any;
+
+      identifiers = attrs;
     };
 
   checkMetaAttr =
@@ -516,7 +533,7 @@ let
         reason = "non-source";
         errormsg = "contains elements not built from source (‘${showSourceType attrs.meta.sourceProvenance}’)";
       }
-    else if !allowBroken && attrs.meta.broken or false then
+    else if hasDeniedBroken attrs then
       {
         valid = "no";
         reason = "broken";
@@ -557,6 +574,19 @@ let
     # -----
     else
       validYes;
+
+  # Helper functions and declarations to handle identifiers, extracted to reduce allocations
+  hasAllCPEParts = cpeParts: !any isNull (attrValues cpeParts);
+  makeCPE =
+    cpeParts:
+    "cpe:2.3:${cpeParts.part}:${cpeParts.vendor}:${cpeParts.product}:${cpeParts.version}:${cpeParts.update}:${cpeParts.edition}:${cpeParts.sw_edition}:${cpeParts.target_sw}:${cpeParts.target_hw}:${cpeParts.language}:${cpeParts.other}";
+  possibleCPEPartsFuns = [
+    (vendor: version: {
+      success = true;
+      value = cpeFullVersionWithVendor vendor version;
+    })
+    tryCPEPatchVersionInUpdateWithVendor
+  ];
 
   # The meta attribute is passed in the resulting attribute set,
   # but it's not part of the actual derivation, i.e., it's not
@@ -621,6 +651,51 @@ let
       # if you add a new maintainer or team attribute please ensure that this expectation is still met.
       maintainers =
         attrs.meta.maintainers or [ ] ++ concatMap (team: team.members or [ ]) attrs.meta.teams or [ ];
+
+      identifiers =
+        let
+          defaultCPEParts = {
+            part = "a";
+            vendor = null;
+            product = attrs.pname or null;
+            version = null;
+            update = null;
+            edition = "*";
+            sw_edition = "*";
+            target_sw = "*";
+            target_hw = "*";
+            language = "*";
+            other = "*";
+          };
+
+          cpeParts = defaultCPEParts // attrs.meta.identifiers.cpeParts or { };
+          cpe = if hasAllCPEParts cpeParts then makeCPE cpeParts else null;
+
+          possibleCPEs =
+            if cpe != null then
+              [ { inherit cpeParts cpe; } ]
+            else if attrs.meta.identifiers.cpeParts.vendor or null == null || attrs.version or null == null then
+              [ ]
+            else
+              concatMap (
+                f:
+                let
+                  result = f attrs.meta.identifiers.cpeParts.vendor attrs.version;
+                  # Note that attrs.meta.identifiers.cpeParts at this point can include defaults with user overrides.
+                  # Since we can't split them apart, user overrides don't apply to possibleCPEs.
+                  guessedParts = cpeParts // result.value;
+                in
+                optional (result.success && (hasAllCPEParts guessedParts)) {
+                  cpeParts = guessedParts;
+                  cpe = (makeCPE guessedParts);
+                }
+              ) possibleCPEPartsFuns;
+          v1 = { inherit cpeParts cpe possibleCPEs; };
+        in
+        v1
+        // {
+          inherit v1;
+        };
 
       # Expose the result of the checks for everyone to see.
       unfree = hasUnfreeLicense attrs;
