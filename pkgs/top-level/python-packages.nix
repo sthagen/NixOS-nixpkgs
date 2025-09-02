@@ -9412,6 +9412,10 @@ self: super: with self; {
 
   mkdocs-swagger-ui-tag = callPackage ../development/python-modules/mkdocs-swagger-ui-tag { };
 
+  mkdocs-table-reader-plugin =
+    callPackage ../development/python-modules/mkdocs-table-reader-plugin
+      { };
+
   mkdocstrings = callPackage ../development/python-modules/mkdocstrings { };
 
   mkdocstrings-python = callPackage ../development/python-modules/mkdocstrings-python { };
@@ -10314,6 +10318,8 @@ self: super: with self; {
   netbox-attachments = callPackage ../development/python-modules/netbox-attachments { };
 
   netbox-bgp = callPackage ../development/python-modules/netbox-bgp { };
+
+  netbox-contextmenus = callPackage ../development/python-modules/netbox-contextmenus { };
 
   netbox-contract = callPackage ../development/python-modules/netbox-contract { };
 
@@ -16395,8 +16401,6 @@ self: super: with self; {
 
   seabreeze = callPackage ../development/python-modules/seabreeze { };
 
-  seaserv = toPythonModule (pkgs.seafile-server.override { python3 = self.python; });
-
   seasonal = callPackage ../development/python-modules/seasonal { };
 
   seatconnect = callPackage ../development/python-modules/seatconnect { };
@@ -17187,6 +17191,8 @@ self: super: with self; {
   sphinx-testing = callPackage ../development/python-modules/sphinx-testing { };
 
   sphinx-thebe = callPackage ../development/python-modules/sphinx-thebe { };
+
+  sphinx-tippy = callPackage ../development/python-modules/sphinx-tippy { };
 
   sphinx-togglebutton = callPackage ../development/python-modules/sphinx-togglebutton { };
 

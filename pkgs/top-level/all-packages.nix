@@ -3141,7 +3141,7 @@ with pkgs;
 
   hdf5-threadsafe = hdf5.override { threadsafe = true; };
 
-  heaptrack = libsForQt5.callPackage ../development/tools/profiling/heaptrack { };
+  heaptrack = kdePackages.callPackage ../development/tools/profiling/heaptrack { };
 
   headscale = callPackage ../servers/headscale { };
 
@@ -3321,12 +3321,6 @@ with pkgs;
   };
 
   kio-fuse = libsForQt5.callPackage ../tools/filesystems/kio-fuse { };
-
-  krename = libsForQt5.callPackage ../applications/misc/krename { };
-
-  krunner-pass = libsForQt5.callPackage ../tools/security/krunner-pass { };
-
-  krunner-translator = libsForQt5.callPackage ../tools/misc/krunner-translator { };
 
   krunvm = callPackage ../applications/virtualization/krunvm {
     inherit (darwin) sigtool;
@@ -3687,8 +3681,6 @@ with pkgs;
 
   libnma-gtk4 = libnma.override { withGtk4 = true; };
 
-  nm-tray = libsForQt5.callPackage ../tools/networking/networkmanager/tray.nix { };
-
   inherit (callPackages ../servers/nextcloud { })
     nextcloud30
     nextcloud31
@@ -3704,8 +3696,6 @@ with pkgs;
     nomad_1_9
     nomad_1_10
     ;
-
-  nomacs-qt6 = nomacs.override { qtVersion = 6; };
 
   nth = with python3Packages; toPythonApplication name-that-hash;
 
@@ -5155,10 +5145,10 @@ with pkgs;
 
   # Haskell and GHC
 
-  haskell = callPackage ./haskell-packages.nix { };
+  haskell = recurseIntoAttrs (callPackage ./haskell-packages.nix { });
 
   haskellPackages =
-    dontRecurseIntoAttrs
+    recurseIntoAttrs
       # Prefer native-bignum to avoid linking issues with gmp
       # GHC 9.6 rts can't be built statically with hadrian, so we need to use 9.4
       # until 9.8 is ready
@@ -6578,7 +6568,6 @@ with pkgs;
     inherit (darwin) sigtool;
     buildJdk = jdk21_headless;
     runJdk = jdk21_headless;
-    stdenv = if stdenv.cc.isClang then llvmPackages_17.stdenv else stdenv;
     bazel_self = bazel_7;
   };
 
@@ -12157,8 +12146,6 @@ with pkgs;
 
   k4dirstat = libsForQt5.callPackage ../applications/misc/k4dirstat { };
 
-  kbibtex = libsForQt5.callPackage ../applications/office/kbibtex { };
-
   kiwix = libsForQt5.callPackage ../applications/misc/kiwix { };
 
   kiwix-tools = callPackage ../applications/misc/kiwix/tools.nix { };
@@ -12166,10 +12153,8 @@ with pkgs;
   klayout = libsForQt5.callPackage ../applications/misc/klayout { };
 
   klee = callPackage ../applications/science/logic/klee {
-    llvmPackages = llvmPackages_13;
+    llvmPackages = llvmPackages_18;
   };
-
-  kmplayer = libsForQt5.callPackage ../applications/video/kmplayer { };
 
   alkimia = kdePackages.callPackage ../development/libraries/alkimia { };
   kmymoney = kdePackages.callPackage ../applications/office/kmymoney { };
@@ -12257,7 +12242,7 @@ with pkgs;
 
   libreoffice-qt-fresh = lowPrio (
     callPackage ../applications/office/libreoffice/wrapper.nix {
-      unwrapped = libsForQt5.callPackage ../applications/office/libreoffice {
+      unwrapped = kdePackages.callPackage ../applications/office/libreoffice {
         kdeIntegration = true;
         variant = "fresh";
       };
@@ -12267,36 +12252,13 @@ with pkgs;
 
   libreoffice-qt-still = lowPrio (
     callPackage ../applications/office/libreoffice/wrapper.nix {
-      unwrapped = libsForQt5.callPackage ../applications/office/libreoffice {
+      unwrapped = kdePackages.callPackage ../applications/office/libreoffice {
         kdeIntegration = true;
         variant = "still";
       };
     }
   );
   libreoffice-qt-still-unwrapped = libreoffice-qt-still.unwrapped;
-
-  libreoffice-qt6 = hiPrio libreoffice-qt6-still;
-  libreoffice-qt6-unwrapped = libreoffice-qt6.unwrapped;
-
-  libreoffice-qt6-fresh = lowPrio (
-    callPackage ../applications/office/libreoffice/wrapper.nix {
-      unwrapped = kdePackages.callPackage ../applications/office/libreoffice {
-        kdeIntegration = true;
-        variant = "fresh";
-      };
-    }
-  );
-  libreoffice-qt6-fresh-unwrapped = libreoffice-qt6-fresh.unwrapped;
-
-  libreoffice-qt6-still = lowPrio (
-    callPackage ../applications/office/libreoffice/wrapper.nix {
-      unwrapped = kdePackages.callPackage ../applications/office/libreoffice {
-        kdeIntegration = true;
-        variant = "still";
-      };
-    }
-  );
-  libreoffice-qt6-still-unwrapped = libreoffice-qt-still.unwrapped;
 
   libreoffice-fresh = lowPrio (
     callPackage ../applications/office/libreoffice/wrapper.nix {
@@ -13074,7 +13036,7 @@ with pkgs;
 
   super-slicer-latest = super-slicer.latest;
 
-  skrooge = libsForQt5.callPackage ../applications/office/skrooge { };
+  skrooge = kdePackages.callPackage ../applications/office/skrooge { };
 
   soci = callPackage ../development/libraries/soci { };
 
