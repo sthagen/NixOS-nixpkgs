@@ -4731,6 +4731,8 @@ with pkgs;
     crystal_1_11
     crystal_1_14
     crystal_1_15
+    crystal_1_16
+    crystal_1_17
     crystal
     ;
 
@@ -5164,10 +5166,7 @@ with pkgs;
           haskell.packages.ghc96
         else
           haskell.packages.ghc98
-      )
-    // {
-      __recurseIntoDerivationForReleaseJobs = true;
-    };
+      );
 
   # haskellPackages.ghc is build->host (it exposes the compiler used to build the
   # set, similarly to stdenv.cc), but pkgs.ghc should be host->target to be more
@@ -6904,25 +6903,18 @@ with pkgs;
   m4 = gnum4;
 
   gnumake = callPackage ../development/tools/build-managers/gnumake { };
-  gradle-packages = import ../development/tools/build-managers/gradle {
-    inherit
-      jdk17
-      jdk21
-      jdk23
-      ;
-  };
-  gradleGen = gradle-packages.gen;
-  wrapGradle = callPackage gradle-packages.wrapGradle { };
 
-  gradle_7-unwrapped = callPackage gradle-packages.gradle_7 { };
-  gradle_8-unwrapped = callPackage gradle-packages.gradle_8 { };
-  gradle_9-unwrapped = callPackage gradle-packages.gradle_9 { };
-  gradle-unwrapped = gradle_8-unwrapped;
+  gradle-packages = callPackage ../development/tools/build-managers/gradle { };
 
-  gradle_7 = wrapGradle gradle_7-unwrapped null;
-  gradle_8 = wrapGradle gradle_8-unwrapped null;
-  gradle_9 = wrapGradle gradle_9-unwrapped null;
-  gradle = wrapGradle gradle-unwrapped "gradle-unwrapped";
+  gradle_7-unwrapped = gradle-packages.gradle_7;
+  gradle_8-unwrapped = gradle-packages.gradle_8;
+  gradle_9-unwrapped = gradle-packages.gradle_9;
+  gradle-unwrapped = gradle-packages.gradle;
+
+  gradle_7 = gradle-packages.gradle_7.wrapped;
+  gradle_8 = gradle-packages.gradle_8.wrapped;
+  gradle_9 = gradle-packages.gradle_9.wrapped;
+  gradle = gradle-packages.gradle.wrapped;
 
   griffe = with python3Packages; toPythonApplication griffe;
 
@@ -8855,22 +8847,18 @@ with pkgs;
     }
   );
 
-  libsForQt5 =
-    (recurseIntoAttrs (
-      import ./qt5-packages.nix {
-        inherit
-          lib
-          config
-          __splicedPackages
-          makeScopeWithSplicing'
-          generateSplicesForMkScope
-          pkgsHostTarget
-          ;
-      }
-    ))
-    // {
-      __recurseIntoDerivationForReleaseJobs = true;
-    };
+  libsForQt5 = recurseIntoAttrs (
+    import ./qt5-packages.nix {
+      inherit
+        lib
+        config
+        __splicedPackages
+        makeScopeWithSplicing'
+        generateSplicesForMkScope
+        pkgsHostTarget
+        ;
+    }
+  );
 
   # plasma5Packages maps to the Qt5 packages set that is used to build the plasma5 desktop
   plasma5Packages = libsForQt5;
@@ -10988,7 +10976,8 @@ with pkgs;
   font-awesome_4 = (callPackage ../data/fonts/font-awesome { }).v4;
   font-awesome_5 = (callPackage ../data/fonts/font-awesome { }).v5;
   font-awesome_6 = (callPackage ../data/fonts/font-awesome { }).v6;
-  font-awesome = font-awesome_6;
+  font-awesome_7 = (callPackage ../data/fonts/font-awesome { }).v7;
+  font-awesome = font-awesome_7;
 
   palenight-theme = callPackage ../data/themes/gtk-theme-framework { theme = "palenight"; };
 
@@ -14380,17 +14369,10 @@ with pkgs;
 
   ### DESKTOPS/LXDE
 
-  lxde = recurseIntoAttrs (callPackage ../desktops/lxde { });
-  # Backwards compatibility aliases
-  inherit (lxde)
-    lxappearance
-    lxappearance-gtk2
-    lxmenu-data
-    lxpanel
-    lxrandr
-    lxsession
-    lxtask
-    ;
+  lxappearance-gtk2 = callPackage ../by-name/lx/lxappearance/package.nix {
+    gtk2 = gtk2-x11;
+    withGtk3 = false;
+  };
 
   lxqt = recurseIntoAttrs (
     import ../desktops/lxqt {
