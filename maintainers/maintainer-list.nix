@@ -1974,6 +1974,11 @@
     githubId = 13426784;
     name = "arcnmx";
   };
+  arcstur = {
+    github = "arcstur";
+    githubId = 24514392;
+    name = "arcstur";
+  };
   arcticlimer = {
     email = "vinigm.nho@gmail.com";
     github = "viniciusmuller";
@@ -12707,6 +12712,12 @@
     github = "jpierre03";
     githubId = 954536;
     name = "Jean-Pierre PRUNARET";
+  };
+  jpinz = {
+    email = "nix@jpinzer.me";
+    github = "jpinz";
+    githubId = 8357054;
+    name = "Julian Pinzer";
   };
   jpotier = {
     email = "jpo.contributes.to.nixos@marvid.fr";
