@@ -4338,12 +4338,6 @@
     githubId = 3471749;
     name = "Claudio Bley";
   };
-  cbourjau = {
-    email = "christianb@posteo.de";
-    github = "cbourjau";
-    githubId = 3288058;
-    name = "Christian Bourjau";
-  };
   cbrewster = {
     email = "cbrewster@hey.com";
     github = "cbrewster";
@@ -29009,4 +29003,3 @@
   };
   # keep-sorted end
 }
-# Keep the list alphabetically sorted.
