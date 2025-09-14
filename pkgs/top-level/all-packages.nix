@@ -9879,6 +9879,8 @@ with pkgs;
 
   nsd = callPackage ../servers/dns/nsd (config.nsd or { });
 
+  nsdiff = perlPackages.nsdiff;
+
   outline = callPackage ../servers/web-apps/outline (
     lib.fix (super: {
       yarn = yarn.override { inherit (super) nodejs; };
@@ -11626,6 +11628,10 @@ with pkgs;
     extraPoliciesFiles = [
       "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
     ];
+  };
+
+  floorp-bin = wrapFirefox floorp-bin-unwrapped {
+    pname = "floorp-bin";
   };
 
   formiko =
