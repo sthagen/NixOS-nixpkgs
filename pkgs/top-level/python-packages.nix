@@ -3230,6 +3230,8 @@ self: super: with self; {
 
   cut-cross-entropy = callPackage ../development/python-modules/cut-cross-entropy { };
 
+  cv2-enumerate-cameras = callPackage ../development/python-modules/cv2-enumerate-cameras { };
+
   cvelib = callPackage ../development/python-modules/cvelib { };
 
   cvss = callPackage ../development/python-modules/cvss { };
@@ -7648,6 +7650,8 @@ self: super: with self; {
   jupyter-sphinx = callPackage ../development/python-modules/jupyter-sphinx { };
 
   jupyter-telemetry = callPackage ../development/python-modules/jupyter-telemetry { };
+
+  jupyter-themes = callPackage ../development/python-modules/jupyter-themes { };
 
   jupyter-ui-poll = callPackage ../development/python-modules/jupyter-ui-poll { };
 
@@ -15244,6 +15248,8 @@ self: super: with self; {
   pytorch-msssim = callPackage ../development/python-modules/pytorch-msssim { };
 
   pytorch-pfn-extras = callPackage ../development/python-modules/pytorch-pfn-extras { };
+
+  pytorch-tabnet = callPackage ../development/python-modules/pytorch-tabnet { };
 
   pytorch3d = callPackage ../development/python-modules/pytorch3d { };
 
