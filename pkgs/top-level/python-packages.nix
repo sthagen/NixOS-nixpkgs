@@ -11859,6 +11859,8 @@ self: super: with self; {
 
   pixel-ring = callPackage ../development/python-modules/pixel-ring { };
 
+  pixelmatch = callPackage ../development/python-modules/pixelmatch { };
+
   pizzapi = callPackage ../development/python-modules/pizzapi { };
 
   pjsua2 =
@@ -17551,6 +17553,8 @@ self: super: with self; {
 
   ssort = callPackage ../development/python-modules/ssort { };
 
+  sss = callPackage ../development/python-modules/sss { };
+
   st-pages = callPackage ../development/python-modules/st-pages { };
 
   stable-baselines3 = callPackage ../development/python-modules/stable-baselines3 { };
@@ -18382,6 +18386,8 @@ self: super: with self; {
   timing-asgi = callPackage ../development/python-modules/timing-asgi { };
 
   timm = callPackage ../development/python-modules/timm { };
+
+  timple = callPackage ../development/python-modules/timple { };
 
   timy = callPackage ../development/python-modules/timy { };
 

@@ -10125,10 +10125,11 @@
     name = "Heisfer";
   };
   HeitorAugustoLN = {
-    email = "IAm.HeitorALN@proton.me";
+    email = "nixpkgs.woven713@passmail.net";
     github = "HeitorAugustoLN";
     githubId = 44377258;
     name = "Heitor Augusto";
+    matrix = "@heitoraugusto:matrix.org";
   };
   heitorPB = {
     email = "heitorpbittencourt@gmail.com";
@@ -13330,6 +13331,14 @@
     githubId = 5188977;
     matrix = "@kenran_:matrix.org";
     name = "Johannes Maier";
+  };
+  kenshineto = {
+    name = "Freya Murphy";
+    email = "contact@freyacat.org";
+    matrix = "@freya:freya.cat";
+    github = "kenshineto";
+    githubId = 28487599;
+    keys = [ { fingerprint = "D9AF 0A42 09B7 C2DE 11A8  84BF ACBC 5536 60D9 993D"; } ];
   };
   kentjames = {
     email = "jameschristopherkent@gmail.com";
@@ -23718,6 +23727,12 @@
     githubId = 114918019;
     name = "Shourya Goel";
   };
+  shokerplz = {
+    name = "Ivan Kovalev";
+    email = "ivan@ikovalev.nl";
+    github = "shokerplz";
+    githubId = 28829931;
+  };
   shortcord = {
     name = "Short Cord";
     email = "short@shortcord.com";
@@ -26968,6 +26983,12 @@
     githubId = 1525767;
     name = "Vaibhav Sagar";
   };
+  vaisriv = {
+    email = "vai.sriv@icloud.com";
+    github = "vaisriv";
+    githubId = 46390109;
+    name = "Vai";
+  };
   valebes = {
     email = "valebes@gmail.com";
     github = "valebes";
@@ -28269,12 +28290,6 @@
     github = "xzfc";
     githubId = 5121426;
     name = "Albert Safin";
-  };
-  y0no = {
-    email = "y0no@y0no.fr";
-    github = "y0no";
-    githubId = 2242427;
-    name = "Yoann Ono";
   };
   yah = {
     email = "yah@singularpoint.cc";

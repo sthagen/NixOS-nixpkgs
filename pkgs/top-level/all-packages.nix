@@ -1264,10 +1264,6 @@ with pkgs;
 
   git-credential-manager = callPackage ../applications/version-management/git-credential-manager { };
 
-  git-recent = callPackage ../applications/version-management/git-recent {
-    util-linux = if stdenv.hostPlatform.isLinux then util-linuxMinimal else util-linux;
-  };
-
   gitRepo = git-repo;
 
   gittyup = libsForQt5.callPackage ../applications/version-management/gittyup { };
@@ -4547,6 +4543,8 @@ with pkgs;
   powerline = with python3Packages; toPythonApplication powerline;
 
   ### DEVELOPMENT / COMPILERS
+  temurin-bin-25 = javaPackages.compiler.temurin-bin.jdk-25;
+  temurin-jre-bin-25 = javaPackages.compiler.temurin-bin.jre-25;
 
   temurin-bin-24 = javaPackages.compiler.temurin-bin.jdk-24;
   temurin-jre-bin-24 = javaPackages.compiler.temurin-bin.jre-24;
