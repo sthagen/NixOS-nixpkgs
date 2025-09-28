@@ -279,12 +279,6 @@
     githubId = 43320117;
     name = "Sebastian Marquardt";
   };
-  _8aed = {
-    email = "8aed@riseup.net";
-    github = "8aed";
-    githubId = 140662578;
-    name = "Huit Aed";
-  };
   _9999years = {
     email = "rbt@fastmail.com";
     github = "9999years";
@@ -11784,12 +11778,6 @@
     github = "jdbaldry";
     githubId = 4599384;
     name = "Jack Baldry";
-  };
-  jdehaas = {
-    email = "qqlq@nullptr.club";
-    github = "jeroendehaas";
-    githubId = 117874;
-    name = "Jeroen de Haas";
   };
   jdelStrother = {
     email = "me@delstrother.com";
@@ -25571,11 +25559,6 @@
     name = "Taufik Hidayat";
     github = "tfkhdyt";
     githubId = 47195537;
-  };
-  tfmoraes = {
-    name = "Thiago Franco de Moraes";
-    github = "tfmoraes";
-    githubId = 351108;
   };
   tg-x = {
     email = "*@tg-x.net";

@@ -2252,6 +2252,8 @@ self: super: with self; {
 
   bundlewrap-teamvault = callPackage ../development/python-modules/bundlewrap-teamvault { };
 
+  busylight-core = callPackage ../development/python-modules/busylight-core { };
+
   busylight-for-humans = callPackage ../development/python-modules/busylight-for-humans { };
 
   busypie = callPackage ../development/python-modules/busypie { };
@@ -17621,6 +17623,8 @@ self: super: with self; {
   starlingbank = callPackage ../development/python-modules/starlingbank { };
 
   starlink-grpc-core = callPackage ../development/python-modules/starlink-grpc-core { };
+
+  starsessions = callPackage ../development/python-modules/starsessions { };
 
   stashy = callPackage ../development/python-modules/stashy { };
 
