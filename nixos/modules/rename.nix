@@ -60,6 +60,10 @@ in
     ] "The corresponding package was removed from nixpkgs.")
     (mkRemovedOptionModule [
       "programs"
+      "cardboard"
+    ] "The corresponding package was removed from nixpkgs.")
+    (mkRemovedOptionModule [
+      "programs"
       "gnome-documents"
     ] "The corresponding package was removed from nixpkgs.")
     (mkRemovedOptionModule [
@@ -211,6 +215,9 @@ in
       "services"
       "moinmoin"
     ] "The corresponding package was removed from nixpkgs.")
+    (mkRemovedOptionModule [ "services" "morty" ]
+      "services.morty has been removed from NixOS. As the morty package was unmaintained and removed and searxng, its main consumer, dropped support for it."
+    )
     (mkRemovedOptionModule [ "services" "mwlib" ] "The corresponding package was removed from nixpkgs.")
     (mkRemovedOptionModule [ "services" "pantheon" "files" ] ''
       This module was removed, please add pkgs.pantheon.elementary-files to environment.systemPackages directly.

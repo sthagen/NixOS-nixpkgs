@@ -466,8 +466,6 @@ with pkgs;
     python3Packages = python311Packages;
   };
 
-  fetchbower = callPackage ../build-support/fetchbower { };
-
   fetchbzr = callPackage ../build-support/fetchbzr { };
 
   fetchcvs =
@@ -3064,10 +3062,6 @@ with pkgs;
 
   haste-client = callPackage ../tools/misc/haste-client { };
 
-  hal-hardware-analyzer =
-    libsForQt5.callPackage ../applications/science/electronics/hal-hardware-analyzer
-      { };
-
   halide = callPackage ../development/compilers/halide {
     llvmPackages = llvmPackages_19;
   };
@@ -3612,11 +3606,9 @@ with pkgs;
   libnma-gtk4 = libnma.override { withGtk4 = true; };
 
   inherit (callPackages ../servers/nextcloud { })
-    nextcloud30
     nextcloud31
     ;
 
-  nextcloud30Packages = callPackage ../servers/nextcloud/packages { ncVersion = "30"; };
   nextcloud31Packages = callPackage ../servers/nextcloud/packages { ncVersion = "31"; };
 
   nextcloud-notify_push = callPackage ../servers/nextcloud/notify_push.nix { };
@@ -3810,10 +3802,6 @@ with pkgs;
   pakcs = callPackage ../development/compilers/pakcs { };
 
   paperwork = callPackage ../applications/office/paperwork/paperwork-gtk.nix { };
-
-  parallel = callPackage ../tools/misc/parallel { };
-
-  parallel-full = callPackage ../tools/misc/parallel/wrapper.nix { };
 
   parcellite = callPackage ../tools/misc/parcellite { };
 
@@ -4608,7 +4596,7 @@ with pkgs;
     ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
 
-  inherit (coqPackages_8_20) compcert;
+  inherit (coqPackages_9_0) compcert;
 
   computecpp = wrapCCWith rec {
     cc = computecpp-unwrapped;
@@ -7371,10 +7359,6 @@ with pkgs;
   };
   fftwMpi = fftw.override { enableMpi = true; };
 
-  flint = flint3;
-
-  flint3 = callPackage ../development/libraries/flint/3.nix { };
-
   fltk13 = callPackage ../development/libraries/fltk { };
   fltk14 = callPackage ../development/libraries/fltk/1.4.nix { };
   fltk13-minimal = fltk13.override {
@@ -9111,12 +9095,6 @@ with pkgs;
     saxon_11-he
     saxon_12-he
     ;
-
-  ### DEVELOPMENT / LIBRARIES / JAVASCRIPT
-
-  ### DEVELOPMENT / BOWER MODULES (JAVASCRIPT)
-
-  buildBowerComponents = callPackage ../development/bower-modules/generic { };
 
   ### DEVELOPMENT / GO
 

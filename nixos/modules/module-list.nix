@@ -337,7 +337,6 @@
   ./programs/vivid.nix
   ./programs/vscode.nix
   ./programs/wavemon.nix
-  ./programs/wayland/cardboard.nix
   ./programs/wayland/dwl.nix
   ./programs/wayland/gtklock.nix
   ./programs/wayland/hyprland.nix
@@ -1237,7 +1236,6 @@
   ./services/networking/mmsd.nix
   ./services/networking/modemmanager.nix
   ./services/networking/monero.nix
-  ./services/networking/morty.nix
   ./services/networking/mosquitto.nix
   ./services/networking/mozillavpn.nix
   ./services/networking/mptcpd.nix

@@ -540,6 +540,7 @@ mapAliases {
   boost184 = throw "Boost 1.84 has been removed as it is obsolete and no longer used by anything in Nixpkgs"; # Added 2024-11-24
   boost185 = throw "Boost 1.85 has been removed as it is obsolete and no longer used by anything in Nixpkgs"; # Added 2024-11-24
   boost_process = throw "boost_process has been removed as it is included in regular boost"; # Added 2024-05-01
+  bower2nix = throw "bower2nix has been removed as bower was removed. It is recommended to migrate to yarn."; # Added 2025-09-17
   bpb = throw "bpb has been removed as it is unmaintained and not compatible with recent Rust versions"; # Added 2024-04-30
   bpftool = throw "'bpftool' has been renamed to/replaced by 'bpftools'"; # Converted to throw 2024-10-17
   brasero-original = lib.warnOnInstantiate "Use 'brasero-unwrapped' instead of 'brasero-original'" brasero-unwrapped; # Added 2024-09-29
@@ -551,6 +552,7 @@ mapAliases {
   budgie = throw "The `budgie` scope has been removed and all packages moved to the top-level"; # Added 2024-07-14
   budgiePlugins = throw "The `budgiePlugins` scope has been removed and all packages moved to the top-level"; # Added 2024-07-14
   buildBarebox = throw "buildBarebox has been removed due to lack of interest in maintaining it in nixpkgs"; # Added 2025-04-19
+  buildBowerComponents = throw "buildBowerComponents has been removed as bower was removed. It is recommended to migrate to yarn."; # Added 2025-09-17
   buildGo122Module = throw "Go 1.22 is end-of-life, and 'buildGo122Module' has been removed. Please use a newer builder version."; # Added 2025-03-28
   buildGo123Module = throw "Go 1.23 is end-of-life, and 'buildGo123Module' has been removed. Please use a newer builder version."; # Added 2025-08-13
   buildGoPackage = throw "`buildGoPackage` has been deprecated and removed, see the Go section in the nixpkgs manual for details"; # Added 2024-11-18
@@ -578,6 +580,7 @@ mapAliases {
   cask = emacs.pkgs.cask; # Added 2022-11-12
   catcli = throw "catcli has been superseded by gocatcli"; # Added 2025-04-19
   canonicalize-jars-hook = stripJavaArchivesHook; # Added 2024-03-17
+  cardboard = throw "cardboard has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   cargo-deps = throw "cargo-deps has been removed as the repository is deleted"; # Added 2024-04-09
   cargo-espflash = espflash; # Added 2024-02-09
   cargo-kcov = throw "'cargo-kcov' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
@@ -731,6 +734,7 @@ mapAliases {
   deadpixi-sam = deadpixi-sam-unstable;
   debugedit-unstable = throw "'debugedit-unstable' has been renamed to/replaced by 'debugedit'"; # Converted to throw 2024-10-17
   deepin = throw "the Deepin desktop environment and associated tools have been removed from nixpkgs due to lack of maintenance"; # Added 2025-08-21
+  deepsea = throw "deepsea has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   degit-rs = throw "'degit-rs' has been removed because it is unmaintained upstream and has vulnerable dependencies."; # Added 2025-07-11
   deltachat-cursed = arcanechat-tui; # added 2025-02-25
   deltachat-electron = throw "'deltachat-electron' has been renamed to/replaced by 'deltachat-desktop'"; # Converted to throw 2024-10-17
@@ -877,6 +881,7 @@ mapAliases {
   fdr = throw "fdr has been removed, as it cannot be built from source and depends on Python 2.x"; # Added 2025-03-19
   inherit (luaPackages) fennel; # Added 2022-09-24
   ferdi = throw "'ferdi' has been removed, upstream does not exist anymore and the package is insecure"; # Added 2024-08-22
+  fetchbower = throw "fetchbower has been removed as bower was removed. It is recommended to migrate to yarn."; # Added 2025-09-17
   fetchFromGithub = throw "You meant fetchFromGitHub, with a capital H"; # preserve, reason: common typo
   ffmpeg_5 = throw "ffmpeg_5 has been removed, please use another version"; # Added 2024-07-12
   ffmpeg_5-headless = throw "ffmpeg_5-headless has been removed, please use another version"; # Added 2024-07-12
@@ -901,6 +906,7 @@ mapAliases {
   flashrom-stable = flashprog; # Added 2024-03-01
   flatbuffers_2_0 = flatbuffers; # Added 2022-05-12
   flatcam = throw "flatcam has been removed because it is unmaintained since 2022 and doesn't support Python > 3.10"; # Added 2025-01-25
+  flint3 = flint; # Added 2025-09-21
   floorp = throw "floorp has been replaced with floorp-bin, as building from upstream sources has become unfeasible starting with version 12.x"; # Added 2025-09-06
   floorp-unwrapped = throw "floorp-unwrapped has been replaced with floorp-bin-unwrapped, as building from upstream sources has become unfeasible starting with version 12.x"; # Added 2025-09-06
   flow-editor = flow-control; # Added 2025-03-05
@@ -1043,6 +1049,7 @@ mapAliases {
   givaro_3 = throw "'givaro_3' has been removed as it is end-of-life. Consider using the up-to-date 'givaro' instead"; # Added 2025-05-07
   givaro_3_7 = throw "'givaro_3_7' has been removed as it is end-of-life. Consider using the up-to-date 'givaro' instead"; # Added 2025-05-07
   gkraken = throw "'gkraken' has been deprecated by upstream. Consider using the replacement 'coolercontrol' instead."; # Added 2024-11-22
+  glabels = throw "'glabels' has been removed because it is no longer maintained. Consider using 'glabels-qt', which is an active fork."; # Added 2025-09-16
   glaxnimate = kdePackages.glaxnimate; # Added 2025-09-17
   glew-egl = lib.warnOnInstantiate "'glew-egl' is now provided by 'glew' directly" glew; # Added 2024-08-11
   glfw-wayland = glfw; # Added 2024-04-19
@@ -1247,6 +1254,7 @@ mapAliases {
   kanidm_1_4 = throw "'kanidm_1_4' has been removed as it has reached end of life"; # Added 2025-06-18
   kanidmWithSecretProvisioning_1_4 = throw "'kanidmWithSecretProvisioning_1_4' has been removed as it has reached end of life"; # Added 2025-06-18
   kbibtex = throw "'kbibtex' has been removed, as it is unmaintained upstream"; # Added 2025-08-30
+  kcli = throw "kcli has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   kdbplus = throw "'kdbplus' has been removed from nixpkgs"; # Added 2024-05-06
   kdeconnect = throw "'kdeconnect' has been renamed to/replaced by 'plasma5Packages.kdeconnect-kde'"; # Converted to throw 2024-10-17
   keepkey_agent = keepkey-agent; # added 2024-01-06
@@ -1709,6 +1717,7 @@ mapAliases {
   mongodb-6_0 = throw "mongodb-6_0 has been removed, it's end of life since July 2025"; # Added 2025-07-23
   moralerspace-nf = throw "moralerspace-nf has been removed, use moralerspace instead."; # Added 2025-08-30
   moralerspace-hwnf = throw "moralerspace-hwnf has been removed, use moralerspace-hw instead."; # Added 2025-08-30
+  morty = throw "morty has been removed, as searxng removed support for it and it was unmaintained."; # Added 2025-09-26
   moz-phab = mozphab; # Added 2022-08-09
   mp3info = throw "'mp3info' has been removed due to lack of maintenance upstream. Consider using 'eartag' or 'tagger' instead"; # Added 2024-09-14
   mp3splt = throw "'mp3splt' has been removed due to lack of maintenance upstream."; # Added 2025-05-17
@@ -1765,6 +1774,18 @@ mapAliases {
   nettools = net-tools; # Added 2025-06-11
   newt-go = fosrl-newt; # Added 2025-06-24
   notify-sharp = throw "'notify-sharp' has been removed as it was unmaintained and depends on deprecated dbus-sharp versions"; # Added 2025-08-25
+  nextcloud30 = throw ''
+    Nextcloud v30 has been removed from `nixpkgs` as the support for is dropped
+    by upstream in 2025-09. Please upgrade to at least Nextcloud v31 by declaring
+
+        services.nextcloud.package = pkgs.nextcloud31;
+
+    in your NixOS config.
+
+    WARNING: if you were on Nextcloud 29 you have to upgrade to Nextcloud 30
+    first on 25.05 because Nextcloud doesn't support upgrades across multiple major versions!
+  ''; # Added 2025-09-25
+  nextcloud30Packages = throw "Nextcloud 30 is EOL!"; # Added 2025-09-25
   nextcloud29 = throw ''
     Nextcloud v29 has been removed from `nixpkgs` as the support for is dropped
     by upstream in 2025-04. Please upgrade to at least Nextcloud v30 by declaring
@@ -1981,6 +2002,7 @@ mapAliases {
   partition-manager = makePlasma5Throw "partitionmanager"; # Added 2024-01-08
   patchelfStable = patchelf; # Added 2024-01-25
   paup = paup-cli; # Added 2024-09-11
+  pcp = throw "'pcp' has been removed because the upstream repo was archived and it hasn't been updated since 2021"; # Added 2025-09-23
   pcre16 = throw "'pcre16' has been removed because it is obsolete. Consider migrating to 'pcre2' instead."; # Added 2025-05-29
   pcsctools = pcsc-tools; # Added 2023-12-07
   pcsxr = throw "pcsxr was removed as it has been abandoned for over a decade; please use DuckStation, Mednafen, or the RetroArch PCSX ReARMed core"; # Added 2024-08-20
@@ -2129,6 +2151,7 @@ mapAliases {
   protoc-gen-connect-es = throw "'protoc-gen-connect-es' has been removed because it is deprecated upstream. Functionality has been integrated into 'protoc-gen-es' v2."; # Added 2025-02-18
   protonup = protonup-ng; # Added 2022-11-06
   protonvpn-gui_legacy = throw "protonvpn-gui_legacy source code was removed from upstream. Use protonvpn-gui instead."; # Added 2024-10-12
+  proton-caller = throw "'proton-caller' has been removed from nixpkgs due to being unmaintained and lack of upstream maintenance."; # Added 2025-09-25
   proton-vpn-local-agent = lib.warnOnInstantiate "'proton-vpn-local-agent' has been renamed to 'python3Packages.proton-vpn-local-agent'" (
     python3Packages.toPythonApplication python3Packages.proton-vpn-local-agent
   ); # Added 2025-04-23
@@ -2697,6 +2720,7 @@ mapAliases {
   xmlroff = throw "'xmlroff' has been removed as it is unmaintained and broken"; # Added 2025-05-18
   xmr-stak = throw "xmr-stak has been removed from nixpkgs because it was broken"; # Added 2024-07-15
   xmake-core-sv = throw "'xmake-core-sv' has been removed, use 'libsv' instead"; # Added 2024-10-10
+  xo = throw "Use 'dbtpl' instead of 'xo'"; # Added 2025-09-28
   xorg-autoconf = util-macros; # Added 2025-08-18
   xournal = throw "'xournal' has been removed due to lack of activity upstream and depending on gnome2. Consider using 'xournalpp' instead."; # Added 2024-12-06
   xonsh-unwrapped = python3Packages.xonsh; # Added 2024-06-18
