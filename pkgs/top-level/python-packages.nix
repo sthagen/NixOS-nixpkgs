@@ -2398,6 +2398,8 @@ self: super: with self; {
     };
   };
 
+  catkin-pkg = callPackage ../development/python-modules/catkin-pkg { };
+
   catppuccin = callPackage ../development/python-modules/catppuccin { };
 
   cattrs = callPackage ../development/python-modules/cattrs { };
@@ -2885,7 +2887,11 @@ self: super: with self; {
 
   colout = callPackage ../development/python-modules/colout { };
 
+  comet-ml = callPackage ../development/python-modules/comet-ml { };
+
   cometblue-lite = callPackage ../development/python-modules/cometblue-lite { };
+
+  cometx = callPackage ../development/python-modules/cometx { };
 
   comicapi = callPackage ../development/python-modules/comicapi { };
 
@@ -4860,6 +4866,8 @@ self: super: with self; {
   eventlet = callPackage ../development/python-modules/eventlet { };
 
   events = callPackage ../development/python-modules/events { };
+
+  everett = callPackage ../development/python-modules/everett { };
 
   evohome-async = callPackage ../development/python-modules/evohome-async { };
 
@@ -7260,6 +7268,8 @@ self: super: with self; {
   irctokens = callPackage ../development/python-modules/irctokens { };
 
   irisclient = callPackage ../development/python-modules/irisclient { };
+
+  irm-kmi-api = callPackage ../development/python-modules/irm-kmi-api { };
 
   isal = callPackage ../development/python-modules/isal { };
 
@@ -11850,10 +11860,7 @@ self: super: with self; {
 
   piqp = callPackage ../development/python-modules/piqp { };
 
-  pivy = callPackage ../development/python-modules/pivy {
-    inherit (pkgs.qt5) qtbase qmake;
-    inherit (pkgs.libsForQt5) soqt;
-  };
+  pivy = callPackage ../development/python-modules/pivy { };
 
   pixcat = callPackage ../development/python-modules/pixcat { };
 
@@ -13804,6 +13811,8 @@ self: super: with self; {
   pypoolstation = callPackage ../development/python-modules/pypoolstation { };
 
   pyporscheconnectapi = callPackage ../development/python-modules/pyporscheconnectapi { };
+
+  pyportainer = callPackage ../development/python-modules/pyportainer { };
 
   pyppeteer = callPackage ../development/python-modules/pyppeteer { };
 
