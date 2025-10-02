@@ -431,6 +431,7 @@ mapAliases {
   alsaTools = throw "'alsaTools' has been renamed to/replaced by 'alsa-tools'"; # Converted to throw 2024-10-17
   alsaUtils = throw "'alsaUtils' has been renamed to/replaced by 'alsa-utils'"; # Converted to throw 2024-10-17
   amazon-qldb-shell = throw "'amazon-qldb-shell' has been removed due to being unmaintained upstream"; # Added 2025-07-30
+  amdvlk = throw "'amdvlk' has been removed since it was deprecated by AMD. Its replacement, RADV, is enabled by default."; # Added 2025-09-20
   angelfish = throw "'angelfish' has been renamed to/replaced by 'libsForQt5.kdeGear.angelfish'"; # Converted to throw 2024-10-17
   animeko = throw "'animeko' has been removed since it is unmaintained"; # Added 2025-08-20
   ansible_2_14 = throw "Ansible 2.14 goes end of life in 2024/05 and can't be supported throughout the 24.05 release cycle"; # Added 2024-04-11
@@ -602,6 +603,7 @@ mapAliases {
 
   challenger = taler-challenger; # Added 2024-09-04
   charmcraft = throw "charmcraft was removed in Sep 25 following removal of LXD from nixpkgs"; # added 2025-09-18
+  chatgpt-retrieval-plugin = throw "chatgpt-retrieval-plugin has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   check_smartmon = nagiosPlugins.check_smartmon; # Added 2024-05-03
   check_systemd = nagiosPlugins.check_systemd; # Added 2024-05-03
   check_zfs = nagiosPlugins.check_zfs; # Added 2024-05-03
@@ -1416,6 +1418,7 @@ mapAliases {
   linuxPackages_6_14 = linuxKernel.packages.linux_6_14;
   linuxPackages_6_15 = linuxKernel.packages.linux_6_15;
   linuxPackages_6_16 = linuxKernel.packages.linux_6_16;
+  linuxPackages_6_17 = linuxKernel.packages.linux_6_17;
   linuxPackages_ham = linuxKernel.packages.linux_ham;
   linuxPackages_rpi0 = linuxKernel.packages.linux_rpi1;
   linuxPackages_rpi02w = linuxKernel.packages.linux_rpi3;
@@ -1441,6 +1444,7 @@ mapAliases {
   linux_6_14 = linuxKernel.kernels.linux_6_14;
   linux_6_15 = linuxKernel.kernels.linux_6_15;
   linux_6_16 = linuxKernel.kernels.linux_6_16;
+  linux_6_17 = linuxKernel.kernels.linux_6_17;
   linux_ham = linuxKernel.kernels.linux_ham;
   linux_rpi0 = linuxKernel.kernels.linux_rpi1;
   linux_rpi02w = linuxKernel.kernels.linux_rpi3;
@@ -1748,6 +1752,7 @@ mapAliases {
   namazu = throw "namazu has been removed, as it was broken"; # Added 2025-08-25
   nanoblogger = throw "nanoblogger has been removed as upstream stopped developement in 2013"; # Added 2025-09-10
   ncdu_2 = ncdu; # Added 2022-07-22
+  neardal = throw "neardal has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-29
   neocities-cli = neocities; # Added 2024-07-31
   neocomp = throw "neocomp has been remove because it fails to build and was unmaintained upstream"; # Added 2025-04-28
   netbox_3_3 = throw "netbox 3.3 series has been removed as it was EOL"; # Added 2023-09-02
@@ -2503,6 +2508,8 @@ mapAliases {
   tfplugindocs = terraform-plugin-docs; # Added 2023-11-01
   thiefmd = throw "'thiefmd' has been removed due to lack of maintenance upstream and incompatible with newer Pandoc. Please use 'apostrophe' or 'folio' instead"; # Added 2025-02-20
   thefuck = throw "'thefuck' has been removed due to lack of maintenance upstream and incompatible with python 3.12+. Consider using 'pay-respects' instead"; # Added 2025-05-30
+  thunderbird-128 = throw "Thunderbird 128 support ended in August 2025";
+  thunderbird-128-unwrapped = throw "Thunderbird 128 support ended in August 2025";
   invalidateFetcherByDrvHash = testers.invalidateFetcherByDrvHash; # Added 2022-05-05
   ticpp = throw "'ticpp' has been removed due to being unmaintained"; # Added 2025-09-10
   tijolo = throw "'tijolo' has been removed due to being unmaintained"; # Added 2024-12-27
@@ -2813,7 +2820,7 @@ mapAliases {
   openbsdCross = openbsd; # Added 2024-09-06
 
   # LLVM packages for (integration) testing that should not be used inside Nixpkgs:
-  llvmPackages_latest = llvmPackages_20;
+  llvmPackages_latest = llvmPackages_21;
 
   /*
     If these are in the scope of all-packages.nix, they cause collisions

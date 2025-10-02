@@ -9612,6 +9612,8 @@ self: super: with self; {
 
   momepy = callPackage ../development/python-modules/momepy { };
 
+  momonga = callPackage ../development/python-modules/momonga { };
+
   monai = callPackage ../development/python-modules/monai { };
 
   monai-deploy = callPackage ../development/python-modules/monai-deploy { };
@@ -16761,6 +16763,8 @@ self: super: with self; {
   sigrok = callPackage ../development/python-modules/sigrok { };
 
   sigstore = callPackage ../development/python-modules/sigstore { };
+
+  sigstore-models = callPackage ../development/python-modules/sigstore-models { };
 
   sigstore-protobuf-specs = callPackage ../development/python-modules/sigstore-protobuf-specs { };
 

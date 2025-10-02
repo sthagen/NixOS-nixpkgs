@@ -5812,7 +5812,12 @@ with pkgs;
     xeus-cling
     ;
 
-  clojure = callPackage ../development/interpreters/clojure { };
+  clojure = callPackage ../development/interpreters/clojure {
+    # set this to an LTS version of java
+    # Be careful if you remove this, out-of-tree consumers expect to
+    # be able to override `jdk`.
+    jdk = jdk21;
+  };
 
   clooj = callPackage ../development/interpreters/clojure/clooj.nix { };
 
@@ -7302,7 +7307,6 @@ with pkgs;
   # Multi-arch "drivers" which we want to build for i686.
   driversi686Linux = recurseIntoAttrs {
     inherit (pkgsi686Linux)
-      amdvlk
       intel-media-driver
       intel-vaapi-driver
       mesa
@@ -11609,8 +11613,6 @@ with pkgs;
 
   huggle = libsForQt5.callPackage ../applications/misc/huggle { };
 
-  hushboard = python3.pkgs.callPackage ../applications/audio/hushboard { };
-
   hyperion-ng = libsForQt5.callPackage ../applications/video/hyperion-ng { };
 
   jackline = callPackage ../applications/networking/instant-messengers/jackline {
@@ -12868,9 +12870,6 @@ with pkgs;
   thunderbird-esr-unwrapped = thunderbirdPackages.thunderbird-esr;
   thunderbird-esr = wrapThunderbird thunderbird-esr-unwrapped { };
 
-  thunderbird-128-unwrapped = thunderbirdPackages.thunderbird-128;
-  thunderbird-128 = wrapThunderbird thunderbirdPackages.thunderbird-128 { };
-
   thunderbird-140-unwrapped = thunderbirdPackages.thunderbird-140;
   thunderbird-140 = wrapThunderbird thunderbirdPackages.thunderbird-140 { };
 
@@ -13922,18 +13921,6 @@ with pkgs;
   warsow-engine = callPackage ../games/warsow/engine.nix { };
 
   warsow = callPackage ../games/warsow { };
-
-  wesnoth = callPackage ../games/wesnoth {
-    boost = boost186;
-    # wesnoth requires lua built with c++, see https://github.com/wesnoth/wesnoth/pull/8234
-    lua = lua5_4.override {
-      postConfigure = ''
-        makeFlagsArray+=("CC=$CXX")
-      '';
-    };
-  };
-
-  wesnoth-dev = wesnoth;
 
   inherit (callPackage ../games/xonotic { })
     xonotic-data

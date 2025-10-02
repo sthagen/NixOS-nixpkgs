@@ -1068,6 +1068,13 @@
     githubId = 22500561;
     name = "Albert Ilagan";
   };
+  albertlarsan68 = {
+    email = "albertlarsan@albertlarsan.fr";
+    github = "albertlarsan68";
+    githubId = 74931857;
+    matrix = "@albertlarsan68:albertlarsan.fr";
+    name = "Albert Larsan";
+  };
   albertodvp = {
     email = "alberto.fanton@protonmail.com";
     github = "albertodvp";
@@ -4981,6 +4988,12 @@
     githubId = 118829;
     name = "codec";
   };
+  CodedNil = {
+    github = "CodedNil";
+    githubId = 5075747;
+    email = "codenil@proton.me";
+    name = "Dan Lock";
+  };
   CodeLongAndProsper90 = {
     github = "CodeLongAndProsper90";
     githubId = 50145141;
@@ -7644,6 +7657,12 @@
     name = "Zhenbo Li";
     matrix = "@zhenbo:matrix.org";
   };
+  enkarterisi = {
+    name = "xNefas";
+    email = "enkarterisi@proton.me";
+    github = "xNefas";
+    githubId = 199727225;
+  };
   enorris = {
     name = "Eric Norris";
     email = "erictnorris@gmail.com";
@@ -9391,6 +9410,11 @@
     github = "gin66";
     githubId = 5549373;
     name = "Jochen Kiemes";
+  };
+  ginkogruen = {
+    name = "Jasper Wolter";
+    github = "ginkogruen";
+    githubId = 93037574;
   };
   giodamelio = {
     name = "Giovanni d'Amelio";
@@ -28692,6 +28716,12 @@
     github = "zahrun";
     githubId = 10415894;
     name = "Zahrun";
+  };
+  zainkergaye = {
+    email = "zain@zkergaye.me";
+    github = "zainkergaye";
+    githubId = 62440012;
+    name = "Zain Kergaye";
   };
   zakame = {
     email = "zakame@zakame.net";
