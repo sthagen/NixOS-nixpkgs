@@ -2364,7 +2364,7 @@ with pkgs;
   };
 
   beetsPackages = lib.recurseIntoAttrs (callPackage ../tools/audio/beets { });
-  inherit (beetsPackages) beets beets-unstable;
+  inherit (beetsPackages) beets;
 
   binlore = callPackage ../development/tools/analysis/binlore { };
 
@@ -12612,6 +12612,8 @@ with pkgs;
 
   rgp = libsForQt5.callPackage ../development/tools/rgp { };
 
+  ringboard-wayland = callPackage ../by-name/ri/ringboard/package.nix { displayServer = "wayland"; };
+
   ripcord =
     if stdenv.hostPlatform.isLinux then
       qt5.callPackage ../applications/networking/instant-messengers/ripcord { }
@@ -15040,30 +15042,12 @@ with pkgs;
 
   httraqt = libsForQt5.callPackage ../tools/backup/httrack/qt.nix { };
 
-  # Overriding does not work when using callPackage on discord using import instead. (https://github.com/NixOS/nixpkgs/pull/179906)
-  discord = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "stable";
-  };
-
-  discord-ptb = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "ptb";
-  };
-
-  discord-canary = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "canary";
-  };
-
-  discord-development = import ../applications/networking/instant-messengers/discord {
-    inherit lib stdenv;
-    inherit (pkgs) callPackage fetchurl;
-    branch = "development";
-  };
+  inherit (callPackage ../applications/networking/instant-messengers/discord { })
+    discord
+    discord-ptb
+    discord-canary
+    discord-development
+    ;
 
   discord-screenaudio =
     qt6Packages.callPackage ../applications/networking/instant-messengers/discord-screenaudio
