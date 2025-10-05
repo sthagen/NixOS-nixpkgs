@@ -1402,12 +1402,16 @@ in
   switchTest = runTest ./switch-test.nix;
   sx = runTest ./sx.nix;
   sympa = runTest ./sympa.nix;
-  syncthing = runTest ./syncthing.nix;
-  syncthing-folders = runTest ./syncthing-folders.nix;
-  syncthing-init = runTest ./syncthing-init.nix;
-  syncthing-many-devices = runTest ./syncthing-many-devices.nix;
-  syncthing-no-settings = runTest ./syncthing-no-settings.nix;
-  syncthing-relay = runTest ./syncthing-relay.nix;
+  syncthing = runTest ./syncthing/main.nix;
+  syncthing-folders = runTest ./syncthing/folders.nix;
+  syncthing-guiPassword = runTest ./syncthing/guiPassword.nix;
+  syncthing-guiPasswordFile = runTest ./syncthing/guiPasswordFile.nix;
+  syncthing-init = runTest ./syncthing/init.nix;
+  # FIXME: Test has been failing since 2025-07-06:
+  # https://github.com/NixOS/nixpkgs/issues/447674
+  # syncthing-many-devices = runTest ./syncthing/many-devices.nix;
+  syncthing-no-settings = runTest ./syncthing/no-settings.nix;
+  syncthing-relay = runTest ./syncthing/relay.nix;
   sysfs = runTest ./sysfs.nix;
   sysinit-reactivation = runTest ./sysinit-reactivation.nix;
   systemd = runTest ./systemd.nix;
@@ -1515,6 +1519,7 @@ in
   tomcat = runTest ./tomcat.nix;
   tor = runTest ./tor.nix;
   tpm-ek = handleTest ./tpm-ek { };
+  tpm2 = runTest ./tpm2.nix;
   # tracee requires bpf
   tracee = handleTestOn [ "x86_64-linux" ] ./tracee.nix { };
   traefik = runTestOn [ "aarch64-linux" "x86_64-linux" ] ./traefik.nix;
