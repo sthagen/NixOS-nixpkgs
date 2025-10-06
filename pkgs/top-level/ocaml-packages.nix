@@ -661,10 +661,6 @@ let
 
         frontc = callPackage ../development/ocaml-modules/frontc { };
 
-        functoria = callPackage ../development/ocaml-modules/functoria { };
-
-        functoria-runtime = callPackage ../development/ocaml-modules/functoria/runtime.nix { };
-
         functory = callPackage ../development/ocaml-modules/functory { };
 
         ### G ###
@@ -2001,7 +1997,7 @@ let
 
         tcpip = callPackage ../development/ocaml-modules/tcpip { };
 
-        tcslib = callPackage ../development/ocaml-modules/tcslib { };
+        tcs-lib = callPackage ../development/ocaml-modules/tcs-lib { };
 
         tdigest = callPackage ../development/ocaml-modules/tdigest { };
 
