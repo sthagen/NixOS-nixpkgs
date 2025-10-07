@@ -161,6 +161,10 @@ let
 
         ca-certs-nss = callPackage ../development/ocaml-modules/ca-certs-nss { };
 
+        cachet = callPackage ../development/ocaml-modules/cachet { };
+
+        cachet-lwt = callPackage ../development/ocaml-modules/cachet/lwt.nix { };
+
         cairo2 = callPackage ../development/ocaml-modules/cairo2 { };
 
         calendar = callPackage ../development/ocaml-modules/calendar { };
@@ -1972,6 +1976,8 @@ let
         stringext = callPackage ../development/ocaml-modules/stringext { };
 
         swhid_core = callPackage ../development/ocaml-modules/swhid_core { };
+
+        synchronizer = callPackage ../development/ocaml-modules/synchronizer { };
 
         syslog = callPackage ../development/ocaml-modules/syslog { };
 
