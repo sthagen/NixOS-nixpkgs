@@ -745,8 +745,6 @@ self: super: with self; {
 
   ansitable = callPackage ../development/python-modules/ansitable { };
 
-  ansiwrap = callPackage ../development/python-modules/ansiwrap { };
-
   anthemav = callPackage ../development/python-modules/anthemav { };
 
   anthropic = callPackage ../development/python-modules/anthropic { };
@@ -12446,8 +12444,6 @@ self: super: with self; {
   py-dormakaba-dkey = callPackage ../development/python-modules/py-dormakaba-dkey { };
 
   py-ecc = callPackage ../development/python-modules/py-ecc { };
-
-  py-eth-sig-utils = callPackage ../development/python-modules/py-eth-sig-utils { };
 
   py-evm = callPackage ../development/python-modules/py-evm { };
 

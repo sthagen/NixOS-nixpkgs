@@ -19683,12 +19683,6 @@
     githubId = 7239200;
     name = "panda2134";
   };
-  pandaman = {
-    email = "kointosudesuyo@infoseek.jp";
-    github = "pandaman64";
-    githubId = 1788628;
-    name = "pandaman";
-  };
   pandanz = {
     email = "gate.rules-5j@icloud.com";
     github = "pandanz";
@@ -26256,6 +26250,12 @@
     github = "Tochiaha";
     githubId = 74688871;
     name = "Tochukwu Ahanonu";
+  };
+  tom94 = {
+    email = "nix@94.me";
+    github = "Tom94";
+    githubId = 4923655;
+    name = "Thomas Müller";
   };
   tomahna = {
     email = "kevin.rauscher@tomahna.fr";
