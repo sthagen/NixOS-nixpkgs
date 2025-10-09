@@ -5581,7 +5581,6 @@
     email = "dadada@dadada.li";
     github = "dadada";
     githubId = 7216772;
-    keys = [ { fingerprint = "D68C 8469 5C08 7E0F 733A  28D0 EEB8 D1CE 62C4 DFEA"; } ];
   };
   dalance = {
     email = "dalance@gmail.com";
@@ -24980,6 +24979,17 @@
     github = "swarren83";
     githubId = 4572854;
     name = "Shawn Warren";
+  };
+  swarsel = {
+    name = "Leon Schwarzäugl";
+    email = "leon@swarsel.win";
+    github = "Swarsel";
+    githubId = 32304731;
+    keys = [
+      {
+        fingerprint = "4BE7 9252 6228 9B47 6DBB  C17B 76FD 3810 215A E097";
+      }
+    ];
   };
   swdunlop = {
     email = "swdunlop@gmail.com";

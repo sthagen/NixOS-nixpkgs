@@ -7000,6 +7000,8 @@ self: super: with self; {
 
   ilua = callPackage ../development/python-modules/ilua { };
 
+  image = callPackage ../development/python-modules/image { };
+
   image-diff = callPackage ../development/python-modules/image-diff { };
 
   image-go-nord = callPackage ../development/python-modules/image-go-nord { };
@@ -18772,6 +18774,8 @@ self: super: with self; {
   trio = callPackage ../development/python-modules/trio { };
 
   trio-asyncio = callPackage ../development/python-modules/trio-asyncio { };
+
+  trio-typing = callPackage ../development/python-modules/trio-typing { };
 
   trio-websocket = callPackage ../development/python-modules/trio-websocket { };
 
