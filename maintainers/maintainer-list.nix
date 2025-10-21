@@ -2331,7 +2331,7 @@
     email = "assistant.moetron@gmail.com";
     github = "Assistant";
     githubId = 2748721;
-    matrix = "@assistant:pygmalion.chat";
+    matrix = "@self:assistant.moe";
     name = "Assistant Moetron";
   };
   astavie = {
@@ -2875,12 +2875,6 @@
     github = "baracoder";
     githubId = 127523;
     name = "Herman Fries";
-  };
-  BarinovMaxim = {
-    name = "Barinov Maxim";
-    email = "barinov274@gmail.com";
-    github = "barinov274";
-    githubId = 54442153;
   };
   BarrOff = {
     name = "BarrOff";
@@ -14437,6 +14431,12 @@
     githubId = 4701504;
     name = "James Robinson";
   };
+  leha44581 = {
+    email = "leha55481@gmail.com";
+    github = "Leha44581";
+    githubId = 70238465;
+    name = "Leha";
+  };
   leifhelm = {
     email = "jakob.leifhelm@gmail.com";
     github = "leifhelm";
@@ -17569,6 +17569,12 @@
     githubId = 61612;
     name = "Sean Gilligan";
     keys = [ { fingerprint = "3B66 ACFA D10F 02AA B1D5  2CB1 8DD0 D81D 7D1F C61A"; } ];
+  };
+  mshnwq = {
+    email = "mshnwq.com@gmail.com";
+    github = "mshnwq";
+    githubId = 68467027;
+    name = "Hayan Al-Machnouk";
   };
   msiedlarek = {
     email = "mikolaj@siedlarek.pl";

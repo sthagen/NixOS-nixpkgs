@@ -3193,6 +3193,8 @@ with pkgs;
 
   kbfs = callPackage ../tools/security/keybase/kbfs.nix { };
 
+  kbdVlock = callPackage ../../pkgs/by-name/kb/kbd/package.nix { withVlock = true; };
+
   keybase-gui = callPackage ../tools/security/keybase/gui.nix { };
 
   kio-fuse = libsForQt5.callPackage ../tools/filesystems/kio-fuse { };
@@ -8316,13 +8318,12 @@ with pkgs;
   zunclient = with python313Packages; toPythonApplication python-zunclient;
 
   inherit (callPackages ../by-name/li/libressl { })
-    libressl_3_9
     libressl_4_0
     libressl_4_1
     libressl_4_2
     ;
 
-  openssl = openssl_3_5;
+  openssl = openssl_3_6;
 
   openssl_legacy = openssl.override {
     conf = ../development/libraries/openssl/3.0/legacy.cnf;
@@ -8331,7 +8332,7 @@ with pkgs;
   inherit (callPackages ../development/libraries/openssl { })
     openssl_1_1
     openssl_3
-    openssl_3_5
+    openssl_3_6
     ;
 
   pcre = callPackage ../development/libraries/pcre { };
@@ -8481,7 +8482,6 @@ with pkgs;
   plasma5Packages = libsForQt5;
 
   qtEnv = qt5.env;
-  qt5Full = qt5.full;
 
   qt6 = recurseIntoAttrs (callPackage ../development/libraries/qt-6 { });
 
@@ -11603,7 +11603,7 @@ with pkgs;
     k3s_1_33
     k3s_1_34
     ;
-  k3s = k3s_1_33;
+  k3s = k3s_1_34;
 
   kapow = libsForQt5.callPackage ../applications/misc/kapow { };
 
@@ -12956,8 +12956,6 @@ with pkgs;
 
   xca = qt6Packages.callPackage ../applications/misc/xca { };
 
-  inherit (xorg) xcompmgr;
-
   xdg-desktop-portal = callPackage ../development/libraries/xdg-desktop-portal { };
 
   xdg-desktop-portal-hyprland =
@@ -13315,8 +13313,6 @@ with pkgs;
   };
 
   factorio-utils = callPackage ../by-name/fa/factorio/utils.nix { };
-
-  flightgear = libsForQt5.callPackage ../games/flightgear { };
 
   freeciv = callPackage ../by-name/fr/freeciv/package.nix {
     sdl2Client = false;
