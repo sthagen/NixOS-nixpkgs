@@ -2489,6 +2489,7 @@
     github = "auscyber";
     name = "Ivy Pierlot";
     githubId = 12080502;
+    matrix = "@ivy:faggot.sh";
   };
   austin-artificial = {
     email = "austin.platt@artificial.io";
@@ -21235,6 +21236,12 @@
     github = "quinn-dougherty";
     githubId = 39039420;
     name = "Quinn Dougherty";
+  };
+  quinneden = {
+    email = "quinn@qeden.dev";
+    github = "quinneden";
+    githubId = 125415641;
+    name = "Quinn Edenfield";
   };
   QuiNzX = {
     name = "QuiNz-";
