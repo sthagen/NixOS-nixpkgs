@@ -733,6 +733,7 @@ in
   immich = runTest ./web-apps/immich.nix;
   immich-public-proxy = runTest ./web-apps/immich-public-proxy.nix;
   immich-vectorchord-migration = runTest ./web-apps/immich-vectorchord-migration.nix;
+  immich-vectorchord-reindex = runTest ./web-apps/immich-vectorchord-reindex.nix;
   incron = runTest ./incron.nix;
   incus = pkgs.recurseIntoAttrs (
     handleTest ./incus {
@@ -1321,6 +1322,7 @@ in
   rss-bridge = handleTest ./web-apps/rss-bridge { };
   rss2email = handleTest ./rss2email.nix { };
   rstudio-server = runTest ./rstudio-server.nix;
+  rsync = runTest ./rsync.nix;
   rsyncd = runTest ./rsyncd.nix;
   rsyslogd = handleTest ./rsyslogd.nix { };
   rtkit = runTest ./rtkit.nix;
