@@ -3872,6 +3872,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  dart-nvim = buildVimPlugin {
+    pname = "dart.nvim";
+    version = "2025-10-23";
+    src = fetchFromGitHub {
+      owner = "iofq";
+      repo = "dart.nvim";
+      rev = "71421e7ef5aee8267e24dc562fdd07a83bda192e";
+      sha256 = "1jny6xq5ami3msa8b22hp7yrraljwg7vfkwj7rps8j7whrdxkfjh";
+    };
+    meta.homepage = "https://github.com/iofq/dart.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   dart-vim-plugin = buildVimPlugin {
     pname = "dart-vim-plugin";
     version = "2024-07-02";
@@ -13819,6 +13832,19 @@ final: prev: {
       sha256 = "1kvik1yf7yjg9jdmdw38yhkksxg0n3nry02banwik7wgjnpvg870";
     };
     meta.homepage = "https://github.com/osyo-manga/shabadou.vim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  showkeys = buildVimPlugin {
+    pname = "showkeys";
+    version = "2025-05-24";
+    src = fetchFromGitHub {
+      owner = "nvzone";
+      repo = "showkeys";
+      rev = "cb0a50296f11f1e585acffba8c253b9e8afc1f84";
+      sha256 = "1cvgfxvi5l753hn9ijzbb8x9bi2n12gd6n9j8lcvcq9xv43d4zws";
+    };
+    meta.homepage = "https://github.com/nvzone/showkeys/";
     meta.hydraPlatforms = [ ];
   };
 

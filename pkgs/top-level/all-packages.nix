@@ -7007,14 +7007,6 @@ with pkgs;
 
   boost = boost187;
 
-  inherit
-    (callPackages ../development/libraries/botan {
-      # botan3 only sensibly works with libcxxStdenv when building static binaries
-      stdenv = if stdenv.hostPlatform.isStatic then buildPackages.libcxxStdenv else stdenv;
-    })
-    botan2
-    botan3
-    ;
   botanEsdm = botan3.override { withEsdm = true; };
 
   c-ares = callPackage ../development/libraries/c-ares { };
@@ -9248,9 +9240,6 @@ with pkgs;
   diod = callPackage ../servers/diod { lua = lua5_1; };
 
   dodgy = with python3Packages; toPythonApplication dodgy;
-
-  etcd = etcd_3_5;
-  etcd_3_5 = callPackage ../servers/etcd/3_5 { };
 
   prosody = callPackage ../servers/xmpp/prosody {
     withExtraLibs = [ ];
@@ -11922,9 +11911,7 @@ with pkgs;
     lua = lua5;
   };
 
-  pdfsam-basic = callPackage ../applications/misc/pdfsam-basic {
-    jdk21 = openjdk21.override { enableJavaFX = true; };
-  };
+  pdfsam-basic = callPackage ../applications/misc/pdfsam-basic { };
 
   mupdf-headless = mupdf.override {
     enableX11 = false;
@@ -12072,9 +12059,6 @@ with pkgs;
     }
     // (config.profanity or { })
   );
-
-  protonvpn-cli = python3Packages.callPackage ../applications/networking/protonvpn-cli { };
-  protonvpn-cli_2 = python3Packages.callPackage ../applications/networking/protonvpn-cli/2.nix { };
 
   protonvpn-gui = python3Packages.callPackage ../applications/networking/protonvpn-gui { };
 
@@ -13046,8 +13030,6 @@ with pkgs;
   cri-o = callPackage ../applications/virtualization/cri-o/wrapper.nix { };
   cri-o-unwrapped = callPackage ../applications/virtualization/cri-o { };
 
-  phonemizer = with python3Packages; toPythonApplication phonemizer;
-
   ### GAMES
 
   inherit (callPackages ../games/fteqw { })
@@ -13075,8 +13057,6 @@ with pkgs;
   };
 
   fmodex = callPackage ../games/doom-ports/zandronum/fmod.nix { };
-
-  pro-office-calculator = libsForQt5.callPackage ../games/pro-office-calculator { };
 
   qgo = libsForQt5.callPackage ../games/qgo { };
 
