@@ -21343,6 +21343,11 @@
     matrix = "@qyriad:katesiria.org";
     name = "Qyriad";
   };
+  qzylinra = {
+    github = "qzylinra";
+    githubId = 225773816;
+    name = "qzylinra";
+  };
   r-aizawa = {
     github = "Xantibody";
     githubId = 109563705;
@@ -27802,6 +27807,12 @@
     github = "wesnel";
     githubId = 43357387;
     keys = [ { fingerprint = "F844 80B2 0CA9 D6CC C7F5  2479 A776 D2AD 099E 8BC0"; } ];
+  };
+  wetisobe = {
+    name = "Martin Woods";
+    github = "wetisobe";
+    email = "weti.sobe@pen-net.de";
+    githubId = 172606048;
   };
   wetrustinprize = {
     email = "git@wetrustinprize.com";
