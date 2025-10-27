@@ -1106,6 +1106,12 @@
     githubId = 83360;
     name = "Aleksey Sidorov";
   };
+  alemonmk = {
+    email = "almk@rmntn.net";
+    github = "alemonmk";
+    githubId = 3955369;
+    name = "Lemon Lam";
+  };
   alerque = {
     email = "caleb@alerque.com";
     github = "alerque";
@@ -2359,12 +2365,6 @@
     githubId = 26362368;
     name = "Vincent Fischer";
     keys = [ { fingerprint = "BF47 81E1 F304 1ADF 18CE  C401 DE16 C7D1 536D A72F"; } ];
-  };
-  astronaut0212 = {
-    email = "goatastronaut0212@outlook.com";
-    github = "goatastronaut0212";
-    githubId = 119769817;
-    name = "goatastronaut0212";
   };
   asymmetric = {
     email = "lorenzo@mailbox.org";

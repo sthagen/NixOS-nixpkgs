@@ -8342,7 +8342,10 @@ with pkgs;
         # More recent versions of abseil seem to be missing absl::if_constexpr
         abseil-cpp = abseil-cpp_202407;
       };
-      protobuf_27 = callPackage ../development/libraries/protobuf/27.nix { };
+      protobuf_27 = callPackage ../development/libraries/protobuf/27.nix {
+        # More recent versions of abseil seem to be missing absl::if_constexpr
+        abseil-cpp = abseil-cpp_202407;
+      };
       protobuf_25 = callPackage ../development/libraries/protobuf/25.nix { };
       protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
         abseil-cpp = abseil-cpp_202103;
@@ -14025,8 +14028,6 @@ with pkgs;
   };
 
   spyder = with python3.pkgs; toPythonApplication spyder;
-
-  stellarium = qt6Packages.callPackage ../applications/science/astronomy/stellarium { };
 
   tulip = libsForQt5.callPackage ../applications/science/misc/tulip {
     python3 = python312; # fails to build otherwise
