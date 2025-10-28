@@ -2327,9 +2327,6 @@ with pkgs;
     usePoppler = true;
   };
 
-  beetsPackages = lib.recurseIntoAttrs (callPackage ../tools/audio/beets { });
-  inherit (beetsPackages) beets;
-
   binlore = callPackage ../development/tools/analysis/binlore { };
 
   birdfont = callPackage ../tools/misc/birdfont { };
@@ -3065,8 +3062,6 @@ with pkgs;
   hyphen = callPackage ../development/libraries/hyphen { };
 
   hyphenDicts = recurseIntoAttrs (callPackages ../development/libraries/hyphen/dictionaries.nix { });
-
-  iaito = libsForQt5.callPackage ../tools/security/iaito { };
 
   icemon = libsForQt5.callPackage ../applications/networking/icemon { };
 

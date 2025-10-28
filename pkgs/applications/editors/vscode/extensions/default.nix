@@ -773,8 +773,8 @@ let
         mktplcRef = {
           name = "vscode-tailwindcss";
           publisher = "bradlc";
-          version = "0.14.28";
-          hash = "sha256-xq12b0i0TsYZ5XxF1t9c2YrV7wAROjEjdLgBg3ZaLi0=";
+          version = "0.14.29";
+          hash = "sha256-58/yM4xP8ewpegNlVSWnyFIoAmEd7E/CigQgae7OgZY=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/bradlc.vscode-tailwindcss/changelog";
@@ -1154,8 +1154,8 @@ let
         mktplcRef = {
           publisher = "DanielSanMedium";
           name = "dscodegpt";
-          version = "3.14.135";
-          hash = "sha256-y7qfBzXqyGrZXrpIkbMA1TDEQsKcfPCLmllypNu51G0=";
+          version = "3.14.158";
+          hash = "sha256-c+5CJqjn7dmwDgNcaaDBapi3T8OI+5UnPJj9+t8sWng=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DanielSanMedium.dscodegpt/changelog";
@@ -5050,8 +5050,8 @@ let
         mktplcRef = {
           publisher = "vscjava";
           name = "vscode-java-dependency";
-          version = "0.26.1";
-          hash = "sha256-7CjI+l1M/yW7BgzP1YirNI72ub+JZ6HI/xagYzdfx0E=";
+          version = "0.26.2";
+          hash = "sha256-msRaLNS1a5BXY3GN1MmOi9jBbNj6aqJDbZkFc1pLG3I=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -5140,8 +5140,8 @@ let
         mktplcRef = {
           name = "volar";
           publisher = "Vue";
-          version = "3.1.1";
-          hash = "sha256-l5x7fLznJGm2dPAbJlz4/5BDikM45h1W9GkmoC4Sv7k=";
+          version = "3.1.2";
+          hash = "sha256-DgLGTxUWBSjDr9m+lfmAPteZv1mX7OOlYynCrd+zU0o=";
         };
         meta = {
           changelog = "https://github.com/vuejs/language-tools/blob/master/CHANGELOG.md";
