@@ -10736,6 +10736,8 @@ self: super: with self; {
 
   ntc-templates = callPackage ../development/python-modules/ntc-templates { };
 
+  ntfy-webpush = callPackage ../development/python-modules/ntfy-webpush { };
+
   ntplib = callPackage ../development/python-modules/ntplib { };
 
   nuclear = callPackage ../development/python-modules/nuclear { };
@@ -18124,7 +18126,12 @@ self: super: with self; {
   tblib = callPackage ../development/python-modules/tblib { };
 
   tblite = callPackage ../development/libraries/science/chemistry/tblite/python.nix {
-    inherit (pkgs) tblite meson simple-dftd3;
+    inherit (pkgs)
+      tblite
+      meson
+      simple-dftd3
+      dftd4
+      ;
   };
 
   tbm-utils = callPackage ../development/python-modules/tbm-utils { };
@@ -18811,6 +18818,8 @@ self: super: with self; {
   tree-sitter-sql = callPackage ../development/python-modules/tree-sitter-sql { };
 
   tree-sitter-yaml = callPackage ../development/python-modules/tree-sitter-yaml { };
+
+  tree-sitter-zeek = callPackage ../development/python-modules/tree-sitter-zeek { };
 
   treelib = callPackage ../development/python-modules/treelib { };
 
