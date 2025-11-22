@@ -9530,7 +9530,6 @@ with pkgs;
   postgrest = haskellPackages.postgrest.bin;
 
   prom2json = callPackage ../servers/monitoring/prometheus/prom2json.nix { };
-  prometheus-alertmanager = callPackage ../servers/monitoring/prometheus/alertmanager.nix { };
   prometheus-apcupsd-exporter = callPackage ../servers/monitoring/prometheus/apcupsd-exporter.nix { };
   prometheus-artifactory-exporter =
     callPackage ../servers/monitoring/prometheus/artifactory-exporter.nix
@@ -10624,6 +10623,10 @@ with pkgs;
   };
 
   audacious = audacious-bare.override { withPlugins = true; };
+
+  audacity = callPackage ../by-name/au/audacity/package.nix {
+    ffmpeg = ffmpeg_7;
+  };
 
   bambootracker-qt6 = bambootracker.override { withQt6 = true; };
 
