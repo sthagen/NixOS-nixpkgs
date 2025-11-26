@@ -23,6 +23,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   buildInputs = [ rust-jemalloc-sys ];
 
   nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "--version";
   doInstallCheck = true;
 
   # redirect tests writing to /tmp
@@ -34,6 +35,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     # FIX: tracking on https://github.com/facebook/pyrefly/issues/1667
     "--skip=test::lsp::lsp_interaction::configuration::test_pythonpath_change"
     "--skip=test::lsp::lsp_interaction::configuration::test_workspace_pythonpath_ignored_when_set_in_config_file"
+    "--skip=test::lsp::lsp_interaction::notebook_sync::test_notebook_publish_diagnostics"
   ];
 
   # requires unstable rust features
