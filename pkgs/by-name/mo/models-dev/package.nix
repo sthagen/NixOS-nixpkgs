@@ -2,18 +2,24 @@
   lib,
   stdenvNoCC,
   bun,
+  fetchgit,
   fetchFromGitHub,
   nix-update-script,
   writableTmpDirAsHomeHook,
 }:
 let
   pname = "models-dev";
-  version = "0-unstable-2025-11-20";
+  version = "0-unstable-2025-11-28";
   src = fetchFromGitHub {
     owner = "sst";
     repo = "models.dev";
-    rev = "5389818cb714afeeca30ceef3c012498bba7f709";
-    hash = "sha256-ld/bWHJPGoDO7lyXnmGCzSt1f3A/JA8azJcj0C5HT8E=";
+    rev = "48358b91b776d0bd34cbbc4c70e7ac5ce827b916";
+    hash = "sha256-Pvtc32s/p19Pg8JACSEmxj6Ldc5vl8ZOXiPbJ3ZAUqQ=";
+    postFetch = lib.optionalString stdenvNoCC.hostPlatform.isLinux ''
+      # NOTE: Normalize case-sensitive directory names that cause issues on case-insensitive filesystems
+      cp -r "$out/providers/poe/models/openai"/* "$out/providers/poe/models/openAi/"
+      rm -rf "$out/providers/poe/models/openai"
+    '';
   };
 
   node_modules = stdenvNoCC.mkDerivation {
@@ -51,13 +57,8 @@ let
     installPhase = ''
       runHook preInstall
 
-      # Copy node_modules directories
-      while IFS= read -r dir; do
-        rel="''${dir#./}"
-        dest="$out/$rel"
-        mkdir -p "$(dirname "$dest")"
-        cp -R "$dir" "$dest"
-      done < <(find . -type d -name node_modules -prune)
+      mkdir -p $out
+      find . -type d -name node_modules -exec cp -R --parents {} $out \;
 
       runHook postInstall
     '';

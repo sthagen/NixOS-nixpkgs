@@ -3149,8 +3149,6 @@ with pkgs;
 
   logstash-contrib = callPackage ../tools/misc/logstash/contrib.nix { };
 
-  lolcat = callPackage ../tools/misc/lolcat { };
-
   lsyncd = callPackage ../applications/networking/sync/lsyncd {
     lua = lua5_2_compat;
   };
@@ -3210,7 +3208,6 @@ with pkgs;
 
   nodejs = nodejs_22;
   nodejs-slim = nodejs-slim_22;
-  corepack = corepack_22;
 
   nodejs_20 = callPackage ../development/web/nodejs/v20.nix { };
   nodejs-slim_20 = callPackage ../development/web/nodejs/v20.nix { enableNpm = false; };
@@ -3227,7 +3224,6 @@ with pkgs;
   # Update this when adding the newest nodejs major version!
   nodejs_latest = nodejs_24;
   nodejs-slim_latest = nodejs-slim_24;
-  corepack_latest = corepack_24;
 
   buildNpmPackage = callPackage ../build-support/node/build-npm-package { };
 
@@ -4769,7 +4765,7 @@ with pkgs;
 
   ghdl-llvm = callPackage ../by-name/gh/ghdl/package.nix {
     backend = "llvm";
-    inherit (llvmPackages) llvm;
+    inherit (llvmPackages_20) llvm;
   };
 
   gcc-arm-embedded = gcc-arm-embedded-14;
@@ -13532,6 +13528,10 @@ with pkgs;
 
   abella = callPackage ../applications/science/logic/abella {
     ocamlPackages = ocaml-ng.ocamlPackages_4_12;
+  };
+
+  bitwuzla = callPackage ../by-name/bi/bitwuzla/package.nix {
+    cadical = cadical.override { version = "2.1.3"; };
   };
 
   inherit
