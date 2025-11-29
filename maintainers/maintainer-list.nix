@@ -12483,11 +12483,6 @@
     githubId = 1102396;
     name = "Jussi Maki";
   };
-  joanmassachs = {
-    github = "joanmassachs";
-    githubId = 22916782;
-    name = "Joan Massachs";
-  };
   joaomoreira = {
     matrix = "@joaomoreira:matrix.org";
     github = "joaoymoreira";
@@ -19655,12 +19650,6 @@
     github = "ORichterSec";
     githubId = 135209509;
     name = "Oliver Richter";
-  };
-  orivej = {
-    email = "orivej@gmx.fr";
-    github = "orivej";
-    githubId = 101514;
-    name = "Orivej Desh";
   };
   ornxka = {
     email = "ornxka@littledevil.sh";
