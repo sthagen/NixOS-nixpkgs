@@ -255,9 +255,9 @@ in
 
       package = mkPackageOption pkgs "mediawiki" { };
 
-      # https://www.mediawiki.org/wiki/Compatibility
+      # https://www.mediawiki.org/wiki/Compatibility#PHP
       phpPackage = mkPackageOption pkgs "php" {
-        default = "php82";
+        default = "php83";
       };
 
       finalPackage = mkOption {
@@ -466,7 +466,7 @@ in
           defaultText = literalExpression "true";
           description = ''
             Create the database and database user locally.
-            This currently only applies if database type "mysql" is selected.
+            This currently only applies if database type "mysql" or "postgres" is selected.
           '';
         };
       };
