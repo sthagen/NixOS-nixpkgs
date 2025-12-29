@@ -1958,6 +1958,8 @@ self: super: with self; {
 
   bgutil-ytdlp-pot-provider = callPackage ../development/python-modules/bgutil-ytdlp-pot-provider { };
 
+  bhopengraph = callPackage ../development/python-modules/bhopengraph { };
+
   bibtexparser = callPackage ../development/python-modules/bibtexparser { };
 
   bibtexparser_2 = callPackage ../development/python-modules/bibtexparser/2.nix { };
@@ -3178,6 +3180,8 @@ self: super: with self; {
 
   cpe = callPackage ../development/python-modules/cpe { };
 
+  cpe-search = callPackage ../development/python-modules/cpe-search { };
+
   cppe = callPackage ../development/python-modules/cppe { inherit (pkgs) cppe; };
 
   cppheaderparser = callPackage ../development/python-modules/cppheaderparser { };
@@ -3868,6 +3872,8 @@ self: super: with self; {
   discum = callPackage ../development/python-modules/discum { };
 
   diskcache = callPackage ../development/python-modules/diskcache { };
+
+  diskcache-stubs = callPackage ../development/python-modules/diskcache-stubs { };
 
   disnake = callPackage ../development/python-modules/disnake { };
 
@@ -6324,6 +6330,8 @@ self: super: with self; {
     callPackage ../development/python-modules/google-cloud-resource-manager
       { };
 
+  google-cloud-run = callPackage ../development/python-modules/google-cloud-run { };
+
   google-cloud-runtimeconfig =
     callPackage ../development/python-modules/google-cloud-runtimeconfig
       { };
@@ -6428,7 +6436,9 @@ self: super: with self; {
 
   gower = callPackage ../development/python-modules/gower { };
 
-  gpaw = callPackage ../development/python-modules/gpaw { };
+  gpaw = callPackage ../development/python-modules/gpaw {
+    inherit (pkgs) libxc;
+  };
 
   gpgme = callPackage ../development/python-modules/gpgme { inherit (pkgs) gpgme; };
 
@@ -9668,6 +9678,8 @@ self: super: with self; {
 
   mistral-common = callPackage ../development/python-modules/mistral-common { };
 
+  mistralai = callPackage ../development/python-modules/mistralai { };
+
   mistune = callPackage ../development/python-modules/mistune { };
 
   mitmproxy = callPackage ../development/python-modules/mitmproxy { };
@@ -12589,11 +12601,9 @@ self: super: with self; {
 
   proton-vpn-api-core = callPackage ../development/python-modules/proton-vpn-api-core { };
 
-  proton-vpn-local-agent = callPackage ../development/python-modules/proton-vpn-local-agent { };
+  proton-vpn-daemon = callPackage ../development/python-modules/proton-vpn-daemon { };
 
-  proton-vpn-network-manager =
-    callPackage ../development/python-modules/proton-vpn-network-manager
-      { };
+  proton-vpn-local-agent = callPackage ../development/python-modules/proton-vpn-local-agent { };
 
   protonup-ng = callPackage ../development/python-modules/protonup-ng { };
 
@@ -13116,8 +13126,6 @@ self: super: with self; {
   pycparser = callPackage ../development/python-modules/pycparser { };
 
   pycrashreport = callPackage ../development/python-modules/pycrashreport { };
-
-  pycrc = callPackage ../development/python-modules/pycrc { };
 
   pycrdt = callPackage ../development/python-modules/pycrdt { };
 
@@ -14498,7 +14506,9 @@ self: super: with self; {
 
   pyscard = callPackage ../development/python-modules/pyscard { };
 
-  pyscf = callPackage ../development/python-modules/pyscf { };
+  pyscf = callPackage ../development/python-modules/pyscf {
+    inherit (pkgs) libxc;
+  };
 
   pyschedule = callPackage ../development/python-modules/pyschedule { };
 
@@ -15612,6 +15622,8 @@ self: super: with self; {
   python3-eventlib = callPackage ../development/python-modules/python3-eventlib { };
 
   python3-gnutls = callPackage ../development/python-modules/python3-gnutls { };
+
+  python3-nmap = callPackage ../development/python-modules/python3-nmap { };
 
   python3-openid = callPackage ../development/python-modules/python3-openid { };
 
@@ -18200,6 +18212,8 @@ self: super: with self; {
 
   streamlit-card = callPackage ../development/python-modules/streamlit-card { };
 
+  streamlit-echarts = callPackage ../development/python-modules/streamlit-echarts { };
+
   streamlit-folium = callPackage ../development/python-modules/streamlit-folium { };
 
   streamlit-kpi-card = callPackage ../development/python-modules/streamlit-kpi-card { };
@@ -19394,6 +19408,8 @@ self: super: with self; {
   typepy = callPackage ../development/python-modules/typepy { };
 
   typer = callPackage ../development/python-modules/typer { };
+
+  typer-config = callPackage ../development/python-modules/typer-config { };
 
   typer-shell = callPackage ../development/python-modules/typer-shell { };
 
@@ -20800,6 +20816,8 @@ self: super: with self; {
   };
 
   xmltodict = callPackage ../development/python-modules/xmltodict { };
+
+  xmltojson = callPackage ../development/python-modules/xmltojson { };
 
   xmod = callPackage ../development/python-modules/xmod { };
 
