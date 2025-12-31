@@ -12000,12 +12000,12 @@ final: prev: {
 
   nvim-treesitter = buildVimPlugin {
     pname = "nvim-treesitter";
-    version = "0.10.0-unstable-2025-05-24";
+    version = "0.10.0-unstable-2025-12-29";
     src = fetchFromGitHub {
       owner = "nvim-treesitter";
       repo = "nvim-treesitter";
-      rev = "42fc28ba918343ebfd5565147a42a26580579482";
-      hash = "sha256-CVs9FTdg3oKtRjz2YqwkMr0W5qYLGfVyxyhE3qnGYbI=";
+      rev = "7efc1b58a8061d29786860006c7257c90a5196dc";
+      hash = "sha256-AMEzUaVVPzHT7vpPJUFt5UbBiN9tygH5UMio/lU/baw=";
     };
     meta.homepage = "https://github.com/nvim-treesitter/nvim-treesitter/";
     meta.hydraPlatforms = [ ];
@@ -15908,6 +15908,19 @@ final: prev: {
       hash = "sha256-GlN7/+TmXld2UVPN2rDP7nKqbnswiezmGXn+uGK5I5c=";
     };
     meta.homepage = "https://github.com/xiyaowong/transparent.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  treesitter-modules-nvim = buildVimPlugin {
+    pname = "treesitter-modules.nvim";
+    version = "0-unstable-2025-12-15";
+    src = fetchFromGitHub {
+      owner = "MeanderingProgrammer";
+      repo = "treesitter-modules.nvim";
+      rev = "dcb5030422732af54631083316887e512e4a79a3";
+      hash = "sha256-AkyzqsYlSuGKrBEPQahP02TGay+g5TRhYcxYIGR8+9Y=";
+    };
+    meta.homepage = "https://github.com/MeanderingProgrammer/treesitter-modules.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
