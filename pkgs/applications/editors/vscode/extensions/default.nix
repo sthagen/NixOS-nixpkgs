@@ -2013,6 +2013,8 @@ let
 
       Google.gemini-cli-vscode-ide-companion = callPackage ./Google.gemini-cli-vscode-ide-companion { };
 
+      gplane.wasm-language-tools = callPackage ./gplane.wasm-language-tools { };
+
       grapecity.gc-excelviewer = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "gc-excelviewer";
@@ -3403,6 +3405,8 @@ let
         };
       };
 
+      ms-vscode.vscode-js-profile-table = callPackage ./ms-vscode.vscode-js-profile-table { };
+
       ms-vscode-remote.remote-containers = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "remote-containers";
@@ -3763,6 +3767,8 @@ let
           maintainers = [ lib.maintainers.dotmobo ];
         };
       };
+
+      prettier.prettier-vscode = callPackage ./prettier.prettier-vscode { };
 
       prince781.vala = callPackage ./prince781.vala { };
 

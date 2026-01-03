@@ -5328,6 +5328,8 @@ self: super: with self; {
 
   fava-investor = callPackage ../development/python-modules/fava-investor { };
 
+  fava-portfolio-returns = callPackage ../development/python-modules/fava-portfolio-returns { };
+
   favicon = callPackage ../development/python-modules/favicon { };
 
   fe25519 = callPackage ../development/python-modules/fe25519 { };
@@ -13441,11 +13443,14 @@ self: super: with self; {
 
   pygal = callPackage ../development/python-modules/pygal { };
 
-  pygame = callPackage ../development/python-modules/pygame { };
+  # pygame-ce is better maintained upstream, the breaking point was https://github.com/NixOS/nixpkgs/pull/475917#issuecomment-3706940043
+  pygame = if pythonAtLeast "3.14" then pygame-ce else pygame-original;
 
   pygame-ce = callPackage ../development/python-modules/pygame-ce { };
 
   pygame-gui = callPackage ../development/python-modules/pygame-gui { };
+
+  pygame-original = callPackage ../development/python-modules/pygame-original { };
 
   pygame-sdl2 = callPackage ../development/python-modules/pygame-sdl2 { };
 
@@ -15592,6 +15597,8 @@ self: super: with self; {
   python-vlc = callPackage ../development/python-modules/python-vlc { };
 
   python-watcherclient = callPackage ../development/python-modules/python-watcherclient { };
+
+  python-wayland-extra = callPackage ../development/python-modules/python-wayland-extra { };
 
   python-whois = callPackage ../development/python-modules/python-whois { };
 
@@ -18208,6 +18215,10 @@ self: super: with self; {
 
   streamcontroller-plugin-tools =
     callPackage ../development/python-modules/streamcontroller-plugin-tools
+      { };
+
+  streamcontroller-streamdeck =
+    callPackage ../development/python-modules/streamcontroller-streamdeck
       { };
 
   streamdeck = callPackage ../development/python-modules/streamdeck { };
