@@ -1591,7 +1591,6 @@ assertNoAdditions {
       dependencies = [ kulala-http-grammar ];
       buildInputs = [ curl ];
 
-      patches = [ ./patches/kulala-nvim/do-not-install-grammar.patch ];
       postPatch = ''
         substituteInPlace lua/kulala/config/defaults.lua \
           --replace-fail 'curl_path = "curl"' 'curl_path = "${lib.getExe curl}"'
@@ -3485,6 +3484,13 @@ assertNoAdditions {
 
   telescope-glyph-nvim = super.telescope-github-nvim.overrideAttrs {
     dependencies = [ self.telescope-nvim ];
+  };
+
+  telescope-hierarchy-nvim = super.telescope-hierarchy-nvim.overrideAttrs {
+    dependencies = with self; [
+      telescope-nvim
+      plenary-nvim
+    ];
   };
 
   telescope-live-grep-args-nvim = super.telescope-live-grep-args-nvim.overrideAttrs {
