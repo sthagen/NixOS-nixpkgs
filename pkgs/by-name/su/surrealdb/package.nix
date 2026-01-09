@@ -10,29 +10,31 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "surrealdb";
-  version = "2.4.0";
+  version = "2.4.1";
 
   src = fetchFromGitHub {
     owner = "surrealdb";
     repo = "surrealdb";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-I9TVV+gSn/VCId0Ar3Yn9NWLw6GPOJvwPi8RIedIQ0U=";
+    hash = "sha256-woItGD998p8EWerkrWESqGON0HQp7Vrbl/kiQi+IT7g=";
   };
 
-  cargoHash = "sha256-aZb2+6Xnn7gq4Lwo411yBfOFlo3YabkdewYNJ2TGbzo=";
+  cargoHash = "sha256-RbmhhJ+bJcCM8h2mkc2dK2Xlm+izESXwvbNvxuVC7vg=";
 
   # error: linker `aarch64-linux-gnu-gcc` not found
   postPatch = ''
     rm .cargo/config.toml
   '';
 
-  PROTOC = "${protobuf}/bin/protoc";
-  PROTOC_INCLUDE = "${protobuf}/include";
+  env = {
+    PROTOC = "${protobuf}/bin/protoc";
+    PROTOC_INCLUDE = "${protobuf}/include";
 
-  ROCKSDB_INCLUDE_DIR = "${rocksdb}/include";
-  ROCKSDB_LIB_DIR = "${rocksdb}/lib";
+    ROCKSDB_INCLUDE_DIR = "${rocksdb}/include";
+    ROCKSDB_LIB_DIR = "${rocksdb}/lib";
 
-  RUSTFLAGS = "--cfg surrealdb_unstable";
+    RUSTFLAGS = "--cfg surrealdb_unstable";
+  };
 
   nativeBuildInputs = [
     pkg-config
