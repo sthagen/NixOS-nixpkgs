@@ -6,7 +6,6 @@
   fetchFromGitHub,
   fetchpatch,
   pytestCheckHook,
-  pythonOlder,
   replaceVars,
   setuptools,
   click-default-group,
@@ -83,6 +82,7 @@ let
       llm-hacker-news ? false,
       llm-jq ? false,
       llm-llama-server ? false,
+      llm-lmstudio ? false,
       llm-mistral ? false,
       llm-ollama ? false,
       llm-openai-plugin ? false,
@@ -171,8 +171,6 @@ let
     pyproject = true;
 
     build-system = [ setuptools ];
-
-    disabled = pythonOlder "3.8";
 
     src = fetchFromGitHub {
       owner = "simonw";

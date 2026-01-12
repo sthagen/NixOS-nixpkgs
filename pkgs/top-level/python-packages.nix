@@ -438,6 +438,8 @@ self: super: with self; {
 
   aiopulse = callPackage ../development/python-modules/aiopulse { };
 
+  aiopulsegrow = callPackage ../development/python-modules/aiopulsegrow { };
+
   aiopurpleair = callPackage ../development/python-modules/aiopurpleair { };
 
   aiopvapi = callPackage ../development/python-modules/aiopvapi { };
@@ -8990,6 +8992,8 @@ self: super: with self; {
 
   llm-llama-server = callPackage ../development/python-modules/llm-llama-server { };
 
+  llm-lmstudio = callPackage ../development/python-modules/llm-lmstudio { };
+
   llm-mistral = callPackage ../development/python-modules/llm-mistral { };
 
   llm-ollama = callPackage ../development/python-modules/llm-ollama { };
@@ -9381,7 +9385,7 @@ self: super: with self; {
   maya = callPackage ../development/python-modules/maya { };
 
   mayavi = pkgs.libsForQt5.callPackage ../development/python-modules/mayavi {
-    inherit buildPythonPackage pythonOlder;
+    inherit buildPythonPackage;
     inherit (self)
       pyface
       pygments
@@ -14298,7 +14302,6 @@ self: super: with self; {
       pyqt5
       pyqt-builder
       python
-      pythonOlder
       setuptools
       sip
       ;
@@ -14341,7 +14344,6 @@ self: super: with self; {
       pyqt5
       pyqt-builder
       python
-      pythonOlder
       setuptools
       sip
       ;
@@ -14357,7 +14359,6 @@ self: super: with self; {
           pyqt5
           pyqt-builder
           python
-          pythonOlder
           setuptools
           sip
           ;
