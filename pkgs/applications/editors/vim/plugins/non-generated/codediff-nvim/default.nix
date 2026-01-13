@@ -7,14 +7,14 @@
   vimPlugins,
 }:
 vimUtils.buildVimPlugin rec {
-  pname = "vscode-diff.nvim";
-  version = "1.6.2";
+  pname = "codediff.nvim";
+  version = "2.9.3";
 
   src = fetchFromGitHub {
     owner = "esmuellert";
-    repo = "vscode-diff.nvim";
+    repo = "codediff.nvim";
     tag = "v${version}";
-    hash = "sha256-FyfVmxX40hAk1ch1PWtNi3FszAKfDk7XKEpnZfBw4I4=";
+    hash = "sha256-hHBAGDWtw56gk1kWUtU9QEP2QqIATmPNeJ2lPD8dWIc=";
   };
 
   dependencies = [ vimPlugins.nui-nvim ];
@@ -31,7 +31,7 @@ vimUtils.buildVimPlugin rec {
 
   meta = {
     description = "VSCode-style side-by-side diff rendering with two-tier highlighting (line + character level)";
-    homepage = "https://github.com/esmuellert/vscode-diff.nvim/";
+    homepage = "https://github.com/esmuellert/codediff.nvim/";
     license = lib.licenses.mit;
     platforms = lib.platforms.all;
   };

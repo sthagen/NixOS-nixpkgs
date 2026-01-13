@@ -1793,12 +1793,12 @@ final: prev: {
 
   blink-indent = buildVimPlugin {
     pname = "blink.indent";
-    version = "2.1.0-unstable-2025-12-02";
+    version = "2.1.2-unstable-2026-01-13";
     src = fetchFromGitHub {
       owner = "Saghen";
       repo = "blink.indent";
-      rev = "93ff30292d34116444ff9db5264f6ccd34f3f71f";
-      hash = "sha256-aPCJAK/hO/Vn8kiYyoaMdJjO6b3ce1IXo8Xy4LJS+q8=";
+      rev = "9c80820ca77218a8d28e70075d6f44a1609911fe";
+      hash = "sha256-SS66JZFCX8viYxYaObASlwtrG5h7yHbVvRBVXBNXkng=";
     };
     meta.homepage = "https://github.com/Saghen/blink.indent/";
     meta.hydraPlatforms = [ ];
@@ -22595,19 +22595,6 @@ final: prev: {
       hash = "sha256-NGAvPSyttf/PDFUBSJtJVAUX2bpS+hwPeskZ0mFZ87A=";
     };
     meta.homepage = "https://github.com/EthanJWright/vs-tasks.nvim/";
-    meta.hydraPlatforms = [ ];
-  };
-
-  vscode-diff-nvim = buildVimPlugin {
-    pname = "vscode-diff.nvim";
-    version = "2.8.0-unstable-2026-01-10";
-    src = fetchFromGitHub {
-      owner = "esmuellert";
-      repo = "codediff.nvim";
-      rev = "5c52cdd4d007e72062cb0fd2fb398197b6d51040";
-      hash = "sha256-pGDjzwjz3OOpMOAJGR5oHAv/LBlUlbMbYGenvB8SNiU=";
-    };
-    meta.homepage = "https://github.com/esmuellert/codediff.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
