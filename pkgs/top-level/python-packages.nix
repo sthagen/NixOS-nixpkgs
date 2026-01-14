@@ -1750,6 +1750,8 @@ self: super: with self; {
 
   badauth = callPackage ../development/python-modules/badauth { };
 
+  badges = callPackage ../development/python-modules/badges { };
+
   badldap = callPackage ../development/python-modules/badldap { };
 
   badsecrets = callPackage ../development/python-modules/badsecrets { };
@@ -2228,6 +2230,8 @@ self: super: with self; {
   braintree = callPackage ../development/python-modules/braintree { };
 
   branca = callPackage ../development/python-modules/branca { };
+
+  braq = callPackage ../development/python-modules/braq { };
 
   bravado-core = callPackage ../development/python-modules/bravado-core { };
 
@@ -2993,6 +2997,8 @@ self: super: with self; {
   colormath = callPackage ../development/python-modules/colormath { };
 
   colormath2 = callPackage ../development/python-modules/colormath2 { };
+
+  colorscript = callPackage ../development/python-modules/colorscript { };
 
   colorspacious = callPackage ../development/python-modules/colorspacious { };
 
@@ -6077,6 +6083,8 @@ self: super: with self; {
 
   get-video-properties = callPackage ../development/python-modules/get-video-properties { };
 
+  getch = callPackage ../development/python-modules/getch { };
+
   getjump = callPackage ../development/python-modules/getjump { };
 
   getkey = callPackage ../development/python-modules/getkey { };
@@ -6752,6 +6760,8 @@ self: super: with self; {
   hass-splunk = callPackage ../development/python-modules/hass-splunk { };
 
   hassil = callPackage ../development/python-modules/hassil { };
+
+  hatasm = callPackage ../development/python-modules/hatasm { };
 
   hatasmota = callPackage ../development/python-modules/hatasmota { };
 
@@ -8184,6 +8194,8 @@ self: super: with self; {
   kurbopy = callPackage ../development/python-modules/kurbopy { };
 
   kuzu = callPackage ../development/python-modules/kuzu { };
+
+  kvf = callPackage ../development/python-modules/kvf { };
 
   l18n = callPackage ../development/python-modules/l18n { };
 
@@ -10110,8 +10122,6 @@ self: super: with self; {
 
   mullvad-api = callPackage ../development/python-modules/mullvad-api { };
 
-  mullvad-closest = callPackage ../development/python-modules/mullvad-closest { };
-
   mulpyplexer = callPackage ../development/python-modules/mulpyplexer { };
 
   multi-key-dict = callPackage ../development/python-modules/multi-key-dict { };
@@ -11784,6 +11794,8 @@ self: super: with self; {
 
   para = callPackage ../development/python-modules/para { };
 
+  paradict = callPackage ../development/python-modules/paradict { };
+
   paragraphs = callPackage ../development/python-modules/paragraphs { };
 
   parallel-ssh = callPackage ../development/python-modules/parallel-ssh { };
@@ -12054,6 +12066,8 @@ self: super: with self; {
   pettingzoo = callPackage ../development/python-modules/pettingzoo { };
 
   pex = callPackage ../development/python-modules/pex { };
+
+  pex-entysec = callPackage ../development/python-modules/pex-entysec { };
 
   pexif = callPackage ../development/python-modules/pexif { };
 
@@ -12540,6 +12554,8 @@ self: super: with self; {
   prisma = callPackage ../development/python-modules/prisma { };
 
   prison = callPackage ../development/python-modules/prison { };
+
+  probed = callPackage ../development/python-modules/probed { };
 
   process-tests = callPackage ../development/python-modules/process-tests { };
 
@@ -17184,6 +17200,8 @@ self: super: with self; {
   shapely = callPackage ../development/python-modules/shapely { };
 
   shaperglot = callPackage ../development/python-modules/shaperglot { };
+
+  shared = callPackage ../development/python-modules/shared { };
 
   sharedmem = callPackage ../development/python-modules/sharedmem { };
 

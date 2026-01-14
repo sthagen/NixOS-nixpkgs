@@ -9020,8 +9020,6 @@ with pkgs;
     mullvad
     ;
 
-  mullvad-closest = with python3Packages; toPythonApplication mullvad-closest;
-
   napalm =
     with python3Packages;
     toPythonApplication (
@@ -13206,21 +13204,6 @@ with pkgs;
 
   inherit (ocamlPackages) hol_light;
 
-  isabelle = callPackage ../by-name/is/isabelle/package.nix {
-    polyml = polyml.overrideAttrs {
-      pname = "polyml-for-isabelle";
-      version = "2025";
-      __intentionallyOverridingVersion = true; # avoid a warning, no src override
-      configureFlags = [
-        "--enable-intinf-as-int"
-        "--with-gmp"
-        "--disable-shared"
-      ];
-      buildFlags = [ "compiler" ];
-    };
-
-    java = openjdk21;
-  };
   isabelle-components = recurseIntoAttrs (callPackage ../by-name/is/isabelle/components { });
 
   lean3 = lean;

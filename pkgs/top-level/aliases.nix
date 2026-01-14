@@ -409,6 +409,7 @@ mapAliases {
   certmgr-selfsigned = throw "'certmgr-selfsigned' has been renamed to/replaced by 'certmgr'"; # Converted to throw 2025-10-27
   challenger = throw "'challenger' has been renamed to/replaced by 'taler-challenger'"; # Converted to throw 2025-10-27
   charmcraft = throw "charmcraft was removed in Sep 25 following removal of LXD from nixpkgs"; # Added 2025-09-18
+  charybdis = throw "charybdis was removed since its upstream repo was archived in 2021"; # Added 2026-01-13
   chatgpt-retrieval-plugin = throw "chatgpt-retrieval-plugin has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   check-esxi-hardware = throw "'check-esxi-hardware' has been renamed to/replaced by 'nagiosPlugins.check_esxi_hardware'"; # Converted to throw 2025-10-27
   check-mssql-health = throw "'check-mssql-health' has been renamed to/replaced by 'nagiosPlugins.check_mssql_health'"; # Converted to throw 2025-10-27
@@ -565,6 +566,7 @@ mapAliases {
   easyloggingpp = throw "easyloggingpp has been removed, as it is deprecated upstream and does not build with CMake 4"; # Added 2025-09-17
   EBTKS = throw "'EBTKS' has been renamed to/replaced by 'ebtks'"; # Converted to throw 2025-10-27
   ec2-utils = throw "'ec2-utils' has been renamed to/replaced by 'amazon-ec2-utils'"; # Converted to throw 2025-10-27
+  ecryptfs = throw "'ecryptfs' has been removed due to lack of maintenance. Consider using 'fscrypt', 'gocryptfs' or 'cryfs' instead."; # Added 2026-01-14
   edid-decode = v4l-utils; # Added 2025-06-20
   eidolon = throw "eidolon was removed as it is unmaintained upstream."; # Added 2025-05-28
   eintopf = throw "'eintopf' has been renamed to/replaced by 'lauti'"; # Converted to throw 2025-10-27
@@ -1143,6 +1145,7 @@ mapAliases {
   mrxvt = throw "'mrxvt' has been removed due to lack of maintainence upstream"; # Added 2025-09-25
   msgpack = throw "msgpack has been split into msgpack-c and msgpack-cxx"; # Added 2025-09-14
   msp430NewlibCross = throw "'msp430NewlibCross' has been renamed to/replaced by 'msp430Newlib'"; # Converted to throw 2025-10-27
+  mullvad-closest = throw "'mullvad-closest' has been removed as it was unmaintained. Consider using 'mullvad-compass' instead."; # Added 2026-01-13
   multipass = throw "multipass was dropped since it was unmaintained."; # Added 2025-11-29
   mumps_par = throw "'mumps_par' has been renamed to/replaced by 'mumps-mpi'"; # Converted to throw 2025-10-27
   mustache-tcl = throw "'mustache-tcl' has been renamed to/replaced by 'tclPackages.mustache-tcl'"; # Converted to throw 2025-10-27
