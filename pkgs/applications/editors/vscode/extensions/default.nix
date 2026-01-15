@@ -396,8 +396,8 @@ let
         mktplcRef = {
           name = "astro-vscode";
           publisher = "astro-build";
-          version = "2.16.5";
-          hash = "sha256-sJMIlAZz9zKri2F5py5hY43MghOTDlvd5wUBO645Jhk=";
+          version = "2.16.8";
+          hash = "sha256-hNEGLJMBPPb5J5jg0lJwBGaD6z0rtb2xAqU9bchWTA8=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/astro-build.astro-vscode/changelog";
@@ -1900,8 +1900,8 @@ let
         mktplcRef = {
           publisher = "github";
           name = "codespaces";
-          version = "1.18.4";
-          hash = "sha256-/bCLmpUqtkV1yTLMWIwbX6jdtzwN25NatGRQHR8z5oA=";
+          version = "1.18.5";
+          hash = "sha256-KTKGjfS+xtn6NMFCdYq1S+idoXpkME/BA4jAhSyGiHc=";
         };
 
         meta = {
@@ -3407,6 +3407,8 @@ let
 
       ms-vscode.vscode-js-profile-table = callPackage ./ms-vscode.vscode-js-profile-table { };
 
+      ms-vscode.vscode-speech = callPackage ./ms-vscode.vscode-speech { };
+
       ms-vscode-remote.remote-containers = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "remote-containers";
@@ -3838,8 +3840,8 @@ let
         mktplcRef = {
           name = "ansible";
           publisher = "redhat";
-          version = "25.12.3";
-          hash = "sha256-6G/CpzSSrRzwtay4+t46gz8aBF7qgu79NUhBypTJMrc=";
+          version = "26.1.0";
+          hash = "sha256-xehZZ11C2Bjee1glpnPZaJ25DpbXSCsZONWWy4YNlRo=";
         };
         meta = {
           description = "Ansible language support";
