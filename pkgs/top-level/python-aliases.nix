@@ -58,6 +58,7 @@ mapAliases {
 
   # keep-sorted start case=no numeric=yes
   abodepy = throw "'abodepy' has been renamed to/replaced by 'jaraco-abode'"; # Converted to throw 2025-10-29
+  aioinflux = throw "'aioinflux' was removed because it is abandonned upstream. For InfluxDB v2+ support, please use the official Python client library"; # Added 2026-01-15
   aiosenz = throw "aiosenz was removed because Home Assistant switched to pysenz"; # added 2025-12-29
   amazon-kclpy = throw "amazon-kclpy has been removed because it has been marked as broken since at least November 2024."; # Added 2025-10-03
   amazon_kclpy = throw "'amazon_kclpy' has been renamed to/replaced by 'amazon-kclpy'"; # Converted to throw 2025-10-29
@@ -277,6 +278,8 @@ mapAliases {
   mkdocs-macros = mkdocs-macros-plugin; # added 2025-09-02
   mkdocs-minify = throw "'mkdocs-minify' has been renamed to/replaced by 'mkdocs-minify-plugin'"; # Converted to throw 2025-10-29
   mne-python = throw "'mne-python' has been renamed to/replaced by 'mne'"; # Converted to throw 2025-10-29
+  modeled = "'modeled' has been removed because it is unmaintained"; # Added 2026-01-19
+  moretools = "'moretools' has been removed because it is unmaintained"; # Added 2026-01-19
   mpris-server = throw "mpris-server was removed because it is unused"; # added 2025-10-31
   msldap-bad = throw "'msldap-bad' has been renamed to/replaced by 'badldap'"; # added 2025-11-06
   mullvad-closest = throw "'mullvad-closest' has been removed as it was unmaintained. Consider using 'mullvad-compass' instead."; # Added 2026-01-13
@@ -441,6 +444,7 @@ mapAliases {
   retry_decorator = throw "'retry_decorator' has been renamed to/replaced by 'retry-decorator'"; # Converted to throw 2025-10-29
   retworkx = throw "'retworkx' has been renamed to/replaced by 'rustworkx'"; # Converted to throw 2025-10-29
   rki-covid-parser = throw "rki-covid-parser has been removed because it is unmaintained and broken"; # added 2025-09-20
+  robotframework-tools = "'robotframework-tools' has been removed because it is unmaintained"; # Added 2026-01-19
   ROPGadget = throw "'ROPGadget' has been renamed to/replaced by 'ropgadget'"; # Converted to throw 2025-10-29
   rtslib = throw "'rtslib' has been renamed to/replaced by 'rtslib-fb'"; # Converted to throw 2025-10-29
   rtsp-to-webrtc = throw "rtsp-to-webrtc has been removed because it is unmaintained"; # added 2025-09-20
@@ -534,6 +538,7 @@ mapAliases {
   z3 = throw "'z3' has been renamed to/replaced by 'z3-solver'"; # Converted to throw 2025-10-29
   zc-buildout221 = throw "'zc-buildout221' has been renamed to/replaced by 'zc-buildout'"; # Converted to throw 2025-10-29
   zc_lockfile = throw "'zc_lockfile' has been renamed to/replaced by 'zc-lockfile'"; # Converted to throw 2025-10-29
+  zetup = "'zetup' has been removed because it is unmaintained"; # Added 2026-01-19
   zope_component = throw "'zope_component' has been renamed to/replaced by 'zope-component'"; # Converted to throw 2025-10-29
   zope_configuration = throw "'zope_configuration' has been renamed to/replaced by 'zope-configuration'"; # Converted to throw 2025-10-29
   zope_contenttype = throw "'zope_contenttype' has been renamed to/replaced by 'zope-contenttype'"; # Converted to throw 2025-10-29

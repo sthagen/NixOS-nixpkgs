@@ -559,6 +559,7 @@ mapAliases {
   docker_26 = throw "'docker_26' has been removed because it has been unmaintained since February 2025. Use docker_28 or newer instead."; # Added 2025-06-21
   docker_27 = throw "'docker_27' has been removed because it has been unmaintained since May 2025. Use docker_28 or newer instead."; # Added 2025-06-15
   dockerfile-language-server-nodejs = warnAlias "'dockerfile-language-server-nodejs' has been renamed to 'dockerfile-language-server'" dockerfile-language-server; # Added 2025-09-12
+  docui = throw "'docui' has removed as it was deprecated and archived upstream. Consider using lazydocker instead"; # Added 2026-01-16
   dogdns = throw "'dogdns' has been removed as it is unmaintained upstream and vendors insecure dependencies. Consider switching to 'doggo', a similar tool."; # Added 2025-12-31
   dolphin-emu-beta = throw "'dolphin-emu-beta' has been renamed to/replaced by 'dolphin-emu'"; # Converted to throw 2025-10-27
   dontRecurseIntoAttrs = warnAlias "dontRecurseIntoAttrs has been removed from pkgs, use `lib.dontRecurseIntoAttrs` instead" lib.dontRecurseIntoAttrs; # Added 2025-10-30
@@ -702,6 +703,7 @@ mapAliases {
   gfortran12 = throw "gfortran12 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2025-08-08
   gg = throw "'gg' has been renamed to/replaced by 'go-graft'"; # Converted to throw 2025-10-27
   ggobi = throw "'ggobi' has been removed from Nixpkgs, as it is unmaintained and broken"; # Added 2025-05-18
+  gh-copilot = throw "'gh-copilot' has been removed since it has been deprecated and archived upstream. Consider using 'github-copilot-cli' instead"; # Added 2026-01-20
   gimp3 = gimp; # Added 2025-10-03
   gimp3-with-plugins = gimp-with-plugins; # Added 2025-10-03
   gimp3Plugins = gimpPlugins; # Added 2025-10-03

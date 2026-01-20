@@ -4,11 +4,8 @@
   fetchFromGitHub,
   marshmallow,
   pytestCheckHook,
-  pythonAtLeast,
-  pythonOlder,
   setuptools,
   typeguard,
-  typing-extensions,
   typing-inspect,
 }:
 
@@ -29,8 +26,7 @@ buildPythonPackage rec {
   dependencies = [
     marshmallow
     typing-inspect
-  ]
-  ++ lib.optionals (pythonOlder "3.10") [ typing-extensions ];
+  ];
 
   nativeCheckInputs = [
     pytestCheckHook
@@ -42,7 +38,7 @@ buildPythonPackage rec {
     "-Wignore::DeprecationWarning"
   ];
 
-  disabledTests = lib.optionals (pythonAtLeast "3.10") [
+  disabledTests = [
     # TypeError: UserId is not a dataclass and cannot be turned into one.
     "test_newtype"
   ];
