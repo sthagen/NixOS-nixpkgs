@@ -2285,8 +2285,6 @@ self: super: with self; {
 
   brunt = callPackage ../development/python-modules/brunt { };
 
-  bsddb3 = callPackage ../development/python-modules/bsddb3 { };
-
   bsdiff4 = callPackage ../development/python-modules/bsdiff4 { };
 
   bson = callPackage ../development/python-modules/bson { };
@@ -2624,8 +2622,6 @@ self: super: with self; {
   channels-redis = callPackage ../development/python-modules/channels-redis { };
 
   character-encoding-utils = callPackage ../development/python-modules/character-encoding-utils { };
-
-  characteristic = callPackage ../development/python-modules/characteristic { };
 
   chardet = callPackage ../development/python-modules/chardet { };
 
@@ -5122,6 +5118,10 @@ self: super: with self; {
   exitcode = callPackage ../development/python-modules/exitcode { };
 
   exiv2 = callPackage ../development/python-modules/exiv2 { inherit (pkgs) exiv2; };
+
+  exllamav2 = callPackage ../development/python-modules/exllamav2 { };
+
+  exllamav3 = callPackage ../development/python-modules/exllamav3 { };
 
   expandvars = callPackage ../development/python-modules/expandvars { };
 
@@ -12296,8 +12296,6 @@ self: super: with self; {
 
   pkgutil-resolve-name = callPackage ../development/python-modules/pkgutil-resolve-name { };
 
-  pkuseg = callPackage ../development/python-modules/pkuseg { };
-
   plac = callPackage ../development/python-modules/plac { };
 
   plaid-python = callPackage ../development/python-modules/plaid-python { };
@@ -16468,6 +16466,8 @@ self: super: with self; {
 
   result = callPackage ../development/python-modules/result { };
 
+  resvg-py = callPackage ../development/python-modules/resvg-py { };
+
   rethinkdb = callPackage ../development/python-modules/rethinkdb { };
 
   retinaface = callPackage ../development/python-modules/retinaface { };
@@ -16562,6 +16562,8 @@ self: super: with self; {
   riscv-config = callPackage ../development/python-modules/riscv-config { };
 
   riscv-isac = callPackage ../development/python-modules/riscv-isac { };
+
+  riscv-model = callPackage ../development/python-modules/riscv-model { };
 
   ritassist = callPackage ../development/python-modules/ritassist { };
 
@@ -19483,6 +19485,8 @@ self: super: with self; {
 
   typer-config = callPackage ../development/python-modules/typer-config { };
 
+  typer-injector = callPackage ../development/python-modules/typer-injector { };
+
   typer-shell = callPackage ../development/python-modules/typer-shell { };
 
   typer-slim = callPackage ../development/python-modules/typer-slim { };
@@ -20952,8 +20956,6 @@ self: super: with self; {
 
   xyzservices = callPackage ../development/python-modules/xyzservices { };
 
-  y-py = callPackage ../development/python-modules/y-py { };
-
   yabadaba = callPackage ../development/python-modules/yabadaba { };
 
   yacs = callPackage ../development/python-modules/yacs { };
@@ -21051,8 +21053,6 @@ self: super: with self; {
   yowsup = callPackage ../development/python-modules/yowsup { };
 
   yoyo-migrations = callPackage ../development/python-modules/yoyo-migrations { };
-
-  ypy-websocket = callPackage ../development/python-modules/ypy-websocket { };
 
   yq = callPackage ../development/python-modules/yq { inherit (pkgs) jq; };
 
