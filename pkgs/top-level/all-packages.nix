@@ -1154,8 +1154,6 @@ with pkgs;
 
   cgit = callPackage ../applications/version-management/cgit { };
 
-  cgit-pink = callPackage ../applications/version-management/cgit/pink.nix { };
-
   datalad = with python3Packages; toPythonApplication datalad;
 
   datalad-gooey = with python3Packages; toPythonApplication datalad-gooey;
@@ -1687,7 +1685,6 @@ with pkgs;
       wrapProgram $out/bin/cabal2nix \
         --prefix PATH ":" "${
           lib.makeBinPath [
-            nix
             nix-prefetch-scripts
           ]
         }"
@@ -6916,9 +6913,6 @@ with pkgs;
 
   #GMP ex-satellite, so better keep it near gmp
   # A GMP fork
-  gns3Packages = recurseIntoAttrs (callPackage ../applications/networking/gns3 { });
-  gns3-gui = gns3Packages.guiStable;
-  gns3-server = gns3Packages.serverStable;
 
   gobject-introspection = callPackage ../development/libraries/gobject-introspection/wrapper.nix { };
 

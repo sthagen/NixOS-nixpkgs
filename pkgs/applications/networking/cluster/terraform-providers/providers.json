@@ -36,13 +36,13 @@
     "vendorHash": "sha256-ctEZoEULhdsWahsRBXVv1QfSvQ17I5PYUB6++pTFJE8="
   },
   "akamai_akamai": {
-    "hash": "sha256-HjrBPaLYeJ8/9gmdn+BGHtu5dmyT5MeTsIBgzS0X0gY=",
+    "hash": "sha256-WXIx2/1EiamjolyPy+d3Gwp4hOguJrmxKwgLZqzQqDg=",
     "homepage": "https://registry.terraform.io/providers/akamai/akamai",
     "owner": "akamai",
     "repo": "terraform-provider-akamai",
-    "rev": "v9.2.0",
+    "rev": "v9.3.0",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-weHY7ZV3HaFBYlDNhwAYN9vDItkI+wtk9UNlM0uuwfY="
+    "vendorHash": "sha256-6sVapd0vqL4xGLqTQS4zQIlnMA8HRmjufDi1lOgldlU="
   },
   "aliyun_alicloud": {
     "hash": "sha256-4Y6qItQx3gk4LsZb9OB2J2IQ4g6H5uDwy+FkWPCegrg=",
@@ -128,11 +128,11 @@
     "vendorHash": "sha256-/dOiXO2aPkuZaFiwv/6AXJdIADgx8T7eOwvJfBBoqg8="
   },
   "buildkite_buildkite": {
-    "hash": "sha256-oQyhrDpxjCckqq+mtViswP1rPcgowEq4ZN5jHWa7UpY=",
+    "hash": "sha256-Wu70EyhLP1jC9Y3/RDOtGB8EMbeMvD+HwsSpNXAaMZI=",
     "homepage": "https://registry.terraform.io/providers/buildkite/buildkite",
     "owner": "buildkite",
     "repo": "terraform-provider-buildkite",
-    "rev": "v1.28.0",
+    "rev": "v1.29.0",
     "spdx": "MIT",
     "vendorHash": "sha256-e9RWvfhn/jO44ljfzNjo2qCQZfVISg8DWQdvnTXbf8o="
   },
@@ -526,11 +526,11 @@
     "vendorHash": null
   },
   "hashicorp_azurerm": {
-    "hash": "sha256-aLBq+kMycLom6a+R5R+FxXzohHTX4yUHANXA1NGQ51k=",
+    "hash": "sha256-uAaWBctVH61wMz12hX3DnayVn6LK1e3aUM2SQBNx3QQ=",
     "homepage": "https://registry.terraform.io/providers/hashicorp/azurerm",
     "owner": "hashicorp",
     "repo": "terraform-provider-azurerm",
-    "rev": "v4.57.0",
+    "rev": "v4.58.0",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },
@@ -724,11 +724,11 @@
     "vendorHash": null
   },
   "ibm-cloud_ibm": {
-    "hash": "sha256-DvWlf3FHYDcNxUZUOoslQjhuwGvElAEu/duDsX4xbKs=",
+    "hash": "sha256-1GqI6cFy386osELaG474OeQX33wIAIEABb/bL5ezs6Q=",
     "homepage": "https://registry.terraform.io/providers/IBM-Cloud/ibm",
     "owner": "IBM-Cloud",
     "repo": "terraform-provider-ibm",
-    "rev": "v1.87.1",
+    "rev": "v1.87.2",
     "spdx": "MPL-2.0",
     "vendorHash": "sha256-vKu5ytMAhIYKoPNfuxpyBT9gRdSAR4wFI/7A9K+RiAo="
   },
