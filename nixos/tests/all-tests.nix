@@ -1039,7 +1039,8 @@ in
     imports = [ ./ncps.nix ];
     defaults.services.ncps.cache.storage.local = "/path/to/ncps";
   };
-  ncps-ha = runTest ./ncps-ha.nix;
+  ncps-ha-pg = runTest ./ncps-ha-pg.nix;
+  ncps-ha-pg-redis = runTest ./ncps-ha-pg-redis.nix;
   ndppd = runTest ./ndppd.nix;
   nebula-lighthouse-service = runTest ./nebula-lighthouse-service.nix;
   nebula.connectivity = runTest ./nebula/connectivity.nix;
@@ -1388,6 +1389,7 @@ in
   rosenpass = runTest ./rosenpass.nix;
   roundcube = runTest ./roundcube.nix;
   routinator = handleTest ./routinator.nix { };
+  rqbit = handleTest ./rqbit.nix { };
   rshim = handleTest ./rshim.nix { };
   rspamd = handleTest ./rspamd.nix { };
   rspamd-trainer = runTest ./rspamd-trainer.nix;
