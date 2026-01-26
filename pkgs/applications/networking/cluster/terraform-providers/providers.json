@@ -887,13 +887,13 @@
     "vendorHash": "sha256-0Z2V8CyIZEHZFFqTNFnseBbvVenOnpNz9Tlbu7zaPOI="
   },
   "maxlaverse_bitwarden": {
-    "hash": "sha256-dYWiz5DjkMQliUpvapKANj45vUyiPaE6GeP/HOBrKt8=",
+    "hash": "sha256-9HSxaU+/1HaN4mmi9JnKuTwP/HLCh72zcKecTAQJQpM=",
     "homepage": "https://registry.terraform.io/providers/maxlaverse/bitwarden",
     "owner": "maxlaverse",
     "repo": "terraform-provider-bitwarden",
-    "rev": "v0.16.0",
+    "rev": "v0.17.1",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-I8yMdS+yOk5doWGU9VPdl5ITGNrPhs5tGwluwXSrnI0="
+    "vendorHash": "sha256-vDvGIiUIMjMAz9ST/Qjo7aurkB9RIVeevSUkQ8eJ9tk="
   },
   "metio_migadu": {
     "hash": "sha256-rAf+q/zNANhW8cFSJR3TtA0yYqiG5mjCStyBFG0U3tg=",
@@ -1031,13 +1031,13 @@
     "vendorHash": "sha256-ofzbDmivXgH1i1Gjhpyp0bk3FDs5SnxwoRuNAWyMqyI="
   },
   "opentelekomcloud_opentelekomcloud": {
-    "hash": "sha256-68JyLHSHyse7znn7egPLMz4DeyHaWAGfa0TLCHQJd4k=",
+    "hash": "sha256-Pco5/kiFOyqwjktDFgHgCtq/kVKshzZyp9cjT+mJYJs=",
     "homepage": "https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud",
     "owner": "opentelekomcloud",
     "repo": "terraform-provider-opentelekomcloud",
-    "rev": "v1.36.56",
+    "rev": "v1.36.57",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-ESu1guITtquRqdGI3KdMhOf24gjtii45i5TkVrqJ18U="
+    "vendorHash": "sha256-v7t3W7v38xw7M8r9rdx+9cTUT6FFY4x5ujkVYD7qThw="
   },
   "opsgenie_opsgenie": {
     "hash": "sha256-Y67kcg/ovvZc22l1CBz0Mqu7DAIit5F0jQNfQrl2EGI=",
@@ -1049,11 +1049,11 @@
     "vendorHash": null
   },
   "oracle_oci": {
-    "hash": "sha256-VGf5sCHMhOFm+w3lz2yhH0lw0MSlQYlYK/+lEuXk4vc=",
+    "hash": "sha256-zcYB7DEwffVzPm4OXots9Z7Gzu6k/Pcaa4ell0gT33Q=",
     "homepage": "https://registry.terraform.io/providers/oracle/oci",
     "owner": "oracle",
     "repo": "terraform-provider-oci",
-    "rev": "v7.30.0",
+    "rev": "v7.31.0",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },
