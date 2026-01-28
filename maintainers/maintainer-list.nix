@@ -6288,7 +6288,6 @@
     matrix = "@defelo:matrix.defelo.de";
     github = "Defelo";
     githubId = 41747605;
-    keys = [ { fingerprint = "6130 3BBA D7D1 BF74 EFA4  4E3B E7FE 2087 E438 0E64"; } ];
   };
   definfo = {
     name = "Adrien SUN";
@@ -12054,6 +12053,13 @@
     githubId = 1198065;
     name = "Jeffrey David Johnson";
   };
+  jefferyoo = {
+    email = "oojefferywm@proton.me";
+    github = "jefferyoo";
+    githubId = 237098253;
+    name = "Jeffery Oo";
+    keys = [ { fingerprint = "7129 408E 3D97 47EB FCE1  A6D5 1999 2BEC E706 CC59"; } ];
+  };
   jefflabonte = {
     email = "jean-francois.labonte@brightonlabs.ai";
     github = "JeffLabonte";
@@ -14208,6 +14214,12 @@
     githubId = 160317;
     name = "Kristoffer Søholm";
   };
+  krit = {
+    email = "dasskrit@gmail.com";
+    github = "kritdass";
+    githubId = 68750861;
+    name = "Krit Dass";
+  };
   kritnich = {
     email = "kritnich@kritni.ch";
     github = "Kritnich";
@@ -15730,7 +15742,7 @@
     github = "M0streng0";
     githubId = 85799811;
   };
-  m0ustache3 = {
+  M0ustach3 = {
     name = "M0ustach3";
     github = "M0ustach3";
     githubId = 37956764;
@@ -18742,11 +18754,6 @@
     email = "nickcao@nichi.co";
     github = "NickCao";
     githubId = 15247171;
-  };
-  nickgerace = {
-    name = "Nick Gerace";
-    github = "nickgerace";
-    githubId = 39320683;
   };
   nickhu = {
     email = "me@nickhu.co.uk";
