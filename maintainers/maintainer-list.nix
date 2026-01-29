@@ -8719,6 +8719,7 @@
   };
   FlameFlag = {
     name = "FlameFlag";
+    email = "github@flameflag.dev";
     github = "FlameFlag";
     githubId = 57304299;
     matrix = "@donteatoreo:matrix.org";
@@ -20393,11 +20394,6 @@
     github = "peat-psuwit";
     githubId = 6771175;
   };
-  pedohorse = {
-    github = "permahorse";
-    githubId = 13556996;
-    name = "pedohorse";
-  };
   pedrohlc = {
     email = "root@pedrohlc.com";
     github = "PedroHLC";
@@ -20446,6 +20442,11 @@
     name = "Peter Retzlaff";
     github = "peret";
     githubId = 617977;
+  };
+  permahorse = {
+    github = "permahorse";
+    githubId = 13556996;
+    name = "permahorse";
   };
   perstark = {
     email = "perstark.se@gmail.com";
@@ -25159,6 +25160,13 @@
     githubId = 94006354;
     name = "steamwalker";
   };
+  Stebalien = {
+    email = "steven@stebalien.com";
+    github = "Stebalien";
+    githubId = 310393;
+    name = "Steven Allen";
+    keys = [ { fingerprint = "327B 20CE 21EA 68CF A774  8675 7C92 3221 5899 410C"; } ];
+  };
   steeleduncan = {
     email = "steeleduncan@hotmail.com";
     github = "steeleduncan";
@@ -25745,6 +25753,12 @@
     email = "d@kulinski.us";
     github = "takeda";
     githubId = 411978;
+  };
+  takeokunn = {
+    email = "bararararatty@gmail.com";
+    github = "takeokunn";
+    githubId = 11222510;
+    name = "Takeo Obara";
   };
   taketwo = {
     email = "alexandrov88@gmail.com";
@@ -28755,6 +28769,12 @@
     matrix = "@xgwq:nerdberg.de";
     github = "peterablehmann";
     githubId = 36541313;
+  };
+  xiangpingjiang = {
+    email = "xiangpingjiang1998@gmail.com";
+    github = "xiangpingjiang";
+    githubId = 45722758;
+    name = "xiangpingjiang";
   };
   xiaoxiangmoe = {
     name = "ZHAO JinXiang";
