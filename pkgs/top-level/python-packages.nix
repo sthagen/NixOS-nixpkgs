@@ -9557,6 +9557,8 @@ self: super: with self; {
 
   memory-tempfile = callPackage ../development/python-modules/memory-tempfile { };
 
+  memray = callPackage ../development/python-modules/memray { };
+
   meraki = callPackage ../development/python-modules/meraki { };
 
   mercadopago = callPackage ../development/python-modules/mercadopago { };
@@ -15102,6 +15104,8 @@ self: super: with self; {
 
   pytest-postgresql = callPackage ../development/python-modules/pytest-postgresql { };
 
+  pytest-pretty = callPackage ../development/python-modules/pytest-pretty { };
+
   pytest-pudb = callPackage ../development/python-modules/pytest-pudb { };
 
   pytest-pycodestyle = callPackage ../development/python-modules/pytest-pycodestyle { };
@@ -17334,6 +17338,8 @@ self: super: with self; {
   sigstore-rekor-types = callPackage ../development/python-modules/sigstore-rekor-types { };
 
   sigtools = callPackage ../development/python-modules/sigtools { };
+
+  silver-platter = callPackage ../development/python-modules/silver-platter { };
 
   simanneal = callPackage ../development/python-modules/simanneal { };
 

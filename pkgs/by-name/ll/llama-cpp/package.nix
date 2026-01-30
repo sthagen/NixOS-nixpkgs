@@ -80,6 +80,11 @@ effectiveStdenv.mkDerivation (finalAttrs: {
   pname = "llama-cpp";
   version = "7823";
 
+  outputs = [
+    "out"
+    "dev"
+  ];
+
   src = fetchFromGitHub {
     owner = "ggml-org";
     repo = "llama.cpp";

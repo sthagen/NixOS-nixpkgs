@@ -44,6 +44,11 @@ effectiveStdenv.mkDerivation (finalAttrs: {
   pname = "stable-diffusion-cpp";
   version = "master-475-2efd199";
 
+  outputs = [
+    "out"
+    "dev"
+  ];
+
   src = fetchFromGitHub {
     owner = "leejet";
     repo = "stable-diffusion.cpp";

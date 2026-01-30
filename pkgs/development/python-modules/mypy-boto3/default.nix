@@ -443,8 +443,8 @@ in
       "sha256-92qhSUqTiLgbtvCdi/Mmgve18mcYR00ABL+bNy7/OnY=";
 
   mypy-boto3-ec2 =
-    buildMypyBoto3Package "ec2" "1.42.37"
-      "sha256-sOFp3vTHqYPI4YE8Gye5r+8zG4ly3xtj0UHncytqobw=";
+    buildMypyBoto3Package "ec2" "1.42.38"
+      "sha256-ni/jZ4xTnnVLnPYo7Q4ypDFmGWBySDjjCgLULW0tMr0=";
 
   mypy-boto3-ec2-instance-connect =
     buildMypyBoto3Package "ec2-instance-connect" "1.42.3"
@@ -559,8 +559,8 @@ in
       "sha256-NqNGcL3HfJgx2ScPLKMNNwpVS3bO4Cu7JpYlenSJwJg=";
 
   mypy-boto3-gamelift =
-    buildMypyBoto3Package "gamelift" "1.42.33"
-      "sha256-ur7KFFOyPnCQWKW5JyyQrJ/kumcfE52C8u/J5yJ+kQQ=";
+    buildMypyBoto3Package "gamelift" "1.42.38"
+      "sha256-z9RuMA2e/L1mGm59JhrIM+tDCQqQ7pRm2L5luhQSdoM=";
 
   mypy-boto3-glacier =
     buildMypyBoto3Package "glacier" "1.42.30"

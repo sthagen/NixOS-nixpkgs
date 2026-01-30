@@ -675,8 +675,8 @@ let
         mktplcRef = {
           name = "markdown-mermaid";
           publisher = "bierner";
-          version = "1.29.0";
-          hash = "sha256-qjfZ2/otO2BAIbhjqicHI2H0KKdpji55K+2XfOrzUIw=";
+          version = "1.31.0";
+          hash = "sha256-7KpyUXR3a7ZD9bcdJ4t5HRjSAlUww8q6XSOcxHCN4Cw=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/bierner.markdown-mermaid/changelog";
@@ -1711,8 +1711,8 @@ let
         mktplcRef = {
           name = "vscode-jest-runner";
           publisher = "firsttris";
-          version = "0.4.98";
-          hash = "sha256-UhPkiUIIIf58D9hO4mFZba+IO4uJZkP18BH6PTVVfHk=";
+          version = "0.4.112";
+          hash = "sha256-NKnAGGgckVsIn3O842BPWJ3cXM1Ap0yK9Rsrdjfmf5M=";
         };
         meta = {
           description = "Simple way to run or debug a single (or multiple) tests from context-menu";
@@ -1851,8 +1851,8 @@ let
         mktplcRef = {
           name = "godot-tools";
           publisher = "geequlim";
-          version = "2.5.1";
-          hash = "sha256-kAzRSNZw1zaECblJv7NzXnE2JXSy9hzdT2cGX+uwleY=";
+          version = "2.6.0";
+          hash = "sha256-b6aH4LAqXjwRp2dFa7+hhQL3ac9K7Zmat5ncaRLooD0=";
         };
         meta = {
           description = "VS Code extension for game development with Godot Engine and GDScript";
@@ -1965,8 +1965,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.64.1";
-          hash = "sha256-kJqn7xNI6DF10h+CemsO0E80oJBifMdKKxpKJ3Y6PJ4=";
+          version = "6.67.5";
+          hash = "sha256-xttk9mP5XIeeymE0l0TI+JsC862yOaEuwb6HscDyRMU=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -4218,8 +4218,8 @@ let
         mktplcRef = {
           publisher = "shopify";
           name = "ruby-lsp";
-          version = "0.9.33";
-          hash = "sha256-Dkx4ecPFXTX1ilerkcnUc6Pu/mnXpswYVnHWqR4TYOA=";
+          version = "0.10.0";
+          hash = "sha256-RSNcyoyrkVJsFp02aMDDZn51YBKohE+gy+bgHFP45v4=";
         };
         meta = {
           description = "VS Code plugin for connecting with the Ruby LSP";
@@ -4892,8 +4892,8 @@ let
         mktplcRef = {
           name = "errorlens";
           publisher = "usernamehw";
-          version = "3.26.0";
-          hash = "sha256-pAkk3QURnlLNMZ2cFBks2lAEl/Hk8Z2i/QgvjUv+u2Y=";
+          version = "3.28.0";
+          hash = "sha256-7eu7y9IR1uxSFZ0IplDieFt3iWbcmdwf1lAcXq+S4C8=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/usernamehw.errorlens/changelog";

@@ -500,6 +500,7 @@ mapAliases {
   cotton = throw "'cotton' has been removed since it is vulnerable to CVE-2025-62518 and upstream is unmaintained"; # Added 2025-10-26
   cpp-ipfs-api = throw "'cpp-ipfs-api' has been renamed to/replaced by 'cpp-ipfs-http-client'"; # Converted to throw 2025-10-27
   cpr = warnAlias "'cpr' has been renamed to/replaced by 'libcpr'" libcpr; # Added 2025-11-17
+  cqrlog = throw "'cqrlog' was removed due to lack of maintenance and relying on gtk2"; # Added 2025-12-02
   crabfit-api = throw "'crabfit-api' has been removed because it is unmaintained upstream and insecure."; # Added 2025-11-29
   crabfit-frontend = throw "'crabfit-frontend' has been removed because it is unmaintained upstream and it is to be used with 'crabfit-api', which is insecure."; # Added 2025-11-29
   create-cycle-app = throw "'create-cycle-app' has been removed because it is unmaintained and has issues installing with recent nodejs versions."; # Added 2025-11-01
@@ -885,10 +886,14 @@ mapAliases {
   k3s_1_30 = throw "'k3s_1_30' has been removed from nixpkgs as it has reached end of life"; # Added 2025-09-01
   k3s_1_31 = throw "'k3s_1_31' has been removed from nixpkgs as it has reached end of life"; # Added 2025-12-08
   kak-lsp = throw "'kak-lsp' has been renamed to/replaced by 'kakoune-lsp'"; # Converted to throw 2025-10-27
-  kanidm = warnAlias "'kanidm' will be removed before 26.05. You must use a versioned package, e.g. 'kanidm_1_x'." kanidm_1_7; # Added 2025-09-01
+  kanidm = throw "'kanidm' alias has been removed. You must use a versioned package, e.g. 'kanidm_1_x'."; # Added 2026-01-29
   kanidm_1_4 = throw "'kanidm_1_4' has been removed as it has reached end of life"; # Added 2025-06-18
+  kanidm_1_5 = throw "'kanidm_1_5' has been removed as it has reached end of life"; # Added 2026-01-29
+  kanidm_1_6 = throw "'kanidm_1_6' has been removed as it has reached end of life"; # Added 2026-01-29
   kanidmWithSecretProvisioning = warnAlias "'kanidmWithSecretProvisioning' will be removed before 26.05. You must use a versioned package, e.g. 'kanidmWithSecretProvisioning_1_x'." kanidmWithSecretProvisioning_1_7; # Added 2025-09-01
   kanidmWithSecretProvisioning_1_4 = throw "'kanidmWithSecretProvisioning_1_4' has been removed as it has reached end of life"; # Added 2025-06-18
+  kanidmWithSecretProvisioning_1_5 = throw "'kanidmWithSecretProvisioning_1_5' has been removed as it has reached end of life"; # Added 2026-01-29
+  kanidmWithSecretProvisioning_1_6 = throw "'kanidmWithSecretProvisioning_1_6' has been removed as it has reached end of life"; # Added 2026-01-29
   kapitano = throw "'kapitano' has been removed, as it is unmaintained upstream"; # Added 2025-10-29
   kbibtex = throw "'kbibtex' has been removed, as it is unmaintained upstream"; # Added 2025-08-30
   kcli = throw "kcli has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
@@ -1392,6 +1397,7 @@ mapAliases {
   percona-xtrabackup_innovation = throw "'percona-xtrabackup_innovation' has been renamed to/replaced by 'percona-xtrabackup'"; # Converted to throw 2025-10-27
   percona-xtrabackup_lts = throw "'percona-xtrabackup_lts' has been renamed to/replaced by 'percona-xtrabackup'"; # Converted to throw 2025-10-27
   peruse = throw "'peruse' has been removed as it depends on KDE Gear 5, which has reached EOL"; # Added 2025-08-20
+  petrifoo = throw "'petrifoo' was remove due to lack of maintenance and relying on gtk2"; # Added 2025-12-02
   pg_cron = throw "'pg_cron' has been removed. Use 'postgresqlPackages.pg_cron' instead."; # Added 2025-07-19
   pg_hll = throw "'pg_hll' has been removed. Use 'postgresqlPackages.pg_hll' instead."; # Added 2025-07-19
   pg_repack = throw "'pg_repack' has been removed. Use 'postgresqlPackages.pg_repack' instead."; # Added 2025-07-19
@@ -1622,6 +1628,7 @@ mapAliases {
   sonusmix = throw "'sonusmix' has been removed due to lack of maintenance"; # Added 2025-08-27
   soulseekqt = throw "'soulseekqt' has been removed due to lack of maintenance in Nixpkgs in a long time. Consider using 'nicotine-plus' or 'slskd' instead."; # Added 2025-06-07
   soundkonverter = throw "'soundkonverter' has been dropped as it depends on KDE Gear 5, and is unmaintained"; # Added 2025-08-20
+  soundmodem = throw "'soundmodem' was removed due to lack of maintenance and relying on gtk2"; # Added 2025-12-02
   soundOfSorting = throw "'soundOfSorting' has been renamed to/replaced by 'sound-of-sorting'"; # Converted to throw 2025-10-27
   source-han-sans-japanese = throw "'source-han-sans-japanese' has been renamed to/replaced by 'source-han-sans'"; # Converted to throw 2025-10-27
   source-han-sans-korean = throw "'source-han-sans-korean' has been renamed to/replaced by 'source-han-sans'"; # Converted to throw 2025-10-27
@@ -1653,6 +1660,7 @@ mapAliases {
   spago = spago-legacy; # Added 2025-09-23, pkgs.spago should become spago@next which hasn't been packaged yet
   spark2014 = throw "'spark2014' has been renamed to/replaced by 'gnatprove'"; # Converted to throw 2025-10-27
   sparkle = throw "'sparkle' has been removed because upstream repository source code has been deleted"; # Added 2025-12-29
+  spectrojack = throw "'spectrojack' was remove due to lack of upstream maintenance and relying on gtk2"; # Added 2025-12-02
   speed_dreams = speed-dreams; # Added 2026-01-19
   spidermonkey_91 = throw "'spidermonkey_91 is EOL since 2022/09"; # Added 2025-08-26
   spoof = throw "'spoof' has been removed, as it is broken with the latest MacOS versions and is unmaintained upstream"; # Added 2025-11-14
@@ -1936,6 +1944,7 @@ mapAliases {
   xorgdocs = xorg-docs; # Added 2026-01-19
   xorgsgmldoctools = xorg-sgml-doctools; # Added 2026-01-19
   xsw = throw "'xsw' has been removed due to lack of upstream maintenance"; # Added 2025-08-22
+  xsynth-dssi = throw "'xsynth-dssi' was removed due to lack of upstream maintenance and relying on gtk2"; # Added 2025-12-02
   xtrap = throw "XTrap was a proposed X11 extension that hasn't been in Xorg since X11R6 in 1994, it is deprecated and archived upstream."; # added 2025-12-13
   xulrunner = throw "'xulrunner' has been renamed to/replaced by 'firefox-unwrapped'"; # Converted to throw 2025-10-27
   xxgdb = throw "'xxgdb' seems inactive and doesn't compile with glibc 2.42"; # Added 2025-09-28

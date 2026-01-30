@@ -114,18 +114,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preInstall
 
     install -Dm755 dist/opencode-*/bin/opencode $out/bin/opencode
-    install -Dm644 schema.json $out/share/opencode/schema.json
-
-    runHook postInstall
-  '';
-
-  postInstall = lib.optionalString (stdenvNoCC.buildPlatform.canExecute stdenvNoCC.hostPlatform) ''
-    installShellCompletion --cmd opencode \
-      --bash <($out/bin/opencode completion) \
-      --zsh <(SHELL=/bin/zsh $out/bin/opencode completion)
-  '';
-
-  postFixup = ''
     wrapProgram $out/bin/opencode \
      --prefix PATH : ${
        lib.makeBinPath (
@@ -137,6 +125,16 @@ stdenvNoCC.mkDerivation (finalAttrs: {
          ]
        )
      }
+
+    install -Dm644 schema.json $out/share/opencode/schema.json
+
+    runHook postInstall
+  '';
+
+  postInstall = lib.optionalString (stdenvNoCC.buildPlatform.canExecute stdenvNoCC.hostPlatform) ''
+    installShellCompletion --cmd opencode \
+      --bash <($out/bin/opencode completion) \
+      --zsh <(SHELL=/bin/zsh $out/bin/opencode completion)
   '';
 
   nativeInstallCheckInputs = [
