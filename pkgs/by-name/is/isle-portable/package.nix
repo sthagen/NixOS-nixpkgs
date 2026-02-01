@@ -35,7 +35,7 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   strictDeps = true;
-  name = "isle-portable";
+  pname = "isle-portable";
   version = "0-unstable-2025-11-15";
 
   src = fetchFromGitHub {
