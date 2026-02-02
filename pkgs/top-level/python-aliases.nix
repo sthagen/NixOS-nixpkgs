@@ -96,6 +96,7 @@ mapAliases {
   bugzilla = throw "'bugzilla' has been renamed to/replaced by 'python-bugzilla'"; # Converted to throw 2025-10-29
   bunch = throw "bunch has been removed as it is unmaintained since inception"; # added 2025-05-31
   bz2file = throw "'bz2file' has beem removed, as it was not longed maintained upstream since 2020"; # added 2025-08-26
+  calysto-scheme = throw "'calysto-scheme' has been removed as it is no longer maintained upstream"; # Added 2026-01-31
   can = throw "'can' has been renamed to/replaced by 'python-can'"; # Converted to throw 2025-10-29
   casbin = pycasbin; # added 2025-06-12
   cchardet = throw "'cchardet' has been renamed to/replaced by 'faust-cchardet'"; # Converted to throw 2025-10-29
@@ -541,6 +542,7 @@ mapAliases {
   XlsxWriter = throw "'XlsxWriter' has been renamed to/replaced by 'xlsxwriter'"; # Converted to throw 2025-10-29
   y-py = throw "'y-py' has been removed as it was archived upstream; consider using 'pycrdt' instead"; # Added 2026-01-21
   Yapsy = throw "'Yapsy' has been renamed to/replaced by 'yapsy'"; # Converted to throw 2025-10-29
+  yasi = throw "'yasi' has been removed as it is unmaintained upstream"; # Added 2026-01-31
   ypy-websocket = throw "'ypy-websocket' has been removed as it was archived upstream; consider using 'pycrdt-websocket' instead"; # Added 2026-01-21
   z3 = throw "'z3' has been renamed to/replaced by 'z3-solver'"; # Converted to throw 2025-10-29
   zc-buildout221 = throw "'zc-buildout221' has been renamed to/replaced by 'zc-buildout'"; # Converted to throw 2025-10-29

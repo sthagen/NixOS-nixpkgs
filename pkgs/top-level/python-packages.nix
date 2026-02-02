@@ -2418,8 +2418,6 @@ self: super: with self; {
 
   calysto = callPackage ../development/python-modules/calysto { };
 
-  calysto-scheme = callPackage ../development/python-modules/calysto-scheme { };
-
   camel-converter = callPackage ../development/python-modules/camel-converter { };
 
   camelot = callPackage ../development/python-modules/camelot { };
@@ -21063,8 +21061,6 @@ self: super: with self; {
   yark = callPackage ../development/python-modules/yark { };
 
   yarl = callPackage ../development/python-modules/yarl { };
-
-  yasi = callPackage ../development/python-modules/yasi { };
 
   yaspin = callPackage ../development/python-modules/yaspin { };
 

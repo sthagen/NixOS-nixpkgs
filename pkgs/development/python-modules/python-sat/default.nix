@@ -9,7 +9,7 @@
 }:
 buildPythonPackage rec {
   pname = "python-sat";
-  version = "1.8.dev26";
+  version = "1.8.dev28";
   pyproject = true;
 
   build-system = [ setuptools ];
@@ -17,7 +17,7 @@ buildPythonPackage rec {
   src = fetchPypi {
     inherit version;
     pname = "python_sat";
-    hash = "sha256-CXyYqvm0j9GbB8WVeGC/o6rjRvJNDquaGLGGREgIfoc=";
+    hash = "sha256-eFBUismC7x2+ng+8rbXxZTis/xNKSx2I/lVkCbx4dgo=";
   };
 
   preBuild = ''

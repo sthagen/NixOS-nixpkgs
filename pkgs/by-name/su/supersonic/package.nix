@@ -104,6 +104,7 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [
       zane
       sochotnicky
+      toasteruwu
     ];
   };
 }

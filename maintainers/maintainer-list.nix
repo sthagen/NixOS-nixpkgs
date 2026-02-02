@@ -1049,12 +1049,6 @@
     github = "ALameLlama";
     githubId = 55490546;
   };
-  alanpearce = {
-    email = "alan@alanpearce.eu";
-    github = "alanpearce";
-    githubId = 850317;
-    name = "Alan Pearce";
-  };
   alapshin = {
     email = "alapshin@fastmail.com";
     github = "alapshin";
@@ -1337,6 +1331,12 @@
         fingerprint = "7D31 15DC D912 C15A 2781  F7BB 511C B44B C752 2A89";
       }
     ];
+  };
+  alinnow = {
+    name = "Alin";
+    email = "alin@alin.ovh";
+    github = "alinnow";
+    githubId = 850317;
   };
   alirezameskin = {
     email = "alireza.meskin@gmail.com";
@@ -4767,6 +4767,13 @@
     githubId = 803961;
     name = "Hurshal Patel";
   };
+  chordtoll = {
+    email = "nix@chordtoll.com";
+    name = "chordtoll";
+    github = "chordtoll";
+    githubId = 542193;
+    keys = [ { fingerprint = "A58D E7C6 C8DA F1F8 922E  4D2A 6F33 950B 4475 5770"; } ];
+  };
   chpatrick = {
     email = "chpatrick@gmail.com";
     github = "chpatrick";
@@ -6139,6 +6146,11 @@
     github = "dbeckwith";
     githubId = 1279939;
     name = "Daniel Beckwith";
+  };
+  dbeley = {
+    github = "dbeley";
+    githubId = 6568955;
+    name = "David Beley";
   };
   dbirks = {
     email = "david@birks.dev";
@@ -11034,6 +11046,11 @@
     github = "ik-nz";
     githubId = 207392575;
     name = "Isaac Kabel";
+  };
+  ikci = {
+    github = "ikcii";
+    githubId = 48479629;
+    name = "ikci";
   };
   ikervagyok = {
     email = "ikervagyok@gmail.com";
@@ -24476,6 +24493,12 @@
     github = "Sinjin2300";
     githubId = 35543336;
   };
+  sinrohit-desco = {
+    email = "rohit1.singh@deshaw.com";
+    github = "sinrohit-desco";
+    githubId = 207977821;
+    name = "Rohit Singh";
+  };
   sioodmy = {
     name = "Antoni Sokołowski";
     github = "sioodmy";
@@ -27754,7 +27777,7 @@
     name = "Thibaut Smith";
   };
   vieta = {
-    email = "xyzVieta@gmail.com";
+    email = "vieta@4d2.org";
     github = "yVieta";
     githubId = 94648307;
     name = "Thanh Viet Nguyen";
