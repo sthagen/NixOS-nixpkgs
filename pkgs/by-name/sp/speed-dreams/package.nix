@@ -85,7 +85,14 @@ stdenv.mkDerivation (finalAttrs: {
     sha256 = "sha256-ZY/0tf0wFbepEUNqpaBA4qgkWDij/joqPtbiF/48oN4=";
     fetchSubmodules = true;
   };
-  NIX_CFLAGS_COMPILE = "-I${finalAttrs.src}/src/libs/tgf -I${finalAttrs.src}/src/libs/tgfdata -I${finalAttrs.src}/src/interfaces -I${finalAttrs.src}/src/libs/math -I${finalAttrs.src}/src/libs/portability";
+
+  env.NIX_CFLAGS_COMPILE = toString [
+    "-I${finalAttrs.src}/src/libs/tgf"
+    "-I${finalAttrs.src}/src/libs/tgfdata"
+    "-I${finalAttrs.src}/src/interfaces"
+    "-I${finalAttrs.src}/src/libs/math"
+    "-I${finalAttrs.src}/src/libs/portability"
+  ];
 
   patches = [
     ./darwin-gl-compat.patch

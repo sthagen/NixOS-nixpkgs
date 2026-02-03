@@ -46,6 +46,7 @@ let
       mathcomp-field = self.mathcomp.field;
       mathcomp-character = self.mathcomp.character;
       parseque = callPackage ../development/rocq-modules/parseque { };
+      relation-algebra = callPackage ../development/rocq-modules/relation-algebra { };
       rocq-elpi = callPackage ../development/rocq-modules/rocq-elpi { };
       stdlib = callPackage ../development/rocq-modules/stdlib { };
       vsrocq-language-server = callPackage ../development/rocq-modules/vsrocq-language-server { };

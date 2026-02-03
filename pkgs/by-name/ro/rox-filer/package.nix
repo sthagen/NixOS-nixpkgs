@@ -30,8 +30,11 @@ stdenv.mkDerivation (finalAttrs: {
     shared-mime-info
     libSM
   ];
-  NIX_LDFLAGS = "-lm";
-  NIX_CFLAGS_COMPILE = " -fpermissive";
+
+  env = {
+    NIX_LDFLAGS = "-lm";
+    NIX_CFLAGS_COMPILE = "-fpermissive";
+  };
 
   patches = [
     ./rox-filer-2.11-in-source-build.patch

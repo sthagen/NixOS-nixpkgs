@@ -87,7 +87,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   # Configure environment variables
-  NIX_CFLAGS_COMPILE = "-Wno-c++20-extensions";
+  env.NIX_CFLAGS_COMPILE = "-Wno-c++20-extensions";
 
   cmakeFlags = [
     (lib.cmakeFeature "CMAKE_INCLUDE_PATH" "${pcl'}/include/pcl-${lib.versions.majorMinor pcl'.version}")

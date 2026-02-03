@@ -51,7 +51,7 @@ stdenv.mkDerivation (finalAttrs: {
     scalapack
   ];
 
-  NIX_LDFLAGS = "-lm";
+  env.NIX_LDFLAGS = "-lm";
 
   cmakeFlags = [
     "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"

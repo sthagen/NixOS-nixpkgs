@@ -65,7 +65,9 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   # Fixes https://github.com/containers/libkrunfw/issues/55
-  NIX_CFLAGS_COMPILE = lib.optionalString stdenv.targetPlatform.isAarch64 "-march=armv8-a+crypto";
+  env = lib.optionalAttrs stdenv.targetPlatform.isAarch64 {
+    NIX_CFLAGS_COMPILE = "-march=armv8-a+crypto";
+  };
 
   enableParallelBuilding = true;
 

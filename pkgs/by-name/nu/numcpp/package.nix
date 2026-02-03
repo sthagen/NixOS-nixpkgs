@@ -41,7 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
       --replace-fail "\''${PACKAGE_PREFIX_DIR}/" ""
   '';
 
-  NIX_CFLAGS_COMPILE = "-Wno-error";
+  env.NIX_CFLAGS_COMPILE = "-Wno-error";
 
   meta = {
     description = "Templatized Header Only C++ Implementation of the Python NumPy Library";

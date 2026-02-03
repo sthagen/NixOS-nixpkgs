@@ -28,14 +28,14 @@ let
 in
 stdenv'.mkDerivation (finalAttrs: {
   pname = "ctranslate2";
-  version = "4.6.3";
+  version = "4.7.0";
 
   src = fetchFromGitHub {
     owner = "OpenNMT";
     repo = "CTranslate2";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
-    hash = "sha256-J9h4G+4jv02/gbpHd/THLAxxII/hlmsFuaJUTU8TMgQ=";
+    hash = "sha256-aH2sm7GkHbjy0/KwgyCIpAFNHDmJURd4xyn+51MCr+Y=";
   };
 
   # Fix CMake 4 compatibility

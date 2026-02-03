@@ -9,13 +9,13 @@
 
 buildGoModule rec {
   pname = "spacectl";
-  version = "1.18.0";
+  version = "1.18.1";
 
   src = fetchFromGitHub {
     owner = "spacelift-io";
     repo = "spacectl";
     rev = "v${version}";
-    hash = "sha256-DimKF1NNhScskVre70l2QKlJKLtAMuuyEpp5yyZzCk4=";
+    hash = "sha256-gVDeHA1u0crhnNYYlVz5OoAgoI2voFLj33DDg84rD54=";
   };
 
   vendorHash = "sha256-f/09XZiaYNUZzKM0jITFdUmKt8UQy90K4PGhC6ZupCk=";

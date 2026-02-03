@@ -121,6 +121,17 @@ rustPlatform.buildRustPackage (finalAttrs: {
     "--skip=sources::socket::test::multicast_udp_message"
     "--skip=sources::socket::test::multiple_multicast_addresses_udp_message"
     "--skip=sources::syslog::test::test_udp_syslog"
+
+  ]
+  ++ lib.optionals (stdenv.hostPlatform.isAarch64 && stdenv.hostPlatform.isDarwin) [
+    # Fails on aarch64-darwin (https://github.com/vectordotdev/vector/issues/23813)
+    "--skip=sources::file::tests::file_start_position_server_restart_unfinalized"
+  ]
+  ++ lib.optionals (stdenv.hostPlatform.isAarch64 && stdenv.hostPlatform.isLinux) [
+    # Flakey on aarch64-linux
+    "--skip=topology::test::backpressure::buffer_drop_fan_out"
+    "--skip=topology::test::backpressure::default_fan_out"
+    "--skip=topology::test::backpressure::serial_backpressure"
   ];
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''

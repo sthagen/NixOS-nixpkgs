@@ -54,7 +54,9 @@ stdenv.mkDerivation rec {
   configureFlags = lib.optional gpgSupport "--enable-gpgme" ++ lib.optional sslSupport "--enable-ssl";
 
   # Undefined symbols for architecture arm64: "_OBJC_CLASS_$_NSAutoreleasePool"
-  NIX_LDFLAGS = lib.optionalString stdenv.hostPlatform.isDarwin "-framework Foundation";
+  env = lib.optionalAttrs stdenv.hostPlatform.isDarwin {
+    NIX_LDFLAGS = "-framework Foundation";
+  };
 
   meta = {
     homepage = "https://sylpheed.sraoss.jp/en/";

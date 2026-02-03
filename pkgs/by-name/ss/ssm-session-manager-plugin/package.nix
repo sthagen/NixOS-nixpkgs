@@ -41,7 +41,8 @@ buildGoModule rec {
     rm -rf vendor
   '';
 
-  vendorHash = "sha256-wK+aWRC5yrPtdihXAj6RlYC9ZTTPuGUg9wLY33skzeE=";
+  proxyVendor = true;
+  vendorHash = "sha256-pQAet0dYsLeXwpbCHSbqiIWXQ0mM2X/cKHqkx0BuwLY=";
 
   subPackages = [ "src/sessionmanagerplugin-main" ];
 

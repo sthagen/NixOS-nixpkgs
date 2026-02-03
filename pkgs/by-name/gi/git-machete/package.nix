@@ -9,14 +9,14 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "git-machete";
-  version = "3.38.1";
+  version = "3.39.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "virtuslab";
     repo = "git-machete";
     tag = "v${version}";
-    hash = "sha256-m/GstZAxBi4Q8GRv2GRrJNzChV1Rzw1vNuNP0Ao+GIY=";
+    hash = "sha256-A523zHMckOLAQJzYBWoFSxummR8tuaMbGTy3bz4aHs8=";
   };
 
   build-system = with python3.pkgs; [ setuptools ];

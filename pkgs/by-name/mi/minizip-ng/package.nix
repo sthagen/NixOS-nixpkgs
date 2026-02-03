@@ -51,7 +51,7 @@ stdenv.mkDerivation (finalAttrs: {
     "-DMZ_LIBCOMP=OFF"
   ];
 
-  NIX_CFLAGS_COMPILE = lib.optionalString stdenv.hostPlatform.isDarwin "-Wno-register";
+  env.NIX_CFLAGS_COMPILE = lib.optionalString stdenv.hostPlatform.isDarwin "-Wno-register";
 
   postInstall = ''
     # make lib findable as libminizip-ng even if compat is enabled

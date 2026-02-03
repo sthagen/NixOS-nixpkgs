@@ -15,9 +15,14 @@ stdenv.mkDerivation rec {
     hash = "sha256-7BQM7dFZl5OD1g2+h6AVHCwSraeHkQlaj6hK5jW5MCY=";
   };
 
-  NIX_LDFLAGS = lib.optionalString stdenv.hostPlatform.isLinux [
-    "-lgcc_s"
-  ];
+  env =
+    lib.optionalAttrs stdenv.hostPlatform.isLinux {
+      NIX_LDFLAGS = toString [ "-lgcc_s" ];
+    }
+    // lib.optionalAttrs stdenv.cc.isClang {
+      # Borrowed solution from homebrew: https://github.com/Homebrew/homebrew-core/blob/1c7c95183c0984a84b1680422afab6578c300a27/Formula/s/siege.rb#L31
+      CFLAGS = "-Wno-int-conversion";
+    };
 
   buildInputs = [
     openssl
@@ -32,9 +37,6 @@ stdenv.mkDerivation rec {
     "--with-ssl=${openssl.dev}"
     "--with-zlib=${zlib.dev}"
   ];
-
-  # Borrowed solution from homebrew: https://github.com/Homebrew/homebrew-core/blob/1c7c95183c0984a84b1680422afab6578c300a27/Formula/s/siege.rb#L31
-  CFLAGS = lib.optionalString stdenv.cc.isClang "-Wno-int-conversion";
 
   meta = {
     description = "HTTP load tester";

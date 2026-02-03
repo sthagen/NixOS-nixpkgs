@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
   # Boomerang usually compiles with -Werror but has not been updated for newer
   # compilers. Disable -Werror for now. Consider trying to remove this when
   # updating this derivation.
-  NIX_CFLAGS_COMPILE = "-Wno-error";
+  env.NIX_CFLAGS_COMPILE = toString [ "-Wno-error" ];
 
   nativeBuildInputs = [
     cmake

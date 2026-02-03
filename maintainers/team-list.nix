@@ -574,7 +574,6 @@ with lib.maintainers;
     members = [
       eljamm
       ethancedwards8
-      fricklerhandwerk
       OPNA2608
       phanirithvij
       prince213

@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
     docbook_xsl
   ];
 
-  NIX_CFLAGS_COMPILE = [ "-Wno-error=deprecated-declarations" ];
+  env.NIX_CFLAGS_COMPILE = toString [ "-Wno-error=deprecated-declarations" ];
 
   meta = {
     description = "Client library for accessing SOAP services of Czech government-provided Databox infomation system";

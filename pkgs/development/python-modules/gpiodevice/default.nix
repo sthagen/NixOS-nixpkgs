@@ -11,14 +11,14 @@
 }:
 buildPythonPackage (finalAttrs: {
   pname = "gpiodevice";
-  version = "0.0.4";
+  version = "0.0.5";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "pimoroni";
     repo = "gpiodevice-python";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-1vZHRCHUmG+t0TYxYzc2qwElKrcLa0WmQ+FI5GTN1A8=";
+    hash = "sha256-alff1qWxxcG6ooSQdAZ/T+ALYvWC41vX0mMu/xBeGb4=";
   };
 
   build-system = [

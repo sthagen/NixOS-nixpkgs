@@ -76,7 +76,7 @@ stdenv.mkDerivation (finalAttrs: {
       --replace-fail ${stdenv.hostPlatform.config}-ranlib ${cctools}/bin/ranlib
   '';
 
-  NIX_CFLAGS_COMPILE = [ "-fpermissive" ];
+  env.NIX_CFLAGS_COMPILE = toString [ "-fpermissive" ];
 
   passthru = {
     updateScript = nix-update-script { };

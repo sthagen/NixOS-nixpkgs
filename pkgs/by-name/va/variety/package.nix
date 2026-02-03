@@ -89,6 +89,14 @@ python3Packages.buildPythonApplication rec {
       --replace-fail "{VARIETY_PATH}" "variety"
   '';
 
+  postInstall = ''
+    mkdir -p $out/share/applications
+    intltool-merge --desktop-style po variety.desktop.in $out/share/applications/variety.desktop
+
+    mkdir -p $out/share/icons/hicolor/scalable/apps
+    cp variety/data/icons/scalable/apps/variety.svg $out/share/icons/hicolor/scalable/apps/variety.svg
+  '';
+
   pythonImportsCheck = [ "variety" ];
 
   meta = {

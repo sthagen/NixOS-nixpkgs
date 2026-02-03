@@ -33,7 +33,7 @@ stdenv.mkDerivation (finalAttrs: {
     ./0001-Fix-build-for-glibc-2.32.patch
   ];
 
-  NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
 
   buildInputs = [
     ncurses

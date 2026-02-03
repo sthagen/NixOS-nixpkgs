@@ -77,15 +77,13 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   # JUCE dlopen's these at runtime, crashes without them
-  NIX_LDFLAGS = (
-    toString [
-      "-lX11"
-      "-lXext"
-      "-lXcursor"
-      "-lXinerama"
-      "-lXrandr"
-    ]
-  );
+  env.NIX_LDFLAGS = toString [
+    "-lX11"
+    "-lXext"
+    "-lXcursor"
+    "-lXinerama"
+    "-lXrandr"
+  ];
 
   passthru = {
     rev-prefix = "release_xt_";
