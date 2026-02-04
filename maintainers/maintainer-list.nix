@@ -2267,11 +2267,6 @@
     name = "Artemis Tosini";
     keys = [ { fingerprint = "3D2B B230 F9FA F0C5 1832  46DD 4FDC 96F1 61E7 BA8A"; } ];
   };
-  arthsmn = {
-    name = "Arthur Cerqueira";
-    github = "arthsmn";
-    githubId = 150680976;
-  };
   arthur = {
     email = "me@arthur.li";
     github = "arthurl";
@@ -6249,6 +6244,13 @@
     github = "debling";
     githubId = 32403873;
     keys = [ { fingerprint = "3EDD 9C88 B0F2 58F8 C25F  5D2C CCBC 8AA1 AF06 2142"; } ];
+  };
+  debtquity = {
+    name = "Darren Rambaud";
+    email = "d.nixpkgs@ryz.dev";
+    github = "debtquity";
+    githubId = 225436867;
+    matrix = "@debtquity:matrix.org";
   };
   declan = {
     name = "Declan Rixon";
@@ -18084,6 +18086,12 @@
     githubId = 220262;
     name = "Ion Mudreac";
   };
+  mulatta = {
+    email = "seungwon@mulatta.io";
+    github = "mulatta";
+    githubId = 67085791;
+    name = "Seungwon Lee";
+  };
   MulliganSecurity = {
     email = "mulligansecurity@riseup.net";
     github = "MulliganSecurity";
@@ -19258,6 +19266,12 @@
     github = "NOTtheMessiah";
     githubId = 2946283;
     name = "Brian Cohen";
+  };
+  nouritsu = {
+    name = "Aneesh Bhave";
+    email = "aneesh1701@gmail.com";
+    github = "nouritsu";
+    githubId = 113834791;
   };
   nova-madeline = {
     matrix = "@nova:tchncs.de";

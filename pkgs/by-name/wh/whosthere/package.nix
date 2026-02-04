@@ -9,13 +9,13 @@
 
 buildGoModule (finalAttrs: {
   pname = "whosthere";
-  version = "0.5.0";
+  version = "0.5.1";
 
   src = fetchFromGitHub {
     owner = "ramonvermeulen";
     repo = "whosthere";
     tag = "v${finalAttrs.version}";
-    sha256 = "sha256-7NzQTwl+3FqihMB8nsgzoFoxvnxraZHgG66kPa77ulY=";
+    hash = "sha256-EuEq3HG7j5kz0GomJELcVy+POtbA+NtIM/Y/G3kGZn4=";
   };
 
   vendorHash = "sha256-YVPsWpIXC5SLm+T2jEGqF4MBcKOAAk0Vpc7zCIFkNw8=";

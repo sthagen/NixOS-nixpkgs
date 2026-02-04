@@ -13,6 +13,7 @@
   json-glib,
   libsecret,
   libglycin,
+  libglycin-gtk4,
   glib-networking,
   glycin-loaders,
 
@@ -47,6 +48,8 @@ stdenv.mkDerivation (finalAttrs: {
     json-glib
     libsecret
     libglycin
+    libglycin-gtk4
+    glycin-loaders
     glib-networking
   ];
 
@@ -56,12 +59,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   strictDeps = true;
-
-  preFixup = ''
-    gappsWrapperArgs+=(
-      --prefix XDG_DATA_DIRS : "${glycin-loaders}/share"
-    )
-  '';
 
   meta = {
     description = "Scrobbles your music to multiple services with playback controls for MPRIS players";

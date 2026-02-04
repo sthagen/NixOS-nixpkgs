@@ -29,7 +29,7 @@ buildGoModule rec {
     homepage = "https://gwen.works/hyprls";
     changelog = "https://github.com/hyprland-community/hyprls/releases/tag/v${version}";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ arthsmn ];
+    maintainers = [ ];
     mainProgram = "hyprls";
   };
 }

@@ -47,6 +47,7 @@ mapAliases (
     caw = caw-vim;
     chad = chadtree;
     coc-rls = throw "coc-rls has been removed, as rls has been archived since 2022. You should use coc-rust-analyzer instead, as rust-analyzer is maintained."; # added 2025-10-01
+    coc-sumneko-lua = throw "coc-sumneko-lua was removed, as it is unmaintained and broken. You should switch to lua_ls"; # added 2026-02-04
     coc-vetur = throw "coc-vetur was removed, as vetur is unmaintained by Vue. You should switch to Volar, which supports Vue 3"; # added 2025-10-01
     coffee-script = vim-coffee-script;
     coffeeScript = vim-coffee-script; # backwards compat, added 2014-10-18

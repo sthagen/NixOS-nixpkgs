@@ -2714,6 +2714,7 @@ assertNoAdditions {
     dependencies = with self; [
       none-ls-nvim
       nvim-treesitter-parsers.nu
+      plenary-nvim
     ];
   };
 
@@ -2838,6 +2839,10 @@ assertNoAdditions {
 
   nvim-treesitter-textobjects = super.nvim-treesitter-textobjects.overrideAttrs {
     dependencies = [ self.nvim-treesitter ];
+  };
+
+  nvim-treesitter-textobjects-legacy = super.nvim-treesitter-textobjects-legacy.overrideAttrs {
+    dependencies = [ self.nvim-treesitter-legacy ];
   };
 
   nvim-treesitter-textsubjects = super.nvim-treesitter-textsubjects.overrideAttrs {
@@ -3751,6 +3756,7 @@ assertNoAdditions {
     ];
     dependencies = with self; [
       nvim-lspconfig
+      plenary-nvim
     ];
   };
 

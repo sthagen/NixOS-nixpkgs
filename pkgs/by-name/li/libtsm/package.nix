@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "libtsm";
-  version = "4.4.1";
+  version = "4.4.2";
 
   src = fetchFromGitHub {
     owner = "kmscon";
     repo = "libtsm";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-8db/amwcV1a5Ho0dymQxKtOFsTN6nLUnwSobuAowSwk=";
+    hash = "sha256-DWy7kgBbXUEt2Htcugo8PaVoHE23Nu22EIrB5f6/P30=";
   };
 
   buildInputs = [ libxkbcommon ];
