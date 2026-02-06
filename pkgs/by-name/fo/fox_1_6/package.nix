@@ -7,13 +7,13 @@
   libtiff,
   zlib,
   bzip2,
-  libXcursor,
-  libXrandr,
+  libxcursor,
+  libxrandr,
   libGLU,
   libGL,
-  libXext,
-  libXft,
-  libXfixes,
+  libxext,
+  libxft,
+  libxfixes,
   mesa,
   xinput,
 }:
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   version = "1.6.57";
 
   src = fetchurl {
-    url = "ftp://ftp.fox-toolkit.org/pub/${pname}-${version}.tar.gz";
+    url = "ftp://ftp.fox-toolkit.org/pub/fox-${version}.tar.gz";
     sha256 = "08w98m6wjadraw1pi13igzagly4b2nfa57kdqdnkjfhgkvg1bvv5";
   };
 
@@ -33,13 +33,13 @@ stdenv.mkDerivation rec {
     libtiff
     zlib
     bzip2
-    libXcursor
-    libXrandr
-    libXext
-    libXft
+    libxcursor
+    libxrandr
+    libxext
+    libxft
     libGLU
     libGL
-    libXfixes
+    libxfixes
     xinput
   ];
 

@@ -2,10 +2,10 @@
   buildGoModule,
   fetchFromGitHub,
   lib,
-  libXi,
-  libXrandr,
-  libXt,
-  libXtst,
+  libxi,
+  libxrandr,
+  libxt,
+  libxtst,
 }:
 
 buildGoModule rec {
@@ -20,10 +20,10 @@ buildGoModule rec {
   };
 
   buildInputs = [
-    libXi
-    libXrandr
-    libXt
-    libXtst
+    libxi
+    libxrandr
+    libxt
+    libxtst
   ];
   tags = [ "portal,x11" ];
 

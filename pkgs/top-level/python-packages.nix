@@ -12977,6 +12977,8 @@ self: super: with self; {
 
   py3dns = callPackage ../development/python-modules/py3dns { };
 
+  py3dtiles = callPackage ../development/python-modules/py3dtiles { };
+
   py3exiv2 = callPackage ../development/python-modules/py3exiv2 { inherit (pkgs) exiv2; };
 
   py3langid = callPackage ../development/python-modules/py3langid { };

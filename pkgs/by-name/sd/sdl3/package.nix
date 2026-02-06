@@ -17,14 +17,14 @@
   libusb1,
   libxkbcommon,
   libgbm,
-  libX11,
+  libx11,
   libxcb,
-  libXScrnSaver,
-  libXcursor,
-  libXext,
-  libXfixes,
-  libXi,
-  libXrandr,
+  libxscrnsaver,
+  libxcursor,
+  libxext,
+  libxfixes,
+  libxi,
+  libxrandr,
   libxtst,
   ninja,
   nix-update-script,
@@ -108,7 +108,7 @@ stdenv.mkDerivation (finalAttrs: {
     ''
     + lib.optionalString x11Support ''
       substituteInPlace src/video/x11/SDL_x11vulkan.c \
-        --replace-fail 'libX11-xcb.so' '${lib.getLib libX11}/lib/libX11-xcb.so'
+        --replace-fail 'libX11-xcb.so' '${lib.getLib libx11}/lib/libX11-xcb.so'
     '';
 
   strictDeps = true;
@@ -145,14 +145,14 @@ stdenv.mkDerivation (finalAttrs: {
       wayland
     ]
     ++ lib.optionals x11Support [
-      libX11
+      libx11
       libxcb
-      libXScrnSaver
-      libXcursor
-      libXext
-      libXfixes
-      libXi
-      libXrandr
+      libxscrnsaver
+      libxcursor
+      libxext
+      libxfixes
+      libxi
+      libxrandr
       libxtst
     ]
     ++ [

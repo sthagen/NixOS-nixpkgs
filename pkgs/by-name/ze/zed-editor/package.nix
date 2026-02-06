@@ -35,8 +35,8 @@
   makeBinaryWrapper,
   nodejs,
   libGL,
-  libX11,
-  libXext,
+  libx11,
+  libxext,
   livekit-libwebrtc,
   testers,
   writableTmpDirAsHomeHook,
@@ -173,8 +173,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     libxcb
     # required by livekit:
     libGL
-    libX11
-    libXext
+    libx11
+    libxext
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     apple-sdk_15

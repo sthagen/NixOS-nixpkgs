@@ -2,8 +2,8 @@
   lib,
   stdenv,
   fetchurl,
-  libX11,
-  libXaw,
+  libx11,
+  libxaw,
 }:
 
 stdenv.mkDerivation rec {
@@ -11,13 +11,13 @@ stdenv.mkDerivation rec {
   pname = "autocutsel";
 
   src = fetchurl {
-    url = "https://github.com/sigmike/autocutsel/releases/download/${version}/${pname}-${version}.tar.gz";
+    url = "https://github.com/sigmike/autocutsel/releases/download/${version}/autocutsel-${version}.tar.gz";
     sha256 = "sha256-8X4G1C90lENtSyb0vgtrDaOUgcBADJZ3jkuQW2NB6xc=";
   };
 
   buildInputs = [
-    libX11
-    libXaw
+    libx11
+    libxaw
   ];
   installPhase = ''
     mkdir -p $out/bin

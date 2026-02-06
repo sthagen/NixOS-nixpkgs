@@ -4,7 +4,7 @@
   fetchFromGitLab,
   fetchpatch,
   libGL,
-  libX11,
+  libx11,
 }:
 
 stdenv_32bit.mkDerivation rec {
@@ -13,7 +13,7 @@ stdenv_32bit.mkDerivation rec {
 
   buildInputs = [
     libGL
-    libX11
+    libx11
   ];
 
   src = fetchFromGitLab {

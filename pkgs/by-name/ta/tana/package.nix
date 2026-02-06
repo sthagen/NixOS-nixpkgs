@@ -1,11 +1,11 @@
 {
-  libX11,
+  libx11,
   libxcb,
-  libXcomposite,
-  libXdamage,
-  libXext,
-  libXfixes,
-  libXrandr,
+  libxcomposite,
+  libxdamage,
+  libxext,
+  libxfixes,
+  libxrandr,
   stdenv,
   lib,
   alsa-lib,
@@ -45,14 +45,14 @@ let
     glib
     gtk3
     libdrm
-    libX11
+    libx11
     libxcb
-    libXcomposite
-    libXdamage
-    libXext
-    libXfixes
+    libxcomposite
+    libxdamage
+    libxext
+    libxfixes
     libxkbcommon
-    libXrandr
+    libxrandr
     nspr
     nss
     pango

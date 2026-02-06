@@ -10,24 +10,19 @@
   pkg-config,
   openssl,
 }:
-
+let
+  data = lib.importJSON ./git-data.json;
+in
 stdenv.mkDerivation rec {
+  inherit (data) version;
   pname = "gitaly-git";
-  version = "2.50.1.gl1";
 
   # `src` attribute for nix-update
   src = fetchFromGitLab {
     owner = "gitlab-org";
     repo = "git";
-    rev = "v${version}";
-    hash = "sha256-q+xQAVsatw0vS4iIgAxciAVVMr33BjG0yM4AvZrXB+8=";
+    inherit (data) rev hash;
     leaveDotGit = true;
-    # The build system clones the repo from the store (since it always expects
-    # to be able to clone in the makefiles) and it looks like nix doesn't leave
-    # the tag so we re-add it.
-    postFetch = ''
-      git -C $out tag v${version};
-    '';
   };
 
   # Use gitaly and their build system as source root
@@ -39,7 +34,7 @@ stdenv.mkDerivation rec {
 
   sourceRoot = src.name;
 
-  buildFlags = [ "git" ];
+  buildFlags = [ "install-git" ];
   GIT_REPO_URL = src;
   HOME = "/build";
 

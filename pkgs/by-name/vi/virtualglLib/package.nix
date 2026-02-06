@@ -5,9 +5,9 @@
   cmake,
   libGL,
   libGLU,
-  libXv,
-  libXtst,
-  libXi,
+  libxv,
+  libxtst,
+  libxi,
   libjpeg_turbo,
   fltk_1_3,
   libxcb-keysyms,
@@ -47,9 +47,9 @@ stdenv.mkDerivation rec {
     libGL
     libGLU
     fltk_1_3
-    libXv
-    libXtst
-    libXi
+    libxv
+    libxtst
+    libxi
     libxcb-keysyms
     opencl-headers
     opencl-clhpp

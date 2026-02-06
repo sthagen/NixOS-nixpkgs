@@ -10,12 +10,12 @@
   pam,
   libxslt,
   libxml2,
-  libX11,
+  libx11,
   xorgproto,
-  libXext,
-  libXcursor,
-  libXfixes,
-  libXmu,
+  libxext,
+  libxcursor,
+  libxfixes,
+  libxmu,
   SDL2,
   libcap,
   libGL,
@@ -23,8 +23,8 @@
   libpng,
   glib,
   lvm2,
-  libXrandr,
-  libXinerama,
+  libxrandr,
+  libxinerama,
   libopus,
   libtpms,
   qt6,
@@ -144,9 +144,9 @@ stdenv.mkDerivation (finalAttrs: {
     libxslt
     libxml2
     xorgproto
-    libX11
-    libXext
-    libXcursor
+    libx11
+    libxext
+    libxcursor
     libcap
     glib
     lvm2
@@ -156,8 +156,8 @@ stdenv.mkDerivation (finalAttrs: {
     pam
     makeself
     perl
-    libXmu
-    libXrandr
+    libxmu
+    libxrandr
     libpng
     libopus
     libtpms
@@ -172,7 +172,7 @@ stdenv.mkDerivation (finalAttrs: {
     qtbase
     qttools
     qtscxml
-    libXinerama
+    libxinerama
     SDL2
     libGLU
   ]
@@ -208,7 +208,7 @@ stdenv.mkDerivation (finalAttrs: {
       s@"libdbus-1\.so\.3"@"${dbus.lib}/lib/libdbus-1.so.3"@g'
 
     grep 'libXfixes\.so\.3'     src include -rI --files-with-match | xargs sed -i -e '
-      s@"libXfixes\.so\.3"@"${libXfixes.out}/lib/libXfixes.so.3"@g'
+      s@"libXfixes\.so\.3"@"${libxfixes.out}/lib/libXfixes.so.3"@g'
 
     grep 'libasound\.so\.2'     src include -rI --files-with-match | xargs sed -i -e '
       s@"libasound\.so\.2"@"${alsa-lib.out}/lib/libasound.so.2"@g'

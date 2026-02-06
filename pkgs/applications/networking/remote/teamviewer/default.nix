@@ -8,13 +8,13 @@
   dbus,
   getconf,
   glibc,
-  libXrandr,
-  libX11,
-  libXext,
-  libXdamage,
-  libXtst,
-  libSM,
-  libXfixes,
+  libxrandr,
+  libx11,
+  libxext,
+  libxdamage,
+  libxtst,
+  libsm,
+  libxfixes,
   coreutils,
   wrapQtAppsHook,
   icu63,
@@ -126,13 +126,13 @@ stdenv.mkDerivation rec {
     }"
     "--prefix LD_LIBRARY_PATH : ${
       lib.makeLibraryPath [
-        libXrandr
-        libX11
-        libXext
-        libXdamage
-        libXtst
-        libSM
-        libXfixes
+        libxrandr
+        libx11
+        libxext
+        libxdamage
+        libxtst
+        libsm
+        libxfixes
         dbus
         icu63
       ]

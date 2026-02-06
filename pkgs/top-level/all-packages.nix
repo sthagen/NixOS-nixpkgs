@@ -3284,6 +3284,8 @@ with pkgs;
 
   pulumiPackages = recurseIntoAttrs pulumi.pkgs;
 
+  py3dtiles = with python3Packages; toPythonApplication py3dtiles;
+
   patch = gnupatch;
 
   pcscliteWithPolkit = pcsclite.override {
@@ -7289,13 +7291,6 @@ with pkgs;
       url = "https://git.dev.opencascade.org/gitweb/?p=occt.git;a=snapshot;h=${commit};sf=tgz";
       hash = "sha256-n3KFrN/mN1SVXfuhEUAQ1fJzrCvhiclxfEIouyj9Z18=";
     };
-    patches = [
-      # Backport GCC 14 build fix
-      (fetchpatch {
-        url = "https://github.com/Open-Cascade-SAS/OCCT/commit/7236e83dcc1e7284e66dc61e612154617ef715d6.patch";
-        hash = "sha256-NoC2mE3DG78Y0c9UWonx1vmXoU4g5XxFUT3eVXqLU60=";
-      })
-    ];
   };
 
   opencascade-occt_7_6_1 = opencascade-occt.overrideAttrs {
@@ -7851,8 +7846,6 @@ with pkgs;
   xapian-omega = callPackage ../development/libraries/xapian/tools/omega {
     libmagic = file;
   };
-
-  xcb-util-cursor = libxcb-cursor;
 
   xgboostWithCuda = xgboost.override { cudaSupport = true; };
 
@@ -8822,61 +8815,8 @@ with pkgs;
 
   virtualenv-clone = with python3Packages; toPythonApplication virtualenv-clone;
 
-  fontadobe100dpi = font-adobe-100dpi;
-  fontadobeutopia100dpi = font-adobe-utopia-100dpi;
-  fontbh100dpi = font-bh-100dpi;
-  fontbhlucidatypewriter100dpi = font-bh-lucidatypewriter-100dpi;
-  fontbitstream100dpi = font-bitstream-100dpi;
-  fontutil = font-util;
-  libAppleWM = libapplewm;
-  libFS = libfs;
-  libICE = libice;
-  libpthreadstubs = libpthread-stubs;
-  libSM = libsm;
-  libX11 = libx11;
-  libXau = libxau;
-  libXaw = libxaw;
-  libXcomposite = libxcomposite;
-  libXcursor = libxcursor;
-  libXdamage = libxdamage;
-  libXdmcp = libxdmcp;
-  libXext = libxext;
-  libXfixes = libxfixes;
-  libXfont2 = libxfont_2;
-  libXft = libxft;
-  libXi = libxi;
-  libXinerama = libxinerama;
-  libXmu = libxmu;
-  libXp = libxp;
-  libXpm = libxpm;
-  libXpresent = libxpresent;
-  libXrandr = libxrandr;
-  libXrender = libxrender;
-  libXres = libxres;
-  libXScrnSaver = libxscrnsaver;
-  libXt = libxt;
-  libXtst = libxtst;
-  libXv = libxv;
-  libXvMC = libxvmc;
-  libXxf86dga = libxxf86dga;
-  libXxf86misc = libxxf86misc;
-  libXxf86vm = libxxf86vm;
   mkfontdir = mkfontscale;
-  utilmacros = util-macros;
   xcbproto = xcb-proto;
-  xcbutil = libxcb-util;
-  xcbutilcursor = libxcb-cursor;
-  xcbutilerrors = libxcb-errors;
-  xcbutilimage = libxcb-image;
-  xcbutilkeysyms = libxcb-keysyms;
-  xcbutilrenderutil = libxcb-render-util;
-  xcbutilwm = libxcb-wm;
-  xf86inputevdev = xf86-input-evdev;
-  xf86inputlibinput = xf86-input-libinput;
-  xf86videonouveau = xf86-video-nouveau;
-  xkeyboardconfig = xkeyboard-config;
-  xorgcffiles = xorg-cf-files;
-  xorgserver = xorg-server;
 
   zabbixFor = version: rec {
     agent = (callPackages ../servers/monitoring/zabbix/agent.nix { }).${version};
@@ -10009,16 +9949,6 @@ with pkgs;
     pname = "firefox-bin";
   };
 
-  librewolf-unwrapped = import ../applications/networking/browsers/librewolf {
-    inherit
-      stdenv
-      lib
-      callPackage
-      buildMozillaMach
-      nixosTests
-      ;
-  };
-
   librewolf = wrapFirefox librewolf-unwrapped {
     inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
     libName = "librewolf";
@@ -10968,10 +10898,6 @@ with pkgs;
     withXineBackend = true;
   };
 
-  qutebrowser-qt5 = qutebrowser.override {
-    qt6Packages = libsForQt5;
-  };
-
   rakarrack = callPackage ../applications/audio/rakarrack {
     fltk = fltk_1_3;
   };
@@ -11168,8 +11094,6 @@ with pkgs;
   taffybar = callPackage ../applications/window-managers/taffybar {
     inherit (haskellPackages) ghcWithPackages taffybar;
   };
-
-  tagainijisho = libsForQt5.callPackage ../applications/office/tagainijisho { };
 
   telegram-desktop =
     kdePackages.callPackage ../applications/networking/instant-messengers/telegram/telegram-desktop
@@ -11479,10 +11403,6 @@ with pkgs;
   };
 
   webcamoid = qt6Packages.callPackage ../applications/video/webcamoid { };
-
-  webmacs = libsForQt5.callPackage ../applications/networking/browsers/webmacs {
-    stdenv = if stdenv.cc.isClang then gccStdenv else stdenv;
-  };
 
   webssh = with python3Packages; toPythonApplication webssh;
 
@@ -12312,6 +12232,7 @@ with pkgs;
     (callPackage ./rocq-packages.nix {
       inherit (ocaml-ng)
         ocamlPackages_4_14
+        ocamlPackages_5_4
         ;
     })
     mkRocqPackages
@@ -12319,6 +12240,8 @@ with pkgs;
     rocq-core_9_0
     rocqPackages_9_1
     rocq-core_9_1
+    rocqPackages_9_2
+    rocq-core_9_2
     rocqPackages
     rocq-core
     ;
@@ -12330,10 +12253,12 @@ with pkgs;
         ocamlPackages_4_10
         ocamlPackages_4_12
         ocamlPackages_4_14
+        ocamlPackages_5_4
         ;
       inherit
         rocqPackages_9_0
         rocqPackages_9_1
+        rocqPackages_9_2
         rocqPackages
         ;
     })
@@ -12370,6 +12295,8 @@ with pkgs;
     coq_9_0
     coqPackages_9_1
     coq_9_1
+    coqPackages_9_2
+    coq_9_2
     coqPackages
     coq
     ;
@@ -12833,18 +12760,6 @@ with pkgs;
     }
   );
 
-  mysql-workbench = callPackage ../by-name/my/mysql-workbench/package.nix (
-    let
-      mysql = mysql80;
-    in
-    {
-      gdal = gdal.override {
-        libmysqlclient = mysql;
-      };
-      mysql = mysql;
-    }
-  );
-
   pgadmin4-desktopmode = pgadmin4.override { server-mode = false; };
 
   philipstv = with python3Packages; toPythonApplication philipstv;
@@ -13022,6 +12937,8 @@ with pkgs;
     ;
 
   tora = libsForQt5.callPackage ../development/tools/tora { };
+
+  torcs-without-data = callPackage ../../pkgs/by-name/to/torcs/without-data.nix { };
 
   nitrokey-app = libsForQt5.callPackage ../tools/security/nitrokey-app { };
 

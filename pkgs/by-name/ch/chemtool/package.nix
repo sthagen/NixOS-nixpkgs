@@ -3,7 +3,7 @@
   stdenv,
   fetchurl,
   pkg-config,
-  libX11,
+  libx11,
   gtk2,
   fig2dev,
   wrapGAppsHook3,
@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
   version = "1.6.14";
 
   src = fetchurl {
-    url = "http://ruby.chemie.uni-freiburg.de/~martin/${pname}/${pname}-${version}.tar.gz";
+    url = "http://ruby.chemie.uni-freiburg.de/~martin/chemtool/chemtool-${version}.tar.gz";
     sha256 = "hhYaBGE4azNKX/sXzfCUpJGUGIRngnL0V0mBNRTdr8s=";
   };
 
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
     wrapGAppsHook3
   ];
   buildInputs = [
-    libX11
+    libx11
     gtk2
     fig2dev
   ];

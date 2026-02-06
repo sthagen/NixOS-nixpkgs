@@ -14,7 +14,7 @@
   jdk,
   libGL,
   libGLU,
-  libX11,
+  libx11,
   libjpeg,
   libpng,
   libtiff,
@@ -75,7 +75,7 @@ stdenv.mkDerivation (finalAttrs: {
     xercesc
     zlib
     python3
-    libX11
+    libx11
     libxcursor
     libxext
     libxfixes

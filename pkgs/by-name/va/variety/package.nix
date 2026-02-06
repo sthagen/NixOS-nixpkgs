@@ -119,6 +119,7 @@ python3Packages.buildPythonApplication rec {
     maintainers = with lib.maintainers; [
       p3psi
       zfnmxt
+      willfish
     ];
   };
 }

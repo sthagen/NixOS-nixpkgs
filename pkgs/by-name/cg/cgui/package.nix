@@ -5,7 +5,7 @@
   texinfo,
   allegro,
   perl,
-  libX11,
+  libx11,
 }:
 
 stdenv.mkDerivation rec {
@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   version = "2.1.0";
 
   src = fetchurl {
-    url = "mirror://sourceforge/project/cgui/${version}/${pname}-${version}.tar.gz";
+    url = "mirror://sourceforge/project/cgui/${version}/cgui-${version}.tar.gz";
     sha256 = "1pp1hvidpilq37skkmbgba4lvzi01rasy04y0cnas9ck0canv00s";
   };
 
@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
     texinfo
     allegro
     perl
-    libX11
+    libx11
   ];
 
   configurePhase = ''

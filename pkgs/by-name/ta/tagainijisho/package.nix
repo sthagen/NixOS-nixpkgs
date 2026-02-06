@@ -1,12 +1,10 @@
 {
-  stdenv,
   lib,
+  stdenv,
   fetchzip,
-  qtbase,
-  qttools,
   cmake,
   sqlite,
-  wrapQtAppsHook,
+  qt5,
 }:
 
 stdenv.mkDerivation rec {
@@ -24,12 +22,12 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    qttools
+    qt5.qttools
     cmake
-    wrapQtAppsHook
+    qt5.wrapQtAppsHook
   ];
   buildInputs = [
-    qtbase
+    qt5.qtbase
     sqlite
   ];
 

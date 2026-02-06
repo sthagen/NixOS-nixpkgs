@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
   version = "1.4.15";
 
   src = fetchurl {
-    url = "mirror://samba/tdb/${pname}-${version}.tar.gz";
+    url = "mirror://samba/tdb/tdb-${version}.tar.gz";
     hash = "sha256-+6CdjfHxuQcq6ujniyvUPFr+8gsvbe76YzqhSjd6jdI=";
   };
 

@@ -8,11 +8,11 @@
   freetype,
   libjack2,
   lv2,
-  libX11,
-  libXcursor,
-  libXext,
-  libXinerama,
-  libXrandr,
+  libx11,
+  libxcursor,
+  libxext,
+  libxinerama,
+  libxrandr,
   libGL,
   gcc-unwrapped,
   copyDesktopItems,
@@ -43,11 +43,11 @@ stdenv.mkDerivation (finalAttrs: {
     freetype
     libjack2
     lv2
-    libX11
-    libXcursor
-    libXext
-    libXinerama
-    libXrandr
+    libx11
+    libxcursor
+    libxext
+    libxinerama
+    libxrandr
     libGL
   ];
 

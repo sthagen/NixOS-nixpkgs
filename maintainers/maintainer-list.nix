@@ -6094,6 +6094,12 @@
     name = "David Wood";
     keys = [ { fingerprint = "5B08 313C 6853 E5BF FA91  A817 0176 0B4F 9F53 F154"; } ];
   };
+  davidweisse = {
+    name = "David Weiße";
+    github = "davidweisse";
+    githubId = 98460960;
+    email = "david.weisse@gmx.net";
+  };
   davisrichard437 = {
     email = "davisrichard437@gmail.com";
     github = "davisrichard437";
@@ -9550,6 +9556,12 @@
     githubId = 127353;
     name = "Geoffrey Huntley";
   };
+  gibbert = {
+    email = "gbjgms@gmail.com";
+    github = "zgibberish";
+    githubId = 67570424;
+    name = "gibbert";
+  };
   gigahawk = {
     email = "Jasper Chan";
     name = "jasperchan515@gmail.com";
@@ -11773,6 +11785,12 @@
     github = "JamieMagee";
     githubId = 1358764;
     name = "Jamie Magee";
+  };
+  janhencic = {
+    name = "Jan Hencic";
+    email = "jan@hencic.com";
+    github = "janhencic";
+    githubId = 61284133;
   };
   jankaifer = {
     name = "Jan Kaifer";
@@ -18645,6 +18663,11 @@
     githubId = 50854675;
     name = "Nelson Jeppesen";
   };
+  nemin = {
+    name = "Nemin";
+    github = "Nemin32";
+    githubId = 2953293;
+  };
   neosimsim = {
     email = "me@abn.sh";
     github = "neosimsim";
@@ -22277,6 +22300,13 @@
     email = "smol.ivan97@gmail.com";
     github = "renesat";
     githubId = 11363539;
+  };
+  Renna42 = {
+    name = "Renna Z.";
+    email = "is@renna.dev";
+    github = "Renna42";
+    githubId = 47046832;
+    keys = [ { fingerprint = "7E33 7F70 6F89 4D13 D8E6  B718 9676 3FAE 10AC 74FC"; } ];
   };
   rennsax = {
     name = "Bojun Ren";
@@ -26607,6 +26637,12 @@
     githubId = 633969;
     name = "Miroslav Vadkerti";
   };
+  ths-on = {
+    email = "thore.sommer@tum.de";
+    github = "THS-on";
+    githubId = 10854414;
+    name = "Thore Sommer";
+  };
   thtrf = {
     email = "thtrf@proton.me";
     github = "thtrf";
@@ -28438,6 +28474,12 @@
     github = "willcohen";
     githubId = 5185341;
     name = "Will Cohen";
+  };
+  willfish = {
+    email = "willfish@pescado.mozmail.com";
+    github = "willfish";
+    githubId = 8156884;
+    name = "William Fish";
   };
   willibutz = {
     email = "willibutz@posteo.de";

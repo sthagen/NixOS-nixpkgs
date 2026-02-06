@@ -2,13 +2,13 @@
   fetchFromGitHub,
   lib,
   pkg-config,
-  libX11,
-  libXcursor,
-  libXrandr,
-  libXinerama,
-  libXi,
-  libXext,
-  libXxf86vm,
+  libx11,
+  libxcursor,
+  libxrandr,
+  libxinerama,
+  libxi,
+  libxext,
+  libxxf86vm,
   libGL,
   nixosTests,
   buildGoModule,
@@ -30,13 +30,13 @@ buildGoModule rec {
   nativeBuildInputs = [ pkg-config ];
 
   buildInputs = [
-    libX11
-    libXcursor
-    libXrandr
-    libXinerama
-    libXi
-    libXext
-    libXxf86vm
+    libx11
+    libxcursor
+    libxrandr
+    libxinerama
+    libxi
+    libxext
+    libxxf86vm
     libGL
   ];
 

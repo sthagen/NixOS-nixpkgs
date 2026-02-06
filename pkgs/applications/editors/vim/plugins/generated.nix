@@ -13453,6 +13453,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  qfctl-nvim = buildVimPlugin {
+    pname = "qfctl.nvim";
+    version = "0-unstable-2026-01-07";
+    src = fetchFromGitHub {
+      owner = "marcelbeumer";
+      repo = "qfctl.nvim";
+      rev = "c7779de59f61c2474f594a6e11ddbbff338d9e3f";
+      hash = "sha256-uNToBV6iYuRrWsd7Rs2Q/4VZ/mgmg7PipIVO2YVMqBE=";
+    };
+    meta.homepage = "https://github.com/marcelbeumer/qfctl.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   qmk-nvim = buildVimPlugin {
     pname = "qmk.nvim";
     version = "1.0.0-unstable-2025-06-22";
@@ -15172,6 +15185,19 @@ final: prev: {
       fetchSubmodules = true;
     };
     meta.homepage = "https://github.com/nvim-telekasten/telekasten.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  telescope-ast-grep-nvim = buildVimPlugin {
+    pname = "telescope-ast-grep.nvim";
+    version = "0-unstable-2023-11-05";
+    src = fetchFromGitHub {
+      owner = "ray-x";
+      repo = "telescope-ast-grep.nvim";
+      rev = "fa7d7fa5c723b57bba333429224e99fde2a63632";
+      hash = "sha256-WPzFG8gdf0XzxsFkxgseOy6GQBu9C2KDOXeasdct0F8=";
+    };
+    meta.homepage = "https://github.com/ray-x/telescope-ast-grep.nvim/";
     meta.hydraPlatforms = [ ];
   };
 

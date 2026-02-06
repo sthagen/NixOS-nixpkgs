@@ -30,6 +30,7 @@ python3Packages.buildPythonApplication rec {
   ];
 
   pythonRelaxDeps = [
+    "urwid"
     "urwid-readline"
   ];
 

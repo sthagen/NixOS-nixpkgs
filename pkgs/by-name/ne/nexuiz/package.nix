@@ -13,13 +13,13 @@
   libogg,
   libmodplug,
   # glx
-  libX11,
+  libx11,
   libGLU,
   libGL,
-  libXpm,
-  libXext,
-  libXxf86vm,
-  libXxf86dga,
+  libxpm,
+  libxext,
+  libxxf86vm,
+  libxxf86dga,
   alsa-lib,
   # sdl
   SDL,
@@ -48,13 +48,13 @@ stdenv.mkDerivation {
   ];
   buildInputs = [
     # glx
-    libX11
+    libx11
     libGLU
     libGL
-    libXpm
-    libXext
-    libXxf86vm
-    libXxf86dga
+    libxpm
+    libxext
+    libxxf86vm
+    libxxf86dga
     alsa-lib
     # sdl
     SDL

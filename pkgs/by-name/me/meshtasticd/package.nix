@@ -9,7 +9,7 @@
   writableTmpDirAsHomeHook,
   bluez,
   i2c-tools,
-  libX11,
+  libx11,
   libgpiod_1,
   libinput,
   libusb1,
@@ -67,7 +67,7 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     bluez
     i2c-tools
-    libX11
+    libx11
     libgpiod_1
     libinput
     libusb1

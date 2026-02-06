@@ -7,9 +7,9 @@
   cmake,
   pkg-config,
   doxygen,
-  libX11,
-  libXinerama,
-  libXrandr,
+  libx11,
+  libxinerama,
+  libxrandr,
   libGLU,
   libGL,
   glib,
@@ -79,9 +79,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs =
     lib.optionals (!stdenv.hostPlatform.isDarwin) [
-      libX11
-      libXinerama
-      libXrandr
+      libx11
+      libxinerama
+      libxrandr
       libGLU
       libGL
     ]

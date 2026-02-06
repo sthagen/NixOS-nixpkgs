@@ -6,7 +6,7 @@
   libjack2,
   libGLU,
   libGL,
-  libX11,
+  libx11,
   pkg-config,
 }:
 
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
   version = "0.7";
 
   src = fetchurl {
-    url = "http://das.nasophon.de/download/${pname}-${version}.tar.gz";
+    url = "http://das.nasophon.de/download/jack_oscrolloscope-${version}.tar.gz";
     sha256 = "1pl55in0sj7h5r06n1v91im7d18pplvhbjhjm1fdl39zwnyxiash";
   };
 
@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     libjack2
     libGLU
     libGL
-    libX11
+    libx11
   ];
 
   installPhase = ''

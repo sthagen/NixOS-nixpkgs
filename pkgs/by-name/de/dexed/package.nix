@@ -5,11 +5,11 @@
   gitUpdater,
   cmake,
   pkg-config,
-  libX11,
-  libXrandr,
-  libXinerama,
-  libXext,
-  libXcursor,
+  libx11,
+  libxrandr,
+  libxinerama,
+  libxext,
+  libxcursor,
   freetype,
   alsa-lib,
   libjack2,
@@ -43,11 +43,11 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = lib.optionals stdenv.hostPlatform.isLinux [
-    libX11
-    libXext
-    libXcursor
-    libXinerama
-    libXrandr
+    libx11
+    libxext
+    libxcursor
+    libxinerama
+    libxrandr
     freetype
     alsa-lib
     libjack2

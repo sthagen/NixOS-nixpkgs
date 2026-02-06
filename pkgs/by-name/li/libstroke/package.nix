@@ -4,7 +4,7 @@
   fetchurl,
   automake,
   autoconf,
-  libX11,
+  libx11,
 }:
 
 stdenv.mkDerivation rec {
@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   version = "0.5.1";
 
   src = fetchurl {
-    url = "https://web.archive.org/web/20161204100704/http://etla.net/libstroke/${pname}-${version}.tar.gz";
+    url = "https://web.archive.org/web/20161204100704/http://etla.net/libstroke/libstroke-${version}.tar.gz";
     sha256 = "0bbpqzsqh9zrc6cg62f6vp1p4dzvv37blsd0gdlzdskgwvyzba8d";
   };
 
@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
     automake
     autoconf
   ];
-  buildInputs = [ libX11 ];
+  buildInputs = [ libx11 ];
 
   # libstroke ships with an ancient config.sub that doesn't know about x86_64, so regenerate it.
   # Also, modern automake doesn't like things and returns error code 63.  But it generates the file.

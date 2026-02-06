@@ -4,8 +4,8 @@
   fetchurl,
   imake,
   gccmakedep,
-  libXt,
-  libXext,
+  libxt,
+  libxext,
 }:
 
 stdenv.mkDerivation rec {
@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   version = "1.1";
 
   src = fetchurl {
-    url = "http://xearth.org/${pname}-${version}.tar.gz";
+    url = "http://xearth.org/xearth-${version}.tar.gz";
     hash = "sha256-vLFAfMNbP23TYGssYHInO2qRLL2e0a4i+y0maUVBMJw=";
   };
 
@@ -25,8 +25,8 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    libXt
-    libXext
+    libxt
+    libxext
   ];
 
   installFlags = [

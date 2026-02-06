@@ -17,11 +17,11 @@
   wayland,
   wayland-scanner,
   nix-update-script,
-  libX11,
+  libx11,
   libxcb,
-  libXcursor,
-  libXi,
-  libXrandr,
+  libxcursor,
+  libxi,
+  libxrandr,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -67,11 +67,11 @@ rustPlatform.buildRustPackage rec {
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     wayland
-    libX11
+    libx11
     libxcb
-    libXcursor
-    libXi
-    libXrandr
+    libxcursor
+    libxi
+    libxrandr
   ];
 
   # Tests rely on local files, so disable them. (I'm too lazy to patch it.)

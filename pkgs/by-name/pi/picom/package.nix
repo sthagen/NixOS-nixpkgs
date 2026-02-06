@@ -10,10 +10,10 @@
   libev,
   libGL,
   libepoxy,
-  libX11,
+  libx11,
   libxcb,
   libxdg_basedir,
-  libXext,
+  libxext,
   libxml2,
   libxslt,
   makeWrapper,
@@ -24,9 +24,9 @@
   pkg-config,
   stdenv,
   uthash,
-  xcbutil,
-  xcbutilimage,
-  xcbutilrenderutil,
+  libxcb-util,
+  libxcb-image,
+  libxcb-render-util,
   xorgproto,
   xwininfo,
   withDebug ? false,
@@ -65,18 +65,18 @@ stdenv.mkDerivation (finalAttrs: {
     libev
     libGL
     libepoxy
-    libX11
+    libx11
     libxcb
     libxdg_basedir
-    libXext
+    libxext
     libxml2
     libxslt
     pcre2
     pixman
     uthash
-    xcbutil
-    xcbutilimage
-    xcbutilrenderutil
+    libxcb-util
+    libxcb-image
+    libxcb-render-util
     xorgproto
   ];
 

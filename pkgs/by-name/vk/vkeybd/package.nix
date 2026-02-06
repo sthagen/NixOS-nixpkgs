@@ -3,7 +3,7 @@
   stdenv,
   fetchurl,
   alsa-lib,
-  libX11,
+  libx11,
   makeWrapper,
   tcl,
   tk,
@@ -14,14 +14,14 @@ stdenv.mkDerivation rec {
   version = "0.1.18d";
 
   src = fetchurl {
-    url = "ftp://ftp.suse.com/pub/people/tiwai/vkeybd/${pname}-${version}.tar.bz2";
+    url = "ftp://ftp.suse.com/pub/people/tiwai/vkeybd/vkeybd-${version}.tar.bz2";
     sha256 = "0107b5j1gf7dwp7qb4w2snj4bqiyps53d66qzl2rwj4jfpakws5a";
   };
 
   nativeBuildInputs = [ makeWrapper ];
   buildInputs = [
     alsa-lib
-    libX11
+    libx11
     tcl
     tk
   ];

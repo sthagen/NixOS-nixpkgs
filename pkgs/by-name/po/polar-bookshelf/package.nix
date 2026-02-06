@@ -14,18 +14,18 @@
   glib,
   at-spi2-atk,
   dbus,
-  libX11,
+  libx11,
   libxcb,
-  libXi,
-  libXcursor,
-  libXdamage,
-  libXrandr,
-  libXcomposite,
-  libXext,
-  libXfixes,
-  libXrender,
-  libXtst,
-  libXScrnSaver,
+  libxi,
+  libxcursor,
+  libxdamage,
+  libxrandr,
+  libxcomposite,
+  libxext,
+  libxfixes,
+  libxrender,
+  libxtst,
+  libxscrnsaver,
   nss,
   nspr,
   alsa-lib,
@@ -64,18 +64,18 @@ stdenv.mkDerivation rec {
     gdk-pixbuf
     at-spi2-atk
     dbus
-    libX11
+    libx11
     libxcb
-    libXi
-    libXcursor
-    libXdamage
-    libXrandr
-    libXcomposite
-    libXext
-    libXfixes
-    libXrender
-    libXtst
-    libXScrnSaver
+    libxi
+    libxcursor
+    libxdamage
+    libxrandr
+    libxcomposite
+    libxext
+    libxfixes
+    libxrender
+    libxtst
+    libxscrnsaver
     nss
     nspr
     alsa-lib

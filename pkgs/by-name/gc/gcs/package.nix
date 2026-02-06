@@ -6,12 +6,12 @@
   nix-update-script,
   pkg-config,
   libGL,
-  libX11,
-  libXcursor,
-  libXrandr,
-  libXinerama,
-  libXi,
-  libXxf86vm,
+  libx11,
+  libxcursor,
+  libxrandr,
+  libxinerama,
+  libxi,
+  libxxf86vm,
   mupdf,
   fontconfig,
   freetype,
@@ -42,12 +42,12 @@ buildGoModule rec {
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     libGL
-    libX11
-    libXcursor
-    libXrandr
-    libXinerama
-    libXi
-    libXxf86vm
+    libx11
+    libxcursor
+    libxrandr
+    libxinerama
+    libxi
+    libxxf86vm
     fontconfig
     freetype
   ];

@@ -6,12 +6,12 @@
   pkg-config,
   glfw,
   libxft,
-  libXcursor,
-  libXrandr,
-  libXinerama,
+  libxcursor,
+  libxrandr,
+  libxinerama,
   xinput,
-  libXi,
-  libXxf86vm,
+  libxi,
+  libxxf86vm,
 }:
 buildGoModule rec {
   pname = "bepass";
@@ -34,12 +34,12 @@ buildGoModule rec {
   buildInputs = lib.optionals enableGUI [
     glfw
     libxft
-    libXcursor
-    libXrandr
-    libXinerama
-    libXi
+    libxcursor
+    libxrandr
+    libxinerama
+    libxi
     xinput
-    libXxf86vm
+    libxxf86vm
   ];
 
   ldflags = [

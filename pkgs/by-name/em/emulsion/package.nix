@@ -8,11 +8,11 @@
   pkg-config,
   python3,
   libGL,
-  libX11,
-  libXcursor,
-  libXi,
-  libXrandr,
-  libXxf86vm,
+  libx11,
+  libxcursor,
+  libxi,
+  libxrandr,
+  libxxf86vm,
   libxcb,
   libxkbcommon,
   wayland,
@@ -20,11 +20,11 @@
 let
   rpathLibs = [
     libGL
-    libX11
-    libXcursor
-    libXi
-    libXrandr
-    libXxf86vm
+    libx11
+    libxcursor
+    libxi
+    libxrandr
+    libxxf86vm
     libxcb
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [

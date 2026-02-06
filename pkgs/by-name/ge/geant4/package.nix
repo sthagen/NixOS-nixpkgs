@@ -11,10 +11,10 @@
   libGL,
   libGLU,
   libGLX,
-  libX11,
-  libXext,
-  libXmu,
-  libXpm,
+  libx11,
+  libxext,
+  libxmu,
+  libxpm,
   motif,
   python3,
   qt5,
@@ -87,11 +87,11 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs =
     lib.optionals enableOpenGLX11 [
       libGLU
-      libXext
-      libXmu
+      libxext
+      libxmu
     ]
     ++ lib.optionals enableInventor [
-      libXpm
+      libxpm
       coin3d
       soxt
       motif
@@ -109,7 +109,7 @@ stdenv.mkDerivation (finalAttrs: {
   ]
   ++ lib.optionals enableOpenGLX11 [
     libGL
-    libX11
+    libx11
   ]
   ++ lib.optionals enableXM [ motif ]
   ++ lib.optionals enableQt [ qt5.qtbase ];

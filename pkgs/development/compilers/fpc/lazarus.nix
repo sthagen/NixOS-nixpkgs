@@ -10,10 +10,10 @@
   pango,
   atk,
   gdk-pixbuf,
-  libXi,
+  libxi,
   xorgproto,
-  libX11,
-  libXext,
+  libx11,
+  libxext,
   gdb,
   gnumake,
   binutils,
@@ -63,10 +63,10 @@ stdenv.mkDerivation rec {
     fpc
     gtk2
     glib
-    libXi
+    libxi
     xorgproto
-    libX11
-    libXext
+    libx11
+    libxext
     pango
     atk
     stdenv.cc

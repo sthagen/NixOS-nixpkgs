@@ -14,12 +14,12 @@
   harfbuzz,
   lib,
   libGL,
-  libX11,
+  libx11,
   libxcb,
-  libXcursor,
-  libXi,
+  libxcursor,
+  libxi,
   libxkbcommon,
-  libXrandr,
+  libxrandr,
   makeWrapper,
   mold,
   pango,
@@ -86,10 +86,10 @@ rustPlatform.buildRustPackage rec {
     wayland
 
     # WINIT_UNIX_BACKEND=x11
-    libXcursor
-    libXrandr
-    libXi
-    libX11
+    libxcursor
+    libxrandr
+    libxi
+    libx11
 
     vulkan-headers
     vulkan-loader

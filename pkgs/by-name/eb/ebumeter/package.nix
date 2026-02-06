@@ -2,8 +2,8 @@
   lib,
   stdenv,
   fetchurl,
-  libX11,
-  libXft,
+  libx11,
+  libxft,
   libclthreads,
   libclxclient,
   libjack2,
@@ -17,13 +17,13 @@ stdenv.mkDerivation rec {
   version = "0.5.1";
 
   src = fetchurl {
-    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/${pname}-${version}.tar.xz";
+    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/ebumeter-${version}.tar.xz";
     hash = "sha256-U2ZpNfvy+X1RdA9Q4gvFYzAxlgc6kYjJpQ/0sEX0A4I=";
   };
 
   buildInputs = [
-    libX11
-    libXft
+    libx11
+    libxft
     libclthreads
     libclxclient
     libjack2

@@ -17,10 +17,10 @@
   fontconfig,
   freetype,
   libGL,
-  libXcursor,
-  libXext,
-  libXinerama,
-  libXrandr,
+  libxcursor,
+  libxext,
+  libxinerama,
+  libxrandr,
   libepoxy,
   libjack2,
   libxkbcommon,
@@ -57,10 +57,10 @@ clangStdenv.mkDerivation (finalAttrs: {
   ++ lib.optionals clangStdenv.hostPlatform.isLinux [
     alsa-lib
     libGL
-    libXcursor
-    libXext
-    libXinerama
-    libXrandr
+    libxcursor
+    libxext
+    libxinerama
+    libxrandr
     libepoxy
     libjack2
     libxkbcommon

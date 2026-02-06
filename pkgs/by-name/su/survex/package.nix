@@ -5,8 +5,8 @@
   ffmpeg,
   glib,
   libGLU,
-  libICE,
-  libX11,
+  libice,
+  libx11,
   libgbm,
   perl,
   pkg-config,
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
   version = "1.4.19";
 
   src = fetchurl {
-    url = "https://survex.com/software/${version}/${pname}-${version}.tar.gz";
+    url = "https://survex.com/software/${version}/survex-${version}.tar.gz";
     hash = "sha256-X8FZCZTJ7DkZeYnrzaLCukRhs/kTHwre9F1TTRlK2ro=";
   };
 
@@ -45,8 +45,8 @@ stdenv.mkDerivation rec {
     # (#233265); is it required for anything?
     libGLU
     libgbm
-    libICE
-    libX11
+    libice
+    libx11
   ];
 
   strictDeps = true;

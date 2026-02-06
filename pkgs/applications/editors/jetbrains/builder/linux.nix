@@ -21,7 +21,7 @@
   glibcLocales,
   fontconfig,
   libGL,
-  libX11,
+  libx11,
 
   jdk,
   vmopts ? null,
@@ -85,7 +85,7 @@ lib.extendMkDerivation {
         stdenv.cc.cc
         fontconfig
         libGL
-        libX11
+        libx11
       ];
 
       nativeBuildInputs = nativeBuildInputs ++ [

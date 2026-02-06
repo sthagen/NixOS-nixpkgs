@@ -10,9 +10,9 @@
   libxcrypt,
   lttng-ust_2_12,
   musl,
-  libICE,
-  libSM,
-  libX11,
+  libice,
+  libsm,
+  libx11,
   dotnetCorePackages,
   libxcb-keysyms,
   expat,
@@ -73,9 +73,9 @@ in
   ];
   extraLdPath = lib.optionals (stdenv.hostPlatform.isLinux) [
     # Avalonia dependencies needed for dotMemory
-    libICE
-    libSM
-    libX11
+    libice
+    libsm
+    libx11
   ];
 
   # NOTE: meta attrs are used for the Linux desktop entries and may cause rebuilds when changed

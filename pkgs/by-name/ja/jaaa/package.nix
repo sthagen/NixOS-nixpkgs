@@ -5,9 +5,9 @@
   alsa-lib,
   libclthreads,
   libclxclient,
-  libX11,
-  libXft,
-  libXrender,
+  libx11,
+  libxft,
+  libxrender,
   fftwFloat,
   libjack2,
   zita-alsa-pcmi,
@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
   version = "0.9.2";
 
   src = fetchurl {
-    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/${pname}-${version}.tar.bz2";
+    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/jaaa-${version}.tar.bz2";
     sha256 = "1czksxx2g8na07k7g57qlz0vvkkgi5bzajcx7vc7jhb94hwmmxbc";
   };
 
@@ -26,9 +26,9 @@ stdenv.mkDerivation rec {
     alsa-lib
     libclthreads
     libclxclient
-    libX11
-    libXft
-    libXrender
+    libx11
+    libxft
+    libxrender
     fftwFloat
     libjack2
     zita-alsa-pcmi

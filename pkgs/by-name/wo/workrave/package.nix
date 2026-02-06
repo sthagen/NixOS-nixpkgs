@@ -10,10 +10,10 @@
   intltool,
   libtool,
   pkg-config,
-  libICE,
-  libSM,
-  libXScrnSaver,
-  libXtst,
+  libice,
+  libsm,
+  libxscrnsaver,
+  libxtst,
   gobject-introspection,
   glib,
   glibmm,
@@ -56,10 +56,10 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    libICE
-    libSM
-    libXScrnSaver
-    libXtst
+    libice
+    libsm
+    libxscrnsaver
+    libxtst
     glib
     glibmm
     gtkmm3

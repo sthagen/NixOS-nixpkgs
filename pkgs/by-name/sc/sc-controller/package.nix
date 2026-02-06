@@ -9,9 +9,9 @@
   librsvg,
   bluez,
   linuxHeaders,
-  libX11,
-  libXext,
-  libXfixes,
+  libx11,
+  libxext,
+  libxfixes,
   libusb1,
   udev,
   udevCheckHook,
@@ -71,9 +71,9 @@ python3Packages.buildPythonApplication rec {
   '';
 
   env.LD_LIBRARY_PATH = lib.makeLibraryPath [
-    libX11
-    libXext
-    libXfixes
+    libx11
+    libxext
+    libxfixes
     libusb1
     udev
     bluez

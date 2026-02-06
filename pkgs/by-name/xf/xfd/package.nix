@@ -54,7 +54,7 @@ stdenv.mkDerivation (finalAttrs: {
   passthru.updateScript = nix-update-script { extraArgs = [ "--version-regex=xfd-(.*)" ]; };
 
   meta = {
-    description = "X font display utility, using either the X11 core protocol or libXft2.";
+    description = "X font display utility, using either the X11 core protocol or libxft.";
     homepage = "https://gitlab.freedesktop.org/xorg/app/xfd";
     license = lib.licenses.mitOpenGroup;
     mainProgram = "xfd";

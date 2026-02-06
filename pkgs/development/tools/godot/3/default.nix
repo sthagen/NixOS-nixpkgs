@@ -9,14 +9,14 @@
   installShellFiles,
   libGLU,
   libpulseaudio,
-  libX11,
-  libXcursor,
-  libXext,
-  libXfixes,
-  libXi,
-  libXinerama,
-  libXrandr,
-  libXrender,
+  libx11,
+  libxcursor,
+  libxext,
+  libxfixes,
+  libxi,
+  libxinerama,
+  libxrandr,
+  libxrender,
   makeWrapper,
   openssl,
   pkg-config,
@@ -57,14 +57,14 @@ stdenv.mkDerivation (self: {
     freetype
     libGLU
     libpulseaudio
-    libX11
-    libXcursor
-    libXext
-    libXfixes
-    libXi
-    libXinerama
-    libXrandr
-    libXrender
+    libx11
+    libxcursor
+    libxext
+    libxfixes
+    libxi
+    libxinerama
+    libxrandr
+    libxrender
     openssl
     udev
     yasm

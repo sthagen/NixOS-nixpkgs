@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
   version = "5.15.0";
 
   src = fetchurl {
-    url = "mirror://sourceforge/project/${pname}/${pname}/${version}%20Source/${pname}-${version}.tar.gz";
+    url = "mirror://sourceforge/project/plplot/plplot/${version}%20Source/plplot-${version}.tar.gz";
     sha256 = "0ywccb6bs1389zjfmc9zwdvdsvlpm7vg957whh6b5a96yvcf8bdr";
   };
 
@@ -36,11 +36,13 @@ stdenv.mkDerivation rec {
     ];
 
   passthru = {
-    libX11 = libx11;
     inherit
       enableWX
       enableXWin
+      libx11
       ;
+    # backwards compat
+    libX11 = libx11;
   };
 
   cmakeFlags = [

@@ -6,14 +6,14 @@
   nix-update-script,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "cargo-nextest";
   version = "0.9.124";
 
   src = fetchFromGitHub {
     owner = "nextest-rs";
     repo = "nextest";
-    tag = "cargo-nextest-${version}";
+    tag = "cargo-nextest-${finalAttrs.version}";
     hash = "sha256-qvJ/dqbls2fVSPY++kYBIeiu14eDD8ORuvcD8dEtMZ8=";
   };
 
@@ -51,4 +51,4 @@ rustPlatform.buildRustPackage rec {
       chrjabs
     ];
   };
-}
+})

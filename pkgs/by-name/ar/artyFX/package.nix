@@ -5,8 +5,8 @@
   cairomm,
   cmake,
   libjack2,
-  libpthreadstubs,
-  libXdmcp,
+  libpthread-stubs,
+  libxdmcp,
   libxshmfence,
   libsndfile,
   lv2,
@@ -32,8 +32,8 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     cairomm
     libjack2
-    libpthreadstubs
-    libXdmcp
+    libpthread-stubs
+    libxdmcp
     libxshmfence
     libsndfile
     lv2

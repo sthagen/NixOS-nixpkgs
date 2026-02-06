@@ -112,10 +112,10 @@ stdenv.mkDerivation (finalAttrs: {
     ];
   };
 
-  meta = with lib; {
+  meta = {
     description = "Desktop App of the Vikunja to-do list app";
     homepage = "https://vikunja.io/";
-    license = licenses.gpl3Plus;
+    license = lib.licenses.gpl3Plus;
     maintainers = with lib.maintainers; [ kolaente ];
     mainProgram = "vikunja-desktop";
     inherit (electron.meta) platforms;

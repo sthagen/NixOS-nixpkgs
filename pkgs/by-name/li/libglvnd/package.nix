@@ -7,8 +7,8 @@
   pkg-config,
   python3,
   addDriverRunpath,
-  libX11,
-  libXext,
+  libx11,
+  libxext,
   xorgproto,
 }:
 
@@ -41,8 +41,8 @@ stdenv.mkDerivation rec {
     addDriverRunpath
   ];
   buildInputs = [
-    libX11
-    libXext
+    libx11
+    libxext
     xorgproto
   ];
 

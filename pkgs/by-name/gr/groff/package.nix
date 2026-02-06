@@ -6,10 +6,10 @@
   enableGhostscript ? false,
   ghostscript,
   gawk,
-  libX11,
-  libXaw,
-  libXt,
-  libXmu, # for postscript and html output
+  libx11,
+  libxaw,
+  libxt,
+  libxmu, # for postscript and html output
   enableHtml ? false,
   psutils,
   netpbm, # for html output
@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
   version = "1.23.0";
 
   src = fetchurl {
-    url = "mirror://gnu/groff/${pname}-${version}.tar.gz";
+    url = "mirror://gnu/groff/groff-${version}.tar.gz";
     hash = "sha256-a5dX9ZK3UYtJAutq9+VFcL3Mujeocf3bLTCuOGNRHBM=";
   };
 
@@ -87,10 +87,10 @@ stdenv.mkDerivation rec {
   ++ lib.optionals enableGhostscript [
     ghostscript
     gawk
-    libX11
-    libXaw
-    libXt
-    libXmu
+    libx11
+    libxaw
+    libxt
+    libxmu
   ]
   ++ lib.optionals enableHtml [
     psutils

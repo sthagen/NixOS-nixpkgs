@@ -3,9 +3,9 @@
   fetchFromGitHub,
   rustPlatform,
   pkg-config,
-  libX11,
-  libXi,
-  libXtst,
+  libx11,
+  libxi,
+  libxtst,
   libevdev,
   udevCheckHook,
 }:
@@ -26,9 +26,9 @@ rustPlatform.buildRustPackage rec {
   doInstallCheck = true;
 
   buildInputs = [
-    libX11
-    libXi
-    libXtst
+    libx11
+    libxi
+    libxtst
     libevdev
   ];
 

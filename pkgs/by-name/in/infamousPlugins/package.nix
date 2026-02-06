@@ -6,9 +6,9 @@
   cairomm,
   cmake,
   lv2,
-  libpthreadstubs,
-  libXdmcp,
-  libXft,
+  libpthread-stubs,
+  libxdmcp,
+  libxft,
   ntk,
   pcre,
   fftwFloat,
@@ -33,9 +33,9 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     cairomm
     lv2
-    libpthreadstubs
-    libXdmcp
-    libXft
+    libpthread-stubs
+    libxdmcp
+    libxft
     ntk
     pcre
     fftwFloat

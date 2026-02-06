@@ -59,9 +59,9 @@
   glib,
   gtk3,
   dbus-glib,
-  libXScrnSaver,
-  libXcursor,
-  libXtst,
+  libxscrnsaver,
+  libxcursor,
+  libxtst,
   libxshmfence,
   libGLU,
   libGL,
@@ -70,7 +70,7 @@
   pciutils,
   protobuf,
   speechd-minimal,
-  libXdamage,
+  libxdamage,
   at-spi2-core,
   pipewire,
   libva,
@@ -365,9 +365,9 @@ let
       glib
       gtk3
       dbus-glib
-      libXScrnSaver
-      libXcursor
-      libXtst
+      libxscrnsaver
+      libxcursor
+      libxtst
       libxshmfence
       libGLU
       libGL
@@ -375,7 +375,7 @@ let
       pciutils
       protobuf
       speechd-minimal
-      libXdamage
+      libxdamage
       at-spi2-core
       pipewire
       libva
@@ -425,9 +425,9 @@ let
       glib
       gtk3
       dbus-glib
-      libXScrnSaver
-      libXcursor
-      libXtst
+      libxscrnsaver
+      libxcursor
+      libxtst
       libxshmfence
       libGLU
       libGL
@@ -436,7 +436,7 @@ let
       pciutils
       protobuf
       speechd-minimal
-      libXdamage
+      libxdamage
       at-spi2-core
       pipewire
       libva

@@ -4,13 +4,13 @@
   fetchFromGitLab,
   lib,
   libGL,
-  libX11,
-  libXcursor,
-  libXext,
-  libXi,
-  libXinerama,
-  libXrandr,
-  libXxf86vm,
+  libx11,
+  libxcursor,
+  libxext,
+  libxi,
+  libxinerama,
+  libxrandr,
+  libxxf86vm,
   makeDesktopItem,
   libgbm,
   pkg-config,
@@ -37,13 +37,13 @@ buildGoModule rec {
 
   buildInputs = [
     libGL
-    libX11
-    libXcursor
-    libXext
-    libXi
-    libXinerama
-    libXrandr
-    libXxf86vm
+    libx11
+    libxcursor
+    libxext
+    libxi
+    libxinerama
+    libxrandr
+    libxxf86vm
     libgbm
   ];
 

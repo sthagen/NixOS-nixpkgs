@@ -11,11 +11,11 @@
   libGLU,
   libGL,
   glm,
-  libX11,
-  libXext,
-  libXfixes,
-  libXrandr,
-  libXcomposite,
+  libx11,
+  libxext,
+  libxfixes,
+  libxrandr,
+  libxcomposite,
   slop,
   icu,
 }:
@@ -45,11 +45,11 @@ stdenv.mkDerivation rec {
     libGLU
     libGL
     glm
-    libX11
-    libXext
-    libXfixes
-    libXrandr
-    libXcomposite
+    libx11
+    libxext
+    libxfixes
+    libxrandr
+    libxcomposite
     slop
     icu
   ];

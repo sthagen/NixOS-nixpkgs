@@ -14,9 +14,9 @@
   systemd,
   libusb-compat-0_1,
   libftdi1,
-  libICE,
-  libSM,
-  libX11,
+  libice,
+  libsm,
+  libx11,
 }:
 
 let
@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
   version = "0.10.2";
 
   src = fetchurl {
-    url = "mirror://sourceforge/lirc/${pname}-${version}.tar.bz2";
+    url = "mirror://sourceforge/lirc/lirc-${version}.tar.bz2";
     sha256 = "sha256-PUTsgnSIHPJi8WCAVkHwgn/8wgreDYXn5vO5Dg09Iio=";
   };
 
@@ -90,9 +90,9 @@ stdenv.mkDerivation rec {
     systemd
     libusb-compat-0_1
     libftdi1
-    libICE
-    libSM
-    libX11
+    libice
+    libsm
+    libx11
   ];
 
   DEVINPUT_HEADER = "${linuxHeaders}/include/linux/input-event-codes.h";

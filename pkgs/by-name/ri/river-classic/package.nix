@@ -4,7 +4,7 @@
   callPackage,
   fetchFromCodeberg,
   libGL,
-  libX11,
+  libx11,
   libevdev,
   libinput,
   libxkbcommon,
@@ -57,7 +57,7 @@ stdenv.mkDerivation (finalAttrs: {
     wayland-protocols
     wlroots_0_19
   ]
-  ++ lib.optional xwaylandSupport libX11;
+  ++ lib.optional xwaylandSupport libx11;
 
   dontConfigure = true;
 

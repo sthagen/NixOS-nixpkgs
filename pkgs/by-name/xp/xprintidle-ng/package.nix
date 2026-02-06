@@ -2,9 +2,9 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  libX11,
-  libXScrnSaver,
-  libXext,
+  libx11,
+  libxscrnsaver,
+  libxext,
   gnulib,
   autoconf,
   automake,
@@ -60,9 +60,9 @@ stdenv.mkDerivation rec {
   '';
 
   buildInputs = [
-    libX11
-    libXScrnSaver
-    libXext
+    libx11
+    libxscrnsaver
+    libxext
   ];
 
   meta = {

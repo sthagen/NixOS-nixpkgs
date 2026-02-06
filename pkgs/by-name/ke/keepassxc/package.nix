@@ -10,8 +10,8 @@
   botan3,
   curl,
   darwinMinVersionHook,
-  libXi,
-  libXtst,
+  libxi,
+  libxtst,
   libargon2,
   libusb1,
   minizip,
@@ -140,8 +140,8 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     botan3
     curl
-    libXi
-    libXtst
+    libxi
+    libxtst
     libargon2
     libsForQt5.qtbase
     libsForQt5.qtsvg

@@ -3,14 +3,14 @@
   rustPlatform,
   fetchFromGitHub,
   libdrm,
-  libX11,
+  libx11,
   libGL,
   wayland,
   wayland-protocols,
   libxkbcommon,
-  libXrandr,
-  libXi,
-  libXcursor,
+  libxrandr,
+  libxi,
+  libxcursor,
   nix-update-script,
 }:
 
@@ -29,14 +29,14 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = [
     libdrm
-    libX11
+    libx11
     libGL
     wayland
     wayland-protocols
     libxkbcommon
-    libXrandr
-    libXi
-    libXcursor
+    libxrandr
+    libxi
+    libxcursor
   ];
 
   postInstall = ''

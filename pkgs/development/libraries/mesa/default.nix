@@ -38,7 +38,7 @@
   wayland,
   wayland-protocols,
   wayland-scanner,
-  xcbutilkeysyms,
+  libxcb-keysyms,
   libxxf86vm,
   libxrandr,
   libxfixes,
@@ -291,7 +291,7 @@ stdenv.mkDerivation {
     vulkan-loader
     wayland
     wayland-protocols
-    xcbutilkeysyms
+    libxcb-keysyms
     xorgproto
     zstd
   ]

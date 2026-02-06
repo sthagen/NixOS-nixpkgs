@@ -9,18 +9,19 @@
   testers,
   util-linux,
   writableTmpDirAsHomeHook,
+  writeScript,
 }:
 
 python3Packages.buildPythonApplication rec {
   pname = "gns3-server";
-  version = "2.2.56";
+  version = "2.2.56.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "GNS3";
     repo = "gns3-server";
     tag = "v${version}";
-    hash = "sha256-akA6P/ONPioce4pJbg4wAzSvb7aSYGM8NfCs7q9svic=";
+    hash = "sha256-1eYUJtrOfe1DXzxJbT1HQ6oiiiS+xHRG/wg9gOs0uTU=";
   };
 
   # GNS3 2.3.26 requires a static BusyBox for the Docker integration
@@ -29,10 +30,12 @@ python3Packages.buildPythonApplication rec {
   '';
 
   pythonRelaxDeps = [
+    "aiofiles"
     "aiohttp"
     "aiohttp-cors"
     "jsonschema"
     "platformdirs"
+    "psutil"
     "sentry-sdk"
   ];
 
@@ -82,12 +85,23 @@ python3Packages.buildPythonApplication rec {
     "tests/controller/test_project.py"
   ];
 
-  passthru.tests = {
-    inherit (nixosTests) gns3-server;
-    version = testers.testVersion {
-      package = gns3-server;
-      command = "${lib.getExe gns3-server} --version";
+  passthru = {
+    tests = {
+      inherit (nixosTests) gns3-server;
+      version = testers.testVersion {
+        package = gns3-server;
+        command = "${lib.getExe gns3-server} --version";
+      };
     };
+    updateScript = writeScript "update-gns3" ''
+      #!/usr/bin/env nix-shell
+      #!nix-shell -i bash -p nix-update
+
+      set -eu -o pipefail
+
+      nix-update gns3-gui --version-regex '^v(2\.[\d\.]+)$' --commit
+      nix-update gns3-server --version-regex '^v(2\.[\d\.]+)$' --commit
+    '';
   };
 
   meta = {

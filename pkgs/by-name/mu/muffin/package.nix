@@ -22,9 +22,9 @@
   libstartup_notification,
   libwacom,
   libxcvt,
-  libXdamage,
+  libxdamage,
   libxkbcommon,
-  libXtst,
+  libxtst,
   mesa-gl-headers,
   meson,
   ninja,
@@ -36,7 +36,7 @@
   wayland-protocols,
   wayland-scanner,
   wrapGAppsHook3,
-  xorgserver,
+  xorg-server,
   xwayland,
   zenity,
 }:
@@ -71,7 +71,7 @@ stdenv.mkDerivation rec {
     pkg-config
     python3
     wrapGAppsHook3
-    xorgserver # for cvt command
+    xorg-server # for cvt command
     gobject-introspection
     wayland-scanner
   ];
@@ -92,7 +92,7 @@ stdenv.mkDerivation rec {
     libstartup_notification
     libwacom
     libxcvt
-    libXdamage
+    libxdamage
     libxkbcommon
     pipewire
     udev
@@ -104,7 +104,7 @@ stdenv.mkDerivation rec {
   propagatedBuildInputs = [
     # required for pkg-config to detect muffin-clutter
     json-glib
-    libXtst
+    libxtst
     graphene
     mesa-gl-headers
   ];
