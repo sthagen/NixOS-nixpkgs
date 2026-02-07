@@ -50,13 +50,15 @@
   ibusSupport ? stdenv.hostPlatform.isUnix && !stdenv.hostPlatform.isDarwin,
   jackSupport ? stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
   libdecorSupport ? stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
+  libudevSupport ? stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
+  libusbSupport ? stdenv.hostPlatform.isLinux,
   openglSupport ? lib.meta.availableOn stdenv.hostPlatform libGL,
   pipewireSupport ? stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
   pulseaudioSupport ?
     config.pulseaudio or stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
-  libudevSupport ? stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
   sndioSupport ? false,
   traySupport ? true,
+  vulkanSupport ? true,
   waylandSupport ? stdenv.hostPlatform.isLinux && !stdenv.hostPlatform.isAndroid,
   x11Support ? !stdenv.hostPlatform.isAndroid && !stdenv.hostPlatform.isWindows,
 }:
@@ -97,7 +99,7 @@ stdenv.mkDerivation (finalAttrs: {
         --replace-fail '"zenity"' '"${lib.getExe zenity}"'
     ''
     # https://github.com/libsdl-org/SDL/issues/14805
-    + ''
+    + lib.optionalString vulkanSupport ''
       substituteInPlace src/video/x11/SDL_x11vulkan.c \
                         src/video/wayland/SDL_waylandvulkan.c \
                         src/video/offscreen/SDL_offscreenvulkan.c \
@@ -121,7 +123,7 @@ stdenv.mkDerivation (finalAttrs: {
   ++ lib.optional waylandSupport wayland-scanner;
 
   buildInputs =
-    lib.optionals stdenv.hostPlatform.isLinux [
+    lib.optionals libusbSupport [
       libusb1
     ]
     ++ lib.optional (
@@ -155,7 +157,7 @@ stdenv.mkDerivation (finalAttrs: {
       libxrandr
       libxtst
     ]
-    ++ [
+    ++ lib.optionals vulkanSupport [
       vulkan-headers
       vulkan-loader
     ]
@@ -196,7 +198,11 @@ stdenv.mkDerivation (finalAttrs: {
       && !(stdenv.hostPlatform.isDarwin || stdenv.hostPlatform.isAndroid)
       && !(x11Support || waylandSupport)
     ))
-  ];
+  ]
+  ++ lib.optional (libusbSupport != stdenv.hostPlatform.isLinux) (
+    lib.cmakeBool "SDL_HIDAPI_LIBUSB" libusbSupport
+  )
+  ++ lib.optional (!vulkanSupport) (lib.cmakeBool "SDL_VULKAN" vulkanSupport);
 
   doCheck = true;
 

@@ -10,14 +10,14 @@
 let
   inherit (stdenv.hostPlatform) isLinux;
 in
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "lockbook";
   version = "26.1.31";
 
   src = fetchFromGitHub {
     owner = "lockbook";
     repo = "lockbook";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-Bx84e5/foF4XxRZJve0YhiikZJa3mqxOHuk9bsPxjag=";
   };
 
@@ -60,4 +60,4 @@ rustPlatform.buildRustPackage rec {
     changelog = "https://github.com/lockbook/lockbook/releases";
     maintainers = [ lib.maintainers.parth ];
   };
-}
+})

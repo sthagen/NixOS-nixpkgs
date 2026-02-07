@@ -279,7 +279,7 @@ def update_gitaly():
                 NIXPKGS_PATH,
                 "-H",
                 "-a",
-                "leaveDotGit",
+                "fetchSubmodules",
                 "true",
                 "https://gitlab.com/gitlab-org/git",
                 git_rev

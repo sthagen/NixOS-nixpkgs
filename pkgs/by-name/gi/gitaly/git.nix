@@ -13,16 +13,15 @@
 let
   data = lib.importJSON ./git-data.json;
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   inherit (data) version;
   pname = "gitaly-git";
 
-  # `src` attribute for nix-update
   src = fetchFromGitLab {
     owner = "gitlab-org";
     repo = "git";
     inherit (data) rev hash;
-    leaveDotGit = true;
+    fetchSubmodules = true;
   };
 
   # Use gitaly and their build system as source root
@@ -32,10 +31,15 @@ stdenv.mkDerivation rec {
     git config --global --add safe.directory '*'
   '';
 
-  sourceRoot = src.name;
+  # This is a patch for gitaly, not git
+  patches = [
+    ./dont-clone-git-repo.patch
+  ];
+
+  sourceRoot = finalAttrs.src.name;
 
   buildFlags = [ "install-git" ];
-  GIT_REPO_URL = src;
+  GIT_REPO_PATH = finalAttrs.src;
   HOME = "/build";
 
   nativeBuildInputs = [
@@ -76,4 +80,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.all;
     teams = [ lib.teams.gitlab ];
   };
-}
+})

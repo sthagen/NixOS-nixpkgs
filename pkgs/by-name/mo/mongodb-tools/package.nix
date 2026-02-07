@@ -8,14 +8,14 @@
   nix-update-script,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "mongo-tools";
   version = "100.14.1";
 
   src = fetchFromGitHub {
     owner = "mongodb";
     repo = "mongo-tools";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-+3Cmaa0913TKj/nMmTxXQeegPEZ1NUdusTbKZ86LqLY=";
   };
 
@@ -63,4 +63,4 @@ buildGoModule rec {
       iamanaws
     ];
   };
-}
+})

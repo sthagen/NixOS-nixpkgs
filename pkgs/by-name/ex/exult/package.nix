@@ -18,13 +18,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "exult";
-  version = "1.12.0";
+  version = "1.12.1";
 
   src = fetchFromGitHub {
     owner = "exult";
     repo = "exult";
-    rev = "v${finalAttrs.version}";
-    hash = "sha256-SZwYaqTTWESNRphXefa3JyH988y3WiaIr12yORhiFow=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-rAUg8RoPsou1g27MZ84vFc0uDvUGzLXkGj33Vbsjlr8=";
   };
 
   # We can't use just DESTDIR because with it we'll have /nix/store/...-exult-1.12.0/nix/store/...-exult-1.12.0/bin

@@ -16,12 +16,12 @@
   ocl-icd,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "virtualgl-lib";
   version = "3.0.2";
 
   src = fetchurl {
-    url = "mirror://sourceforge/virtualgl/VirtualGL-${version}.tar.gz";
+    url = "mirror://sourceforge/virtualgl/VirtualGL-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-OIEbwAQ71yOuHIzM+iaK7QkUJrKg6sXpGuFQOUPjM2w=";
   };
 
@@ -73,4 +73,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     maintainers = [ ];
   };
-}
+})

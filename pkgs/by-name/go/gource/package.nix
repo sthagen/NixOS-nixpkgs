@@ -19,12 +19,12 @@
   tinyxml,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "gource";
   version = "0.55";
 
   src = fetchurl {
-    url = "https://github.com/acaudwell/Gource/releases/download/gource-${version}/gource-${version}.tar.gz";
+    url = "https://github.com/acaudwell/Gource/releases/download/gource-${finalAttrs.version}/gource-${finalAttrs.version}.tar.gz";
     hash = "sha256-yCOSEtKLB1CNnkd2GZdoAmgWKPwl6z4E9mcRdwE8AUI=";
   };
 
@@ -76,4 +76,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ pSub ];
     mainProgram = "gource";
   };
-}
+})

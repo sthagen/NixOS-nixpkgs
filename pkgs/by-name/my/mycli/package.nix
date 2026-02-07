@@ -5,7 +5,7 @@
   writableTmpDirAsHomeHook,
 }:
 
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "mycli";
   version = "1.43.1";
   pyproject = true;
@@ -13,7 +13,7 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "dbcli";
     repo = "mycli";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-KybGpi9ZNkAiniZTnyzzjlUf+xISRk+k4kcIxU/iVSM=";
   };
 
@@ -64,4 +64,4 @@ python3Packages.buildPythonApplication rec {
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ jojosch ];
   };
-}
+})

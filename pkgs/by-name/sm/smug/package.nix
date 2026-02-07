@@ -5,7 +5,7 @@
   installShellFiles,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "smug";
   version = "0.3.13";
 
@@ -14,7 +14,7 @@ buildGoModule rec {
   src = fetchFromGitHub {
     owner = "ivaaaan";
     repo = "smug";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-dvgbE1iKPDp8KuOuKJt5ITNDctt5Ej759qdcAIJcBkA=";
   };
 
@@ -25,7 +25,7 @@ buildGoModule rec {
   ldflags = [
     "-s"
     "-w"
-    "-X=main.version=${version}"
+    "-X=main.version=${finalAttrs.version}"
   ];
 
   postInstall = ''
@@ -40,4 +40,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ juboba ];
     mainProgram = "smug";
   };
-}
+})

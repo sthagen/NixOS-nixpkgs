@@ -6,7 +6,7 @@
   libkrb5,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "gitlab-shell";
   version = "14.45.5";
 
@@ -14,7 +14,7 @@ buildGoModule rec {
   src = fetchFromGitLab {
     owner = "gitlab-org";
     repo = "gitlab-shell";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-D3keb81A7gyZbmJmCZJpyYFC1+JijwwbMngurAPTSKs=";
   };
 
@@ -49,4 +49,4 @@ buildGoModule rec {
     teams = [ lib.teams.gitlab ];
     license = lib.licenses.mit;
   };
-}
+})

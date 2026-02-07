@@ -25,12 +25,12 @@
   bashNonInteractive,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "groff";
   version = "1.23.0";
 
   src = fetchurl {
-    url = "mirror://gnu/groff/groff-${version}.tar.gz";
+    url = "mirror://gnu/groff/groff-${finalAttrs.version}.tar.gz";
     hash = "sha256-a5dX9ZK3UYtJAutq9+VFcL3Mujeocf3bLTCuOGNRHBM=";
   };
 
@@ -184,4 +184,4 @@ stdenv.mkDerivation rec {
       "perl"
     ];
   };
-}
+})

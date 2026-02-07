@@ -12,14 +12,14 @@
   copyDesktopItems,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "xcolor";
   version = "0.5.1";
 
   src = fetchFromGitHub {
     owner = "Soft";
     repo = "xcolor";
-    rev = version;
+    rev = finalAttrs.version;
     sha256 = "sha256-NfmoBZek4hsga6RflE5EKkWarhCFIcTwEXhg2fpkxNE=";
   };
 
@@ -65,4 +65,4 @@ rustPlatform.buildRustPackage rec {
     license = lib.licenses.mit;
     mainProgram = "xcolor";
   };
-}
+})

@@ -7,14 +7,14 @@
   xhost,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "ego";
   version = "1.1.7";
 
   src = fetchFromGitHub {
     owner = "intgr";
     repo = "ego";
-    rev = version;
+    rev = finalAttrs.version;
     hash = "sha256-613RM7Ldye0wHAH3VMhzhyT5WVTybph3gS/WNMrsgGI=";
   };
 
@@ -43,4 +43,4 @@ rustPlatform.buildRustPackage rec {
     ];
     mainProgram = "ego";
   };
-}
+})

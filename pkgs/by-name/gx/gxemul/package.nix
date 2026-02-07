@@ -5,12 +5,12 @@
   libx11,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "gxemul";
   version = "0.7.0";
 
   src = fetchurl {
-    url = "https://gavare.se/gxemul/src/gxemul-${version}.tar.gz";
+    url = "https://gavare.se/gxemul/src/gxemul-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-ecRDfG+MqQT0bTOsNgYqZf3PSpKiSEeOQIqxEpXPjoM=";
   };
 
@@ -46,4 +46,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.unix;
     mainProgram = "gxemul";
   };
-}
+})

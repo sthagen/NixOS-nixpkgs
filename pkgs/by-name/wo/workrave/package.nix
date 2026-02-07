@@ -31,14 +31,14 @@
   python3Packages,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "workrave";
   version = "1.10.54";
 
   src = fetchFromGitHub {
     repo = "workrave";
     owner = "rcaelers";
-    rev = "v" + lib.concatStringsSep "_" (lib.splitVersion version);
+    rev = "v" + lib.concatStringsSep "_" (lib.splitVersion finalAttrs.version);
     sha256 = "sha256-pbMkzwxgKc4vjFhBeOf513hFytYiTPST19L8Nq4CVTg=";
   };
 
@@ -95,4 +95,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ prikhi ];
     platforms = lib.platforms.linux;
   };
-}
+})

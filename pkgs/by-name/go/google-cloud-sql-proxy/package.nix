@@ -5,14 +5,14 @@
   nix-update-script,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "google-cloud-sql-proxy";
   version = "2.21.0";
 
   src = fetchFromGitHub {
     owner = "GoogleCloudPlatform";
     repo = "cloud-sql-proxy";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-w2SDoIxuPNd4CasLlTK+ypkf7/T+kWSSjheU+KnloDw=";
   };
 
@@ -44,4 +44,4 @@ buildGoModule rec {
     ];
     mainProgram = "cloud-sql-proxy";
   };
-}
+})

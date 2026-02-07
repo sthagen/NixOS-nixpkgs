@@ -5,14 +5,14 @@
   fetchFromGitHub,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "protols";
   version = "0.13.2";
 
   src = fetchFromGitHub {
     owner = "coder3101";
     repo = "protols";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-kPYCvkPVxWDNgYpieDMIwvM7Q/HWKu0hNbKW1K5jo+Y=";
   };
 
@@ -23,9 +23,9 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "Protocol Buffers language server written in Rust";
     homepage = "https://github.com/coder3101/protols";
-    changelog = "https://github.com/coder3101/protols/releases/tag/${version}";
+    changelog = "https://github.com/coder3101/protols/releases/tag/${finalAttrs.version}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ nartsiss ];
     mainProgram = "protols";
   };
-}
+})

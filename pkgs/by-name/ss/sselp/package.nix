@@ -5,12 +5,12 @@
   libx11,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   version = "0.2";
   pname = "sselp";
 
   src = fetchurl {
-    url = "https://dl.suckless.org/tools/sselp-${version}.tar.gz";
+    url = "https://dl.suckless.org/tools/sselp-${finalAttrs.version}.tar.gz";
     sha256 = "08mqp00lrh1chdrbs18qr0xv63h866lkmfj87kfscwdm1vn9a3yd";
   };
 
@@ -30,4 +30,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     mainProgram = "sselp";
   };
-}
+})

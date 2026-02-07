@@ -19,7 +19,7 @@
   makeWrapper,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "openbox";
   version = "3.6.1";
 
@@ -52,7 +52,7 @@ stdenv.mkDerivation rec {
   ];
 
   src = fetchurl {
-    url = "http://openbox.org/dist/openbox/openbox-${version}.tar.gz";
+    url = "http://openbox.org/dist/openbox/openbox-${finalAttrs.version}.tar.gz";
     sha256 = "1xvyvqxlhy08n61rjkckmrzah2si1i7nmc7s8h07riqq01vc0jlb";
   };
 
@@ -95,4 +95,4 @@ stdenv.mkDerivation rec {
     license = lib.licenses.gpl2Plus;
     platforms = lib.platforms.linux;
   };
-}
+})

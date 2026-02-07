@@ -52,12 +52,12 @@
   gitUpdater,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "xwayland";
   version = "24.1.9";
 
   src = fetchurl {
-    url = "mirror://xorg/individual/xserver/xwayland-${version}.tar.xz";
+    url = "mirror://xorg/individual/xserver/xwayland-${finalAttrs.version}.tar.xz";
     hash = "sha256-8pevJ6hFCNubgNHLvMacOAHaOOtkxy87W1D1gkWa/dA=";
   };
 
@@ -143,4 +143,4 @@ stdenv.mkDerivation rec {
     ];
     platforms = lib.platforms.linux;
   };
-}
+})

@@ -6,14 +6,14 @@
   libx11,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "certinfo";
   version = "1.0.39";
 
   src = fetchFromGitHub {
     owner = "pete911";
     repo = "certinfo";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-U3uVQiALtI7aWkIPQyHxSzMTD6AjAMoOEjkbPO07SdA=";
   };
 
@@ -31,4 +31,4 @@ buildGoModule rec {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ jakuzure ];
   };
-}
+})

@@ -66,7 +66,7 @@ stdenv.mkDerivation {
     ./cmake-v4.patch
   ];
 
-  NIX_LDFLAGS = toString (
+  env.NIX_LDFLAGS = toString (
     lib.optionals stdenv.hostPlatform.isDarwin [
       # Framework that JUCE needs which don't get linked properly
       "-framework CoreAudioKit"

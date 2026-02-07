@@ -4,14 +4,14 @@
   fetchFromGitHub,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "okolors";
   version = "0.9.0";
 
   src = fetchFromGitHub {
     owner = "Ivordir";
     repo = "Okolors";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-RSkZUkwCn9uvvT2dIqM2Q4+mRqjUegVuXCms5DBugbk=";
   };
 
@@ -24,4 +24,4 @@ rustPlatform.buildRustPackage rec {
     maintainers = with lib.maintainers; [ laurent-f1z1 ];
     mainProgram = "okolors";
   };
-}
+})

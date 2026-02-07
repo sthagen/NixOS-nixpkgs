@@ -15,12 +15,12 @@
   cups,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "fox";
   version = "1.7.81";
 
   src = fetchurl {
-    url = "http://fox-toolkit.org/ftp/fox-${version}.tar.gz";
+    url = "http://fox-toolkit.org/ftp/fox-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-bu+IEqNkv9OAf96dPYre3CP759pjalVIbYyc3QSQW2w=";
   };
 
@@ -59,4 +59,4 @@ stdenv.mkDerivation rec {
     maintainers = [ ];
     platforms = lib.platforms.all;
   };
-}
+})

@@ -16,7 +16,7 @@
   xdg-utils,
 }:
 
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "faugus-launcher";
   version = "1.13.11";
   pyproject = false;
@@ -24,7 +24,7 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "Faugus";
     repo = "faugus-launcher";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-j+qJmcSvq1TyVKGqPx3oeYIVDMxePPjg12bLu2lYWXU=";
   };
 
@@ -87,10 +87,10 @@ python3Packages.buildPythonApplication rec {
   meta = {
     description = "Simple and lightweight app for running Windows games using UMU-Launcher";
     homepage = "https://github.com/Faugus/faugus-launcher";
-    changelog = "https://github.com/Faugus/faugus-launcher/releases/tag/${version}";
+    changelog = "https://github.com/Faugus/faugus-launcher/releases/tag/${finalAttrs.version}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ RoGreat ];
     mainProgram = "faugus-launcher";
     platforms = lib.platforms.linux;
   };
-}
+})

@@ -41,7 +41,7 @@
   zenity,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "muffin";
   version = "6.6.3";
 
@@ -54,7 +54,7 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "linuxmint";
     repo = "muffin";
-    rev = version;
+    rev = finalAttrs.version;
     hash = "sha256-PNL6PAZinds+kqCUCesJkTS+93juhm35sPE7RFUdxeU=";
   };
 
@@ -127,4 +127,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     teams = [ lib.teams.cinnamon ];
   };
-}
+})

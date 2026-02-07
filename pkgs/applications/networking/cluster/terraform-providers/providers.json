@@ -526,11 +526,11 @@
     "vendorHash": null
   },
   "hashicorp_azurerm": {
-    "hash": "sha256-uAaWBctVH61wMz12hX3DnayVn6LK1e3aUM2SQBNx3QQ=",
+    "hash": "sha256-ZqR6UjG+3KUuqnru5CycUcjWxLwCiQdpsIPR2UiY3g8=",
     "homepage": "https://registry.terraform.io/providers/hashicorp/azurerm",
     "owner": "hashicorp",
     "repo": "terraform-provider-azurerm",
-    "rev": "v4.58.0",
+    "rev": "v4.59.0",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },
@@ -715,22 +715,22 @@
     "vendorHash": "sha256-baqt8ZBmPQpKZIb/7tb44p7xf8azBawks4mQxtAqIpc="
   },
   "huaweicloud_huaweicloud": {
-    "hash": "sha256-4YCixNM2I/v8pn6CAiNQf2tXKTeNjAWpHGDF3yOwIYs=",
+    "hash": "sha256-vDGr0g/yhLTr+oyXxbM7v2TyecYRAvx40crCi3ug5Lk=",
     "homepage": "https://registry.terraform.io/providers/huaweicloud/huaweicloud",
     "owner": "huaweicloud",
     "repo": "terraform-provider-huaweicloud",
-    "rev": "v1.85.0",
+    "rev": "v1.86.0",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },
   "ibm-cloud_ibm": {
-    "hash": "sha256-1GqI6cFy386osELaG474OeQX33wIAIEABb/bL5ezs6Q=",
+    "hash": "sha256-6xJf+67xcxZLraRvbKkazNis44V2EP67nHjyCeV832A=",
     "homepage": "https://registry.terraform.io/providers/IBM-Cloud/ibm",
     "owner": "IBM-Cloud",
     "repo": "terraform-provider-ibm",
-    "rev": "v1.87.2",
+    "rev": "v1.88.0",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-vKu5ytMAhIYKoPNfuxpyBT9gRdSAR4wFI/7A9K+RiAo="
+    "vendorHash": "sha256-KjhTp/Sjf4pxbsrWc4EZAD/NAtr0U7yieYd6s2NQHHc="
   },
   "icinga_icinga2": {
     "hash": "sha256-Y/Oq0aTzP+oSKPhHiHY9Leal4HJJm7TNDpcdqkUsCmk=",
@@ -1409,11 +1409,11 @@
     "vendorHash": "sha256-l6EzevVL6YxLLq9QWcGZv9Go+0sUToLubHbMeNL1vJg="
   },
   "ucloud_ucloud": {
-    "hash": "sha256-mPTejWXREIBjEZVb660bUUnyj3z7hgfKPrUsSVvMx7A=",
+    "hash": "sha256-UOVnfWYhntmRHMApQgemjUBsyUIz0bexsc1gwDGGee4=",
     "homepage": "https://registry.terraform.io/providers/ucloud/ucloud",
     "owner": "ucloud",
     "repo": "terraform-provider-ucloud",
-    "rev": "v1.39.1",
+    "rev": "v1.39.2",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },

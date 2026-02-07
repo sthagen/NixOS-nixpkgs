@@ -6,14 +6,14 @@
   stdenv,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "netclient";
   version = "1.1.0";
 
   src = fetchFromGitHub {
     owner = "gravitl";
     repo = "netclient";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-gQvMT7hyh1yF/cS8+fXI4en1lj3dXyZ8/3LxrFwJos0=";
   };
 
@@ -25,8 +25,8 @@ buildGoModule rec {
     description = "Automated WireGuard® Management Client";
     mainProgram = "netclient";
     homepage = "https://netmaker.io";
-    changelog = "https://github.com/gravitl/netclient/releases/tag/v${version}";
+    changelog = "https://github.com/gravitl/netclient/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ wexder ];
   };
-}
+})

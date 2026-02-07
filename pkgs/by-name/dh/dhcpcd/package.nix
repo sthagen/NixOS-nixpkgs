@@ -13,14 +13,14 @@
   enablePrivSep ? false,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "dhcpcd";
   version = "10.3.0";
 
   src = fetchFromGitHub {
     owner = "NetworkConfiguration";
     repo = "dhcpcd";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-XbXZkws1eHvN7OEq7clq2kziwwdk04lNrWbJ9RdHExU=";
   };
 
@@ -79,4 +79,4 @@ stdenv.mkDerivation rec {
     maintainers = [ ];
     mainProgram = "dhcpcd";
   };
-}
+})

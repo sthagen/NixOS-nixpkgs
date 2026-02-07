@@ -12,14 +12,14 @@
   libqalculate,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "walker";
   version = "0.13.26";
 
   src = fetchFromGitHub {
     owner = "abenz1267";
     repo = "walker";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-LslpfHXj31Lvq+26ZDzCTaGBbxmp7yXlgKT+uwUEEts=";
   };
 
@@ -49,4 +49,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ donovanglover ];
     mainProgram = "walker";
   };
-}
+})

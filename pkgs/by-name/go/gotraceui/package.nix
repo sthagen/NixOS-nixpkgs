@@ -14,14 +14,14 @@
   fetchpatch,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "gotraceui";
   version = "0.4.0";
 
   src = fetchFromGitHub {
     owner = "dominikh";
     repo = "gotraceui";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     sha256 = "sha256-Rforuh9YlTv/mTpQm0+BaY+Ssc4DAiDCzVkIerP5Uz0=";
   };
 
@@ -63,4 +63,4 @@ buildGoModule rec {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ dominikh ];
   };
-}
+})

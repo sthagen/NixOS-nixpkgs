@@ -5,7 +5,7 @@
   nix-update-script,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "polarity";
   version = "latest-unstable-2026-01-29";
 
@@ -23,7 +23,7 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "Language with Dependent Data and Codata Types";
     homepage = "https://polarity-lang.github.io/";
-    changelog = "https://github.com/polarity-lang/polarity/blob/${src.rev}/CHANGELOG.md";
+    changelog = "https://github.com/polarity-lang/polarity/blob/${finalAttrs.src.rev}/CHANGELOG.md";
     license = with lib.licenses; [
       mit
       asl20
@@ -32,4 +32,4 @@ rustPlatform.buildRustPackage rec {
     mainProgram = "pol";
     platforms = lib.platforms.all;
   };
-}
+})

@@ -4,14 +4,14 @@
   fetchFromGitHub,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "badger";
   version = "4.9.0";
 
   src = fetchFromGitHub {
     owner = "dgraph-io";
     repo = "badger";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-AmDfG4IOpptdH0/Un4V275UTTUXoV1LNKtbSj3O50rs=";
   };
 
@@ -28,4 +28,4 @@ buildGoModule rec {
     mainProgram = "badger";
     maintainers = with lib.maintainers; [ farcaller ];
   };
-}
+})

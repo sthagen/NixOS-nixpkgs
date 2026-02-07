@@ -8,12 +8,12 @@
   libxext,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "xearth";
   version = "1.1";
 
   src = fetchurl {
-    url = "http://xearth.org/xearth-${version}.tar.gz";
+    url = "http://xearth.org/xearth-${finalAttrs.version}.tar.gz";
     hash = "sha256-vLFAfMNbP23TYGssYHInO2qRLL2e0a4i+y0maUVBMJw=";
   };
 
@@ -57,4 +57,4 @@ stdenv.mkDerivation rec {
     };
     platforms = lib.platforms.unix;
   };
-}
+})

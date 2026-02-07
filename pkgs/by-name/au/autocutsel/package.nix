@@ -6,12 +6,12 @@
   libxaw,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   version = "0.10.1";
   pname = "autocutsel";
 
   src = fetchurl {
-    url = "https://github.com/sigmike/autocutsel/releases/download/${version}/autocutsel-${version}.tar.gz";
+    url = "https://github.com/sigmike/autocutsel/releases/download/${finalAttrs.version}/autocutsel-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-8X4G1C90lENtSyb0vgtrDaOUgcBADJZ3jkuQW2NB6xc=";
   };
 
@@ -31,4 +31,4 @@ stdenv.mkDerivation rec {
     platforms = with lib.platforms; all;
     mainProgram = "autocutsel";
   };
-}
+})

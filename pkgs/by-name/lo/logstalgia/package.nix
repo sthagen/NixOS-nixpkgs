@@ -18,12 +18,12 @@
   freetype,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "logstalgia";
   version = "1.1.4";
 
   src = fetchurl {
-    url = "https://github.com/acaudwell/Logstalgia/releases/download/logstalgia-${version}/logstalgia-${version}.tar.gz";
+    url = "https://github.com/acaudwell/Logstalgia/releases/download/logstalgia-${finalAttrs.version}/logstalgia-${finalAttrs.version}.tar.gz";
     hash = "sha256-wEnv9AXpJANSIu2ya8xse18AoIkmq9t7Rn4kSSQnkKk=";
   };
 
@@ -77,4 +77,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ pSub ];
     mainProgram = "logstalgia";
   };
-}
+})

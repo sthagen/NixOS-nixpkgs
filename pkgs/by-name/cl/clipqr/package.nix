@@ -17,14 +17,14 @@
   stdenv,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "clipqr";
   version = "1.3.0";
 
   src = fetchFromGitLab {
     owner = "imatt-foss";
     repo = "clipqr";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-iuA6RqclMm1CWaiM1kpOpgfYvKaYGOIwFQkLr/nCL5M=";
   };
 
@@ -76,4 +76,4 @@ buildGoModule rec {
     broken = stdenv.hostPlatform.isDarwin;
     mainProgram = "clipqr";
   };
-}
+})

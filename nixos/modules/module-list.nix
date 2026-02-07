@@ -843,6 +843,7 @@
   ./services/misc/dump1090-fa.nix
   ./services/misc/dwm-status.nix
   ./services/misc/dysnomia.nix
+  ./services/misc/elephant.nix
   ./services/misc/errbot.nix
   ./services/misc/ersatztv.nix
   ./services/misc/etebase-server.nix

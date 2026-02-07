@@ -12,7 +12,7 @@
   inetutils,
   nixosTests,
   home-assistant,
-  testers,
+  versionCheckHook,
 
   # Look up dependencies of specified components in component-packages.nix
   extraComponents ? [ ],
@@ -273,7 +273,7 @@ let
   extraBuildInputs = extraPackages python.pkgs;
 
   # Don't forget to run update-component-packages.py after updating
-  hassVersion = "2026.2.0";
+  hassVersion = "2026.2.1";
 
 in
 python.pkgs.buildPythonApplication rec {
@@ -294,13 +294,13 @@ python.pkgs.buildPythonApplication rec {
     owner = "home-assistant";
     repo = "core";
     tag = version;
-    hash = "sha256-SZv5UVB62nwRjaemVZpxj8ZUpOzFGp/RsvOYm6uWiNc=";
+    hash = "sha256-Hor050X0kBHQiZub0ioRFL4ulLUPJMR6CEh7kmFkbUA=";
   };
 
   # Secondary source is pypi sdist for translations
   sdist = fetchPypi {
     inherit pname version;
-    hash = "sha256-ArCk9UrObDLmcmcS8/xT0ADPLzw/DUs3vKyX/fKCeU8=";
+    hash = "sha256-x8l9nVT+gsgrwUOz1B2X0JH+OuQjf279IrUKGgT7tNo=";
   };
 
   build-system = with python.pkgs; [
@@ -426,6 +426,7 @@ python.pkgs.buildPythonApplication rec {
 
   nativeCheckInputs =
     requirementsTest
+    ++ [ versionCheckHook ]
     ++ (with python.pkgs; [
       # Used in tests/non_packaged_scripts/test_alexa_locales.py
       beautifulsoup4
@@ -499,10 +500,6 @@ python.pkgs.buildPythonApplication rec {
     tests = {
       nixos = nixosTests.home-assistant;
       components = callPackage ./tests.nix { };
-      version = testers.testVersion {
-        package = home-assistant;
-        command = "hass --version";
-      };
       withoutCheckDeps = home-assistant.overridePythonAttrs {
         pname = "home-assistant-without-check-deps";
         doCheck = false;

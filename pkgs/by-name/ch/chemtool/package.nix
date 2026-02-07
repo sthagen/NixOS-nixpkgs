@@ -9,12 +9,12 @@
   wrapGAppsHook3,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "chemtool";
   version = "1.6.14";
 
   src = fetchurl {
-    url = "http://ruby.chemie.uni-freiburg.de/~martin/chemtool/chemtool-${version}.tar.gz";
+    url = "http://ruby.chemie.uni-freiburg.de/~martin/chemtool/chemtool-${finalAttrs.version}.tar.gz";
     sha256 = "hhYaBGE4azNKX/sXzfCUpJGUGIRngnL0V0mBNRTdr8s=";
   };
 
@@ -58,4 +58,4 @@ stdenv.mkDerivation rec {
     maintainers = [ ];
     platforms = lib.platforms.linux;
   };
-}
+})

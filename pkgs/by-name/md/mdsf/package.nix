@@ -7,17 +7,15 @@
   nix-update-script,
   installShellFiles,
 }:
-let
+
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "mdsf";
   version = "0.11.1";
-in
-rustPlatform.buildRustPackage {
-  inherit pname version;
 
   src = fetchFromGitHub {
     owner = "hougesen";
     repo = "mdsf";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-UfLgrukVYqkUKBI7CNLIkANO1md6ArrbSIh+f0F3bek=";
   };
 
@@ -49,4 +47,4 @@ rustPlatform.buildRustPackage {
     maintainers = with lib.maintainers; [ luftmensch-luftmensch ];
     mainProgram = "mdsf";
   };
-}
+})

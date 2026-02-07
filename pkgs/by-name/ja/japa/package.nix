@@ -12,12 +12,12 @@
   zita-alsa-pcmi,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   version = "0.9.4";
   pname = "japa";
 
   src = fetchurl {
-    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/japa-${version}.tar.bz2";
+    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/japa-${finalAttrs.version}.tar.bz2";
     sha256 = "sha256-t9wlZr+pE5u6yTpATWDQseC/rf4TFbtG0X9tnTdkB8I=";
   };
 
@@ -49,4 +49,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     mainProgram = "japa";
   };
-}
+})

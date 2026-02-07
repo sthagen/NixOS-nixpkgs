@@ -39,14 +39,14 @@
   zlib,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "hyperspeedcube";
   version = "1.0.12";
 
   src = fetchFromGitHub {
     owner = "HactarCE";
     repo = "Hyperspeedcube";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-ctBvc2xANM/gGzDDv8ygSO4nTOiG6iKyuSKnz385PIw=";
   };
 
@@ -126,4 +126,4 @@ rustPlatform.buildRustPackage rec {
     maintainers = [ lib.maintainers.omnipotententity ];
     platforms = [ "x86_64-linux" ];
   };
-}
+})

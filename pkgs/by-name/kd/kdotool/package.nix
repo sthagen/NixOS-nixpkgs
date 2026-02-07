@@ -6,14 +6,14 @@
   dbus,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   version = "0.2.2-pre";
   pname = "kdotool";
 
   src = fetchFromGitHub {
     owner = "jinliu";
     repo = "kdotool";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-qx4bWAFQcoLM/r4aNzmoZdjclw8ccAW8lKLda6ON1aQ=";
   };
 
@@ -28,4 +28,4 @@ rustPlatform.buildRustPackage rec {
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ kotatsuyaki ];
   };
-}
+})

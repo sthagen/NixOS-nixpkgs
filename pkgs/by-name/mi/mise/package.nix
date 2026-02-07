@@ -20,14 +20,14 @@
   jq,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "mise";
   version = "2026.2.1";
 
   src = fetchFromGitHub {
     owner = "jdx";
     repo = "mise";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-7TsSK3mk6tSxvWPNYq8Viyc8x4BYmR/QrqRT/sfetz4=";
   };
 
@@ -137,9 +137,9 @@ rustPlatform.buildRustPackage rec {
   meta = {
     homepage = "https://mise.jdx.dev";
     description = "Front-end to your dev env";
-    changelog = "https://github.com/jdx/mise/releases/tag/v${version}";
+    changelog = "https://github.com/jdx/mise/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ konradmalik ];
     mainProgram = "mise";
   };
-}
+})

@@ -4,7 +4,7 @@
   fetchFromGitHub,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "okta-aws-cli";
   version = "2.5.3";
 
@@ -13,7 +13,7 @@ buildGoModule rec {
   src = fetchFromGitHub {
     owner = "okta";
     repo = "okta-aws-cli";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-l9sbkMcL35GezqJc1z4+1cTvJkyyCrI0NaNdVvmTSB0=";
   };
 
@@ -31,4 +31,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ daniyalsuri6 ];
     mainProgram = "okta-aws-cli";
   };
-}
+})

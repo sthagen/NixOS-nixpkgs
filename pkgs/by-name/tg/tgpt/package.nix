@@ -5,14 +5,14 @@
   libx11,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "tgpt";
   version = "2.11.0";
 
   src = fetchFromGitHub {
     owner = "aandrew-me";
     repo = "tgpt";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-mEzTvurjG/58qgNtJie7Iy6rSkiu2VbDIu1MiyrcEyo=";
   };
 
@@ -34,9 +34,9 @@ buildGoModule rec {
   meta = {
     description = "ChatGPT in terminal without needing API keys";
     homepage = "https://github.com/aandrew-me/tgpt";
-    changelog = "https://github.com/aandrew-me/tgpt/releases/tag/v${version}";
+    changelog = "https://github.com/aandrew-me/tgpt/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ fab ];
     mainProgram = "tgpt";
   };
-}
+})

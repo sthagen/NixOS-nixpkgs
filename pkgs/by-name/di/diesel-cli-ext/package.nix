@@ -4,13 +4,13 @@
   fetchCrate,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "diesel-cli-ext";
   version = "0.3.13";
 
   src = fetchCrate {
     pname = "diesel_cli_ext";
-    inherit version;
+    inherit (finalAttrs) version;
     hash = "sha256-5AIzMxEcxL/vYWx3D/meA///Zo+1210HUMEE4dFBhkc=";
   };
 
@@ -26,4 +26,4 @@ rustPlatform.buildRustPackage rec {
     mainProgram = "diesel_ext";
     maintainers = with lib.maintainers; [ siph ];
   };
-}
+})

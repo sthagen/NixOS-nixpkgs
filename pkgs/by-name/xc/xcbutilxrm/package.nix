@@ -9,12 +9,12 @@
   libx11,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   version = "1.3";
   pname = "xcb-util-xrm";
 
   src = fetchurl {
-    url = "https://github.com/Airblader/xcb-util-xrm/releases/download/v${version}/xcb-util-xrm-${version}.tar.bz2";
+    url = "https://github.com/Airblader/xcb-util-xrm/releases/download/v${finalAttrs.version}/xcb-util-xrm-${finalAttrs.version}.tar.bz2";
     sha256 = "118cj1ybw86pgw0l5whn9vbg5n5b0ijcpx295mwahzi004vz671h";
   };
 
@@ -37,4 +37,4 @@ stdenv.mkDerivation rec {
     license = lib.licenses.mit; # X11 variant
     platforms = with lib.platforms; unix;
   };
-}
+})

@@ -13,12 +13,12 @@
   makeDesktopItem,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "bristol";
   version = "0.60.11";
 
   src = fetchurl {
-    url = "mirror://sourceforge/bristol/bristol-${version}.tar.gz";
+    url = "mirror://sourceforge/bristol/bristol-${finalAttrs.version}.tar.gz";
     hash = "sha256-fR8LvQ19MD/HfGuVSbYXCNeoO03AB4GAEbH1XR+pIro=";
   };
 
@@ -83,4 +83,4 @@ stdenv.mkDerivation rec {
     ];
     maintainers = [ ];
   };
-}
+})

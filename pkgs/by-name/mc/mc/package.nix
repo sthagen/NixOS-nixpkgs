@@ -25,12 +25,12 @@
   writeScript,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "mc";
   version = "4.8.33";
 
   src = fetchurl {
-    url = "https://ftp.osuosl.org/pub/midnightcommander/mc-${version}.tar.xz";
+    url = "https://ftp.osuosl.org/pub/midnightcommander/mc-${finalAttrs.version}.tar.xz";
     hash = "sha256-yuFJ1C+ETlGF2MgdfbOROo+iFMZfhSIAqdiWtGivFkw=";
   };
 
@@ -109,4 +109,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
     mainProgram = "mc";
   };
-}
+})

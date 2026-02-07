@@ -13,12 +13,12 @@
   zita-resampler,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "zita-at1";
   version = "0.8.2";
 
   src = fetchurl {
-    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-at1-${version}.tar.bz2";
+    url = "https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-at1-${finalAttrs.version}.tar.bz2";
     sha256 = "sha256-NSYTJmgOmL/CgGI/rBGQuqmccZEzvwYgchb7e4XqmmM=";
   };
 
@@ -52,4 +52,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     mainProgram = "zita-at1";
   };
-}
+})

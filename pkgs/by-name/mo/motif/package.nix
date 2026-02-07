@@ -23,12 +23,12 @@
 }:
 # refer to the gentoo package
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "motif";
   version = "2.3.8";
 
   src = fetchurl {
-    url = "mirror://sourceforge/motif/motif-${version}.tar.gz";
+    url = "mirror://sourceforge/motif/motif-${finalAttrs.version}.tar.gz";
     sha256 = "1rxwkrhmj8sfg7dwmkhq885valwqbh26d79033q7vb7fcqv756w5";
   };
 
@@ -148,4 +148,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ qyliss ];
     broken = demoSupport && stdenv.cc.isClang && lib.versionAtLeast stdenv.cc.version "16";
   };
-}
+})

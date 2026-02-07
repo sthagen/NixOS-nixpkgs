@@ -13,14 +13,14 @@
   libxi,
   libxxf86vm,
 }:
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "bepass";
   version = "1.6.2";
 
   src = fetchFromGitHub {
     owner = "bepass-org";
     repo = "bepass";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-ruOhPWNs1WWM3r6X+6ch0HoDCu/a+IkBQiCr0Wh6yS8=";
   };
 
@@ -59,4 +59,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ oluceps ];
     broken = enableGUI;
   };
-}
+})

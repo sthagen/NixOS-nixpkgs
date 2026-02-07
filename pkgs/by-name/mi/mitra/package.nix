@@ -6,14 +6,14 @@
   installShellFiles,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "mitra";
   version = "4.16.1";
 
   src = fetchFromCodeberg {
     owner = "silverpill";
     repo = "mitra";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-nQhzU3LMEyqa2CciNTX5/+ViMqjmwDt3QrMZnbt/tBU=";
   };
 
@@ -49,4 +49,4 @@ rustPlatform.buildRustPackage rec {
     maintainers = with lib.maintainers; [ haruki7049 ];
     mainProgram = "mitra";
   };
-}
+})

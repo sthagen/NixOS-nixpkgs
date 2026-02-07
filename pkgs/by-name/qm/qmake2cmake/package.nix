@@ -1,18 +1,11 @@
 {
   lib,
-  buildPythonPackage,
+  python3Packages,
   fetchgit,
-  packaging,
-  platformdirs,
-  portalocker,
-  pyparsing,
-  setuptools,
-  sympy,
-  pytestCheckHook,
   writableTmpDirAsHomeHook,
 }:
 
-buildPythonPackage {
+python3Packages.buildPythonPackage {
   pname = "qmake2cmake";
   version = "1.0.8";
   pyproject = true;
@@ -28,18 +21,18 @@ buildPythonPackage {
     ./fix-locations.patch
   ];
 
-  build-system = [ setuptools ];
+  build-system = [ python3Packages.setuptools ];
 
   dependencies = [
-    packaging
-    platformdirs
-    portalocker
-    pyparsing
-    sympy
+    python3Packages.packaging
+    python3Packages.platformdirs
+    python3Packages.portalocker
+    python3Packages.pyparsing
+    python3Packages.sympy
   ];
 
   nativeCheckInputs = [
-    pytestCheckHook
+    python3Packages.pytestCheckHook
     writableTmpDirAsHomeHook
   ];
 

@@ -5,7 +5,7 @@
   stdenv,
   fetchFromGitHub,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "clipnotify";
   version = "unstable-2018-02-20";
 
@@ -28,9 +28,9 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "Notify on new X clipboard events";
-    inherit (src.meta) homepage;
+    inherit (finalAttrs.src.meta) homepage;
     maintainers = with lib.maintainers; [ jb55 ];
     license = lib.licenses.publicDomain;
     mainProgram = "clipnotify";
   };
-}
+})

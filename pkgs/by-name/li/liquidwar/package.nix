@@ -30,12 +30,12 @@
   libGLU,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "liquidwar6";
   version = "0.6.3902";
 
   src = fetchurl {
-    url = "mirror://gnu/liquidwar6/liquidwar6-${version}.tar.gz";
+    url = "mirror://gnu/liquidwar6/liquidwar6-${finalAttrs.version}.tar.gz";
     sha256 = "1976nnl83d8wspjhb5d5ivdvdxgb8lp34wp54jal60z4zad581fn";
   };
 
@@ -95,4 +95,4 @@ stdenv.mkDerivation rec {
     license = lib.licenses.gpl3Plus;
     platforms = lib.platforms.linux;
   };
-}
+})

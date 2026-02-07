@@ -9,14 +9,14 @@
   rsop,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rsop";
   version = "0.9.3";
 
   src = fetchFromCodeberg {
     owner = "heiko";
     repo = "rsop";
-    rev = "rsop/v${version}";
+    rev = "rsop/v${finalAttrs.version}";
     hash = "sha256-eP3jh5TIhMHDWnttnYvBre/tfzxajLNGtInWNiFAPiw=";
   };
 
@@ -45,4 +45,4 @@ rustPlatform.buildRustPackage rec {
     maintainers = with lib.maintainers; [ nikstur ];
     mainProgram = "rsop";
   };
-}
+})

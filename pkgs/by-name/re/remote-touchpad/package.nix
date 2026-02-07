@@ -8,14 +8,14 @@
   libxtst,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "remote-touchpad";
   version = "1.5.3";
 
   src = fetchFromGitHub {
     owner = "unrud";
     repo = "remote-touchpad";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-9K/AdkfpQbXPDIwai3h98G4lo4p8c/yTLxirhbo03U4=";
   };
 
@@ -37,4 +37,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ schnusch ];
     platforms = lib.platforms.linux;
   };
-}
+})

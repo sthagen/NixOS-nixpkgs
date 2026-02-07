@@ -34,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
     zlib
   ];
 
-  NIX_LDFLAGS = "-lX11";
+  env.NIX_LDFLAGS = "-lX11";
 
   meta = {
     description = "Multiplayer space combat game (client part)";

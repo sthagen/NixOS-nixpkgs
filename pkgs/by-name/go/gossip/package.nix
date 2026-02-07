@@ -24,14 +24,14 @@
   libxrandr,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "gossip";
   version = "0.14.0";
 
   src = fetchFromGitHub {
     owner = "mikedilger";
     repo = "gossip";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-nv/NMLAka62u0WzvHMEW9XBVXpg9T8bNJiUegS/oj48=";
   };
 
@@ -104,7 +104,7 @@ rustPlatform.buildRustPackage rec {
       name = "Gossip";
       exec = "gossip";
       icon = "gossip";
-      comment = meta.description;
+      comment = finalAttrs.meta.description;
       desktopName = "Gossip";
       categories = [
         "Chat"
@@ -120,11 +120,11 @@ rustPlatform.buildRustPackage rec {
 
   meta = {
     description = "Desktop client for nostr, an open social media protocol";
-    downloadPage = "https://github.com/mikedilger/gossip/releases/tag/${version}";
+    downloadPage = "https://github.com/mikedilger/gossip/releases/tag/${finalAttrs.version}";
     homepage = "https://github.com/mikedilger/gossip";
     license = lib.licenses.mit;
     mainProgram = "gossip";
     maintainers = with lib.maintainers; [ msanft ];
     platforms = lib.platforms.unix;
   };
-}
+})

@@ -10,14 +10,14 @@
   udevCheckHook,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "mouse-actions";
   version = "0.4.5";
 
   src = fetchFromGitHub {
     owner = "jersou";
     repo = "mouse-actions";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-44F4CdsDHuN2FuijnpfmoFy4a/eAbYOoBYijl9mOctg=";
   };
 
@@ -51,4 +51,4 @@ rustPlatform.buildRustPackage rec {
     mainProgram = "mouse-actions";
     platforms = lib.platforms.linux;
   };
-}
+})

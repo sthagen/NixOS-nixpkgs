@@ -6,7 +6,7 @@
   versionCheckHook,
 }:
 
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "zensical";
   version = "0.0.21";
   pyproject = true;
@@ -15,12 +15,12 @@ python3Packages.buildPythonApplication rec {
   # The publish process also copies in assets from zensical/ui.
   # We could combine sources, but then nix-update won't work.
   src = fetchPypi {
-    inherit pname version;
+    inherit (finalAttrs) pname version;
     hash = "sha256-wTVjg2+mOjyr7/2D/jp3DKdAz6Wue4XfhdiYN+MbO0o=";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
-    inherit pname version src;
+    inherit (finalAttrs) pname version src;
     hash = "sha256-zkF0Yf7EPFHmkWy3FEhTKYFlWW4pLFG1OZPi1z7vZXU=";
   };
 
@@ -51,9 +51,9 @@ python3Packages.buildPythonApplication rec {
       use, with powerful customization options.
     '';
     homepage = "https://zensical.org";
-    changelog = "https://github.com/zensical/zensical/releases/tag/v${version}";
+    changelog = "https://github.com/zensical/zensical/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ aljazerzen ];
     mainProgram = "zensical";
   };
-}
+})

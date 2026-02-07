@@ -6,14 +6,14 @@
   nix-update-script,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "fabric-ai";
   version = "1.4.400";
 
   src = fetchFromGitHub {
     owner = "danielmiessler";
     repo = "fabric";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-pkB11lNOxpu9n5keG4m+veyiH+CCq4Myc3IqnA9MZg8=";
   };
 
@@ -45,4 +45,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ jaredmontoya ];
     mainProgram = "fabric";
   };
-}
+})

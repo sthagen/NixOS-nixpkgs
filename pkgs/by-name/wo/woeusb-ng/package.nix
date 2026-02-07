@@ -8,7 +8,7 @@
   grub2,
 }:
 
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "woeusb-ng";
   version = "0.2.12";
   pyproject = true;
@@ -16,7 +16,7 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "WoeUSB";
     repo = "WoeUSB-ng";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-2opSiXbbk0zDRt6WqMh97iAt6/KhwNDopOas+OZn6TU=";
   };
 
@@ -68,4 +68,4 @@ python3Packages.buildPythonApplication rec {
     maintainers = [ lib.maintainers.stunkymonkey ];
     platforms = lib.platforms.linux;
   };
-}
+})

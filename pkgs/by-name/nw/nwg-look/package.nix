@@ -12,14 +12,14 @@
   zlib,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "nwg-look";
   version = "1.0.6";
 
   src = fetchFromGitHub {
     owner = "nwg-piotr";
     repo = "nwg-look";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-cNVUgtbdzEuttDO7DZyipDugACr/fIU8RKmh5trykPw=";
   };
 
@@ -74,4 +74,4 @@ buildGoModule rec {
     maintainers = with lib.maintainers; [ max-amb ];
     mainProgram = "nwg-look";
   };
-}
+})

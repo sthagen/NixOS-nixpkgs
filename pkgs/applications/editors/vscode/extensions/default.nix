@@ -675,8 +675,8 @@ let
         mktplcRef = {
           name = "markdown-mermaid";
           publisher = "bierner";
-          version = "1.31.0";
-          hash = "sha256-7KpyUXR3a7ZD9bcdJ4t5HRjSAlUww8q6XSOcxHCN4Cw=";
+          version = "1.31.1";
+          hash = "sha256-K3UXNT3MpGlhyHcx0AYAkCPEJIbYIu3e/ucIAQLwoEQ=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/bierner.markdown-mermaid/changelog";
@@ -1727,8 +1727,8 @@ let
         mktplcRef = {
           name = "foam-vscode";
           publisher = "foam";
-          version = "0.29.1";
-          hash = "sha256-U5DkTMNLoE9TDCa+Womml9ilv162FqVsnkyGsJ80+Ag=";
+          version = "0.29.2";
+          hash = "sha256-6Bga51DCHaVn+UV5RPCE7uFsAei/F0xN4Mk4dm52FWs=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/foam.foam-vscode/changelog";
@@ -1965,8 +1965,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.67.5";
-          hash = "sha256-xttk9mP5XIeeymE0l0TI+JsC862yOaEuwb6HscDyRMU=";
+          version = "6.68.1";
+          hash = "sha256-ZNdtaVo3KFGhGX99fGv/aSUcjy636W5e4DctPCMrRtY=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -5215,8 +5215,8 @@ let
         mktplcRef = {
           name = "csharp-ls";
           publisher = "vytautassurvila";
-          version = "0.0.29";
-          hash = "sha256-0gh7q/F69OD/soRuZHHxC9PRtOXJmjZjei6IbV82Rgs=";
+          version = "0.0.30";
+          hash = "sha256-BVSazrQxVm4yYBVdtFP3Aojl06xI2msFXIGw64LeePY=";
         };
         meta = {
           changelog = "https://github.com/vytautassurvila/vscode-csharp-ls/blob/master/CHANGELOG.md";

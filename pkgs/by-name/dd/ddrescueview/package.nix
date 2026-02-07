@@ -38,7 +38,11 @@ stdenv.mkDerivation rec {
     pango
   ];
 
-  NIX_LDFLAGS = "--as-needed -rpath ${lib.makeLibraryPath buildInputs}";
+  env.NIX_LDFLAGS = toString [
+    "--as-needed"
+    "-rpath"
+    (lib.makeLibraryPath buildInputs)
+  ];
 
   buildPhase = ''
     lazbuild --lazarusdir=${lazarus}/share/lazarus ddrescueview.lpi

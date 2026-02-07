@@ -4,14 +4,14 @@
   fetchFromGitHub,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "air";
   version = "1.64.4";
 
   src = fetchFromGitHub {
     owner = "air-verse";
     repo = "air";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-m2NIRf/dZQKB3IeEChEBfJ7GJkxiyuWSRvMoHfbsLeI=";
   };
 
@@ -20,7 +20,7 @@ buildGoModule rec {
   ldflags = [
     "-s"
     "-w"
-    "-X=main.airVersion=${version}"
+    "-X=main.airVersion=${finalAttrs.version}"
   ];
 
   subPackages = [ "." ];
@@ -32,4 +32,4 @@ buildGoModule rec {
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ Gonzih ];
   };
-}
+})

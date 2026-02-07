@@ -15,11 +15,11 @@
   libdrm,
   systemd,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "spice-vdagent";
   version = "0.23.0";
   src = fetchurl {
-    url = "https://www.spice-space.org/download/releases/spice-vdagent-${version}.tar.bz2";
+    url = "https://www.spice-space.org/download/releases/spice-vdagent-${finalAttrs.version}.tar.bz2";
     hash = "sha256-Y+D5vVWXxGOKz9bxDXojVPWZvZ31sx5EMnDKzwfhakA=";
   };
 
@@ -55,4 +55,4 @@ stdenv.mkDerivation rec {
     maintainers = [ lib.maintainers.aboseley ];
     platforms = lib.platforms.linux;
   };
-}
+})

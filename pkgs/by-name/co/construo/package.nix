@@ -13,12 +13,12 @@
   libglut,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "construo";
   version = "0.2.3";
 
   src = fetchurl {
-    url = "https://github.com/Construo/construo/releases/download/v${version}/construo-${version}.tar.gz";
+    url = "https://github.com/Construo/construo/releases/download/v${finalAttrs.version}/construo-${finalAttrs.version}.tar.gz";
     sha256 = "1wmj527hbj1qv44cdsj6ahfjrnrjwg2dp8gdick8nd07vm062qxa";
   };
 
@@ -43,4 +43,4 @@ stdenv.mkDerivation rec {
     license = lib.licenses.gpl3;
     priority = 10;
   };
-}
+})

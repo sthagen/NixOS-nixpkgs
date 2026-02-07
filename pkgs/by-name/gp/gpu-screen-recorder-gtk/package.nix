@@ -22,13 +22,13 @@
   gitUpdater,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder-gtk";
   version = "5.7.9";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-gtk";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-RFY5hQqv5XkLliB3+YJX4TXLxV9y1/P8PIYMi6MCbww=";
   };
 
@@ -82,4 +82,4 @@ stdenv.mkDerivation rec {
     ];
     platforms = [ "x86_64-linux" ];
   };
-}
+})

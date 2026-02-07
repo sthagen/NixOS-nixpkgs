@@ -62,6 +62,6 @@ buildDotnetModule (finalAttrs: {
       plusgut
     ];
     platforms = dotnet-sdk.meta.platforms;
-    mainProgram = pname;
+    mainProgram = "marksman";
   };
 })

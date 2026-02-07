@@ -8,14 +8,14 @@
   sq,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "sq";
   version = "0.48.10";
 
   src = fetchFromGitHub {
     owner = "neilotoole";
     repo = "sq";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-5JlvG179rZHXsJWg+5uz//7QGdkwdNGULkK/DLCifus=";
   };
 
@@ -31,7 +31,7 @@ buildGoModule rec {
   ldflags = [
     "-s"
     "-w"
-    "-X=github.com/neilotoole/sq/cli/buildinfo.Version=v${version}"
+    "-X=github.com/neilotoole/sq/cli/buildinfo.Version=v${finalAttrs.version}"
   ];
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
@@ -44,7 +44,7 @@ buildGoModule rec {
   passthru.tests = {
     version = testers.testVersion {
       package = sq;
-      version = "v${version}";
+      version = "v${finalAttrs.version}";
     };
   };
 
@@ -56,4 +56,4 @@ buildGoModule rec {
     platforms = lib.platforms.all;
     maintainers = with lib.maintainers; [ raitobezarius ];
   };
-}
+})

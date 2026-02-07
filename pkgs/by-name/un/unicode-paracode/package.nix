@@ -8,7 +8,7 @@
   unicode-character-database,
 }:
 
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "unicode";
   version = "2.9";
   pyproject = true;
@@ -16,7 +16,7 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "garabik";
     repo = "unicode";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-FHAlZ5HID/FE9+YR7Dmc3Uh7E16QKORoD8g9jgTeQdY=";
   };
 
@@ -50,4 +50,4 @@ python3Packages.buildPythonApplication rec {
     maintainers = [ lib.maintainers.woffs ];
     platforms = lib.platforms.all;
   };
-}
+})

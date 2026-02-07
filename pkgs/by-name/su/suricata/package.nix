@@ -36,12 +36,12 @@
 let
   libmagic = file;
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "suricata";
   version = "8.0.2";
 
   src = fetchurl {
-    url = "https://www.openinfosecfoundation.org/download/suricata-${version}.tar.gz";
+    url = "https://www.openinfosecfoundation.org/download/suricata-${finalAttrs.version}.tar.gz";
     hash = "sha256-nUUMosrb4QGZPpkDOmI0nSvanf2QpqzBvLbMbbdutVE=";
   };
 
@@ -161,4 +161,4 @@ stdenv.mkDerivation rec {
     license = lib.licenses.gpl2;
     platforms = lib.platforms.linux;
   };
-}
+})

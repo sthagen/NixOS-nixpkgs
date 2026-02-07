@@ -7,7 +7,7 @@
   libx11,
 }:
 
-stdenv_32bit.mkDerivation rec {
+stdenv_32bit.mkDerivation {
   pname = "libstrangle";
   version = "unstable-202202022";
 
@@ -18,7 +18,7 @@ stdenv_32bit.mkDerivation rec {
 
   src = fetchFromGitLab {
     owner = "torkel104";
-    repo = pname;
+    repo = "libstrangle";
     rev = "0273e318e3b0cc759155db8729ad74266b74cb9b";
     hash = "sha256-h10QA7m7hIQHq1g/vCYuZsFR2NVbtWBB46V6OWP5wgM=";
   };

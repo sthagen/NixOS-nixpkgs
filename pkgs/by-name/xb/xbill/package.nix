@@ -12,7 +12,7 @@
   motif,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "xbill";
   version = "2.1";
 
@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
   ];
 
   src = fetchurl {
-    url = "http://www.xbill.org/download/xbill-${version}.tar.gz";
+    url = "http://www.xbill.org/download/xbill-${finalAttrs.version}.tar.gz";
     hash = "sha256-Dv3/8c4t9wt6FWActIjNey65GNIdeOh3vXc/ESlFYI0=";
   };
 
@@ -91,4 +91,4 @@ stdenv.mkDerivation rec {
     mainProgram = "xbill";
     platforms = lib.platforms.unix;
   };
-}
+})

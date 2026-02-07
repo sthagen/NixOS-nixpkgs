@@ -4,14 +4,14 @@
   fetchFromGitHub,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "impl";
   version = "1.4.0";
 
   src = fetchFromGitHub {
     owner = "josharian";
     repo = "impl";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-0TSyg7YEPur+h0tkDxI3twr2PzT7tmo3shKgmSSJ6qk=";
   };
 
@@ -24,4 +24,4 @@ buildGoModule rec {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ kalbasit ];
   };
-}
+})

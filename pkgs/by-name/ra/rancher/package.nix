@@ -4,14 +4,14 @@
   fetchFromGitHub,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "rancher";
   version = "2.13.2";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "cli";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-5nGUxdhMhhwDaVRwURis3FElMonwoe8h6M09EDwf+Bc=";
   };
 
@@ -20,7 +20,7 @@ buildGoModule rec {
   ldflags = [
     "-w"
     "-s"
-    "-X main.VERSION=${version}"
+    "-X main.VERSION=${finalAttrs.version}"
     "-extldflags"
     "-static"
   ];
@@ -33,7 +33,7 @@ buildGoModule rec {
 
   doInstallCheck = true;
   installCheckPhase = ''
-    $out/bin/rancher | grep ${version} > /dev/null
+    $out/bin/rancher | grep ${finalAttrs.version} > /dev/null
   '';
 
   meta = {
@@ -43,4 +43,4 @@ buildGoModule rec {
     license = lib.licenses.asl20;
     maintainers = [ ];
   };
-}
+})

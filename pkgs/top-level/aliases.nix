@@ -362,6 +362,7 @@ mapAliases {
   belle-sip = throw "'belle-sip' has been moved to 'linphonePackages.belle-sip'"; # Added 2025-09-20
   belr = throw "'belr' has been moved to 'linphonePackages.belr'"; # Added 2025-09-20
   bfc = throw "bfc has been removed, as it does not build with supported LLVM versions"; # Added 2025-08-10
+  bfr = throw "bfr has been removed, did not update since 2004, fails to build on gcc-15, no homepage"; # Added 2026-01-28
   bindle = throw "bindle has been removed since it is vulnerable to CVE-2025-62518 and upstream has been archived"; # Added 2025-10-24
   binserve = throw "'binserve' has been removed because it is unmaintained upstream."; # Added 2025-11-29
   bitbucket-server-cli = throw "bitbucket-server-cli has been removed due to lack of maintenance upstream."; # Added 2025-05-27
@@ -399,6 +400,7 @@ mapAliases {
   bullet-roboschool = throw "'bullet-roboschool' has been removed as its build was broken and it was deprecated with its last update in 2019."; # Added 2025-11-15
   bwidget = throw "'bwidget' has been renamed to/replaced by 'tclPackages.bwidget'"; # Converted to throw 2025-10-27
   bzrtp = throw "'bzrtp' has been moved to 'linphonePackages.bzrtp'"; # Added 2025-09-20
+  c0 = throw "'c0' has been removed due to being broken for more than a year; see RFC 180"; # Added 2026-02-05
   calculix = throw "'calculix' has been renamed to/replaced by 'calculix-ccx'"; # Converted to throw 2025-10-27
   calligra = throw "'calligra' has been renamed to/replaced by 'kdePackages.calligra'"; # Converted to throw 2025-10-27
   callPackage_i686 = throw "'callPackage_i686' has been renamed to/replaced by 'pkgsi686Linux.callPackage'"; # Converted to throw 2025-10-27
@@ -414,6 +416,7 @@ mapAliases {
   catch = throw "catch has been removed. Please upgrade to catch2 or catch2_3"; # Added 2025-08-21
   catnip-gtk4 = throw "'catnip-gtk4' has been removed, as it has been unmaintained upstream since June 2023, use cavasik or cavalier instead"; # Added 2026-01-01
   cdwe = throw "'cdwe' has been removed, as it has been unmaintained upstream since June 2023"; # Added 2026-01-01
+  cedille = throw "'cedille' has been removed due to being broken for more than a year; see RFC 180"; # Added 2026-02-05
   cereal_1_3_0 = throw "cereal_1_3_0 has been removed as it was unused; use cereal intsead"; # Added 2025-09-12
   cereal_1_3_2 = throw "cereal_1_3_2 is now the only version and has been renamed to cereal"; # Added 2025-09-12
   certmgr-selfsigned = throw "'certmgr-selfsigned' has been renamed to/replaced by 'certmgr'"; # Converted to throw 2025-10-27
@@ -829,6 +832,7 @@ mapAliases {
   graphite-kde-theme = throw "'graphite-kde-theme' has been removed, as it is only compatible with Plasma 5, which is EOL"; # Added 2025-08-20
   gringo = throw "'gringo' has been renamed to/replaced by 'clingo'"; # Converted to throw 2025-10-27
   grub2_full = throw "'grub2_full' has been renamed to/replaced by 'grub2'"; # Converted to throw 2025-10-27
+  grub4dos = throw "'grub4dos' has been removed due to being broken for more than a year; see RFC 180"; # Added 2026-02-05
   gscrabble = throw "'gscrabble' has been removed, as it is unmaintained upstream, and broken in nixpkgs"; # Added 2026-01-03
   gsettings-qt = lomiri.gsettings-qt; # Added 2025-12-06
   gtkcord4 = throw "'gtkcord4' has been renamed to/replaced by 'dissent'"; # Converted to throw 2025-10-27
@@ -1790,7 +1794,7 @@ mapAliases {
   tcptrace = throw "tcptrace has been removed as it was broken and upstream is gone"; # Added 2026-02-02
   tdesktop = throw "'tdesktop' has been renamed to/replaced by 'telegram-desktop'"; # Converted to throw 2025-10-27
   tdfgo = throw "'tdfgo' has been removed because it was removed from upstream"; # Added 2025-12-18
-  tdlib-purple = throw "'tdlib-purple' has been renamed to/replaced by 'pidginPackages.tdlib-purple'"; # Converted to throw 2025-10-27
+  tdlib-purple = throw "'tdlib-purple' has been removed due to being broken for more than a year; see RFC 180"; # Added 2026-02-05
   tdom = throw "'tdom' has been renamed to/replaced by 'tclPackages.tdom'"; # Converted to throw 2025-10-27
   teamspeak5_client = throw "'teamspeak5_client' has been renamed to/replaced by 'teamspeak6-client'"; # Converted to throw 2025-10-27
   teamspeak_client = throw "'teamspeak_client' has been renamed to/replaced by 'teamspeak3'"; # Converted to throw 2025-10-27

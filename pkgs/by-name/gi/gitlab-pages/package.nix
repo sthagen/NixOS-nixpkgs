@@ -4,7 +4,7 @@
   fetchFromGitLab,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "gitlab-pages";
   version = "18.8.3";
 
@@ -12,7 +12,7 @@ buildGoModule rec {
   src = fetchFromGitLab {
     owner = "gitlab-org";
     repo = "gitlab-pages";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-OmIhZwNmuOGYpBe32EYXVw4nX7XArkxdj3uoP9qurN4=";
   };
 
@@ -21,15 +21,15 @@ buildGoModule rec {
 
   ldflags = [
     "-X"
-    "main.VERSION=${version}"
+    "main.VERSION=${finalAttrs.version}"
   ];
 
   meta = {
     description = "Daemon used to serve static websites for GitLab users";
     mainProgram = "gitlab-pages";
     homepage = "https://gitlab.com/gitlab-org/gitlab-pages";
-    changelog = "https://gitlab.com/gitlab-org/gitlab-pages/-/blob/v${version}/CHANGELOG.md";
+    changelog = "https://gitlab.com/gitlab-org/gitlab-pages/-/blob/v${finalAttrs.version}/CHANGELOG.md";
     license = lib.licenses.mit;
     teams = [ lib.teams.gitlab ];
   };
-}
+})

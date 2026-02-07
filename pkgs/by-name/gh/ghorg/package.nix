@@ -6,14 +6,14 @@
   installShellFiles,
 }:
 
-buildGoModule rec {
+buildGoModule (finalAttrs: {
   pname = "ghorg";
   version = "1.11.8";
 
   src = fetchFromGitHub {
     owner = "gabrie30";
     repo = "ghorg";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     sha256 = "sha256-Co6TR60RfY24y/FZkdBQUvXtE19Il0KASbkDSe/e3Bw=";
   };
 
@@ -25,7 +25,7 @@ buildGoModule rec {
   ldflags = [
     "-s"
     "-w"
-    "-X main.version=${version}"
+    "-X main.version=${finalAttrs.version}"
   ];
 
   nativeBuildInputs = [ installShellFiles ];
@@ -51,4 +51,4 @@ buildGoModule rec {
     license = lib.licenses.asl20;
     mainProgram = "ghorg";
   };
-}
+})
