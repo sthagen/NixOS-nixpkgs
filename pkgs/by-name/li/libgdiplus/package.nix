@@ -31,7 +31,7 @@ stdenv.mkDerivation (finalAttrs: {
     ./configure-pkg-config.patch
   ];
 
-  NIX_LDFLAGS = "-lgif";
+  env.NIX_LDFLAGS = "-lgif";
 
   outputs = [
     "out"

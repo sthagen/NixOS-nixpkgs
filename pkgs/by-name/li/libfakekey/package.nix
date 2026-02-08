@@ -38,7 +38,7 @@ stdenv.mkDerivation (finalAttrs: {
     xorgproto
   ];
 
-  NIX_LDFLAGS = "-lX11";
+  env.NIX_LDFLAGS = "-lX11";
 
   meta = {
     description = "X virtual keyboard library";

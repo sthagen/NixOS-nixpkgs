@@ -15,7 +15,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ libmatchbox ];
-  NIX_LDFLAGS = "-lX11 -L${libx11}/lib -lXext -L${libxext}/lib";
+  env.NIX_LDFLAGS = toString [
+    "-lX11"
+    "-L${libx11}/lib"
+    "-lXext"
+    "-L${libxext}/lib"
+  ];
 
   src = fetchurl {
     url = "https://downloads.yoctoproject.org/releases/matchbox/matchbox-window-manager/${finalAttrs.version}/matchbox-window-manager-${finalAttrs.version}.tar.bz2";

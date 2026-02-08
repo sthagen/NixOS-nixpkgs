@@ -4835,6 +4835,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  easyread-nvim = buildVimPlugin {
+    pname = "easyread.nvim";
+    version = "0-unstable-2023-04-22";
+    src = fetchFromGitHub {
+      owner = "JellyApple102";
+      repo = "easyread.nvim";
+      rev = "0b07e315a4cd7d700c4a794bdddbec79fdc2628b";
+      hash = "sha256-RSk/KViWw48IX0NcC5hW4IGawZ6prBYxPa/kXPN4KSI=";
+    };
+    meta.homepage = "https://github.com/JellyApple102/easyread.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   echodoc-vim = buildVimPlugin {
     pname = "echodoc.vim";
     version = "0-unstable-2022-11-27";
@@ -11926,6 +11939,19 @@ final: prev: {
       hash = "sha256-YMSgq7Y/BYUMFAm0NLergVBdmySTufypk48WEpORmBQ=";
     };
     meta.homepage = "https://github.com/s1n7ax/nvim-search-and-replace/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  nvim-silicon = buildVimPlugin {
+    pname = "nvim-silicon";
+    version = "1.0.0-unstable-2025-01-09";
+    src = fetchFromGitHub {
+      owner = "michaelrommel";
+      repo = "nvim-silicon";
+      rev = "7f66bda8f60c97a5bf4b37e5b8acb0e829ae3c32";
+      hash = "sha256-XiYn/L2e/B+6LTjak3jAwRgnZ3gCbsyA0J61Dd+jZv4=";
+    };
+    meta.homepage = "https://github.com/michaelrommel/nvim-silicon/";
     meta.hydraPlatforms = [ ];
   };
 

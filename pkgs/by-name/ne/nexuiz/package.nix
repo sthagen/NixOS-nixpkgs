@@ -66,16 +66,16 @@ stdenv.mkDerivation {
     cd ../../
   '';
 
-  NIX_LDFLAGS = ''
-    -rpath ${zlib.out}/lib
-    -rpath ${curl.out}/lib
-    -rpath ${libjpeg.out}/lib
-    -rpath ${libpng.out}/lib
-    -rpath ${libvorbis.out}/lib
-    -rpath ${libtheora.out}/lib
-    -rpath ${libogg.out}/lib
-    -rpath ${libmodplug.out}/lib
-  '';
+  env.NIX_LDFLAGS = toString [
+    "-rpath ${zlib.out}/lib"
+    "-rpath ${curl.out}/lib"
+    "-rpath ${libjpeg.out}/lib"
+    "-rpath ${libpng.out}/lib"
+    "-rpath ${libvorbis.out}/lib"
+    "-rpath ${libtheora.out}/lib"
+    "-rpath ${libogg.out}/lib"
+    "-rpath ${libmodplug.out}/lib"
+  ];
 
   buildPhase = ''
     cd sources/darkplaces/

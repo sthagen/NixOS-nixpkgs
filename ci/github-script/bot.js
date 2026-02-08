@@ -12,6 +12,12 @@ module.exports = async ({ github, context, core, dry }) => {
   // Detect if running in a fork (not NixOS/nixpkgs)
   const isFork = context.repo.owner !== 'NixOS'
 
+  const orgId = (
+    await github.rest.orgs.get({
+      org: context.repo.owner,
+    })
+  ).data.id
+
   async function downloadMaintainerMap(branch) {
     let run
 
@@ -168,8 +174,7 @@ module.exports = async ({ github, context, core, dry }) => {
         .request({
           method: 'GET',
           url: '/organizations/{orgId}/team/{id}',
-          // TODO: Make this work without pull_requests payloads
-          orgId: context.payload.pull_request.base.user.id,
+          orgId,
           id,
         })
         .then((resp) => resp.data)

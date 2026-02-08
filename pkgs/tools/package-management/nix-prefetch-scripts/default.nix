@@ -26,7 +26,8 @@ let
   mkPrefetchScript =
     tool: src: deps:
     stdenv.mkDerivation {
-      name = "nix-prefetch-${tool}";
+      inherit (lib.trivial) version;
+      pname = "nix-prefetch-${tool}";
 
       strictDeps = true;
       nativeBuildInputs = [ makeWrapper ];

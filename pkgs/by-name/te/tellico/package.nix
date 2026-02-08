@@ -4,26 +4,13 @@
   fetchFromGitLab,
   cmake,
   exempi,
-  extra-cmake-modules,
-  karchive,
-  kdoctools,
-  kfilemetadata,
-  kitemmodels,
-  knewstuff,
-  kxmlgui,
   libcdio,
-  libkcddb,
-  libksane,
   makeWrapper,
-  poppler,
-  qtcharts,
-  qtwebengine,
-  solid,
   taglib,
-  wrapQtAppsHook,
+  kdePackages,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "tellico";
   version = "4.1.4";
 
@@ -31,32 +18,32 @@ stdenv.mkDerivation rec {
     domain = "invent.kde.org";
     owner = "office";
     repo = "tellico";
-    rev = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-eScAOd1da05fqXtbcz8oEJiObB7CUxiYReSrr3R7ybM=";
   };
 
   nativeBuildInputs = [
     cmake
-    extra-cmake-modules
-    kdoctools
+    kdePackages.extra-cmake-modules
+    kdePackages.kdoctools
     makeWrapper
-    wrapQtAppsHook
+    kdePackages.wrapQtAppsHook
   ];
 
   buildInputs = [
     exempi
-    karchive
-    kfilemetadata
-    kitemmodels
-    knewstuff
-    kxmlgui
+    kdePackages.karchive
+    kdePackages.kfilemetadata
+    kdePackages.kitemmodels
+    kdePackages.knewstuff
+    kdePackages.kxmlgui
     libcdio
-    libkcddb
-    libksane
-    poppler
-    qtcharts
-    qtwebengine
-    solid
+    kdePackages.libkcddb
+    kdePackages.libksane
+    kdePackages.poppler
+    kdePackages.qtcharts
+    kdePackages.qtwebengine
+    kdePackages.solid
     taglib
   ];
 
@@ -72,4 +59,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ numkem ];
     platforms = lib.platforms.linux;
   };
-}
+})

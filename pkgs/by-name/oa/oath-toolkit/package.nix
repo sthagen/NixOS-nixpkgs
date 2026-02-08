@@ -14,11 +14,11 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "oath-toolkit";
-  version = "2.6.13";
+  version = "2.6.14";
 
   src = fetchurl {
     url = "mirror://savannah/oath-toolkit/oath-toolkit-${finalAttrs.version}.tar.gz";
-    hash = "sha256-W12C6aRFUgbST8vX7li/THk5ii5nmX2AvUWuknWGsYs=";
+    hash = "sha256-ix2jZXWfEkm+V6gq7G4Qf3tX3HfYE/ltwKr4FiTyiXE=";
   };
 
   buildInputs = [ securityDependency ];

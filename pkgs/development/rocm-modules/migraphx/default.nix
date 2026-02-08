@@ -121,7 +121,7 @@ stdenv.mkDerivation (finalAttrs: {
     "-DMIGRAPHX_ENABLE_GPU=ON"
     "-DMIGRAPHX_ENABLE_CPU=ON"
     "-DMIGRAPHX_ENABLE_FPGA=ON"
-    "-DMIGRAPHX_ENABLE_MLIR=OFF" # LLVM or rocMLIR mismatch?
+    "-DMIGRAPHX_ENABLE_MLIR=ON"
     "-DCMAKE_C_COMPILER=amdclang"
     "-DCMAKE_CXX_COMPILER=amdclang++"
     "-DCMAKE_VERBOSE_MAKEFILE=ON"
