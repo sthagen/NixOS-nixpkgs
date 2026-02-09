@@ -77,7 +77,7 @@ in
       "x86_64-linux"
       "x86_64-darwin"
     ];
-    mainProgram = "wine64";
+    mainProgram = "wine";
   };
   wineWow = callPackage ./base.nix {
     pname = "wine-wow";
@@ -112,7 +112,7 @@ in
       ];
     };
     platforms = [ "x86_64-linux" ];
-    mainProgram = "wine64";
+    mainProgram = "wine";
   };
   wineWow64 = callPackage ./base.nix {
     pname = "wine-wow64";

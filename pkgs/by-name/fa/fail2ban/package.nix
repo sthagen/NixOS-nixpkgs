@@ -23,7 +23,17 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
   outputs = [
     "out"
     "man"
-  ];
+  ]
+  # From some reason upstream installs documentation only for Linux, solaris,
+  # sunos and any gnu system.
+  ++ lib.optionals (lib.pipe stdenv.hostPlatform [
+    (lib.attrVals [
+      "isLinux"
+      "isSunOS"
+      "isGnu"
+    ])
+    (builtins.any lib.id)
+  ]) [ "doc" ];
 
   nativeBuildInputs = [ installShellFiles ];
 
@@ -89,6 +99,8 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
       rm $out/bin/fail2ban-python
       ln -s ${python3.interpreter} $out/bin/fail2ban-python
 
+      # Irrelevant for NixOS
+      rm -r $out/var
     ''
     + lib.optionalString stdenv.hostPlatform.isLinux ''
       # see https://github.com/NixOS/nixpkgs/issues/4968

@@ -2,7 +2,7 @@
   lib,
   multiStdenv,
   fetchFromGitHub,
-  wineWowPackages,
+  wineWow64Packages,
   cmake,
   makeWrapper,
   file,
@@ -12,7 +12,7 @@
 }:
 
 let
-  wine-wow64 = wineWowPackages.stableFull;
+  wine-wow64 = wineWow64Packages.stableFull;
 in
 multiStdenv.mkDerivation (finalAttrs: {
   pname = "airwave";
@@ -65,7 +65,7 @@ multiStdenv.mkDerivation (finalAttrs: {
     mkdir $out/bin
     mv $out/libexec/airwave-manager $out/bin
     wrapProgram $out/libexec/airwave-host-32.exe --set WINELOADER ${lib.getExe' wine-wow64 "wine"}
-    wrapProgram $out/libexec/airwave-host-64.exe --set WINELOADER ${lib.getExe' wine-wow64 "wine64"}
+    wrapProgram $out/libexec/airwave-host-64.exe --set WINELOADER ${lib.getExe' wine-wow64 "wine"}
   '';
 
   meta = {

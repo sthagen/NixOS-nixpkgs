@@ -87,14 +87,6 @@ let
         ];
       });
 
-      imageio = super.imageio.overridePythonAttrs (oldAttrs: {
-        disabledTests = oldAttrs.disabledTests or [ ] ++ [
-          # broken by pyav pin
-          "test_keyframe_intervals"
-          "test_lagging_video_stream"
-        ];
-      });
-
       gspread = super.gspread.overridePythonAttrs (oldAttrs: rec {
         version = "5.12.4";
         src = fetchFromGitHub {

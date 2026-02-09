@@ -1,15 +1,20 @@
 {
   lib,
   bign-handheld-thumbnailer,
+  cargo,
   fetchFromGitHub,
   glib,
+  meson,
+  ninja,
   nix-update-script,
   pkg-config,
   rustPlatform,
+  rustc,
+  stdenv,
   testers,
 }:
 
-rustPlatform.buildRustPackage (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "bign-handheld-thumbnailer";
   version = "1.2.0";
 
@@ -20,13 +25,27 @@ rustPlatform.buildRustPackage (finalAttrs: {
     hash = "sha256-+iWf5ybCUHlZz3Ybw3bwLKzlsmiVwep2alVDvL9bG2A=";
   };
 
-  cargoHash = "sha256-vfTbfg1CAbc//UZtI5trw6znqnNGy6AiCSQNE68vch8=";
+  cargoDeps = rustPlatform.fetchCargoVendor {
+    inherit (finalAttrs) pname version src;
+    hash = "sha256-vfTbfg1CAbc//UZtI5trw6znqnNGy6AiCSQNE68vch8=";
+  };
 
   strictDeps = true;
 
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [
+    cargo
+    meson
+    ninja
+    pkg-config
+    rustPlatform.cargoSetupHook
+    rustc
+  ];
 
   buildInputs = [ glib ];
+
+  mesonFlags = [
+    "-Dupdate_mime_database=false"
+  ];
 
   passthru = {
     tests.version = testers.testVersion {

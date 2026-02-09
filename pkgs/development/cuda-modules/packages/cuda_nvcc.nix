@@ -168,7 +168,7 @@ buildRedist (finalAttrs: {
       # The cospi|sinpi|rsqrt function signatures in include/common/math_functions.h do not match
       # glibc 2.42's.
       # Indeed, there they are declared with noexcept(true) which is not the case in cuda_nvcc.
-      + lib.optionals (lib.versionAtLeast glibc.version "2.42") ''
+      + lib.optionalString (lib.versionAtLeast glibc.version "2.42") ''
         nixLog "Patching math_functions.h signatures to match glibc's ones"
         substituteInPlace "''${!outputInclude:?}/include/crt/math_functions.h" \
           --replace-fail \

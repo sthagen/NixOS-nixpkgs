@@ -48,7 +48,7 @@
   vncSupport ? false,
   libvncserver,
   lasSupport ? false,
-  libLAS,
+  liblas,
   luaSupport ? false,
   lua,
   sdlSupport ? false,
@@ -108,7 +108,7 @@ stdenv.mkDerivation (finalAttrs: {
     ++ lib.optional svgSupport librsvg
     ++ lib.optional pdfSupport poppler
     ++ lib.optional vncSupport libvncserver
-    ++ lib.optional lasSupport libLAS
+    ++ lib.optional lasSupport liblas
     ++ lib.optional luaSupport lua
     ++ lib.optional sdlSupport SDL2
     ++ lib.optional restSupport asio

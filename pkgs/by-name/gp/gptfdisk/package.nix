@@ -7,6 +7,7 @@
   icu,
   ncurses,
   nixosTests,
+  installShellFiles,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -19,6 +20,10 @@ stdenv.mkDerivation (finalAttrs: {
     url = "mirror://sourceforge/gptfdisk/gptfdisk-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-Kr7WG8bSuexJiXPARAuLgEt6ctcUQGm1qSCbKtaTooI=";
   };
+
+  nativeBuildInputs = [
+    installShellFiles
+  ];
 
   postPatch = ''
     patchShebangs gdisk_test.sh
@@ -47,14 +52,17 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   installPhase = ''
-    mkdir -p $out/sbin
-    mkdir -p $out/share/man/man8
     for prog in gdisk sgdisk fixparts cgdisk
     do
-        install -v -m755 $prog $out/sbin
-        install -v -m644 $prog.8 $out/share/man/man8
+        installBin $prog
+        installManPage $prog.8
     done
   '';
+
+  outputs = [
+    "out"
+    "man"
+  ];
 
   passthru.tests = lib.optionalAttrs stdenv.hostPlatform.isx86 {
     installer-simpleLabels = nixosTests.installer.simpleLabels;

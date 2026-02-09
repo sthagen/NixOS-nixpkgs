@@ -59,8 +59,6 @@ stdenv.mkDerivation (finalAttrs: {
   ]
   ++ lib.optional xwaylandSupport libx11;
 
-  dontConfigure = true;
-
   zigBuildFlags = [
     "--system"
     "${finalAttrs.deps}"

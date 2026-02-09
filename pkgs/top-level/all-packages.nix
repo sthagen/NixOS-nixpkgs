@@ -9087,6 +9087,7 @@ with pkgs;
 
   nushellPlugins = recurseIntoAttrs {
     gstat = callPackage ../by-name/nu/nushell-plugin-gstat/package.nix { };
+    bson = callPackage ../by-name/nu/nushell-plugin-bson/package.nix { };
     formats = callPackage ../by-name/nu/nushell-plugin-formats/package.nix { };
     polars = callPackage ../by-name/nu/nushell-plugin-polars/package.nix { };
     query = callPackage ../by-name/nu/nushell-plugin-query/package.nix { };
@@ -9812,7 +9813,7 @@ with pkgs;
   geany = callPackage ../applications/editors/geany { };
   geany-with-vte = callPackage ../applications/editors/geany/with-vte.nix { };
 
-  gImageReader-qt = qt6Packages.callPackage ../by-name/gi/gImageReader/package.nix {
+  gimagereader-qt = qt6Packages.callPackage ../by-name/gi/gimagereader/package.nix {
     withQt6 = true;
   };
 
@@ -11860,8 +11861,6 @@ with pkgs;
 
   ultrastar-manager = libsForQt5.callPackage ../tools/misc/ultrastar-manager { };
 
-  ue4demos = recurseIntoAttrs (callPackage ../games/ue4demos { });
-
   # To ensure vdrift's code is built on hydra
   vdrift-bin = vdrift.bin;
 
@@ -12842,7 +12841,6 @@ with pkgs;
 
   winePackages = recurseIntoAttrs (winePackagesFor (config.wine.build or "wine32"));
   wine64Packages = recurseIntoAttrs (winePackagesFor "wine64");
-  wineWowPackages = recurseIntoAttrs (winePackagesFor "wineWow");
   wineWow64Packages = recurseIntoAttrs (winePackagesFor "wineWow64");
 
   wine = winePackages.full;

@@ -1258,8 +1258,6 @@ self: super: with self; {
 
   av = callPackage ../development/python-modules/av { };
 
-  av_13 = callPackage ../development/python-modules/av_13 { };
-
   avahi = toPythonModule (
     pkgs.avahi.override {
       inherit python;
@@ -9770,6 +9768,8 @@ self: super: with self; {
 
   mistral-common = callPackage ../development/python-modules/mistral-common { };
 
+  mistral-inference = callPackage ../development/python-modules/mistral-inference { };
+
   mistralai = callPackage ../development/python-modules/mistralai { };
 
   mistune = callPackage ../development/python-modules/mistune { };
@@ -10669,9 +10669,7 @@ self: super: with self; {
 
   napalm-ros = callPackage ../development/python-modules/napalm/ros.nix { };
 
-  napari = callPackage ../development/python-modules/napari {
-    inherit (pkgs.libsForQt5) mkDerivationWith wrapQtAppsHook;
-  };
+  napari = callPackage ../development/python-modules/napari { };
 
   napari-console = callPackage ../development/python-modules/napari-console { };
 
@@ -12021,6 +12019,8 @@ self: super: with self; {
   pdfrw = callPackage ../development/python-modules/pdfrw { };
 
   pdfrw2 = callPackage ../development/python-modules/pdfrw2 { };
+
+  pdfservices-sdk = callPackage ../development/python-modules/pdfservices-sdk { };
 
   pdftotext = callPackage ../development/python-modules/pdftotext { };
 
@@ -14683,6 +14683,8 @@ self: super: with self; {
 
   pyseventeentrack = callPackage ../development/python-modules/pyseventeentrack { };
 
+  pysfcgal = callPackage ../development/python-modules/pysfcgal { };
+
   pysftp = callPackage ../development/python-modules/pysftp { };
 
   pyshark = callPackage ../development/python-modules/pyshark { };
@@ -16958,6 +16960,8 @@ self: super: with self; {
   sat-tmp = callPackage ../development/python-modules/sat-tmp { };
 
   satel-integra = callPackage ../development/python-modules/satel-integra { };
+
+  saxonche = callPackage ../development/python-modules/saxonche { };
 
   sbom2dot = callPackage ../development/python-modules/sbom2dot { };
 

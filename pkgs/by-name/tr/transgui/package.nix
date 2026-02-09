@@ -47,7 +47,7 @@ stdenv.mkDerivation rec {
     openssl
   ];
 
-  NIX_LDFLAGS = ''
+  env.NIX_LDFLAGS = ''
     -L${lib.getLib stdenv.cc.cc}/lib -lX11 -lglib-2.0 -lgtk-x11-2.0
     -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpango-1.0 -latk-1.0 -lcairo
     -lc -lcrypto
@@ -71,7 +71,7 @@ stdenv.mkDerivation rec {
     "INSTALL_PREFIX=$(out)"
   ];
 
-  LCL_PLATFORM = "gtk2";
+  env.LCL_PLATFORM = "gtk2";
 
   desktopItem = makeDesktopItem {
     name = pname;

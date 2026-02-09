@@ -15,17 +15,18 @@
   tcsh,
   tk,
   fixDarwinDylibNames,
+  nix-update-script,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "magic-vlsi";
-  version = "8.3.597";
+  version = "8.3.602";
 
   src = fetchFromGitHub {
     owner = "RTimothyEdwards";
     repo = "magic";
     tag = finalAttrs.version;
-    hash = "sha256-aFT/uTs/nMb8srf0Hjit03qM7+x1yZasIrSv8cjLS88=";
+    hash = "sha256-jNcuTdBHyVUEvdavIaB2LfMBKhHZkCxFOYyA2kBezqc=";
     leaveDotGit = true;
   };
 
@@ -104,6 +105,8 @@ stdenv.mkDerivation (finalAttrs: {
   # gnu89 is needed for GCC 15 that is more strict about K&R style prototypes
   env.NIX_CFLAGS_COMPILE = "-std=gnu89 -Wno-implicit-function-declaration";
   env.NIX_LDFLAGS = lib.optionalString stdenv.hostPlatform.isDarwin "-headerpad_max_install_names";
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "VLSI layout tool written in Tcl";

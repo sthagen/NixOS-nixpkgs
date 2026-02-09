@@ -43,7 +43,7 @@
   # io modules
   cgns,
   adios2,
-  libLAS,
+  liblas,
   gdal,
   pdal,
   alembic,
@@ -138,7 +138,7 @@ stdenv.mkDerivation (finalAttrs: {
   ) python3Packages.pythonImportsCheckHook;
 
   buildInputs = [
-    libLAS
+    liblas
     alembic
     imath
     c-blosc
