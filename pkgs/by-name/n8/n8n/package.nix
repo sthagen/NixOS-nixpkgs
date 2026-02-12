@@ -16,6 +16,13 @@
   libpq,
   makeWrapper,
 }:
+let
+  python = python3.withPackages (
+    ps: with ps; [
+      websockets
+    ]
+  );
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "n8n";
   version = "2.6.3";
@@ -87,10 +94,21 @@ stdenv.mkDerivation (finalAttrs: {
     runHook preInstall
 
     mkdir -p $out/{bin,lib/n8n}
-    mv {packages,node_modules} $out/lib/n8n
+    cp -r {packages,node_modules} $out/lib/n8n
 
     makeWrapper $out/lib/n8n/packages/cli/bin/n8n $out/bin/n8n \
       --set N8N_RELEASE_TYPE "stable"
+
+    # JavaScript runner
+    makeWrapper ${nodejs}/bin/node $out/bin/n8n-task-runner \
+      --add-flags "$out/lib/n8n/packages/@n8n/task-runner/dist/start.js"
+
+    # Python runner
+    mkdir -p $out/lib/n8n-task-runner-python
+    cp -r packages/@n8n/task-runner-python/* $out/lib/n8n-task-runner-python/
+    makeWrapper ${python}/bin/python $out/bin/n8n-task-runner-python \
+      --add-flags "$out/lib/n8n-task-runner-python/src/main.py" \
+      --prefix PYTHONPATH : "$out/lib/n8n-task-runner-python"
 
     runHook postInstall
   '';

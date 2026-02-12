@@ -1563,6 +1563,8 @@ let
 
         ocplib-simplex = callPackage ../development/ocaml-modules/ocplib-simplex { };
 
+        ocplib-simplex_0_4 = callPackage ../development/ocaml-modules/ocplib-simplex/0_4.nix { };
+
         ocsigen-ppx-rpc = callPackage ../development/ocaml-modules/ocsigen-ppx-rpc { };
 
         ocsigen_server = callPackage ../development/ocaml-modules/ocsigen-server { };

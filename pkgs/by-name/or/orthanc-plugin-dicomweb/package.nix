@@ -59,8 +59,6 @@ stdenv.mkDerivation (finalAttrs: {
       --replace-fail "cmake_minimum_required(VERSION 2.8)" "cmake_minimum_required(VERSION 3.10)"
   '';
 
-  SourceRoot = "${finalAttrs.src.name}/Build";
-
   nativeBuildInputs = [
     cmake
     python3

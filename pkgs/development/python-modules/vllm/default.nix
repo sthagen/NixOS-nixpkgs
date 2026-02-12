@@ -21,7 +21,7 @@
   setuptools-scm,
 
   # buildInputs
-  oneDNN,
+  onednn,
   numactl,
   llvmPackages,
 
@@ -392,7 +392,7 @@ buildPythonPackage.override { stdenv = torch.stdenv; } (finalAttrs: {
 
   buildInputs =
     lib.optionals cpuSupport [
-      oneDNN
+      onednn
     ]
     ++ lib.optionals (cpuSupport && stdenv.hostPlatform.isLinux) [
       numactl
@@ -529,7 +529,7 @@ buildPythonPackage.override { stdenv = torch.stdenv; } (finalAttrs: {
     }
     // lib.optionalAttrs cpuSupport {
       VLLM_TARGET_DEVICE = "cpu";
-      FETCHCONTENT_SOURCE_DIR_ONEDNN = "${oneDNN.src}";
+      FETCHCONTENT_SOURCE_DIR_ONEDNN = "${onednn.src}";
     };
 
   preConfigure = ''

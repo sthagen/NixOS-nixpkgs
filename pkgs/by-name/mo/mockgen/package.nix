@@ -2,8 +2,7 @@
   buildGoModule,
   fetchFromGitHub,
   lib,
-  testers,
-  mockgen,
+  versionCheckHook,
 }:
 
 buildGoModule (finalAttrs: {
@@ -13,8 +12,8 @@ buildGoModule (finalAttrs: {
   src = fetchFromGitHub {
     owner = "uber-go";
     repo = "mock";
-    rev = "v${finalAttrs.version}";
-    sha256 = "sha256-gYUL+ucnKQncudQDcRt8aDqM7xE5XSKHh4X0qFrvfGs=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-gYUL+ucnKQncudQDcRt8aDqM7xE5XSKHh4X0qFrvfGs=";
   };
 
   vendorHash = "sha256-Cf7lKfMuPFT/I1apgChUNNCG2C7SrW7ncF8OusbUs+A=";
@@ -26,18 +25,12 @@ buildGoModule (finalAttrs: {
   ldflags = [
     "-X=main.version=${finalAttrs.version}"
     "-X=main.date=1970-01-01T00:00:00Z"
-    "-X=main.commit=unknown"
+    "-X=main.commit=${finalAttrs.src.rev}"
   ];
 
-  passthru.tests.version = testers.testVersion {
-    package = mockgen;
-    command = "mockgen -version";
-    version = ''
-      v${finalAttrs.version}
-      Commit: unknown
-      Date: 1970-01-01T00:00:00Z
-    '';
-  };
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "-version";
+  doInstallCheck = true;
 
   meta = {
     description = "Mocking framework for the Go programming language";

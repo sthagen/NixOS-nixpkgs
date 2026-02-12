@@ -7,13 +7,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "scope-lite";
-  version = "0.2.0";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "martinmoene";
     repo = "scope-lite";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-/Vu3blgyEOQRFqhQjuT/6ukV0iWA0TdPrLnt2Z/gd6E=";
+    hash = "sha256-EZ+bBnMPpgATANa+al5SnVEfUFYc0TkaPTLNHD6zcWU=";
   };
 
   nativeBuildInputs = [ cmake ];

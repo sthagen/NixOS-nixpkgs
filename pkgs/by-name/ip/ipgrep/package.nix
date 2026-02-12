@@ -6,14 +6,14 @@
 
 python3Packages.buildPythonApplication (finalAttrs: {
   pname = "ipgrep";
-  version = "1.0.1";
+  version = "1.0.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "jedisct1";
     repo = "ipgrep";
     rev = finalAttrs.version;
-    hash = "sha256-NrhcUFQM+L66KaDRRpAoC+z5s54a+1fqEepTRXVZ5Qs=";
+    hash = "sha256-4Fa0fqd8S6yZmUzHlgkUWgYZhAbf48zZhzq4Fx3MS5A=";
   };
 
   patchPhase = ''
