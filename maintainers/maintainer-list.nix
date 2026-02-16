@@ -11111,6 +11111,12 @@
     githubId = 7481521;
     name = "Balázs Lengyel";
   };
+  ilai-deutel = {
+    github = "ilai-deutel";
+    githubId = 10098207;
+    name = "Ilaï Deutel";
+    keys = [ { fingerprint = "1025 8841 8FF7 E165 6964  90A2 06E8 A973 4948 08A2"; } ];
+  };
   ilarvne = {
     email = "ilarvne@proton.me";
     github = "ilarvne";
@@ -14433,6 +14439,11 @@
     githubId = 629430;
     keys = [ { fingerprint = "2843 750C B1AB E256 94BE  40E2 D843 D30B 42CA 0E2D"; } ];
   };
+  kulczwoj = {
+    name = "Wojciech Kulczycki";
+    github = "kulczwoj";
+    githubId = 58049191;
+  };
   KunyaKud = {
     name = "KunyaKud";
     email = "wafuu@posteo.net";
@@ -17077,7 +17088,7 @@
     githubId = 22659757;
   };
   metalmatze = {
-    email = "matthias.loibl@polarsignals.com";
+    email = "mail@matthiasloibl.com";
     name = "Matthias Loibl";
     github = "metalmatze";
     githubId = 872251;
@@ -19517,6 +19528,12 @@
     name = "nullishamy";
     github = "nullishamy";
     githubId = 99221043;
+  };
+  numbleroot = {
+    email = "hello@lennartoldenburg.de";
+    name = "Lennart Oldenburg";
+    github = "numbleroot";
+    githubId = 1864826;
   };
   numinit = {
     email = "me+nixpkgs@numin.it";
@@ -24625,6 +24642,13 @@
     github = "Silver-Golden";
     githubId = 7858375;
   };
+  silverhadch = {
+    email = "hadichokr@icloud.com";
+    matrix = "@silverhadch07:matrix.org";
+    name = "Hadi Chokr";
+    github = "silverhadch";
+    githubId = 158838697;
+  };
   simarra = {
     name = "simarra";
     email = "loic.martel@protonmail.com";
@@ -29442,6 +29466,12 @@
     github = "yuannan";
     githubId = 8006928;
     name = "Yuannan (Brandon) Lin";
+  };
+  yujonpradhananga = {
+    email = "yujonpradhan123@gmail.com";
+    github = "Yujonpradhananga";
+    githubId = 139200034;
+    name = "Yujon Pradhananga";
   };
   yuka = {
     email = "yuka@yuka.dev";

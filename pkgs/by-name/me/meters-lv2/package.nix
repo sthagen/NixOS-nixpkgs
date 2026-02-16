@@ -14,7 +14,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "meters.lv2";
+  pname = "meters-lv2";
   version = "0.9.20";
   robtkVersion = "0.7.5";
 

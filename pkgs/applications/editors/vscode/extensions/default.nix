@@ -989,6 +989,8 @@ let
         };
       };
 
+      claui.packaging = callPackage ./claui.packaging { };
+
       cmschuetz12.wal = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "wal";
@@ -2515,6 +2517,8 @@ let
           maintainers = [ lib.maintainers.dotmobo ];
         };
       };
+
+      jjk.jjk = callPackage ./jjk.jjk { };
 
       jkillian.custom-local-formatters = buildVscodeMarketplaceExtension {
         mktplcRef = {

@@ -45,7 +45,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   cargoHash = "sha256-3K+/CpTGWSjCRa2vOEcDvLIiZMdntugIqnzkXF4wkng=";
 
-  INSTALL_PREFIX = placeholder "out";
+  env.INSTALL_PREFIX = placeholder "out";
 
   # Requires headphones
   doCheck = false;
