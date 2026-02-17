@@ -10,14 +10,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "real-ladybug";
-  version = "0.14.1";
+  version = "0.14.3";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "LadybugDB";
     repo = "ladybug";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-Tq7a7XOKoxe0/cdZehNAEX4ENHIjMFdBBARNzZiuMM8=";
+    hash = "sha256-0EasuvUlknJ4gguTMOlLFZNxC4WEowyUwzUo6VtosaE=";
   };
 
   sourceRoot = "${finalAttrs.src.name}/tools/python_api";

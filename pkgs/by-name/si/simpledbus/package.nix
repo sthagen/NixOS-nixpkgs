@@ -8,7 +8,7 @@
   lib,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "simpleDBus";
+  pname = "simpledbus";
 
   version = "0.10.4";
 
@@ -40,7 +40,9 @@ stdenv.mkDerivation (finalAttrs: {
   meta = {
     description = "C++ wrapper for libdbus-1";
     homepage = "https://github.com/OpenBluetoothToolbox/SimpleBLE";
-    license = lib.licenses.gpl3Only;
+    # SimpleBLE (which SimpleDBus is part of) is under the Business Source License 1.1 (BUSL-1.1)
+    # since version 0.9.0
+    license = lib.licenses.bsl11;
     platforms = lib.platforms.linux;
     maintainers = with lib.maintainers; [ aciceri ];
   };

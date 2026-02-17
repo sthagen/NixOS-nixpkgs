@@ -972,10 +972,6 @@ with pkgs;
 
   opnplug = adlplug.override { type = "OPN"; };
 
-  acme-client = callPackage ../tools/networking/acme-client {
-    stdenv = gccStdenv;
-  };
-
   aflplusplus = callPackage ../tools/security/aflplusplus { wine = null; };
 
   libdislocator = callPackage ../tools/security/aflplusplus/libdislocator.nix { };

@@ -1,18 +1,18 @@
 {
   lib,
-  stdenv,
+  gccStdenv,
   fetchurl,
   libbsd,
   libressl,
   pkg-config,
 }:
 
-stdenv.mkDerivation rec {
+gccStdenv.mkDerivation (finalAttrs: {
   pname = "acme-client";
   version = "1.3.3";
 
   src = fetchurl {
-    url = "https://data.wolfsden.cz/sources/acme-client-${version}.tar.gz";
+    url = "https://data.wolfsden.cz/sources/acme-client-${finalAttrs.version}.tar.gz";
     hash = "sha256-HJOk2vlDD7ADrLdf/eLEp+teu9XN0KrghEe6y4FIDoI=";
   };
 
@@ -37,4 +37,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ pmahoney ];
     mainProgram = "acme-client";
   };
-}
+})

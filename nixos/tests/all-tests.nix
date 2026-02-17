@@ -257,6 +257,7 @@ in
   authelia = runTest ./authelia.nix;
   auto-cpufreq = runTest ./auto-cpufreq.nix;
   autobrr = runTest ./autobrr.nix;
+  autosuspend = runTest ./autosuspend.nix;
   avahi = runTest {
     imports = [ ./avahi.nix ];
     _module.args.networkd = false;
