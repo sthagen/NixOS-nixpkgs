@@ -27,6 +27,26 @@ let
     lib.mapAttrs (
       n: alias: removeDistribute (removeRecurseForDerivations (checkInPkgs n alias))
     ) aliases;
+
+  warnAlias =
+    msg: v:
+    if lib.isDerivation v then
+      lib.warnOnInstantiate msg v
+    else if lib.isAttrs v then
+      lib.mapAttrs (_: lib.warn msg) v
+    else if lib.isFunction v then
+      arg: lib.warn msg (v arg)
+    else if lib.isList v then
+      map (lib.warn msg) v
+    else
+      # Can’t do better than this, and a `throw` would be more
+      # disruptive for users…
+      #
+      # `nix search` flags up warnings already, so hopefully this won’t
+      # make things much worse until we have proper CI for aliases,
+      # especially since aliases of paths and numbers are presumably
+      # not common.
+      lib.warn msg v;
 in
 
 ### Deprecated aliases - for backward compatibility
@@ -519,6 +539,7 @@ mapAliases {
   tvdb_api = throw "'tvdb_api' has been renamed to/replaced by 'tvdb-api'"; # Converted to throw 2025-10-29
   tweedledum = throw "'tweedledum' has been removed due to lack of upstream maintenance."; # Added 2025-11-22
   typed-ast = throw "typed-ast was removed because it went end of life in July 2023"; # added 2025-05-24
+  typer-slim = warnAlias "typer-slim was an alias package of typer that only depended on it and has been removed." typer; # added 2026-02-16
   types-typed-ast = throw "types-typed-ast was removed because so was typed-ast"; # added 2025-05-24
   typesentry = throw "typesentry was removed because it was broken and unmaintained"; # added 2026-02-02
   typesystem = throw "'typesystem' has been removed as it was broken, unmaintained, and archived upstream"; # Added 2025-11-27

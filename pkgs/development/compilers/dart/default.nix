@@ -3,7 +3,6 @@
   stdenv,
   fetchurl,
   unzip,
-  bintools,
   versionCheckHook,
   runCommand,
   cctools,
@@ -48,7 +47,12 @@ stdenv.mkDerivation (finalAttrs: {
     cp -R . $out
   ''
   + lib.optionalString (stdenv.hostPlatform.isLinux) ''
-    find $out/bin -executable -type f -exec patchelf --set-interpreter ${bintools.dynamicLinker} {} \;
+    find $out/bin -type f -executable | while read f; do
+      if patchelf --print-interpreter "$f" >/dev/null 2>&1; then
+        patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+                 --set-rpath "${lib.makeLibraryPath [ (lib.getLib stdenv.cc.cc) ]}" "$f"
+      fi
+    done
   ''
   + ''
     runHook postInstall
