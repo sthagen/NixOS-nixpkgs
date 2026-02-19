@@ -494,8 +494,6 @@ self: super: with self; {
 
   aioshelly = callPackage ../development/python-modules/aioshelly { };
 
-  aioshutil = callPackage ../development/python-modules/aioshutil { };
-
   aiosignal = callPackage ../development/python-modules/aiosignal { };
 
   aioskybell = callPackage ../development/python-modules/aioskybell { };
@@ -6162,6 +6160,8 @@ self: super: with self; {
   ghdiff = callPackage ../development/python-modules/ghdiff { };
 
   ghidra-bridge = callPackage ../development/python-modules/ghidra-bridge { };
+
+  ghmap = callPackage ../development/python-modules/ghmap { };
 
   ghome-foyer-api = callPackage ../development/python-modules/ghome-foyer-api { };
 
@@ -14613,8 +14613,6 @@ self: super: with self; {
   pyroma = callPackage ../development/python-modules/pyroma { };
 
   pyroute2 = callPackage ../development/python-modules/pyroute2 { };
-
-  pyrr = callPackage ../development/python-modules/pyrr { };
 
   pyrsistent = callPackage ../development/python-modules/pyrsistent { };
 

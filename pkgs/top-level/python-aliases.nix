@@ -78,6 +78,7 @@ mapAliases {
   abodepy = throw "'abodepy' has been renamed to/replaced by 'jaraco-abode'"; # Converted to throw 2025-10-29
   aioinflux = throw "'aioinflux' was removed because it is abandonned upstream. For InfluxDB v2+ support, please use the official Python client library"; # Added 2026-01-15
   aiosenz = throw "aiosenz was removed because Home Assistant switched to pysenz"; # added 2025-12-29
+  aioshutil = throw "'aioshutil' was removed because uiprotect no longer depends on it"; # added 2026-02-16
   amazon-kclpy = throw "amazon-kclpy has been removed because it has been marked as broken since at least November 2024."; # Added 2025-10-03
   amazon_kclpy = throw "'amazon_kclpy' has been renamed to/replaced by 'amazon-kclpy'"; # Converted to throw 2025-10-29
   amqplib = throw "amqplib has been removed as it was unmaintained upstream"; # Added 2025-11-22
@@ -403,6 +404,7 @@ mapAliases {
   pyRFC3339 = throw "'pyRFC3339' has been renamed to/replaced by 'pyrfc3339'"; # Converted to throw 2025-10-29
   Pyro4 = throw "'Pyro4' has been renamed to/replaced by 'pyro4'"; # Converted to throw 2025-10-29
   Pyro5 = throw "'Pyro5' has been renamed to/replaced by 'pyro5'"; # Converted to throw 2025-10-29
+  pyrr = throw "pyrr has been removed because it is incompatible with NumPy 2.0+"; # Added 2026-02-18
   PyRSS2Gen = throw "'PyRSS2Gen' has been renamed to/replaced by 'pyrss2gen'"; # Converted to throw 2025-10-29
   pyside6-fluent-widgets = throw "pyside6-fluent-widgets has been removed, since it is unmaintained"; # added 2025-08-20
   pysidesix-frameless-window = throw "pysidesix-frameless-window has been removed, since it is unmaintained"; # added 2025-08-20
