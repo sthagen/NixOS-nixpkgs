@@ -97,13 +97,16 @@ stdenv.mkDerivation (finalAttrs: {
     install -Dm0644 documentation/sile.pdf $out/share/doc/sile/manual.pdf
   '';
 
-  FONTCONFIG_FILE = makeFontsConf {
-    fontDirectories = [
-      gentium-plus
-    ];
+  env = {
+    FONTCONFIG_FILE = makeFontsConf {
+      fontDirectories = [
+        gentium-plus
+      ];
+    };
+    LUA = "${finalAttrs.finalPackage.passthru.luaEnv}/bin/lua";
   };
+
   strictDeps = true;
-  env.LUA = "${finalAttrs.finalPackage.passthru.luaEnv}/bin/lua";
 
   enableParallelBuilding = true;
 

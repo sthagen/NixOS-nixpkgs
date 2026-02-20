@@ -105,12 +105,18 @@ stdenv.mkDerivation (finalAttrs: {
     "-DCTL_INCLUDE_DIR=${color-transformation-language}/include/CTL"
   ];
 
-  CMAKE_CXX_FLAGS = toString [
-    "-std=c++11"
-    "-Wno-deprecated-declarations"
-    "-Wno-unused-result"
-  ];
-  env.CXXFLAGS = "-include cstdint"; # needed at least with gcc13 on aarch64-linux
+  env = {
+    CMAKE_CXX_FLAGS = toString [
+      "-std=c++11"
+      "-Wno-deprecated-declarations"
+      "-Wno-unused-result"
+    ];
+    # needed at least with gcc13 on aarch64-linux
+    CXXFLAGS = toString [
+      "-include"
+      "cstdint"
+    ];
+  };
 
   meta = {
     description = "Raw converter based on RawTherapee";

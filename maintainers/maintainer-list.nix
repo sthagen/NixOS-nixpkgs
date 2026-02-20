@@ -8637,12 +8637,6 @@
     githubId = 5198058;
     name = "Udo Sauer";
   };
-  fettgoenner = {
-    email = "paulmatti@protonmail.com";
-    github = "fettgoenner";
-    githubId = 92429150;
-    name = "Paul Meinhold";
-  };
   feyorsh = {
     email = "george@feyor.sh";
     github = "Feyorsh";
@@ -11831,6 +11825,12 @@
     githubId = 1358764;
     name = "Jamie Magee";
   };
+  janezp = {
+    name = "Janez Podhostnik";
+    email = "janez.podhostnik@ourplace.is";
+    github = "janezpodhostnik";
+    githubId = 67895329;
+  };
   janhencic = {
     name = "Jan Hencic";
     email = "jan@hencic.com";
@@ -14836,6 +14836,11 @@
     githubId = 736291;
     name = "Lee Machin";
   };
+  lefaucheur0769 = {
+    name = "LeFaucheur0769";
+    github = "LeFaucheur0769";
+    githubId = 90474269;
+  };
   legojames = {
     github = "jrobinson-uk";
     githubId = 4701504;
@@ -17471,6 +17476,12 @@
     github = "milomc123";
     githubId = 33701036;
     name = "Milo Mc";
+  };
+  mimahlavacek = {
+    email = "mima.hlavacek@gmail.com";
+    github = "mima-hlavacek";
+    githubId = 55756477;
+    name = "Míma Hlaváček";
   };
   mimame = {
     email = "miguel.madrid.mencia@gmail.com";
@@ -21139,6 +21150,12 @@
     github = "pmahoney";
     githubId = 103822;
     name = "Patrick Mahoney";
+  };
+  pmeinhold = {
+    email = "paulmatti@protonmail.com";
+    github = "pmeinhold";
+    githubId = 92429150;
+    name = "Paul Meinhold";
   };
   pmenke = {
     email = "nixos@pmenke.de";
