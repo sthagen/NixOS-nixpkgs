@@ -2548,12 +2548,6 @@
     githubId = 6553158;
     name = "Joel Höner";
   };
-  atila = {
-    name = "Átila Saraiva";
-    email = "atilasaraiva@gmail.com";
-    github = "AtilaSaraiva";
-    githubId = 29521461;
-  };
   atkinschang = {
     email = "atkinschang+nixpkgs@gmail.com";
     github = "AtkinsChang";
@@ -18749,12 +18743,6 @@
     github = "neilmayhew";
     githubId = 166791;
     name = "Neil Mayhew";
-  };
-  nek0 = {
-    email = "nek0@nek0.eu";
-    github = "nek0";
-    githubId = 1859691;
-    name = "Amedeo Molnár";
   };
   nekitdev = {
     email = "nekit@nekit.dev";

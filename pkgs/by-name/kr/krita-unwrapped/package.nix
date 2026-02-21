@@ -153,7 +153,6 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://krita.org/";
     maintainers = with lib.maintainers; [
       sifmelcara
-      nek0
     ];
     mainProgram = "krita";
     platforms = lib.platforms.linux;
