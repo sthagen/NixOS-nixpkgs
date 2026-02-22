@@ -1,19 +1,10 @@
 {
   stdenv,
-  buildPythonApplication,
-  colorclass,
   fetchPypi,
   fetchurl,
   installShellFiles,
   lib,
-  linode-metadata,
-  openapi3,
-  packaging,
-  pyyaml,
-  requests,
-  rich,
-  setuptools,
-  terminaltables,
+  python3Packages,
 }:
 
 let
@@ -28,48 +19,51 @@ let
 
 in
 
-buildPythonApplication rec {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "linode-cli";
   version = "5.56.2";
   pyproject = true;
 
   src = fetchPypi {
     pname = "linode_cli";
-    inherit version;
+    inherit (finalAttrs) version;
     hash = hash;
   };
+
+  build-system = [
+    python3Packages.setuptools
+  ];
 
   patches = [ ./remove-update-check.patch ];
 
   # remove need for git history
   prePatch = ''
     substituteInPlace setup.py \
-      --replace "version = get_version()" "version='${version}',"
+      --replace "version = get_version()" "version='${finalAttrs.version}',"
   '';
 
   postConfigure = ''
     python3 -m linodecli bake ${spec} --skip-config
     cp data-3 linodecli/
-    echo "${version}" > baked_version
+    echo "${finalAttrs.version}" > baked_version
   '';
 
   nativeBuildInputs = [ installShellFiles ];
 
-  propagatedBuildInputs = [
-    colorclass
-    linode-metadata
-    pyyaml
-    requests
-    setuptools
-    terminaltables
-    rich
-    openapi3
-    packaging
+  dependencies = [
+    python3Packages.colorclass
+    python3Packages.linode-metadata
+    python3Packages.pyyaml
+    python3Packages.requests
+    python3Packages.terminaltables
+    python3Packages.rich
+    python3Packages.openapi3
+    python3Packages.packaging
   ];
 
   doInstallCheck = true;
   installCheckPhase = ''
-    $out/bin/linode-cli --skip-config --version | grep ${version} > /dev/null
+    $out/bin/linode-cli --skip-config --version | grep ${finalAttrs.version} > /dev/null
   '';
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
@@ -83,7 +77,7 @@ buildPythonApplication rec {
 
   meta = {
     description = "Linode Command Line Interface";
-    changelog = "https://github.com/linode/linode-cli/releases/tag/v${version}";
+    changelog = "https://github.com/linode/linode-cli/releases/tag/v${finalAttrs.version}";
     downloadPage = "https://pypi.org/project/linode-cli";
     homepage = "https://github.com/linode/linode-cli";
     license = lib.licenses.bsd3;
@@ -93,4 +87,4 @@ buildPythonApplication rec {
     ];
     mainProgram = "linode-cli";
   };
-}
+})

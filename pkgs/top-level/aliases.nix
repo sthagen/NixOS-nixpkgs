@@ -295,7 +295,6 @@ mapAliases {
   androidndkPkgs_26 = throw "androidndkPkgs_26 has been removed, as it is EOL"; # Added 2025-08-09
   anew = throw "'anew' has been removed, as it has been unmaintained upstream since March 2022"; # Added 2026-01-01
   anonymousPro = anonymous-pro-fonts; # Added 2026-02-08
-  ansible-language-server = throw "ansible-language-server was removed, because it was unmaintained in nixpkgs."; # Added 2025-09-24
   ansible-later = throw "ansible-later has been discontinued. The author recommends switching to ansible-lint"; # Added 2025-08-24
   ansible_2_16 = throw "ansible_2_16 has been removed, as it is EOL"; # Added 2025-11-10
   ansible_2_17 = throw "ansible_2_17 has been removed, as it is EOL"; # Added 2025-11-10

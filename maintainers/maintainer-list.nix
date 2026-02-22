@@ -3601,6 +3601,12 @@
     githubId = 37768199;
     name = "Christian Bergschneider";
   };
+  blokyk = {
+    email = "pro@zoeee.net";
+    github = "blokyk";
+    githubId = 32983140;
+    name = "Zoë Courvoisier";
+  };
   bloominstrong = {
     email = "github@mail.bloominstrong.net";
     github = "bloominstrong";
@@ -7214,6 +7220,11 @@
     githubId = 51440893;
     name = "Tom van Dijk";
     keys = [ { fingerprint = "D044 F07B 8863 B681 26BD  79FE 7A98 4C82 07AD BA51"; } ];
+  };
+  dtvillafana = {
+    github = "dtvillafana";
+    githubId = 82293276;
+    name = "David Villafaña";
   };
   dudeofawesome = {
     email = "tourist-04.iced@icloud.com";
@@ -13961,6 +13972,11 @@
     github = "kisonecat";
     githubId = 148352;
     name = "Jim Fowler";
+  };
+  kitsunoff = {
+    github = "kitsunoff";
+    githubId = 58953114;
+    name = "Maxim Belyy";
   };
   Kitt3120 = {
     email = "nixpkgs@schweren.dev";
@@ -21101,12 +21117,6 @@
     email = "plebhash@proton.me";
     github = "plebhash";
     githubId = 147345153;
-  };
-  pleshevskiy = {
-    email = "dmitriy@pleshevski.ru";
-    github = "pleshevskiy";
-    githubId = 7839004;
-    name = "Dmitriy Pleshevskiy";
   };
   pluiedev = {
     email = "hi@pluie.me";

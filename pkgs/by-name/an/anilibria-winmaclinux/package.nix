@@ -2,14 +2,9 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  qmake,
+  libsForQt5,
   pkg-config,
-  qtbase,
-  qtquickcontrols2,
-  qtwebsockets,
-  qtmultimedia,
   gst_all_1,
-  wrapQtAppsHook,
   makeDesktopItem,
   copyDesktopItems,
 
@@ -19,18 +14,18 @@
   mpv-unwrapped,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "anilibria-winmaclinux";
   version = "2.2.34";
 
   src = fetchFromGitHub {
     owner = "anilibria";
     repo = "anilibria-winmaclinux";
-    rev = version;
+    tag = finalAttrs.version;
     hash = "sha256-58NFlB6viWXG13J+RBzMj6LlYFClpWpGQ/aCNxJ5wKQ=";
   };
 
-  sourceRoot = "${src.name}/src";
+  sourceRoot = "${finalAttrs.src.name}/src";
 
   qmakeFlags = [
     "PREFIX=${placeholder "out"}"
@@ -64,17 +59,17 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    qmake
+    libsForQt5.qmake
     pkg-config
-    wrapQtAppsHook
+    libsForQt5.wrapQtAppsHook
     copyDesktopItems
   ];
 
   buildInputs = [
-    qtbase
-    qtquickcontrols2
-    qtwebsockets
-    qtmultimedia
+    libsForQt5.qtbase
+    libsForQt5.qtquickcontrols2
+    libsForQt5.qtwebsockets
+    libsForQt5.qtmultimedia
   ]
   ++ (with gst_all_1; [
     gst-plugins-bad
@@ -87,11 +82,11 @@ stdenv.mkDerivation rec {
   ++ lib.optionals withMPV [ mpv-unwrapped.dev ];
 
   desktopItems = [
-    (makeDesktopItem rec {
+    (makeDesktopItem {
       name = "AniLibria";
-      desktopName = name;
+      desktopName = "AniLibria";
       icon = "anilibria";
-      comment = meta.description;
+      comment = finalAttrs.meta.description;
       genericName = "AniLibria desktop client";
       categories = [
         "Qt"
@@ -99,7 +94,7 @@ stdenv.mkDerivation rec {
         "Player"
       ];
       keywords = [ "anime" ];
-      exec = name;
+      exec = "AniLibria";
       terminal = false;
     })
   ];
@@ -109,7 +104,7 @@ stdenv.mkDerivation rec {
     description = "AniLibria cross platform desktop client";
     license = lib.licenses.gpl3;
     maintainers = with lib.maintainers; [ _3JlOy-PYCCKUi ];
-    inherit (qtbase.meta) platforms;
+    inherit (libsForQt5.qtbase.meta) platforms;
     mainProgram = "AniLibria";
   };
-}
+})

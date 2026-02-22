@@ -2158,6 +2158,7 @@ with pkgs;
     cudaPackages_12_8
     cudaPackages_12_9
     cudaPackages_13_0
+    cudaPackages_13_1
     ;
 
   cudaPackages_12 = cudaPackages_12_8;
@@ -5430,6 +5431,10 @@ with pkgs;
 
   ansible = python3Packages.toPythonApplication python3Packages.ansible-core;
 
+  ansible-language-server =
+    callPackage ../development/tools/language-servers/ansible-language-server
+      { };
+
   ansible-builder = with python3Packages; toPythonApplication ansible-builder;
 
   yakut = python3Packages.callPackage ../development/tools/misc/yakut { };
@@ -8492,113 +8497,6 @@ with pkgs;
   postgres-websockets = haskellPackages.postgres-websockets.bin;
   postgrest = haskellPackages.postgrest.bin;
 
-  prom2json = callPackage ../servers/monitoring/prometheus/prom2json.nix { };
-  prometheus-apcupsd-exporter = callPackage ../servers/monitoring/prometheus/apcupsd-exporter.nix { };
-  prometheus-artifactory-exporter =
-    callPackage ../servers/monitoring/prometheus/artifactory-exporter.nix
-      { };
-  prometheus-atlas-exporter = callPackage ../servers/monitoring/prometheus/atlas-exporter.nix { };
-  prometheus-aws-s3-exporter = callPackage ../servers/monitoring/prometheus/aws-s3-exporter.nix { };
-  prometheus-bind-exporter = callPackage ../servers/monitoring/prometheus/bind-exporter.nix { };
-  prometheus-bird-exporter = callPackage ../servers/monitoring/prometheus/bird-exporter.nix { };
-  prometheus-bitcoin-exporter = callPackage ../servers/monitoring/prometheus/bitcoin-exporter.nix { };
-  prometheus-blackbox-exporter =
-    callPackage ../servers/monitoring/prometheus/blackbox-exporter.nix
-      { };
-  prometheus-cloudflare-exporter =
-    callPackage ../servers/monitoring/prometheus/cloudflare-exporter.nix
-      { };
-  prometheus-collectd-exporter =
-    callPackage ../servers/monitoring/prometheus/collectd-exporter.nix
-      { };
-  prometheus-consul-exporter = callPackage ../servers/monitoring/prometheus/consul-exporter.nix { };
-  prometheus-dnsmasq-exporter = callPackage ../servers/monitoring/prometheus/dnsmasq-exporter.nix { };
-  prometheus-domain-exporter = callPackage ../servers/monitoring/prometheus/domain-exporter.nix { };
-  prometheus-fastly-exporter = callPackage ../servers/monitoring/prometheus/fastly-exporter.nix { };
-  prometheus-flow-exporter = callPackage ../servers/monitoring/prometheus/flow-exporter.nix { };
-  prometheus-fritzbox-exporter =
-    callPackage ../servers/monitoring/prometheus/fritzbox-exporter.nix
-      { };
-  prometheus-gitlab-ci-pipelines-exporter =
-    callPackage ../servers/monitoring/prometheus/gitlab-ci-pipelines-exporter.nix
-      { };
-  prometheus-graphite-exporter =
-    callPackage ../servers/monitoring/prometheus/graphite-exporter.nix
-      { };
-  prometheus-haproxy-exporter = callPackage ../servers/monitoring/prometheus/haproxy-exporter.nix { };
-  prometheus-idrac-exporter = callPackage ../servers/monitoring/prometheus/idrac-exporter.nix { };
-  prometheus-imap-mailstat-exporter =
-    callPackage ../servers/monitoring/prometheus/imap-mailstat-exporter.nix
-      { };
-  prometheus-influxdb-exporter =
-    callPackage ../servers/monitoring/prometheus/influxdb-exporter.nix
-      { };
-  prometheus-ipmi-exporter = callPackage ../servers/monitoring/prometheus/ipmi-exporter.nix { };
-  prometheus-jitsi-exporter = callPackage ../servers/monitoring/prometheus/jitsi-exporter.nix { };
-  prometheus-jmx-httpserver = callPackage ../servers/monitoring/prometheus/jmx-httpserver.nix { };
-  prometheus-json-exporter = callPackage ../servers/monitoring/prometheus/json-exporter.nix { };
-  prometheus-junos-czerwonk-exporter =
-    callPackage ../servers/monitoring/prometheus/junos-czerwonk-exporter.nix
-      { };
-  prometheus-kea-exporter = callPackage ../servers/monitoring/prometheus/kea-exporter.nix { };
-  prometheus-keylight-exporter =
-    callPackage ../servers/monitoring/prometheus/keylight-exporter.nix
-      { };
-  prometheus-knot-exporter = callPackage ../servers/monitoring/prometheus/knot-exporter.nix { };
-  prometheus-lnd-exporter = callPackage ../servers/monitoring/prometheus/lnd-exporter.nix { };
-  prometheus-mail-exporter = callPackage ../servers/monitoring/prometheus/mail-exporter.nix { };
-  prometheus-mikrotik-exporter =
-    callPackage ../servers/monitoring/prometheus/mikrotik-exporter.nix
-      { };
-  prometheus-modemmanager-exporter =
-    callPackage ../servers/monitoring/prometheus/modemmanager-exporter.nix
-      { };
-  prometheus-mongodb-exporter = callPackage ../servers/monitoring/prometheus/mongodb-exporter.nix { };
-  prometheus-nats-exporter = callPackage ../servers/monitoring/prometheus/nats-exporter.nix { };
-  prometheus-nextcloud-exporter =
-    callPackage ../servers/monitoring/prometheus/nextcloud-exporter.nix
-      { };
-  prometheus-nginx-exporter = callPackage ../servers/monitoring/prometheus/nginx-exporter.nix { };
-  prometheus-nginxlog-exporter =
-    callPackage ../servers/monitoring/prometheus/nginxlog-exporter.nix
-      { };
-  prometheus-nut-exporter = callPackage ../servers/monitoring/prometheus/nut-exporter.nix { };
-  prometheus-pgbouncer-exporter =
-    callPackage ../servers/monitoring/prometheus/pgbouncer-exporter.nix
-      { };
-  prometheus-php-fpm-exporter = callPackage ../servers/monitoring/prometheus/php-fpm-exporter.nix { };
-  prometheus-pihole-exporter = callPackage ../servers/monitoring/prometheus/pihole-exporter.nix { };
-  prometheus-ping-exporter = callPackage ../servers/monitoring/prometheus/ping-exporter.nix { };
-  prometheus-postfix-exporter = callPackage ../servers/monitoring/prometheus/postfix-exporter.nix { };
-  prometheus-postgres-exporter =
-    callPackage ../servers/monitoring/prometheus/postgres-exporter.nix
-      { };
-  prometheus-process-exporter = callPackage ../servers/monitoring/prometheus/process-exporter.nix { };
-  prometheus-pve-exporter = callPackage ../servers/monitoring/prometheus/pve-exporter.nix { };
-  prometheus-redis-exporter = callPackage ../servers/monitoring/prometheus/redis-exporter.nix { };
-  prometheus-rabbitmq-exporter =
-    callPackage ../servers/monitoring/prometheus/rabbitmq-exporter.nix
-      { };
-  prometheus-rtl_433-exporter = callPackage ../servers/monitoring/prometheus/rtl_433-exporter.nix { };
-  prometheus-sabnzbd-exporter = callPackage ../servers/monitoring/prometheus/sabnzbd-exporter.nix { };
-  prometheus-sachet = callPackage ../servers/monitoring/prometheus/sachet.nix { };
-  prometheus-script-exporter = callPackage ../servers/monitoring/prometheus/script-exporter.nix { };
-  prometheus-shelly-exporter = callPackage ../servers/monitoring/prometheus/shelly-exporter.nix { };
-  prometheus-smokeping-prober = callPackage ../servers/monitoring/prometheus/smokeping-prober.nix { };
-  prometheus-snmp-exporter = callPackage ../servers/monitoring/prometheus/snmp-exporter.nix { };
-  prometheus-statsd-exporter = callPackage ../servers/monitoring/prometheus/statsd-exporter.nix { };
-  prometheus-sql-exporter = callPackage ../servers/monitoring/prometheus/sql-exporter.nix { };
-  prometheus-systemd-exporter = callPackage ../servers/monitoring/prometheus/systemd-exporter.nix { };
-  prometheus-unbound-exporter = callPackage ../servers/monitoring/prometheus/unbound-exporter.nix { };
-  prometheus-v2ray-exporter = callPackage ../servers/monitoring/prometheus/v2ray-exporter.nix { };
-  prometheus-varnish-exporter = callPackage ../servers/monitoring/prometheus/varnish-exporter.nix { };
-  prometheus-wireguard-exporter =
-    callPackage ../servers/monitoring/prometheus/wireguard-exporter.nix
-      {
-      };
-  prometheus-zfs-exporter = callPackage ../servers/monitoring/prometheus/zfs-exporter.nix { };
-  prometheus-xmpp-alerts = callPackage ../servers/monitoring/prometheus/xmpp-alerts.nix { };
-
   public-inbox = perlPackages.callPackage ../servers/mail/public-inbox { };
 
   pypiserver = with python3Packages; toPythonApplication pypiserver;
@@ -9421,8 +9319,6 @@ with pkgs;
 
   activitywatch = callPackage ../applications/office/activitywatch/wrapper.nix { };
 
-  anilibria-winmaclinux = libsForQt5.callPackage ../applications/video/anilibria-winmaclinux { };
-
   masterpdfeditor4 = libsForQt5.callPackage ../applications/misc/masterpdfeditor4 { };
 
   inherit
@@ -10168,8 +10064,6 @@ with pkgs;
   kubectl-view-allocations =
     callPackage ../applications/networking/cluster/kubectl-view-allocations
       { };
-
-  kthxbye = callPackage ../servers/monitoring/prometheus/kthxbye.nix { };
 
   linkerd = callPackage ../applications/networking/cluster/linkerd { };
   linkerd_edge = callPackage ../applications/networking/cluster/linkerd/edge.nix { };
@@ -11212,12 +11106,14 @@ with pkgs;
     demoSupport = false;
     jpegSupport = false;
     lcmsSupport = false;
+    luaSupport = false;
     pangoSupport = false;
     pipewireSupport = false;
     rdpSupport = false;
     remotingSupport = false;
     vaapiSupport = false;
     vncSupport = false;
+    vulkanSupport = false;
     webpSupport = false;
     xwaylandSupport = false;
   };
@@ -12692,8 +12588,6 @@ with pkgs;
   wrapVdr = callPackage ../applications/video/vdr/wrapper.nix { };
 
   chrome-token-signing = libsForQt5.callPackage ../tools/security/chrome-token-signing { };
-
-  linode-cli = python3Packages.callPackage ../tools/virtualization/linode-cli { };
 
   phonetisaurus = callPackage ../development/libraries/phonetisaurus {
     # https://github.com/AdolfVonKleist/Phonetisaurus/issues/70

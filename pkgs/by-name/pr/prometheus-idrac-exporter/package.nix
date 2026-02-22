@@ -18,7 +18,7 @@ buildGoModule rec {
 
   vendorHash = "sha256-iNV4VrdQONq7LXwAc6AaUROHy8TmmloUAL8EmuPtF/o=";
 
-  patches = [ ./idrac-exporter/config-from-environment.patch ];
+  patches = [ ./config-from-environment.patch ];
 
   ldflags = [
     "-s"
