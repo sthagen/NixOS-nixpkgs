@@ -20,6 +20,10 @@ let
               type = types.str;
               default = "";
             };
+            provision = mkOption {
+              type = types.str;
+              default = "";
+            };
             extraTests = mkOption {
               type = types.either types.str (types.functionTo types.str);
               default = "";
@@ -75,6 +79,7 @@ let
           inherit (config) test-helpers;
         in
         mkBefore ''
+          ${test-helpers.provision}
           start_all()
           nextcloud.wait_for_unit("multi-user.target")
 
