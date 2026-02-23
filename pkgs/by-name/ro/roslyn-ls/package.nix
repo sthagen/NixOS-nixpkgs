@@ -35,14 +35,14 @@ let
 
   project = "Microsoft.CodeAnalysis.LanguageServer";
 in
-buildDotnetModule (finalAttrs: rec {
+buildDotnetModule (finalAttrs: {
   inherit pname dotnet-sdk dotnet-runtime;
 
   vsVersion = "2.123.34-prerelease";
   src = fetchFromGitHub {
     owner = "dotnet";
     repo = "roslyn";
-    rev = "VSCode-CSharp-${vsVersion}";
+    rev = "VSCode-CSharp-${finalAttrs.vsVersion}";
     hash = "sha256-UirJNrW1qcxt61Hsyfe/dYO1N2WH8Tr1mctTEUZ5pSs=";
   };
 
@@ -139,7 +139,7 @@ buildDotnetModule (finalAttrs: rec {
             ''
               HOME=$TMPDIR
               expect <<"EOF"
-                spawn ${meta.mainProgram} --stdio --logLevel Information --extensionLogDirectory log
+                spawn ${finalAttrs.meta.mainProgram} --stdio --logLevel Information --extensionLogDirectory log
                 expect_before timeout {
                   send_error "timeout!\n"
                   exit 1
@@ -167,7 +167,7 @@ buildDotnetModule (finalAttrs: rec {
   meta = {
     homepage = "https://github.com/dotnet/vscode-csharp";
     description = "Language server behind C# Dev Kit for Visual Studio Code";
-    changelog = "https://github.com/dotnet/vscode-csharp/releases/tag/v${vsVersion}";
+    changelog = "https://github.com/dotnet/vscode-csharp/releases/tag/v${finalAttrs.vsVersion}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ konradmalik ];
     mainProgram = "Microsoft.CodeAnalysis.LanguageServer";

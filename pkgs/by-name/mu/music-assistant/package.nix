@@ -99,6 +99,7 @@ python.pkgs.buildPythonApplication rec {
   ];
 
   pythonRelaxDeps = [
+    "aiofiles"
     "aiohttp"
     "aiosqlite"
     "certifi"

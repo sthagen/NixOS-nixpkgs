@@ -3936,6 +3936,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  d2-vim = buildVimPlugin {
+    pname = "d2-vim";
+    version = "0-unstable-2025-08-19";
+    src = fetchFromGitHub {
+      owner = "terrastruct";
+      repo = "d2-vim";
+      rev = "cb3eb7fcb1a2d45c4304bf2e91077d787b724a39";
+      hash = "sha256-HmDQfOIoSV93wqRe7O4FPuHEmAxwoP1+Ut+sKhB62jA=";
+    };
+    meta.homepage = "https://github.com/terrastruct/d2-vim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   dailies-nvim = buildVimPlugin {
     pname = "dailies.nvim";
     version = "0-unstable-2025-04-21";
