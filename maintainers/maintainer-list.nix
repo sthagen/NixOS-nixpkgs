@@ -774,6 +774,18 @@
     githubId = 59283660;
     name = "Antoine Fontaine";
   };
+  afontaine = {
+    name = "Andrewfontaine";
+    github = "afontaine";
+    githubId = 3373136;
+    email = "andrew@afontaine.ca";
+    matrix = "@andrew:afontaine.dev";
+    keys = [
+      {
+        fingerprint = "A8F3 62E2 D806 6895 581A  C014 DD4B E519 1E21 53E0";
+      }
+    ];
+  };
   aforemny = {
     email = "aforemny@posteo.de";
     github = "aforemny";
@@ -13324,10 +13336,12 @@
     name = "Julius Rickert";
   };
   julm = {
-    email = "julm+nixpkgs@sourcephile.fr";
+    email = "julm@sourcephile.fr";
+    matrix = "@julm:matrix.org";
     github = "ju1m";
     githubId = 21160136;
     name = "Julien Moutinho";
+    keys = [ { fingerprint = "4FE4 6703 4C11 017B 429B  AC53 A58C D81C 3863 926F"; } ];
   };
   Julow = {
     email = "jules@j3s.fr";
@@ -15143,6 +15157,11 @@
     githubId = 101508537;
     name = "Yuchen He";
   };
+  lilahummel = {
+    github = "LilaHummel";
+    githubId = 263230236;
+    name = "Lila Hummel";
+  };
   lilioid = {
     name = "Lilly";
     email = "li@lly.sh";
@@ -15465,12 +15484,6 @@
     github = "LouisDK1";
     githubId = 4969294;
     name = "Louis Tim Larsen";
-  };
-  lovek323 = {
-    email = "jason@oconal.id.au";
-    github = "lovek323";
-    githubId = 265084;
-    name = "Jason O'Conal";
   };
   lovesegfault = {
     email = "meurerbernardo@gmail.com";
@@ -17386,6 +17399,12 @@
     github = "mihnea-s";
     githubId = 43088426;
     name = "Mihnea Stoian";
+  };
+  mikaeladev = {
+    email = "mikaeladev@icloud.com";
+    github = "mikaeladev";
+    githubId = 100416544;
+    name = "mikaeladev";
   };
   mikaelfangel = {
     email = "nixpkgs.bottle597@passfwd.com";
@@ -25692,6 +25711,12 @@
     github = "SubhrajyotiSen";
     githubId = 12984845;
     name = "Subhrajyoti Sen";
+  };
+  sudo-mac = {
+    email = "dreems2reality@gmail.com";
+    github = "sudo-mac";
+    githubId = 90754995;
+    name = "sudo-mac";
   };
   sudoforge = {
     github = "sudoforge";

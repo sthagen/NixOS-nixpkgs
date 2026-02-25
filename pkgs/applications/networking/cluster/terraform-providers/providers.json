@@ -544,13 +544,13 @@
     "vendorHash": "sha256-bD8BHhP4jxBRnFjmZE1MMkBn2/sMqNEaxTlQRMj2Crw="
   },
   "hashicorp_consul": {
-    "hash": "sha256-SlXzhH9EQJAAcSAog6XzbeenzseXNEUfXdYtURpUcUw=",
+    "hash": "sha256-iYt4TxyVQIYjrOgVS+olDcDgTddaVmYVy8M/Y9IkTpQ=",
     "homepage": "https://registry.terraform.io/providers/hashicorp/consul",
     "owner": "hashicorp",
     "repo": "terraform-provider-consul",
-    "rev": "v2.22.1",
+    "rev": "v2.23.0",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-HQXioE9mbc+0Qf6MGiXKXSfmbUUtkUafA01GEXbLQfE="
+    "vendorHash": "sha256-tCwe8TDqwq3lY7so//tHhbTh51EtfIE1UkBylJ8JhoU="
   },
   "hashicorp_dns": {
     "hash": "sha256-ErvlkaFiIHEXUZYDJZmqEgGpZ75mnLRhhsULRvTm7Rc=",
@@ -571,20 +571,20 @@
     "vendorHash": "sha256-xIagZvWtlNpz5SQfxbA7r9ojAeS3CW2pwV337ObKOwU="
   },
   "hashicorp_google": {
-    "hash": "sha256-SeShEZVFMn/f/ATUY08Jl1wwXBJFmyTpRh7U46ftM60=",
+    "hash": "sha256-HXHeCA3h5h9pyC9WZ+3EnySWmIsxGMskHbW+SjvZel4=",
     "homepage": "https://registry.terraform.io/providers/hashicorp/google",
     "owner": "hashicorp",
     "repo": "terraform-provider-google",
-    "rev": "v7.19.0",
+    "rev": "v7.20.0",
     "spdx": "MPL-2.0",
     "vendorHash": "sha256-lhTdDrTwTbRuWngQ+NGuh+x5Z5HZfVTtNi+mZqIENbg="
   },
   "hashicorp_google-beta": {
-    "hash": "sha256-frRtwDdgNNux875U9rgSbZict8//X/WzxM7EBSxRqW4=",
+    "hash": "sha256-ypC8av5GnFBlUp2eVDZWqnPGrZT8QihYnxsIHw8g+oA=",
     "homepage": "https://registry.terraform.io/providers/hashicorp/google-beta",
     "owner": "hashicorp",
     "repo": "terraform-provider-google-beta",
-    "rev": "v7.20.0",
+    "rev": "v7.21.0",
     "spdx": "MPL-2.0",
     "vendorHash": "sha256-KnB6R5yrEeaf4Z+LzQjCeQJjAgHK0kJEJzT1rb3pimY="
   },
@@ -806,13 +806,13 @@
     "vendorHash": "sha256-UuLHaOEG6jmOAgfdNOtLyUimlAr3g6K8n3Ehu64sKqk="
   },
   "keycloak_keycloak": {
-    "hash": "sha256-u9gIh3iM9mpBJbO0Vgyt8YZNsRHvewJTY6vNm+KVxwY=",
+    "hash": "sha256-55/a3lJCJEOIDsnFckx5BsUClphPZ9BSBvWxQBq1D9Y=",
     "homepage": "https://registry.terraform.io/providers/keycloak/keycloak",
     "owner": "keycloak",
     "repo": "terraform-provider-keycloak",
-    "rev": "v5.6.0",
+    "rev": "v5.7.0",
     "spdx": "Apache-2.0",
-    "vendorHash": "sha256-va9B1CPLLT0NH4VP+1Fjr8O/I2K8xVO9aVjM3fZ9jVE="
+    "vendorHash": "sha256-JgQqOm+cAMLACp/rVz3ek1C4uuTAs8vqDcwRkpFssYc="
   },
   "kislerdm_neon": {
     "hash": "sha256-1o5EnAI9X8Q+dXxh1/jZwimy1MmPDF3X2aRc+HO7HpQ=",
@@ -851,13 +851,13 @@
     "vendorHash": "sha256-TxfiOKANocV96TiN60QpA1wVLucXNpmJm1FmVavOlQg="
   },
   "loafoe_htpasswd": {
-    "hash": "sha256-ALTyTTVyS2HHenmk8HVwtQenCmJX05kyXifJTzzmnHE=",
+    "hash": "sha256-1o2kgeTFxegzOgGXWP4OYZ3uC3WbAkCXPqScMvVpHr0=",
     "homepage": "https://registry.terraform.io/providers/loafoe/htpasswd",
     "owner": "loafoe",
     "repo": "terraform-provider-htpasswd",
-    "rev": "v1.5.0",
+    "rev": "v2.0.0",
     "spdx": "MIT",
-    "vendorHash": "sha256-6+ZQVWc4/2RoNjQLzetLTl9L8AdbFu2uFmqJ9Kxcc7Q="
+    "vendorHash": "sha256-1gzJdcSvFPE8Spkwxe24U7DUyrz4qpDoFVHm6vCWF6A="
   },
   "loafoe_ssh": {
     "hash": "sha256-1UN5QJyjCuxs2vQYlSuz2jsu/HgGTxOoWWRcv4qcwow=",
@@ -1049,11 +1049,11 @@
     "vendorHash": null
   },
   "oracle_oci": {
-    "hash": "sha256-Ew7W4Jk8ygNS50SFxNctHeyyYpNckxpWtms6ImwJdBU=",
+    "hash": "sha256-fBHwWw8NtjzgQISUuLB6eY6S3SlMbwyXPmt+suMezHA=",
     "homepage": "https://registry.terraform.io/providers/oracle/oci",
     "owner": "oracle",
     "repo": "terraform-provider-oci",
-    "rev": "v8.1.0",
+    "rev": "v8.2.0",
     "spdx": "MPL-2.0",
     "vendorHash": null
   },
@@ -1283,13 +1283,13 @@
     "vendorHash": "sha256-rWiafaFE1RolO9JUN1WoW4EWJjR7kpfeVEOTLf21j50="
   },
   "tailscale_tailscale": {
-    "hash": "sha256-iWiZ0FizqJbY80pL6vVwzw3h/WpXJFjHF7vwJOpxD7k=",
+    "hash": "sha256-yR65w/o/VpwKINcvz4SBybAwsphGC7A/B+baKRcIT3I=",
     "homepage": "https://registry.terraform.io/providers/tailscale/tailscale",
     "owner": "tailscale",
     "repo": "terraform-provider-tailscale",
-    "rev": "v0.27.0",
+    "rev": "v0.28.0",
     "spdx": "MIT",
-    "vendorHash": "sha256-oAMg/9YnUmkR5Pcb9EIuTgrghM7vS5h8N2NO24szabs="
+    "vendorHash": "sha256-+q2KR3ctotT30fBE0lcpQlUXQS7nfi5VACWYxwluuMc="
   },
   "telmate_proxmox": {
     "hash": "sha256-1aKKlOIk1mH4yx66eD635d1IaUWXIiBGHEt4A2F2mGM=",

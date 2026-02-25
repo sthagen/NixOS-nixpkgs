@@ -283,7 +283,6 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://curl.se/";
     license = lib.licenses.curl;
     maintainers = with lib.maintainers; [
-      lovek323
       Scrumplex
     ];
     platforms = lib.platforms.all;
