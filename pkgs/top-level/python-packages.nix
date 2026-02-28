@@ -7184,6 +7184,8 @@ self: super: with self; {
 
   huggingface-hub = callPackage ../development/python-modules/huggingface-hub { };
 
+  huggingface-hub_0 = callPackage ../development/python-modules/huggingface-hub/0.nix { };
+
   human-readable = callPackage ../development/python-modules/human-readable { };
 
   humanfriendly = callPackage ../development/python-modules/humanfriendly { };
@@ -11306,6 +11308,8 @@ self: super: with self; {
   omemo = callPackage ../development/python-modules/omemo { };
 
   omemo-dr = callPackage ../development/python-modules/omemo-dr { };
+
+  omitempty = callPackage ../development/python-modules/omitempty { };
 
   omnikinverter = callPackage ../development/python-modules/omnikinverter { };
 
@@ -19395,6 +19399,8 @@ self: super: with self; {
 
   transformers = callPackage ../development/python-modules/transformers { };
 
+  transformers_4 = callPackage ../development/python-modules/transformers/4.nix { };
+
   transforms3d = callPackage ../development/python-modules/transforms3d { };
 
   transitions = callPackage ../development/python-modules/transitions { };
@@ -21185,6 +21191,8 @@ self: super: with self; {
   yara-x = callPackage ../development/python-modules/yara-x { };
 
   yaramod = callPackage ../development/python-modules/yaramod { };
+
+  yardstick = callPackage ../development/python-modules/yardstick { };
 
   yarg = callPackage ../development/python-modules/yarg { };
 

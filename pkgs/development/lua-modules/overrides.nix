@@ -605,12 +605,16 @@ in
     };
   });
 
-  luaposix = prev.luaposix.overrideAttrs (_: {
+  luaposix = prev.luaposix.overrideAttrs (old: {
     externalDeps = [
       {
         name = "CRYPT";
         dep = libxcrypt;
       }
+    ];
+    propagatedBuildInputs = (old.propagatedBuildInputs or [ ]) ++ [
+      final.bit32
+      final.std-normalize
     ];
   });
 
