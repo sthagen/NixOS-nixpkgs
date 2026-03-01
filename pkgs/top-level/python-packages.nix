@@ -458,6 +458,16 @@ self: super: with self; {
 
   aioquic = callPackage ../development/python-modules/aioquic { };
 
+  aioquic_1_2 = self.aioquic.overrideAttrs rec {
+    version = "1.2.0";
+
+    src = pkgs.fetchPypi {
+      pname = "aioquic";
+      inherit version;
+      hash = "sha256-+RJjuz9xlIxciRW01Q7jcABPIKQW9n+rPcyQVWx+cZk=";
+    };
+  };
+
   aioraven = callPackage ../development/python-modules/aioraven { };
 
   aiorecollect = callPackage ../development/python-modules/aiorecollect { };
@@ -2327,6 +2337,8 @@ self: super: with self; {
 
   btrfsutil = callPackage ../development/python-modules/btrfsutil { };
 
+  btrsync = callPackage ../development/python-modules/btrsync { };
+
   btsmarthub-devicelist = callPackage ../development/python-modules/btsmarthub-devicelist { };
 
   btsocket = callPackage ../development/python-modules/btsocket { };
@@ -2574,6 +2586,8 @@ self: super: with self; {
   certbot-dns-rfc2136 = callPackage ../development/python-modules/certbot-dns-rfc2136 { };
 
   certbot-dns-route53 = callPackage ../development/python-modules/certbot-dns-route53 { };
+
+  certbot-dns-wedos = callPackage ../development/python-modules/certbot-dns-wedos { };
 
   certbot-nginx = callPackage ../development/python-modules/certbot-nginx { };
 
@@ -5493,6 +5507,8 @@ self: super: with self; {
 
   fints = callPackage ../development/python-modules/fints { };
 
+  fints_4 = callPackage ../development/python-modules/fints/4.nix { };
+
   finvizfinance = callPackage ../development/python-modules/finvizfinance { };
 
   fiona = callPackage ../development/python-modules/fiona { };
@@ -5901,6 +5917,8 @@ self: super: with self; {
   fschat = callPackage ../development/python-modules/fschat { };
 
   fslpy = callPackage ../development/python-modules/fslpy { };
+
+  fspath = callPackage ../development/python-modules/fspath { };
 
   fsspec = callPackage ../development/python-modules/fsspec { };
 
@@ -8909,6 +8927,8 @@ self: super: with self; {
 
   linode-metadata = callPackage ../development/python-modules/linode-metadata { };
 
+  linuxdoc = callPackage ../development/python-modules/linuxdoc { };
+
   linuxfd = callPackage ../development/python-modules/linuxfd { };
 
   linuxpy = callPackage ../development/python-modules/linuxpy { };
@@ -8920,6 +8940,8 @@ self: super: with self; {
   lirc = toPythonModule (pkgs.lirc.override { python3 = python; });
 
   lit = callPackage ../development/python-modules/lit { };
+
+  litecli = callPackage ../development/python-modules/litecli { };
 
   litellm = callPackage ../development/python-modules/litellm { };
 
