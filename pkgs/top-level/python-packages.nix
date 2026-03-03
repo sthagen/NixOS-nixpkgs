@@ -4256,8 +4256,6 @@ self: super: with self; {
 
   django-modelcluster = callPackage ../development/python-modules/django-modelcluster { };
 
-  django-modelsearch = callPackage ../development/python-modules/django-modelsearch { };
-
   django-modeltranslation = callPackage ../development/python-modules/django-modeltranslation { };
 
   django-mptt = callPackage ../development/python-modules/django-mptt { };
@@ -10067,6 +10065,8 @@ self: super: with self; {
   modelcif = callPackage ../development/python-modules/modelcif { };
 
   modelscope = callPackage ../development/python-modules/modelscope { };
+
+  modelsearch = callPackage ../development/python-modules/modelsearch { };
 
   modern-colorthief = callPackage ../development/python-modules/modern-colorthief { };
 
@@ -17899,6 +17899,8 @@ self: super: with self; {
 
   soundcloud-v2 = callPackage ../development/python-modules/soundcloud-v2 { };
 
+  soundcloudpy = callPackage ../development/python-modules/soundcloudpy { };
+
   sounddevice = callPackage ../development/python-modules/sounddevice { };
 
   soundfile = callPackage ../development/python-modules/soundfile { };
@@ -19684,6 +19686,8 @@ self: super: with self; {
   txtorcon = callPackage ../development/python-modules/txtorcon { };
 
   txzmq = callPackage ../development/python-modules/txzmq { };
+
+  ty = callPackage ../development/python-modules/ty { inherit (pkgs) ty; };
 
   type-infer = callPackage ../development/python-modules/type-infer { };
 

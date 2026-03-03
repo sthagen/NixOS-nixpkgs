@@ -10,9 +10,7 @@
      # Optional
      email = "address@example.org";
      matrix = "@user:example.org";
-     keys = [{
-       fingerprint = "AAAA BBBB CCCC DDDD EEEE  FFFF 0000 1111 2222 3333";
-     }];
+     keys = [ { fingerprint = "AAAA BBBB CCCC DDDD EEEE  FFFF 0000 1111 2222 3333"; } ];
    };
    ```
 
@@ -4837,6 +4835,12 @@
     github = "chrispickard";
     githubId = 1438690;
     name = "Chris Pickard";
+  };
+  chrisportela = {
+    email = "chris@chrisportela.com";
+    github = "chrisportela";
+    githubId = 505649;
+    name = "Chris Portela";
   };
   chrispwill = {
     email = "chris@chrispwill.com";
@@ -19268,13 +19272,6 @@
     name = "nixbitcoindev";
     keys = [ { fingerprint = "577A 3452 7F3E 2A85 E80F  E164 DD11 F9AD 5308 B3BA"; } ];
   };
-  nixinator = {
-    email = "33lockdown33@protonmail.com";
-    matrix = "@nixinator:nixos.dev";
-    github = "nixinator";
-    githubId = 66913205;
-    name = "Rick Sanchez";
-  };
   nixy = {
     email = "nixy@nixy.moe";
     github = "nixy";
@@ -27385,6 +27382,11 @@
     email = "vincent@pimoid.fr";
     github = "vtourneur";
     githubId = 48284424;
+  };
+  toXel = {
+    name = "Timo Arlt";
+    github = "toXel";
+    githubId = 2300709;
   };
   ToxicFrog = {
     email = "toxicfrog@ancilla.ca";
