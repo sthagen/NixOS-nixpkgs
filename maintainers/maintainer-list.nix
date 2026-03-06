@@ -500,13 +500,6 @@
     githubId = 2526296;
     name = "Adrien Bustany";
   };
-  abysssol = {
-    name = "abysssol";
-    email = "abysssol@pm.me";
-    matrix = "@abysssol:tchncs.de";
-    github = "abysssol";
-    githubId = 76763323;
-  };
   acairncross = {
     email = "acairncross@gmail.com";
     github = "acairncross";
@@ -894,6 +887,12 @@
     github = "aiotter";
     githubId = 37664775;
     name = "Yuto Oguchi";
+  };
+  airone01 = {
+    name = "Erwann Lagouche";
+    github = "airone01";
+    githubId = 21955960;
+    email = "airone01@proton.me";
   };
   airrnot = {
     name = "airRnot";
@@ -4456,6 +4455,12 @@
     github = "caugner";
     githubId = 495429;
     name = "Claas Augner";
+  };
+  caverav = {
+    email = "camilo@fvv.cl";
+    github = "caverav";
+    githubId = 66751764;
+    name = "Camilo Vera Vidales";
   };
   cawilliamson = {
     email = "home@chrisaw.com";
@@ -13194,13 +13199,6 @@
     github = "jshort";
     githubId = 1186444;
     name = "James Short";
-  };
-  jsierles = {
-    email = "joshua@hey.com";
-    matrix = "@jsierles:matrix.org";
-    name = "Joshua Sierles";
-    github = "jsierles";
-    githubId = 82;
   };
   jsimonetti = {
     email = "jeroen+nixpkgs@simonetti.nl";
@@ -27924,12 +27922,6 @@
     github = "urbas";
     githubId = 771193;
     name = "Matej Urbas";
-  };
-  urlordjames = {
-    email = "urlordjames@gmail.com";
-    github = "urlordjames";
-    githubId = 32751441;
-    name = "urlordjames";
   };
   ursi = {
     email = "masondeanm@aol.com";
