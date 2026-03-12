@@ -1967,8 +1967,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.71.0";
-          hash = "sha256-jOD5VFF9g4BNdpm3ZoCi0LPkkBmLZ7vlXVVHgiCGac8=";
+          version = "6.71.4";
+          hash = "sha256-GIqokG+RFFmUHzrtln0PFHuSYsITZfw21WQspj2AT6U=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -2615,8 +2615,8 @@ let
         mktplcRef = {
           name = "language-julia";
           publisher = "julialang";
-          version = "1.187.2";
-          hash = "sha256-LYpcccJy+asBicetU6WD4yIvMDQTbg4b9GY20+TYsnc=";
+          version = "1.189.2";
+          hash = "sha256-ydnE34xD2u5cwPOJezXtSbC/JXrGz4j1QL26YaWjfoU=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/julialang.language-julia/changelog";
@@ -2643,8 +2643,8 @@ let
         mktplcRef = {
           name = "intellij-idea-keybindings";
           publisher = "k--kato";
-          version = "1.7.6";
-          hash = "sha256-eSt4iT/o4mp17Dasr0gDr3SsQHX3R6jGmW4V/2KymnY=";
+          version = "1.7.7";
+          hash = "sha256-+XF+Odb9nMKclQkB/lwFuVpCHlVq6LNG/gQATVBcrYc=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/k--kato.intellij-idea-keybindings/changelog";
@@ -3397,8 +3397,8 @@ let
         mktplcRef = {
           name = "remote-containers";
           publisher = "ms-vscode-remote";
-          version = "0.442.0";
-          hash = "sha256-oTWYOwEfC8o2eB5G2BeNDRmgaMA26E3pZ4GbPH86rWc=";
+          version = "0.447.0";
+          hash = "sha256-JUTwzde97CQK/0Hp3E8JPrS3UY6vh9jud1ho1R0ODus=";
         };
         meta = {
           description = "Open any folder or repository inside a Docker container";
@@ -3766,8 +3766,8 @@ let
         mktplcRef = {
           name = "prisma";
           publisher = "Prisma";
-          version = "7.0.0";
-          hash = "sha256-nFGvQS635sWEap3oUYNJpocR3Eq3a7c9z9v8gLKmL7A=";
+          version = "31.5.35";
+          hash = "sha256-gS1uNqDH3dKcValRXrTbPoXbkLa+A8BaBdhs1WF7jcc=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Prisma.prisma/changelog";
@@ -3844,8 +3844,8 @@ let
         mktplcRef = {
           publisher = "redhat";
           name = "java";
-          version = "1.52.0";
-          hash = "sha256-V+ufW8RgYplxFRa+BILp1lmitktDucrN0FhsBY1zAmY=";
+          version = "1.53.0";
+          hash = "sha256-4gMFV6uMpExqZgWwcPYLxOnHJBQtT02LY3VqfzRLoaQ=";
         };
         buildInputs = [ jdk ];
         meta = {
@@ -4617,8 +4617,8 @@ let
         mktplcRef = {
           name = "ayu";
           publisher = "teabyii";
-          version = "1.1.9";
-          sha256 = "sha256-mxypPqumN9SvgaFLItGmILH7PtRehgnnzkGtG3C07QI=";
+          version = "1.1.11";
+          sha256 = "sha256-0gfevhXxrZC2rpWIaZM7aNfZrh/KIjoDWkZreeVU+EI=";
         };
         meta = {
           description = "Simple theme with bright colors and comes in three versions — dark, light and mirage for all day long comfortable work";
@@ -5219,8 +5219,8 @@ let
         mktplcRef = {
           name = "gitblame";
           publisher = "waderyan";
-          version = "11.2.0";
-          sha256 = "sha256-NEsw5Z0k6AYpDcz6pVl2p0Zayd4qC1VODlcaVEOVoHg=";
+          version = "12.0.3";
+          sha256 = "sha256-W22JqjzRnyvqZPHt7eQgFXfCRRTcKXSXE7dPam8cs24=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/waderyan.gitblame/changelog";
@@ -5360,8 +5360,8 @@ let
         mktplcRef = {
           name = "pretty-ts-errors";
           publisher = "yoavbls";
-          version = "0.7.0";
-          hash = "sha256-+PKxy1YN8ZP0hstb7PXZH+5L4n2l/j5J9/ordS2cBYM=";
+          version = "0.8.3";
+          hash = "sha256-YhYHtn0/en0hOts+s/Imln9WzwSrUhwBJPH1qdISUrM=";
         };
         meta = {
           description = "Make TypeScript errors prettier and human-readable in VSCode";
