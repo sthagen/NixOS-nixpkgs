@@ -11,16 +11,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "worktrunk";
-  version = "0.29.0";
+  version = "0.30.1";
 
   src = fetchFromGitHub {
     owner = "max-sixty";
     repo = "worktrunk";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-JawxnNoEv8ZDLaZmOlMrvsa/cEzmOFYv7oHWmPeOIbc=";
+    hash = "sha256-D/S2KBa3fmgUO8x1HubOIti/oXGEXDkto03+PFrtH/Q=";
   };
 
-  cargoHash = "sha256-aEUnR3Dk3LFo3vJf+k550YiP3pSN6a7175d91yEned0=";
+  cargoHash = "sha256-UDpYUgrhw/raDnVVW3rT35/Iae5eVcnCWMX59of1htg=";
 
   cargoBuildFlags = [ "--package=worktrunk" ];
 
@@ -74,6 +74,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ];
     platforms = lib.platforms.unix;
     mainProgram = "wt";
-    maintainers = with lib.maintainers; [ siriobalmelli ];
+    maintainers = with lib.maintainers; [
+      siriobalmelli
+      DuskyElf
+    ];
   };
 })

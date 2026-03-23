@@ -20,30 +20,18 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "codex";
-  version = "0.114.0";
+  version = "0.116.0";
 
   src = fetchFromGitHub {
     owner = "openai";
     repo = "codex";
     tag = "rust-v${finalAttrs.version}";
-    hash = "sha256-7t+mVwP4+YrG1ciI+OLqsK7TUM9SrDbPsJNrt26iy9c=";
+    hash = "sha256-PTsKphg3gPlBUs5oMM34RhJJ4jxvD6hand5aVjXcuZ4=";
   };
 
   sourceRoot = "${finalAttrs.src.name}/codex-rs";
 
-  # TODO: Drop workaround once PR #486983 reaches master.
-  depsExtraArgs = {
-    nativeBuildInputs = [ cargo ];
-    postBuild = ''
-      # delete all Cargo.toml files for which `cargo metadata` fails
-      shopt -s globstar
-      for manifest_path in "$out"/**/Cargo.toml; do
-        cargo metadata --format-version 1 --no-deps --manifest-path "$manifest_path" >/dev/null || rm -v "$manifest_path"
-      done
-    '';
-  };
-
-  cargoHash = "sha256-Ig3VMNN1oeC9DyjjVPTiXw4JXCuO01eRYJClcIXu8vQ=";
+  cargoHash = "sha256-X5Yh8+3UrCZfzIplb4OzFfcfoklMu3FikU9vZ6CJbfc=";
 
   nativeBuildInputs = [
     clang
@@ -103,6 +91,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   passthru = {
     updateScript = nix-update-script {
       extraArgs = [
+        "--use-github-releases"
         "--version-regex"
         "^rust-v(\\d+\\.\\d+\\.\\d+)$"
       ];

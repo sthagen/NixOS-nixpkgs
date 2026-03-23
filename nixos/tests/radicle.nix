@@ -76,9 +76,12 @@ in
       {
         imports = [ commonHostConfig ];
 
+        virtualisation.credentials = {
+          "xyz.radicle.node.secret".source = "${seed-ssh-keys.snakeOilEd25519PrivateKey}";
+        };
+
         services.radicle = {
           enable = true;
-          privateKeyFile = seed-ssh-keys.snakeOilEd25519PrivateKey;
           publicKey = seed-ssh-keys.snakeOilEd25519PublicKey;
           node = {
             openFirewall = true;
@@ -188,7 +191,7 @@ in
         )
       with subtest("bob can sync bob's repository from the seed"):
         bob.succeed(
-          "cd /tmp/repo && rad sync --fetch --seed ${seed-nid}",
+          "cd /tmp/repo && rad sync --seed ${seed-nid}",
           "cd /tmp/repo && git pull"
         )
         assert bob.succeed("cat /tmp/repo/testfile") == "hello bob\n"
