@@ -1126,7 +1126,6 @@ in
   nixpkgs-config-allow-unfree-packages-and-predicate =
     pkgs.callPackage ../../pkgs/stdenv/generic/check-meta-test.nix
       { };
-  nixseparatedebuginfod = runTest ./nixseparatedebuginfod.nix;
   nixseparatedebuginfod2 = runTest ./nixseparatedebuginfod2.nix;
   node-red = runTest ./node-red.nix;
   nohang = runTest ./nohang.nix;
@@ -1620,6 +1619,7 @@ in
   taskchampion-sync-server = runTest ./taskchampion-sync-server.nix;
   taskserver = runTest ./taskserver.nix;
   tayga = runTest ./tayga.nix;
+  tdarr = runTest ./tdarr.nix;
   technitium-dns-server = runTest ./technitium-dns-server.nix;
   teeworlds = runTest ./teeworlds.nix;
   telegraf = runTest ./telegraf.nix;

@@ -4378,6 +4378,8 @@ self: super: with self; {
 
   django-storages = callPackage ../development/python-modules/django-storages { };
 
+  django-structlog = callPackage ../development/python-modules/django-structlog { };
+
   django-stubs = callPackage ../development/python-modules/django-stubs { };
 
   django-stubs-ext = callPackage ../development/python-modules/django-stubs-ext { };
@@ -4409,6 +4411,8 @@ self: super: with self; {
   django-two-factor-auth = callPackage ../development/python-modules/django-two-factor-auth { };
 
   django-types = callPackage ../development/python-modules/django-types { };
+
+  django-user-sessions = callPackage ../development/python-modules/django-user-sessions { };
 
   django-valkey = callPackage ../development/python-modules/django-valkey { };
 
@@ -11823,6 +11827,8 @@ self: super: with self; {
 
   orbax-checkpoint = callPackage ../development/python-modules/orbax-checkpoint { };
 
+  orbax-export = callPackage ../development/python-modules/orbax-export { };
+
   ordered-set = callPackage ../development/python-modules/ordered-set { };
 
   orderedmultidict = callPackage ../development/python-modules/orderedmultidict { };
@@ -12784,6 +12790,8 @@ self: super: with self; {
   prefixed = callPackage ../development/python-modules/prefixed { };
 
   preggy = callPackage ../development/python-modules/preggy { };
+
+  premailer = callPackage ../development/python-modules/premailer { };
 
   preprocess-cancellation = callPackage ../development/python-modules/preprocess-cancellation { };
 
@@ -14838,6 +14846,8 @@ self: super: with self; {
   pysaml2 = callPackage ../development/python-modules/pysaml2 { inherit (pkgs) xmlsec; };
 
   pysatochip = callPackage ../development/python-modules/pysatochip { };
+
+  pysaunum = callPackage ../development/python-modules/pysaunum { };
 
   pysbd = callPackage ../development/python-modules/pysbd { };
 
@@ -18238,8 +18248,6 @@ self: super: with self; {
     inherit (pkgs) mscgen;
   };
 
-  sphinxcontrib-newsfeed = callPackage ../development/python-modules/sphinxcontrib-newsfeed { };
-
   sphinxcontrib-nwdiag = callPackage ../development/python-modules/sphinxcontrib-nwdiag { };
 
   sphinxcontrib-openapi = callPackage ../development/python-modules/sphinxcontrib-openapi { };
@@ -18279,6 +18287,8 @@ self: super: with self; {
   sphinxext-opengraph = callPackage ../development/python-modules/sphinxext-opengraph { };
 
   sphinxext-rediraffe = callPackage ../development/python-modules/sphinxext-rediraffe { };
+
+  sphinxfeed-lsaffre = callPackage ../development/python-modules/sphinxfeed-lsaffre { };
 
   spiderpy = callPackage ../development/python-modules/spiderpy { };
 
