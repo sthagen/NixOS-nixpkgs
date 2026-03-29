@@ -2807,6 +2807,12 @@
     github = "azazak123";
     githubId = 50211158;
   };
+  azban = {
+    name = "azban";
+    matrix = "azban@matrix.org";
+    github = "azban";
+    githubId = 714931;
+  };
   azd325 = {
     email = "tim.kleinschmidt@gmail.com";
     github = "Azd325";
@@ -14359,6 +14365,12 @@
     githubId = 659440;
     name = "Kornelijus";
   };
+  korny666 = {
+    email = "korny@publicgrave.de";
+    github = "korny666";
+    githubId = 12656521;
+    name = "Korny";
+  };
   koschi13 = {
     email = "maximilian.konter@protonmail.com";
     github = "koschi13";
@@ -15503,6 +15515,11 @@
     github = "lluchs";
     githubId = 516527;
     name = "Lukas Werling";
+  };
+  lnk3 = {
+    github = "lnk3";
+    githubId = 23727619;
+    name = "Luca Ruperto";
   };
   lnl7 = {
     email = "daiderd@gmail.com";

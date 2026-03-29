@@ -244,7 +244,7 @@ in
 
 mapAliases {
   # LLVM packages for (integration) testing that should not be used inside Nixpkgs:
-  llvmPackages_latest = llvmPackages_21;
+  llvmPackages_latest = llvmPackages_22;
   llvmPackages_git = (callPackages ../development/compilers/llvm { }).git;
   # these are for convenience, not for backward compat., and shouldn't expire until the package is deprecated.
   clang18Stdenv = lib.lowPrio llvmPackages_18.stdenv;
@@ -976,6 +976,7 @@ mapAliases {
   kanidmWithSecretProvisioning_1_6 = throw "'kanidmWithSecretProvisioning_1_6' has been removed as it has reached end of life"; # Added 2026-01-29
   kapitano = throw "'kapitano' has been removed, as it is unmaintained upstream"; # Added 2025-10-29
   karing = throw "'karing' has been removed, as it is unmaintained in nixpkgs"; # Added 2026-01-31
+  katawa-shoujo = throw "'katawa-shoujo' has been removed, as it bundles insecure Python 2. You may install 'katawa-shoujo-re-engineered' instead, which is an updated version remade by Fleeting Heartbeat Studios."; # Added 2026-03-27
   kbibtex = throw "'kbibtex' has been removed, as it is unmaintained upstream"; # Added 2025-08-30
   kcli = throw "kcli has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   keepkey_agent = throw "'keepkey_agent' has been renamed to/replaced by 'keepkey-agent'"; # Converted to throw 2025-10-27
@@ -1545,6 +1546,7 @@ mapAliases {
   pcsctools = throw "'pcsctools' has been renamed to/replaced by 'pcsc-tools'"; # Converted to throw 2025-10-27
   pdf2djvu = throw "pdf2djvu has been removed because it was broken and archived upstream"; # added 2025-12-06
   pdf4tcl = throw "'pdf4tcl' has been renamed to/replaced by 'tclPackages.pdf4tcl'"; # Converted to throw 2025-10-27
+  pdfslicer = throw "'pdfslicer' has been removed because it was broken and abandoned upstream"; # added 2026-03-26
   pds = warnAlias "'pds' has been renamed to 'bluesky-pds'" bluesky-pds; # Added 2025-08-20
   pdsadmin = warnAlias "'pdsadmin' has been renamed to 'bluesky-pdsadmin'" bluesky-pdsadmin; # Added 2025-08-20
   peach = throw "'peach' has been renamed to/replaced by 'asouldocs'"; # Converted to throw 2025-10-27
@@ -1778,6 +1780,7 @@ mapAliases {
   shades-of-gray-theme = throw "'shades-of-gray-theme' has been removed because upstream is a 404"; # Added 2025-12-20
   shared_desktop_ontologies = throw "'shared_desktop_ontologies' has been removed as it had been abandoned upstream"; # Added 2025-11-09
   shipyard = throw "'shipyard' has been renamed to/replaced by 'jumppad'"; # Converted to throw 2025-10-27
+  sic-image-cli = warnAlias "'sic-image-cli' has been renamed to 'imagineer'" imagineer; # Added 2026-03-29
   siduck76-st = throw "'siduck76-st' has been renamed to/replaced by 'st-snazzy'"; # Converted to throw 2025-10-27
   sierra-breeze-enhanced = throw "'sierra-breeze-enhanced' has been removed, as it is only compatible with Plasma 5, which is EOL"; # Added 2025-08-20
   signal-desktop-bin = throw "'signal-desktop-bin' has been replaced by 'signal-desktop' which is built from source"; # Added 2026-03-02

@@ -8295,7 +8295,7 @@ self: super: with self; {
 
   klaus = callPackage ../development/python-modules/klaus { };
 
-  klayout = callPackage ../development/python-modules/klayout { };
+  klayout = callPackage ../development/python-modules/klayout { inherit (pkgs) klayout; };
 
   klein = callPackage ../development/python-modules/klein { };
 
@@ -9665,6 +9665,8 @@ self: super: with self; {
   mediafire-dl = callPackage ../development/python-modules/mediafire-dl { };
 
   mediapy = callPackage ../development/python-modules/mediapy { };
+
+  mediawiki-langcodes = callPackage ../development/python-modules/mediawiki-langcodes { };
 
   medpy = callPackage ../development/python-modules/medpy { };
 
@@ -14756,8 +14758,6 @@ self: super: with self; {
   pyrdfa3 = callPackage ../development/python-modules/pyrdfa3 { };
 
   pyre-extensions = callPackage ../development/python-modules/pyre-extensions { };
-
-  pyreaderwriterlock = callPackage ../development/python-modules/pyreaderwriterlock { };
 
   pyreadstat = callPackage ../development/python-modules/pyreadstat { };
 
@@ -21092,6 +21092,10 @@ self: super: with self; {
   wikipedia2vec = callPackage ../development/python-modules/wikipedia2vec { };
 
   wikitextparser = callPackage ../development/python-modules/wikitextparser { };
+
+  wikitextprocessor = callPackage ../development/python-modules/wikitextprocessor { };
+
+  wiktextract = callPackage ../development/python-modules/wiktextract { };
 
   willow = callPackage ../development/python-modules/willow { };
 
