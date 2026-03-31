@@ -236,6 +236,7 @@ in
   atuin = runTest ./atuin.nix;
   audiobookshelf = runTest ./audiobookshelf.nix;
   audit = runTest ./audit.nix;
+  audit-testsuite = runTest ./audit-testsuite.nix;
   auth-mysql = runTest ./auth-mysql.nix;
   authelia = runTest ./authelia.nix;
   auto-cpufreq = runTest ./auto-cpufreq.nix;
@@ -991,7 +992,7 @@ in
   moonraker = runTest ./moonraker.nix;
   moosefs = runTest ./moosefs.nix;
   mopidy = runTest ./mopidy.nix;
-  morph-browser = runTest ./morph-browser.nix;
+  morph-browser = discoverTests (import ./morph-browser.nix);
   mosquitto = runTest ./mosquitto.nix;
   movim = import ./web-apps/movim {
     inherit runTest;
@@ -1461,6 +1462,7 @@ in
   shadps4 = runTest ./shadps4.nix;
   sharkey = runTest ./web-apps/sharkey.nix;
   shattered-pixel-dungeon = runTest ./shattered-pixel-dungeon.nix;
+  shelfmark = runTest ./shelfmark.nix;
   shiori = runTest ./shiori.nix;
   shoko = import ./shoko.nix { inherit runTest; };
   signal-desktop = runTest ./signal-desktop.nix;

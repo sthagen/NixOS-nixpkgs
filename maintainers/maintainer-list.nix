@@ -9974,6 +9974,12 @@
     githubId = 66037909;
     name = "Graham J. Norris";
   };
+  granddave = {
+    email = "davidisaksson93@gmail.com";
+    github = "Granddave";
+    githubId = 13297896;
+    name = "David Isaksson";
+  };
   gravndal = {
     email = "gaute.ravndal+nixos@gmail.com";
     github = "gravndal";
@@ -10086,12 +10092,6 @@
     githubId = 172639817;
     keys = [ { fingerprint = "D1D3 37F6 CB32 02DC B9BA  337B F9D8 EABC F57E ED58"; } ];
     name = "Gabriel Santos";
-  };
-  gschwartz = {
-    email = "gsch@pennmedicine.upenn.edu";
-    github = "GregorySchwartz";
-    githubId = 2490088;
-    name = "Gregory Schwartz";
   };
   gtrunsec = {
     email = "gtrunsec@hardenedlinux.org";
@@ -13304,6 +13304,12 @@
     github = "IGJoshua";
     name = "Joshua Suskalo";
     githubId = 27734541;
+  };
+  jtamagnan = {
+    email = "jtamagnan@gmail.com";
+    github = "jtamagnan";
+    githubId = 5892061;
+    name = "Jules Tamagnan";
   };
   jtbx = {
     email = "jeremy@baxters.nz";
@@ -19471,6 +19477,12 @@
     name = "nishimara";
     github = "Nishimara";
     githubId = 59232119;
+  };
+  nitinbhat972 = {
+    email = "nitinbhat972@gmail.com";
+    github = "nitinbhat972";
+    githubId = 80189191;
+    name = "Nitin Bhat";
   };
   nitsky = {
     name = "nitsky";

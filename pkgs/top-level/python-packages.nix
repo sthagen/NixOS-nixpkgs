@@ -4140,8 +4140,6 @@ self: super: with self; {
 
   django-crossdomainmedia = callPackage ../development/python-modules/django-crossdomainmedia { };
 
-  django-cryptography = callPackage ../development/python-modules/django-cryptography { };
-
   django-csp = callPackage ../development/python-modules/django-csp { };
 
   django-cte = callPackage ../development/python-modules/django-cte { };
@@ -5881,6 +5879,8 @@ self: super: with self; {
   foundationdb = callPackage ../development/python-modules/foundationdb {
     inherit (pkgs) foundationdb;
   };
+
+  foundrytools = callPackage ../development/python-modules/foundrytools { };
 
   fountains = callPackage ../development/python-modules/fountains { };
 
@@ -17240,6 +17240,8 @@ self: super: with self; {
   scancode-toolkit = callPackage ../development/python-modules/scancode-toolkit { };
 
   scanpy = callPackage ../development/python-modules/scanpy { };
+
+  scantree = callPackage ../development/python-modules/scantree { };
 
   scapy = callPackage ../development/python-modules/scapy {
     inherit (pkgs) libpcap; # Avoid confusion with python package of the same name
