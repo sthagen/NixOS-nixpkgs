@@ -3875,6 +3875,12 @@
     github = "brancz";
     githubId = 4546722;
   };
+  brandonchinn178 = {
+    email = "brandonchinn178@gmail.com";
+    name = "Brandon Chinn";
+    github = "brandonchinn178";
+    githubId = 6827922;
+  };
   brantes = {
     name = "Pedro Brantes";
     email = "contact@brantes.simplelogin.com";
@@ -9874,12 +9880,6 @@
     name = "Maximilian Siling";
     keys = [ { fingerprint = "0BAF 2D87 CB43 746F 6237  2D78 DE60 31AB A0BB 269A"; } ];
   };
-  Golo300 = {
-    email = "lanzingertm@gmail.com";
-    github = "Golo300";
-    githubId = 58785758;
-    name = "Tim Lanzinger";
-  };
   gonsolo = {
     email = "gonsolo@gmail.com";
     github = "gonsolo";
@@ -13966,6 +13966,12 @@
     github = "khaneliman";
     githubId = 1778670;
     name = "Austin Horstman";
+  };
+  Kharacternyk = {
+    email = "nazar@vinnich.uk";
+    github = "Kharacternyk";
+    githubId = 43315801;
+    name = "Nazar Vinnichuk";
   };
   khaser = {
     email = "a-horohorin@mail.ru";
