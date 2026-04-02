@@ -18737,7 +18737,7 @@
     name = "nadir-ishiguro";
   };
   nadja-y = {
-    email = "git@njy.dev";
+    email = "nadja@njy.dev";
     github = "nadja-y";
     githubId = 255079535;
     name = "Nadja Yang";
@@ -19069,6 +19069,12 @@
     name = "Nemin";
     github = "Nemin32";
     githubId = 2953293;
+  };
+  nemith = {
+    email = "nix@brbe.me";
+    github = "nemith";
+    githubId = 349360;
+    name = "Brandon Bennett";
   };
   neosimsim = {
     email = "me@abn.sh";
