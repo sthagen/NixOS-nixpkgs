@@ -3867,13 +3867,14 @@ with pkgs;
   flutterPackages-source = recurseIntoAttrs (
     callPackage ../development/compilers/flutter { useNixpkgsEngine = true; }
   );
-  flutterPackages = flutterPackages-bin;
+  flutterPackages =
+    if stdenv.hostPlatform.isLinux then flutterPackages-source else flutterPackages-bin;
   flutter = flutterPackages.stable;
   flutter341 = flutterPackages.v3_41;
-  flutter338 = flutterPackages.v3_38;
-  flutter335 = flutterPackages.v3_35;
-  flutter332 = flutterPackages.v3_32;
-  flutter329 = flutterPackages.v3_29;
+  flutter338 = flutterPackages-bin.v3_38;
+  flutter335 = flutterPackages-bin.v3_35;
+  flutter332 = flutterPackages-bin.v3_32;
+  flutter329 = flutterPackages-bin.v3_29;
 
   fpc = callPackage ../development/compilers/fpc { };
 
@@ -8654,8 +8655,6 @@ with pkgs;
 
   linuxPackagesFor = linuxKernel.packagesFor;
 
-  hardenedLinuxPackagesFor = linuxKernel.hardenedPackagesFor;
-
   linuxManualConfig = linuxKernel.manualConfig;
 
   linuxPackages_custom = linuxKernel.customPackage;
@@ -8685,12 +8684,6 @@ with pkgs;
   # Testing (rc) kernel
   linuxPackages_testing = linuxKernel.packages.linux_testing;
   linux_testing = linuxKernel.kernels.linux_testing;
-
-  # Realtime kernel
-  linuxPackages-rt = linuxKernel.packageAliases.linux_rt_default;
-  linuxPackages-rt_latest = linuxKernel.packageAliases.linux_rt_latest;
-  linux-rt = linuxPackages-rt.kernel;
-  linux-rt_latest = linuxPackages-rt_latest.kernel;
 
   # zen-kernel
   linuxPackages_zen = linuxKernel.packages.linux_zen;
@@ -11460,14 +11453,6 @@ with pkgs;
   };
 
   enlightenment = recurseIntoAttrs (callPackage ../desktops/enlightenment { });
-
-  expidus = recurseIntoAttrs (
-    callPackages ../desktops/expidus {
-      # Use the Nix built Flutter Engine for testing.
-      # Also needed when we eventually package Genesis Shell.
-      flutterPackages = flutterPackages-source;
-    }
-  );
 
   gnome2 = recurseIntoAttrs (callPackage ../desktops/gnome-2 { });
 
