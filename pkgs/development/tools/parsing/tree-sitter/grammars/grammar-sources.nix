@@ -923,10 +923,30 @@
   };
 
   go-template = {
-    version = "0-unstable-2025-12-12";
+    version = "0-unstable-2026-03-21";
     url = "github:ngalaiko/tree-sitter-go-template";
-    rev = "c59999dc449c29549f5735eaac31b938a13b6c14";
-    hash = "sha256-YKqpNkCRLX+89Ottw4KVXxrEsIPRUsWs0UwIgucHwdo=";
+    rev = "aa71f63de226c5592dfbfc1f29949522d7c95fac";
+    hash = "sha256-QSzUyRDGdBH9TaG3YCHnJp12WcR8kdbsZFIk8I+JW1Y=";
+    meta = {
+      license = lib.licenses.mit;
+      maintainers = with lib.maintainers; [
+        azahi
+      ];
+    };
+  };
+
+  go-template-helm = {
+    version = "0-unstable-2026-03-21";
+    url = "github:ngalaiko/tree-sitter-go-template";
+    rev = "aa71f63de226c5592dfbfc1f29949522d7c95fac";
+    hash = "sha256-QSzUyRDGdBH9TaG3YCHnJp12WcR8kdbsZFIk8I+JW1Y=";
+    location = "dialects/helm";
+    meta = {
+      license = lib.licenses.mit;
+      maintainers = with lib.maintainers; [
+        azahi
+      ];
+    };
   };
 
   godot-resource = {
@@ -2908,12 +2928,16 @@
   };
 
   vue = {
-    version = "0.2.1-unstable-2021-04-04";
-    url = "github:ikatyang/tree-sitter-vue";
-    rev = "91fe2754796cd8fba5f229505a23fa08f3546c06";
-    hash = "sha256-NeuNpMsKZUP5mrLCjJEOSLD6tlJpNO4Z/rFUqZLHE1A=";
+    version = "0.1.0";
+    url = "github:tree-sitter-grammars/tree-sitter-vue";
+    # NOTE: no upstream tag; using commit from 2026-01-24
+    rev = "ce8011a414fdf8091f4e4071752efc376f4afb08";
+    hash = "sha256-pCoyDRuRCpfpJh7vQIM8yZz5aPcqrdYlTJGM/K5oQFs=";
     meta = {
       license = lib.licenses.mit;
+      maintainers = with lib.maintainers; [
+        jeafleohj
+      ];
     };
   };
 
