@@ -9646,7 +9646,7 @@
     name = "Galois";
   };
   ggg = {
-    email = "gggkiller2@gmail.com";
+    email = "github@ggg.dev";
     github = "GGG-KILLER";
     githubId = 5892127;
     name = "GGG";
@@ -29513,13 +29513,6 @@
     name = "Hampus";
     github = "xdHampus";
     githubId = 16954508;
-  };
-  xe = {
-    email = "me@christine.website";
-    matrix = "@withoutwithin:matrix.org";
-    github = "Xe";
-    githubId = 529003;
-    name = "Christine Dodrill";
   };
   xeals = {
     email = "dev@xeal.me";

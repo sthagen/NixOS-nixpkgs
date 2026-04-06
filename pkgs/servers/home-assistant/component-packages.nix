@@ -2139,7 +2139,8 @@
       ];
     "ghost" =
       ps: with ps; [
-      ]; # missing inputs: aioghost
+        aioghost
+      ];
     "gios" =
       ps: with ps; [
         gios
@@ -2595,7 +2596,8 @@
       ];
     "hr_energy_qube" =
       ps: with ps; [
-      ]; # missing inputs: python-qube-heatpump
+        python-qube-heatpump
+      ];
     "html5" =
       ps: with ps; [
         py-vapid
@@ -3476,7 +3478,8 @@
       ];
     "lichess" =
       ps: with ps; [
-      ]; # missing inputs: aiolichess
+        aiolichess
+      ];
     "lidarr" =
       ps: with ps; [
         aiopyarr
@@ -4483,9 +4486,10 @@
     "onvif" =
       ps: with ps; [
         ha-ffmpeg
+        onvif-parsers
         onvif-zeep-async
         wsdiscovery
-      ]; # missing inputs: onvif_parsers
+      ];
     "open_meteo" =
       ps: with ps; [
         open-meteo
@@ -4535,11 +4539,12 @@
         home-assistant-intents
         ifaddr
         mutagen
+        py-opendisplay
         pymicro-vad
         pyserial
         pyspeex-noise
         zeroconf
-      ]; # missing inputs: py-opendisplay
+      ];
     "openerz" =
       ps: with ps; [
         openerz-api
@@ -6623,7 +6628,8 @@
       ];
     "trmnl" =
       ps: with ps; [
-      ]; # missing inputs: trmnl
+        trmnl
+      ];
     "tts" =
       ps: with ps; [
         ha-ffmpeg
@@ -6693,7 +6699,8 @@
       ];
     "unifi_access" =
       ps: with ps; [
-      ]; # missing inputs: py-unifi-access
+        py-unifi-access
+      ];
     "unifi_direct" =
       ps: with ps; [
         unifi-ap
@@ -7670,6 +7677,7 @@
     "geofency"
     "geonetnz_quakes"
     "geonetnz_volcano"
+    "ghost"
     "gios"
     "github"
     "glances"
@@ -7740,6 +7748,7 @@
     "homewizard"
     "homeworks"
     "honeywell"
+    "hr_energy_qube"
     "html5"
     "http"
     "huawei_lte"
@@ -7849,6 +7858,7 @@
     "lg_soundbar"
     "lg_thinq"
     "libre_hardware_monitor"
+    "lichess"
     "lidarr"
     "liebherr"
     "life360"
@@ -8012,10 +8022,12 @@
     "onedrive_for_business"
     "onewire"
     "onkyo"
+    "onvif"
     "open_meteo"
     "open_router"
     "openai_conversation"
     "openalpr_cloud"
+    "opendisplay"
     "openerz"
     "openevse"
     "openexchangerates"
@@ -8326,6 +8338,7 @@
     "transport_nsw"
     "trend"
     "triggercmd"
+    "trmnl"
     "tts"
     "tuya"
     "twentemilieu"
@@ -8336,6 +8349,7 @@
     "uk_transport"
     "ukraine_alarm"
     "unifi"
+    "unifi_access"
     "unifiprotect"
     "universal"
     "upb"
