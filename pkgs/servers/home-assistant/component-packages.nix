@@ -950,7 +950,8 @@
       ];
     "chess_com" =
       ps: with ps; [
-      ]; # missing inputs: chess-com-api
+        chess-com-api
+      ];
     "cisco_ios" =
       ps: with ps; [
         pexpect
@@ -1975,7 +1976,8 @@
       ];
     "freshr" =
       ps: with ps; [
-      ]; # missing inputs: pyfreshr
+        pyfreshr
+      ];
     "fressnapf_tracker" =
       ps: with ps; [
         fressnapftracker
@@ -2528,11 +2530,12 @@
         fnv-hash-fast
         ha-ffmpeg
         hap-python
+        homekit-audio-proxy
         ifaddr
         pyqrcode
         pyturbojpeg
         zeroconf
-      ]; # missing inputs: homekit-audio-proxy
+      ];
     "homekit_controller" =
       ps: with ps; [
         aioesphomeapi
@@ -3587,7 +3590,8 @@
       ];
     "lojack" =
       ps: with ps; [
-      ]; # missing inputs: lojack-api
+        lojack-api
+      ];
     "london_air" =
       ps: with ps; [
       ];
@@ -4910,7 +4914,8 @@
       ];
     "prana" =
       ps: with ps; [
-      ]; # missing inputs: prana-api-client
+        prana-api-client
+      ];
     "private_ble_device" =
       ps: with ps; [
         aioesphomeapi
@@ -5929,7 +5934,8 @@
       ];
     "solarman" =
       ps: with ps; [
-      ]; # missing inputs: solarman-opendata
+        solarman-opendata
+      ];
     "solax" =
       ps: with ps; [
         solax
@@ -7495,6 +7501,7 @@
     "ccm15"
     "cert_expiry"
     "chacon_dio"
+    "chess_com"
     "clicksend_tts"
     "climate"
     "cloud"
@@ -7650,6 +7657,7 @@
     "freebox"
     "freedns"
     "freedompro"
+    "freshr"
     "fressnapf_tracker"
     "fritz"
     "fritzbox"
@@ -7741,6 +7749,7 @@
     "homeassistant_sky_connect"
     "homeassistant_yellow"
     "homee"
+    "homekit"
     "homekit_controller"
     "homematic"
     "homematicip_cloud"
@@ -7877,6 +7886,7 @@
     "logbook"
     "logentries"
     "logger"
+    "lojack"
     "london_air"
     "london_underground"
     "lookin"
@@ -8083,6 +8093,7 @@
     "powerfox"
     "powerfox_local"
     "powerwall"
+    "prana"
     "private_ble_device"
     "probe_plus"
     "profiler"
@@ -8225,6 +8236,7 @@
     "snooz"
     "solaredge"
     "solarlog"
+    "solarman"
     "solax"
     "soma"
     "somfy_mylink"
