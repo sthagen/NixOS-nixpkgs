@@ -4443,6 +4443,11 @@
     github = "carlthome";
     githubId = 1595907;
   };
+  carschandler = {
+    name = "Cars Chandler";
+    github = "carschandler";
+    githubId = 92899389;
+  };
   casaca = {
     name = "J McNutt";
     email = "jmacasac@hotmail.com";
@@ -18340,6 +18345,12 @@
     githubId = 15896005;
     name = "Vladyslav Burzakovskyy";
   };
+  mrsmoer = {
+    email = "mrsmoer@protonmail.com";
+    github = "MrSmoer";
+    githubId = 66489839;
+    name = "MrSmör";
+  };
   MrSom3body = {
     email = "nix@sndh.dev";
     matrix = "@mrsom3body:matrix.org";
@@ -19092,6 +19103,12 @@
     github = "nemith";
     githubId = 349360;
     name = "Brandon Bennett";
+  };
+  neo = {
+    github = "chojs23";
+    githubId = 55792153;
+    name = "neo";
+    email = "chojs990222@gmail.com";
   };
   neosimsim = {
     email = "me@abn.sh";
