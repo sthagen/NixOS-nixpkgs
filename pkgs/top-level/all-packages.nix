@@ -8330,13 +8330,6 @@ with pkgs;
     boost = boost179.override { enableShared = false; };
   };
 
-  mysql80 = callPackage ../servers/sql/mysql/8.0.x.nix {
-    inherit (darwin) developer_cmds DarwinTools;
-    boost = boost177; # Configure checks for specific version.
-    icu = icu69;
-    protobuf = protobuf_21;
-  };
-
   mssql_jdbc = callPackage ../servers/sql/mssql/jdbc { };
   jtds_jdbc = callPackage ../servers/sql/mssql/jdbc/jtds.nix { };
 
@@ -9880,7 +9873,6 @@ with pkgs;
   jwm-settings-manager = callPackage ../applications/window-managers/jwm/jwm-settings-manager.nix { };
 
   inherit (callPackage ../applications/networking/cluster/k3s { })
-    k3s_1_32
     k3s_1_33
     k3s_1_34
     k3s_1_35
