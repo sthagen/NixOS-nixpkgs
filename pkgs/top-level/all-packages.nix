@@ -1161,8 +1161,6 @@ with pkgs;
 
   bump2version = with python3Packages; toPythonApplication bump2version;
 
-  cgit = callPackage ../applications/version-management/cgit { };
-
   datalad = with python3Packages; toPythonApplication datalad;
 
   datalad-gooey = with python3Packages; toPythonApplication datalad-gooey;
@@ -1531,8 +1529,6 @@ with pkgs;
 
   gistyc = with python3Packages; toPythonApplication gistyc;
 
-  glances = python3Packages.callPackage ../applications/system/glances { };
-
   glm_1_0_1 = callPackage ../by-name/gl/glm/1_0_1.nix { };
 
   go2tv-lite = go2tv.override { withGui = false; };
@@ -1633,6 +1629,8 @@ with pkgs;
   cabal2nix-unwrapped = haskell.lib.compose.justStaticExecutables (
     haskellPackages.generateOptparseApplicativeCompletions [ "cabal2nix" ] haskellPackages.cabal2nix
   );
+
+  stac-validator = with python3Packages; toPythonApplication stac-validator;
 
   stack2nix =
     with haskell.lib;
@@ -1932,38 +1930,6 @@ with pkgs;
   roundcube = callPackage ../servers/roundcube { };
 
   roundcubePlugins = recurseIntoAttrs (callPackage ../servers/roundcube/plugins { });
-
-  rsyslog = callPackage ../tools/system/rsyslog {
-    withHadoop = false; # Currently Broken
-    withKsi = false; # Currently Broken
-  };
-
-  rsyslog-light = rsyslog.override {
-    withKrb5 = false;
-    withSystemd = false;
-    withJemalloc = false;
-    withMysql = false;
-    withPostgres = false;
-    withDbi = false;
-    withNetSnmp = false;
-    withUuid = false;
-    withCurl = false;
-    withGnutls = false;
-    withGcrypt = false;
-    withLognorm = false;
-    withMaxminddb = false;
-    withOpenssl = false;
-    withRelp = false;
-    withKsi = false;
-    withLogging = false;
-    withNet = false;
-    withHadoop = false;
-    withRdkafka = false;
-    withMongo = false;
-    withCzmq = false;
-    withRabbitmq = false;
-    withHiredis = false;
-  };
 
   xmlsort = perlPackages.XMLFilterSort;
 
@@ -2380,10 +2346,6 @@ with pkgs;
 
   fluentd = callPackage ../tools/misc/fluentd { };
 
-  lp_solve = callPackage ../applications/science/math/lp_solve {
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-
   fpm = callPackage ../tools/package-management/fpm { };
 
   ferdium = callPackage ../applications/networking/instant-messengers/ferdium {
@@ -2663,10 +2625,6 @@ with pkgs;
     ]);
 
     packages = config.ihaskell.packages or (_: [ ]);
-  };
-
-  ilspycmd = callPackage ../development/tools/ilspycmd {
-    inherit (darwin) autoSignDarwinBinariesHook;
   };
 
   incus-lts = callPackage ../by-name/in/incus/lts.nix { };
@@ -3028,6 +2986,8 @@ with pkgs;
     hdf5 = hdf5-mpi.override { usev110Api = true; };
   };
 
+  ioskeley-mono = recurseIntoAttrs (callPackage ../data/fonts/ioskeley-mono { });
+
   # Not in aliases because it wouldn't get picked up by callPackage
   netbox = netbox_4_5;
 
@@ -3386,6 +3346,8 @@ with pkgs;
     inherit (python3Packages) sphinx;
   };
 
+  rpatool = with python3Packages; toPythonApplication rpatool;
+
   rpm = callPackage ../tools/package-management/rpm {
     lua = lua5_4;
   };
@@ -3494,8 +3456,6 @@ with pkgs;
   tartube-yt-dlp = callPackage ../applications/video/tartube {
     youtube-dl = yt-dlp;
   };
-
-  teamviewer = libsForQt5.callPackage ../applications/networking/remote/teamviewer { };
 
   buildTeleport = callPackage ../build-support/teleport { };
 
@@ -4257,13 +4217,16 @@ with pkgs;
       # Prefer native-bignum to avoid linking issues with gmp;
       # GHC 9.10 doesn't work too well with iserv-proxy.
       if stdenv.hostPlatform.isStatic then
-        haskell.packages.native-bignum.ghc912
+        haskell.compiler.native-bignum.ghc912
       # JS backend can't use GMP
       else if stdenv.targetPlatform.isGhcjs then
         haskell.compiler.native-bignum.ghc910
       else
         haskell.compiler.ghc910
     );
+
+  # TODO(@NixOS/haskell): deprecate this alias?
+  microhs = targetPackages.haskell.packages.microhs.ghc or haskell.compiler.microhs;
 
   alex = haskell.lib.compose.justStaticExecutables haskellPackages.alex;
 
@@ -10007,9 +9970,6 @@ with pkgs;
 
   luddite = with python3Packages; toPythonApplication luddite;
 
-  lxi-tools = callPackage ../tools/networking/lxi-tools { };
-  lxi-tools-gui = callPackage ../tools/networking/lxi-tools { withGui = true; };
-
   lyx = libsForQt5.callPackage ../applications/misc/lyx { };
 
   magic-wormhole = with python3Packages; toPythonApplication magic-wormhole;
@@ -10978,8 +10938,6 @@ with pkgs;
     xppen_3
     xppen_4
     ;
-
-  xygrib = libsForQt5.callPackage ../applications/misc/xygrib { };
 
   ydiff = with python3.pkgs; toPythonApplication ydiff;
 
