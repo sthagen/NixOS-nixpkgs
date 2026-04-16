@@ -138,6 +138,13 @@
     github = "0xd61";
     githubId = 8351869;
   };
+  _0xErwin1 = {
+    email = "ignacio@feuer.me";
+    name = "Ignacio Perez";
+    github = "0xErwin1";
+    githubId = 67933444;
+    keys = [ { fingerprint = "B39E B98E 8860 DAFB 0567  0073 A614 B7D2 5134 987A"; } ];
+  };
   _0xMillyByte = {
     email = "emilia.daelman@gmail.com";
     name = "Emilia Daelman";
@@ -3015,6 +3022,14 @@
     github = "barrucadu";
     githubId = 75235;
     name = "Michael Walker";
+  };
+  bartoostveen = {
+    name = "Bart Oostveen";
+    github = "bartoostveen";
+    githubId = 50515369;
+    email = "bart@bartoostveen.nl";
+    matrix = "@bart:bartoostveen.nl";
+    keys = [ { fingerprint = "81FF AB19 BAA5 6FFD 6571  890B 992D 94B5 7AC4 3430"; } ];
   };
   bartuka = {
     email = "wand@hey.com";
@@ -14996,6 +15011,12 @@
     githubId = 120277625;
     name = "LazilyStableProton";
   };
+  lbeierlieb = {
+    email = "lukasbrlb.lb@gmail.com";
+    github = "lbeierlieb";
+    githubId = 16045805;
+    name = "Lukas Beierlieb";
+  };
   lblasc = {
     email = "lblasc@znode.net";
     github = "lblasc";
@@ -24510,6 +24531,12 @@
     githubId = 77039267;
     name = "Vito Secona";
   };
+  sectore = {
+    email = "sectore@gmail.com";
+    github = "sectore";
+    githubId = 47693;
+    name = "Jens Krause";
+  };
   sedlund = {
     email = "scott+nixpkgs@teraton.com";
     github = "sedlund";
@@ -29631,6 +29658,13 @@
     github = "Xelden";
     githubId = 117323435;
     name = "Andrés Pico";
+  };
+  xeni = {
+    name = "xeni";
+    github = "Gernomaly";
+    githubId = 71495036;
+    email = "xeni@koeln.ccc.de";
+    matrix = "@xeni:koeln.ccc.de";
   };
   xfnw = {
     email = "xfnw+nixos@riseup.net";
