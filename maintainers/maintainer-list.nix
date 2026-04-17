@@ -5091,6 +5091,11 @@
     githubId = 9336788;
     name = "Claes Hallström";
   };
+  claraphyll = {
+    github = "claraphyll";
+    githubId = 22559310;
+    name = "Clara Rostock";
+  };
   claymorwan = {
     name = "claymorwan";
     github = "claymorwan";
@@ -11347,6 +11352,12 @@
     githubId = 3948275;
     name = "Harikrishnan R";
   };
+  ilosariph = {
+    email = "simon@simon-wick.ch";
+    github = "Ilosariph";
+    githubId = 71074737;
+    name = "Simon Wick";
+  };
   ilya-epifanov = {
     email = "mail@ilya.network";
     github = "ilya-epifanov";
@@ -11400,6 +11411,11 @@
     github = "imatpot";
     githubId = 39416660;
     name = "Mladen Branković";
+  };
+  imcvampire = {
+    github = "imcvampire";
+    githubId = 9426721;
+    name = "Quoc-Anh Nguyen";
   };
   imgabe = {
     email = "gabrielpmonte@hotmail.com";
@@ -14963,6 +14979,12 @@
     github = "LamprosPitsillos";
     githubId = 61395246;
     name = "Lampros Pitsillos";
+  };
+  landreussi = {
+    email = "lucasandreussi@gmail.com";
+    github = "landreussi";
+    githubId = 5938518;
+    name = "Lucas Andreussi";
   };
   langsjo = {
     name = "langsjo";
@@ -22867,6 +22889,12 @@
     githubId = 4196789;
     name = "Nathan Ringo";
   };
+  remix7531 = {
+    email = "remix7531@mailbox.org";
+    github = "remix7531";
+    githubId = 131352678;
+    name = "remix7531";
+  };
   remko = {
     github = "remko";
     githubId = 12300;
@@ -27647,6 +27675,12 @@
     github = "Tochiaha";
     githubId = 74688871;
     name = "Tochukwu Ahanonu";
+  };
+  toelke = {
+    name = "Philipp Riederer";
+    email = "philipp@riederer.email";
+    github = "toelke";
+    githubId = 183276;
   };
   tom94 = {
     email = "nix@94.me";

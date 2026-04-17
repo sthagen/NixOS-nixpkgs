@@ -1519,6 +1519,7 @@ in
   step-ca = handleTestOn [ "x86_64-linux" ] ./step-ca.nix { };
   stirling-pdf-desktop = runTest ./stirling-pdf-desktop.nix;
   stratis = handleTest ./stratis { };
+  strichliste = runTest ./web-apps/strichliste.nix;
   strongswan-swanctl = runTest ./strongswan-swanctl.nix;
   stub-ld = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./stub-ld.nix { };
   stunnel = import ./stunnel.nix { inherit runTest; };
@@ -1657,6 +1658,7 @@ in
   tinydns = runTest ./tinydns.nix;
   tinyproxy = runTest ./tinyproxy.nix;
   tinywl = runTest ./tinywl.nix;
+  tlshd = runTest ./tlshd.nix;
   tlsrpt = runTest ./tlsrpt.nix;
   tmate-ssh-server = runTest ./tmate-ssh-server.nix;
   tomcat = runTest ./tomcat.nix;

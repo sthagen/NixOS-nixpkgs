@@ -191,8 +191,8 @@ let
         mktplcRef = {
           name = "bookmarks";
           publisher = "alefragnani";
-          version = "13.5.0";
-          hash = "sha256-oKhd5BLa2wuGNrzW9yKsWWzaU5hNolw2pBcqPlql9Ro=";
+          version = "14.1.1";
+          hash = "sha256-oy0SRapLmr8wQhYtmCcE6wkMZUXgvSsje45tEdufw5M=";
         };
         meta = {
           license = lib.licenses.gpl3;
@@ -203,8 +203,8 @@ let
         mktplcRef = {
           name = "project-manager";
           publisher = "alefragnani";
-          version = "12.8.0";
-          hash = "sha256-sNiDyWdQ40Xeu7zp1ioRCi3majrPshlVbUSV2klr4r4=";
+          version = "13.1.0";
+          hash = "sha256-6lSEMDI8yagYxuB2Lkjf9nndJ6sGIofn/XL1vghinJM=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -531,8 +531,8 @@ let
         mktplcRef = {
           name = "vscode-bazel";
           publisher = "bazelbuild";
-          version = "0.12.0";
-          sha256 = "sha256-H0MAoqEQcT/tuDbiubCf9DCHt55M5Nx6IxzU5a3l5bo=";
+          version = "0.14.0";
+          sha256 = "sha256-JrXx/ICXQPlAKh7m6+eWWQ2bP1Nfls4PbW426PNJVBc=";
         };
         meta = {
           description = "Bazel support for Visual Studio Code";
@@ -1109,6 +1109,22 @@ let
         };
       };
 
+      cuelangorg.vscode-cue = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "vscode-cue";
+          publisher = "cuelangorg";
+          version = "0.0.19";
+          hash = "sha256-Ktefsmgs/p6aV6meEMxuzRizIh4xfjTI9z9pqewyvpg=";
+        };
+        meta = {
+          description = "The offical CUE extension for VS Code, providing syntax highlighting and language server integration (LSP)";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=cuelangorg.vscode-cue";
+          homepage = "https://github.com/cue-lang/vscode-cue";
+          license = lib.licenses.mit;
+          maintainers = [ lib.maintainers.karaolidis ];
+        };
+      };
+
       cweijan.dbclient-jdbc = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "dbclient-jdbc";
@@ -1330,8 +1346,8 @@ let
         mktplcRef = {
           publisher = "discloud";
           name = "discloud";
-          version = "2.28.4";
-          hash = "sha256-9m3Oi6w1GoVQatiMShmQAlsXDOauW3JBmNi3o78LFys=";
+          version = "2.28.5";
+          hash = "sha256-G5WgFSrmQOOtsDFfmJaJxvgbKfnpQSmMf+xAJeuhvhU=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/discloud.discloud/changelog";
@@ -1728,8 +1744,8 @@ let
         mktplcRef = {
           name = "vscode-jest-runner";
           publisher = "firsttris";
-          version = "0.4.131";
-          hash = "sha256-vneMRR1nHtPkK9L2WIG2nHJn8igcE45eUeiFsnvRDcM=";
+          version = "0.4.144";
+          hash = "sha256-gKs0DNloispkKb7F6V38W5LoPk4OFPayv7MX9bQLJ2k=";
         };
         meta = {
           description = "Simple way to run or debug a single (or multiple) tests from context-menu";
@@ -1797,8 +1813,8 @@ let
         mktplcRef = {
           name = "linter-gfortran";
           publisher = "fortran-lang";
-          version = "3.4.2025030111";
-          hash = "sha256-8gw7VAgT4+724cCjQcYESPTsnckd02vdBsCzskiZLKY=";
+          version = "4.0.0";
+          hash = "sha256-T9vhLrCMOmoXsVW9O/siwA/eAZagZoKsvinpWgIuAE0=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/fortran-lang.linter-gfortran/changelog";
@@ -2146,8 +2162,8 @@ let
         mktplcRef = {
           publisher = "haskell";
           name = "haskell";
-          version = "2.6.1";
-          hash = "sha256-44pQBHz8e1dCqZaa5+GhPr0/SUsHlaqdNMPZklKdY+Q=";
+          version = "2.8.0";
+          hash = "sha256-Tp4Ahfp3Ma9aJtghD+mgsCBTMOP1GI1vGE5xzvHO+d4=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -3090,8 +3106,8 @@ let
         mktplcRef = {
           name = "compare-folders";
           publisher = "moshfeu";
-          version = "0.29.0";
-          hash = "sha256-oX4182qaoHbvZC9MdzzARBlW4MbtE7H0Fg687K5h2XQ=";
+          version = "0.30.0";
+          hash = "sha256-XBMHEk5iRW6n9fjDUbD8c/FFGNRttrnV0tH1qUphXYo=";
         };
 
         meta = {
@@ -3131,8 +3147,8 @@ let
         mktplcRef = {
           name = "vscode-dotnet-runtime";
           publisher = "ms-dotnettools";
-          version = "2.3.7";
-          hash = "sha256-Pe0rgs1vDbaOO178lB5P/Z+gqmf6LALIIZB3DntkmOc=";
+          version = "3.0.0";
+          hash = "sha256-RA7skgj6yFZxk2XuJZtcDrI4dFrAbwODmwqSx4xWFUY=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/ms-dotnettools.vscode-dotnet-runtime/changelog";
@@ -3783,8 +3799,8 @@ let
         mktplcRef = {
           name = "prisma";
           publisher = "Prisma";
-          version = "31.8.0";
-          hash = "sha256-xSkT6VlRrC36jnuB16V+eDozDutrv2ksqxatU/KIgS0=";
+          version = "31.9.0";
+          hash = "sha256-ubUVFFfjrtoz+hI8/epCcbrU4WfQdVYy4dPHighFpK0=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Prisma.prisma/changelog";
@@ -4753,6 +4769,8 @@ let
 
       tboby.cwtools-vscode = callPackage ./tboby.cwtools-vscode { };
 
+      tombi-toml.tombi = callPackage ./tombi-toml.tombi { };
+
       tomoki1207.pdf = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "pdf";
@@ -5076,8 +5094,8 @@ let
         mktplcRef = {
           publisher = "vscjava";
           name = "vscode-java-debug";
-          version = "0.58.2025022807";
-          hash = "sha256-8bzDbCF03U5P15tkVkieOGuuLetUFXjZNrQKZTcKNFA=";
+          version = "0.59.0";
+          hash = "sha256-5Zc/zXY6mE6k1uV2RMz49f5sqoDA5YnylAPwDJrOOSA=";
         };
         meta = {
           license = lib.licenses.mit;
@@ -5154,8 +5172,8 @@ let
         mktplcRef = {
           name = "vim";
           publisher = "vscodevim";
-          version = "1.32.2";
-          hash = "sha256-4anCgd8+D3SjO+3zfz9xrL9p8JoHNi4dux3rWLtWWDs=";
+          version = "1.32.4";
+          hash = "sha256-+hyJZinWsa6U+s0fdrx2wUi6tOV3FNKf8O1qMMZEdkQ=";
         };
         meta = {
           license = lib.licenses.mit;
