@@ -3128,12 +3128,10 @@ with pkgs;
   patchutils_0_4_2 = callPackage ../tools/text/patchutils/0.4.2.nix { };
 
   inherit (import ../servers/sql/percona-server pkgs)
-    percona-server_8_0
     percona-server_8_4
     percona-server
     ;
   inherit (import ../tools/backup/percona-xtrabackup pkgs)
-    percona-xtrabackup_8_0
     percona-xtrabackup_8_4
     percona-xtrabackup
     ;
@@ -6101,7 +6099,6 @@ with pkgs;
       callPackage ../os-specific/linux/bionic-prebuilt { };
 
   inherit (callPackage ../development/libraries/boost { inherit (buildPackages) boost-build; })
-    boost177
     boost178
     boost179
     boost180
@@ -6524,7 +6521,6 @@ with pkgs;
     icu64
     icu66
     icu67
-    icu69
     icu70
     icu71
     icu72
@@ -10886,14 +10882,6 @@ with pkgs;
 
   zed-editor-fhs = zed-editor.fhs;
 
-  zgv = callPackage ../applications/graphics/zgv {
-    # Enable the below line for terminal display. Note
-    # that it requires sixel graphics compatible terminals like mlterm
-    # or xterm -ti 340
-    SDL = SDL_sixel;
-    SDL_image = SDL_image.override { SDL = SDL_sixel; };
-  };
-
   zynaddsubfx-fltk = zynaddsubfx.override {
     guiModule = "fltk";
   };
@@ -10910,12 +10898,19 @@ with pkgs;
 
   bitcoin = qt6Packages.callPackage ../applications/blockchains/bitcoin {
     withGui = true;
+    sqlite = sqlite.override {
+      zlib = null;
+    };
+    zeromq = zeromq.override {
+      enableCurve = false;
+      enableDrafts = false;
+      libsodium = null;
+    };
     inherit (darwin) autoSignDarwinBinariesHook;
   };
 
-  bitcoind = callPackage ../applications/blockchains/bitcoin {
+  bitcoind = bitcoin.override {
     withGui = false;
-    inherit (darwin) autoSignDarwinBinariesHook;
   };
 
   bitcoin-knots = libsForQt5.callPackage ../applications/blockchains/bitcoin-knots {

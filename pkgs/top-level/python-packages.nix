@@ -7641,6 +7641,8 @@ self: super: with self; {
 
   ioctl-opt = callPackage ../development/python-modules/ioctl-opt { };
 
+  iocx = callPackage ../development/python-modules/iocx { };
+
   iodata = callPackage ../development/python-modules/iodata { };
 
   iometer = callPackage ../development/python-modules/iometer { };
@@ -12251,6 +12253,8 @@ self: super: with self; {
 
   pdbfixer = callPackage ../development/python-modules/pdbfixer { };
 
+  pdf-oxide = callPackage ../development/python-modules/pdf-oxide { };
+
   pdf2docx = callPackage ../development/python-modules/pdf2docx { };
 
   pdf2image = callPackage ../development/python-modules/pdf2image { };
@@ -13596,6 +13600,8 @@ self: super: with self; {
 
   pydantic-graph = callPackage ../development/python-modules/pydantic-graph { };
 
+  pydantic-monty = callPackage ../development/python-modules/pydantic-monty { };
+
   pydantic-scim = callPackage ../development/python-modules/pydantic-scim { };
 
   pydantic-settings = callPackage ../development/python-modules/pydantic-settings { };
@@ -14379,8 +14385,6 @@ self: super: with self; {
   pymysql = callPackage ../development/python-modules/pymysql { };
 
   pymysqlsa = callPackage ../development/python-modules/pymysqlsa { };
-
-  pymystem3 = callPackage ../development/python-modules/pymystem3 { };
 
   pynac = callPackage ../development/python-modules/pynac { };
 
@@ -18422,6 +18426,8 @@ self: super: with self; {
 
   sqlalchemy = callPackage ../development/python-modules/sqlalchemy { };
 
+  sqlalchemy-adapter = callPackage ../development/python-modules/sqlalchemy-adapter { };
+
   sqlalchemy-citext = callPackage ../development/python-modules/sqlalchemy-citext { };
 
   sqlalchemy-cockroachdb = callPackage ../development/python-modules/sqlalchemy-cockroachdb { };
@@ -20384,6 +20390,8 @@ self: super: with self; {
   types-mysqlclient = callPackage ../development/python-modules/types-mysqlclient { };
 
   types-openpyxl = callPackage ../development/python-modules/types-openpyxl { };
+
+  types-paramiko = callPackage ../development/python-modules/types-paramiko { };
 
   types-pillow = callPackage ../development/python-modules/types-pillow { };
 
