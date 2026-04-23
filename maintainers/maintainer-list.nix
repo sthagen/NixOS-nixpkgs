@@ -11655,6 +11655,11 @@
     github = "IsotoxalDev";
     githubId = 62714538;
   };
+  issai = {
+    name = "Issai";
+    github = "TheLimifiedLime";
+    githubId = 69121493;
+  };
   istoph = {
     email = "chr@istoph.de";
     name = "Christoph Hüffelmann";
@@ -24639,6 +24644,7 @@
     name = "Greg Pfeil";
   };
   sempiternal-aurora = {
+    email = "myrialsarvay@gmail.com";
     github = "sempiternal-aurora";
     githubId = 78790545;
     name = "Myria Sarvay";
