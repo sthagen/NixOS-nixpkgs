@@ -106,6 +106,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   strictDeps = true;
   nativeBuildInputs = [
+    node-gyp
     nodejs
     pnpmConfigHook
     pnpm
@@ -241,7 +242,7 @@ stdenv.mkDerivation (finalAttrs: {
     # Build it explicitly against Electron headers ahead of packaging.
     export npm_config_nodedir=${electron.headers}
     pushd node_modules/fs-xattr
-    ${lib.getExe node-gyp} rebuild
+    node-gyp rebuild
     popd
     test -f node_modules/fs-xattr/build/Release/xattr.node
   '';
@@ -278,8 +279,9 @@ stdenv.mkDerivation (finalAttrs: {
       --add-flags ${lib.escapeShellArg commandLineArgs}
   ''
   + lib.optionalString (!stdenv.hostPlatform.isDarwin) ''
-    mkdir -p $out/share
+    mkdir -p $out/share/polkit-1/actions
     cp -r dist/*-unpacked/resources $out/share/signal-desktop
+    mv $out/share/signal-desktop/*.policy $out/share/polkit-1/actions/
 
     for icon in build/icons/png/*
     do

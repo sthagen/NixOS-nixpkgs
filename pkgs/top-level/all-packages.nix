@@ -2130,7 +2130,7 @@ with pkgs;
 
   cudaPackages_12 = cudaPackages_12_9;
 
-  cudaPackages_13 = cudaPackages_13_0;
+  cudaPackages_13 = cudaPackages_13_2;
 
   cudaPackages = recurseIntoAttrs cudaPackages_12;
 
@@ -2258,29 +2258,9 @@ with pkgs;
 
   chewing-editor = libsForQt5.callPackage ../applications/misc/chewing-editor { };
 
-  fcitx5 = callPackage ../tools/inputmethods/fcitx5 { };
-
-  fcitx5-bamboo = callPackage ../tools/inputmethods/fcitx5/fcitx5-bamboo.nix { };
-
   fcitx5-skk = qt6Packages.callPackage ../tools/inputmethods/fcitx5/fcitx5-skk.nix { };
 
-  fcitx5-anthy = callPackage ../tools/inputmethods/fcitx5/fcitx5-anthy.nix { };
-
-  fcitx5-chewing = callPackage ../tools/inputmethods/fcitx5/fcitx5-chewing.nix { };
-
   fcitx5-lua = callPackage ../tools/inputmethods/fcitx5/fcitx5-lua.nix { lua = lua5_3; };
-
-  fcitx5-m17n = callPackage ../tools/inputmethods/fcitx5/fcitx5-m17n.nix { };
-
-  fcitx5-gtk = callPackage ../tools/inputmethods/fcitx5/fcitx5-gtk.nix { };
-
-  fcitx5-hangul = callPackage ../tools/inputmethods/fcitx5/fcitx5-hangul.nix { };
-
-  fcitx5-rime = callPackage ../tools/inputmethods/fcitx5/fcitx5-rime.nix { };
-
-  fcitx5-table-extra = callPackage ../tools/inputmethods/fcitx5/fcitx5-table-extra.nix { };
-
-  fcitx5-table-other = callPackage ../tools/inputmethods/fcitx5/fcitx5-table-other.nix { };
 
   flannel = callPackage ../tools/networking/flannel { };
   cni-plugin-flannel = callPackage ../tools/networking/flannel/plugin.nix { };
@@ -2469,32 +2449,6 @@ with pkgs;
 
   graphviz-nox = callPackage ../tools/graphics/graphviz {
     withXorg = false;
-  };
-
-  grub2 = callPackage ../tools/misc/grub/default.nix { };
-
-  grub2_efi = grub2.override {
-    efiSupport = true;
-  };
-
-  grub2_ieee1275 = grub2.override {
-    ieee1275Support = true;
-  };
-
-  grub2_light = grub2.override {
-    zfsSupport = false;
-  };
-
-  grub2_xen = grub2.override {
-    xenSupport = true;
-  };
-
-  grub2_xen_pvh = grub2.override {
-    xenPvhSupport = true;
-  };
-
-  grub2_pvgrub_image = grub2_pvhgrub_image.override {
-    grubPlatform = "xen";
   };
 
   gruut = with python3.pkgs; toPythonApplication gruut;
@@ -3428,8 +3382,6 @@ with pkgs;
   trezor-agent = with python3Packages; toPythonApplication trezor-agent;
 
   ttp = with python3.pkgs; toPythonApplication ttp;
-
-  trace-cmd = callPackage ../os-specific/linux/trace-cmd { };
 
   translatelocally-models = recurseIntoAttrs (callPackages ../misc/translatelocally-models { });
 
@@ -4652,10 +4604,6 @@ with pkgs;
   teyjus = callPackage ../development/compilers/teyjus {
     inherit (ocaml-ng.ocamlPackages_4_14) buildDunePackage;
     stdenv = gcc14Stdenv;
-  };
-
-  urweb = callPackage ../development/compilers/urweb {
-    icu = icu67;
   };
 
   vcard = python3Packages.toPythonApplication python3Packages.vcard;
@@ -8020,26 +7968,26 @@ with pkgs;
 
   inherit
     ({
-      kanidm_1_7 = callPackage ../servers/kanidm/1_7.nix {
-        kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_7;
-      };
       kanidm_1_8 = callPackage ../servers/kanidm/1_8.nix {
         kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_8;
       };
       kanidm_1_9 = callPackage ../servers/kanidm/1_9.nix {
         kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_9;
       };
+      kanidm_1_10 = callPackage ../servers/kanidm/1_10.nix {
+        kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_10;
+      };
 
-      kanidmWithSecretProvisioning_1_7 = kanidm_1_7.override { enableSecretProvisioning = true; };
       kanidmWithSecretProvisioning_1_8 = kanidm_1_8.override { enableSecretProvisioning = true; };
       kanidmWithSecretProvisioning_1_9 = kanidm_1_9.override { enableSecretProvisioning = true; };
+      kanidmWithSecretProvisioning_1_10 = kanidm_1_10.override { enableSecretProvisioning = true; };
     })
-    kanidm_1_7
     kanidm_1_8
     kanidm_1_9
-    kanidmWithSecretProvisioning_1_7
+    kanidm_1_10
     kanidmWithSecretProvisioning_1_8
     kanidmWithSecretProvisioning_1_9
+    kanidmWithSecretProvisioning_1_10
     ;
 
   lemmy-server = callPackage ../servers/web-apps/lemmy/server.nix { };
@@ -8662,11 +8610,6 @@ with pkgs;
 
   sgx-psw = callPackage ../os-specific/linux/sgx/psw {
     protobuf = protobuf_33;
-  };
-
-  sinit = callPackage ../os-specific/linux/sinit {
-    rcinit = "/etc/rc.d/rc.init";
-    rcshutdown = "/etc/rc.d/rc.shutdown";
   };
 
   sysdig = callPackage ../os-specific/linux/sysdig {
@@ -9457,13 +9400,23 @@ with pkgs;
     )
     // {
       jdk-no-jcef = callPackage ../development/compilers/jetbrains-jdk {
+        jdk = jdk25;
+        withJcef = false;
+      };
+      jdk-no-jcef-21 = callPackage ../development/compilers/jetbrains-jdk/21.nix {
         jdk = jdk21;
         withJcef = false;
       };
       jdk = callPackage ../development/compilers/jetbrains-jdk {
+        jdk = jdk25;
+      };
+      jdk-21 = callPackage ../development/compilers/jetbrains-jdk/21.nix {
         jdk = jdk21;
       };
       jcef = callPackage ../development/compilers/jetbrains-jdk/jcef.nix {
+        jdk = jdk25;
+      };
+      jcef-21 = callPackage ../development/compilers/jetbrains-jdk/jcef.nix {
         jdk = jdk21;
       };
     }

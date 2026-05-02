@@ -4994,6 +4994,8 @@ self: super: with self; {
 
   embrace = callPackage ../development/python-modules/embrace { };
 
+  embreex = callPackage ../development/python-modules/embreex { };
+
   emcee = callPackage ../development/python-modules/emcee { };
 
   emoji = callPackage ../development/python-modules/emoji { };
@@ -7251,6 +7253,8 @@ self: super: with self; {
   httpx-ntlm = callPackage ../development/python-modules/httpx-ntlm { };
 
   httpx-oauth = callPackage ../development/python-modules/httpx-oauth { };
+
+  httpx-retries = callPackage ../development/python-modules/httpx-retries { };
 
   httpx-socks = callPackage ../development/python-modules/httpx-socks { };
 
@@ -13233,6 +13237,8 @@ self: super: with self; {
 
   py-pdf-parser = callPackage ../development/python-modules/py-pdf-parser { };
 
+  py-radix = callPackage ../development/python-modules/py-radix { };
+
   py-radix-sr = callPackage ../development/python-modules/py-radix-sr { };
 
   py-rust-stemmers = callPackage ../development/python-modules/py-rust-stemmers { };
@@ -15267,6 +15273,8 @@ self: super: with self; {
 
   pytest-arraydiff = callPackage ../development/python-modules/pytest-arraydiff { };
 
+  pytest-assume = callPackage ../development/python-modules/pytest-assume { };
+
   pytest-astropy = callPackage ../development/python-modules/pytest-astropy { };
 
   pytest-astropy-header = callPackage ../development/python-modules/pytest-astropy-header { };
@@ -16707,7 +16715,7 @@ self: super: with self; {
 
   reflex-chakra = callPackage ../development/python-modules/reflex-chakra { };
 
-  reflex-hosting-cli = callPackage ../development/python-modules/reflex-hosting-cli { };
+  inherit (reflex.subPkgs) reflex-hosting-cli;
 
   reflink = callPackage ../development/python-modules/reflink { };
 
@@ -16900,6 +16908,8 @@ self: super: with self; {
   reuse = callPackage ../development/python-modules/reuse { };
 
   reverse-geocode = callPackage ../development/python-modules/reverse-geocode { };
+
+  rf-protocols = callPackage ../development/python-modules/rf-protocols { };
 
   rfc3161-client = callPackage ../development/python-modules/rfc3161-client { };
 
@@ -17199,6 +17209,8 @@ self: super: with self; {
   ruff = callPackage ../development/python-modules/ruff { inherit (pkgs) ruff; };
 
   ruff-api = callPackage ../development/python-modules/ruff-api { };
+
+  ruff-format = callPackage ../development/python-modules/ruff-format { };
 
   rules = callPackage ../development/python-modules/rules { };
 
