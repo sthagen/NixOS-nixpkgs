@@ -485,9 +485,6 @@ with pkgs;
 
   buildDotnetPackage = callPackage ../build-support/dotnet/build-dotnet-package { };
   fetchNuGet = callPackage ../build-support/dotnet/fetchnuget { };
-  dupeguru = callPackage ../applications/misc/dupeguru {
-    python3Packages = python311Packages;
-  };
 
   fetchbzr = callPackage ../build-support/fetchbzr { };
 
@@ -560,8 +557,18 @@ with pkgs;
           else
             stdenv;
       };
+
+      mysql-shell_9 = callPackage ../development/tools/mysql-shell/9.nix {
+        antlr = antlr4_10;
+        icu = icu77;
+        protobuf = protobuf_25.override {
+          abseil-cpp = abseil-cpp_202407;
+        };
+        stdenv = if stdenv.cc.isGNU then gcc14Stdenv else stdenv;
+      };
     })
     mysql-shell_8
+    mysql-shell_9
     ;
 
   mysql-shell-innovation = callPackage ../development/tools/mysql-shell/innovation.nix {
@@ -570,13 +577,7 @@ with pkgs;
     protobuf = protobuf_25.override {
       abseil-cpp = abseil-cpp_202407;
     };
-    stdenv =
-      if stdenv.cc.isClang then
-        llvmPackages_19.stdenv
-      else if stdenv.cc.isGNU then
-        gcc14Stdenv
-      else
-        stdenv;
+    stdenv = if stdenv.cc.isGNU then gcc14Stdenv else stdenv;
   };
 
   # this is used by most `fetch*` functions
@@ -2684,6 +2685,17 @@ with pkgs;
   mhonarc = perlPackages.MHonArc;
 
   nanoemoji = with python3Packages; toPythonApplication nanoemoji;
+
+  buildNavidromePlugin = callPackage ../by-name/na/navidrome/plugins/build-plugin.nix { };
+  navidromePlugins = recurseIntoAttrs (
+    lib.makeExtensible (
+      self:
+      lib.packagesFromDirectoryRecursive {
+        inherit callPackage;
+        directory = ../by-name/na/navidrome/plugins;
+      }
+    )
+  );
 
   netdata = callPackage ../tools/system/netdata {
     protobuf = protobuf_21;
@@ -6796,6 +6808,7 @@ with pkgs;
 
   mbedtls_2 = callPackage ../development/libraries/mbedtls/2.nix { };
   mbedtls = callPackage ../development/libraries/mbedtls/3.nix { };
+  mbedtls_4 = callPackage ../development/libraries/mbedtls/4.nix { };
 
   simple-dftd3 = callPackage ../development/libraries/science/chemistry/simple-dftd3 { };
 

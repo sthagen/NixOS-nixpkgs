@@ -290,6 +290,12 @@
     githubId = 92977828;
     name = "Mori Zen";
   };
+  _7591yj = {
+    email = "yeongjin.kim@proton.me";
+    github = "7591yj";
+    githubId = 77034308;
+    name = "Yeongjin Kim";
+  };
   _7karni = {
     email = "7karni@proton.me";
     name = "7karni";
@@ -7692,6 +7698,12 @@
     githubId = 22300113;
     name = "Eduardo Espadeiro";
   };
+  eduardofuncao = {
+    email = "eduardofuncao@hotmail.com";
+    github = "eduardofuncao";
+    githubId = 45571086;
+    name = "Eduardo Função";
+  };
   eduarrrd = {
     email = "e.bachmakov@gmail.com";
     github = "eduarrrd";
@@ -9331,6 +9343,12 @@
     githubId = 134872;
     name = "Sergei Lukianov";
   };
+  frostplexx = {
+    email = "daniel.inama02@gmail.com";
+    github = "frostplexx";
+    githubId = 62436912;
+    name = "Daniel Inama";
+  };
   fryuni = {
     name = "Luiz Ferraz";
     email = "luiz@lferraz.com";
@@ -10413,12 +10431,6 @@
     github = "hakujin";
     githubId = 2192042;
     name = "Colin King";
-  };
-  hamburger1984 = {
-    email = "hamburger1984@gmail.com";
-    github = "hamburger1984";
-    githubId = 438976;
-    name = "Andreas Krohn";
   };
   hamhut1066 = {
     email = "github@hamhut1066.com";
@@ -14302,6 +14314,11 @@
     github = "kisonecat";
     githubId = 148352;
     name = "Jim Fowler";
+  };
+  kitlangton = {
+    github = "kitlangton";
+    githubId = 7587245;
+    name = "Kit Langton";
   };
   kitsunoff = {
     github = "kitsunoff";
@@ -20396,6 +20413,12 @@
     githubId = 31112680;
     name = "oidro";
   };
+  ojsef39 = {
+    name = "Josef Hofer";
+    github = "ojsef39";
+    email = "me+github@jhofer.de";
+    githubId = 43563019;
+  };
   ok-nick = {
     email = "nick.libraries@gmail.com";
     github = "ok-nick";
@@ -20889,6 +20912,13 @@
     github = "PanAeon";
     githubId = 686076;
     name = "Vitalii Voloshyn";
+  };
+  panakotta00 = {
+    name = "Panakotta00";
+    github = "Panakotta00";
+    githubId = 16022267;
+    email = "panakotta00@gmail.com";
+    keys = [ { fingerprint = "ABF8 D539 0F8C F623 8F49  7338 BA6C E8AC 4B73 53B9"; } ];
   };
   pancaek = {
     github = "pancaek";
@@ -22469,6 +22499,14 @@
     github = "QuiNzX";
     githubId = 76129478;
   };
+  quio = {
+    name = "Dominik Schwaiger";
+    email = "mail@dominik-schwaiger.ch";
+    matrix = "@quio:matrix.dominik-schwaiger.ch";
+    github = "quiode";
+    githubId = 51075975;
+    keys = [ { fingerprint = "D9FE 655C CD52 8F80 3D27  8F75 F7E7 E19B C69F 7DF5"; } ];
+  };
   quodlibetor = {
     email = "quodlibetor@gmail.com";
     github = "quodlibetor";
@@ -22726,6 +22764,13 @@
     name = "Lorenzo Miglietta";
     github = "ranfdev";
     githubId = 23294184;
+  };
+  ranidspace = {
+    name = "ranidspace";
+    email = "dev@ranid.space";
+    matrix = "@ranidspace:4d2.org";
+    github = "ranidspace";
+    githubId = 56847308;
   };
   raphaelr = {
     email = "raphael-git@tapesoftware.net";
@@ -24329,6 +24374,12 @@
     githubId = 30531572;
     name = "Robert James Hernandez";
   };
+  sarowish = {
+    email = "berkeenercan@tutanota.com";
+    github = "sarowish";
+    githubId = 20581722;
+    name = "Berke Enercan";
+  };
   sarunint = {
     email = "nixpkgs@sarunint.com";
     github = "sarunint";
@@ -25328,6 +25379,11 @@
     github = "Simarra";
     githubId = 14372987;
   };
+  Simon-Weij = {
+    name = "Simon";
+    github = "Simon-Weij";
+    githubId = 175155691;
+  };
   simonchatts = {
     email = "code@chatts.net";
     github = "simonchatts";
@@ -25806,6 +25862,12 @@
     github = "sorpaas";
     githubId = 6277322;
     name = "Wei Tang";
+  };
+  sotormd = {
+    email = "sotormd@proton.me";
+    github = "sotormd";
+    githubId = 201147279;
+    name = "sotormd";
   };
   soupglasses = {
     email = "sofi+git@mailbox.org";
@@ -29979,6 +30041,12 @@
     github = "yajo";
     githubId = 973709;
     name = "Jairo Llopis";
+  };
+  yamadashy = {
+    email = "koukun0120@gmail.com";
+    github = "yamadashy";
+    githubId = 5019072;
+    name = "Kazuki Yamada";
   };
   yamashitax = {
     email = "hello@yamashit.ax";

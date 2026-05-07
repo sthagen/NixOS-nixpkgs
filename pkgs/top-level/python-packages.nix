@@ -858,6 +858,8 @@ self: super: with self; {
 
   apcaccess = callPackage ../development/python-modules/apcaccess { };
 
+  apex = callPackage ../development/python-modules/apex { };
+
   apeye = callPackage ../development/python-modules/apeye { };
 
   apeye-core = callPackage ../development/python-modules/apeye-core { };
@@ -2512,12 +2514,18 @@ self: super: with self; {
 
   casa-formats-io = callPackage ../development/python-modules/casa-formats-io { };
 
+  casaconfig = callPackage ../development/python-modules/casaconfig { };
+
   casadi = toPythonModule (
     pkgs.casadi.override {
       pythonSupport = true;
       python3Packages = self;
     }
   );
+
+  casatasks = callPackage ../development/python-modules/casatasks { };
+
+  casatools = callPackage ../development/python-modules/casatools { };
 
   case-converter = callPackage ../development/python-modules/case-converter { };
 
@@ -4358,6 +4366,8 @@ self: super: with self; {
 
   django-reversion = callPackage ../development/python-modules/django-reversion { };
 
+  django-rich = callPackage ../development/python-modules/django-rich { };
+
   django-rosetta = callPackage ../development/python-modules/django-rosetta { };
 
   django-rq = callPackage ../development/python-modules/django-rq { };
@@ -5334,6 +5344,16 @@ self: super: with self; {
     faiss-build = pkgs.faiss.override {
       pythonSupport = true;
       python3Packages = self;
+    };
+  };
+
+  faiss-cpu = callPackage ../development/python-modules/faiss-cpu {
+    faiss = self.faiss.override {
+      faiss-build = pkgs.faiss.override {
+        pythonSupport = true;
+        python3Packages = self;
+        cudaSupport = false;
+      };
     };
   };
 
@@ -8497,6 +8517,8 @@ self: super: with self; {
   langchain-openai = callPackage ../development/python-modules/langchain-openai { };
 
   langchain-perplexity = callPackage ../development/python-modules/langchain-perplexity { };
+
+  langchain-protocol = callPackage ../development/python-modules/langchain-protocol { };
 
   langchain-tests = callPackage ../development/python-modules/langchain-tests { };
 
@@ -12508,8 +12530,6 @@ self: super: with self; {
 
   pikepdf = callPackage ../development/python-modules/pikepdf { };
 
-  pilight = callPackage ../development/python-modules/pilight { };
-
   pilkit = callPackage ../development/python-modules/pilkit { };
 
   pillow = callPackage ../development/python-modules/pillow {
@@ -13497,6 +13517,8 @@ self: super: with self; {
   pycarwings2 = callPackage ../development/python-modules/pycarwings2 { };
 
   pycasbin = callPackage ../development/python-modules/pycasbin { };
+
+  pycasperglow = callPackage ../development/python-modules/pycasperglow { };
 
   pycatch22 = callPackage ../development/python-modules/pycatch22 { };
 
@@ -19037,7 +19059,6 @@ self: super: with self; {
 
   taco = toPythonModule (
     pkgs.taco.override {
-      inherit (self) python;
       enablePython = true;
     }
   );
@@ -19595,6 +19616,8 @@ self: super: with self; {
   torch-bin = callPackage ../development/python-modules/torch/bin { triton = self.triton-bin; };
 
   torch-c-dlpack-ext = callPackage ../development/python-modules/torch-c-dlpack-ext { };
+
+  torch-einops-utils = callPackage ../development/python-modules/torch-einops-utils { };
 
   torch-geometric = callPackage ../development/python-modules/torch-geometric { };
 

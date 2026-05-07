@@ -1,9 +1,11 @@
 {
+  aioesphomeapi,
   buildPythonPackage,
   cargo,
   fetchFromGitHub,
   lib,
   psutil,
+  pythonAtLeast,
   pytest-asyncio,
   pytest-xdist,
   pytestCheckHook,
@@ -18,14 +20,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "serialx";
-  version = "1.6.0";
+  version = "1.7.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "puddly";
     repo = "serialx";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-6yTYR66MzcXv9e0l+my5UunD493a7c3bPYwvDKMH3gI=";
+    hash = "sha256-yULTP7aaA/O7cz3NBMpdIybvply3ADQZENxjuexKxo8=";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
@@ -47,6 +49,10 @@ buildPythonPackage (finalAttrs: {
 
   dependencies = [
     typing-extensions
+  ];
+
+  optional-dependencies.esphome = lib.optionals (pythonAtLeast "3.14") [
+    aioesphomeapi
   ];
 
   pythonImportsCheck = [ "serialx" ];
