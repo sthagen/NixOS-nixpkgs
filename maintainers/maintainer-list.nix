@@ -7977,12 +7977,6 @@
     github = "EmanuelM153";
     githubId = 134736553;
   };
-  emattiza = {
-    email = "nix@mattiza.dev";
-    github = "emattiza";
-    githubId = 11719476;
-    name = "Evan Mattiza";
-  };
   embr = {
     email = "hi@liclac.eu";
     github = "liclac";
@@ -23587,6 +23581,13 @@
     github = "rodrgz";
     githubId = 53882428;
     name = "Erik Rodriguez";
+  };
+  roehrijn = {
+    email = "jan.roehrich@loft.sh";
+    github = "roehrijn";
+    githubId = 2474078;
+    name = "Jan Roehrich";
+    keys = [ { fingerprint = "21C1 F506 455E 95B4 EB39  D566 BAE1 2FF6 0C8A 97F2"; } ];
   };
   rogarb = {
     email = "rogarb@rgarbage.fr";
