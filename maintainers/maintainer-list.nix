@@ -9211,6 +9211,12 @@
     githubId = 119691;
     name = "Michael Gough";
   };
+  fraioveio = {
+    email = "francesco@vecchia.lol";
+    github = "FraioVeio";
+    githubId = 181361445;
+    name = "Francesco Vecchia";
+  };
   franciscod = {
     github = "franciscod";
     githubId = 726447;
@@ -19059,6 +19065,12 @@
       { fingerprint = "5A1D C7CE 51DC 0A85 6DEA  41F7 31A8 CE0D 2E7D 30C3"; }
     ];
   };
+  naomieow = {
+    name = "Naomi Roberts";
+    email = "mia@naomieow.xyz";
+    github = "naomieow";
+    githubId = 79906167;
+  };
   naora = {
     name = "Joris Gundermann";
     email = "jorisgundermann@gmail.com";
@@ -23051,6 +23063,13 @@
     github = "remexre";
     githubId = 4196789;
     name = "Nathan Ringo";
+  };
+  remidupre = {
+    email = "remi+nixpkgs@dupre.io";
+    github = "remi-dupre";
+    githubId = 1173464;
+    name = "Rémi Dupré";
+    keys = [ { fingerprint = "4762 C65B F8D8 6A33 65C1  D10A 4613 02CD 1249 4653"; } ];
   };
   remix7531 = {
     email = "remix7531@mailbox.org";
