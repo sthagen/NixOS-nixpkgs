@@ -1424,7 +1424,8 @@
       ];
     "duco" =
       ps: with ps; [
-      ]; # missing inputs: python-duco-client
+        python-duco-client
+      ];
     "dunehd" =
       ps: with ps; [
         pdunehd
@@ -2071,7 +2072,8 @@
       ];
     "fumis" =
       ps: with ps; [
-      ]; # missing inputs: fumis
+        fumis
+      ];
     "futurenow" =
       ps: with ps; [
         pyfnip
@@ -7651,6 +7653,7 @@
     "dsmr"
     "dsmr_reader"
     "duckdns"
+    "duco"
     "dunehd"
     "duotecno"
     "dwd_weather_warnings"
@@ -7753,6 +7756,7 @@
     "frontier_silicon"
     "fujitsu_fglair"
     "fully_kiosk"
+    "fumis"
     "fyta"
     "garage_door"
     "garages_amsterdam"
