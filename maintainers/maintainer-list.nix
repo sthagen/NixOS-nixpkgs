@@ -2454,6 +2454,12 @@
     name = "Mariia Holovata";
     keys = [ { fingerprint = "409D 201E 9450 8732 A49E  D0FC 6BDA F874 0068 08DF"; } ];
   };
+  asimpson = {
+    email = "adam@adamsimpson.net";
+    github = "asimpson";
+    githubId = 1048831;
+    name = "Adam Simpson";
+  };
   asininemonkey = {
     email = "nixpkgs@asininemonkey.com";
     github = "asininemonkey";
@@ -2782,6 +2788,12 @@
     name = "aware70";
     github = "aware70";
     githubId = 7832566;
+  };
+  awildleon = {
+    name = "Leon Hubrich";
+    github = "AWildLeon";
+    githubId = 114652332;
+    email = "git@leon-hubrich.de";
   };
   axertheaxe = {
     email = "axertheaxe@proton.me";
@@ -11184,13 +11196,6 @@
     githubId = 2332070;
     name = "Serge Baltic";
   };
-  hyshka = {
-    name = "Bryan Hyshka";
-    email = "bryan@hyshka.com";
-    github = "hyshka";
-    githubId = 2090758;
-    keys = [ { fingerprint = "24F4 1925 28C4 8797 E539  F247 DB2D 93D1 BFAA A6EA"; } ];
-  };
   hythera = {
     name = "Hythera";
     github = "Hythera";
@@ -11263,6 +11268,12 @@
     github = "wavewave";
     githubId = 1031119;
     name = "Ian-Woo Kim";
+  };
+  ibbem = {
+    name = "ibbem";
+    github = "ibbem";
+    githubId = 61984399;
+    email = "ibbem@ibbem.net";
   };
   ibizaman = {
     email = "ibizapeanut@gmail.com";
@@ -11360,6 +11371,12 @@
     github = "igor-ramazanov";
     githubId = 12570166;
     name = "Igor Ramazanov";
+  };
+  igorcafe = {
+    email = "igoracmelo@protonmail.com";
+    github = "igorcafe";
+    githubId = 85039990;
+    name = "Igor Melo";
   };
   igsha = {
     email = "igor.sharonov@gmail.com";
@@ -16326,6 +16343,11 @@
     github = "Luz";
     githubId = 208297;
     name = "Luz";
+  };
+  lvanasse = {
+    github = "lvanasse";
+    githubId = 12837376;
+    name = "Ludovic Vanasse";
   };
   lwb-2021 = {
     email = "lwb-2021@qq.com";
@@ -28667,6 +28689,12 @@
     github = "usrfriendly";
     githubId = 2502060;
   };
+  usu171 = {
+    email = "usu171@proton.me";
+    github = "Usu171";
+    githubId = 52230991;
+    name = "Usu171";
+  };
   utdemir = {
     email = "me@utdemir.com";
     github = "utdemir";
@@ -29055,12 +29083,6 @@
     github = "vitorpavani";
     githubId = 59029586;
     name = "Vitor Pavan";
-  };
-  vizanto = {
-    email = "danny@prime.vc";
-    github = "vizanto";
-    githubId = 326263;
-    name = "Danny Wilson";
   };
   vizid = {
     email = "mail@vizqq.cc";

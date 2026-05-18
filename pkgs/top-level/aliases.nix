@@ -797,6 +797,7 @@ mapAliases {
   freeimage = throw "freeimage was removed due to numerous vulnerabilities"; # Added 2025-10-23
   freerdp3 = throw "'freerdp3' has been renamed to/replaced by 'freerdp'"; # Converted to throw 2025-10-27
   freerdpUnstable = throw "'freerdpUnstable' has been renamed to/replaced by 'freerdp'"; # Converted to throw 2025-10-27
+  frozen-bubble = throw "'frozen-bubble' has been removed because it is broken and unmaintained"; # Added 2026-05-17
   frugal = throw "'frugal' was removed because upstream has been pulled"; # Added 2025-12-20
   fusee-launcher = throw "'fusee-launcher' was removed as upstream removed the original source repository fearing legal repercussions"; # Added 2025-07-05
   fusionInventory = warnAlias "'fusionInventory' has been renamed to 'fusioninventory-agent'" fusioninventory-agent; # Added 2026-02-08
@@ -892,6 +893,7 @@ mapAliases {
   go-thumbnailer = throw "'go-thumbnailer' has been renamed to/replaced by 'thud'"; # Converted to throw 2025-10-27
   go-upower-notify = throw "'go-upower-notify' has been renamed to/replaced by 'upower-notify'"; # Converted to throw 2025-10-27
   go_1_23 = throw "Go 1.23 is end-of-life and 'go_1_23' has been removed. Please use a newer Go toolchain."; # Added 2025-08-13
+  gobang = throw "'gobang' has been removed as it is unmaintained upstream. Consider using `lazysql` or `rainfrog` instead."; # added
   godot-export-templates = throw "'godot-export-templates' has been renamed to/replaced by 'godot-export-templates-bin'"; # Converted to throw 2025-10-27
   godot_4-export-templates = throw "'godot_4-export-templates' has been renamed to/replaced by 'godot_4-export-templates-bin'"; # Converted to throw 2025-10-27
   godot_4_3-export-templates = throw "'godot_4_3-export-templates' has been renamed to/replaced by 'godot_4_3-export-templates-bin'"; # Converted to throw 2025-10-27
@@ -973,6 +975,10 @@ mapAliases {
   inotifyTools = throw "'inotifyTools' has been renamed to/replaced by 'inotify-tools'"; # Converted to throw 2025-10-27
   insync-emblem-icons = throw "'insync-emblem-icons' has been removed, use 'insync-nautilus' instead"; # Added 2025-05-14
   intel2200BGFirmware = warnAlias "'intel2200BGFirmware' has been renamed to 'ipw2200-firmware'" ipw2200-firmware; # Added 2026-02-08
+  intel-oneapi = {
+    base = warnAlias "'intel-oneapi.base' and 'intel-oneapi.hpc' have been merged upstream into a single package. Please switch to 'intel-oneapi-toolkit'" intel-oneapi-toolkit;
+    hpc = warnAlias "'intel-oneapi.base' and 'intel-oneapi.hpc' have been merged upstream into a single package. Please switch to 'intel-oneapi-toolkit'" intel-oneapi-toolkit;
+  }; # Added 2026-05-04
   invalidateFetcherByDrvHash = throw "'invalidateFetcherByDrvHash' has been renamed to/replaced by 'testers.invalidateFetcherByDrvHash'"; # Converted to throw 2025-10-27
   ioccheck = throw "ioccheck was dropped since it was unmaintained."; # Added 2025-07-06
   ion3 = throw "ion3 was dropped since it was unmaintained."; # Added 2026-02-18
