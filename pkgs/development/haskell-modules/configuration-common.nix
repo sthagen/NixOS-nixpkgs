@@ -2051,12 +2051,8 @@ with haskellLib;
   # The shipped Setup.hs file is broken.
   csv = overrideCabal (drv: { preCompileBuildDriver = "rm Setup.hs"; }) super.csv;
 
-  cabal-fmt = doJailbreak (
-    super.cabal-fmt.override {
-      # Needs newer Cabal-syntax version.
-      Cabal-syntax = self.Cabal-syntax_3_10_3_0;
-    }
-  );
+  # https://github.com/phadej/cabal-fmt/issues/98
+  cabal-fmt = doJailbreak super.cabal-fmt;
 
   # Pick bound changes from development branch, same commit also adds support for Cabal >= 3.14
   glirc = lib.pipe super.glirc [
@@ -2525,12 +2521,12 @@ with haskellLib;
         doJailbreak
         # 2022-12-02: Hackage release lags behind actual releases: https://github.com/PostgREST/postgrest/issues/2275
         (overrideSrc rec {
-          version = "14.11";
+          version = "14.12";
           src = pkgs.fetchFromGitHub {
             owner = "PostgREST";
             repo = "postgrest";
             rev = "v${version}";
-            hash = "sha256-ml6yWKNA+5j0vX4gZPz08q6JdLaIh5mLW4N7uuzkl0M=";
+            hash = "sha256-9Y14sDjHf51qv78DGIrcoU1S/nSHOhc6lGM9wRlegMs=";
           };
         })
       ];
