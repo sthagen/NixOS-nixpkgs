@@ -412,6 +412,9 @@
   "sec-meta-identifiers-cpe": [
     "index.html#sec-meta-identifiers-cpe"
   ],
+  "sec-meta-identifiers-purl": [
+    "index.html#sec-meta-identifiers-purl"
+  ],
   "sec-modify-via-packageOverrides": [
     "index.html#sec-modify-via-packageOverrides"
   ],
@@ -923,6 +926,9 @@
   "var-go-buildTestBinaries": [
     "index.html#var-go-buildTestBinaries"
   ],
+  "var-meta-donationPage": [
+    "index.html#var-meta-donationPage"
+  ],
   "var-meta-identifiers-cpe": [
     "index.html#var-meta-identifiers-cpe"
   ],
@@ -931,6 +937,15 @@
   ],
   "var-meta-identifiers-possibleCPEs": [
     "index.html#var-meta-identifiers-possibleCPEs"
+  ],
+  "var-meta-identifiers-purl": [
+    "index.html#var-meta-identifiers-purl"
+  ],
+  "var-meta-identifiers-purlParts": [
+    "index.html#var-meta-identifiers-purlParts"
+  ],
+  "var-meta-identifiers-purls": [
+    "index.html#var-meta-identifiers-purls"
   ],
   "var-meta-teams": [
     "index.html#var-meta-teams"
