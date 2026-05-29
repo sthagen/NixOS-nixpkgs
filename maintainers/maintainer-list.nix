@@ -7657,6 +7657,12 @@
     github = "eclairevoyant";
     name = "éclairevoyant";
   };
+  eConnah = {
+    email = "git@econnah.uk";
+    github = "eConnah";
+    githubId = 63052937;
+    name = "Connor Alecks";
+  };
   edanaher = {
     email = "nixos@edanaher.net";
     github = "edanaher";
@@ -16288,6 +16294,11 @@
     githubId = 26020062;
     name = "lumi";
   };
+  luminarleaf = {
+    github = "LuminarLeaf";
+    githubId = 80571430;
+    name = "Luminar Leaf";
+  };
   luna_1024 = {
     email = "contact@luna.computer";
     github = "luna-1024";
@@ -19415,6 +19426,12 @@
     githubId = 55792153;
     name = "neo";
     email = "chojs990222@gmail.com";
+  };
+  neonvoid = {
+    email = "me@neonvoid.dev";
+    github = "neonvoidx";
+    githubId = 25580051;
+    name = "neonvoid";
   };
   neosimsim = {
     email = "me@abn.sh";
@@ -29443,6 +29460,12 @@
     email = "david@adaltas.com";
     github = "wdavidw";
     githubId = 46896;
+  };
+  wduo87391 = {
+    name = "wduo87391";
+    email = "wduo87391@gmail.com";
+    github = "wduo87391";
+    githubId = 197874825;
   };
   weathercold = {
     name = "Weathercold";

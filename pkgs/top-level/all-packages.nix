@@ -1446,24 +1446,6 @@ with pkgs;
 
   crystfel-headless = crystfel.override { withGui = false; };
 
-  amule-daemon = amule.override {
-    monolithic = false;
-    enableDaemon = true;
-    mainProgram = "amuled";
-  };
-
-  amule-gui = amule.override {
-    monolithic = false;
-    client = true;
-    mainProgram = "amulegui";
-  };
-
-  amule-web = amule.override {
-    monolithic = false;
-    httpServer = true;
-    mainProgram = "amuleweb";
-  };
-
   inherit (callPackages ../tools/security/bitwarden-directory-connector { })
     bitwarden-directory-connector-cli
     bitwarden-directory-connector
@@ -1942,16 +1924,6 @@ with pkgs;
   ceph-client = ceph.client;
   ceph-dev = ceph;
 
-  clementine = libsForQt5.callPackage ../applications/audio/clementine {
-    gst_plugins = with gst_all_1; [
-      gst-plugins-base
-      gst-plugins-good
-      gst-plugins-ugly
-      gst-libav
-    ];
-    protobuf = protobuf_21;
-  };
-
   inherit (callPackage ../applications/networking/remote/citrix-workspace { })
     citrix_workspace_26_01_0
     citrix_workspace_25_08_10
@@ -2069,10 +2041,6 @@ with pkgs;
   blacken-docs = with python3Packages; toPythonApplication blacken-docs;
 
   bluetooth_battery = python3Packages.callPackage ../applications/misc/bluetooth_battery { };
-
-  calyx-vpn = qt6Packages.callPackage ../tools/networking/bitmask-vpn {
-    provider = "calyx";
-  };
 
   cffconvert = python3Packages.toPythonApplication python3Packages.cffconvert;
 
@@ -2895,10 +2863,6 @@ with pkgs;
 
   nvfetcher = haskell.lib.compose.justStaticExecutables haskellPackages.nvfetcher;
 
-  op-geth = callPackage ../applications/blockchains/optimism/geth.nix { };
-
-  optimism = callPackage ../applications/blockchains/optimism { };
-
   pandoc-acro = python3Packages.callPackage ../tools/misc/pandoc-acro { };
 
   pandoc-imagine = python3Packages.callPackage ../tools/misc/pandoc-imagine { };
@@ -3122,10 +3086,6 @@ with pkgs;
 
   remarshal = with python3Packages; toPythonApplication remarshal;
 
-  riseup-vpn = qt6Packages.callPackage ../tools/networking/bitmask-vpn {
-    provider = "riseup";
-  };
-
   rtaudio = rtaudio_5;
 
   mpi = openmpi; # this attribute should used to build MPI applications
@@ -3179,8 +3139,6 @@ with pkgs;
   rpm = callPackage ../tools/package-management/rpm {
     lua = lua5_4;
   };
-
-  rsibreak = kdePackages.callPackage ../applications/misc/rsibreak { };
 
   rubocop = rubyPackages.rubocop;
 
@@ -3553,10 +3511,6 @@ with pkgs;
   clang = llvmPackages.clang;
 
   clang-tools = llvmPackages.clang-tools;
-
-  clazy = callPackage ../development/tools/analysis/clazy {
-    stdenv = llvmPackages.stdenv;
-  };
 
   #Use this instead of stdenv to build with clang
   clangStdenv = if stdenv.cc.isClang then stdenv else lowPrio llvmPackages.stdenv;
@@ -5774,11 +5728,7 @@ with pkgs;
     // (config.radare or { })
   );
 
-  rizin = pkgs.callPackage ../development/tools/analysis/rizin { };
-
   rizinPlugins = recurseIntoAttrs rizin.plugins;
-
-  cutter = qt6.callPackage ../development/tools/analysis/rizin/cutter.nix { };
 
   cutterPlugins = recurseIntoAttrs cutter.plugins;
 
@@ -5890,10 +5840,6 @@ with pkgs;
         wrap ${stdenv.cc.bintools.targetPrefix}ld ${ldWrapper} ${lib.getExe buildPackages.wild-unwrapped}
       '';
     };
-
-  whatstyle = callPackage ../development/tools/misc/whatstyle {
-    inherit (llvmPackages) clang-unwrapped;
-  };
 
   whisper-cpp-vulkan = whisper-cpp.override {
     vulkanSupport = true;
@@ -8693,10 +8639,6 @@ with pkgs;
 
   cygwin = recurseIntoAttrs (callPackages ../os-specific/cygwin { });
 
-  wpa_supplicant = callPackage ../os-specific/linux/wpa_supplicant { };
-
-  wpa_supplicant_gui = libsForQt5.callPackage ../os-specific/linux/wpa_supplicant/gui.nix { };
-
   inherit
     ({
       zfs_2_3 = callPackage ../os-specific/linux/zfs/2_3.nix {
@@ -9459,14 +9401,6 @@ with pkgs;
     callPackages ../applications/graphics/inkscape/extensions.nix { }
   );
 
-  jabcode-writer = jabcode.override {
-    subproject = "writer";
-  };
-
-  jabcode-reader = jabcode.override {
-    subproject = "reader";
-  };
-
   jackmix_jack1 = jackmix.override { jack = jack1; };
 
   inherit (callPackage ../applications/networking/cluster/k3s { })
@@ -9476,10 +9410,6 @@ with pkgs;
     k3s_1_36
     ;
   k3s = k3s_1_35;
-
-  okteta = kdePackages.callPackage ../applications/editors/okteta { };
-
-  klayout = qt6Packages.callPackage ../applications/misc/klayout { };
 
   kotatogram-desktop =
     callPackage ../applications/networking/instant-messengers/telegram/kotatogram-desktop
@@ -9498,25 +9428,6 @@ with pkgs;
   linkerd = callPackage ../applications/networking/cluster/linkerd { };
   linkerd_edge = callPackage ../applications/networking/cluster/linkerd/edge.nix { };
   linkerd_stable = linkerd;
-
-  kuma = callPackage ../applications/networking/cluster/kuma { isFull = true; };
-  kuma-experimental = callPackage ../applications/networking/cluster/kuma {
-    isFull = true;
-    enableGateway = true;
-    pname = "kuma-experimental";
-  };
-  kumactl = callPackage ../applications/networking/cluster/kuma {
-    components = [ "kumactl" ];
-    pname = "kumactl";
-  };
-  kuma-cp = callPackage ../applications/networking/cluster/kuma {
-    components = [ "kuma-cp" ];
-    pname = "kuma-cp";
-  };
-  kuma-dp = callPackage ../applications/networking/cluster/kuma {
-    components = [ "kuma-dp" ];
-    pname = "kuma-dp";
-  };
 
   kubernetes-helm = callPackage ../applications/networking/cluster/helm { };
 
@@ -9617,8 +9528,6 @@ with pkgs;
 
   mercurialFull = mercurial.override { fullBuild = true; };
 
-  minitube = kdePackages.callPackage ../applications/video/minitube { };
-
   mldonkey = callPackage ../applications/networking/p2p/mldonkey {
     ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
@@ -9708,8 +9617,6 @@ with pkgs;
     protobuf = protobuf_21;
   };
 
-  p4v = qt6Packages.callPackage ../applications/version-management/p4v { };
-
   pcmanfm-qt = lxqt.pcmanfm-qt;
 
   pijuice = with python3Packages; toPythonApplication pijuice;
@@ -9777,10 +9684,6 @@ with pkgs;
   obs-studio-plugins = recurseIntoAttrs (callPackage ../applications/video/obs-studio/plugins { });
   wrapOBS = callPackage ../applications/video/obs-studio/wrapper.nix { };
 
-  opencpn = callPackage ../applications/misc/opencpn {
-    inherit (darwin) DarwinTools;
-  };
-
   open-music-kontrollers = recurseIntoAttrs {
     eteroj = callPackage ../applications/audio/open-music-kontrollers/eteroj.nix { };
     jit = callPackage ../applications/audio/open-music-kontrollers/jit.nix { };
@@ -9806,10 +9709,6 @@ with pkgs;
 
   orpie = callPackage ../applications/misc/orpie {
     ocamlPackages = ocaml-ng.ocamlPackages_4_14;
-  };
-
-  pantalaimon-headless = pantalaimon.override {
-    enableDbusUi = false;
   };
 
   parsec-bin = callPackage ../applications/misc/parsec/bin.nix { };
@@ -10512,48 +10411,22 @@ with pkgs;
     withGui = false;
   };
 
-  bitcoin = qt6Packages.callPackage ../applications/blockchains/bitcoin {
-    withGui = true;
-    zeromq = zeromq.override {
-      enableCurve = false;
-      enableDrafts = false;
-      libsodium = null;
-    };
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-
   bitcoind = bitcoin.override {
     withGui = false;
   };
 
-  bitcoin-knots = libsForQt5.callPackage ../applications/blockchains/bitcoin-knots {
-    withGui = true;
-    inherit (darwin) autoSignDarwinBinariesHook;
+  bitcoind-knots = bitcoin-knots.override {
+    withGui = false;
   };
 
-  bitcoind-knots = callPackage ../applications/blockchains/bitcoin-knots {
+  elementsd = elements.override {
     withGui = false;
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-
-  elements = libsForQt5.callPackage ../applications/blockchains/elements {
-    withGui = true;
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-  elementsd = callPackage ../applications/blockchains/elements {
-    withGui = false;
-    inherit (darwin) autoSignDarwinBinariesHook;
   };
 
   gridcoin-researchd = gridcoin-research.override { withGui = false; };
 
-  groestlcoin = libsForQt5.callPackage ../applications/blockchains/groestlcoin {
-    withGui = true;
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-
-  groestlcoind = callPackage ../applications/blockchains/groestlcoin {
-    inherit (darwin) autoSignDarwinBinariesHook;
+  groestlcoind = groestlcoin.override {
+    withGui = false;
   };
 
   ledger-agent = with python3Packages; toPythonApplication ledger-agent;
@@ -10567,10 +10440,7 @@ with pkgs;
     teos-watchtower-plugin
     ;
 
-  vertcoin = libsForQt5.callPackage ../applications/blockchains/vertcoin {
-    withGui = true;
-  };
-  vertcoind = callPackage ../applications/blockchains/vertcoin {
+  vertcoind = vertcoin.override {
     withGui = false;
   };
 
@@ -11026,8 +10896,6 @@ with pkgs;
 
   blas-ilp64 = blas.override { isILP64 = true; };
 
-  labplot = kdePackages.callPackage ../applications/science/math/labplot { };
-
   lapack-ilp64 = lapack.override { isILP64 = true; };
 
   liblapack = lapack-reference;
@@ -11341,10 +11209,6 @@ with pkgs;
   };
 
   spyder = with python3.pkgs; toPythonApplication spyder;
-
-  tulip = libsForQt5.callPackage ../applications/science/misc/tulip {
-    python3 = python312; # fails to build otherwise
-  };
 
   ### SCIENCE / PHYSICS
 
