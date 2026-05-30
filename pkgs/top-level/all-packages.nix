@@ -1642,8 +1642,6 @@ with pkgs;
 
   intelLlvmStdenv = intel-llvm.stdenv;
 
-  cambrinary = python3Packages.callPackage ../applications/misc/cambrinary { };
-
   cplex = callPackage ../applications/science/math/cplex (config.cplex or { });
 
   cot = with python3Packages; toPythonApplication cot;
@@ -2207,8 +2205,6 @@ with pkgs;
 
   Fabric = with python3Packages; toPythonApplication fabric;
 
-  fcitx5-skk = qt6Packages.callPackage ../tools/inputmethods/fcitx5/fcitx5-skk.nix { };
-
   fcitx5-lua = callPackage ../tools/inputmethods/fcitx5/fcitx5-lua.nix { lua = lua5_3; };
 
   flannel = callPackage ../tools/networking/flannel { };
@@ -2556,8 +2552,6 @@ with pkgs;
   };
   kakouneUtils = callPackage ../applications/editors/kakoune/plugins/kakoune-utils.nix { };
 
-  keepkey-agent = with python3Packages; toPythonApplication keepkey-agent;
-
   keybase = callPackage ../tools/security/keybase { };
 
   kbfs = callPackage ../tools/security/keybase/kbfs.nix { };
@@ -2598,8 +2592,6 @@ with pkgs;
   matrix-synapse-plugins = recurseIntoAttrs matrix-synapse-unwrapped.plugins;
 
   maubot = with python3Packages; toPythonApplication maubot;
-
-  m2r = with python3Packages; toPythonApplication m2r;
 
   md2gemini = with python3.pkgs; toPythonApplication md2gemini;
 
@@ -2889,10 +2881,6 @@ with pkgs;
   ntfsprogs = pkgs.ntfs3g;
 
   nwdiag = with python3Packages; toPythonApplication nwdiag;
-
-  ola = callPackage ../applications/misc/ola {
-    protobuf = protobuf_21;
-  };
 
   ome_zarr = with python3Packages; toPythonApplication ome-zarr;
 
@@ -3281,10 +3269,6 @@ with pkgs;
   trytond = with python3Packages; toPythonApplication trytond;
 
   ttfautohint-nox = ttfautohint.override { enableGUI = false; };
-
-  twitch-chat-downloader =
-    python3Packages.callPackage ../applications/misc/twitch-chat-downloader
-      { };
 
   uftraceFull = uftrace.override {
     withLuaJIT = true;
@@ -4470,6 +4454,7 @@ with pkgs;
     cargo-pgrx_0_16_0
     cargo-pgrx_0_16_1
     cargo-pgrx_0_17_0
+    cargo-pgrx_0_18_0
     cargo-pgrx
     ;
 
@@ -10010,6 +9995,7 @@ with pkgs;
   thunderbird-bin = thunderbird-latest-bin;
   thunderbird-latest-bin = wrapThunderbird thunderbird-latest-bin-unwrapped {
     pname = "thunderbird-bin";
+    libName = "thunderbird-bin-${thunderbird-latest-bin-unwrapped.version}";
   };
   thunderbird-latest-bin-unwrapped =
     callPackage ../applications/networking/mailreaders/thunderbird-bin
@@ -10018,6 +10004,7 @@ with pkgs;
       };
   thunderbird-esr-bin = wrapThunderbird thunderbird-esr-bin-unwrapped {
     pname = "thunderbird-esr-bin";
+    libName = "thunderbird-bin-${thunderbird-esr-bin-unwrapped.version}";
   };
   thunderbird-esr-bin-unwrapped = callPackage ../applications/networking/mailreaders/thunderbird-bin {
     generated = import ../applications/networking/mailreaders/thunderbird-bin/release_esr_sources.nix;
@@ -10428,8 +10415,6 @@ with pkgs;
   groestlcoind = groestlcoin.override {
     withGui = false;
   };
-
-  ledger-agent = with python3Packages; toPythonApplication ledger-agent;
 
   napari = with python312Packages; toPythonApplication napari;
 

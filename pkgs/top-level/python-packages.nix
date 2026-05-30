@@ -2749,8 +2749,6 @@ self: super: with self; {
 
   chromadb = callPackage ../development/python-modules/chromadb { zstd-c = pkgs.zstd; };
 
-  chromaprint = callPackage ../development/python-modules/chromaprint { };
-
   ci-info = callPackage ../development/python-modules/ci-info { };
 
   ci-py = callPackage ../development/python-modules/ci-py { };
@@ -8378,8 +8376,6 @@ self: super: with self; {
 
   keepkey = callPackage ../development/python-modules/keepkey { };
 
-  keepkey-agent = callPackage ../development/python-modules/keepkey-agent { };
-
   kegtron-ble = callPackage ../development/python-modules/kegtron-ble { };
 
   keke = callPackage ../development/python-modules/keke { };
@@ -8727,8 +8723,6 @@ self: super: with self; {
         python3 = python;
       }
     )).py;
-
-  ledger-agent = callPackage ../development/python-modules/ledger-agent { };
 
   ledger-bitcoin = callPackage ../development/python-modules/ledger-bitcoin { };
 
@@ -9531,8 +9525,6 @@ self: super: with self; {
   lzfse = callPackage ../development/python-modules/lzfse { };
 
   m2crypto = callPackage ../development/python-modules/m2crypto { };
-
-  m2r = callPackage ../development/python-modules/m2r { };
 
   m3u8 = callPackage ../development/python-modules/m3u8 { };
 
@@ -11637,10 +11629,6 @@ self: super: with self; {
   online-judge-api-client = callPackage ../development/python-modules/online-judge-api-client { };
 
   online-judge-tools = callPackage ../development/python-modules/online-judge-tools { };
-
-  online-judge-verify-helper =
-    callPackage ../development/python-modules/online-judge-verify-helper
-      { };
 
   onlinepayments-sdk-python3 =
     callPackage ../development/python-modules/onlinepayments-sdk-python3

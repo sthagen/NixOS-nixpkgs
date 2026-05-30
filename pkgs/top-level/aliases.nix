@@ -1048,7 +1048,8 @@ mapAliases {
   kcli = throw "kcli has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   kdeltacht = throw "'kdeltachat' has been removed as it depended on EOL qt5 webengine and was unmaintained"; # Added 2026-04-17
   kdesvn = throw "'kdesvn' has been removed due to outdated KF5 dependencies."; # Added 2026-05-01
-  keepkey_agent = throw "'keepkey_agent' has been renamed to/replaced by 'keepkey-agent'"; # Converted to throw 2025-10-27
+  keepkey-agent = throw "keepkey-agent has been removed because upstream dropped KeepKey support"; # Added 2026-03-11
+  keepkey_agent = throw "keepkey-agent has been removed because upstream dropped KeepKey support"; # Added 2026-03-11
   keydb = throw "'keydb' has been removed as it was broken, vulnerable, and unmaintained upstream"; # Added 2025-11-08
   kgraphviewer = throw "'kgraphviewer' has been removed due to outdated KF5 dependencies."; # Added 2026-05-01
   kgx = throw "'kgx' has been renamed to/replaced by 'gnome-console'"; # Converted to throw 2025-10-27
@@ -1095,7 +1096,8 @@ mapAliases {
   layan-kde = throw "'layan-kde' has been removed, as it is only compatible with Plasma 5, which is EOL"; # Added 2025-08-20
   lazarus-qt = throw "'lazarus-qt' has been renamed to/replaced by 'lazarus-qt5'"; # Converted to throw 2025-10-27
   leaf = throw "'leaf' has been removed as it is unmaintained. Consider using 'fastfetch' instead"; # Added 2026-04-24
-  ledger_agent = throw "'ledger_agent' has been renamed to/replaced by 'ledger-agent'"; # Converted to throw 2025-10-27
+  ledger-agent = throw "ledger-agent has been removed because upstream dropped Ledger support"; # Added 2026-03-11
+  ledger_agent = throw "ledger-agent has been removed because upstream dropped Ledger support"; # Added 2026-03-11
   lesstif = throw "'lesstif' has been removed due to its being broken and unmaintained upstream. Consider using 'motif' instead."; # Added 2025-06-09
   lexical = throw "'lexical' has been removed because it was deprecated and archived upstream. Consider using 'beamPackages.expert' instead"; # Added 2026-02-24
   lfs = throw "'lfs' has been renamed to/replaced by 'dysk'"; # Converted to throw 2025-10-27
@@ -1122,6 +1124,7 @@ mapAliases {
   libFS = libfs; # Added 2026-02-04
   libgadu = throw "'libgadu' has been removed as upstream is unmaintained and has no dependents or maintainers in Nixpkgs"; # Added 2025-05-17
   libgda = throw "'libgda' has been renamed to/replaced by 'libgda5'"; # Converted to throw 2025-10-27
+  libgdata = throw "'libgdata' has been removed due to being archived upstream."; # Added 2026-05-29
   libGDSII = libgdsii; # Added 2026-02-08
   libgestures = throw "'libgestures' has been removed as it was broken and unmaintained upstream"; # Added 2026-05-09
   libgme = throw "'libgme' has been renamed to/replaced by 'game-music-emu'"; # Converted to throw 2025-10-27
@@ -1381,6 +1384,7 @@ mapAliases {
   lxde.lxtask = throw "'lxtask' has been moved to top-level. Use 'lxtask' directly"; # Added 2025-08-31
   lxdvdrip = throw "'lxdvdrip' has been removed due to lack of upstream maintenance."; # Added 2025-06-09
   LycheeSlicer = warnAlias "'LycheeSlicer' has been renamed to 'lycheeslicer'" lycheeslicer; # Added 2026-02-08
+  m2r = throw "'m2r' has been removed because it was marked broken for a long time."; # Added 2026-05-27
   mac = throw "'mac' has been renamed to/replaced by 'monkeysAudio'"; # Converted to throw 2025-10-27
   MACS2 = throw "'MACS2' has been renamed to/replaced by 'macs2'"; # Converted to throw 2025-10-27
   magma_2_6_2 = throw "'magma_2_6_2' has been removed, use the latest 'magma' package instead."; # Added 2025-07-20
@@ -1802,6 +1806,7 @@ mapAliases {
   purple-vk-plugin = throw "'purple-vk-plugin' has been removed as upstream repository was deleted and no active forks are found."; # Added 2025-09-17
   purple-xmpp-http-upload = throw "'purple-xmpp-http-upload' has been renamed to/replaced by 'pidginPackages.purple-xmpp-http-upload'"; # Converted to throw 2025-10-27
   pyCA = warnAlias "'pyCA' was renamed to 'pyca'" pyca; # Added 2026-02-12
+  pylint-exit = throw "'pylint-exit' was removed as it dependent on m2r which was removed."; # Added 2026-05-27
   pyload-ng = throw "'pyload-ng' has been removed due to vulnerabilities and being unmaintained"; # Added 2026-03-21
   pyo3-pack = throw "'pyo3-pack' has been renamed to/replaced by 'maturin'"; # Converted to throw 2025-10-27
   pyotherside = warnAlias "'pyotherside' has been renamed to 'libsForQt5.pyotherside'. A Qt6 build is available at 'qt6Packages.pyotherside'."; # Added 2026-03-27
