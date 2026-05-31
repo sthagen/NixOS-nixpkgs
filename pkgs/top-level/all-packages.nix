@@ -1476,10 +1476,6 @@ with pkgs;
 
   dkimpy = with python3Packages; toPythonApplication dkimpy;
 
-  esbuild = callPackage ../development/tools/esbuild { };
-
-  esbuild_netlify = callPackage ../development/tools/esbuild/netlify.nix { };
-
   libfx2 = with python3Packages; toPythonApplication fx2;
 
   foxdot = with python3Packages; toPythonApplication foxdot;
@@ -3198,10 +3194,6 @@ with pkgs;
   texmacs = libsForQt5.callPackage ../applications/editors/texmacs {
     extraFonts = true;
   };
-
-  tinc = callPackage ../tools/networking/tinc { };
-
-  tinc_pre = callPackage ../tools/networking/tinc/pre.nix { };
 
   tldr-hs = haskellPackages.tldr;
 
@@ -6201,8 +6193,6 @@ with pkgs;
   };
 
   gst_all_1 = recurseIntoAttrs (callPackage ../development/libraries/gstreamer { });
-
-  grantlee = libsForQt5.callPackage ../development/libraries/grantlee { };
 
   glirc = haskell.lib.compose.justStaticExecutables haskellPackages.glirc;
 
@@ -9780,6 +9770,7 @@ with pkgs;
     rke2_1_33
     rke2_1_34
     rke2_1_35
+    rke2_1_36
     rke2_stable
     rke2_latest
     ;

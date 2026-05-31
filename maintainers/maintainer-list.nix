@@ -4567,6 +4567,12 @@
     githubId = 53847249;
     name = "Casey Avila";
   };
+  castorNova2 = {
+    email = "solemnsquire@gmail.com";
+    github = "castorNova2";
+    githubId = 84083897;
+    name = "Nidhish Chauhan";
+  };
   catap = {
     email = "kirill@korins.ky";
     github = "catap";
@@ -14380,12 +14386,6 @@
     githubId = 451835;
     name = "Kirill Elagin";
   };
-  kirikaza = {
-    email = "k@kirikaza.ru";
-    github = "kirikaza";
-    githubId = 804677;
-    name = "Kirill Kazakov";
-  };
   kirillrdy = {
     email = "kirillrdy@gmail.com";
     github = "kirillrdy";
@@ -18733,10 +18733,10 @@
     keys = [ { fingerprint = "3B66 ACFA D10F 02AA B1D5  2CB1 8DD0 D81D 7D1F C61A"; } ];
   };
   mshnwq = {
-    email = "mshnwq.com@gmail.com";
+    email = "hmachnouk@proton.me";
     github = "mshnwq";
     githubId = 68467027;
-    name = "Hayan Al-Machnouk";
+    name = "Mshnwq";
   };
   msiedlarek = {
     email = "mikolaj@siedlarek.pl";
@@ -23380,12 +23380,6 @@
     github = "rhoriguchi";
     githubId = 6047658;
     name = "Ryan Horiguchi";
-  };
-  rht = {
-    email = "rhtbot@protonmail.com";
-    github = "rht";
-    githubId = 395821;
-    name = "rht";
   };
   rhydianjenkins = {
     name = "Rhydian Jenkins";
