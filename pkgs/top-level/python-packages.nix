@@ -5709,6 +5709,8 @@ self: super: with self; {
 
   flash-attn = callPackage ../development/python-modules/flash-attn { };
 
+  flash-attn-3 = callPackage ../development/python-modules/flash-attn-3 { };
+
   flash-attn-4 = callPackage ../development/python-modules/flash-attn-4 { };
 
   flash-linear-attention = callPackage ../development/python-modules/flash-linear-attention { };
@@ -7130,8 +7132,6 @@ self: super: with self; {
   hf-xet = callPackage ../development/python-modules/hf-xet { };
 
   hfst = callPackage ../development/python-modules/hfst { };
-
-  hg-commitsigs = callPackage ../development/python-modules/hg-commitsigs { };
 
   hg-evolve = callPackage ../development/python-modules/hg-evolve { };
 
@@ -9897,6 +9897,8 @@ self: super: with self; {
   meshcat = callPackage ../development/python-modules/meshcat { };
 
   meshcore = callPackage ../development/python-modules/meshcore { };
+
+  meshcore-cli = callPackage ../development/python-modules/meshcore-cli { };
 
   meshio = callPackage ../development/python-modules/meshio { };
 
@@ -18936,8 +18938,6 @@ self: super: with self; {
   steamodd = callPackage ../development/python-modules/steamodd { };
 
   steampy = callPackage ../development/python-modules/steampy { };
-
-  steamship = callPackage ../development/python-modules/steamship { };
 
   steamworkspy = callPackage ../development/python-modules/steamworkspy { };
 

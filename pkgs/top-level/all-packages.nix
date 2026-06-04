@@ -2571,10 +2571,6 @@ with pkgs;
     inherit (python3Packages) ansi2html;
   };
 
-  medfile = callPackage ../development/libraries/medfile {
-    hdf5 = hdf5.override { apiVersion = "v110"; };
-  };
-
   mhonarc = perlPackages.MHonArc;
 
   nanoemoji = with python3Packages; toPythonApplication nanoemoji;
@@ -9961,6 +9957,7 @@ with pkgs;
   transmission_4-qt5 = transmission_4.override { enableQt5 = true; };
   transmission_4-qt6 = transmission_4.override { enableQt6 = true; };
   transmission_4-qt = transmission_4-qt5;
+  transmission_4-mac = transmission_4.override { enableMac = true; };
 
   tinywl = callPackage ../applications/window-managers/tinywl {
     wlroots = wlroots_0_20;
@@ -10997,10 +10994,6 @@ with pkgs;
 
   leo2 = callPackage ../applications/science/logic/leo2 {
     inherit (ocaml-ng.ocamlPackages_4_14_unsafe_string) ocaml camlp4;
-  };
-
-  prooftree = callPackage ../applications/science/logic/prooftree {
-    ocamlPackages = ocaml-ng.ocamlPackages_4_12;
   };
 
   satallax = callPackage ../applications/science/logic/satallax {
