@@ -216,6 +216,8 @@ self: super: with self; {
 
   aioaquacell = callPackage ../development/python-modules/aioaquacell { };
 
+  aioaquarite = callPackage ../development/python-modules/aioaquarite { };
+
   aioaseko = callPackage ../development/python-modules/aioaseko { };
 
   aioasuswrt = callPackage ../development/python-modules/aioasuswrt { };
@@ -1081,8 +1083,6 @@ self: super: with self; {
   aspectlib = callPackage ../development/python-modules/aspectlib { };
 
   aspell-python = callPackage ../development/python-modules/aspell-python { };
-
-  aspy-yaml = callPackage ../development/python-modules/aspy-yaml { };
 
   assay = callPackage ../development/python-modules/assay { };
 
@@ -2508,6 +2508,8 @@ self: super: with self; {
 
   cantools = callPackage ../development/python-modules/cantools { };
 
+  capa = callPackage ../development/python-modules/capa { };
+
   capstone = callPackage ../development/python-modules/capstone { inherit (pkgs) capstone; };
 
   capstone_4 = callPackage ../development/python-modules/capstone/4.nix {
@@ -3558,6 +3560,8 @@ self: super: with self; {
   daemonocle = callPackage ../development/python-modules/daemonocle { };
 
   daff = callPackage ../development/python-modules/daff { };
+
+  daft = callPackage ../development/python-modules/daft { };
 
   dahlia = callPackage ../development/python-modules/dahlia { };
 
@@ -5733,6 +5737,8 @@ self: super: with self; {
 
   flask-appbuilder = callPackage ../development/python-modules/flask-appbuilder { };
 
+  flask-apscheduler = callPackage ../development/python-modules/flask-apscheduler { };
+
   flask-assets = callPackage ../development/python-modules/flask-assets { };
 
   flask-babel = callPackage ../development/python-modules/flask-babel { };
@@ -5760,6 +5766,8 @@ self: super: with self; {
   flask-httpauth = callPackage ../development/python-modules/flask-httpauth { };
 
   flask-jwt-extended = callPackage ../development/python-modules/flask-jwt-extended { };
+
+  flask-ldap3-login = callPackage ../development/python-modules/flask-ldap3-login { };
 
   flask-limiter = callPackage ../development/python-modules/flask-limiter { };
 
@@ -7493,6 +7501,16 @@ self: super: with self; {
 
   id = callPackage ../development/python-modules/id { };
 
+  ida-domain = callPackage ../development/python-modules/ida-domain { };
+
+  ida-hcli = callPackage ../development/python-modules/ida-hcli { };
+
+  ida-netnode = callPackage ../development/python-modules/ida-netnode { };
+
+  ida-settings = callPackage ../development/python-modules/ida-settings { };
+
+  idapro = callPackage ../development/python-modules/idapro { };
+
   idasen = callPackage ../development/python-modules/idasen { };
 
   idasen-ha = callPackage ../development/python-modules/idasen-ha { };
@@ -8494,8 +8512,6 @@ self: super: with self; {
   kokoro = callPackage ../development/python-modules/kokoro { };
 
   kombu = callPackage ../development/python-modules/kombu { };
-
-  konnected = callPackage ../development/python-modules/konnected { };
 
   kopf = callPackage ../development/python-modules/kopf { };
 
@@ -9726,6 +9742,8 @@ self: super: with self; {
   matrix-common = callPackage ../development/python-modules/matrix-common { };
 
   matrix-nio = callPackage ../development/python-modules/matrix-nio { };
+
+  matter-ble-proxy = callPackage ../development/python-modules/matter-ble-proxy { };
 
   matter-python-client = callPackage ../development/python-modules/matter-python-client { };
 
@@ -11737,6 +11755,8 @@ self: super: with self; {
   opencamlib = callPackage ../development/python-modules/opencamlib { };
 
   opencc = callPackage ../development/python-modules/opencc { };
+
+  openccu-data = callPackage ../development/python-modules/openccu-data { };
 
   opencensus = callPackage ../development/python-modules/opencensus { };
 
@@ -18202,6 +18222,10 @@ self: super: with self; {
 
   smdebug-rulesconfig = callPackage ../development/python-modules/smdebug-rulesconfig { };
 
+  smg-grpc-proto = callPackage ../development/python-modules/smg-grpc-proto { };
+
+  smg-grpc-servicer = callPackage ../development/python-modules/smg-grpc-servicer { };
+
   smhi-pkg = callPackage ../development/python-modules/smhi-pkg { };
 
   smllib = callPackage ../development/python-modules/smllib { };
@@ -20755,6 +20779,8 @@ self: super: with self; {
   tzlocal = callPackage ../development/python-modules/tzlocal { };
 
   u-msgpack-python = callPackage ../development/python-modules/u-msgpack-python { };
+
+  ua-generator = callPackage ../development/python-modules/ua-generator { };
 
   ua-parser = callPackage ../development/python-modules/ua-parser { };
 

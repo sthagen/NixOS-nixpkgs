@@ -132,6 +132,8 @@
   # tv.nvim dependency
   television,
   tree-sitter,
+  # fugit2-nvim
+  gpgme,
 }:
 self: super:
 let
@@ -1418,6 +1420,13 @@ assertNoAdditions {
     dependencies = [ self.nui-nvim ];
   };
 
+  faster-nvim = super.faster-nvim.overrideAttrs {
+    nvimSkipModules = [
+      # attempt to index global 'FasterConfig' (a nil value)
+      "faster.commands"
+    ];
+  };
+
   fastfold = super.fastfold.overrideAttrs (old: {
     meta = old.meta // {
       # This plugin is under the license "Rien à Branler", which is a French translation of the WTFPL license.
@@ -1495,11 +1504,17 @@ assertNoAdditions {
       plenary-nvim
     ];
     # Patch libgit2 library dependency
+    # Patch gpgme path
     postPatch = ''
       substituteInPlace lua/fugit2/core/libgit2.lua \
         --replace-fail \
         'M.library_path = "libgit2"' \
         'M.library_path = "${lib.getLib libgit2}/lib/libgit2${stdenv.hostPlatform.extensions.sharedLibrary}"'
+
+      substituteInPlace lua/fugit2/core/gpgme.lua \
+        --replace-fail \
+        'local gpgme_library_path = "gpgme"' \
+        'local gpgme_library_path = "${lib.getLib gpgme}/lib/libgpgme${stdenv.hostPlatform.extensions.sharedLibrary}"'
     '';
   };
 
@@ -1746,6 +1761,10 @@ assertNoAdditions {
     checkInputs = [ self.telescope-nvim ];
   };
 
+  heirline-components-nvim = super.heirline-components-nvim.overrideAttrs {
+    nvimRequireCheck = "heirline-components.all";
+  };
+
   helm-ls-nvim = super.helm-ls-nvim.overrideAttrs {
     runtimeDeps = [
       helm-ls
@@ -1978,6 +1997,10 @@ assertNoAdditions {
       );
     in
     {
+      patches = (old.patches or [ ]) ++ [
+        ./patches/kulala-nvim/use-packaged-tree-sitter-parser.patch
+      ];
+
       dependencies = [ kulala-http-grammar ];
 
       postPatch = ''
@@ -1988,6 +2011,10 @@ assertNoAdditions {
       nvimSkipModules = [
         # Requires some extra work to get CLI working in nixpkgs
         "cli.kulala_cli"
+        # Upstream test harnesses are not require-safe modules
+        "minit"
+        "minitest"
+        "test"
         # Legacy parser module; active parsing is handled by kulala-core
         "kulala.parser.treesitter"
       ];
@@ -2048,6 +2075,7 @@ assertNoAdditions {
       "lazyvim.plugins.extras.coding.luasnip"
       "lazyvim.plugins.extras.coding.neogen"
       "lazyvim.plugins.extras.editor.fzf"
+      "lazyvim.plugins.extras.editor.refactoring"
       "lazyvim.plugins.extras.editor.snacks_picker"
       "lazyvim.plugins.extras.editor.telescope"
       "lazyvim.plugins.extras.formatting.prettier"

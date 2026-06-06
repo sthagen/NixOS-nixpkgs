@@ -89,6 +89,7 @@ mapAliases {
   APScheduler = throw "'APScheduler' has been renamed to/replaced by 'apscheduler'"; # Converted to throw 2025-10-29
   argon2_cffi = throw "'argon2_cffi' has been renamed to/replaced by 'argon2-cffi'"; # Converted to throw 2025-10-29
   aspy-refactor-imports = throw "'aspy-refactor-imports' has been renamed to/replaced by 'classify-imports'"; # Added 2026-05-22
+  aspy-yaml = throw "'aspy-yaml' has been removed because the upstream repository was archived in 2020"; # Added 2026-06-04
   astropy-extension-helpers = extension-helpers; # Added 2025-10-15
   asyauth-bad = throw "'asyauth-bad' has been renamed to/replaced by 'badauth'"; # added 2025-11-06
   async-dns = throw "'async-dns' has been removed as it was unmaintained upstream"; # Added 2026-03-23
@@ -301,6 +302,7 @@ mapAliases {
   Keras = throw "'Keras' has been renamed to/replaced by 'keras'"; # Converted to throw 2025-10-29
   keyrings-passwordstore = throw "keyrings-passwordstore has been removed because it has been marked as broken since at least November 2024."; # Added 2025-10-03
   kivy-garden-modernmenu = throw "kivy-garden-modernmenu has been removed as it's abandoned since 2019"; # added 2025-05-25
+  konnected = throw "konnected has been removed, because the home-assistant integration that required it has been deprecated and removed. See https://support.konnected.io/migrating-from-konnected-legacy-home-assistant-integration-to-esphome."; # Added 2026-06-04
   langchain-standard-tests = throw "'langchain-standard-tests' has been renamed to/replaced by 'langchain-tests'"; # Converted to throw 2025-10-29
   langchainplus-sdk = throw "'langchainplus-sdk' has been renamed to/replaced by 'langsmith'"; # Converted to throw 2025-10-29
   lazr_config = throw "'lazr_config' has been renamed to/replaced by 'lazr-config'"; # Converted to throw 2025-10-29
