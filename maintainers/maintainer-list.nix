@@ -10656,6 +10656,11 @@
     githubId = 147689;
     name = "Hans-Christian Esperer";
   };
+  hchokshi = {
+    github = "hchokshi";
+    githubId = 10136407;
+    name = "Harsh Chokshi";
+  };
   hdhog = {
     name = "Serg Larchenko";
     email = "hdhog@hdhog.ru";
@@ -18488,6 +18493,11 @@
     githubId = 3579600;
     name = "Jacob Moody";
   };
+  mooses = {
+    name = "Remu Salminen";
+    github = "RemuSalminen";
+    githubId = 85031022;
+  };
   moosingin3space = {
     email = "moosingin3space@gmail.com";
     github = "moosingin3space";
@@ -20974,6 +20984,12 @@
     github = "ozkutuk";
     githubId = 5948762;
     name = "Berk Özkütük";
+  };
+  ozturkkl = {
+    email = "97kemalozturk@gmail.com";
+    github = "ozturkkl";
+    githubId = 51798197;
+    name = "Kemal Ozturk";
   };
   ozwaldorf = {
     email = "self@ossian.dev";
@@ -25415,13 +25431,6 @@
     github = "Shou";
     githubId = 819413;
     name = "Benedict Aas";
-  };
-  shreerammodi = {
-    name = "Shreeram Modi";
-    email = "shreerammodi10@gmail.com";
-    github = "shreerammodi";
-    githubId = 67710369;
-    keys = [ { fingerprint = "EA88 EA07 26E9 6CBF 6365  3966 163B 16EE 76ED 24CE"; } ];
   };
   shunueda = {
     name = "Shun Ueda";

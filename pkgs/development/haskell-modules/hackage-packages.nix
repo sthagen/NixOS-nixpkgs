@@ -569853,9 +569853,7 @@ self: {
       doHaddock = false;
       description = "Command line tool qhs, SQL queries on CSV and TSV files";
       license = lib.meta.getLicenseFromSpdxId "MIT";
-      hydraPlatforms = lib.platforms.none;
       mainProgram = "qhs";
-      broken = true;
     }
   ) { };
 
