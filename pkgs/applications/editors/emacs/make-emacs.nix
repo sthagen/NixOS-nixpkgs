@@ -238,6 +238,8 @@ stdenv.mkDerivation (finalAttrs: {
     ""
   ];
 
+  strictDeps = true;
+
   nativeBuildInputs = [
     makeWrapper
     pkg-config
@@ -246,10 +248,10 @@ stdenv.mkDerivation (finalAttrs: {
   ++ lib.optionals srcRepo [
     autoreconfHook
   ]
-  ++ lib.optionals (withPgtk || withX && (withGTK3 || withXwidgets)) [ wrapGAppsHook3 ];
+  ++ lib.optionals (withPgtk || withX && (withGTK3 || withXwidgets)) [ wrapGAppsHook3 ]
+  ++ lib.optionals stdenv.hostPlatform.isDarwin [ sigtool ];
 
   buildInputs = [
-    gettext
     gnutls
     (lib.getDev harfbuzz)
   ]
@@ -339,9 +341,6 @@ stdenv.mkDerivation (finalAttrs: {
   ++ lib.optionals withWebkitgtk [
     webkitgtk_4_1
   ]
-  ++ lib.optionals stdenv.hostPlatform.isDarwin [
-    sigtool
-  ]
   ++ lib.optionals withNS [
     librsvg
   ]
@@ -408,6 +407,8 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.withFeature withDbus "dbus")
     (lib.withFeature withSelinux "selinux")
   ];
+
+  __structuredAttrs = true;
 
   env =
     lib.optionalAttrs withNativeCompilation {

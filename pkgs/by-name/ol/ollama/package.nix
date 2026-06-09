@@ -109,13 +109,13 @@ let
   cudaPath = lib.removeSuffix "-${cudaMajorVersion}" cudaToolkit;
 
   # Since v0.30, llama.cpp is consumed via CMake FetchContent rather than
-  # vendored in-tree. Pre-stage the pinned commit (read from upstream's
-  # `LLAMA_CPP_VERSION` file — currently `b9509`) so the FetchContent step
-  # uses our copy instead of trying to clone over the network in the sandbox.
+  # vendored in-tree. Pre-stage the pin (tracks upstream's
+  # `LLAMA_CPP_VERSION` file) so the FetchContent step uses our copy
+  # instead of trying to clone over the network in the sandbox.
   llamaCppSrc = fetchFromGitHub {
     owner = "ggml-org";
     repo = "llama.cpp";
-    rev = "6f3a9f3dee3c27545371044a3a38005721ac8a8e"; # tag b9509
+    tag = "b9509";
     hash = "sha256-bO1ucb/+vidj/EYzNCssotjte9NlVLdjC794jToNNeM=";
   };
 
@@ -152,13 +152,13 @@ let
 in
 goBuild (finalAttrs: {
   pname = "ollama";
-  version = "0.30.5";
+  version = "0.30.6";
 
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-jh/B/FkmAliCVzqc8DGCPYa5+XejE3cFZTzSuRxjPvw=";
+    hash = "sha256-qO+Tsjg64QekGHNNiNy5YGSDoToGSnqiN5hN+0LCp4Q=";
   };
 
   vendorHash = "sha256-lZdGzGb9xRjTm1Rm7/wHjqM490gLznLEndmb4mNbCX0=";
@@ -301,6 +301,7 @@ goBuild (finalAttrs: {
         -DCMAKE_SKIP_BUILD_RPATH=ON \
         -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
         -DFETCHCONTENT_SOURCE_DIR_LLAMA_CPP="$TMPDIR/llama-cpp-src" \
+        -DOLLAMA_MLX_BACKENDS="" \
         ${cmakeFlagsCudaArchitectures} \
         ${cmakeFlagsRocmTargets} \
         ${cmakeFlagsBackend}
