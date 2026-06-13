@@ -1180,8 +1180,6 @@ self: super: with self; {
 
   asyncstdlib = callPackage ../development/python-modules/asyncstdlib { };
 
-  asyncstdlib-fw = callPackage ../development/python-modules/asyncstdlib-fw { };
-
   asynctest = callPackage ../development/python-modules/asynctest { };
 
   asyncua = callPackage ../development/python-modules/asyncua { };
@@ -2031,8 +2029,6 @@ self: super: with self; {
   better-exceptions = callPackage ../development/python-modules/better-exceptions { };
 
   betterproto = callPackage ../development/python-modules/betterproto { };
-
-  betterproto-fw = callPackage ../development/python-modules/betterproto-fw { };
 
   betterproto-rust-codec = callPackage ../development/python-modules/betterproto-rust-codec { };
 
@@ -11473,6 +11469,8 @@ self: super: with self; {
 
   numexpr = callPackage ../development/python-modules/numexpr { };
 
+  numkong = callPackage ../development/python-modules/numkong { };
+
   numpy = numpy_2;
 
   numpy-financial = callPackage ../development/python-modules/numpy-financial { };
@@ -11843,6 +11841,8 @@ self: super: with self; {
     }
   );
 
+  openmm-torch = callPackage ../development/python-modules/openmm-torch { };
+
   openpaperwork-core = callPackage ../applications/office/paperwork/openpaperwork-core.nix { };
 
   openpaperwork-gtk = callPackage ../applications/office/paperwork/openpaperwork-gtk.nix { };
@@ -12030,6 +12030,14 @@ self: super: with self; {
 
   openvino = callPackage ../development/python-modules/openvino {
     openvino-native = pkgs.openvino.override { python3Packages = self; };
+  };
+
+  openvino-genai = callPackage ../development/python-modules/openvino-genai {
+    openvino-genai-native = pkgs.openvino-genai.override { python3Packages = self; };
+  };
+
+  openvino-tokenizers = callPackage ../development/python-modules/openvino-tokenizers {
+    openvino-tokenizers-native = pkgs.openvino-tokenizers;
   };
 
   openwebifpy = callPackage ../development/python-modules/openwebifpy { };
@@ -12559,6 +12567,8 @@ self: super: with self; {
   periodiq = callPackage ../development/python-modules/periodiq { };
 
   permissionedforms = callPackage ../development/python-modules/permissionedforms { };
+
+  perplexityai = callPackage ../development/python-modules/perplexityai { };
 
   persim = callPackage ../development/python-modules/persim { };
 
@@ -13734,6 +13744,8 @@ self: super: with self; {
 
   pychromecast = callPackage ../development/python-modules/pychromecast { };
 
+  pycifrw = callPackage ../development/python-modules/pycifrw { };
+
   pycketcasts = callPackage ../development/python-modules/pycketcasts { };
 
   pyclibrary = callPackage ../development/python-modules/pyclibrary { };
@@ -14121,6 +14133,8 @@ self: super: with self; {
   pyfxa = callPackage ../development/python-modules/pyfxa { };
 
   pyfzf = callPackage ../development/python-modules/pyfzf { inherit (pkgs) fzf; };
+
+  pyg-lib = callPackage ../development/python-modules/pyg-lib { };
 
   pygal = callPackage ../development/python-modules/pygal { };
 
@@ -17798,6 +17812,8 @@ self: super: with self; {
 
   selenium-wire = callPackage ../development/python-modules/selenium-wire { };
 
+  selenium-wire-roadtx = callPackage ../development/python-modules/selenium-wire-roadtx { };
+
   semantic-version = callPackage ../development/python-modules/semantic-version { };
 
   semaphore-bot = callPackage ../development/python-modules/semaphore-bot { };
@@ -19847,6 +19863,14 @@ self: super: with self; {
 
   tokenlib = callPackage ../development/python-modules/tokenlib { };
 
+  tokenspeed-mla = callPackage ../development/python-modules/tokenspeed-mla { };
+
+  tokenspeed-mla-bin = callPackage ../development/python-modules/tokenspeed-mla/bin.nix { };
+
+  tokenspeed-triton = callPackage ../development/python-modules/tokenspeed-triton { };
+
+  tokenspeed-triton-bin = callPackage ../development/python-modules/tokenspeed-triton/bin.nix { };
+
   tokentrim = callPackage ../development/python-modules/tokentrim { };
 
   tololib = callPackage ../development/python-modules/tololib { };
@@ -19933,6 +19957,8 @@ self: super: with self; {
   torchio = callPackage ../development/python-modules/torchio { };
 
   torchlibrosa = callPackage ../development/python-modules/torchlibrosa { };
+
+  torchmd-net = callPackage ../development/python-modules/torchmd-net { };
 
   torchmetrics = callPackage ../development/python-modules/torchmetrics { };
 
@@ -21066,6 +21092,8 @@ self: super: with self; {
   usbrelay-py = callPackage ../os-specific/linux/usbrelay/python.nix { };
 
   usbtmc = callPackage ../development/python-modules/usbtmc { };
+
+  usearch = callPackage ../development/python-modules/usearch { };
 
   useful-types = callPackage ../development/python-modules/useful-types { };
 

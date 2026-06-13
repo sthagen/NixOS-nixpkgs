@@ -402,18 +402,15 @@ pkgs/development/python-modules/buildcatrust/ @ajs124 @lukegb @mweinelt
 /nixos/tests/docker-tools*                       @roberth @jhol
 /doc/build-helpers/images/dockertools.section.md @roberth @jhol
 
-# Blockchains
-/pkgs/applications/blockchains  @mmahut @RaghavSood
-
 # Go
 /doc/languages-frameworks/go.section.md @kalbasit @katexochen @Mic92
 /pkgs/build-support/go @kalbasit @katexochen @Mic92
 /pkgs/development/compilers/go @kalbasit @katexochen @Mic92
 
 # GNOME
-/pkgs/desktops/gnome                              @jtojnar
-/pkgs/desktops/gnome/extensions                   @jtojnar
-/pkgs/build-support/make-hardcode-gsettings-patch @jtojnar
+/pkgs/desktops/gnome                              @NixOS/gnome
+/pkgs/desktops/gnome/extensions                   @NixOS/gnome
+/pkgs/build-support/make-hardcode-gsettings-patch @NixOS/gnome
 
 # Cinnamon
 /pkgs/by-name/ci/cinnamon-*    @mkg20001

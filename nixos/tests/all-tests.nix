@@ -1496,6 +1496,7 @@ in
   scion-freestanding-deployment = runTest ./scion/freestanding-deployment;
   scrutiny = runTest ./scrutiny.nix;
   scx = runTest ./scx/default.nix;
+  scx-loader = runTest ./scx/loader.nix;
   sddm = import ./sddm.nix { inherit runTest; };
   sdl3 = runTest ./sdl3.nix;
   searx = runTest ./searx.nix;
@@ -1584,6 +1585,7 @@ in
   sx = runTest ./sx.nix;
   sympa = runTest ./sympa.nix;
   syncthing = runTest ./syncthing/main.nix;
+  syncthing-defaults = runTest ./syncthing/defaults.nix;
   syncthing-folders = runTest ./syncthing/folders.nix;
   syncthing-guiPassword = runTest ./syncthing/guiPassword.nix;
   syncthing-guiPasswordFile = runTest ./syncthing/guiPasswordFile.nix;

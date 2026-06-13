@@ -909,9 +909,7 @@ with pkgs;
     inherit (darwin) signingUtils;
   };
 
-  vmTools = callPackage ../build-support/vm {
-    img = stdenv.hostPlatform.linux-kernel.target;
-  };
+  vmTools = callPackage ../build-support/vm { };
 
   releaseTools = callPackage ../build-support/release { };
 
@@ -1208,10 +1206,6 @@ with pkgs;
   svn-all-fast-export =
     libsForQt5.callPackage ../applications/version-management/svn-all-fast-export
       { };
-
-  svn2git = callPackage ../applications/version-management/svn2git {
-    git = gitSVN;
-  };
 
   inherit (haskellPackages) git-annex;
 
@@ -1622,11 +1616,6 @@ with pkgs;
 
   diagrams-builder = callPackage ../tools/graphics/diagrams-builder {
     inherit (haskellPackages) ghcWithPackages diagrams-builder;
-  };
-
-  ding = callPackage ../applications/misc/ding {
-    aspellDicts_de = aspellDicts.de;
-    aspellDicts_en = aspellDicts.en;
   };
 
   discourse = callPackage ../servers/web-apps/discourse { };
@@ -2153,10 +2142,6 @@ with pkgs;
     binutils = binutils-unwrapped;
   };
 
-  fltrdr = callPackage ../tools/misc/fltrdr {
-    icu = icu63;
-  };
-
   file = callPackage ../tools/misc/file {
     inherit (windows) libgnurx;
   };
@@ -2423,8 +2408,6 @@ with pkgs;
 
   iocsearcher = with python3Packages; toPythonApplication iocsearcher;
 
-  iperf2 = callPackage ../tools/networking/iperf/2.nix { };
-  iperf3 = callPackage ../tools/networking/iperf/3.nix { };
   iperf = iperf3;
 
   i-pi = with python3Packages; toPythonApplication i-pi;
@@ -5866,7 +5849,7 @@ with pkgs;
       stdenv = clangStdenv;
     };
   };
-  factorPackages = factorPackages-0_100;
+  factorPackages = factorPackages-0_101;
 
   factor-lang-0_99 = factorPackages-0_99.factor-lang;
   factor-lang-0_100 = factorPackages-0_100.factor-lang;
@@ -8757,10 +8740,6 @@ with pkgs;
 
   bitwig-studio = bitwig-studio6;
 
-  blucontrol = callPackage ../applications/misc/blucontrol/wrapper.nix {
-    inherit (haskellPackages) ghcWithPackages;
-  };
-
   breezy = with python3Packages; toPythonApplication breezy;
 
   # calico-felix and calico-node have not been packaged due to libbpf, linking issues
@@ -9420,8 +9399,6 @@ with pkgs;
 
   mpvScripts = callPackage ../by-name/mp/mpv/scripts.nix { };
 
-  mu-repo = callPackage ../applications/misc/mu-repo { };
-
   murmur =
     (callPackages ../applications/networking/mumble {
       avahi = avahi-compat;
@@ -9437,10 +9414,6 @@ with pkgs;
     }).mumble;
 
   mumble_overlay = (callPackages ../applications/networking/mumble { }).overlay;
-
-  mwic = callPackage ../applications/misc/mwic {
-    pythonPackages = python3Packages;
-  };
 
   netmaker = callPackage ../applications/networking/netmaker { subPackages = [ "." ]; };
   netmaker-full = callPackage ../applications/networking/netmaker { };
@@ -9540,8 +9513,6 @@ with pkgs;
   orpie = callPackage ../applications/misc/orpie {
     ocamlPackages = ocaml-ng.ocamlPackages_4_14;
   };
-
-  parsec-bin = callPackage ../applications/misc/parsec/bin.nix { };
 
   pdfpc = callPackage ../applications/misc/pdfpc {
     inherit (gst_all_1)
@@ -9648,8 +9619,6 @@ with pkgs;
     withXineBackend = true;
   };
 
-  rednotebook = callPackage ../applications/editors/rednotebook { };
-
   ringboard-wayland = callPackage ../by-name/ri/ringboard/package.nix { displayServer = "wayland"; };
 
   ripcord =
@@ -9687,10 +9656,6 @@ with pkgs;
   scantailor-advanced = callPackage ../applications/graphics/scantailor/advanced.nix { };
 
   scantailor-universal = callPackage ../applications/graphics/scantailor/universal.nix { };
-
-  stag = callPackage ../applications/misc/stag {
-    curses = ncurses;
-  };
 
   sweethome3d = recurseIntoAttrs (
     (callPackage ../applications/misc/sweethome3d { })
@@ -10227,11 +10192,6 @@ with pkgs;
   napari = with python312Packages; toPythonApplication napari;
 
   pycoin = with python3Packages; toPythonApplication pycoin;
-
-  inherit (callPackages ../applications/blockchains/teos { })
-    teos
-    teos-watchtower-plugin
-    ;
 
   vertcoind = vertcoin.override {
     withGui = false;
@@ -11547,5 +11507,10 @@ with pkgs;
 
   gpac-unstable = callPackage ../by-name/gp/gpac/package.nix {
     releaseChannel = "unstable";
+  };
+
+  clipse-x11 = callPackage ../by-name/cl/clipse/package.nix {
+    enableWayland = false;
+    enableX11 = true;
   };
 }
