@@ -1343,8 +1343,6 @@ self: super: with self; {
 
   awacs = callPackage ../development/python-modules/awacs { };
 
-  awesome-slugify = callPackage ../development/python-modules/awesome-slugify { };
-
   awesomeversion = callPackage ../development/python-modules/awesomeversion { };
 
   awkward = callPackage ../development/python-modules/awkward { };
@@ -4905,6 +4903,8 @@ self: super: with self; {
 
   e3-testsuite = callPackage ../development/python-modules/e3-testsuite { };
 
+  e3nn = callPackage ../development/python-modules/e3nn { };
+
   eagle100 = callPackage ../development/python-modules/eagle100 { };
 
   earn-e-p1 = callPackage ../development/python-modules/earn-e-p1 { };
@@ -6353,8 +6353,6 @@ self: super: with self; {
   ghapi = callPackage ../development/python-modules/ghapi { };
 
   ghdiff = callPackage ../development/python-modules/ghdiff { };
-
-  ghidra-bridge = callPackage ../development/python-modules/ghidra-bridge { };
 
   ghmap = callPackage ../development/python-modules/ghmap { };
 
@@ -8043,8 +8041,6 @@ self: super: with self; {
 
   jenkinsapi = callPackage ../development/python-modules/jenkinsapi { };
 
-  jfx-bridge = callPackage ../development/python-modules/jfx-bridge { };
-
   jh2 = callPackage ../development/python-modules/jh2 { };
 
   jianpu-ly = callPackage ../development/python-modules/jianpu-ly { };
@@ -9576,6 +9572,8 @@ self: super: with self; {
 
   macaddress = callPackage ../development/python-modules/macaddress { };
 
+  mace-torch = callPackage ../development/python-modules/mace-torch { };
+
   macfsevents = callPackage ../development/python-modules/macfsevents { };
 
   macholib = callPackage ../development/python-modules/macholib { };
@@ -9749,6 +9747,8 @@ self: super: with self; {
   matrix-common = callPackage ../development/python-modules/matrix-common { };
 
   matrix-nio = callPackage ../development/python-modules/matrix-nio { };
+
+  matscipy = callPackage ../development/python-modules/matscipy { };
 
   matter-ble-proxy = callPackage ../development/python-modules/matter-ble-proxy { };
 
@@ -11955,6 +11955,10 @@ self: super: with self; {
     callPackage ../development/python-modules/opentelemetry-instrumentation-logging
       { };
 
+  opentelemetry-instrumentation-psycopg =
+    callPackage ../development/python-modules/opentelemetry-instrumentation-psycopg
+      { };
+
   opentelemetry-instrumentation-psycopg2 =
     callPackage ../development/python-modules/opentelemetry-instrumentation-psycopg2
       { };
@@ -12051,6 +12055,8 @@ self: super: with self; {
   opsdroid-get-image-size = callPackage ../development/python-modules/opsdroid-get-image-size { };
 
   opt-einsum = callPackage ../development/python-modules/opt-einsum { };
+
+  opt-einsum-fx = callPackage ../development/python-modules/opt-einsum-fx { };
 
   optax = callPackage ../development/python-modules/optax { };
 
@@ -14254,8 +14260,6 @@ self: super: with self; {
 
   pyhibp = callPackage ../development/python-modules/pyhibp { };
 
-  pyhidra = callPackage ../development/python-modules/pyhidra { };
-
   pyhik = callPackage ../development/python-modules/pyhik { };
 
   pyhive-integration = callPackage ../development/python-modules/pyhive-integration { };
@@ -15793,6 +15797,8 @@ self: super: with self; {
 
   pytest-subtesthack = callPackage ../development/python-modules/pytest-subtesthack { };
 
+  pytest-subtests = callPackage ../development/python-modules/pytest-subtests { };
+
   pytest-sugar = callPackage ../development/python-modules/pytest-sugar { };
 
   pytest-tap = callPackage ../development/python-modules/pytest-tap { };
@@ -16020,6 +16026,8 @@ self: super: with self; {
       { };
 
   python-homewizard-energy = callPackage ../development/python-modules/python-homewizard-energy { };
+
+  python-hostlist = callPackage ../development/python-modules/python-hostlist { };
 
   python-hosts = callPackage ../development/python-modules/python-hosts { };
 
@@ -19904,6 +19912,8 @@ self: super: with self; {
   torch-cluster = callPackage ../development/python-modules/torch-cluster { };
 
   torch-einops-utils = callPackage ../development/python-modules/torch-einops-utils { };
+
+  torch-ema = callPackage ../development/python-modules/torch-ema { };
 
   torch-geometric = callPackage ../development/python-modules/torch-geometric { };
 
