@@ -243,14 +243,6 @@ with pkgs;
     in
     recurseIntoAttrs arrayUtilitiesPackages;
 
-  addBinToPathHook = callPackage (
-    { makeSetupHook }:
-    makeSetupHook {
-      name = "add-bin-to-path-hook";
-      meta.license = lib.licenses.mit;
-    } ../build-support/setup-hooks/add-bin-to-path.sh
-  ) { };
-
   aider-chat-with-playwright = aider-chat.withOptional { withPlaywright = true; };
 
   aider-chat-with-browser = aider-chat.withOptional { withBrowser = true; };
@@ -261,50 +253,13 @@ with pkgs;
 
   aider-chat-full = aider-chat.withOptional { withAll = true; };
 
-  autoreconfHook = callPackage (
-    {
-      makeSetupHook,
-      autoconf,
-      automake,
-      gettext,
-      libtool,
-    }:
-    makeSetupHook {
-      name = "autoreconf-hook";
-      propagatedBuildInputs = [
-        autoconf
-        automake
-        gettext
-        libtool
-      ];
-      meta.license = lib.licenses.mit;
-    } ../build-support/setup-hooks/autoreconf.sh
-  ) { };
-
   autoreconfHook269 = autoreconfHook.override {
     autoconf = autoconf269;
   };
 
-  autoPatchelfHook = makeSetupHook {
-    name = "auto-patchelf-hook";
-    propagatedBuildInputs = [
-      auto-patchelf
-      bintools
-    ];
-    substitutions = {
-      hostPlatform = stdenv.hostPlatform.config;
-    };
-  } ../build-support/setup-hooks/auto-patchelf.sh;
-
   appimageTools = callPackage ../build-support/appimage { };
 
   appimageupdate-qt = appimageupdate.override { withQtUI = true; };
-
-  stripJavaArchivesHook = makeSetupHook {
-    name = "strip-java-archives-hook";
-    propagatedBuildInputs = [ strip-nondeterminism ];
-    meta.license = lib.licenses.mit;
-  } ../build-support/setup-hooks/strip-java-archives.sh;
 
   ensureNewerSourcesHook =
     { year }:
@@ -352,19 +307,9 @@ with pkgs;
     meta.license = lib.licenses.mit;
   } ../build-support/setup-hooks/update-autotools-gnu-config-scripts.sh;
 
-  gogUnpackHook = makeSetupHook {
-    name = "gog-unpack-hook";
-    propagatedBuildInputs = [
-      innoextract
-      file-rename
-    ];
-    meta.license = lib.licenses.mit;
-  } ../build-support/setup-hooks/gog-unpack.sh;
-
   buildEnv = callPackage ../build-support/buildenv { }; # not actually a package
 
   buildFHSEnv = buildFHSEnvBubblewrap;
-  buildFHSEnvChroot = callPackage ../build-support/build-fhsenv-chroot { }; # Deprecated; use buildFHSEnv/buildFHSEnvBubblewrap
   buildFHSEnvBubblewrap = callPackage ../build-support/build-fhsenv-bubblewrap { };
 
   buildLakePackage = callPackage ../build-support/lake { };
@@ -433,11 +378,6 @@ with pkgs;
   ollama-vulkan = callPackage ../by-name/ol/ollama/package.nix { acceleration = "vulkan"; };
 
   diffPlugins = (callPackage ../build-support/plugins.nix { }).diffPlugins;
-
-  dieHook = makeSetupHook {
-    name = "die-hook";
-    meta.license = lib.licenses.mit;
-  } ../build-support/setup-hooks/die.sh;
 
   devShellTools = callPackage ../build-support/dev-shell-tools { };
 
@@ -753,19 +693,6 @@ with pkgs;
 
   makeDesktopItem = callPackage ../build-support/make-desktopitem { };
 
-  installFonts = makeSetupHook {
-    name = "install-fonts-hook";
-    meta = {
-      description = "Copies standard font extension into their respective installation path";
-      maintainers = with lib.maintainers; [
-        pancaek
-        sigmanificient
-        jopejoe1
-      ];
-      license = lib.licenses.mit;
-    };
-  } ../build-support/setup-hooks/install-fonts.sh;
-
   copyPkgconfigItems = makeSetupHook {
     name = "copy-pkg-config-items-hook";
     meta.license = lib.licenses.mit;
@@ -855,12 +782,6 @@ with pkgs;
 
   setupSystemdUnits = callPackage ../build-support/setup-systemd-units.nix { };
 
-  shortenPerlShebang = makeSetupHook {
-    name = "shorten-perl-shebang-hook";
-    propagatedBuildInputs = [ dieHook ];
-    meta.license = lib.licenses.mit;
-  } ../build-support/setup-hooks/shorten-perl-shebang.sh;
-
   singularity-tools = callPackage ../build-support/singularity-tools { };
 
   srcOnly = callPackage ../build-support/src-only { };
@@ -912,27 +833,6 @@ with pkgs;
   releaseTools = callPackage ../build-support/release { };
 
   inherit (lib.systems) platforms;
-
-  setJavaClassPath = makeSetupHook {
-    name = "set-java-classpath-hook";
-    meta.license = lib.licenses.mit;
-  } ../build-support/setup-hooks/set-java-classpath.sh;
-
-  fixDarwinDylibNames = callPackage (
-    {
-      lib,
-      targetPackages,
-      makeSetupHook,
-    }:
-    makeSetupHook {
-      name = "fix-darwin-dylib-names-hook";
-      substitutions = { inherit (targetPackages.stdenv.cc) targetPrefix; };
-      meta = {
-        platforms = lib.platforms.darwin;
-        license = lib.licenses.mit;
-      };
-    } ../build-support/setup-hooks/fix-darwin-dylib-names.sh
-  ) { };
 
   writeDarwinBundle = callPackage ../build-support/make-darwin-bundle/write-darwin-bundle.nix { };
 
@@ -1855,12 +1755,6 @@ with pkgs;
   libceph = ceph.lib;
   ceph-client = ceph.client;
   ceph-dev = ceph;
-
-  inherit (callPackage ../applications/networking/remote/citrix-workspace { })
-    citrix_workspace_26_01_0
-    citrix_workspace_25_08_10
-    ;
-  citrix_workspace = citrix_workspace_26_01_0;
 
   colord-gtk4 = colord-gtk.override { withGtk4 = true; };
 
@@ -3395,6 +3289,7 @@ with pkgs;
   );
   flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
+  flutter344 = flutterPackages.v3_44;
   flutter341 = flutterPackages.v3_41;
   flutter338 = flutterPackages.v3_38;
   flutter335 = flutterPackages.v3_35;
@@ -4282,11 +4177,20 @@ with pkgs;
       );
     in
     callPackage ../build-support/rust/build-rust-crate (
-      { }
-      // lib.optionalAttrs (stdenv.hostPlatform.libc == null) {
+      lib.optionalAttrs (stdenv.hostPlatform.libc == null) {
         stdenv = stdenvNoCC; # Some build targets without libc will fail to evaluate with a normal stdenv.
       }
-      // lib.optionalAttrs targetAlreadyIncluded { inherit (pkgsBuildBuild) rustc cargo; } # Optimization.
+      // (
+        if targetAlreadyIncluded then
+          # Optimization
+          {
+            inherit (pkgsBuildBuild) rustc cargo;
+          }
+        else
+          {
+            inherit (pkgsBuildHost) rustc cargo;
+          }
+      )
     );
   buildRustCrateHelpers = callPackage ../build-support/rust/build-rust-crate/helpers.nix { };
 
@@ -4570,26 +4474,8 @@ with pkgs;
     wxSupport = false;
   };
 
-  inherit (beam.interpreters)
-    erlang
-    erlang_28
-    erlang_27
-    ;
-
-  inherit (beam.packages.erlang_28.beamPackages)
-    elixir_1_19
-    ;
-
-  inherit (beam.packages.erlang_27.beamPackages)
-    elixir
-    elixir_1_18
-    elixir_1_17
+  inherit (beamPackages)
     elixir-ls
-    ex_doc
-    lfe
-    ;
-
-  inherit (beam.packages.erlang)
     erlfmt
     elvis-erlang
     rebar
@@ -6324,8 +6210,6 @@ with pkgs;
 
   libsigcxx30 = callPackage ../development/libraries/libsigcxx/3.0.nix { };
 
-  libsoup_2_4 = callPackage ../development/libraries/libsoup { };
-
   libsoup_3 = callPackage ../development/libraries/libsoup/3.x.nix { };
 
   libtorrent-rasterbar = libtorrent-rasterbar-2_0_x;
@@ -7499,9 +7383,7 @@ with pkgs;
 
   clickhouse-cli = with python3Packages; toPythonApplication clickhouse-cli;
 
-  couchdb3 = callPackage ../servers/http/couchdb/3.nix {
-    erlang = beamMinimalPackages.erlang;
-  };
+  couchdb3 = callPackage ../servers/http/couchdb/3.nix { };
 
   dict = callPackage ../servers/dict {
     flex = flex_2_5_35;
@@ -7797,6 +7679,7 @@ with pkgs;
     postgresql_16
     postgresql_17
     postgresql_18
+    postgresql_19
     ;
 
   inherit (postgresqlJitVersions)
@@ -7805,6 +7688,7 @@ with pkgs;
     postgresql_16_jit
     postgresql_17_jit
     postgresql_18_jit
+    postgresql_19_jit
     ;
   postgresql = postgresql_17;
   postgresql_jit = postgresql_17_jit;
@@ -7814,6 +7698,7 @@ with pkgs;
   postgresql16Packages = recurseIntoAttrs postgresql_16.pkgs;
   postgresql17Packages = recurseIntoAttrs postgresql_17.pkgs;
   postgresql18Packages = recurseIntoAttrs postgresql_18.pkgs;
+  postgresql19Packages = recurseIntoAttrs postgresql_19.pkgs;
 
   postgres-websockets = haskellPackages.postgres-websockets.bin;
   postgrest = haskellPackages.postgrest.bin;
@@ -8691,10 +8576,6 @@ with pkgs;
   cni-plugins = callPackage ../applications/networking/cluster/cni/plugins.nix { };
 
   codeblocksFull = codeblocks.override { contribPlugins = true; };
-
-  cudatext-qt = callPackage ../applications/editors/cudatext { widgetset = "qt5"; };
-  cudatext-gtk = callPackage ../applications/editors/cudatext { widgetset = "gtk2"; };
-  cudatext = cudatext-qt;
 
   darcs = haskell.lib.compose.disableCabalFlag "library" (
     haskell.lib.compose.justStaticExecutables haskellPackages.darcs
@@ -9602,18 +9483,6 @@ with pkgs;
   };
 
   inherit (ocaml-ng.ocamlPackages) stog;
-
-  stumpwm = callPackage ../applications/window-managers/stumpwm {
-    stdenv = stdenvNoCC;
-    sbcl = sbcl.withPackages (
-      ps: with ps; [
-        alexandria
-        cl-ppcre
-        clx
-        fiasco
-      ]
-    );
-  };
 
   stumpwm-unwrapped = sbcl.pkgs.stumpwm;
 
@@ -11263,8 +11132,6 @@ with pkgs;
   );
 
   yamale = with python3Packages; toPythonApplication yamale;
-
-  zap-chip-gui = zap-chip.override { withGui = true; };
 
   myEnvFun = callPackage ../misc/my-env {
     inherit (stdenv) mkDerivation;
