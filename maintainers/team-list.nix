@@ -68,11 +68,8 @@ with lib.maintainers;
 
   bazel = {
     members = [
-      mboes
       cbley
       groodt
-      aherrmann
-      ylecornec
       boltzmannrain
     ];
     scope = "Bazel build tool & related tools https://bazel.build/";
@@ -686,6 +683,10 @@ with lib.maintainers;
 
   radicle = {
     github = "radicle";
+  };
+
+  redis = {
+    github = "redis";
   };
 
   rocm = {
