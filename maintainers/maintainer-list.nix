@@ -2863,7 +2863,7 @@
   azahi = {
     name = "Azat Bahawi";
     email = "azat@bahawi.net";
-    matrix = "@azahi:azahi.cc";
+    matrix = "@azahi:matrix.org";
     github = "azahi";
     githubId = 22211000;
     keys = [ { fingerprint = "2688 0377 C31D 9E81 9BDF  83A8 C8C6 BDDB 3847 F72B"; } ];
@@ -4395,6 +4395,13 @@
     github = "CaitlinDavitt";
     githubId = 48105979;
     name = "Caitlin Davitt";
+  };
+  cakeforcat = {
+    email = "julia@cakeforcat.dev";
+    github = "cakeforcat";
+    githubId = 37912991;
+    name = "Julia Czarny";
+    matrix = "@cakeforcat:matrix.org";
   };
   calavera = {
     email = "david.calavera@gmail.com";
@@ -6650,6 +6657,12 @@
     github = "DeltaEvo";
     githubId = 8864716;
     name = "Duarte David";
+  };
+  demic-dev = {
+    email = "git@demic.dev";
+    github = "demic-dev";
+    githubId = 59309595;
+    name = "Michele De Cillis";
   };
   demin-dmitriy = {
     email = "demindf@gmail.com";
@@ -17968,6 +17981,12 @@
     githubId = 1575834;
     name = "Michael Adler";
   };
+  michaelAllen = {
+    name = "Michael Allen";
+    email = "mcallen71398@gmail.com";
+    github = "That1LinuxGuy";
+    githubId = 207959559;
+  };
   michaelBelsanti = {
     email = "mbels03@protonmail.com";
     name = "Mike Belsanti";
@@ -19102,7 +19121,8 @@
   };
   MysteryBlokHed = {
     name = "Adam Thompson-Sharpe";
-    email = "hi@adamts.me";
+    email = "nix@adamts.me";
+    matrix = "@adam:adamts.me";
     github = "MysteryBlokHed";
     githubId = 13910387;
     keys = [ { fingerprint = "086E EF20 D54E D348 E5BA  6263 16E9 43E6 596F FB4E"; } ];
@@ -27413,6 +27433,11 @@
     githubId = 3889585;
     name = "Cheng Shao";
   };
+  terrorw0lf = {
+    name = "duckling";
+    github = "TERRORW0LF";
+    githubId = 61637480;
+  };
   terryg = {
     name = "Terry Garcia";
     email = "terry@terryg.org";
@@ -28945,6 +28970,12 @@
     matrix = "@uxodb:matrix.org";
     github = "uxodb";
     githubId = 20535246;
+  };
+  uzlkav = {
+    name = "Uzlkav";
+    github = "Uzlkav";
+    githubId = 177883133;
+    matrix = "@capybara_squash:unredacted.org";
   };
   V = {
     name = "V";

@@ -1994,6 +1994,7 @@ mapAliases {
   rustc-wasm32 = throw "'rustc-wasm32' has been renamed to/replaced by 'rustc'"; # Converted to throw 2025-10-27
   rustic-rs = throw "'rustic-rs' has been renamed to/replaced by 'rustic'"; # Converted to throw 2025-10-27
   rx = throw "'rx' has been dropped due to being broken since September 2025, with no complaints by any users of the package."; # Added 2026-04-05
+  rymcast = throw "'rymcast' has been removed because it depended on the removed webkitgtk_4_0 and has been marked broken since October 2025"; # Added 2026-06-26
   ryujinx = throw "'ryujinx' has been replaced by 'ryubing' as the new upstream"; # Added 2025-07-30
   ryujinx-greemdev = throw "'ryujinx-greemdev' has been renamed to/replaced by 'ryubing'"; # Converted to throw 2025-10-27
   scantailor = throw "'scantailor' has been renamed to/replaced by 'scantailor-advanced'"; # Converted to throw 2025-10-27
@@ -2349,6 +2350,7 @@ mapAliases {
   wifi-password = throw "'wifi-password' has been removed as it was unmaintained upstream"; # Added 2025-08-29
   win-pvdrivers = throw "'win-pvdrivers' has been removed as it was subject to the Xen build machine compromise (XSN-01) and has open security vulnerabilities (XSA-468)"; # Added 2025-08-29
   win-virtio = throw "'win-virtio' has been renamed to/replaced by 'virtio-win'"; # Converted to throw 2025-10-27
+  windsurf = warnAlias "'windsurf' has been rebranded and replaced as 'devin-desktop'" devin-desktop;
   wineWayland = throw "'wineWayland' has been renamed to/replaced by 'wine-wayland'"; # Converted to throw 2025-10-27
   wineWowPackages =
     warnAlias
