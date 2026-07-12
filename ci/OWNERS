@@ -182,10 +182,10 @@ nixos/modules/installer/tools/nix-fallback-paths.nix  @Artturin @Ericson2314 @lo
 /pkgs/by-name/an/android*                     @NixOS/android
 
 # Python-related code and docs
-/doc/languages-frameworks/python.section.md   @mweinelt @natsukium
-/maintainers/scripts/update-python-libraries  @mweinelt @natsukium
-/pkgs/by-name/up/update-python-libraries      @mweinelt @natsukium
-/pkgs/development/interpreters/python         @mweinelt @natsukium
+/doc/languages-frameworks/python.section.md   @mweinelt
+/maintainers/scripts/update-python-libraries  @mweinelt
+/pkgs/by-name/up/update-python-libraries      @mweinelt
+/pkgs/development/interpreters/python         @mweinelt
 
 # CUDA
 /pkgs/top-level/cuda-packages.nix             @NixOS/cuda-maintainers
@@ -233,9 +233,7 @@ nixos/modules/installer/tools/nix-fallback-paths.nix  @Artturin @Ericson2314 @lo
 /doc/toolchains/llvm.chapter.md @NixOS/llvm
 
 # Audio
-/nixos/modules/services/audio/botamusique.nix @mweinelt
 /nixos/modules/services/audio/snapserver.nix @mweinelt
-/nixos/tests/botamusique.nix @mweinelt
 /nixos/tests/snapcast.nix @mweinelt
 
 # Browsers
@@ -322,6 +320,11 @@ pkgs/development/python-modules/buildcatrust/ @ajs124 @lukegb @mweinelt
 /nixos/tests/babeld.nix @mweinelt
 /nixos/tests/kea.nix @mweinelt
 /nixos/tests/knot.nix @mweinelt
+
+# Web servers
+/doc/packages/nginx.section.md @leona-ya @Ma27
+/pkgs/servers/http/nginx/ @helsinki-Jo @leona-ya @Ma27
+/nixos/modules/services/web-servers/nginx/ @leona-ya @Ma27
 
 # D
 /pkgs/build-support/dlang @jtbx @TomaSajt
@@ -503,7 +506,7 @@ pkgs/by-name/oc/octodns/ @anthonyroussel
 pkgs/by-name/te/teleport*     @arianvp @justinas @sigma @tomberek @techknowlogick @JuliusFreudenberger
 
 # Warp-terminal
-pkgs/by-name/wa/warp-terminal/  @emilytrau @imadnyc @FlameFlag @johnrtitor
+pkgs/by-name/wa/warp-terminal/  @emilytrau @imadnyc @4evy @johnrtitor
 
 # Nim
 /doc/languages-frameworks/nim.section.md  @NixOS/nim

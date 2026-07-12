@@ -189,15 +189,15 @@
   };
 
   c = {
-    version = "0.24.1";
+    version = "0.24.2";
     url = "github:tree-sitter/tree-sitter-c";
-    hash = "sha256-gmzbdwvrKSo6C1fqTJFGxy8x0+T+vUTswm7F5sojzKc=";
+    hash = "sha256-Juuf57GQI7OAP6O03KtSzyKJAoXtGKjyYJ+sTM1A4mU=";
   };
 
   c-sharp = {
-    version = "0.23.1";
+    version = "0.23.5";
     url = "github:tree-sitter/tree-sitter-c-sharp";
-    hash = "sha256-weH0nyLpvVK/OpgvOjTuJdH2Hm4a1wVshHmhUdFq3XA=";
+    hash = "sha256-N5AAlwQFGGi47cj0m7Te08bA486gwY6NBOx4Qcy4lpo=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -451,9 +451,9 @@
   };
 
   devicetree = {
-    version = "0.11.1";
+    version = "0.15.0";
     url = "github:joelspadin/tree-sitter-devicetree";
-    hash = "sha256-2uJEItLwoBoiB49r2XuO216Dhu9AnAa0p7Plmm4JNY8=";
+    hash = "sha256-iMmr4zSm6B7goevHE03DMj9scW4ldXS7CV74sKeqGD4=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -517,7 +517,7 @@
   };
 
   dtd = {
-    version = "0-unstable-2026-01-21";
+    version = "0.7.0-unstable-2026-01-21";
     url = "github:tree-sitter-grammars/tree-sitter-xml";
     rev = "5000ae8f22d11fbe93939b05c1e37cf21117162d";
     hash = "sha256-QN+jQx1CrTbYpmM9mLUfjWcymGsa0Th7LVgk4thnQXU=";
@@ -777,9 +777,9 @@
   };
 
   gdscript = {
-    version = "6.0.0";
+    version = "6.1.0";
     url = "github:prestonknopp/tree-sitter-gdscript";
-    hash = "sha256-S+AF6slDnw3O00C8hcL013A8MU7fKU5mCwhyV50rqmI=";
+    hash = "sha256-QT28TQBt20lMScfF4zb2RJhlPFNekjocOWbvQ2a2yuM=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -1033,10 +1033,10 @@
   };
 
   gren = {
-    version = "2.0.0-unstable-2025-05-03";
+    version = "2.0.0-unstable-2026-03-31";
     url = "github:MaeBrooks/tree-sitter-gren";
-    rev = "c36aac51a915fdfcaf178128ba1e9c2205b25930";
-    hash = "sha256-XtLP2ncpwAiubHug6k4sJCYRZo5f+Nu02tho/4tVD/k=";
+    rev = "cecd8ce9b18f1803d37682f33b6224978fd04d31";
+    hash = "sha256-E96GzFmQDEb3Uq6sEThxqpRwqEH+JwE/hJ0xM1r2VjI=";
     meta = {
       license = lib.licenses.mit;
       maintainers = with lib.maintainers; [
@@ -1372,9 +1372,9 @@
   };
 
   julia = {
-    version = "0.23.1";
+    version = "0.25.0";
     url = "github:tree-sitter/tree-sitter-julia";
-    hash = "sha256-jwtMgHYSa9/kcsqyEUBrxC+U955zFZHVQ4N4iogiIHY=";
+    hash = "sha256-Jk2jby7vWWSdnUU8s8zIIfyXFt7keWPJPyTyxPBrqBw=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -1494,7 +1494,7 @@
   };
 
   llvm = {
-    version = "0-unstable-2025-08-22";
+    version = "1.1.0-unstable-2025-08-22";
     url = "github:benwilliamgraham/tree-sitter-llvm";
     rev = "2914786ae6774d4c4e25a230f4afe16aa68fe1c1";
     hash = "sha256-jBSotMFsBUcgQrWH5p8EiywG00+v9QqePcUTI6ZqAkw=";
@@ -1543,7 +1543,7 @@
   };
 
   lua = {
-    version = "0.0.19-unstable-2026-02-26";
+    version = "0.5.0-unstable-2026-02-26";
     url = "github:tree-sitter-grammars/tree-sitter-lua";
     rev = "10fe0054734eec83049514ea2e718b2a56acd0c9";
     hash = "sha256-VzaaN5pj7jMAb/u1fyyH6XmLI+yJpsTlkwpLReTlFNY=";
@@ -1579,7 +1579,7 @@
   };
 
   make = {
-    version = "0-unstable-2026-02-26";
+    version = "1.1.1-unstable-2026-02-26";
     url = "github:tree-sitter-grammars/tree-sitter-make";
     rev = "70613f3d812cbabbd7f38d104d60a409c4008b43";
     hash = "sha256-gyshhqVYiL0qSsMp38BM20FYc4uPgr2de5/DWsAJZGc=";
@@ -1712,7 +1712,7 @@
   };
 
   nginx = {
-    version = "0-unstable-2026-01-02";
+    version = "1.0.1-unstable-2026-01-02";
     url = "github:opa-oz/tree-sitter-nginx";
     rev = "47ade644d754cce57974aac44d2c9450e823d4f4";
     hash = "sha256-exbjYJouZYcxC3suV7byqSEwu2r8hHj/wehPpf5Aecc=";
@@ -1891,10 +1891,9 @@
   };
 
   org = {
-    version = "1.3.1-unstable-2023-06-19";
-    url = "github:milisims/tree-sitter-org";
-    rev = "64cfbc213f5a83da17632c95382a5a0a2f3357c1";
-    hash = "sha256-/03eZBbv23W5s/GbDgPgaJV5TyK+/lrWUVeINRS5wtA=";
+    version = "2.0.4";
+    url = "github:nvim-orgmode/tree-sitter-org";
+    hash = "sha256-76ImC8GMW+yAKG++AHryUi+MYTmtJ5ogygC+bgNMErA=";
     meta = {
       license = lib.licenses.mit;
       maintainers = with lib.maintainers; [
@@ -1904,10 +1903,9 @@
   };
 
   org-nvim = {
-    version = "1.3.1-unstable-2023-06-19";
-    url = "github:emiasims/tree-sitter-org";
-    rev = "64cfbc213f5a83da17632c95382a5a0a2f3357c1";
-    hash = "sha256-/03eZBbv23W5s/GbDgPgaJV5TyK+/lrWUVeINRS5wtA=";
+    version = "2.0.4";
+    url = "github:nvim-orgmode/tree-sitter-org";
+    hash = "sha256-76ImC8GMW+yAKG++AHryUi+MYTmtJ5ogygC+bgNMErA=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -2384,9 +2382,9 @@
   };
 
   scala = {
-    version = "0.25.0";
+    version = "0.26.0";
     url = "github:tree-sitter/tree-sitter-scala";
-    hash = "sha256-xDp1+i0QLnY18EtiwurW1B4bbeS1qZKNJRxS6Qeb3pw=";
+    hash = "sha256-CnTcQFqYp60rGkLVLRHokUwBenqtWV4hw8boFYNRkbw=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -2793,7 +2791,7 @@
   };
 
   toml = {
-    version = "0.5.1-unstable-2024-12-03";
+    version = "0.7.0-unstable-2024-12-03";
     url = "github:tree-sitter-grammars/tree-sitter-toml";
     rev = "64b56832c2cffe41758f28e05c756a3a98d16f41";
     hash = "sha256-m9RlGkHiOL/PNENrdEPqtPlahSqGymsx7gZrCoN/Lsk=";
@@ -2994,7 +2992,7 @@
   };
 
   vim = {
-    version = "0.2.0-unstable-2026-02-26";
+    version = "0.8.1-unstable-2026-02-26";
     url = "github:tree-sitter-grammars/tree-sitter-vim";
     rev = "3092fcd99eb87bbd0fc434aa03650ba58bd5b43b";
     hash = "sha256-MnLBFuJCJbetcS07fG5fkCwHtf/EcNP+Syf0Gn0K39c=";

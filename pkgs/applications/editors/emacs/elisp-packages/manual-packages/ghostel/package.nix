@@ -14,13 +14,13 @@ let
 
   pname = "ghostel";
 
-  version = "0.35.4-unstable-2026-06-19";
+  version = "0.41.0-unstable-2026-07-06";
 
   src = fetchFromGitHub {
     owner = "dakra";
     repo = "ghostel";
-    rev = "adb010b7fec943405006fcd1fac280e74ffa9e30";
-    hash = "sha256-OI82g4uMTzlucH9DHNeDl7ppYzpNTjnhZ1SzlRe70Fw=";
+    rev = "eb806d158df4ff302aee68e91caf257f11d66320";
+    hash = "sha256-Xz3Sy0iR/g5SoEzqJTZo2ymfMPYQ0NvnAOEoXiXhQFE=";
   };
 
   module = stdenv.mkDerivation (finalAttrs: {
@@ -29,7 +29,7 @@ let
     deps = zig.fetchDeps {
       inherit (finalAttrs) src pname version;
       fetchAll = true;
-      hash = "sha256-CTsG3dXu3DECDbklBAtr2fYou82WNvQ1Q3JET0TmuyM=";
+      hash = "sha256-lFU0ywNyP1q2NL9MkIfWciH03VAA/Act5dGYAV4V7EY=";
     };
 
     nativeBuildInputs = [ zig ] ++ lib.optionals stdenv.hostPlatform.isDarwin [ xcbuild ];
@@ -48,19 +48,6 @@ let
 
     zigBuildFlags = finalAttrs.zigCheckFlags;
 
-    postPatch = ''
-      # https://github.com/dakra/ghostel/issues/446
-      substituteInPlace build.zig \
-        --replace-fail 'addInstallFile(version_file, "../ghostel-module.version")' \
-                       'addInstallFile(version_file, "ghostel-module.version")'
-
-      # remove copy_step
-      substituteInPlace build.zig \
-        --replace-fail 'b.getInstallStep().dependOn(&copy_step.step);' ' ' \
-        --replace-fail 'const copy_step = b.addInstallFile' \
-                       '_ = b.addInstallFile'
-    '';
-
     postConfigure = ''
       cp -rLT ${finalAttrs.deps} "$ZIG_GLOBAL_CACHE_DIR/p"
       chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
@@ -77,7 +64,7 @@ melpaBuild {
   '';
 
   preBuild = ''
-    install ${module}/lib/libghostel-module${libExt} ghostel-module${libExt}
+    install ${module}/ghostel-module${libExt} ghostel-module${libExt}
     install --mode=444 ${module}/ghostel-module.version ghostel-module.version
   '';
 
@@ -90,7 +77,10 @@ melpaBuild {
   meta = {
     homepage = "https://github.com/dakra/ghostel";
     description = "Terminal emulator powered by libghostty";
-    maintainers = with lib.maintainers; [ vonfry ];
+    maintainers = with lib.maintainers; [
+      rohan-datar
+      vonfry
+    ];
     license = lib.licenses.gpl3Plus;
   };
 }

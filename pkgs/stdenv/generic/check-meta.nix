@@ -304,21 +304,18 @@ let
       types = import ../../../lib/meta-types.nix { inherit lib; };
       inherit (types)
         str
-        union
+        either
         int
         attrs
         any
         listOf
         bool
         record
-        intersection
+        both
         not
         derivation
         ;
-      platforms = listOf (union [
-        str
-        attrs
-      ]); # see lib.meta.platformMatch
+      platforms = listOf (either str attrs); # see lib.meta.platformMatch
     in
     record {
       # These keys are documented
@@ -326,31 +323,16 @@ let
       mainProgram = str;
       longDescription = str;
       branch = str;
-      homepage = union [
-        (listOf str)
-        str
-      ];
+      homepage = either str (listOf str);
       donationPage = str;
       downloadPage = str;
-      changelog = union [
-        (listOf str)
-        str
-      ];
+      changelog = either str (listOf str);
       license =
         let
           # TODO disallow `str` licenses, use a module
-          licenseType = union [
-            (intersection [
-              attrs
-              (not derivation)
-            ])
-            str
-          ];
+          licenseType = either (both attrs (not derivation)) str;
         in
-        union [
-          (listOf licenseType)
-          licenseType
-        ];
+        either licenseType (listOf licenseType);
       sourceProvenance = listOf attrs;
       maintainers = listOf attrs; # TODO use the maintainer type from lib/tests/maintainer-module.nix
       nonTeamMaintainers = listOf attrs; # TODO use the maintainer type from lib/tests/maintainer-module.nix
@@ -495,7 +477,7 @@ let
     let
       values = attrValues cpeParts;
     in
-    (length values == 11) && !any isNull values;
+    (length values == 11) && !any (v: v == null) values;
   makeCPE =
     {
       part,
@@ -687,7 +669,7 @@ let
     }:
     let
       withError =
-        if isNull error then
+        if error == null then
           true
         else
           let
@@ -725,15 +707,15 @@ let
       invalid = checkValidity' attrs;
       problems = checkProblems attrs;
     in
-    if isNull invalid then
-      if isNull problems then
+    if invalid == null then
+      if problems == null then
         {
           valid = "yes";
           handled = true;
         }
       else
         {
-          valid = if isNull problems.error then "warn" else "no";
+          valid = if problems.error == null then "warn" else "no";
           handled = handle {
             inherit attrs meta;
             inherit (problems) error warnings;

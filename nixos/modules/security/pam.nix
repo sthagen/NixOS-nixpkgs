@@ -678,6 +678,14 @@ let
           '';
         };
 
+        oo7 = {
+          enable = lib.mkEnableOption ''
+            automatically unlock the user's default Session Keyring using pam_oo7.
+            If the user's login password does not match their keyring password,
+            oo7 will prompt separately after login.
+          '';
+        };
+
         enableUMask = lib.mkOption {
           default = config.security.pam.enableUMask;
           defaultText = lib.literalExpression "config.security.pam.enableUMask";
@@ -1198,6 +1206,7 @@ let
                       || cfg.pamMount
                       || cfg.kwallet.enable
                       || cfg.enableGnomeKeyring
+                      || cfg.oo7.enable
                       || config.services.intune.enable
                       || cfg.googleAuthenticator.enable
                       || cfg.gnupg.enable
@@ -1260,6 +1269,12 @@ let
                       enable = cfg.enableGnomeKeyring;
                       control = "optional";
                       modulePath = "${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so";
+                    }
+                    {
+                      name = "oo7";
+                      enable = cfg.oo7.enable;
+                      control = "optional";
+                      modulePath = "${pkgs.oo7-pam}/lib/security/pam_oo7.so";
                     }
                     {
                       name = "intune";
@@ -1477,6 +1492,12 @@ let
                   use_authtok = true;
                 };
               }
+              {
+                name = "oo7";
+                enable = cfg.oo7.enable;
+                control = "optional";
+                modulePath = "${pkgs.oo7-pam}/lib/security/pam_oo7.so";
+              }
             ];
 
             session = utils.pam.autoOrderRules [
@@ -1691,6 +1712,15 @@ let
                 enable = cfg.enableGnomeKeyring;
                 control = "optional";
                 modulePath = "${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so";
+                settings = {
+                  auto_start = true;
+                };
+              }
+              {
+                name = "oo7";
+                enable = cfg.oo7.enable;
+                control = "optional";
+                modulePath = "${pkgs.oo7-pam}/lib/security/pam_oo7.so";
                 settings = {
                   auto_start = true;
                 };
@@ -2247,6 +2277,30 @@ in
               description = ''
                 Set to prompt a message and wait before testing the presence of a U2F device.
                 Recommended if your device doesn’t have a tactile trigger.
+              '';
+            };
+
+            prompt = lib.mkOption {
+              default = null;
+              type = with lib.types; nullOr str;
+              description = ''
+                Set individual prompt message for interactive mode.
+                By setting this option, you can set a message to be shown by the
+                {option}`security.pam.u2f.settings.interactive` option.
+
+                Requires {option}`security.pam.u2f.settings.interactive` to be set to `true`.
+              '';
+            };
+
+            cue_prompt = lib.mkOption {
+              default = null;
+              type = with lib.types; nullOr str;
+              description = ''
+                Set individual prompt message for cue mode.
+                By setting this option, you can set a message to be shown by the
+                {option}`security.pam.u2f.settings.cue` option.
+
+                Requires {option}`security.pam.u2f.settings.cue` to be set to `true`.
               '';
             };
 

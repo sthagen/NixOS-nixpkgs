@@ -22,16 +22,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "mise";
-  version = "2026.6.11";
+  version = "2026.7.4";
 
   src = fetchFromGitHub {
     owner = "jdx";
     repo = "mise";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-8sC/gSgpP2A6rh8j0aZeMq8pLwbBvcSUAxhehQlTLJg=";
+    hash = "sha256-WNxOHnaT31Wfezwp48g/5P+OYIxG9uoSU3FpX8/J51Q=";
   };
 
-  cargoHash = "sha256-yya9rtEki0o0MfBeWK2/Mo16/I1Mg6aCZOQOP8aWJi0=";
+  cargoHash = "sha256-gjp4H6OtrdCtboAYqPX7+LrHkL2Dh7LkQ9GiMGwjIFM=";
 
   nativeBuildInputs = [
     installShellFiles
@@ -75,10 +75,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   checkFlags = [
     # last_modified will always be different in nix
     "--skip=tera::tests::test_last_modified"
-  ]
-  ++ lib.optionals (stdenv.hostPlatform.isLinux) [
-    # Nix's Linux sandbox rejects setting setuid bits.
-    "--skip=oci::layer::tests::preserve_metadata_dir_layer_keeps_special_permission_bits"
   ]
   ++ lib.optionals (stdenv.hostPlatform.isDarwin) [
     # x86_64-darwin started failing mid-April 2025; aarch64 in Feb 2026
@@ -148,7 +144,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Front-end to your dev env";
     changelog = "https://github.com/jdx/mise/blob/${finalAttrs.src.tag}/CHANGELOG.md";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ konradmalik ];
+    maintainers = with lib.maintainers; [
+      konradmalik
+      Br1ght0ne
+    ];
     mainProgram = "mise";
   };
 })

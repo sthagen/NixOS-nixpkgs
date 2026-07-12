@@ -24,6 +24,8 @@ let
 
         aeneas = callPackage ../development/ocaml-modules/aeneas { };
 
+        alcobar = callPackage ../development/ocaml-modules/alcobar { };
+
         alcotest = callPackage ../development/ocaml-modules/alcotest { };
 
         alcotest-lwt = callPackage ../development/ocaml-modules/alcotest/lwt.nix { };
@@ -243,6 +245,8 @@ let
           git-binary = pkgs.git;
         };
 
+        cascade = callPackage ../development/ocaml-modules/cascade { };
+
         cbor = callPackage ../development/ocaml-modules/cbor { };
 
         cfstream = callPackage ../development/ocaml-modules/cfstream { };
@@ -287,6 +291,8 @@ let
         cohttp-lwt-jsoo = callPackage ../development/ocaml-modules/cohttp/lwt-jsoo.nix { };
 
         cohttp-lwt-unix = callPackage ../development/ocaml-modules/cohttp/lwt-unix.nix { };
+
+        cohttp-server-lwt-unix = callPackage ../development/ocaml-modules/cohttp/server-lwt-unix.nix { };
 
         cohttp-top = callPackage ../development/ocaml-modules/cohttp/top.nix { };
 
@@ -704,6 +710,10 @@ let
 
         functory = callPackage ../development/ocaml-modules/functory { };
 
+        fuse3 = callPackage ../development/ocaml-modules/fuse3 {
+          inherit (pkgs) fuse3;
+        };
+
         ### G ###
 
         gapi-ocaml = callPackage ../development/ocaml-modules/gapi-ocaml { };
@@ -767,6 +777,8 @@ let
         gnuplot = callPackage ../development/ocaml-modules/gnuplot {
           inherit (pkgs) gnuplot;
         };
+
+        grace = callPackage ../development/ocaml-modules/grace { };
 
         graphics =
           if lib.versionOlder "4.09" ocaml.version then
@@ -2183,6 +2195,8 @@ let
 
         tuntap = callPackage ../development/ocaml-modules/tuntap { };
 
+        tw = callPackage ../development/ocaml-modules/tw { };
+
         twt = callPackage ../development/ocaml-modules/twt { };
 
         type_eq = callPackage ../development/ocaml-modules/type_eq { };
@@ -2400,7 +2414,9 @@ rec {
 
   ocamlPackages_5_4 = mkOcamlPackages (callPackage ../development/compilers/ocaml/5.4.nix { });
 
-  ocamlPackages_latest = ocamlPackages_5_4;
+  ocamlPackages_5_5 = mkOcamlPackages (callPackage ../development/compilers/ocaml/5.5.nix { });
+
+  ocamlPackages_latest = ocamlPackages_5_5;
 
   ocamlPackages = ocamlPackages_5_4;
 

@@ -412,7 +412,7 @@ let
             "
             listen ${addr}${optionalString (port != null) ":${toString port}"} quic "
             + optionalString vhost.default "default_server "
-            + optionalString vhost.reuseport "reuseport "
+            + optionalString (vhost.reuseport && !(lib.hasPrefix "unix:" addr)) "reuseport "
             + optionalString (extraParameters != [ ]) (
               concatStringsSep " " (
                 let
@@ -438,7 +438,7 @@ let
           + optionalString (ssl && vhost.http2 && oldHTTP2) "http2 "
           + optionalString ssl "ssl "
           + optionalString vhost.default "default_server "
-          + optionalString vhost.reuseport "reuseport "
+          + optionalString (vhost.reuseport && !(lib.hasPrefix "unix:" addr)) "reuseport "
           + optionalString proxyProtocol "proxy_protocol "
           + optionalString (extraParameters != [ ]) (concatStringsSep " " extraParameters)
           + ";";
@@ -1617,6 +1617,7 @@ in
           MemoryDenyWriteExecute =
             !(
               (builtins.any (mod: (mod.allowMemoryWriteExecute or false)) cfg.package.modules)
+              || cfg.lua.enable
               || (cfg.package == pkgs.openresty)
             );
           RestrictRealtime = true;
@@ -1691,9 +1692,7 @@ in
       )
     );
 
-    environment.etc."nginx/nginx.conf" = mkIf cfg.enableReload {
-      source = configFile;
-    };
+    environment.etc."nginx/nginx.conf".source = configFile;
 
     security.acme.certs =
       let
@@ -1757,4 +1756,8 @@ in
       postrotate = "[ ! -f /var/run/nginx/nginx.pid ] || kill -USR1 `cat /var/run/nginx/nginx.pid`";
     };
   };
+  meta.maintainers = [
+    lib.maintainers.leona
+    lib.maintainers.ma27
+  ];
 }

@@ -24,6 +24,7 @@
   pyannote-pipeline,
   pyannoteai-sdk,
   pytorch-metric-learning,
+  pyyaml,
   safetensors,
   speechbrain,
   tensorboardx,
@@ -44,7 +45,7 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "pyannote-audio";
-  version = "4.0.5";
+  version = "4.0.7";
   pyproject = true;
   __structuredAttrs = true;
 
@@ -53,7 +54,7 @@ buildPythonPackage (finalAttrs: {
     repo = "pyannote-audio";
     tag = finalAttrs.version;
     fetchSubmodules = true;
-    hash = "sha256-Wz4sJZhcc4KSwn6WeAZVDdOFL2Nc19BhoRovw8CwR38=";
+    hash = "sha256-SCByRbQ3WD4QmumrZp83nKJ52VQVoiKYFN9l9oDYqzs=";
   };
 
   build-system = [
@@ -61,11 +62,6 @@ buildPythonPackage (finalAttrs: {
     hatch-vcs
   ];
 
-  pythonRelaxDeps = [
-    "torch"
-    "torchaudio"
-    "torchcodec"
-  ];
   dependencies = [
     asteroid-filterbanks
     einops
@@ -81,6 +77,7 @@ buildPythonPackage (finalAttrs: {
     pyannote-pipeline
     pyannoteai-sdk
     pytorch-metric-learning
+    pyyaml
     safetensors
     speechbrain
     tensorboardx
