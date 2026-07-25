@@ -28,16 +28,11 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     installShellFiles
     xxd
-    # TODO: Clean up on `staging`.
-    llvmPackages.lld
   ];
 
   buildInputs = [
     apple-sdk_15
   ];
-
-  # TODO: Clean up on `staging`.
-  env.NIX_CFLAGS_LINK = "-fuse-ld=lld";
 
   # Upstream Makefile races clean-build against linking under parallel make.
   enableParallelBuilding = false;
@@ -106,7 +101,6 @@ stdenv.mkDerivation (finalAttrs: {
     mainProgram = "yabai";
     maintainers = with lib.maintainers; [
       cmacrae
-      shardy
       khaneliman
     ];
     sourceProvenance = [ lib.sourceTypes.fromSource ];

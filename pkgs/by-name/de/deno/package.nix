@@ -33,7 +33,7 @@ let
 in
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "deno";
-  version = "2.9.2";
+  version = "2.9.4";
 
   __structuredAttrs = true;
 
@@ -47,10 +47,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     repo = "deno";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true; # required for tests
-    hash = "sha256-MZ3GDqC54OYeSwg1tA9FQJrorZL/sc8KdABAkJ3RkoQ=";
+    hash = "sha256-ivch++yGRUyWtox/5QqomC4DlTvMBxK+gIcN9/7tt5E=";
   };
 
-  cargoHash = "sha256-hyvjzQoeOUeH+OpfTyjMVmUTtBuQ5c57/qea8pUpZek=";
+  cargoHash = "sha256-ynbHLZXkPPYpsC4dCu6jA6x8ftiTHWZ/uxzdbUcUaa0=";
 
   patches = [
     ./patches/0002-tests-replace-hardcoded-paths.patch
@@ -211,6 +211,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     # Wants to access /etc/resolv.conf: https://github.com/hickory-dns/hickory-dns/issues/2959
     "--skip=tests::test_userspace_resolver"
+    # We don't have a tmp dir with sticky bit during build
+    "--skip=util::temp::test::test_ensure_secure_temp_parent_rejects_non_sticky_writable_dir"
   ];
 
   __darwinAllowLocalNetworking = true;
@@ -295,7 +297,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     platforms = [
       "x86_64-linux"
       "aarch64-linux"
-      "x86_64-darwin"
       "aarch64-darwin"
     ];
   };

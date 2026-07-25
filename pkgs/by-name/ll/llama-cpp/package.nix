@@ -38,7 +38,6 @@
   vulkanSupport ? false,
   rpcSupport ? false,
   openssl,
-  llama-cpp,
   shaderc,
   vulkan-headers,
   vulkan-loader,
@@ -81,7 +80,7 @@ let
 in
 effectiveStdenv.mkDerivation (finalAttrs: {
   pname = "llama-cpp";
-  version = "9925";
+  version = "10063";
 
   outputs = [
     "out"
@@ -92,7 +91,7 @@ effectiveStdenv.mkDerivation (finalAttrs: {
     owner = "ggml-org";
     repo = "llama.cpp";
     tag = "b${finalAttrs.version}";
-    hash = "sha256-yX8BrHA0fIgIozBGOXnN72KlfqIcR/mnO5ttUBLvxZE=";
+    hash = "sha256-mkvRK5vn0qK6iE8kMyN9Zo/zaaaKTzp6WV9QfrKrHWc=";
     leaveDotGit = true;
     postFetch = ''
       git -C "$out" rev-parse --short HEAD > $out/COMMIT
@@ -190,9 +189,6 @@ effectiveStdenv.mkDerivation (finalAttrs: {
   # upstream plans on adding targets at the cmakelevel, remove those
   # additional steps after that
   postInstall = ''
-    # Match previous binary name for this package
-    ln -sf $out/bin/llama-cli $out/bin/llama
-
     mkdir -p $out/include
     cp $src/include/llama.h $out/include/
 
