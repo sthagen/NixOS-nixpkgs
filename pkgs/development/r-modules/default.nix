@@ -1964,6 +1964,7 @@ let
     "NetLogoR"
     "av"
     "minired" # deprecated on CRAN
+    "netboost" # opens store path in append mode
     "valse"
     # keep-sorted end
 
@@ -2789,6 +2790,13 @@ let
     rstan = old.rstan.overrideAttrs (attrs: {
       env = (attrs.env or { }) // {
         NIX_CFLAGS_COMPILE = attrs.env.NIX_CFLAGS_COMPILE + " -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION";
+      };
+    });
+
+    rstanarm = old.rstanarm.overrideAttrs (attrs: {
+      env = (attrs.env or { }) // {
+        # needed to avoid "log limit exceeded" on Hydra
+        NIX_CFLAGS_COMPILE = attrs.env.NIX_CFLAGS_COMPILE + " -Wno-ignored-attributes";
       };
     });
 

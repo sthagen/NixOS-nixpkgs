@@ -85,17 +85,22 @@ let
 in
 customStdenv.mkDerivation (finalAttrs: {
   pname = "hyprland" + optionalString debug "-debug";
-  version = "0.56.0";
+  version = "0.56.1";
 
   src = fetchFromGitHub {
     owner = "hyprwm";
     repo = "hyprland";
     fetchSubmodules = true;
     tag = "v${finalAttrs.version}";
-    hash = "sha256-TWj51lMAgmEYl5x87wsKbuyWDk6QEG5t1uchw9zdJNE=";
+    hash = "sha256-u3DU6wmJ2PZk8kAOnx64MTlVxp/hZH+oUtXouj1E3+0=";
   };
 
   postPatch = ''
+    # Relax glaze dependency
+    # FIXME: this shouldn't be needed once the upstream code will adopt it
+    substituteInPlace CMakeLists.txt start/CMakeLists.txt hyprpm/CMakeLists.txt \
+      --replace-fail "glaze 7...<8" "glaze"
+
     # Fix hardcoded paths to /usr installation
     substituteInPlace src/render/types.hpp \
       --replace-fail /usr $out

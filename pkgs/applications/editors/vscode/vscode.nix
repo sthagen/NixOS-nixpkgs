@@ -10,7 +10,7 @@
   # sourceExecutableName is the name of the binary in the source archive over
   # which we have no control and it is needed to run the insider version as
   # documented in https://wiki.nixos.org/wiki/Visual_Studio_Code#Insiders_Build
-  # On MacOS the insider binary is still called code instead of code-insiders as
+  # On macOS the insider binary is still called code instead of code-insiders as
   # of 2023-08-06.
   sourceExecutableName ?
     "code" + lib.optionalString (isInsiders && stdenv.hostPlatform.isLinux) "-insiders",
@@ -34,16 +34,16 @@ let
 
   hash =
     {
-      x86_64-linux = "sha256-cieB7O7HQ2oJVFT4OfmaToXHh6pFPpBk7dltKZ8CSVM=";
-      aarch64-linux = "sha256-G5F497a4aL79ijDC3P1mP58w1aA+LmxpSljnU30zbOI=";
-      aarch64-darwin = "sha256-zBuCRa+EqMafAZahkJP1IajO1ceIIbOfDn5Qwl0Hw90=";
-      armv7l-linux = "sha256-O39xDcl34Qiafmi7OQn0AYBvqC4Yn7IyOLR/vsI2uHs=";
+      x86_64-linux = "sha256-rNrw+lV72hcglW/2XKDeCWXpLWj5fi2yI0GYRACTeu0=";
+      aarch64-linux = "sha256-ID4JWcseHwRulwpYs/32CcOtXs073CLNYhMy7ZRbcHk=";
+      aarch64-darwin = "sha256-j1h03B/uYvJBU6GppfTD8Qu8wo/56KBPyfTNy22dD24=";
+      armv7l-linux = "sha256-gw9Lix8K6/U13+tDQcIUVf0xw5yxkKdR0GE9bTNx17w=";
     }
     .${system} or throwSystem;
 
   # Please backport all compatible updates to the stable release.
   # This is important for the extension ecosystem.
-  version = "1.129.1";
+  version = "1.132.0";
 
   # The update server (update.code.visualstudio.com) expects the version path
   # segment in X.Y.Z form, so we normalize X.Y to X.Y.0 (e.g. "1.110" → "1.110.0").
@@ -51,7 +51,7 @@ let
   downloadVersion = lib.versions.pad 3 version;
 
   # This is used for VS Code - Remote SSH test
-  rev = "8a7abeba6e03ea3af87bfbce9a1b7e48fed567b8";
+  rev = "df53daabb18cd157bdb08c7f01c34df936cf12f4";
 in
 buildVscode {
   pname = "vscode" + lib.optionalString isInsiders "-insiders";
@@ -84,7 +84,7 @@ buildVscode {
     src = fetchurl {
       name = "vscode-server-${rev}.tar.gz";
       url = "https://update.code.visualstudio.com/commit:${rev}/server-linux-x64/stable";
-      hash = "sha256-LVd4zd90R8sM96tWe9gJacO2KFMQkruoZEO8kI3tzzg=";
+      hash = "sha256-rfWBY2apqMQwdF+W/Xg99w52BqNTEZmarFO3CyV668A=";
     };
     stdenv = stdenvNoCC;
   };

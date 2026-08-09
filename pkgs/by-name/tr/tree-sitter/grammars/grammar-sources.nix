@@ -2217,9 +2217,9 @@
   };
 
   qmljs = rec {
-    version = "0.3.0";
+    version = "0.3.1";
     url = "github:yuja/tree-sitter-qmljs?ref=${version}";
-    hash = "sha256-tV4lipey+OAQwygRFp9lQAzgCNiZzSu7p3Mr6CCBH1g=";
+    hash = "sha256-Yn3/adOETfPHBVCIVfI5qXUwC2wQr14pbhK2aUtdCiY=";
     meta = {
       license = lib.licenses.mit;
       maintainers = with lib.maintainers; [
@@ -2556,9 +2556,9 @@
   };
 
   sshclientconfig = rec {
-    version = "2026.7.16";
+    version = "2026.7.30";
     url = "github:metio/tree-sitter-ssh-client-config?ref=${version}";
-    hash = "sha256-u0CcoXBiNAfiFJ+CV35Y7ZhmYEHmphDQWGTgaClX3gw=";
+    hash = "sha256-pZcEtZ9PBpydW4iVLPmnYCgLyEsi/UqRs7Szc6oEwio=";
     meta = {
       license = lib.licenses.cc0;
       maintainers = with lib.maintainers; [
@@ -3109,9 +3109,9 @@
   };
 
   wit = {
-    version = "1.3.0";
+    version = "1.4.0";
     url = "github:bytecodealliance/tree-sitter-wit";
-    hash = "sha256-FG73R38Bw60+aT5YB/xpENCnQwoGMVjXRLjP1GdJEn4=";
+    hash = "sha256-63xH63s6lgticgRtMz7LCL1ThuXegn7qFCZgeQqIZH4=";
     # Fails strict schema validation due to Neovim ecosystem extensions
     excludeBrokenTreeSitterJson = true;
     meta = {

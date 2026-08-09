@@ -45,16 +45,16 @@ rustPlatform.buildRustPackage (finalAttrs: {
   __structuredAttrs = true;
 
   pname = "kopuz";
-  version = "0.12.0";
+  version = "0.14.0";
 
   src = fetchFromGitHub {
     owner = "Kopuz-org";
     repo = "kopuz";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-JvnvZdMYg4nqW+SCQixreIRC7NFqgtI0xx24rb//txo=";
+    hash = "sha256-sqfI4v3J6GAMTQaB+UhnLlwpfBKFJq2JUl7fZMt1yxE=";
   };
 
-  cargoHash = "sha256-gq5ZqkH2XZPpJImdFF97ro8uKtuwMbvNG49FQPL5y3w=";
+  cargoHash = "sha256-lu1PaWf02D0dK+IV+fIzIKNr8ORfkSHFnRhnPdXaueI=";
 
   env = {
     RUSTY_V8_ARCHIVE = librustyV8;

@@ -27,14 +27,14 @@ let
 in
 buildPythonPackage.override { inherit (torch) stdenv; } (finalAttrs: {
   pname = "exllamav3";
-  version = "1.1.0";
+  version = "1.3.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "turboderp-org";
     repo = "exllamav3";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-JlZt1UuTMmjaQWhiQZxzbHK3WgYYoBjP9PMEizEfsLY=";
+    hash = "sha256-pWdh5fiGZEkdSLXvI5DAEdj6XmBFquzew57L1YIsEg8=";
   };
 
   pythonRelaxDeps = [

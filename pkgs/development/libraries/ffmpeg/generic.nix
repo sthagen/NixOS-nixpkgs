@@ -43,7 +43,7 @@
   fetchpatch2,
 
   # Feature flags
-  withAlsa ? withHeadlessDeps && stdenv.hostPlatform.isLinux, # Alsa in/output supporT
+  withAlsa ? withHeadlessDeps && stdenv.hostPlatform.isLinux, # Alsa in/output support
   withAmf ? withHeadlessDeps && lib.meta.availableOn stdenv.hostPlatform amf, # AMD Media Framework video encoding
   withAom ? withHeadlessDeps, # AV1 reference encoder
   withAribb24 ? withFullDeps, # ARIB text and caption decoding
@@ -55,11 +55,16 @@
   withBzlib ? withHeadlessDeps,
   withCaca ? withFullDeps, # Textual display (ASCII art)
   withCdio ? withFullDeps && withGPL, # Audio CD grabbing
-  withCelt ? withFullDeps, # CELT decoder
+  withCelt ? withFullDeps && lib.versionOlder version "9.0", # CELT decoder
   withChromaprint ? withFullDeps, # Audio fingerprinting
   withCodec2 ? withFullDeps, # codec2 en/decoding
   withCuda ? withFullDeps && withNvcodec,
-  withCudaLLVM ? withHeadlessDeps && !stdenv.hostPlatform.isDarwin, # Cuda isn’t supported on Darwin
+  withCudaLLVM ?
+    withHeadlessDeps
+    # Cuda isn’t supported on Darwin
+    && !stdenv.hostPlatform.isDarwin
+    # Clang for our ppc64 targets needs cc-wrapper to work
+    && !(stdenv.buildPlatform.isPower64 && stdenv.buildPlatform.isBigEndian),
   withCudaNVCC ? withFullDeps && withUnfree && config.cudaSupport,
   withCuvid ? withHeadlessDeps && withNvcodec,
   withDav1d ? withHeadlessDeps, # AV1 decoder (focused on speed and correctness)
@@ -128,7 +133,11 @@
   withRubberband ? withFullDeps && withGPL && !stdenv.hostPlatform.isFreeBSD, # Rubberband filter
   withSamba ? withFullDeps && !stdenv.hostPlatform.isDarwin && withGPLv3, # Samba protocol
   withSdl2 ? withSmallDeps,
-  withShaderc ? withFullDeps && !stdenv.hostPlatform.isDarwin && lib.versionAtLeast version "5.0",
+  withShaderc ?
+    withFullDeps
+    && !stdenv.hostPlatform.isDarwin
+    && lib.versionAtLeast version "5.0"
+    && lib.versionOlder version "9.0",
   withShine ? withFullDeps, # Fixed-point MP3 encoding
   withSnappy ? withFullDeps, # Snappy compression, needed for hap encoding
   withSoxr ? withHeadlessDeps, # Resampling via soxr
@@ -605,7 +614,12 @@ stdenv.mkDerivation (
       (enableFeature withBzlib "bzlib")
       (enableFeature withCaca "libcaca")
       (enableFeature withCdio "libcdio")
+    ]
+    ++ optionals (versionOlder version "9.0") [
+      # FFMpeg >= 9 doesn't know about the flag anymore
       (enableFeature withCelt "libcelt")
+    ]
+    ++ [
       (enableFeature withChromaprint "chromaprint")
       (enableFeature withCodec2 "libcodec2")
       (enableFeature withCuda "cuda")
@@ -704,7 +718,7 @@ stdenv.mkDerivation (
       (enableFeature withSamba "libsmbclient")
       (enableFeature withSdl2 "sdl2")
     ]
-    ++ optionals (versionAtLeast version "5.0") [
+    ++ optionals (versionAtLeast version "5.0" && versionOlder version "9.0") [
       (enableFeature withShaderc "libshaderc")
     ]
     ++ [
@@ -819,10 +833,12 @@ stdenv.mkDerivation (
         toStrip =
           map placeholder (lib.remove "data" finalAttrs.outputs) # We want to keep references to the data dir.
           ++ lib.optional (stdenv.hostPlatform != stdenv.buildPlatform) buildPackages.stdenv.cc
+          ++ lib.optional withCudaLLVM buildPackages.clang.cc
           ++ lib.optional withMetal xcode;
       in
-      "remove-references-to ${lib.concatStringsSep " " (map (o: "-t ${o}") toStrip)} config.h";
+      "remove-references-to ${lib.concatMapStringsSep " " (o: "-t ${o}") toStrip} config.h";
 
+    __structuredAttrs = versionAtLeast version "9";
     strictDeps = true;
 
     nativeBuildInputs = [

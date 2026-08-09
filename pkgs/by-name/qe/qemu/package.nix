@@ -143,11 +143,11 @@ stdenv.mkDerivation (finalAttrs: {
     + lib.optionalString nixosTestRunner "-for-vm-tests"
     + lib.optionalString toolsOnly "-utils"
     + lib.optionalString userOnly "-user";
-  version = "11.0.2";
+  version = "11.0.3";
 
   src = fetchurl {
     url = "https://download.qemu.org/qemu-${finalAttrs.version}.tar.xz";
-    hash = "sha256-N0X26oji6H/g3IOLKx1OCncL9I4BodWhhoQqH/92zPU=";
+    hash = "sha256-2l/P/DJ2KCBWi4KO1DCnKIZNNNULbS8wNYWXdgy7BSM=";
   };
 
   depsBuildBuild = [
@@ -280,6 +280,12 @@ stdenv.mkDerivation (finalAttrs: {
       sha256 = "sha256-oC+bRjEHixv1QEFO9XAm4HHOwoiT+NkhknKGPydnZ5E=";
       revert = true;
     })
+
+    # Fix compilation of the TLS migration tests when gnutls is available
+    # but libtasn1 is not, as in the minimal build, see #547163.
+    # Submitted upstream, remove when included in a release:
+    # https://lists.gnu.org/archive/html/qemu-devel/2026-07/msg08469.html
+    ./fix-tls-tests-without-tasn1.patch
   ]
   ++ lib.optional nixosTestRunner ./force-uid0-on-9p.patch;
 

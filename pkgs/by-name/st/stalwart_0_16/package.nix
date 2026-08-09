@@ -16,7 +16,6 @@
   python3Packages,
   cacert,
   libredirect,
-  rust-jemalloc-sys,
   writeTextFile,
   withFoundationdb ? false,
   stalwartEnterprise ? false,
@@ -51,7 +50,7 @@ let
 in
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "stalwart" + (lib.optionalString stalwartEnterprise "-enterprise");
-  version = "0.16.14";
+  version = "0.16.16";
 
   __structuredAttrs = true;
 
@@ -59,10 +58,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "stalwartlabs";
     repo = "stalwart";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-FggCbIgn/7ncbuE02miIfwJh3Adaj0xcTTaOyYRHeQY=";
+    hash = "sha256-svf9J8oAMo427X6eiGdPiDMZ2/DdN7+FodGfhQL9hME=";
   };
 
-  cargoHash = "sha256-pdwXJ5/Ko+UloTYHEkXOcyw5gVuHmyAAHDfWoTFZ8FY=";
+  cargoHash = "sha256-QSEr2XPOh/iLARdjgCeClY2eN6UDF6E9Hoov4xprkag=";
 
   env = {
     # https://docs.rs/openssl/latest/openssl/#manual
@@ -72,7 +71,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ZSTD_SYS_USE_PKG_CONFIG = true;
     ROCKSDB_INCLUDE_DIR = "${rocksdb}/include";
     ROCKSDB_LIB_DIR = "${rocksdb}/lib";
-  };
+  }
+  //
+    lib.optionalAttrs
+      (stdenv.hostPlatform.isLinux && (stdenv.hostPlatform.isAarch64 || stdenv.hostPlatform.isArmv7))
+      {
+        # Required to fix Stalwart on ARM systems with 16 KB page size.
+        # Using rust-jemalloc-sys causes segmentation faults on x86_64.
+        JEMALLOC_SYS_WITH_LG_PAGE = 16;
+      };
 
   depsBuildBuild = [
     pkg-config
@@ -87,7 +94,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   buildInputs = [
     bzip2
     openssl
-    rust-jemalloc-sys
     sqlite
     zstd
   ]

@@ -12,18 +12,18 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "herdr";
-  version = "0.7.5";
+  version = "0.8.0";
 
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
-    owner = "ogulcancelik";
+    owner = "herdrdev";
     repo = "herdr";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-3BA8eredGku+vsL2Af7sUf43QiArR5XTHNrI+X11vFM=";
+    hash = "sha256-empFQ+hrnCh2JhOzQRWSCLV0YoZC3DXW3bY6k8YuJjk=";
   };
 
-  cargoHash = "sha256-lWnc0Ka0hp7bbm+dkKKj22Dbk+Cwrld86romXs3lzBs=";
+  cargoHash = "sha256-E1lBgpTFZwNjeALeg/atwbDFL/XQbUnvCdX7ohbAHAc=";
 
   zigDeps = zig_0_15.fetchDeps {
     inherit (finalAttrs) pname version;
@@ -55,7 +55,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
   '';
 
-  postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
+  postInstall = ''
+    mkdir --parents "$out"/share/herdr/skills/herdr
+    "$out"/bin/herdr --skill > "$_"/SKILL.md
+  ''
+  + lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     installShellCompletion --cmd herdr \
       --bash <("$out/bin/herdr" completion bash) \
       --fish <("$out/bin/herdr" completion fish) \
@@ -75,8 +79,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Agent multiplexer that lives in your terminal";
     homepage = "https://herdr.dev";
-    changelog = "https://github.com/ogulcancelik/herdr/releases/tag/v${finalAttrs.version}";
-    license = lib.licenses.agpl3Plus;
+    changelog = "https://github.com/herdrdev/herdr/releases/tag/v${finalAttrs.version}";
+    license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [
       kevinpita
       faukah

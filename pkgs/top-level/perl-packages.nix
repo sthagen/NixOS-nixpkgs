@@ -5201,7 +5201,7 @@ with self;
       hash = "sha256-p1KK8in6OhIF3NJakd59dKxvp9lSgbmTtV6Lb0+HuZE=";
     };
     meta = {
-      description = "Set of modules to make the module developement easier";
+      description = "Set of modules to make the module development easier";
       license = with lib.licenses; [
         artistic1
         gpl1Plus
@@ -8782,7 +8782,7 @@ with self;
       hash = "sha256-tpGbpJuf6Yv98+isyue5t/eNyeceu9C3/vekXZkyTMs=";
     };
     meta = {
-      description = "Perl extension for simple genrating of unique id's";
+      description = "Perl extension for simple generating of unique id's";
       license = with lib.licenses; [
         artistic1
         gpl1Plus
@@ -8987,8 +8987,21 @@ with self;
       url = "mirror://cpan/authors/id/S/SB/SBECK/Date-Manip-6.98.tar.gz";
       hash = "sha256-rP2KYFGbpM0YHIpnqD1/ApxtmrTosCEtxH5B1iEP2kk=";
     };
+    # Remove when updating to the first release containing both CVE fixes.
+    patches = [
+      (fetchpatch {
+        name = "CVE-2026-60074.patch";
+        url = "https://security.metacpan.org/patches/D/Date-Manip/6.99/CVE-2026-60074-r1.patch";
+        hash = "sha256-leXFfzLyy0yBpBXgT3u3ZyFaIbsbJSFzVkdam9hb3+0=";
+      })
+      (fetchpatch {
+        name = "CVE-2026-60075.patch";
+        url = "https://security.metacpan.org/patches/D/Date-Manip/6.99/CVE-2026-60075-r1.patch";
+        hash = "sha256-vMsOrUhrfn8efKRzfJ+jaypOHER8MlUIob5u88n/TAw=";
+      })
+    ];
     # for some reason, parsing /etc/localtime does not work anymore - make sure that the fallback "/bin/date +%Z" will work
-    patchPhase = ''
+    postPatch = ''
       sed -i "s#/bin/date#${pkgs.coreutils}/bin/date#" lib/Date/Manip/TZ.pm
     '';
     doCheck = !stdenv.hostPlatform.isi686; # build freezes during tests on i686
@@ -9543,7 +9556,7 @@ with self;
       commonsense
     ];
     meta = {
-      description = "Deliantra suppport module to read/write archetypes, maps etc";
+      description = "Deliantra support module to read/write archetypes, maps etc";
       license = with lib.licenses; [
         artistic1
         gpl1Plus
@@ -14289,7 +14302,7 @@ with self;
       hash = "sha256-JtCfgYNuQ+rkACjVKD/lYg/m/mJ4vz6462AMSOw0r8c=";
     };
     meta = {
-      description = "Perl extension for reading from continously updated files";
+      description = "Perl extension for reading from continuously updated files";
       license = with lib.licenses; [
         artistic1
         gpl1Plus
@@ -25470,7 +25483,7 @@ with self;
     buildInputs = [ TestFatal ];
     preCheck = "rm t/icmp_ps.t t/icmpv6_ps.t"; # ping socket tests fail
     meta = {
-      description = "Asyncronously check remote host for reachability";
+      description = "Asynchronously check remote host for reachability";
       homepage = "https://github.com/frioux/Net-Async-Ping";
       license = with lib.licenses; [
         artistic1
@@ -31685,7 +31698,7 @@ with self;
       StatisticsDistributions
     ];
     meta = {
-      description = "Perl module to perform T-test on 2 independent samples Statistics::TTest::Sufficient - Perl module to perfrom T-Test on 2 indepdent samples using sufficient statistics";
+      description = "Perl module to perform T-test on 2 independent samples Statistics::TTest::Sufficient - Perl module to perform T-Test on 2 independent samples using sufficient statistics";
       license = with lib.licenses; [
         artistic1
         gpl1Plus
@@ -37191,7 +37204,7 @@ with self;
       hash = "sha256-1RP7tRQT98oeZKG9zmGU337GB23qVQZtZ7lQGR7sMqk=";
     };
     meta = {
-      description = "Tied hash with specific methods overriden by callbacks";
+      description = "Tied hash with specific methods overridden by callbacks";
       license = lib.licenses.artistic1;
     };
   };

@@ -150,6 +150,10 @@ in
     ] "The baget module was removed due to the upstream package being unmaintained.")
     (mkRemovedOptionModule [ "services" "beegfs" ] "The BeeGFS module has been removed")
     (mkRemovedOptionModule [ "services" "beegfsEnable" ] "The BeeGFS module has been removed")
+    (mkRemovedOptionModule [
+      "services"
+      "bosun"
+    ] "bosun has been removed as it is no longer maintained upstream.")
     (mkRemovedOptionModule [ "services" "botamusique" ]
       "The botamusique module has been removed. The project was archived upstream in 2024: https://github.com/azlux/botamusique"
     )
@@ -411,6 +415,11 @@ in
     (mkRemovedOptionModule [ "services" "xserver" "windowManager" "ragnarwm" ] ''
       The services.xserver.windowManager.ragnarwm module has been removed
       because the corresponding package was removed from nixpkgs.
+    '')
+    (mkRemovedOptionModule [ "services" "xserver" "windowManager" "sawfish" ] ''
+      The services.xserver.windowManager.sawfish module and the corresponding
+      package have been removed from Nixpkgs because they depended on the
+      deprecated GTK2 engine.
     '')
     (mkRemovedOptionModule [
       "services"

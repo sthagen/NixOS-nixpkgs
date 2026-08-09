@@ -5,7 +5,7 @@
   config,
   cudaPackages,
   cudaSupport ? config.cudaSupport,
-  stdenv,
+  stdenvNoCC,
   fetchzip,
   makeWrapper,
 }:
@@ -24,7 +24,7 @@ let
     hash = "sha256-NNTIq02kisIjINS2TCh0Rb2UyRMSlJLR2+uzZmWxSVo=";
   };
 
-  appimageContents = appimageTools.extractType2 {
+  appimageContents = appimageTools.extract {
     inherit pname version;
     src = linux-src;
   };
@@ -62,7 +62,7 @@ let
     inherit passthru meta;
   };
 
-  darwin = stdenv.mkDerivation {
+  darwin = stdenvNoCC.mkDerivation {
     inherit pname version;
 
     src = darwin-src;
@@ -89,4 +89,4 @@ let
     inherit passthru meta;
   };
 in
-if stdenv.hostPlatform.isDarwin then darwin else linux
+if stdenvNoCC.hostPlatform.isDarwin then darwin else linux
