@@ -59,7 +59,7 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "crewai";
-  version = "1.15.10";
+  version = "1.15.15";
   pyproject = true;
   __structuredAttrs = true;
 

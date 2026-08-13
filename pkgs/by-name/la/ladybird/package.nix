@@ -56,7 +56,7 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
-    inherit (finalAttrs) src;
+    inherit (finalAttrs) pname version src;
     hash = "sha256-n0ACVH8NXwe7SIaGFoJ20WIGGR3XjcuLTwPSKGJpT5s=";
   };
 
@@ -220,5 +220,8 @@ stdenv.mkDerivation (finalAttrs: {
     ];
     mainProgram = "Ladybird";
     broken = stdenv.hostPlatform.isDarwin;
+    knownVulnerabilities = [
+      "CVE-2026-58592"
+    ];
   };
 })

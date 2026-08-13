@@ -26,7 +26,7 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "crewai-core";
-  version = "1.15.10";
+  version = "1.15.15";
   pyproject = true;
   __structuredAttrs = true;
 
@@ -34,7 +34,7 @@ buildPythonPackage (finalAttrs: {
     owner = "crewAIInc";
     repo = "crewAI";
     tag = finalAttrs.version;
-    hash = "sha256-O59F1TqQsTW2TBkuUTiNu4f35UeajRVSVc2HomxHK3Q=";
+    hash = "sha256-5c1kRoBOSFDqN04TaWgrQu3d0krQRh7Jx37k7nSq+ck=";
   };
 
   sourceRoot = "${finalAttrs.src.name}/lib/crewai-core";

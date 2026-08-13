@@ -2185,7 +2185,8 @@
       ];
     "fuelprices_dk" =
       ps: with ps; [
-      ]; # missing inputs: pybraendstofpriser
+        pybraendstofpriser
+      ];
     "fujitsu_anywair" =
       ps: with ps; [
       ];
@@ -2258,7 +2259,8 @@
       ];
     "gatus" =
       ps: with ps; [
-      ]; # missing inputs: gatus-api
+        gatus-api
+      ];
     "gaviota" =
       ps: with ps; [
       ];
@@ -2322,7 +2324,8 @@
       ];
     "geosphere_austria_warnings" =
       ps: with ps; [
-      ]; # missing inputs: pygeosphere-warnings
+        pygeosphere-warnings
+      ];
     "ghost" =
       ps: with ps; [
         aioghost
@@ -2417,7 +2420,8 @@
       ];
     "google_health" =
       ps: with ps; [
-      ]; # missing inputs: google-health-api
+        google-health-api
+      ];
     "google_mail" =
       ps: with ps; [
         google-api-python-client
@@ -8293,6 +8297,7 @@
     "fronius"
     "frontend"
     "frontier_silicon"
+    "fuelprices_dk"
     "fujitsu_fglair"
     "fully_kiosk"
     "fumis"
@@ -8301,6 +8306,7 @@
     "garages_amsterdam"
     "gardena_bluetooth"
     "gate"
+    "gatus"
     "gdacs"
     "generic"
     "generic_hygrostat"
@@ -8314,6 +8320,7 @@
     "geofency"
     "geonetnz_quakes"
     "geonetnz_volcano"
+    "geosphere_austria_warnings"
     "ghost"
     "gios"
     "github"
@@ -8329,6 +8336,7 @@
     "google_cloud"
     "google_drive"
     "google_generative_ai_conversation"
+    "google_health"
     "google_mail"
     "google_photos"
     "google_pubsub"

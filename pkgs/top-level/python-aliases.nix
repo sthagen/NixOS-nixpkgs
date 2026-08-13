@@ -151,6 +151,7 @@ mapAliases {
   BTrees = throw "'BTrees' has been renamed to/replaced by 'btrees'"; # Converted to throw 2025-10-29
   btsmarthub_devicelist = throw "'btsmarthub_devicelist' has been renamed to/replaced by 'btsmarthub-devicelist'"; # Converted to throw 2025-10-29
   bugzilla = throw "'bugzilla' has been renamed to/replaced by 'python-bugzilla'"; # Converted to throw 2025-10-29
+  bumpfontversion = throw "'bumpfontversion' has been removed as its no longer used"; # added 2026-08-09
   bunch = throw "bunch has been removed as it is unmaintained since inception"; # added 2025-05-31
   bz2file = throw "'bz2file' has beem removed, as it was not longed maintained upstream since 2020"; # added 2025-08-26
   calysto-scheme = throw "'calysto-scheme' has been removed as it is no longer maintained upstream"; # Added 2026-01-31
@@ -182,6 +183,7 @@ mapAliases {
   debian = throw "'debian' has been renamed to/replaced by 'python-debian'"; # Converted to throw 2025-10-29
   dedupe-pylbfgs = pylbfgs; # added 2026-06-28
   deepsearch-glm = throw "'deepsearch-glm' has been removed due to lack of upstream maintenance"; # Added 2025-03-04
+  dictionaries = throw "'dictionaries' has been removed as it was archived upstream"; # Added 2026-07-20
   dictpath = throw "'dictpath' has been renamed to/replaced by 'pathable'"; # Converted to throw 2025-10-29
   diff_cover = throw "'diff_cover' has been renamed to/replaced by 'diff-cover'"; # Converted to throw 2025-10-29
   digital-ocean = throw "'digital-ocean' has been renamed to/replaced by 'python-digitalocean'"; # Converted to throw 2025-10-29
@@ -469,6 +471,7 @@ mapAliases {
   postgrest-py = postgrest; # added 2025-08-29
   powerlineMemSegment = throw "'powerlineMemSegment' has been renamed to/replaced by 'powerline-mem-segment'"; # Converted to throw 2025-10-29
   prayer-times-calculator = throw "'prayer-times-calculator' has been renamed to/replaced by 'prayer-times-calculator-offline'"; # Converted to throw 2025-10-29
+  primer3 = primer3-py; # Added 2026-08-13
   prometheus_client = throw "'prometheus_client' has been renamed to/replaced by 'prometheus-client'"; # Converted to throw 2025-10-29
   prompt_toolkit = throw "'prompt_toolkit' has been renamed to/replaced by 'prompt-toolkit'"; # Converted to throw 2025-10-29
   protonup = throw "'protonup' has been renamed to/replaced by 'protonup-ng'"; # Converted to throw 2025-10-29
@@ -509,6 +512,7 @@ mapAliases {
   pyliblo = throw "pyliblo is unmaintained upstream and was removed from nixpkgs. Please use pyliblo3 instead"; # added 2025-06-23
   pylit = throw "'pylit' has been removed as it was broken and unmaintained upstream"; # Added 2025-11-29
   pymc3 = throw "'pymc3' has been renamed to/replaced by 'pymc'"; # Converted to throw 2025-10-29
+  pymedio = throw "pymedio was removed, as it is archived since 2025 in upstream. The modules 'dicom-numpy' and 'simpleitk' can be used as alternatives."; # added 2026-09-11
   pymelcloud = throw "'pymelcloud' has been renamed to/replaced by 'python-melcloud'"; # Converted to throw 2025-10-29
   pymsteams = throw "'pymsteams' was removed because API used was discontinued"; # Added 2026-06-04
   pymvglive = throw "'pymvglive' has been removed because it was unmaintained upstream and non-functional due to API changes"; # added 2026-06-10
@@ -516,6 +520,7 @@ mapAliases {
   pymyq = throw "'pymyq' has been renamed to/replaced by 'python-myq'"; # Converted to throw 2025-10-29
   pymystem3 = throw "'pymystem3' has been removed because it is broken and unmaintained"; # Added 2026-04-19
   pynotifier = py-notifier; # Added 2026-07-27
+  pynslookup = throw "'pynslookup' has been renamed to 'nslookup'"; # Added 2026-08-10
   pyobject = throw "'pyobject' has been removed because it was only supporting python 2"; # Added 2026-01-24
   pyosmium = warnAlias "'pyosmium' has been renamed to 'osmium'" osmium; # Added 2026-07-27
   pyownet = throw "pyownet was removed because Home Assistant switched to aio-ownet"; # added 2025-10-31
@@ -624,6 +629,7 @@ mapAliases {
   requests_oauthlib = throw "'requests_oauthlib' has been renamed to/replaced by 'requests-oauthlib'"; # Converted to throw 2025-10-29
   requests_toolbelt = throw "'requests_toolbelt' has been renamed to/replaced by 'requests-toolbelt'"; # Converted to throw 2025-10-29
   restructuredtext_lint = throw "'restructuredtext_lint' has been renamed to/replaced by 'restructuredtext-lint'"; # Converted to throw 2025-10-29
+  retinaface = retina-face; # Added 2026-08-13
   retry_decorator = throw "'retry_decorator' has been renamed to/replaced by 'retry-decorator'"; # Converted to throw 2025-10-29
   retworkx = throw "'retworkx' has been renamed to/replaced by 'rustworkx'"; # Converted to throw 2025-10-29
   rki-covid-parser = throw "rki-covid-parser has been removed because it is unmaintained and broken"; # added 2025-09-20

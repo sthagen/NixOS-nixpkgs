@@ -104,8 +104,12 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/{bin,lib/n8n}
     cp -r {packages,node_modules} $out/lib/n8n
 
+    # node must be on PATH: in internal runner mode the CLI spawns the
+    # JS task runner via `spawn('node', ...)`, and since 2.33 a failed
+    # spawn crashes n8n instead of being silently ignored
     makeWrapper $out/lib/n8n/packages/cli/bin/n8n $out/bin/n8n \
-      --set N8N_RELEASE_TYPE "stable"
+      --set N8N_RELEASE_TYPE "stable" \
+      --prefix PATH : ${lib.makeBinPath [ nodejs ]}
 
     # JavaScript runner
     makeWrapper ${nodejs}/bin/node $out/bin/n8n-task-runner \

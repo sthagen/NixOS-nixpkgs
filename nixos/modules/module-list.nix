@@ -185,6 +185,7 @@
   ./programs/bcc.nix
   ./programs/benchexec.nix
   ./programs/browserpass.nix
+  ./programs/btrfs-heatmap.nix
   ./programs/calls.nix
   ./programs/captive-browser.nix
   ./programs/ccache.nix
@@ -196,6 +197,7 @@
   ./programs/cnping.nix
   ./programs/comma.nix
   ./programs/command-not-found/command-not-found.nix
+  ./programs/compsize.nix
   ./programs/coolercontrol.nix
   ./programs/corefreq.nix
   ./programs/cpu-energy-meter.nix
@@ -293,6 +295,7 @@
   ./programs/npm.nix
   ./programs/ns-usbloader.nix
   ./programs/nushell.nix
+  ./programs/nvrs.nix
   ./programs/nxdumpclient.nix
   ./programs/oblogout.nix
   ./programs/obs-studio.nix
@@ -325,6 +328,7 @@
   ./programs/skim.nix
   ./programs/slock.nix
   ./programs/sniffnet.nix
+  ./programs/solaar.nix
   ./programs/soundmodem.nix
   ./programs/ssh.nix
   ./programs/starship.nix
@@ -547,6 +551,7 @@
   ./services/databases/hbase-standalone.nix
   ./services/databases/influxdb2.nix
   ./services/databases/influxdb.nix
+  ./services/databases/kvrocks.nix
   ./services/databases/lldap.nix
   ./services/databases/memcached.nix
   ./services/databases/monetdb.nix
@@ -638,6 +643,7 @@
   ./services/display-managers/greetd.nix
   ./services/display-managers/lemurs.nix
   ./services/display-managers/ly.nix
+  ./services/display-managers/noctalia-greeter.nix
   ./services/display-managers/plasma-login-manager.nix
   ./services/display-managers/regreet.nix
   ./services/display-managers/sddm.nix
@@ -1371,6 +1377,7 @@
   ./services/networking/opkssh/opkssh.nix
   ./services/networking/ostinato.nix
   ./services/networking/owamp.nix
+  ./services/networking/p2pool.nix
   ./services/networking/pangolin.nix
   ./services/networking/pdns-recursor.nix
   ./services/networking/pdnsd.nix
@@ -1498,6 +1505,7 @@
   ./services/networking/xrdp.nix
   ./services/networking/yggdrasil-jumper.nix
   ./services/networking/yggdrasil.nix
+  ./services/networking/zapret2.nix
   ./services/networking/zapret.nix
   ./services/networking/zenohd.nix
   ./services/networking/zerobin.nix
@@ -1804,6 +1812,7 @@
   ./services/web-apps/remark42.nix
   ./services/web-apps/reposilite.nix
   ./services/web-apps/rimgo.nix
+  ./services/web-apps/romm.nix
   ./services/web-apps/rss-bridge.nix
   ./services/web-apps/rsshub.nix
   ./services/web-apps/rustical.nix

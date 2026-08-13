@@ -14,8 +14,7 @@
   libvpx,
   libxslt,
   libnotify,
-  libappindicator-gtk2,
-  libappindicator-gtk3,
+  libappindicator,
   libxkbcommon,
   libGL,
   wrapGAppsHook3,
@@ -58,8 +57,7 @@ let
     libvpx
     libxslt
     libnotify
-    libappindicator-gtk2
-    libappindicator-gtk3
+    libappindicator
     libxkbcommon
     libGL
     atk

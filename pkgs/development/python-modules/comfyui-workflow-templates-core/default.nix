@@ -8,13 +8,13 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "comfyui-workflow-templates-core";
-  version = "0.3.295";
+  version = "0.3.307";
   pyproject = true;
 
   src = fetchPypi {
     pname = "comfyui_workflow_templates_core";
     inherit (finalAttrs) version;
-    hash = "sha256-Udr0hfQ41AkE+OXAt/YLJZ3QSQiHWNqjPqaZo0WFIrA=";
+    hash = "sha256-GIvshis5CvvmuY4IvEziIWSWo5DRg4s6RYpd2MnBGuE=";
   };
 
   build-system = [ setuptools ];
