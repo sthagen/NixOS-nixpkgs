@@ -6,16 +6,16 @@
 
 buildGoModule (finalAttrs: {
   pname = "goeland";
-  version = "0.27.0";
+  version = "0.29.2";
 
   src = fetchFromGitHub {
     owner = "slurdge";
     repo = "goeland";
     rev = "v${finalAttrs.version}";
-    sha256 = "sha256-oELciX2ESLoMydx1E3Oo4U1wf/GN+dMRpvpBBVCxRK0=";
+    sha256 = "sha256-U9n7qCUlft27GzGGBDmKmajWVl3v+v9WQmOB1/84KtQ=";
   };
 
-  vendorHash = "sha256-aITCLQoLIJEwlsZBQ9DuTqbnJYm8EGqNIX2dykq2QlU=";
+  vendorHash = "sha256-lBHX6reFEEbKcnf+TzuT5l7SsyVWoCA6HbkkL9UPwrg=";
 
   ldflags = [
     "-s"

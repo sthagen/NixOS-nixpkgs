@@ -82,6 +82,7 @@ let
         "keylight"
         "klipper"
         "knot"
+        "kvrocks"
         "libvirt"
         "lnd"
         "mail"
@@ -120,6 +121,7 @@ let
         "smartctl"
         "smokeping"
         "snmp"
+        "snowflake"
         "speedtest"
         "sql"
         "statsd"
@@ -134,6 +136,7 @@ let
         "varnish"
         "wireguard"
         "xray"
+        "yace"
         "zfs-siebenmann"
         "zfs"
       ]

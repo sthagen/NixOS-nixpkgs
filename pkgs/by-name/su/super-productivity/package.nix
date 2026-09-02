@@ -1,7 +1,7 @@
 {
   buildNpmPackage,
   copyDesktopItems,
-  electron_41,
+  electron_43,
   fetchFromGitHub,
   lib,
   makeDesktopItem,
@@ -15,12 +15,12 @@
   cargo,
 }:
 let
-  electron = electron_41;
+  electron = electron_43;
   nodejs = nodejs_22;
 in
 buildNpmPackage rec {
   pname = "super-productivity";
-  version = "18.17.0";
+  version = "18.20.1";
 
   inherit nodejs;
 
@@ -28,7 +28,7 @@ buildNpmPackage rec {
     owner = "super-productivity";
     repo = "super-productivity";
     tag = "v${version}";
-    hash = "sha256-Zp5qhSo6uj6eGM0mGFIhSuKHmX+eIpdVJhc2xfxMqpc=";
+    hash = "sha256-7bDPG3OPXVDzIjxpQw3XLXnLNSfjdq0pIlSqZhYZSIs=";
   };
 
   # Use custom fetcher for deps because super-productivity uses multiple
@@ -74,7 +74,7 @@ buildNpmPackage rec {
       dontInstall = true;
 
       outputHashMode = "recursive";
-      hash = "sha256-Gn3H6YQZTxINOSrfqh5hVFGe19b2UNVLKcR8Ey0S5Gk=";
+      hash = "sha256-esVslmbko0mbANyR67b4a6YHO4sRniv5ZVISNk1u0Bg=";
     }
   );
 
@@ -112,6 +112,12 @@ buildNpmPackage rec {
     # not our app directory, so it would search the wrong location.
     substituteInPlace electron/idle-time-handler.ts \
       --replace-fail "path.dirname(process.execPath)" "path.dirname(app.getAppPath())"
+  ''
+  + lib.optionalString stdenv.hostPlatform.isDarwin ''
+    # build/icon.icns is checked in and already contains all ten macOS icon
+    # representations. Avoid regenerating it with sandbox-unavailable iconutil.
+    substituteInPlace electron-builder.yaml \
+      --replace-fail "beforePack: ./tools/beforePack.js" ""
   '';
 
   buildPhase = ''

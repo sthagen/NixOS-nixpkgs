@@ -12,9 +12,49 @@
   buildPackages,
   which,
   python3,
-  # Build `libgcc_s` as well as `libgcc.a`, deriving it the way the monolithic
-  # build does rather than forcing it off.
-  enableShared ? stdenv.hostPlatform.hasSharedLibraries,
+
+  # A threading library separate from the libc, for targets whose libc does not
+  # offer the model we want — MinGW, with `mcfgthreads`. `null` means "whatever
+  # the libc offers". Whatever is passed has to be buildable without threads
+  # itself, since it comes before the libgcc that would otherwise provide them;
+  # see the bootstrap chain in ../../README.md.
+  threads ? null,
+
+  # Build `libgcc_s` as well as `libgcc.a`. Only ever worth turning *off*: the
+  # assertion below refuses to force it on where the default says it cannot
+  # work, since what follows from that is a link failure much further away.
+  enableShared ? __defaultEnableShared,
+
+  # The following are arguments rather than a `let` bindings only so
+  # that it is in scope for the default definition above.
+
+  # Whether to build a shared libgcc.
+  #
+  # In addition to being the default, this is also the *maximal* condition --
+  # by default we enable shared wherever possible, and enabling shared in more
+  # cases should not work. That is why this is also used in the assert below.
+  __defaultEnableShared ?
+    # Of course if the platform as a whole doesn't support shared libraries, we
+    # cannot either.
+    stdenv.hostPlatform.hasSharedLibraries
+    # libstdc++ and libgomp choke if we try to build a shared libgcc, because
+    # the shared libgcc has fewer symbols, with the unwinder and the emulated-
+    # TLS support in `libgcc_eh.a` instead, which those libraries don't link.
+    #
+    # We could perhaps patch those libraries to link `libgcc_eh.a` too as
+    # needed, but it didn't feel worth the fight at this time.
+    && !stdenv.hostPlatform.isCygwin
+    # Shared needs something to link against. Normally that is the libc, on any
+    # format -- PE/COFF included -- which is why every stage after the bootstrap
+    # builds it. ELF additionally allows it *before* the libc exists, because a
+    # shared object may keep undefined symbols; `libgcc_s.so` comes out with an
+    # empty `DT_NEEDED`. A PE/COFF DLL must resolve everything at link time, so
+    # there the bootstrap yields only `libgcc.a` -- all it is used for anyway.
+    && (__haveLinkableLibc || stdenv.hostPlatform.isElf),
+
+  # Whether the compiler has a libc that can actually be linked against, as
+  # opposed to nothing at all or a headers-only stand-in.
+  __haveLinkableLibc ? (stdenv.cc.libc or null) != null && !(stdenv.cc.libc.headersOnly or false),
 }:
 let
   # A libc needs libgcc to build, and a libgcc that can use the libc's threads
@@ -28,19 +68,37 @@ let
   # finished libc. Everything below reads that one value.
   libc = stdenv.cc.libc or null;
 
-  # Which threading model may be used is decided by the libc, so take it from
-  # there rather than guess — and pass it on in `passthru` so that `libstdcxx`,
-  # which has to agree, reads the same answer instead of probing for its own.
+  # Which threading model may be used is decided by whatever provides the
+  # threads — usually the libc, but the separate `threads` package where one
+  # is given — so take it from there rather than guess, and pass it on in
+  # `passthru` so that `libstdcxx`, which has to agree, reads the same answer
+  # instead of probing for its own.
   #
-  # This is what makes the bootstrap build single-threaded without being told
-  # to be: a headers-only package declares no `threadModel`, and a real libc
-  # does. That build exists only to get the libc built and is thrown away
-  # afterwards, so there is nothing to be gained from threading it, and plenty
-  # to go wrong: `gthr-posix.h` includes `<pthread.h>` unconditionally, which
-  # at that point is either absent or a stand-in for a libc that does not exist
-  # yet.
-  threadModel = if libc == null then "single" else libc.threadModel or "single";
+  # A headers-only package declares no `threadModel`, and a real libc does.
+  # That build exists only to get the libc built and is thrown away afterwards,
+  # so there is nothing to be gained from threading it, and plenty to go wrong:
+  # `gthr-posix.h` includes `<pthread.h>` unconditionally, which at that point
+  # is either absent or a stand-in for a libc that does not exist yet.
+  #
+  # If, in the future, we ever wish to use the headers-only build to avoid
+  # building those other libraries twice (other distros sometimes do this), we
+  # would declare the threading model unconditonally, and then there would be
+  # more cyclic symbol-level dependencies between them and us.
+  #
+  # libgcc (and libstdc++) read this attribute rather than probing the
+  # compiler, which in a split package set is configured separately from the
+  # runtimes and so can disagree. Only if we switched `cc-wrapper` to give GCC
+  # "spec files" (more powerful than CLI flags) would be be able to get the
+  # compiler `-v` flag correct with respect to the libraries it happend to be
+  # wrapped with.
+  #
+  # A `threads` package wins over the libc: that is the point of asking for
+  # one, and it is only passed to the builds that come after the libc.
+  threadModel = threads.threadModel or (libc.threadModel or "single");
 in
+
+assert enableShared -> __defaultEnableShared;
+
 stdenv.mkDerivation (finalAttrs: {
   pname = "libgcc" + lib.optionalString (libc == null) "-no-libc";
   inherit version;
@@ -64,6 +122,10 @@ stdenv.mkDerivation (finalAttrs: {
     which
     python3
   ];
+
+  # The `gthr-<model>.h` header for a non-libc threading model includes that
+  # library's own headers, and `libgcc_s` links against it.
+  buildInputs = lib.optional (threads != null) threads;
 
   patches = [
     (fetchpatch {
@@ -112,14 +174,70 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   postPatch =
-    # `SHLIB_LC` defaults to `-lc`, so the `libgcc_s.so` rule cannot link
-    # before libc exists.  The monolithic build clobbers it for exactly this
-    # reason; do the same rather than giving up on shared libgcc.  Runs while
-    # the working directory is still the monorepo root, before `sourceRoot`
-    # is repointed below.
-    lib.optionalString enableShared (
-      import ../../../common/libgcc-buildstuff.nix { inherit lib stdenv; }
+    # Both halves of this are ELF-specific, so it is applied only there.
+    # `crti.o`/`crtn.o` are an ELF convention; forcing the rule on a PE/COFF
+    # target makes the build assemble the generic ELF `crti.S` with a PE
+    # assembler, which fails outright. And on those targets `SHLIB_LC` is not
+    # `-lc` but the list of system import libraries the DLL needs, so blanking
+    # it would leave the shared libgcc missing its real dependencies.
+    #
+    # Trick to build a gcc that is capable of emitting shared libraries *without* having the
+    # hostPlatform libc available beforehand.  Taken from:
+    #   https://web.archive.org/web/20170222224855/http://frank.harvard.edu/~coldwell/toolchain/
+    #   https://web.archive.org/web/20170224235700/http://frank.harvard.edu/~coldwell/toolchain/t-linux.diff
+    lib.optionalString (enableShared && stdenv.hostPlatform.isElf) (
+      let
+
+        # crt{i,n}.o are the first and last (respectively) object file
+        # linked when producing an executable.  Traditionally these
+        # files are delivered as part of the C library, but on GNU
+        # systems they are in fact built by GCC.  Since libgcc needs to
+        # build before glibc, we can't wait for them to be copied by
+        # glibc.  At this early pre-glibc stage these files sometimes
+        # have different names.
+        crtstuff-ofiles =
+          if stdenv.hostPlatform.isPower64 then "ecrti.o ecrtn.o ncrti.o ncrtn.o" else "crti.o crtn.o";
+
+        # Normally, `SHLIB_LC` is set to `-lc`, which means that
+        # `libgcc_s.so` cannot be built until `libc.so` is available.
+        # The assignment below clobbers this variable, removing the
+        # `-lc`.
+        #
+        # On PowerPC we add `-mnewlib`, which means "libc has not been
+        # built yet".  This causes libgcc's Makefile to use the
+        # gcc-built `{e,n}crt{n,i}.o` instead of failing to find the
+        # versions which have been repackaged in libc as `crt{n,i}.o`
+        #
+        SHLIB_LC = lib.optionalString stdenv.hostPlatform.isPower64 "-mnewlib";
+
+      in
+      ''
+        echo 'libgcc.a: ${crtstuff-ofiles}' >> libgcc/Makefile.in
+        echo 'SHLIB_LC=${SHLIB_LC}' >> libgcc/Makefile.in
+      ''
+
+      # Meanwhile, crt{i,n}.S are not present on certain platforms
+      # (e.g. LoongArch64), resulting in the following error:
+      #
+      # No rule to make target '../../../gcc-xx.x.x/libgcc/config/loongarch/crti.S', needed by 'crti.o'.  Stop.
+      #
+      # For LoongArch64 and S390, a hacky workaround is to simply touch them,
+      # as the platform forces .init_array support.
+      #
+      # https://www.openwall.com/lists/musl/2022/11/09/3
+      #
+      # 'parsed.cpu.family' won't be correct for every platform.
+      + (lib.optionalString
+        (stdenv.hostPlatform.isLoongArch64 || stdenv.hostPlatform.isS390 || stdenv.hostPlatform.isAlpha)
+        ''
+          touch libgcc/config/${stdenv.hostPlatform.parsed.cpu.family}/crt{i,n}.S
+        ''
+      )
+      + lib.optionalString (stdenv.hostPlatform.isPower && !stdenv.hostPlatform.isPower64) ''
+        touch libgcc/config/rs6000/crt{i,n}.S
+      ''
     )
+
     # gcc's installed `limits.h` chains to the target libc's with
     # `#include_next`. Where the compiler has a libc — headers-only or real —
     # that resolves, and it has to: some targets build libgcc sources that need
@@ -268,6 +386,13 @@ stdenv.mkDerivation (finalAttrs: {
     "--disable-vtable-verify"
 
     "--with-system-zlib"
+
+    # State this rather than leave it to be inferred (see below): configure
+    # works it out from `host != target` alone, so a native build of the
+    # pre-libc stage would come out `false` and compile every file against a
+    # libc that is not there yet. A value given here wins, since configure only
+    # defaults it, with `: ${inhibit_libc=false}`.
+    "inhibit_libc=${if libc == null then "true" else "false"}"
   ]
   # `gcc/configure` sets `inhibit_libc=true` when host != target and
   # `$target_header_dir/stdio.h` does not exist. `inhibit_libc` makes
@@ -306,10 +431,9 @@ stdenv.mkDerivation (finalAttrs: {
     # $CC cannot link binaries, let alone run then
     "cross_compiling=true"
     "--enable-static"
-  ]
-  # `libgcc_s` needs no libc: it comes out with an empty `DT_NEEDED`, which is
-  # why the monolithic build ships one even from its nolibc stage.
-  ++ lib.optional (!enableShared) "--disable-shared";
+
+    (lib.enableFeature enableShared "shared")
+  ];
 
   # Set the variable back the way it was, see corresponding code in
   # `preConfigure`.

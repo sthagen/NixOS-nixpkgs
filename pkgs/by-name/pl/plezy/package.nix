@@ -27,13 +27,13 @@
 
 let
   pname = "plezy";
-  version = "2.13.0";
+  version = "2.17.0";
 
   src = fetchFromGitHub {
     owner = "edde746";
     repo = "plezy";
     tag = version;
-    hash = "sha256-pSGHB2sN/iySd3WKskvZeBo9H9M3YrsLtfw1LoW15tA=";
+    hash = "sha256-lY8uwz+OyrUFuFxRQ+2GuTLwJYigLy/JZYv4R5tRszM=";
   };
 
   simdutf = fetchurl {
@@ -146,7 +146,7 @@ let
 
     src = fetchurl {
       url = "https://github.com/edde746/plezy/releases/download/${version}/plezy-macos.dmg";
-      hash = "sha256-BF9jKIOzQYpQnJUXD8d2e2GSgIc6ZsjZaqceAc01QI0=";
+      hash = "sha256-MYuawP8NI5s+261XpEwAjnqvDFYjvCxZVAf84ph7peQ=";
     };
 
     nativeBuildInputs = [

@@ -1,24 +1,25 @@
 {
   lib,
-  stdenv,
-  fetchFromGitHub,
   cmake,
-  pkg-config,
+  fetchFromGitHub,
   intel-gmmlib,
   intel-graphics-compiler,
   level-zero,
   libva,
+  nix-update-script,
+  pkg-config,
+  stdenv,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "intel-compute-runtime";
-  version = "26.27.39122.11";
+  version = "26.31.39395.13";
 
   src = fetchFromGitHub {
     owner = "intel";
     repo = "compute-runtime";
     tag = finalAttrs.version;
-    hash = "sha256-CbOtBgYlvn5r15gB7skmmZ+ZvRwq7FFtouICakku0ls=";
+    hash = "sha256-/rZvPEI5EFhkeW2h7ebhtZnrU48N54mCAfkRgM3b1L4=";
   };
 
   nativeBuildInputs = [
@@ -73,6 +74,10 @@ stdenv.mkDerivation (finalAttrs: {
     } \
       $out/lib/intel-opencl/libigdrcl.so
   '';
+
+  passthru = {
+    updateScript = nix-update-script { extraArgs = [ "--use-github-releases" ]; };
+  };
 
   meta = {
     description = "Intel Graphics Compute Runtime oneAPI Level Zero and OpenCL, supporting 12th Gen and newer";

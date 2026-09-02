@@ -15,40 +15,35 @@ let
   projectInfo = lib.importJSON ../generated/projects.json;
 
   licenseInfo = lib.importJSON ../generated/licenses.json;
-  licensesBySpdxId =
-    (lib.mapAttrs' (_: v: {
-      name = v.spdxId or "unknown";
-      value = v;
-    }) lib.licenses)
-    // {
-      # https://community.kde.org/Policies/Licensing_Policy
-      "LicenseRef-KDE-Accepted-GPL" = lib.licenses.gpl3Plus;
-      "LicenseRef-KFQF-Accepted-GPL" = lib.licenses.gpl3Plus;
-      "LicenseRef-KDE-Accepted-LGPL" = lib.licenses.lgpl3Plus;
+  licensesBySpdxId = lib.licensesSpdx // {
+    # https://community.kde.org/Policies/Licensing_Policy
+    "LicenseRef-KDE-Accepted-GPL" = lib.licenses.gpl3Plus;
+    "LicenseRef-KFQF-Accepted-GPL" = lib.licenses.gpl3Plus;
+    "LicenseRef-KDE-Accepted-LGPL" = lib.licenses.lgpl3Plus;
 
-      # https://sjfonts.sourceforge.net/
-      "LicenseRef-SJFonts" = lib.licenses.gpl2Plus;
+    # https://sjfonts.sourceforge.net/
+    "LicenseRef-SJFonts" = lib.licenses.gpl2Plus;
 
-      # https://invent.kde.org/education/kiten/-/blob/master/LICENSES/LicenseRef-EDRDG.txt
-      "LicenseRef-EDRDG" = lib.licenses.cc-by-sa-30;
+    # https://invent.kde.org/education/kiten/-/blob/master/LICENSES/LicenseRef-EDRDG.txt
+    "LicenseRef-EDRDG" = lib.licenses.cc-by-sa-30;
 
-      # https://invent.kde.org/kdevelop/kdevelop/-/blob/master/LICENSES/LicenseRef-MIT-KDevelop-Ideal.txt
-      "LicenseRef-MIT-KDevelop-Ideal" = lib.licenses.mit;
+    # https://invent.kde.org/kdevelop/kdevelop/-/blob/master/LICENSES/LicenseRef-MIT-KDevelop-Ideal.txt
+    "LicenseRef-MIT-KDevelop-Ideal" = lib.licenses.mit;
 
-      # FIXME: typo lol
-      "ICS" = lib.licenses.isc;
-      "BSD-3-Clauses" = lib.licenses.bsd3;
+    # FIXME: typo lol
+    "ICS" = lib.licenses.isc;
+    "BSD-3-Clauses" = lib.licenses.bsd3;
 
-      # These are only relevant to Qt commercial users
-      "Qt-Commercial-exception-1.0" = null;
-      "LicenseRef-Qt-Commercial" = null;
-      "LicenseRef-Qt-Commercial-exception-1.0" = null;
+    # These are only relevant to Qt commercial users
+    "Qt-Commercial-exception-1.0" = null;
+    "LicenseRef-Qt-Commercial" = null;
+    "LicenseRef-Qt-Commercial-exception-1.0" = null;
 
-      # FIXME: ???
-      "LicenseRef-Qt-LGPL-exception-1.0" = null;
-      "LicenseRef-Qt-exception" = null;
-      None = null;
-    };
+    # FIXME: ???
+    "LicenseRef-Qt-LGPL-exception-1.0" = null;
+    "LicenseRef-Qt-exception" = null;
+    None = null;
+  };
 
   moveOutputsHook = makeSetupHook {
     name = "kf6-move-outputs-hook";
@@ -83,6 +78,7 @@ let
   # FIXME(later): this is wrong for cross, some of these things really need to go into nativeBuildInputs,
   # but cross is currently very broken anyway, so we can figure this out later.
   deps = map (dep: self.${dep}) filteredDepNames;
+  pyDeps = builtins.concatMap (dep: if dep ? python then [ dep.python ] else [ ]) deps;
 
   traceDuplicateDeps =
     attrName: attrValue:
@@ -121,6 +117,7 @@ let
     ]
     ++ lib.optionals hasPythonBindings [
       python3Packages.shiboken6
+      python3Packages.shiboken6-generator
       (python3.withPackages (ps: [
         ps.build
         ps.setuptools
@@ -131,9 +128,13 @@ let
     buildInputs = [
       qt6.qtbase
     ]
-    ++ lib.optionals hasPythonBindings [
-      python3Packages.pyside6
-    ]
+    ++ lib.optionals hasPythonBindings (
+      [
+        python3Packages.pyside6
+      ]
+      # pyDeps manually propagated in moveOutputsHook
+      ++ pyDeps
+    )
     ++ extraBuildInputs;
 
     # FIXME: figure out what to propagate here

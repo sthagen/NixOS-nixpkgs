@@ -262,6 +262,7 @@
       "stephenstubbs": 18033664,
       "t-monaghan": 62273348,
       "thefloweringash": 42933,
+      "thtrf": 82712122,
       "tricktron": 16036882,
       "uncenter": 47499684,
       "usertam": 22500027,
@@ -657,7 +658,6 @@
       "djacu": 7043297
     },
     "members": {
-      "Sigmanificient": 53050011,
       "flyfloh": 74379,
       "thilobillerbeck": 7442383
     },
@@ -694,8 +694,8 @@
       "eclairevoyant": 848000
     },
     "members": {
-      "Eveeifyeve": 88671402,
-      "daylinmorgan": 47667941
+      "daylinmorgan": 47667941,
+      "eveeifyeve": 88671402
     },
     "name": "nim"
   },
@@ -734,7 +734,7 @@
     "description": "Manage the current nixpkgs/NixOS release",
     "id": 3620128,
     "maintainers": {
-      "jopejoe1": 34899572,
+      "Scrumplex": 11587657,
       "yayayayaka": 73759599
     },
     "members": {},
@@ -788,10 +788,11 @@
     "description": "Maintain Pantheon desktop environment and platform",
     "id": 4786995,
     "maintainers": {
+      "bobby285271": 20080233,
       "davidak": 91113
     },
     "members": {
-      "bobby285271": 20080233
+      "amz-x": 18249234
     },
     "name": "Pantheon"
   },
@@ -855,6 +856,7 @@
       "lorenzleutgeb": 542154
     },
     "members": {
+      "Mic92": 96200,
       "ju1m": 21160136,
       "matthiasbeyer": 427866
     },
@@ -895,7 +897,6 @@
       "0x4A6F": 9675338
     },
     "members": {
-      "DarkKirb": 23011243,
       "dramforever": 2818072,
       "fgaz": 8182846,
       "jonhermansen": 660911
@@ -959,7 +960,6 @@
     },
     "members": {
       "andir": 638836,
-      "leona-ya": 11006031,
       "pyrox0": 35778371
     },
     "name": "Security review"

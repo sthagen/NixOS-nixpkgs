@@ -11,6 +11,7 @@
   wayland-scanner,
   makeBinaryWrapper,
   autoAddDriverRunpath,
+  installShellFiles,
 
   # libraries
   cairo,
@@ -49,29 +50,17 @@
   gitMinimal,
 }:
 
-let
-  # nixpkgs stb doesn't have stb_image_resize2.h which noctalia needs
-  stb' = stb.overrideAttrs {
-    version = "0-unstable-2025-10-26";
-    src = fetchFromGitHub {
-      owner = "nothings";
-      repo = "stb";
-      rev = "f1c79c02822848a9bed4315b12c8c8f3761e1296";
-      hash = "sha256-BlyXJtAI7WqXCTT3ylww8zoG0hBxaojJnQDvdQOXJPE=";
-    };
-  };
-in
 stdenv.mkDerivation (finalAttrs: {
   __structuredAttrs = true;
 
   pname = "noctalia";
-  version = "5.0.0-beta.8";
+  version = "5.0.0-beta.10";
 
   src = fetchFromGitHub {
     owner = "noctalia-dev";
     repo = "noctalia";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-qy3Cheg/FQ9ZaBPTIgdq4IkmkNtC6XBpmtC8nT+wU/Y=";
+    hash = "sha256-WijEuINvjcXMO/e/zMqwG1lyGiWNosnVt1QY+ko0Rw8=";
   };
 
   strictDeps = true;
@@ -83,6 +72,7 @@ stdenv.mkDerivation (finalAttrs: {
     wayland-scanner
     makeBinaryWrapper
     autoAddDriverRunpath
+    installShellFiles
   ];
 
   buildInputs = [
@@ -111,7 +101,7 @@ stdenv.mkDerivation (finalAttrs: {
     pipewire
     polkit
     sdbus-cpp_2
-    stb'
+    stb
     systemdLibs
     tomlplusplus
     wayland
@@ -121,9 +111,17 @@ stdenv.mkDerivation (finalAttrs: {
 
   mesonFlags = [
     (lib.mesonEnable "tests" false)
+    (lib.mesonEnable "jemalloc" (!stdenv.hostPlatform.isMusl))
   ];
 
   mesonBuildType = "release";
+
+  postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
+    installShellCompletion --cmd noctalia \
+      --bash <($out/bin/noctalia completions bash) \
+      --fish <($out/bin/noctalia completions fish) \
+      --zsh <($out/bin/noctalia completions zsh)
+  '';
 
   # plugins are installed by cloning their repos
   postFixup = ''

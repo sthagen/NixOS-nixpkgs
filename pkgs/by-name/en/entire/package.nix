@@ -11,16 +11,16 @@
 
 buildGoModule (finalAttrs: {
   pname = "entire";
-  version = "0.9.0";
+  version = "0.10.2";
 
   src = fetchFromGitHub {
     owner = "entireio";
     repo = "cli";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-5OsO0WOVr9cmlq15d3XKmLZt7GUPpaQBr8FYlgfhtvc=";
+    hash = "sha256-Di9o3D7LGpIxq4XYTIDSesNsQ1Z65qdOBWsiveXdWgg=";
   };
 
-  vendorHash = "sha256-PuUUkvpnIC0PfUjXw4P5+TWNygf20dLz+5miBSrVbDE=";
+  vendorHash = "sha256-b+WjeqPM+NhKJZrV+2sl3Ihy6ABPR+TB82EKzqyUBYU=";
 
   subPackages = [ "cmd/entire" ];
 

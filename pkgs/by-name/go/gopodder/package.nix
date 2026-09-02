@@ -5,20 +5,19 @@
   gitUpdater,
   versionCheckHook,
 }:
-
 buildGoModule (finalAttrs: {
   pname = "gopodder";
-  version = "1.2.2";
+  version = "1.2.4";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "cbrgm";
     repo = "gopodder";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-e+d2/1yAhUc88Hn8lAACfK3LGhGiPxQX+FjzNQc6Wqk=";
+    hash = "sha256-OXjtaWm1A/y5RQt/RvwDhRi9eVCZ+mvNRx23XjrK6XM=";
   };
 
-  vendorHash = "sha256-3SJbVflgwhIw2JmWoKUVjVL8fXWHfYXlm7iI3hYbTpE=";
+  vendorHash = "sha256-MHgh84kzztPLETf3O24lNcfVuOKntKYidczqG8qEyzE=";
 
   ldflags = [
     "-s"

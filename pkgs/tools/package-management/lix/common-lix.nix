@@ -122,10 +122,11 @@ let
           [project options]
           builtin-dep-closure = @deps@
         '';
-        passAsFile = [ "input" ];
+        __structuredAttrs = true;
       }
       ''
-        substitute $inputPath $out --replace-fail @deps@ "$(cat ${deps})"
+        printf "%s" "$input" > $out
+        substituteInPlace $out --replace-fail @deps@ "$(cat ${deps})"
       '';
 
   # curl 8.21.0 /somehow/ breaks Lix unit tests.
@@ -311,6 +312,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   propagatedBuildInputs = [
     boehmgc
+    boost
     nlohmann_json
   ];
 

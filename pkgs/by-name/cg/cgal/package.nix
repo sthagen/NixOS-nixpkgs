@@ -18,6 +18,9 @@ stdenv.mkDerivation (finalAttrs: {
     sha256 = "sha256-+8MoFnRehxpcvetiRTF+nb8QrhqVewqx7bALT94Auo0=";
   };
 
+  strictDeps = true;
+  __structuredAttrs = true;
+
   patches = [ ./cgal_path.patch ];
 
   nativeBuildInputs = [ cmake ];
@@ -54,7 +57,6 @@ stdenv.mkDerivation (finalAttrs: {
     platforms = lib.platforms.all;
     maintainers = with lib.maintainers; [
       raskin
-      drew-dirac
       ylannl
     ];
   };

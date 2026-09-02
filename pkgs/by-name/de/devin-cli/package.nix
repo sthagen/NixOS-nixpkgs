@@ -7,24 +7,24 @@
 }:
 
 let
-  version = "3000.3.27";
+  version = "3000.6.2";
 
   throwSystem = throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}";
 
   srcs = {
     x86_64-linux = fetchurl {
       url = "https://static.devin.ai/cli/${version}/devin-${version}-x86_64-unknown-linux.tar.gz";
-      hash = "sha256-ytVqE6uiYFZ7Z+Wakm0jRWTcGmG536hU1ob6Ljw7lIs=";
+      hash = "sha256-6p5wSh4DXCjfWkwfsROtjOR1fTw9WoRx1CPUvPSBZ4g=";
     };
 
     aarch64-linux = fetchurl {
       url = "https://static.devin.ai/cli/${version}/devin-${version}-aarch64-unknown-linux.tar.gz";
-      hash = "sha256-9QoNI9V55CKl+EJ+3dMQyWW3xz4w5Z3QxHZextsypFc=";
+      hash = "sha256-cmsBAHzHBG/BZdMsxx1AxzmO2rMEV903v0jA0kdKfqE=";
     };
 
     aarch64-darwin = fetchurl {
       url = "https://static.devin.ai/cli/${version}/devin-${version}-aarch64-apple-darwin.tar.gz";
-      hash = "sha256-7AR+o5bVP8NwwcfG3iEWN1hc+ZpcXNXc2/fkx/KiBiY=";
+      hash = "sha256-lxbqBCDqEg6iyInwe0IW7vINXqm2db5FgK79gstG8fQ=";
     };
   };
 in

@@ -91,6 +91,10 @@ with lib.maintainers;
     shortName = "Blockchains";
   };
 
+  boot-security = {
+    github = "boot-security";
+  };
+
   budgie = {
     members = [
       bobby285271
@@ -402,6 +406,7 @@ with lib.maintainers;
       GaetanLepage
       natsukium
       thomasjm
+      haansn08
     ];
     scope = "Maintain Jupyter and related packages.";
     shortName = "Jupyter";
@@ -710,7 +715,6 @@ with lib.maintainers;
 
   sage = {
     members = [
-      timokau
       raskin
       collares
     ];

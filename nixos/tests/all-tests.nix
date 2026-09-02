@@ -20,8 +20,12 @@ let
     isFunction
     mapAttrs
     elem
+    meta
     recurseIntoAttrs
     ;
+
+  callSupportedTest =
+    test: if meta.availableOn pkgs.stdenv.hostPlatform test then callTest test else { };
 
   # TODO: remove when handleTest is gone (make sure nixosTests and nixos/release.nix#tests are unaffected)
   # TODO: when removing, also deprecate `test` attribute in ../lib/testing/run.nix
@@ -29,7 +33,7 @@ let
     val:
     if isAttrs val then
       if (val ? test) then
-        callTest val
+        callSupportedTest val
       else
         mapAttrs (n: s: if n == "passthru" then s else discoverTests s) val
     else if isFunction val then
@@ -120,7 +124,7 @@ let
         if tree ? recurseForDerivations && tree.recurseForDerivations then
           mapAttrs (k: findTests) (removeAttrs tree [ "recurseForDerivations" ])
         else
-          callTest tree;
+          callSupportedTest tree;
 
       runTest =
         arg:
@@ -286,10 +290,12 @@ in
   };
   bind = runTest ./bind.nix;
   bird2 = import ./bird.nix {
+    inherit (pkgs) lib;
     inherit runTest;
     package = pkgs.bird2;
   };
   bird3 = import ./bird.nix {
+    inherit (pkgs) lib;
     inherit runTest;
     package = pkgs.bird3;
   };
@@ -301,6 +307,7 @@ in
   blockbook-frontend = runTest ./blockbook-frontend.nix;
   blocky = runTest ./blocky.nix;
   bluesky-pds = runTest ./bluesky-pds.nix;
+  bookorbit = runTest ./web-apps/bookorbit.nix;
   bookstack = runTest ./bookstack.nix;
   boot = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./boot.nix { };
   boot-stage1 = runTest ./boot-stage1.nix;
@@ -320,6 +327,7 @@ in
   budgie = runTest ./budgie.nix;
   buildbot = runTest ./buildbot.nix;
   buildkite-agents = runTest ./buildkite-agents.nix;
+  bulwark = runTest ./bulwark.nix;
   c2fmzq = runTest ./c2fmzq.nix;
   caddy = runTest ./caddy.nix;
   cadvisor = runTestOn [ "x86_64-linux" ] ./cadvisor.nix;
@@ -328,6 +336,7 @@ in
   calibre-server = import ./calibre-server.nix { inherit pkgs runTest; };
   calibre-web = runTest ./calibre-web.nix;
   canaille = runTest ./canaille.nix;
+  cardwire = runTest ./cardwire.nix;
   cassandra = runTest {
     imports = [ ./cassandra.nix ];
     _module.args.getPackage = pkgs: pkgs.cassandra;
@@ -689,7 +698,10 @@ in
   ghostunnel = runTest ./ghostunnel.nix;
   ghostunnel-modular = runTest ./ghostunnel-modular.nix;
   gitdaemon = runTest ./gitdaemon.nix;
-  gitea = handleTest ./gitea.nix { giteaPackage = pkgs.gitea; };
+  gitea = import ./gitea.nix {
+    inherit pkgs runTest;
+    inherit (pkgs) lib;
+  };
   github-runner = runTest ./github-runner.nix;
   gitlab = import ./gitlab {
     inherit runTest;
@@ -779,6 +791,7 @@ in
     imports = [ ./hbase.nix ];
     _module.args.getPackage = pkgs: pkgs.hbase_2_5;
   };
+  hddtemp = runTest ./hddtemp.nix;
   headplane = runTest ./headplane.nix;
   headscale = runTest ./headscale.nix;
   healthchecks = runTest ./web-apps/healthchecks.nix;
@@ -793,7 +806,8 @@ in
   hibernate-systemd-stage-1 = handleTestOn [ "x86_64-linux" ] ./hibernate.nix {
     systemdStage1 = true;
   };
-  hitch = handleTest ./hitch { };
+  hister = runTest ./hister.nix;
+  hitch = runTest ./hitch;
   hledger-web = runTest ./hledger-web.nix;
   hockeypuck = runTest ./hockeypuck.nix;
   holo-daemon-modular-service = runTest ./holo-daemon-modular.nix;
@@ -804,11 +818,15 @@ in
   homer = handleTest ./homer { };
   honk = runTest ./honk.nix;
   hoogle = runTest ./hoogle.nix;
-  hostname = handleTest ./hostname.nix { };
+  hostname = import ./hostname.nix {
+    inherit pkgs runTest;
+    inherit (pkgs) lib;
+  };
   hound = runTest ./hound.nix;
   hub = runTest ./git/hub.nix;
   hydra = runTest ./hydra;
   i18n = runTest ./i18n.nix;
+  i2pd = runTest ./i2pd.nix;
   i3wm = runTest ./i3wm.nix;
   icecast = runTest ./icecast.nix;
   icingaweb2 = runTest ./icingaweb2.nix;
@@ -884,6 +902,7 @@ in
   kanboard = runTest ./web-apps/kanboard.nix;
   kanidm = runTest ./kanidm.nix;
   kanidm-provisioning = runTest ./kanidm-provisioning.nix;
+  kapla = runTest ./kapla.nix;
   karakeep = runTest ./web-apps/karakeep.nix;
   karma = runTest ./karma.nix;
   kavita = runTest ./kavita.nix;
@@ -892,6 +911,7 @@ in
   kea = runTest ./kea.nix;
   keepalived = discoverTests (import ./keepalived.nix);
   keepassxc = runTest ./keepassxc.nix;
+  kener = runTest ./kener.nix;
   kerberos = handleTest ./kerberos/default.nix { };
   kernel-generic = handleTest ./kernel-generic { };
   kernel-latest-ath-user-regd = runTest ./kernel-latest-ath-user-regd.nix;
@@ -899,8 +919,14 @@ in
   keter = runTest ./keter.nix;
   kexec = runTest ./kexec.nix;
   keycloak = discoverTests (import ./keycloak.nix);
-  keyd = handleTest ./keyd.nix { };
-  keymap = handleTest ./keymap.nix { };
+  keyd = import ./keyd.nix {
+    inherit pkgs runTest;
+    inherit (pkgs) lib;
+  };
+  keymap = import ./keymap.nix {
+    inherit pkgs runTest;
+    inherit (pkgs) lib;
+  };
   kimai = runTest ./kimai.nix;
   kismet = runTest ./kismet.nix;
   kiwix-serve = runTest ./kiwix-serve;
@@ -911,6 +937,7 @@ in
   komga = runTest ./komga.nix;
   komodo-periphery = runTest ./komodo-periphery.nix;
   krb5 = discoverTests (import ./krb5);
+  krill = runTest ./krill.nix;
   ksm = runTest ./ksm.nix;
   kthxbye = runTest ./kthxbye.nix;
   kubernetes = handleTestOn [ "x86_64-linux" ] ./kubernetes { };
@@ -993,7 +1020,7 @@ in
   lomiri-mediaplayer-app = runTest ./lomiri-mediaplayer-app.nix;
   lomiri-music-app = runTest ./lomiri-music-app.nix;
   lomiri-system-settings = runTest ./lomiri-system-settings.nix;
-  lorri = handleTest ./lorri/default.nix { };
+  lorri = runTest ./lorri/default.nix;
   luks = runTest ./luks.nix;
   luks-suspend = runTest ./luks-suspend.nix;
   lvm2 = import ./lvm2 { inherit pkgs runTest; };
@@ -1065,11 +1092,18 @@ in
   mollysocket = runTest ./mollysocket.nix;
   monado = runTest ./monado.nix;
   monetdb = runTest ./monetdb.nix;
-  mongodb = runTest ./mongodb.nix;
+  mongodb = runTest (
+    { config, ... }:
+    {
+      imports = [ ./mongodb.nix ];
+      _module.args.testName = "mongodb";
+    }
+  );
   mongodb-ce = runTest (
     { config, ... }:
     {
       imports = [ ./mongodb.nix ];
+      _module.args.testName = "mongodb-ce";
       defaults.services.mongodb.package = config.node.pkgs.mongodb-ce;
     }
   );
@@ -1119,13 +1153,18 @@ in
   navidrome = runTest ./navidrome.nix;
   nbd = runTest ./nbd.nix;
   ncdns = runTest ./ncdns.nix;
-  ncps = runTest ./ncps.nix;
+  ncps = runTest {
+    imports = [ ./ncps.nix ];
+    _module.args.testName = "ncps";
+  };
   ncps-custom-sqlite-directory = runTest {
     imports = [ ./ncps.nix ];
+    _module.args.testName = "ncps-custom-sqlite-directory";
     defaults.services.ncps.cache.databaseURL = "sqlite:/path/to/ncps/db.sqlite";
   };
   ncps-custom-storage-local = runTest {
     imports = [ ./ncps.nix ];
+    _module.args.testName = "ncps-custom-storage-local";
     defaults.services.ncps.cache.storage.local = "/path/to/ncps";
   };
   ncps-ha-pg-redis = runTest ./ncps-ha-pg-redis.nix;
@@ -1139,9 +1178,7 @@ in
   nebula.reload = runTest ./nebula/reload.nix;
   neo4j = runTest ./neo4j.nix;
   netbird = runTest ./netbird.nix;
-  netbox-upgrade = runTest ./web-apps/netbox-upgrade.nix;
-  netbox_4_4 = handleTest ./web-apps/netbox/default.nix { netbox = pkgs.netbox_4_4; };
-  netbox_4_5 = handleTest ./web-apps/netbox/default.nix { netbox = pkgs.netbox_4_5; };
+  netbox = runTest ./web-apps/netbox/default.nix;
   netdata = runTest ./netdata.nix;
   netfoil = runTest ./netfoil.nix;
   netplan = runTest ./netplan.nix;
@@ -1161,9 +1198,11 @@ in
   nghttpx = runTest ./nghttpx.nix;
   nginx = runTest ./nginx.nix;
   nginx-auth = runTest ./nginx-auth.nix;
+  nginx-compression = runTest ./nginx-compression.nix;
   nginx-etag = runTest ./nginx-etag.nix;
   nginx-etag-compression = runTest ./nginx-etag-compression.nix;
   nginx-globalredirect = runTest ./nginx-globalredirect.nix;
+  nginx-grpc-error-pages = runTest ./nginx-grpc-error-pages.nix;
   nginx-http3 = import ./nginx-http3.nix { inherit pkgs runTest; };
   nginx-lua = runTest ./nginx-lua.nix;
   nginx-mime = runTest ./nginx-mime.nix;
@@ -1308,6 +1347,7 @@ in
   openvswitch = runTest ./openvswitch.nix;
   optee = runTestOn [ "aarch64-linux" ] ./optee.nix;
   orangefs = runTest ./orangefs.nix;
+  orbit = runTestOn [ "x86_64-linux" ] ./orbit.nix;
   orthanc = runTest ./orthanc.nix;
   os-prober = handleTestOn [ "x86_64-linux" ] ./os-prober.nix { };
   osquery = handleTestOn [ "x86_64-linux" ] ./osquery.nix { };
@@ -1334,6 +1374,7 @@ in
   pantalaimon = runTest ./matrix/pantalaimon.nix;
   pantheon = runTest ./pantheon.nix;
   paperless = runTest ./paperless.nix;
+  papra = runTest ./papra.nix;
   paretosecurity = runTest ./paretosecurity.nix;
   parsedmarc = handleTest ./parsedmarc { };
   part-db = runTest ./web-apps/part-db.nix;
@@ -1423,21 +1464,25 @@ in
   pretix = runTest ./web-apps/pretix.nix;
   printing-service = runTest {
     imports = [ ./printing.nix ];
+    _module.args.testName = "printing-service";
     _module.args.socket = false;
     _module.args.listenTcp = true;
   };
   printing-service-notcp = runTest {
     imports = [ ./printing.nix ];
+    _module.args.testName = "printing-service-notcp";
     _module.args.socket = false;
     _module.args.listenTcp = false;
   };
   printing-socket = runTest {
     imports = [ ./printing.nix ];
+    _module.args.testName = "printing-socket";
     _module.args.socket = true;
     _module.args.listenTcp = true;
   };
   printing-socket-notcp = runTest {
     imports = [ ./printing.nix ];
+    _module.args.testName = "printing-socket-notcp";
     _module.args.socket = true;
     _module.args.listenTcp = false;
   };
@@ -1519,6 +1564,7 @@ in
   rnsd = runTest ./networking/rnsd.nix;
   robustirc-bridge = runTest ./robustirc-bridge.nix;
   romm = runTest ./romm.nix;
+  rosec = runTest ./rosec.nix;
   rosenpass = runTest ./rosenpass.nix;
   roundcube = runTest ./roundcube.nix;
   routinator = handleTest ./routinator.nix { };
@@ -1536,6 +1582,7 @@ in
   rsyslogd = handleTest ./rsyslogd.nix { };
   rtkit = runTest ./rtkit.nix;
   rtorrent = runTest ./rtorrent.nix;
+  rundeck = runTest ./rundeck.nix;
   rush = runTest ./rush.nix;
   rustfs = runTest ./rustfs.nix;
   rustical = runTest ./web-apps/rustical.nix;
@@ -1610,6 +1657,7 @@ in
   sslh = handleTest ./sslh.nix { };
   sssd-ldap = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd-ldap.nix { };
   sssd-legacy-config = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd-legacy-config.nix { };
+  sstorytime = runTest ./sstorytime.nix;
   stalwart = runTest ./stalwart/stalwart.nix;
   stardust-xr-atmosphere = runTest ./stardust-xr/atmosphere.nix;
   stardust-xr-flatland = runTest ./stardust-xr/flatland.nix;
@@ -1641,7 +1689,22 @@ in
   swapspace = handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./swapspace.nix { };
   sway = runTest ./sway.nix;
   swayfx = runTest ./swayfx.nix;
-  switchTest = runTest ./switch-test.nix;
+  switchTest = runTest {
+    imports = [ ./switch-test.nix ];
+    _module.args.part = "services";
+  };
+  switchTest-basics = runTest {
+    imports = [ ./switch-test.nix ];
+    _module.args.part = "basics";
+  };
+  switchTest-units = runTest {
+    imports = [ ./switch-test.nix ];
+    _module.args.part = "units";
+  };
+  switchTest-user = runTest {
+    imports = [ ./switch-test.nix ];
+    _module.args.part = "user";
+  };
   sx = runTest ./sx.nix;
   sympa = runTest ./sympa.nix;
   syncthing = runTest ./syncthing/main.nix;
@@ -1770,7 +1833,7 @@ in
   terminal-emulators = handleTest ./terminal-emulators.nix { };
   test-containers-bittorrent = runTest ./test-containers-bittorrent.nix;
   thanos = runTest ./thanos.nix;
-  thelounge = handleTest ./thelounge.nix { };
+  thelounge = runTest ./thelounge.nix;
   tiddlywiki = runTest ./tiddlywiki.nix;
   tigervnc = handleTest ./tigervnc.nix { };
   tika = runTest ./tika.nix;
@@ -1794,6 +1857,7 @@ in
   tracee = handleTestOn [ "x86_64-linux" ] ./tracee.nix { };
   traefik = runTestOn [ "aarch64-linux" "x86_64-linux" ] ./traefik.nix;
   trafficserver = runTest ./trafficserver.nix;
+  trailbase = runTest ./trailbase;
   tranquil-pds = runTest ./tranquil-pds.nix;
   transfer-sh = runTest ./transfer-sh.nix;
   transmission_4 = runTest ./transmission.nix;
@@ -1819,6 +1883,7 @@ in
   ucarp = runTest ./ucarp.nix;
   udisks2 = runTest ./udisks2.nix;
   udp-over-tcp = runTest ./udp-over-tcp.nix;
+  udp514-journal = runTest ./udp514-journal.nix;
   ulogd = runTest ./ulogd/ulogd.nix;
   umami = runTest ./web-apps/umami.nix;
   umurmur = runTest ./umurmur.nix;
@@ -1840,9 +1905,13 @@ in
   userborn = runTest ./userborn.nix;
   userborn-immutable-etc = runTest ./userborn-immutable-etc.nix;
   userborn-immutable-users = runTest ./userborn-immutable-users.nix;
+  userborn-migration = runTest ./userborn-migration.nix;
   userborn-mutable-etc = runTest ./userborn-mutable-etc.nix;
   userborn-mutable-users = runTest ./userborn-mutable-users.nix;
   userborn-static = runTest ./userborn-static.nix;
+  userborn-subids = runTest ./userborn-subids.nix;
+  userborn-subids-immutable-etc = runTest ./userborn-subids-immutable-etc.nix;
+  userborn-subids-mutable-etc = runTest ./userborn-subids-mutable-etc.nix;
   ustreamer = runTest ./ustreamer.nix;
   utils = pkgs.callPackage ./utils { inherit runTest; };
   utmp = runTest ./utmp.nix;
@@ -1896,7 +1965,10 @@ in
     inherit pkgs runTest;
     inherit (pkgs) lib;
   };
-  wine = handleTest ./wine.nix { };
+  wine = import ./wine.nix {
+    inherit pkgs runTest;
+    inherit (pkgs) lib;
+  };
   wireguard = import ./wireguard {
     inherit pkgs runTest;
     inherit (pkgs) lib;

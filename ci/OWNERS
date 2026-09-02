@@ -199,7 +199,7 @@ nixos/modules/installer/tools/nix-fallback-paths.nix  @Artturin @Ericson2314 @lo
 /doc/languages-frameworks/haskell.section.md  @sternenseemann @maralorn @wolfgangwalther
 /maintainers/scripts/haskell                  @sternenseemann @maralorn @wolfgangwalther
 /pkgs/development/compilers/ghc               @sternenseemann @maralorn @wolfgangwalther
-/pkgs/development/compilers/ghc/9.6.6-debian-binary.nix  @sternenseemann @maralorn @wolfgangwalther @OPNA2608
+/pkgs/development/compilers/ghc/9.6.6-debian-binary.nix  @sternenseemann @maralorn @wolfgangwalther @OPNA2608 @liberodark @NixOS/loongarch64
 /pkgs/development/haskell-modules             @sternenseemann @maralorn @wolfgangwalther
 /pkgs/test/haskell                            @sternenseemann @maralorn @wolfgangwalther
 /pkgs/top-level/release-haskell.nix           @sternenseemann @maralorn @wolfgangwalther
@@ -361,7 +361,10 @@ pkgs/development/python-modules/buildcatrust/ @ajs124 @lukegb @mweinelt
 /pkgs/applications/editors/kakoune     @philiptaron
 
 # LuaPackages
+/pkgs/development/interpreters/lua-5  @NixOS/lua
+/pkgs/development/interpreters/luajit @NixOS/lua
 /pkgs/development/lua-modules         @NixOS/lua
+/pkgs/top-level/lua-packages.nix      @NixOS/lua
 
 # Neovim
 /pkgs/applications/editors/neovim           @NixOS/neovim
@@ -466,9 +469,8 @@ nixos/tests/incus/                      @adamcstephens
 pkgs/by-name/in/incus/                  @adamcstephens
 pkgs/by-name/lx/lxc*                    @adamcstephens
 
-# ExpidusOS, Flutter
+# Flutter
 /pkgs/development/compilers/flutter @RossComputerGuy
-/pkgs/desktops/expidus              @RossComputerGuy
 
 # GNU Tar & Zip
 /pkgs/by-name/gn/gnutar        @RossComputerGuy
@@ -526,3 +528,7 @@ pkgs/by-name/wa/warp-terminal/  @emilytrau @imadnyc @4evy @johnrtitor
 /nixos/lib/testing                                          @NixOS/test-driver
 /nixos/tests/nixos-test-driver                              @NixOS/test-driver
 /nixos/modules/virtualisation/nspawn-container/run-nspawn   @NixOS/test-driver
+
+# Boot security
+/pkgs/by-name/au/autopen    @NixOS/boot-security
+/pkgs/misc/signed-packages  @NixOS/boot-security

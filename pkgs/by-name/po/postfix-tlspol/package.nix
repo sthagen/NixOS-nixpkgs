@@ -7,13 +7,13 @@
 
 buildGoModule (finalAttrs: {
   pname = "postfix-tlspol";
-  version = "1.12.1";
+  version = "1.13.0";
 
   src = fetchFromGitHub {
     owner = "Zuplu";
     repo = "postfix-tlspol";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-K2vByo2QtSfDjywTHQxYRidWosWMkIiFiLd4bjMoccY=";
+    hash = "sha256-wSE2Z5iZeE8YcDqeS5efUz7HKyuJkqtisj/YVfk/AXo=";
   };
 
   vendorHash = null;

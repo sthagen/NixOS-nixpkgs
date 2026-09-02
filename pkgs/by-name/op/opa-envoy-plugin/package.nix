@@ -14,16 +14,16 @@ assert
 
 buildGoModule (finalAttrs: {
   pname = "opa-envoy-plugin";
-  version = "1.19.0-envoy";
+  version = "1.20.1-envoy";
 
   src = fetchFromGitHub {
     owner = "open-policy-agent";
     repo = "opa-envoy-plugin";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-AL72s/ONOqzLCfmjzOoqgSEJMIRFtWiEC5z42BCHGPY=";
+    hash = "sha256-bQDBb1Gqzf9Nh5qpwHJIavoP8XbqfrZztcuAV3y2oyE=";
   };
 
-  vendorHash = "sha256-FlrsN2RUFrl6v2LsVrRM8nCxc2JOPBKzhiqU+n62AS8=";
+  vendorHash = "sha256-Lb2keeNffmWmSyuuSRxEEgLBp9JU7NCZEGCXQyq1uLg=";
 
   nativeBuildInputs = [ installShellFiles ];
 

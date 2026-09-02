@@ -9,16 +9,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "dalfox";
-  version = "3.2.0";
+  version = "3.2.2";
 
   src = fetchFromGitHub {
     owner = "hahwul";
     repo = "dalfox";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-YLM//zRdwnlIL+lZH3HyxwstViLm9o+XykT/e/iz6CQ=";
+    hash = "sha256-cTpZGRBlrZEb5H08UIqrefpE0TGNYH6sIHebhQZHtpk=";
   };
 
-  cargoHash = "sha256-hhvmvnPYo6L0VreP8SKoiz2Xp9spgXuZL54DGxyzHY4=";
+  cargoHash = "sha256-F2JkgwGt7uhl7vq2UI1/l1/C5QTVrPXgBj5mxUu7pYI=";
 
   nativeBuildInputs = [ pkg-config ];
 

@@ -5,6 +5,7 @@
   pkgsCross,
   testers,
   fetchFromGitHub,
+  fetchpatch,
   buildPackages,
   makeBinaryWrapper,
   ninja,
@@ -203,13 +204,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   inherit pname;
-  version = "261.1";
+  version = "261.2";
 
   src = fetchFromGitHub {
     owner = "systemd";
     repo = "systemd";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-4iOitWGdRmGgJjEXGWtq2lEhPtGguma+qrjTShrps2g=";
+    hash = "sha256-w0Fxx+zYBs806whyaKBytGwSgn89ARdukAm6Hp+XlQQ=";
   };
 
   # PATCH POLICY
@@ -239,6 +240,13 @@ stdenv.mkDerivation (finalAttrs: {
     ./0003-add-rootprefix-to-lookup-dir-paths.patch
     ./0004-path-util.h-add-placeholder-for-DEFAULT_PATH_NORMAL.patch
     ./0005-core-don-t-taint-on-unmerged-usr.patch
+    # Remove this with v262
+    # Fixes an issue for switch-to-configuration
+    (fetchpatch {
+      name = "postpone-d-bus-queue-dispatch.patch";
+      url = "https://github.com/systemd/systemd/commit/266b3e50218e2b27cd67d2371c165bf53ad3bf00.patch";
+      hash = "sha256-dEEzZUqicnmgDuXVBV1y0BxzgKbb6Q47Dmxj+O71bFE=";
+    })
   ]
   ++ lib.optionals (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isGnu) [
     ./0006-timesyncd-disable-NSCD-when-DNSSEC-validation-is-dis.patch
@@ -366,7 +374,7 @@ stdenv.mkDerivation (finalAttrs: {
     gnutls
   ]
   ++ lib.optionals (withHomed || withCryptsetup) [ p11-kit ]
-  ++ lib.optionals (withHomed || withCryptsetup) [ libfido2 ]
+  ++ lib.optionals (withHomed || withCryptsetup || withFido2) [ libfido2 ]
   ++ lib.optionals withLibBPF [ libbpf ]
   ++ lib.optional withTpm2Tss tpm2-tss
   ++ lib.optional withUkify (
@@ -789,7 +797,7 @@ stdenv.mkDerivation (finalAttrs: {
           systemd-repart-basic
           systemd-repart-create-root
           systemd-repart-encrypt-tpm2
-          # systemd-repart-factory-reset # broken upstream
+          systemd-repart-factory-reset
           ;
       }
       // {
@@ -798,11 +806,14 @@ stdenv.mkDerivation (finalAttrs: {
           fsck-systemd-stage-1
           hibernate-systemd-stage-1
           switchTest
-          # systemd # broken on master
+          switchTest-basics
+          switchTest-units
+          switchTest-user
+          systemd
           systemd-analyze
           systemd-bpf
           systemd-confinement
-          # systemd-coredump # broken on master
+          systemd-coredump
           systemd-cryptenroll
           systemd-credentials-tpm2
           systemd-escaping
@@ -821,14 +832,13 @@ stdenv.mkDerivation (finalAttrs: {
           systemd-initrd-networkd-openvpn
           systemd-initrd-vlan
           systemd-journal
-          # systemd-journal-gateway # broken on master
+          systemd-journal-gateway
           systemd-journal-upload
           # systemd-machinectl # broken on master
           systemd-networkd
           systemd-networkd-bridge
           systemd-networkd-dhcpserver
           systemd-networkd-dhcpserver-static-leases
-          systemd-networkd-ipv6-prefix-delegation
           systemd-networkd-vrf
           systemd-no-tainted
           systemd-nspawn
@@ -842,12 +852,13 @@ stdenv.mkDerivation (finalAttrs: {
           systemd-sysusers-mutable
           systemd-sysusers-immutable
           systemd-sysusers-password-option-override-ordering
-          # systemd-timesyncd-nscd-dnssec # broken on master
+          systemd-timesyncd
+          systemd-timesyncd-nscd-dnssec
           systemd-user-linger
           systemd-user-tmpfiles-rules
           systemd-misc
           systemd-userdbd
-          # systemd-homed # broken on master
+          systemd-homed
           ;
       };
 

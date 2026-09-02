@@ -13,14 +13,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "pycaption";
-  version = "2.3.5";
+  version = "2.3.9";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "pbs";
     repo = "pycaption";
     tag = finalAttrs.version;
-    hash = "sha256-oHgRh6J4+22PWMlglzIMwvptK54vB0dpmzZ7jD0klF0=";
+    hash = "sha256-qqWL9l4UITw6uPXuo9fhr0GdTVv2AIMr+Lxfm8OctNc=";
   };
 
   build-system = [ setuptools ];

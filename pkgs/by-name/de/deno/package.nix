@@ -36,13 +36,14 @@ let
 in
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "deno";
-  version = "2.9.4";
+  version = "2.9.5";
 
   __structuredAttrs = true;
 
   outputs = [
     "out"
     "denort"
+    "libdenort"
   ];
 
   src = fetchFromGitHub {
@@ -50,10 +51,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     repo = "deno";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true; # required for tests
-    hash = "sha256-ivch++yGRUyWtox/5QqomC4DlTvMBxK+gIcN9/7tt5E=";
+    hash = "sha256-IEtUgjk0sYvHCRBH8JI4NVhT0J5qhmF0kJ5zq00n0ro=";
   };
 
-  cargoHash = "sha256-ynbHLZXkPPYpsC4dCu6jA6x8ftiTHWZ/uxzdbUcUaa0=";
+  cargoHash = "sha256-b2RxrG2EEKRuEXQG818NwVQV7AgqZOyBYBW3/kGckZg=";
 
   patches = [
     ./patches/0002-tests-replace-hardcoded-paths.patch
@@ -95,6 +96,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   # Disable the default feature `upgrade` (which controls the self-update subcommand and update checks)
   buildNoDefaultFeatures = true;
+  buildFeatures = [
+    "v8"
+  ];
 
   # work around "error: unknown warning group '-Wunused-but-set-parameter'"
   env.NIX_CFLAGS_COMPILE = lib.optionalString stdenv.cc.isClang "-Wno-unknown-warning-option";
@@ -240,14 +244,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
   preInstall = ''
     # Delete generated shared libraries that aren't needed in the final package
     find ./target \
-      -name "libswc_common${stdenv.hostPlatform.extensions.sharedLibrary}" -o \
+      \( -name "libswc_common${stdenv.hostPlatform.extensions.sharedLibrary}" -o \
       -name "libtest_ffi${stdenv.hostPlatform.extensions.sharedLibrary}" -o \
-      -name "libtest_napi${stdenv.hostPlatform.extensions.sharedLibrary}" \
+      -name "libtest_napi${stdenv.hostPlatform.extensions.sharedLibrary}" \) \
       -delete
   '';
 
   postInstall = ''
     moveToOutput "bin/denort" "$denort"
+    moveToOutput "lib/libdenort${stdenv.hostPlatform.extensions.sharedLibrary}" "$libdenort"
 
     # Remove non-essential binaries like test_server
     find $out/bin/* -not -name "deno" -delete

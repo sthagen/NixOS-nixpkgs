@@ -66,7 +66,7 @@
   R,
   sng,
   sqlite,
-  squashfsTools,
+  squashfs-tools,
   systemdUkify,
   tcpdump,
   ubootTools,
@@ -112,12 +112,12 @@ in
 # Note: when upgrading this package, please run the list-missing-tools.sh script as described below!
 python.pkgs.buildPythonApplication rec {
   pname = "diffoscope";
-  version = "326";
+  version = "329";
   pyproject = true;
 
   src = fetchurl {
     url = "https://diffoscope.org/archive/diffoscope-${version}.tar.bz2";
-    hash = "sha256-Km0CvLx8BQ44Nwzxd9kHVFgVOnWPc+vly3ThcENGMOQ=";
+    hash = "sha256-UPe+Mko9r4qoSTPbDurF64aZgmPLizV8iK2UlCfyfxk=";
   };
 
   outputs = [
@@ -188,7 +188,7 @@ python.pkgs.buildPythonApplication rec {
       pgpdump
       sng
       sqlite
-      squashfsTools
+      squashfs-tools
       unzip
       xxd
       xz

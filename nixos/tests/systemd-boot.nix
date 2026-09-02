@@ -288,7 +288,6 @@ in
         {
           imports = [ common ];
           environment.systemPackages = [ pkgs.sbctl ];
-          virtualisation.useSecureBoot = true;
         };
 
       testScript =
@@ -933,6 +932,8 @@ in
               "test -e /sys/firmware/efi/efivars/LoaderBootCountPath-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f"
           )
 
+          # systemd-bless-boot should have already removed the "+2" suffix from the boot entry
+          machine.wait_for_unit("systemd-bless-boot.service")
           check_generation(1)
           check_current_system(orig)
 

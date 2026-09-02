@@ -7,16 +7,16 @@
 
 buildGoModule (finalAttrs: {
   pname = "dblab";
-  version = "0.47.3";
+  version = "0.48.1";
 
   src = fetchFromGitHub {
     owner = "danvergara";
     repo = "dblab";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-gaCTvULdyZQRF3Fc3JRz3rWHyc68zwqxIcaujFq6RaA=";
+    hash = "sha256-6TNczWq7EAMNo1z2zIpLG9TshSuvQ5S+QOI2XH3S/ik=";
   };
 
-  vendorHash = "sha256-widzVKA85qslxuuO/ledG+IUvr+vw2HUiD3kVbe2D2A=";
+  vendorHash = "sha256-nFgwoX2GxjRdqXcocTvz7L0NA+kN1+67uTpler8di/E=";
   # Fix case-insensitive conflicts producing platform-dependent checksums
   # https://github.com/microsoft/go-mssqldb/issues/234
   proxyVendor = true;

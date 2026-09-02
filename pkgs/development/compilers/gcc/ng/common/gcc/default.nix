@@ -16,7 +16,6 @@
   langObjCpp ? stdenv.targetPlatform.isDarwin,
   langJit ? false,
   enablePlugin ? lib.systems.equals stdenv.hostPlatform stdenv.buildPlatform,
-  runCommand,
   buildPackages,
   isl,
   zlib,
@@ -35,10 +34,14 @@
   fromVCS ? false,
   getVersionFile,
   buildGccPackages,
+  libbacktrace,
+  autoreconfHook269,
   bintools,
-  # Build the shared runtime libraries, and so have the driver's specs emit
-  # `-lgcc_s`. Derived the way the monolithic build derives it.
-  enableTargetShared ? stdenv.targetPlatform.hasSharedLibraries,
+  enableShared ? stdenv.hostPlatform.hasSharedLibraries,
+  # Whether the driver's specs emit `-lgcc_s`. Derived as the monolithic build
+  # derives it, Cygwin excluded: there they would also emit `-lgcc_eh`, which no
+  # stage of this package set produces.
+  enableTargetShared ? stdenv.targetPlatform.hasSharedLibraries && !stdenv.targetPlatform.isCygwin,
 }:
 let
   inherit (stdenv) targetPlatform hostPlatform;
@@ -88,6 +91,13 @@ stdenv.mkDerivation (finalAttrs: {
       hash = "sha256-54/HzM+aeWq8CTkQu8Pualqc/LgRLS0+8EY8uPUsD+s=";
     })
 
+    # Make --disable-fixinclude compatible with Cygwin
+    (fetchpatch {
+      name = "mingw-drop-obsolete-STMP_FIXINC-override.patch";
+      url = "https://github.com/gcc-mirror/gcc/commit/7fb73dd7bb8aabab1416f0b28e6df45131a8e8ab.diff";
+      hash = "sha256-FmFJISfXt+/TCRcd4rYfwacBiTqu+/OKw0VvLh46Hz0=";
+    })
+
     # Not upstream yet; a follow-up to the series above (drop the `/raw` to
     # read them). They extend that series' `<target>-as` preference to `PATH`,
     # where we put the cross toolchain, so a cross compiler finds its tools
@@ -119,9 +129,43 @@ stdenv.mkDerivation (finalAttrs: {
     })
 
     (getVersionFile "gcc/fix-collect2-paths.diff")
+
+    # From the posting to gcc-patches, which covers every component that links
+    # libbacktrace. Take only this component's non-generated files: the
+    # generated ones are rebuilt by `autoreconfHook269` below, against a GCC
+    # slightly different from the one the patch was made against.
+    (fetchpatch {
+      name = "system-libbacktrace.patch";
+      url = "https://inbox.sourceware.org/gcc-patches/20260814013206.3818461-1-git@JohnEricson.me/raw";
+      includes = [
+        "config/libbacktrace.m4"
+        "gcc/configure.ac"
+        "gcc/Makefile.in"
+      ];
+      hash = "sha256-i+J4B5f+zrXERPqJxwjEm/JHZhDsV6Gmxx/n9+G0shM=";
+    })
   ];
 
   enableParallelBuilding = true;
+
+  # The patches above touch `gcc/configure.ac`, and this is the one component
+  # whose `configure` nothing regenerates on its own -- it has no
+  # `Makefile.am`, so it is not part of any `autoreconf` the other packages
+  # run. Only `gcc` is named, because reconfiguring the whole monorepo is both
+  # slow and unnecessary.
+  #
+  # Regenerating rather than carrying `configure` in the patch keeps that patch
+  # to what was actually written, and lets it apply to a tree whose generated
+  # files have moved on.
+  autoreconfFlags = "--verbose --force gcc";
+
+  # `aclocal` finds the macro added under `config/` through `ACLOCAL_AMFLAGS`
+  # in a `Makefile.am`, which `gcc` does not have. Without this the macro is
+  # simply undefined, and `autoconf` leaves its name in the script as literal
+  # shell rather than failing.
+  preAutoreconf = ''
+    export ACLOCAL_PATH="$PWD/config''${ACLOCAL_PATH:+:$ACLOCAL_PATH}"
+  '';
 
   hardeningDisable = [
     "format" # Some macro-indirect formatting in e.g. libcpp
@@ -154,6 +198,7 @@ stdenv.mkDerivation (finalAttrs: {
   depsBuildTarget = [ (bintools.bintools or bintools) ];
 
   nativeBuildInputs = [
+    autoreconfHook269
     texinfo
     which
     gettext
@@ -165,6 +210,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
+    libbacktrace
     gmp
     libmpc
     mpfr
@@ -211,11 +257,6 @@ stdenv.mkDerivation (finalAttrs: {
     + ''
       cd "$buildRoot"
 
-      mkdir -p "$buildRoot/libbacktrace/.libs"
-      cp ${buildGccPackages.libbacktrace}/lib/libbacktrace.a "$buildRoot/libbacktrace/.libs/libbacktrace.a"
-      cp -r ${buildGccPackages.libbacktrace}/lib/*.la "$buildRoot/libbacktrace"
-      cp -r ${buildGccPackages.libbacktrace.dev}/include/*.h "$buildRoot/libbacktrace"
-
       mkdir -p "$buildRoot/libiberty/pic"
       cp ${buildGccPackages.libiberty}/lib/libiberty.a "$buildRoot/libiberty"
       cp ${buildGccPackages.libiberty}/lib/libiberty_pic.a "$buildRoot/libiberty/pic/libiberty.a"
@@ -261,10 +302,7 @@ stdenv.mkDerivation (finalAttrs: {
     "--disable-install-libiberty"
     "--disable-multilib"
     "--disable-nls"
-    # Derived rather than forced off: the driver's specs only emit `-lgcc_s`
-    # for a target that has shared libraries, so hardcoding this leaves every
-    # throwing C++ program unlinkable even though `libgcc_s.so` is built and
-    # findable. Same predicate the monolithic build uses.
+    (lib.enableFeature enableShared "host-shared")
     (lib.enableFeature enableTargetShared "shared")
     "--enable-default-pie"
     "--enable-languages=${
@@ -296,16 +334,26 @@ stdenv.mkDerivation (finalAttrs: {
     # the driver finds them on `PATH` under their target-prefixed names, via
     # the `find_a_program` patches above.
     "--with-system-zlib"
+    "--with-system-libbacktrace"
     "--without-included-gettext"
+
+    # No host platform headers are exposed to gcc, whatever the relationship
+    # between build, host and target. cc-wrapper supplies the target libc
+    # (`-idirafter <libc.dev>/include` and the corresponding `-B`/`-L` flags),
+    # as in the LLVM package set, where `clang` likewise carries no libc
+    # reference (`--without-headers` above). Naming one here --
+    # `--with-sysroot`, `--with-native-system-header-dir` -- would make every
+    # libc change rebuild the compiler, precisely the coupling this split
+    # package set exists to remove.
+    #
+    # So `fixincludes` has nothing to do either: it exists to copy the headers
+    # gcc found and rewrite the ones it knows to be broken. Left on, it falls
+    # back to `/usr/include` and stops the build outright when that is missing.
+    # `limits.h` and `syslimits.h` come from a separate prerequisite and are
+    # unaffected.
+    "--disable-fixincludes"
+
     "--enable-linker-build-id"
-    # Deliberately *no* `--with-sysroot` / `--with-native-system-header-dir`
-    # pointing at the target libc. Baking a libc store path into the compiler
-    # makes every libc change rebuild the compiler, which is precisely the
-    # coupling this split package set exists to remove. cc-wrapper already
-    # supplies the target libc (`-idirafter <libc.dev>/include` and the
-    # corresponding `-B`/`-L` flags), so the compiler proper does not need to
-    # know about it -- exactly as in the LLVM package set, where `clang`
-    # likewise carries no libc reference (`--without-headers` above).
   ]
   ++ lib.optionals enablePlugin [
     "--enable-plugin"
