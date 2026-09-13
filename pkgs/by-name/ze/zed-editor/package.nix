@@ -34,6 +34,7 @@
   lld,
   testers,
   writableTmpDirAsHomeHook,
+  bubblewrap,
 
   buildRemoteServer ? true,
 }:
@@ -98,7 +99,7 @@ let
 in
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "zed-editor";
-  version = "1.17.2";
+  version = "1.19.2";
 
   outputs = [
     "out"
@@ -111,7 +112,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "zed-industries";
     repo = "zed";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-7pDtL5IK30UbnX/o6pt1KOmwAhBkdZ+HkydnQ5JXiIo=";
+    hash = "sha256-AhM56IZJ3z70NPtn5RjjbzdZ1ZrxrZ4iUQ5dqAX9m8A=";
   };
 
   postPatch = ''
@@ -134,7 +135,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
       --replace-fail 'builder.include(&glib_path_config);' 'builder.include("${lib.getLib glib}/lib/glib-2.0/include");'
   '';
 
-  cargoHash = "sha256-Ck/Zdfa3tbWLOPWwk47/eEa73DWHAmy0KcG/9u/WDEs=";
+  cargoHash = "sha256-fBcg6qTcxr0eCpsw/nYL8v8Ne5WTeyKNB7CTTDK+P/E=";
 
   __structuredAttrs = true;
 
@@ -197,6 +198,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ++ finalAttrs.buildFeatures;
 
   env = {
+    # Installed binaries are stripped during fixup, so delete.
+    CARGO_PROFILE_RELEASE_DEBUG = "false";
+
     ALLOW_MISSING_LICENSES = true;
     OPENSSL_NO_VENDOR = true;
     LIBGIT2_NO_VENDOR = true;
@@ -227,7 +231,12 @@ rustPlatform.buildRustPackage (finalAttrs: {
         wayland
       ]
     }
-    wrapProgram $out/libexec/zed-editor --suffix PATH : ${lib.makeBinPath [ nodejs ]}
+    wrapProgram $out/libexec/zed-editor --suffix PATH : ${
+      lib.makeBinPath [
+        nodejs
+        bubblewrap # required for sandboxing
+      ]
+    }
   '';
 
   nativeCheckInputs = [
