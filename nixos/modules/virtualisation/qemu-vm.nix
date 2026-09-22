@@ -24,6 +24,8 @@ let
 
   hostPkgs = cfg.host.pkgs;
 
+  useVirtiofs = hostPkgs.stdenv.hostPlatform.isLinux;
+
   consoles = lib.concatMapStringsSep " " (c: "console=${c}") cfg.qemu.consoles;
 
   driveOptions =
@@ -324,23 +326,25 @@ let
         ''
     )}
 
-    echo "Starting virtiofs daemons..."
-    NIX_VIRTIOFS_DIR=$(mktemp -d)
-    ${lib.concatLines (
-      lib.mapAttrsToList (tag: share: ''
-        ${lib.getExe hostPkgs.virtiofsd} \
-          --socket-path="$NIX_VIRTIOFS_DIR"/"${tag}" \
-          --shared-dir="${share.source}" \
-          ${if share.writable then "--writeback" else "--readonly"} \
-          --sandbox=none \
-          --seccomp=none \
-          --cache=always \
-          --no-announce-submounts \
-          --translate-uid=host:65534:0:1 \
-          --translate-gid=host:65534:0:1 \
-          &
-      '') cfg.sharedDirectories
-    )}
+    ${lib.optionalString useVirtiofs ''
+      echo "Starting virtiofs daemons..."
+      NIX_VIRTIOFS_DIR=$(mktemp -d)
+      ${lib.concatLines (
+        lib.mapAttrsToList (tag: share: ''
+          ${lib.getExe hostPkgs.virtiofsd} \
+            --socket-path="$NIX_VIRTIOFS_DIR"/"${tag}" \
+            --shared-dir="${share.source}" \
+            ${if share.writable then "--writeback" else "--readonly"} \
+            --sandbox=none \
+            --seccomp=none \
+            --cache=always \
+            --no-announce-submounts \
+            --translate-uid=host:65534:0:1 \
+            --translate-gid=host:65534:0:1 \
+            &
+        '') cfg.sharedDirectories
+      )}
+    ''}
 
     # Start QEMU.
     exec ${
@@ -360,7 +364,17 @@ let
         "$@"
   '';
 
-  regInfo = hostPkgs.closureInfo { rootPaths = config.virtualisation.additionalPaths; };
+  inherit
+    (import ../../lib/store-registration-info.nix {
+      inherit hostPkgs;
+      rootPaths = config.virtualisation.additionalPaths;
+    })
+    regInfo
+    regInfoPath
+    ;
+  regInfoParam = optionalString (
+    cfg.useNixStoreImage || cfg.mountHostNixStore
+  ) " regInfo=${regInfoPath}";
 
   # Use well-defined and persistent filesystem labels to identify block devices.
   rootFilesystemLabel = "nixos";
@@ -437,11 +451,11 @@ in
     (mkRemovedOptionModule [
       "virtualisation"
       "msize"
-    ] "9p was replaced with virtiofs and thus this option is obsolete.")
+    ] "The 9p msize is no longer configurable.")
     (mkRemovedOptionModule [
       "virtualisation"
       "nixStore9pCache"
-    ] "9p was replaced with virtiofs and thus this option is obsolete.")
+    ] "The 9p cache mode for the Nix store is no longer configurable.")
   ];
 
   options = {
@@ -592,8 +606,9 @@ in
       };
       description = ''
         An attributes set of directories that will be shared with the
-        virtual machine using VirtFS (9P filesystem over VirtIO).
-        The attribute name will be used as the 9P mount tag.
+        virtual machine using virtiofs on Linux hosts and VirtFS (9P filesystem
+        over VirtIO) on other hosts. The attribute name will be used as the
+        mount tag.
       '';
     };
 
@@ -736,7 +751,12 @@ in
     };
 
     virtualisation.qemu = {
-      enableSharedMemory = mkEnableOption "shared memory";
+      enableSharedMemory = mkOption {
+        type = types.bool;
+        default = useVirtiofs; # Need shared memory for virtiofs: <https://www.qemu.org/docs/master/system/devices/virtio/vhost-user.html#shared-memory-object>
+        defaultText = lib.literalExpression "hostPkgs.stdenv.hostPlatform.isLinux";
+        description = "Enable shared memory";
+      };
 
       package = mkOption {
         type = types.package;
@@ -1278,10 +1298,20 @@ in
         "-machine memory-backend=mem0"
       ])
       (lib.flatten (
-        lib.mapAttrsToList (tag: share: [
-          "-chardev socket,id=${tag},path=$NIX_VIRTIOFS_DIR/${tag}"
-          "-device vhost-user-fs-pci,chardev=${tag},tag=${tag}"
-        ]) cfg.sharedDirectories
+        lib.mapAttrsToList (
+          tag: share:
+          if useVirtiofs then
+            [
+              "-chardev socket,id=${tag},path=$NIX_VIRTIOFS_DIR/${tag}"
+              "-device vhost-user-fs-pci,chardev=${tag},tag=${tag}"
+            ]
+          else
+            [
+              "-virtfs local,path=${share.source},security_model=none,mount_tag=${tag}${
+                lib.optionalString (!share.writable) ",readonly=on"
+              }"
+            ]
+        ) cfg.sharedDirectories
       ))
       (
         let
@@ -1294,7 +1324,7 @@ in
         mkIf cfg.directBoot.enable [
           "-kernel \${NIXPKGS_QEMU_KERNEL_${sanitizeShellIdent config.system.name}:-${config.system.build.toplevel}/kernel}"
           "-initrd ${cfg.directBoot.initrd}"
-          ''-append "$(cat ${config.system.build.toplevel}/kernel-params) init=${config.system.build.toplevel}/init regInfo=${regInfo}/registration ${consoles} $QEMU_KERNEL_PARAMS"''
+          ''-append "$(cat ${config.system.build.toplevel}/kernel-params) init=${config.system.build.toplevel}/init${regInfoParam} ${consoles} $QEMU_KERNEL_PARAMS"''
         ]
       )
       (mkIf cfg.useEFIBoot [
@@ -1373,9 +1403,20 @@ in
         name = share.target;
         value = {
           device = tag;
-          fsType = "virtiofs";
+          fsType = if useVirtiofs then "virtiofs" else "9p";
           neededForBoot = true;
-          options = lib.mkIf (!share.writable) [ "ro" ];
+          options =
+            if useVirtiofs then
+              lib.mkIf (!share.writable) [ "ro" ]
+            else
+              [
+                "trans=virtio"
+                "version=9p2000.L"
+                "msize=16384"
+                "x-systemd.requires=modprobe@9pnet_virtio.service"
+              ]
+              ++ lib.optional (tag == "nix-store") "cache=loose"
+              ++ lib.optional (!share.writable) "ro";
         };
       }) cfg.sharedDirectories)
       {
@@ -1488,8 +1529,6 @@ in
         (isEnabled "VIRTIO_PCI")
         (isEnabled "VIRTIO_NET")
         (isEnabled "EXT4_FS")
-        (isEnabled "NET_9P_VIRTIO")
-        (isEnabled "9P_FS")
         (isYes "BLK_DEV")
         (isYes "PCI")
         (isYes "NETDEVICES")
@@ -1497,6 +1536,15 @@ in
         (isYes "INET")
         (isYes "NETWORK_FILESYSTEMS")
       ]
+      ++ (
+        if useVirtiofs then
+          [ (isEnabled "VIRTIO_FS") ]
+        else
+          [
+            (isEnabled "NET_9P_VIRTIO")
+            (isEnabled "9P_FS")
+          ]
+      )
       ++ optionals (!cfg.graphics) [
         (isYes "SERIAL_8250_CONSOLE")
         (isYes "SERIAL_8250")

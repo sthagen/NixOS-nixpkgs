@@ -48,8 +48,8 @@
 let
   # Upstream reads these from git, which the release tarball does not ship.
   # They are purely informational: `llama-server --version`, `/props`, and the web UI.
-  buildNumber = "10809";
-  buildCommit = "5266f24";
+  buildNumber = "10964";
+  buildCommit = "b29c606";
 
   # It's necessary to consistently use backendStdenv when building with CUDA support,
   # otherwise we get libstdc++ errors downstream.
@@ -87,7 +87,7 @@ let
 in
 effectiveStdenv.mkDerivation (finalAttrs: {
   pname = "llama-cpp";
-  version = "0.4.0";
+  version = "0.4.1";
 
   __structuredAttrs = true;
   strictDeps = true;
@@ -101,7 +101,7 @@ effectiveStdenv.mkDerivation (finalAttrs: {
     owner = "ggml-org";
     repo = "llama.cpp";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-WImZjO3U9EXZUNP/FMpxo8PaTjQW8X2SBTfGwwFlZIM=";
+    hash = "sha256-qu/K1RdJMzOxWr+qnHorpMB4650uctBHW/Og+4oDVLM=";
   };
 
   patches = [ ];
@@ -205,12 +205,16 @@ effectiveStdenv.mkDerivation (finalAttrs: {
   # the tests are failing as of 2025-08
   doCheck = false;
 
-  passthru = {
+  passthru = lib.optionalAttrs (!cudaSupport && !rocmSupport && !vulkanSupport) {
     updateScript = ./update.sh;
   };
 
   meta = {
-    description = "Inference of Meta's LLaMA model (and others) in pure C/C++";
+    description =
+      "Inference of Meta's LLaMA model (and others) in pure C/C++"
+      + optionalString cudaSupport ", with CUDA support"
+      + optionalString rocmSupport ", with ROCm support"
+      + optionalString vulkanSupport ", with Vulkan support";
     homepage = "https://github.com/ggml-org/llama.cpp";
     license = lib.licenses.mit;
     mainProgram = "llama";

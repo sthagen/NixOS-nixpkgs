@@ -185,6 +185,7 @@ mapAliases {
   debian = throw "'debian' has been renamed to/replaced by 'python-debian'"; # Converted to throw 2025-10-29
   dedupe-pylbfgs = pylbfgs; # added 2026-06-28
   deepsearch-glm = throw "'deepsearch-glm' has been removed due to lack of upstream maintenance"; # Added 2025-03-04
+  deezer-python-async = throw "'deezer-python-async' has been removed because Music-Assistant moved to deezer-python-gql"; # Added 2026-08-21
   derpconf = throw "'derpconf' has been removed because it is unmaintained upstream"; # Added 2026-09-05
   detectron2 = throw "'detectron2' has been removed because it is unmaintained upstream"; # Added 2026-09-06
   dictionaries = throw "'dictionaries' has been removed as it was archived upstream"; # Added 2026-07-20
@@ -457,6 +458,7 @@ mapAliases {
   oauth = throw "oauth has been removed as it is unmaintained"; # added 2025-05-16
   objax = throw "objax has been removed because the upstream project was archived."; # Added 2025-10-04
   ocrmypdf_16 = throw "'ocrmypdf_16' was removed because paperless-ngx no longer uses it"; # Added 2026-07-23
+  ofxclient = throw "ofxclient has been removed as upstream has been unmaintained for 6 years"; # Added 2025-08-26
   openai-triton = throw "'openai-triton' has been renamed to/replaced by 'triton'"; # Converted to throw 2025-10-29
   openai-triton-bin = throw "'openai-triton-bin' has been renamed to/replaced by 'triton-bin'"; # Converted to throw 2025-10-29
   openai-triton-cuda = throw "'openai-triton-cuda' has been renamed to/replaced by 'triton-cuda'"; # Converted to throw 2025-10-29
@@ -474,12 +476,14 @@ mapAliases {
   pam = throw "'pam' has been renamed to/replaced by 'python-pam'"; # Converted to throw 2025-10-29
   pandas-ta = throw "pandas-ta has been removed: abandoned upstream"; # added 2026-07-20
   paramz = throw "'paramz' has been removed as it is incompatible with Numpy 2"; # added 2025-11-10
+  paranoid-crypto = throw "'paranoid-crypto' has been removed because Google archived the unmaintained project."; # Added 2026-09-02
   parselmouth = praat-parselmouth; # added 2026-07-26
   password-entropy = warnAlias "'password-entropy' has been renamed to 'data-password-entropy'" data-password-entropy; # Added 2026-07-26
   PasteDeploy = throw "'PasteDeploy' has been renamed to/replaced by 'pastedeploy'"; # Converted to throw 2025-10-29
   patator = throw "'patator' has been removed as it was dependant on removed packages and broken"; # Added 2025-12-30
   pathpy = throw "'pathpy' has been renamed to/replaced by 'path'"; # Converted to throw 2025-10-29
   pcbnew-transition = throw "'pcbnew-transition' has been renamed to/replaced by 'pcbnewtransition'"; # Converted to throw 2025-10-29
+  pcbnewtransition = throw "'pcbnewtransition' has been removed as it is unmaintained and incompatible with KiCad 10+"; # Added 2026-08-30
   pdfminer = throw "'pdfminer' has been renamed to/replaced by 'pdfminer-six'"; # Converted to throw 2025-10-29
   peakrdl = throw "'peakrdl' has been renamed to/replaced by 'peakrdl-cli'"; # added 2026-07-14
   pep257 = throw "'pep257' has been renamed to/replaced by 'pydocstyle'"; # Converted to throw 2025-10-29
@@ -650,6 +654,7 @@ mapAliases {
   radian = throw "radian has been promoted to a top-level attribute name: `pkgs.radian`"; # added 2025-05-02
   radicale_infcloud = throw "'radicale_infcloud' has been renamed to/replaced by 'radicale-infcloud'"; # Converted to throw 2025-10-29
   radio_beam = throw "'radio_beam' has been renamed to/replaced by 'radio-beam'"; # Converted to throw 2025-10-29
+  rainbowstream = throw "'rainbowstream' has been removed because the Twitter streaming API it depends on was retired"; # Added 2026-09-06
   random-user-agent = throw "random-user-agent has been removed as it was abandoned upstream in 2018; use fake-useragent instead"; # Added 2025-10-17
   raylib-python-cffi = raylib; # added 2026-09-07
   readme_renderer = throw "'readme_renderer' has been renamed to/replaced by 'readme-renderer'"; # Converted to throw 2025-10-29
@@ -760,6 +765,7 @@ mapAliases {
   trezor_agent = throw "'trezor_agent' has been renamed to/replaced by 'trezor-agent'"; # Converted to throw 2025-10-29
   tvdb_api = throw "'tvdb_api' has been renamed to/replaced by 'tvdb-api'"; # Converted to throw 2025-10-29
   tweedledum = throw "'tweedledum' has been removed due to lack of upstream maintenance."; # Added 2025-11-22
+  twitter = throw "'twitter' has been removed because it was archived upstream"; # Added 2026-09-06
   typed-ast = throw "typed-ast was removed because it went end of life in July 2023"; # added 2025-05-24
   typedmonarchmoney = throw "'typedmonarchmoney' was removed because Home Assistant switched to 'monarchmoneycommunity'"; # added 2026-08-05
   typer-slim = warnAlias "typer-slim was an alias package of typer that only depended on it and has been removed." typer; # added 2026-02-16

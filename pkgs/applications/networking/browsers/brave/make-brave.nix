@@ -191,6 +191,8 @@ stdenv.mkDerivation {
 
   src = fetchurl { inherit (archive) url sha256; };
 
+  sourceRoot = lib.optionalString stdenv.hostPlatform.isDarwin "${darwinApp}.app";
+
   dontConfigure = true;
   dontBuild = true;
   dontPatchELF = true;
@@ -310,7 +312,7 @@ stdenv.mkDerivation {
     $out/opt/brave.com/${optName}/brave --version
   '';
 
-  passthru.updateScript = ./update.sh;
+  passthru.updateScript = ./update.py;
 
   meta = {
     homepage = homepage;

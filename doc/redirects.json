@@ -473,6 +473,9 @@
   "sec-building-packages-with-llvm-using-clang-stdenv": [
     "index.html#sec-building-packages-with-llvm-using-clang-stdenv"
   ],
+  "sec-chicken-package-sets": [
+    "index.html#sec-chicken-package-sets"
+  ],
   "sec-darwin-availability-checks": [
     "index.html#sec-darwin-availability-checks"
   ],
@@ -3902,6 +3905,9 @@
   ],
   "javascript-yarn-v3-v4": [
     "index.html#javascript-yarn-v3-v4"
+  ],
+  "javascript-fetchyarndeps": [
+    "index.html#javascript-fetchyarndeps"
   ],
   "javascript-yarnconfighook": [
     "index.html#javascript-yarnconfighook"

@@ -10,7 +10,7 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "tgrep";
-  version = "1.0.8";
+  version = "1.0.10";
   __structuredAttrs = true;
   __darwinAllowLocalNetworking = true;
 
@@ -18,10 +18,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "microsoft";
     repo = "tgrep";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-WAlrYrnTNfPUi+0Lz6BggKSXK2LfQm9P/JmNFt9/fWw=";
+    hash = "sha256-/IprzLxZR/DL9ny+wPyh/iJoxvjC+50U5w3EP560KL4=";
   };
 
-  cargoHash = "sha256-+RNHcj3wRjOzl8uPlDa+aexbjbFbC6dWctUdXzttGcU=";
+  cargoHash = "sha256-tJ3+aWOsRS3WD9VUYGQ/emOsLPAURVg7/WnUxdTRz50=";
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [ versionCheckHook ];
@@ -43,6 +43,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     "--skip=watcher_applies_the_same_file_eligibility_rules_as_the_walker"
     "--skip=watcher_indexes_files_in_directories_created_after_startup"
     "--skip=watcher_reconciles_forced_add_and_rm_cached_inside_an_ignored_tree"
+    "--skip=native_watcher_tracks_hidden_updates_ignore_transitions_and_restart"
   ];
 
   passthru.updateScript = nix-update-script { };

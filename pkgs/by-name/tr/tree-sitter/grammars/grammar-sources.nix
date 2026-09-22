@@ -318,9 +318,9 @@
   };
 
   cmake = {
-    version = "0.7.4";
+    version = "0.7.5";
     url = "github:uyha/tree-sitter-cmake";
-    hash = "sha256-tLC3WHEQS2GqUr+5Q884fc+tDCTxx6Jxg83T9wPlHw4=";
+    hash = "sha256-3WAADzMe4Rfd35M1CZd7wc/hE9ydD+vTKaxtcMsjSWM=";
     meta = {
       license = lib.licenses.mit;
     };
@@ -407,9 +407,9 @@
   };
 
   cuda = {
-    version = "0.21.1";
+    version = "0.21.2";
     url = "github:tree-sitter-grammars/tree-sitter-cuda";
-    hash = "sha256-sX9AOe8dJJsRbzGq20qakWBnLiwYQ90mQspAuYxQzoQ=";
+    hash = "sha256-s2qrZx5fEu/I6xE2paX/Nlmgvo6T27qqvy1cI8iznAA=";
     meta = {
       license = lib.licenses.mit;
     };

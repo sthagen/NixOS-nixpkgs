@@ -18,11 +18,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [ _7zz ];
 
-  # 7zz extracts APFS alternate data streams as separate files, breaking the seal
-  postUnpack = ''
-    find . -name "*:com.apple.*" -delete
-  '';
-
   installPhase = ''
     runHook preInstall
 
@@ -39,7 +34,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     description = "Powerful and full-featured professional HTML and text editor for macOS";
     homepage = "https://www.barebones.com/products/bbedit/";
     license = lib.licenses.unfree;
-    maintainers = [ ];
+    maintainers = with lib.maintainers; [ iedame ];
     platforms = lib.platforms.darwin;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
   };

@@ -292,6 +292,7 @@ in
   aria2 = runTest ./aria2.nix;
   armagetronad = runTest ./armagetronad.nix;
   artalk = runTest ./artalk.nix;
+  asynch = runTest ./asynch.nix;
   atd = runTest ./atd.nix;
   atop = import ./atop.nix { inherit pkgs runTest; };
   atticd = runTest ./atticd.nix;
@@ -422,6 +423,7 @@ in
   cgit = runTest ./cgit.nix;
   charliecloud = runTest ./charliecloud.nix;
   chhoto-url = runTest ./chhoto-url.nix;
+  chipass = runTest ./chipass.nix;
   chromadb = runTest ./chromadb.nix;
   chromium = (handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./chromium.nix { }).stable or { };
   chrony = runTestOn [ "aarch64-linux" "x86_64-linux" ] ./chrony.nix;
@@ -466,10 +468,12 @@ in
   containers-bridge = runTest ./containers-bridge.nix;
   containers-custom-pkgs = runTest ./containers-custom-pkgs.nix;
   containers-ephemeral = runTest ./containers-ephemeral.nix;
+  containers-eval = import ./containers-eval.nix { inherit pkgs; };
   containers-extra_veth = runTest ./containers-extra_veth.nix;
   containers-gateway = runTest ./containers-gateway.nix;
   containers-hosts = runTest ./containers-hosts.nix;
   containers-imperative = runTest ./containers-imperative.nix;
+  containers-imperative-no-daemon = runTest ./containers-imperative-no-daemon.nix;
   containers-ip = runTest ./containers-ip.nix;
   containers-ipv6-slaac = runTest ./containers-ipv6-slaac.nix;
   containers-macvlans = runTest ./containers-macvlans.nix;
@@ -573,6 +577,7 @@ in
   documize = runTest ./documize.nix;
   docuseal-psql = runTest ./docuseal-postgres.nix;
   docuseal-sqlite = runTest ./docuseal-sqlite.nix;
+  docuum = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./docuum.nix;
   doh-proxy-rust = runTest ./doh-proxy-rust.nix;
   dokuwiki = runTest ./dokuwiki.nix;
   dolibarr = runTest ./dolibarr.nix;
@@ -585,6 +590,7 @@ in
   druid = handleTestOn [ "x86_64-linux" ] ./druid { };
   drupal = runTest ./drupal.nix;
   dublin-traceroute = runTest ./dublin-traceroute.nix;
+  duplicity = runTest ./duplicity.nix;
   dwl = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./dwl.nix;
   e57inspector = import ./e57inspector.nix { inherit pkgs runTest; };
   early-mount-options = runTest ./early-mount-options.nix;
@@ -800,6 +806,7 @@ in
   graphite = runTest ./graphite.nix;
   grav = runTest ./web-apps/grav.nix;
   graylog = runTest ./graylog.nix;
+  greenlight = runTest ./greenlight.nix;
   greetd-no-shadow = runTest ./greetd-no-shadow.nix;
   grocy = runTest ./grocy.nix;
   grow-partition = runTest ./grow-partition.nix;
@@ -831,6 +838,7 @@ in
   };
   haproxy = runTest ./haproxy.nix;
   harmonia = runTest ./harmonia.nix;
+  harmonia-gc = runTest ./harmonia-gc.nix;
   haste-server = runTest ./haste-server.nix;
   hbase2 = runTest {
     imports = [ ./hbase.nix ];
@@ -872,7 +880,6 @@ in
   homebridge = runTest ./homebridge.nix;
   homepage-dashboard = runTest ./homepage-dashboard.nix;
   homer = handleTest ./homer { };
-  honk = runTest ./honk.nix;
   hoogle = runTest ./hoogle.nix;
   hostname = import ./hostname.nix {
     inherit pkgs runTest;
@@ -1051,6 +1058,7 @@ in
   linkding = runTest ./web-apps/linkding.nix;
   linkding-postgres = runTest ./web-apps/linkding-postgres.nix;
   linkwarden = runTest ./web-apps/linkwarden.nix;
+  linux-builder-vz-store-gc = runTest ./linux-builder-vz-store-gc.nix;
   listmonk = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./listmonk.nix { };
   litellm = runTest ./litellm.nix;
   litestream = runTest ./litestream.nix;
@@ -1239,6 +1247,7 @@ in
   nebula.reload = runTest ./nebula/reload.nix;
   neo4j = runTest ./neo4j.nix;
   netbird = runTest ./netbird.nix;
+  netbird-relay = runTest ./netbird-relay.nix;
   netbox = runTest ./web-apps/netbox/default.nix;
   netdata = runTest ./netdata.nix;
   netfoil = runTest ./netfoil.nix;
@@ -1396,6 +1405,7 @@ in
   openldap = runTest ./openldap.nix;
   openresty-lua = runTest ./openresty-lua.nix;
   opensearch = discoverTests (import ./opensearch.nix);
+  opensearch-dashboards = handleTest ./opensearch-dashboards.nix { };
   opensmtpd = handleTest ./opensmtpd.nix { };
   opensmtpd-rspamd = handleTest ./opensmtpd-rspamd.nix { };
   opensnitch = runTest ./opensnitch.nix;
@@ -1460,7 +1470,6 @@ in
   pgadmin4 = runTest ./pgadmin4.nix;
   pgbackrest = import ./pgbackrest { inherit runTest; };
   pgbouncer = runTest ./pgbouncer.nix;
-  pghero = runTest ./pghero.nix;
   pgmanage = runTest ./pgmanage.nix;
   pgweb = runTest ./pgweb.nix;
   phosh = runTest ./phosh.nix;
