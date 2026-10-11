@@ -22,7 +22,7 @@
   librsvg,
   libvpx,
   libwebp,
-  systemd,
+  systemdLibs,
   lz4,
   nv-codec-headers-10,
   nvidia_x11 ? null,
@@ -104,14 +104,14 @@ let
 in
 effectiveBuildPythonApplication rec {
   pname = "xpra";
-  version = "6.5.3";
+  version = "6.5.4";
   format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "Xpra-org";
     repo = "xpra";
     tag = "v${version}";
-    hash = "sha256-UDKnkynWoS1feUBRRHXl7emksUmufBL16gmVFslMHpM=";
+    hash = "sha256-TXqnheJjq3WZZffbEPjS5/u/02OlJkDJ9IqyCabYr1E=";
   };
 
   patches = [
@@ -185,7 +185,7 @@ effectiveBuildPythonApplication rec {
     openh264
     libyuv
     xxhash
-    systemd
+    systemdLibs
   ]
   ++ lib.optionals withNvenc [
     nvencHeaders
@@ -294,8 +294,7 @@ effectiveBuildPythonApplication rec {
   };
 
   meta = {
-    homepage = "https://xpra.org/";
-    downloadPage = "https://xpra.org/src/";
+    homepage = "https://github.com/Xpra-org/xpra";
     description = "Persistent remote applications for X";
     changelog = "https://github.com/Xpra-org/xpra/releases/tag/v${version}";
     platforms = lib.platforms.linux;

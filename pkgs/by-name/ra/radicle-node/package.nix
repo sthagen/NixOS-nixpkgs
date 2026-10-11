@@ -39,7 +39,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     '';
   };
 
-  strictDeps = true;
   __structuredAttrs = true;
 
   env.RADICLE_VERSION = finalAttrs.version;
@@ -177,5 +176,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
     platforms = lib.platforms.unix;
     teams = [ lib.teams.radicle ];
     mainProgram = "rad";
+    knownVulnerabilities = [
+      # https://radicle.dev/2026/09/23/disclosure-of-vulnerability-in-network-protocol
+      "Private repositories are insecure: traffic between nodes is not encrypted and not authenticated."
+    ];
   };
 })

@@ -10,15 +10,16 @@
   fetchPnpmDeps,
   pnpmConfigHook,
   versionCheckHook,
+  writableTmpDirAsHomeHook,
 }:
 buildGo127Module (finalAttrs: {
   pname = "qui";
-  version = "1.29.0";
+  version = "1.31.1";
   src = fetchFromGitHub {
     owner = "autobrr";
     repo = "qui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-GTW/kHy4UtBjQK8PugrHXso5wj5VOig3sOiv5PiJprQ=";
+    hash = "sha256-NaJSVOkmzvnE6/kKYsRF/6Gf0vTge7hvEHQ/+dHRchk=";
   };
 
   qui-web = stdenvNoCC.mkDerivation (finalAttrs': {
@@ -42,7 +43,7 @@ buildGo127Module (finalAttrs: {
         ;
       pnpm = pnpm_11;
       fetcherVersion = 4;
-      hash = "sha256-tzLY3R6nOL18eIKgWhZdUVvu5XdmpxlMRuVvW/gtnYE=";
+      hash = "sha256-F+B1rj9fcgaDfPYC+8hUZfpNQNiiK9TnT/Ld68fW/WA=";
     };
 
     postBuild = ''
@@ -54,7 +55,7 @@ buildGo127Module (finalAttrs: {
     '';
   });
 
-  vendorHash = "sha256-8po/cyG8R39NwNwszcvvo9LL1OceCptL671zU8E/NDg=";
+  vendorHash = "sha256-DZ1JAC485qDOlk6+bSp/5HY30MclP6cINWmDJ8mEZ4Y=";
 
   preBuild = ''
     cp -r ${finalAttrs.qui-web}/* web/dist
@@ -63,6 +64,10 @@ buildGo127Module (finalAttrs: {
   ldflags = [
     "-X github.com/autobrr/qui/internal/buildinfo.Version=${finalAttrs.version}"
     "-X main.PolarOrgID="
+  ];
+
+  nativeCheckInputs = [
+    writableTmpDirAsHomeHook
   ];
 
   # some season-pack tests use non-existent source paths (e.g. /media/...) and

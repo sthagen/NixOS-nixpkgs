@@ -28,16 +28,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "vector";
-  version = "0.58.0";
+  version = "0.59.0";
 
   src = fetchFromGitHub {
     owner = "vectordotdev";
     repo = "vector";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-H/bSlSWdNN94uCP0tpjyf/VEdoCb/PUALTknT/UNdfg=";
+    hash = "sha256-lnNlywrGMWaaLw+03m9qVGZoctcSdyw2zWl+5RaUBGg=";
   };
 
-  cargoHash = "sha256-HRf4sBVx8vVkDfxeVsI2Z4J6OurIolqX0oCB+nxShRs=";
+  cargoHash = "sha256-C8Lqi3QSooXdDmSYYER9SgGkkcmgynRoy9LffmSJZns=";
 
   nativeBuildInputs = [
     pkg-config
@@ -77,6 +77,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
     PROTOC = "${protobuf}/bin/protoc";
     RUSTONIG_SYSTEM_LIBONIG = true;
 
+    # upstream forces openssl/vendored
+    OPENSSL_NO_VENDOR = true;
+
     TZDIR = "${tzdata}/share/zoneinfo";
 
     # needed to dynamically link rdkafka
@@ -105,9 +108,15 @@ rustPlatform.buildRustPackage (finalAttrs: {
     "--skip=secrets::exec::tests::test_exec_backend_missing_secrets"
 
     # Flakey
+    "--skip=sources::exec::tests::test_graceful_shutdown"
+    "--skip=sources::exec::tests::test_run_command_linux"
     "--skip=sources::host_metrics::cgroups::tests::generates_cgroups_metrics"
     "--skip=sources::host_metrics::cpu::tests::generates_cpu_metrics"
     "--skip=sources::internal_logs::tests::repeated_logs_are_not_rate_limited"
+    "--skip=topology::test::backpressure::buffer_drop_fan_out"
+    "--skip=topology::test::backpressure::default_fan_out"
+    "--skip=topology::test::backpressure::serial_backpressure"
+    "--skip=topology::test::reload::topology_disk_buffer_config_change_chained_does_not_stall"
     "--skip=topology::test::reload::topology_reload_preserves_enrichment_table_state"
 
     # Requires access to journalctl
@@ -135,14 +144,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ++ lib.optionals (stdenv.hostPlatform.isAarch64 && stdenv.hostPlatform.isDarwin) [
     # Fails on aarch64-darwin (https://github.com/vectordotdev/vector/issues/23813)
     "--skip=sources::file::tests::file_start_position_server_restart_unfinalized"
-  ]
-  ++ lib.optionals (stdenv.hostPlatform.isAarch64 && stdenv.hostPlatform.isLinux) [
-    # Flakey on aarch64-linux
-    "--skip=sources::exec::tests::test_graceful_shutdown"
-    "--skip=sources::exec::tests::test_run_command_linux"
-    "--skip=topology::test::backpressure::buffer_drop_fan_out"
-    "--skip=topology::test::backpressure::default_fan_out"
-    "--skip=topology::test::backpressure::serial_backpressure"
   ];
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''

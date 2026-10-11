@@ -17,13 +17,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "moonlight";
-  version = "2026.9.0";
+  version = "2026.10.0";
 
   src = fetchFromGitHub {
     owner = "moonlight-mod";
     repo = "moonlight";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-J78pFRFONALG2QWuRQSekiaG9TNctrEM/IYG2Iot9gk=";
+    hash = "sha256-yQ6jaLpHVHV6MkOqQmBVe+3VeiCh+fk9bsUzusrtJfQ=";
   };
 
   nativeBuildInputs = [

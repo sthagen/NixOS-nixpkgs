@@ -1366,12 +1366,12 @@ in
   tmux-tpad = mkTmuxPlugin {
     pluginName = "tmux-tpad";
     rtpFilePath = "tpad.tmux";
-    version = "0.3.0";
+    version = "0.4.0";
     src = fetchFromGitHub {
       owner = "Subbeh";
       repo = "tmux-tpad";
-      rev = "v0.3.0";
-      hash = "sha256-w1eNg6n5JEWcKT7hCr3nFPe01kW3PwGBx8sdtfFojvk=";
+      rev = "v0.4.0";
+      hash = "sha256-VSQJKKAL0iMq7RXlZGaiidT/ABVsgUY/TbjRUFMN7KE=";
     };
     meta = {
       homepage = "https://github.com/Subbeh/tmux-tpad";

@@ -56,11 +56,13 @@
   cargo,
   rustc,
   nix-update-script,
+  withBreakingChanges ? false,
 }:
 
 assert osxkeychainSupport -> stdenv.hostPlatform.isDarwin;
 assert sendEmailSupport -> perlSupport;
 assert svnSupport -> perlSupport;
+assert withBreakingChanges -> rustSupport;
 
 let
   version = "2.55.0";
@@ -85,6 +87,11 @@ let
     NetSSLeay
     AuthenSASL
     DigestHMAC
+  ];
+  gitJumpBinPath = lib.makeBinPath [
+    "$out"
+    perlPackages.perl
+    coreutils
   ];
 in
 
@@ -197,6 +204,7 @@ stdenv.mkDerivation (finalAttrs: {
     (if stdenv.hostPlatform.isFreeBSD then libiconvReal else libiconv)
     bash
   ]
+  ++ lib.optionals pythonSupport [ python3 ]
   ++ lib.optionals perlSupport [ perlPackages.perl ]
   ++ lib.optionals guiSupport [
     tcl
@@ -269,7 +277,8 @@ stdenv.mkDerivation (finalAttrs: {
   # See https://github.com/Homebrew/homebrew-core/commit/dfa3ccf1e7d3901e371b5140b935839ba9d8b706
   ++ lib.optional stdenv.hostPlatform.isDarwin "TKFRAMEWORK=/nonexistent"
   # Starting with future Git version 3.0.0, rust will be mandatory. For now, it's optional.
-  ++ lib.optional (!rustSupport) "NO_RUST=YesPlease";
+  ++ lib.optional (!rustSupport) "NO_RUST=YesPlease"
+  ++ lib.optional withBreakingChanges "WITH_BREAKING_CHANGES=YesPlease";
 
   disallowedReferences = lib.optionals (stdenv.buildPlatform != stdenv.hostPlatform) [
     stdenv.shellPackage
@@ -385,9 +394,11 @@ stdenv.mkDerivation (finalAttrs: {
     # Also put git-http-backend into $PATH, so that we can use smart
     # HTTP(s) transports for pushing
     ln -s $out/libexec/git-core/git-http-backend${stdenv.hostPlatform.extensions.executable} $out/bin/git-http-backend
-    ln -s $out/share/git/contrib/git-jump/git-jump $out/bin/git-jump
   ''
   + lib.optionalString perlSupport ''
+    makeWrapper $out/share/git/contrib/git-jump/git-jump $out/bin/git-jump \
+      --prefix PATH : "${gitJumpBinPath}"
+
     # wrap perl commands
     makeWrapper "$out/share/git/contrib/credential/netrc/git-credential-netrc.perl" $out/libexec/git-core/git-credential-netrc \
                 --set PERL5LIB   "$out/${perlPackages.perl.libPrefix}:${perlPackages.makePerlPath perlLibs}"
@@ -412,6 +423,10 @@ stdenv.mkDerivation (finalAttrs: {
         sed -i -e "/use CGI /i use lib \"$p/${perlPackages.perl.libPrefix}\";" \
             "$out/share/gitweb/gitweb.cgi"
     done
+  ''
+
+  + lib.optionalString pythonSupport ''
+    patchShebangs $out/share/git/contrib/fast-import/import-zips.py
   ''
 
   + (

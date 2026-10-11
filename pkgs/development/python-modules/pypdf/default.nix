@@ -26,7 +26,7 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "pypdf";
-  version = "6.18.1";
+  version = "6.19.0";
   pyproject = true;
 
   src = fetchFromGitHub {
@@ -35,7 +35,7 @@ buildPythonPackage (finalAttrs: {
     tag = finalAttrs.version;
     # fetch sample files used in tests
     fetchSubmodules = true;
-    hash = "sha256-BfscatAwiiPQfbgTSBE3CM2As2LkcNh0zkr5jIq45Ww=";
+    hash = "sha256-9idq59BNXL0fqQOxk2+Joj4q3khEGv5uGUpbjrokHHs=";
   };
 
   outputs = [
@@ -79,6 +79,13 @@ buildPythonPackage (finalAttrs: {
   disabledTestMarks = [
     # don't access the network
     "enable_socket"
+  ];
+
+  disabledTests = [
+    # timing sensitive, these allocate hundreds of megabytes and assert on a
+    # five second pytest-timeout, which slower builders cannot meet
+    "test_dictionary_object__read_from_stream__missing_length__limit"
+    "test_flatedecode__decode_png_prediction__speed"
   ];
 
   meta = {

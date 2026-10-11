@@ -1,8 +1,9 @@
 {
   lib,
+  fetchpatch,
   fetchPypi,
   makeWrapper,
-  python3Packages,
+  python313Packages,
   libclang,
   clang-tools,
   cppcheck,
@@ -14,23 +15,26 @@
   withGcc ? false,
   withInfer ? false,
 }:
-python3Packages.buildPythonApplication (finalAttrs: {
+# Starting the codechecker server currently breaks with Python 3.14
+# https://github.com/Ericsson/codechecker/issues/4773
+python313Packages.buildPythonApplication (finalAttrs: {
   pname = "codechecker";
-  version = "6.28.0";
+  version = "6.29.1";
   pyproject = true;
 
   __structuredAttrs = true;
 
   src = fetchPypi {
     inherit (finalAttrs) pname version;
-    hash = "sha256-wxV+/hzsk7RrzWTXNz5HyweYdFFI1upNS508QRPCefo=";
+    hash = "sha256-0D8eO+UumjZXh/t00IUcBLtUUwXJINbFaUG+svkOScQ=";
   };
 
-  build-system = with python3Packages; [
+  build-system = with python313Packages; [
     setuptools
+    types-setuptools
   ];
 
-  dependencies = with python3Packages; [
+  dependencies = with python313Packages; [
     alembic
     argcomplete
     authlib
@@ -48,10 +52,12 @@ python3Packages.buildPythonApplication (finalAttrs: {
     types-pyyaml
     sarif-tools
     types-psutil
+    types-lxml
+    prettytable
   ];
 
   pythonRelaxDeps = true;
-  nativeBuildInputs = with python3Packages; [
+  nativeBuildInputs = with python313Packages; [
     makeWrapper
     pythonRelaxDepsHook
   ];

@@ -6,19 +6,19 @@
   lib,
   nix-update-script,
   nixosTests,
-  nodejs_22,
+  nodejs_24,
   python313Packages,
   unar,
 }:
 python313Packages.buildPythonApplication (finalAttrs: {
   pname = "bazarr";
-  version = "1.6.0";
+  version = "1.6.2";
 
   src = fetchFromGitHub {
     owner = "morpheus65535";
     repo = "bazarr";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-r3H0JEcGYzQOTHVR/zONmtOIF+LnJd+qn2pcAj8vdOA=";
+    hash = "sha256-5bhNbLfuL1wzraO3UypRRstC1+ULTaFVNJC++Qov6AE=";
   };
 
   dependencies = with python313Packages; [
@@ -74,9 +74,9 @@ python313Packages.buildPythonApplication (finalAttrs: {
 
       sourceRoot = "${finalAttrs.src.name}/frontend";
 
-      nodejs = nodejs_22;
+      nodejs = nodejs_24;
 
-      npmDepsHash = "sha256-cb++eqVtKZer9B1rwJ9WR4mZImnASeFU2MojgXAPWf4=";
+      npmDepsHash = "sha256-uvUXk5+/WOfFRuBnC/SQOkau+0uIkJ4OTofMXckmwzw=";
 
       nativeBuildInputs = [ dart-sass ];
 

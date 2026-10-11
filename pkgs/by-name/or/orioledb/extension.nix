@@ -10,14 +10,14 @@
 
 postgresqlBuildExtension (finalAttrs: {
   pname = "orioledb";
-  # SQL extension version is 1.9, official version is beta17
-  version = "1.9-beta17";
+  # SQL extension version is 1.10, official version is beta19
+  version = "1.10-beta19";
 
   src = fetchFromGitHub {
     owner = "orioledb";
     repo = "orioledb";
-    tag = "beta17";
-    hash = "sha256-gDX28/CHlbLj+jC3Qx6z/Hg6M73K4mFPw3iysc1Xv6I=";
+    tag = "beta19";
+    hash = "sha256-nLb3UHf2X+BFf5pXvUKW4LsSEtzmGy97Qw8rEkgewso=";
   };
 
   buildInputs = postgresql.buildInputs ++ [

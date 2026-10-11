@@ -26,8 +26,12 @@ let
           # Use a settings module in dataDir, to avoid having to rebuild the package
           # when user changes settings.
           makeWrapperArgs = (old.makeWrapperArgs or [ ]) ++ [
-            "--set PYTHONPATH  \"${settingsDir}\""
-            "--set DJANGO_SETTINGS_MODULE \"settings\""
+            "--set"
+            "PYTHONPATH"
+            settingsDir
+            "--set"
+            "DJANGO_SETTINGS_MODULE"
+            "settings"
           ];
         })
       );
@@ -122,14 +126,14 @@ let
     pkgs.runCommand "weblate_settings.py"
       {
         inherit weblateConfig;
-        passAsFile = [ "weblateConfig" ];
+        __structuredAttrs = true;
       }
       ''
         mkdir -p $out
-        cat \
-          ${python.pkgs.weblate}/${python.sitePackages}/weblate/settings_example.py \
-          $weblateConfigPath \
-          > $out/settings.py
+        (
+          cat ${python.pkgs.weblate}/${python.sitePackages}/weblate/settings_example.py
+          printf "%s" "$weblateConfig"
+        ) > $out/settings.py
       '';
 
   environment = {

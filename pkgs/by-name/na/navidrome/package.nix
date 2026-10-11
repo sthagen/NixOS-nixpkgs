@@ -20,16 +20,21 @@
 
 buildGo127Module (finalAttrs: {
   pname = "navidrome";
-  version = "0.64.1";
+  version = "0.64.2";
 
   src = fetchFromGitHub {
     owner = "navidrome";
     repo = "navidrome";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-zjg5JwpzcDe8LFvF/soE4IrsdpkNpO7psAoQrHlKCVI=";
+    hash = "sha256-6667wi23YSPdF/LL5k7VmYEAM5rxQYjqlvAtg5vJzj4=";
   };
 
-  vendorHash = "sha256-vndJx4BcXQCJewKCv3TvSrxG6sCykfBvkOQK/kVQIPk=";
+  patches = [
+    # remove once version > 0.64.2
+    ./6221.patch
+  ];
+
+  vendorHash = "sha256-/3NhF/OHDxWrciN5GdROiO1yhjjdm5F5ntW7h6tzFGc=";
 
   npmRoot = "ui";
 
@@ -82,7 +87,10 @@ buildGo127Module (finalAttrs: {
   postInstall = ''
     mkdir -p $out/share/plugins/
     ${lib.concatMapStringsSep "\n" (plugin: ''
-      ln -s ${plugin}/share/${plugin.pname}.ndp $out/share/plugins/
+      find ${plugin}/share/ \
+        -type f \
+        -name "*.ndp" \
+        -exec ln -s {} $out/share/plugins/${plugin.bundleName or plugin.pname}.ndp \;
     '') plugins}
   '';
 
@@ -114,6 +122,7 @@ buildGo127Module (finalAttrs: {
     maintainers = with lib.maintainers; [
       aciceri
       tebriel
+      RossSmyth
     ];
     # Broken on Darwin: sandbox-exec: pattern serialization length exceeds maximum (NixOS/nix#4119)
     broken = stdenv.hostPlatform.isDarwin;

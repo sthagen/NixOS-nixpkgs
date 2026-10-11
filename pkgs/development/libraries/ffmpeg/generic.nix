@@ -149,7 +149,6 @@
   withSsh ? withHeadlessDeps, # SFTP protocol
   withSvg ? withFullDeps, # SVG protocol
   withSvtav1 ? withHeadlessDeps && !stdenv.hostPlatform.isMinGW, # AV1 encoder/decoder (focused on speed and correctness)
-  withTensorflow ? false, # Tensorflow dnn backend support (Increases closure size by ~390 MiB)
   withTheora ? withHeadlessDeps, # Theora encoder
   withTwolame ? withFullDeps, # MP2 encoding
   withUavs3d ? withFullDeps, # AVS3 decoder
@@ -310,7 +309,6 @@
   librist,
   librsvg,
   libssh,
-  libtensorflow,
   libtheora,
   libv4l,
   libva,
@@ -742,7 +740,7 @@ stdenv.mkDerivation (
       (enableFeature withSsh "libssh")
       (enableFeature withSvg "librsvg")
       (enableFeature withSvtav1 "libsvtav1")
-      (enableFeature withTensorflow "libtensorflow")
+      (enableFeature false "libtensorflow")
       (enableFeature withTheora "libtheora")
       (enableFeature withTwolame "libtwolame")
       (enableFeature withUavs3d "libuavs3d")
@@ -965,7 +963,6 @@ stdenv.mkDerivation (
       ++ optionals withSsh [ libssh ]
       ++ optionals withSvg [ librsvg ]
       ++ optionals withSvtav1 [ svt-av1 ]
-      ++ optionals withTensorflow [ libtensorflow ]
       ++ optionals withTheora [ libtheora ]
       ++ optionals withTwolame [ twolame ]
       ++ optionals withUavs3d [ uavs3d ]
@@ -1057,15 +1054,20 @@ stdenv.mkDerivation (
     # Set RUNPATH so that libnvcuvid and libcuda in /run/opengl-driver(-32)/lib can be found.
     # See the explanation in addDriverRunpath.
     postFixup =
+      let
+        vulkanLoaderPath = lib.makeLibraryPath [ vulkan-loader ];
+        addLibvulkanRpath = versionAtLeast version "5.0" && withVulkan;
+      in
       optionalString (stdenv.hostPlatform.isLinux && withLib) ''
         addDriverRunpath ${placeholder "lib"}/lib/libavcodec.so
         addDriverRunpath ${placeholder "lib"}/lib/libavutil.so
       ''
       # https://trac.ffmpeg.org/ticket/10809
-      + optionalString (versionAtLeast version "5.0" && withVulkan && !stdenv.hostPlatform.isMinGW) ''
-        patchelf $lib/lib/libavcodec.so --add-needed libvulkan.so --add-rpath ${
-          lib.makeLibraryPath [ vulkan-loader ]
-        }
+      + optionalString (addLibvulkanRpath && stdenv.hostPlatform.isDarwin) ''
+        install_name_tool $lib/lib/libavcodec.dylib -add_rpath ${vulkanLoaderPath}
+      ''
+      + optionalString (addLibvulkanRpath && stdenv.hostPlatform.isElf) ''
+        patchelf $lib/lib/libavcodec.so --add-needed libvulkan.so --add-rpath ${vulkanLoaderPath}
       '';
 
     enableParallelBuilding = true;
@@ -1112,6 +1114,9 @@ stdenv.mkDerivation (
         emily
       ];
       mainProgram = "ffmpeg";
+      identifiers.cpeParts = lib.meta.cpeFullVersionWithVendor "ffmpeg" finalAttrs.version // {
+        product = "ffmpeg";
+      };
     };
   }
   // lib.optionalAttrs withCudaLLVM {
